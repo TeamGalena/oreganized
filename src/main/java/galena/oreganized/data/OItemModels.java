@@ -41,6 +41,8 @@ public class OItemModels extends OItemModelProvider {
         normalItem(OItems.SHRAPNEL_BOMB_MINECART);
         normalItem(OItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE);
         normalItem(OItems.LEAD_BOLT);
+        normalItem(OItems.RAW_ASBESTOS);
+        normalItem(OItems.REFINED_ASBESTOS);
         normalItem(OItems.FLINT_AND_PEWTER);
 
         toolItem(OItems.BUSH_HAMMER);
@@ -55,7 +57,10 @@ public class OItemModels extends OItemModelProvider {
         shieldItem(OItems.ELECTRUM_SHIELD);
 
         crossbowOverwrite("crossbow_lead_bolt");
-
+        block(OBlocks.ASBESTOS_BLOCK);
+        block(OBlocks.RAW_ASBESTOS_BLOCK);
+        block(OBlocks.ASBESTOS_ORE);
+        block(OBlocks.DEEPSLATE_ASBESTOS_ORE);
         block(OBlocks.GLANCE);
         block(OBlocks.POLISHED_GLANCE);
         block(OBlocks.GLANCE_BRICKS);

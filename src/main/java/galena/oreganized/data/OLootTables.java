@@ -74,6 +74,10 @@ public class OLootTables extends LootTableProvider {
             ore(OBlocks.DEEPSLATE_SILVER_ORE, OItems.RAW_SILVER);
             ore(OBlocks.LEAD_ORE, OItems.RAW_LEAD);
             ore(OBlocks.DEEPSLATE_LEAD_ORE, OItems.RAW_LEAD);
+            ore(OBlocks.ASBESTOS_ORE, OItems.RAW_ASBESTOS);
+            ore(OBlocks.DEEPSLATE_ASBESTOS_ORE, OItems.RAW_ASBESTOS);
+            dropSelf(OBlocks.ASBESTOS_BLOCK);
+            dropSelf(OBlocks.RAW_ASBESTOS_BLOCK);
             dropSelf(OBlocks.RAW_SILVER_BLOCK);
             dropSelf(OBlocks.RAW_LEAD_BLOCK);
             dropSelf(OBlocks.SILVER_BLOCK);

@@ -26,6 +26,7 @@ public class OBiomeTags extends BiomeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
+
         tag(OTags.Biomes.HAS_BOULDER)
                 .addTag(OTags.Biomes.RICH_IN_LEAD_ORE)
                 .addTag(Tags.Biomes.IS_PLAINS);

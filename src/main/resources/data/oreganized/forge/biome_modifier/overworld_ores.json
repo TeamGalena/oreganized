@@ -3,6 +3,7 @@
   "biomes": "#minecraft:is_overworld",
   "features": [
     "oreganized:silver_ore",
+    "oreganized:asbestos_ore",
     "oreganized:silver_ore_extra",
     "oreganized:lead_ore"
   ],

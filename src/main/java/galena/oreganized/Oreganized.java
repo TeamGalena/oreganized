@@ -211,7 +211,7 @@ public class Oreganized {
             LEAD.put(Items.BUCKET, MoltenLeadCauldronBlock.EMPTY_MOLTEN_LEAD);
 
             CauldronInteraction.addDefaultInteractions(MoltenLeadCauldronBlock.INTERACTION_MAP);
-
+            PotionBrewing.addMix(Potions.WATER, OItems.REFINED_ASBESTOS.get(), OPotions.LUNG_DAMAGE.get());
             PotionBrewing.addMix(Potions.WATER, OItems.LEAD_INGOT.get(), OPotions.STUNNING.get());
             PotionBrewing.addMix(OPotions.STUNNING.get(), Items.REDSTONE, OPotions.LONG_STUNNING.get());
 
@@ -308,7 +308,8 @@ public class Oreganized {
         putBefore(entries, Items.REDSTONE_BLOCK, OBlocks.SILVER_BLOCK);
         putBefore(entries, Items.NETHERITE_BLOCK, OBlocks.ELECTRUM_BLOCK);
         putAfter(entries, Items.WAXED_OXIDIZED_CUT_COPPER_SLAB, OBlocks.LEAD_BLOCK);
-        putAfter(entries, OBlocks.LEAD_BLOCK.get(), OBlocks.CUT_LEAD);
+        putAfter(entries, OBlocks.LEAD_BLOCK.get(), OBlocks.ASBESTOS_BLOCK);
+        putAfter(entries, OBlocks.ASBESTOS_BLOCK.get(), OBlocks.CUT_LEAD);
         putAfter(entries, OBlocks.CUT_LEAD.get(), OBlocks.LEAD_BRICKS);
         putAfter(entries, OBlocks.LEAD_PILLAR.get(), OBlocks.CUT_LEAD);
         putAfter(entries, OBlocks.LEAD_BRICKS.get(), OBlocks.LEAD_PILLAR);
@@ -330,8 +331,10 @@ public class Oreganized {
         putAfter(entries, OBlocks.LEAD_ORE.get(), OBlocks.DEEPSLATE_LEAD_ORE);
         putAfter(entries, Items.DEEPSLATE_GOLD_ORE, OBlocks.SILVER_ORE);
         putAfter(entries, OBlocks.SILVER_ORE.get(), OBlocks.DEEPSLATE_SILVER_ORE);
+        putAfter(entries, OBlocks.DEEPSLATE_SILVER_ORE.get(), OBlocks.ASBESTOS_ORE);
         putAfter(entries, Items.RAW_COPPER_BLOCK, OBlocks.RAW_LEAD_BLOCK);
         putAfter(entries, Items.RAW_GOLD_BLOCK, OBlocks.RAW_SILVER_BLOCK);
+        putAfter(entries, OBlocks.RAW_SILVER_BLOCK.get(), OBlocks.RAW_ASBESTOS_BLOCK);
         putAfter(entries, Blocks.ICE, OBlocks.GROOVED_ICE);
         putAfter(entries, Blocks.PACKED_ICE, OBlocks.GROOVED_PACKED_ICE);
         putAfter(entries, Blocks.BLUE_ICE, OBlocks.GROOVED_BLUE_ICE);
@@ -363,11 +366,13 @@ public class Oreganized {
         putBefore(entries, Items.ARROW, OItems.LEAD_BOLT);
 
         putAfter(entries, Items.RAW_COPPER, OItems.RAW_LEAD);
+        putAfter(entries,  OItems.RAW_LEAD.get(), OItems.RAW_ASBESTOS);
         putAfter(entries, Items.RAW_GOLD, OItems.RAW_SILVER);
         putAfter(entries, Items.IRON_NUGGET, OItems.LEAD_NUGGET);
         putAfter(entries, Items.GOLD_NUGGET, OItems.SILVER_NUGGET);
         putBefore(entries, Items.IRON_INGOT, OItems.ELECTRUM_NUGGET);
         putAfter(entries, Items.COPPER_INGOT, OItems.LEAD_INGOT);
+        putAfter(entries,Items.LAPIS_LAZULI,OItems.REFINED_ASBESTOS);
         putAfter(entries, Items.GOLD_INGOT, OItems.SILVER_INGOT);
         putBefore(entries, Items.NETHERITE_SCRAP, OItems.ELECTRUM_INGOT);
         putBefore(entries, Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, OItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE);

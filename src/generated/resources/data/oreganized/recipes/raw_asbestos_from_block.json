@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "oreganized:raw_asbestos_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "oreganized:raw_asbestos"
+  }
+}

@@ -41,6 +41,8 @@ public class OBlockStates extends OBlockStateProvider {
         simpleBlock(OBlocks.RAW_SILVER_BLOCK);
         simpleBlock(OBlocks.RAW_LEAD_BLOCK);
         simpleBlock(OBlocks.SILVER_BLOCK);
+        simpleBlock(OBlocks.ASBESTOS_ORE);
+        simpleBlock(OBlocks.DEEPSLATE_ASBESTOS_ORE);
         meltableBlock(OBlocks.LEAD_BLOCK, (n, t) -> models().cubeAll(n, t));
         meltableBlock(OBlocks.LEAD_BRICKS, (n, t) -> models().cubeAll(n, t));
         meltablePillar(OBlocks.LEAD_PILLAR);
@@ -65,7 +67,8 @@ public class OBlockStates extends OBlockStateProvider {
 
         OBlocks.CRYSTAL_GLASS.forEach((color, block) -> crystalGlassBlock(block));
         OBlocks.CRYSTAL_GLASS_PANES.forEach((color, block) -> crystalGlassPaneBlock(color, block, OBlocks.CRYSTAL_GLASS.get(color)));
-
+        this.simpleBlock(OBlocks.ASBESTOS_BLOCK.get(),cubeBottomTop(OBlocks.ASBESTOS_BLOCK));
+        simpleBlock(OBlocks.RAW_ASBESTOS_BLOCK);
         simpleBlock(OBlocks.GROOVED_ICE);
         simpleBlock(OBlocks.GROOVED_PACKED_ICE);
         simpleBlock(OBlocks.GROOVED_BLUE_ICE);

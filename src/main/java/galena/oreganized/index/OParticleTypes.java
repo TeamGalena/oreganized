@@ -31,6 +31,8 @@ public class OParticleTypes {
     public static final RegistryObject<SimpleParticleType> VENGEANCE = PARTICLES.register( "vengeance", () -> new SimpleParticleType(true));
     public static final RegistryObject<SimpleParticleType> KINETIC_HIT = PARTICLES.register( "kinetic_hit", () -> new SimpleParticleType(true));
     public static final RegistryObject<SimpleParticleType> LEAD_CLOUD = PARTICLES.register( "lead_cloud", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> ASBESTOS_CLOUD = PARTICLES.register( "asbestos_cloud", () -> new SimpleParticleType(true));
+
     public static final RegistryObject<SimpleParticleType> LEAD_BLOW = PARTICLES.register( "lead_blow", () -> new SimpleParticleType(true));
 
 
@@ -45,6 +47,7 @@ public class OParticleTypes {
         engine.register(VENGEANCE.get(), VengeanceParticleProvider::new);
         engine.register(KINETIC_HIT.get(), KineticHitParticle.Provider::new);
         engine.register(LEAD_CLOUD.get(), LeadCloudParticleProvider::new);
+        engine.register(ASBESTOS_CLOUD.get(), LeadCloudParticleProvider::new);
         engine.register(LEAD_BLOW.get(), ExplodeParticle.Provider::new);
     }
 }

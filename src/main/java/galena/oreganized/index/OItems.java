@@ -55,6 +55,8 @@ public class OItems {
     public static final RegistryObject<Item> RAW_LEAD = HELPER.createItem("raw_lead", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> LEAD_INGOT = HELPER.createItem("lead_ingot", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> LEAD_NUGGET = HELPER.createItem("lead_nugget", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> RAW_ASBESTOS = HELPER.createItem("raw_asbestos", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> REFINED_ASBESTOS = HELPER.createItem("refined_asbestos", () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> ELECTRUM_INGOT = HELPER.createItem("electrum_ingot", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> NETHERITE_NUGGET = HELPER.createItem("netherite_nugget", () -> new Item(new Item.Properties()));

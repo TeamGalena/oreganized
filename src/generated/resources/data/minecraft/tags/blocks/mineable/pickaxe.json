@@ -2,6 +2,10 @@
   "values": [
     "oreganized:lead_ore",
     "oreganized:deepslate_lead_ore",
+    "oreganized:asbestos_ore",
+    "oreganized:deepslate_asbestos_ore",
+    "oreganized:asbestos_block",
+    "oreganized:raw_asbestos_block",
     "oreganized:raw_lead_block",
     "oreganized:silver_ore",
     "oreganized:deepslate_silver_ore",

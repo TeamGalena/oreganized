@@ -1,8 +1,8 @@
-// 1.20.1	2025-03-06T21:17:42.3683427	Oreganized Block Tags
+// 1.20.1	2025-03-31T19:35:25.54564	Oreganized Block Tags
 7a2d68d81bc5ee59f9a2f4ba68ddb39bfd9c875d data/forge/tags/blocks/glass.json
 d96b4f83e03abe39a1b97d92b7818c8f6b2e5c68 data/forge/tags/blocks/glass_panes.json
 d062c23ad5308b7de0b2e86f6531ea724530f898 data/forge/tags/blocks/melts_lead.json
-4e9173550595ca2ada5744dc749553e93b05954f data/forge/tags/blocks/ores.json
+eb519c55458913dffd707311f9ddd56f663db6db data/forge/tags/blocks/ores.json
 dc9cc2dca9fa3a28a0458ec282e3e0fe81999ee1 data/forge/tags/blocks/ores/lead.json
 bb86ac7ab19373da790ec5711f473614e4b62d79 data/forge/tags/blocks/ores/silver.json
 084242f542331c46b8889564325f204f7b8bb6a4 data/forge/tags/blocks/ores_in_ground/deepslate.json
@@ -20,8 +20,8 @@ bff6697a058fddfe9e14615bc043fcb2071fd6fc data/forge/tags/blocks/storage_blocks/s
 0f64e9b9dc279dd460f6408313b130a37a0c9d86 data/minecraft/tags/blocks/ice.json
 7a2d68d81bc5ee59f9a2f4ba68ddb39bfd9c875d data/minecraft/tags/blocks/impermeable.json
 f7079c32fc948b65cb486bea80e2dc93d13ce577 data/minecraft/tags/blocks/mineable/axe.json
-8794e7f7fcf41783b7738503b68f535efa58d511 data/minecraft/tags/blocks/mineable/pickaxe.json
-e478813fe67ebcb9e91b9db4307c720cf6c0118d data/minecraft/tags/blocks/mineable/shovel.json
+b0b3b33b8efa3d97623dd32db1cbedf7d37f1bcc data/minecraft/tags/blocks/mineable/pickaxe.json
+efaedb929a876669dc180a02ff8e5cc5afbde964 data/minecraft/tags/blocks/mineable/shovel.json
 bb86ac7ab19373da790ec5711f473614e4b62d79 data/minecraft/tags/blocks/needs_iron_tool.json
 dc9cc2dca9fa3a28a0458ec282e3e0fe81999ee1 data/minecraft/tags/blocks/needs_stone_tool.json
 e9873026bc587ab0729bda85f9d2a6ca7790d410 data/minecraft/tags/blocks/slabs.json
@@ -31,8 +31,8 @@ e231a716e19756d6a2326e873062dab206b37184 data/minecraft/tags/blocks/stairs.json
 a4acb3623320f801e89e3451f8b7d9e2246f99d0 data/minecraft/tags/blocks/walls.json
 0cd969093058a9540cd19a93abf28ceee4182438 data/oreganized/tags/blocks/blows_lead_cloud.json
 143a34cb0f03223147aa614479cc4fcf4c38ca14 data/oreganized/tags/blocks/creates_lead_cloud.json
-53ef2331385e2351333e8b12a529a876da43921c data/oreganized/tags/blocks/crystal_glass.json
-e43e7eb95a55febdc4be0cc0d1176b0be947b939 data/oreganized/tags/blocks/crystal_glass_panes.json
+a0953ae8649ead50901a11af3297ec4a696ddc2a data/oreganized/tags/blocks/crystal_glass.json
+28834a14d1b0b1b19b3ce241881daf5165666e8b data/oreganized/tags/blocks/crystal_glass_panes.json
 6b73bb0ce38222c428d54ee64e82ffa1d96c64d7 data/oreganized/tags/blocks/fire_source.json
 7081d114fc960029e0e565a2182c7a321dfbfaa4 data/oreganized/tags/blocks/mineable/scribe.json
 0f64e9b9dc279dd460f6408313b130a37a0c9d86 data/oreganized/tags/blocks/no_silktouch_using_scribe.json

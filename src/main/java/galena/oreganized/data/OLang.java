@@ -32,6 +32,11 @@ public class OLang extends OLangProvider {
         addBlock(OBlocks.RAW_SILVER_BLOCK, "Block of Raw Silver");
         addBlock(OBlocks.RAW_LEAD_BLOCK, "Block of Raw Lead");
         addBlock(OBlocks.SILVER_BLOCK, "Block of Silver");
+
+        addBlock(OBlocks.DEEPSLATE_ASBESTOS_ORE, "Deepslate Asbestos Ore");
+        addBlock(OBlocks.ASBESTOS_ORE, "Asbestos Ore");
+        addBlock(OBlocks.ASBESTOS_BLOCK, "Block of Asbestos");
+        addBlock(OBlocks.RAW_ASBESTOS_BLOCK, "Block of Raw Asbestos");
         addBlock(OBlocks.LEAD_BLOCK, "Block of Lead");
         addBlock(OBlocks.LEAD_BRICKS, "Lead Bricks");
         addBlock(OBlocks.LEAD_PILLAR, "Lead Pillar");
@@ -39,10 +44,10 @@ public class OLang extends OLangProvider {
         addBlock(OBlocks.CUT_LEAD, "Cut Lead");
         addBlock(OBlocks.ELECTRUM_BLOCK, "Block of Electrum");
         addBlock(OBlocks.LEAD_BOLT_CRATE, "Crate of Lead Bolts");
-
         addEffect(OEffects.STUNNING, "Brain Damage");
+        addEffect(OEffects.LUNG_DAMAGE, "Lung Damage");
+        addPotion(OPotions.LUNG_DAMAGE, "Lung Damage");
         addPotion(OPotions.STUNNING, "Brain Damage");
-
         add("trim_material.oreganized.lead", "Lead material");
         add("trim_material.oreganized.silver", "Silver material");
         add("trim_material.oreganized.electrum", "Electrum material");
@@ -67,7 +72,8 @@ public class OLang extends OLangProvider {
         add("death.attack.molten_lead", "%1$s refused to let go of the soaring hot metal");
 
         add("attribute.oreganized.kinetic_damage", "Kinetic Damage");
-
+        add("item.oreganized.raw_asbestos", "Raw Asbestos");
+        add("item.oreganized.refined_asbestos", "Asbestos");
         add("item.oreganized.flint_and_pewter", "Flint and Pewter");
         
         addPainting(OPaintingVariants.VINDICATING_BAD, "Vidicating Bad", "Xaidee");

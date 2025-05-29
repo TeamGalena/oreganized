@@ -3,20 +3,7 @@ package galena.oreganized.index;
 import com.google.common.collect.ImmutableBiMap;
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import galena.oreganized.Oreganized;
-import galena.oreganized.content.block.BulbBlock;
-import galena.oreganized.content.block.CrystalGlassBlock;
-import galena.oreganized.content.block.CrystalGlassPaneBlock;
-import galena.oreganized.content.block.GargoyleBlock;
-import galena.oreganized.content.block.IMeltableBlock;
-import galena.oreganized.content.block.LeadBarsBlock;
-import galena.oreganized.content.block.LeadDoorBlock;
-import galena.oreganized.content.block.LeadTrapdoorBlock;
-import galena.oreganized.content.block.MeltableBlock;
-import galena.oreganized.content.block.MeltablePillarBlock;
-import galena.oreganized.content.block.MoltenLeadBlock;
-import galena.oreganized.content.block.MoltenLeadCauldronBlock;
-import galena.oreganized.content.block.ShrapnelBombBlock;
-import galena.oreganized.content.block.SpottedGlanceBlock;
+import galena.oreganized.content.block.*;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DoubleHighBlockItem;
@@ -75,9 +62,14 @@ public class OBlocks {
 
     public static final RegistryObject<Block> LEAD_ORE = register("lead_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.GOLD_ORE).strength(3.0F, 3.0F)));
     public static final RegistryObject<Block> DEEPSLATE_LEAD_ORE = register("deepslate_lead_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_GOLD_ORE)));
+    public static final RegistryObject<Block> ASBESTOS_ORE = register("asbestos_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.GOLD_ORE).strength(3.0F, 3.0F)));
+    public static final RegistryObject<Block> DEEPSLATE_ASBESTOS_ORE = register("deepslate_asbestos_ore", () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_GOLD_ORE)));
 
     // Storage Blocks
     public static final RegistryObject<Block> RAW_SILVER_BLOCK = register("raw_silver_block", () -> new Block(BlockBehaviour.Properties.copy(Blocks.RAW_IRON_BLOCK)));
+    public static final RegistryObject<Block> ASBESTOS_BLOCK = register("asbestos_block", () -> new AsbestosBlock(BlockBehaviour.Properties.copy(Blocks.RAW_IRON_BLOCK)));
+    public static final RegistryObject<Block> RAW_ASBESTOS_BLOCK = register("raw_asbestos_block", () -> new AsbestosBlock(BlockBehaviour.Properties.copy(Blocks.RAW_IRON_BLOCK)));
+
     public static final RegistryObject<Block> RAW_LEAD_BLOCK = register("raw_lead_block", () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.RAW_IRON_BLOCK)));
     public static final RegistryObject<Block> SILVER_BLOCK = register("silver_block", () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)
             .strength(5.0F, 6.0F).sound(SoundType.METAL)));

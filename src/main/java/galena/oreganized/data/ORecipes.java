@@ -16,6 +16,8 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicateType;
 import net.minecraftforge.common.Tags;
 import org.infernalstudios.shieldexp.init.ItemsInit;
 import umpaz.nethersdelight.common.registry.NDItems;
@@ -36,13 +38,15 @@ public class ORecipes extends ORecipeProvider {
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
         ore(OItems.LEAD_INGOT.get(), LEAD_SMELTABLES, 0.7F, "oreganized:lead_ingot", consumer);
         ore(OItems.SILVER_INGOT.get(), SILVER_SMELTABLES, 1.0F, "oreganized:silver_ingot", consumer);
-
+        smeltingRecipe(OItems.REFINED_ASBESTOS.get(), OItems.RAW_ASBESTOS.get(), 0.1F).save(consumer, Oreganized.modLoc("asbestos_from_raw_asbestos_smelting"));
+        blastingRecipe(OItems.REFINED_ASBESTOS.get(), OItems.RAW_ASBESTOS.get(), 0.1F).save(consumer, Oreganized.modLoc("asbestos_from_raw_asbestos_blasting"));
         smeltingRecipe(OItems.LEAD_NUGGET.get(), OItems.BUSH_HAMMER.get(), 0.1F).save(consumer, Oreganized.modLoc("lead_nugget_from_smelting"));
         blastingRecipe(OItems.LEAD_NUGGET.get(), OItems.BUSH_HAMMER.get(), 0.1F).save(consumer, Oreganized.modLoc("lead_nugget_from_blasting"));
 
         quadTransform(OBlocks.POLISHED_GLANCE, OBlocks.GLANCE).save(consumer);
         quadTransform(OBlocks.GLANCE_BRICKS, OBlocks.POLISHED_GLANCE).save(consumer);
-
+        compact(OBlocks.ASBESTOS_BLOCK.get().asItem(), OItems.REFINED_ASBESTOS.get()).save(consumer);
+        compact(OBlocks.RAW_ASBESTOS_BLOCK.get().asItem(), OItems.RAW_ASBESTOS.get()).save(consumer);
         compact(OBlocks.SILVER_BLOCK.get().asItem(), OItems.SILVER_INGOT.get()).save(consumer);
         compact(OBlocks.LEAD_BLOCK.get().asItem(), OItems.LEAD_INGOT.get()).save(consumer);
         compact(OBlocks.ELECTRUM_BLOCK.get().asItem(), OItems.ELECTRUM_INGOT.get()).save(consumer);
@@ -61,6 +65,8 @@ public class ORecipes extends ORecipeProvider {
 
         unCompact(OItems.RAW_SILVER.get(), OBlocks.RAW_SILVER_BLOCK.get().asItem()).save(consumer, Oreganized.modLoc("raw_silver_from_block"));
         unCompact(OItems.RAW_LEAD.get(), OBlocks.RAW_LEAD_BLOCK.get().asItem()).save(consumer, Oreganized.modLoc("raw_lead_from_block"));
+        unCompact(OItems.RAW_ASBESTOS.get(), OBlocks.RAW_ASBESTOS_BLOCK.get().asItem()).save(consumer, Oreganized.modLoc("raw_asbestos_from_block"));
+        unCompact(OItems.REFINED_ASBESTOS.get(), OBlocks.ASBESTOS_BLOCK.get().asItem()).save(consumer, Oreganized.modLoc("asbestos_from_block"));
 
         unCompact(OItems.SILVER_NUGGET.get(), OItems.SILVER_INGOT.get()).save(consumer);
         unCompact(OItems.LEAD_NUGGET.get(), OItems.LEAD_INGOT.get()).save(consumer);

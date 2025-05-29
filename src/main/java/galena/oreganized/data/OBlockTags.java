@@ -84,6 +84,7 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
         tag(BlockTags.TRAPDOORS).add(OBlocks.LEAD_TRAPDOOR.get());
 
         // Forge
+        tag(Tags.Blocks.ORES).add(OBlocks.ASBESTOS_ORE.get(),OBlocks.DEEPSLATE_ASBESTOS_ORE.get());
         tag(Tags.Blocks.ORES).addTags(ORES_SILVER, ORES_LEAD);
         tag(Tags.Blocks.ORE_RATES_SINGULAR).addTags(ORES_SILVER, ORES_LEAD);
         tag(Tags.Blocks.STORAGE_BLOCKS).addTags(STORAGE_BLOCKS_SILVER, STORAGE_BLOCKS_LEAD, STORAGE_BLOCKS_ELECTRUM, STORAGE_BLOCKS_RAW_SILVER, STORAGE_BLOCKS_RAW_LEAD);
@@ -99,6 +100,10 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
                 OBlocks.LEAD_ORE.get(),
                 OBlocks.DEEPSLATE_LEAD_ORE.get(),
+                OBlocks.ASBESTOS_ORE.get(),
+                OBlocks.DEEPSLATE_ASBESTOS_ORE.get(),
+                OBlocks.ASBESTOS_BLOCK.get(),
+                OBlocks.RAW_ASBESTOS_BLOCK.get(),
                 OBlocks.RAW_LEAD_BLOCK.get(),
 
                 OBlocks.SILVER_ORE.get(),
