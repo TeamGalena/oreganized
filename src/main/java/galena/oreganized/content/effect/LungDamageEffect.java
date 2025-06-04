@@ -1,6 +1,6 @@
 package galena.oreganized.content.effect;
 
-import galena.oreganized.Oreganized;
+import galena.oreganized.OreganizedCarcinogenius;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -9,11 +9,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
 
-@Mod.EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = OreganizedCarcinogenius.MOD_ID, value = Dist.CLIENT)
 public class LungDamageEffect extends MobEffect {
-
-    private static final String SLOWNESS_UUID = "019150f6-e85e-777f-a566-1eafd7c7e1a5";
-    public static final int MAX_AMPLIFIER = 9;
 
     public LungDamageEffect() {
         super(MobEffectCategory.HARMFUL, 0xAAAAAA);

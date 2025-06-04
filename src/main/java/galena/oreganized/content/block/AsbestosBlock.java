@@ -46,7 +46,7 @@ public class AsbestosBlock extends Block {
         cloud.setParticle(OParticleTypes.ASBESTOS_CLOUD.get());
         cloud.setRadius(4F);
         cloud.setRadiusPerTick(-0.02F);
-        cloud.setDuration((int) (120));
+        cloud.setDuration(120);
 
         pLevel.addFreshEntity(cloud);
         super.fallOn(pLevel, pState, pPos, pEntity, pFallDistance);
