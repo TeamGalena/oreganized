@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "oreganized:block/shrapnel_bomb_bottom",
-    "side": "oreganized:block/shrapnel_bomb_side",
-    "top": "oreganized:block/shrapnel_bomb_top"
-  }
-}

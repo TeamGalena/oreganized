@@ -17,11 +17,14 @@ val blueprint_version: String by extra
 val oreganized_version: String by extra
 val jade_version: String by extra
 val jei_version: String by extra
+val mixin_version: String by extra
+val mixin_extras_version: String by extra
 
 plugins {
     java
     `maven-publish`
     id("net.minecraftforge.gradle") version "[6.0,6.2)"
+    id("org.spongepowered.mixin") version "0.7-SNAPSHOT"
     id("org.parchmentmc.librarian.forgegradle") version "1.+"
     id("com.diffplug.spotless") version "7.0.4"
     id("com.modrinth.minotaur") version "2.+"
@@ -116,6 +119,9 @@ dependencies {
     minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     implementation(fg.deobf("com.teamabnormals:blueprint:${minecraft_version}-${blueprint_version}"))
     implementation(fg.deobf("dev.galena:oreganized:${oreganized_version}"))
+
+    annotationProcessor("org.spongepowered:mixin:${mixin_version}:processor")
+    annotationProcessor("io.github.llamalad7:mixinextras-common:${mixin_extras_version}")
 
     // For dev testing
     runtimeOnly(fg.deobf("maven.modrinth:jade:${jade_version}"))

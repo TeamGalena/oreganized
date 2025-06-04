@@ -1,8 +1,6 @@
 {
   "values": [
     "oreganized:asbestos_ore",
-    "oreganized:deepslate_asbestos_ore",
-    "#forge:ores/silver",
-    "#forge:ores/lead"
+    "oreganized:deepslate_asbestos_ore"
   ]
 }

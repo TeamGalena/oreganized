@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "oreganized:block/red_crystal_glass"
-  }
-}

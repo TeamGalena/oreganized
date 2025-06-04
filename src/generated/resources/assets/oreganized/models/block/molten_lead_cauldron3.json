@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/template_cauldron_full",
-  "textures": {
-    "content": "oreganized:block/molten_lead_block"
-  }
-}

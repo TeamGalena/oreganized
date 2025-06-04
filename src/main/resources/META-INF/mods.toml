@@ -41,6 +41,6 @@ description='''TODO'''
 [[dependencies.${mod_id}]]
     modId="oreganized"
     mandatory=true
-    versionRange="[3.1.4,)"
+    versionRange="*" # TODO replace by real version
     ordering="AFTER"
     side="BOTH"

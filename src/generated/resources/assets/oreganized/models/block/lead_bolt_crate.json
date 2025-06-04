@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "oreganized:block/lead_bolt_crate_bottom",
-    "side": "oreganized:block/lead_bolt_crate_side",
-    "top": "oreganized:block/lead_bolt_crate_top"
-  }
-}

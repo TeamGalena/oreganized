@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "dye_depot:block/indigo_concrete_powder"
-  }
-}
