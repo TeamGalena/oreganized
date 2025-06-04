@@ -241,7 +241,7 @@ modrinth {
     gameVersions = listOf(minecraft_version)
     changelog = System.getenv("CHANGELOG")
     dependencies {
-        required.project("blueprint")
+        required.project("oreganized")
     }
 }
 
@@ -254,6 +254,6 @@ tasks.register<TaskPublishCurseForge>("curseforge") {
         version = mod_version
         displayName = "$mod_name $mod_version"
         addGameVersion(minecraft_version)
-        addRelation("blueprint", Constants.RELATION_REQUIRED)
+        addRelation("oreganized", Constants.RELATION_REQUIRED)
     }
 }
