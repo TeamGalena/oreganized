@@ -1,7 +1,7 @@
-package galena.oreganized.data;
+package galena.oreganized.carcinogenius.data;
 
-import galena.oreganized.OreganizedCarcinogenius;
-import galena.oreganized.index.OBlocks;
+import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
+import galena.oreganized.carcinogenius.index.OBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;

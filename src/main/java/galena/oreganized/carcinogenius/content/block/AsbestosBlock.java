@@ -1,7 +1,7 @@
-package galena.oreganized.content.block;
+package galena.oreganized.carcinogenius.content.block;
 
-import galena.oreganized.index.OEffects;
-import galena.oreganized.index.OParticleTypes;
+import galena.oreganized.carcinogenius.index.OEffects;
+import galena.oreganized.carcinogenius.index.OParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;

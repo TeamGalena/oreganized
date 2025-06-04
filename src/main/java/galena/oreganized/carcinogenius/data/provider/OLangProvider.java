@@ -1,4 +1,4 @@
-package galena.oreganized.data.provider;
+package galena.oreganized.carcinogenius.data.provider;
 
 import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;

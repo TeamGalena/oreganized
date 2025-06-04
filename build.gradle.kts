@@ -14,19 +14,9 @@ val minecraft_version: String by extra
 val maven_group: String by extra
 val forge_version: String by extra
 val blueprint_version: String by extra
-val farmersdelight_version: String by extra
-val nethersdelight_version: String by extra
-val shieldexpansion_version: String by extra
-val create_version: String by extra
-val ponder_version: String by extra
-val supplementaries_version: String by extra
-val scannable_version: String by extra
-val architectury_version: String by extra
-val moonlight_lib_version: String by extra
-val dye_depot_version: String by extra
+val oreganized_version: String by extra
 val jade_version: String by extra
 val jei_version: String by extra
-val galena_hats_version: String by extra
 
 plugins {
     java
@@ -65,29 +55,21 @@ minecraft {
         create("data") {
             taskName = "Data"
 
-            val existingMods = listOf(
-                "blueprint",
-                "shieldexp",
-                "dye_depot",
-            )
-
             args(
-                listOf(
-                    "--mod",
-                    mod_id,
-                    "--all",
-                    "--output",
-                    file("src/generated/resources/"),
-                    "--existing",
-                    file("src/main/resources/"),
-                ) + existingMods.flatMap {
-                    listOf("--existing-mod", it)
-                })
+                "--mod",
+                mod_id,
+                "--all",
+                "--output",
+                file("src/generated/resources/"),
+                "--existing",
+                file("src/main/resources/"),
+                "--existing-mod",
+                "blueprint"
+            )
         }
 
         forEach {
             it.workingDirectory(project.file("run"))
-            //it.ideaModule ("${rootProject.name}.main")
             it.mods {
                 create(mod_id) {
                     source(sourceSets.main.get())
@@ -123,15 +105,6 @@ repositories {
         }
     }
     maven {
-        url = uri("https://maven.createmod.net")
-        content {
-            includeGroup("com.simibubi.create")
-            includeGroup("net.createmod.ponder")
-            includeGroup("dev.engine-room.flywheel")
-        }
-    }
-
-    maven {
         url = uri("https://registry.somethingcatchy.net/repository/maven-releases/")
         content {
             includeGroup("dev.galena")
@@ -142,14 +115,9 @@ repositories {
 dependencies {
     minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     implementation(fg.deobf("com.teamabnormals:blueprint:${minecraft_version}-${blueprint_version}"))
-
-    // Compatibilities
-    implementation(fg.deobf("maven.modrinth:supplementaries:${supplementaries_version}"))
+    implementation(fg.deobf("dev.galena:oreganized:${oreganized_version}"))
 
     // For dev testing
-    runtimeOnly(fg.deobf("maven.modrinth:scannable:${scannable_version}"))
-    runtimeOnly(fg.deobf("maven.modrinth:architectury-api:${architectury_version}"))
-    runtimeOnly(fg.deobf("maven.modrinth:moonlight:${moonlight_lib_version}"))
     runtimeOnly(fg.deobf("maven.modrinth:jade:${jade_version}"))
 
     compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"))

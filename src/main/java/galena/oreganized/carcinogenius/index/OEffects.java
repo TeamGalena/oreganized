@@ -1,7 +1,7 @@
-package galena.oreganized.index;
+package galena.oreganized.carcinogenius.index;
 
-import galena.oreganized.OreganizedCarcinogenius;
-import galena.oreganized.content.effect.LungDamageEffect;
+import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
+import galena.oreganized.carcinogenius.content.effect.LungDamageEffect;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;

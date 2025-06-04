@@ -1,13 +1,12 @@
-package galena.oreganized.index;
+package galena.oreganized.carcinogenius.index;
 
-import galena.oreganized.OreganizedCarcinogenius;
+import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
 import galena.oreganized.client.particle.CustomDrippingParticle;
 import galena.oreganized.client.particle.KineticHitParticle;
 import galena.oreganized.client.particle.LeadCloudParticleProvider;
 import galena.oreganized.client.particle.LeadShrapnelParticle;
 import galena.oreganized.client.particle.VengeanceParticleProvider;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.ExplodeParticle;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;

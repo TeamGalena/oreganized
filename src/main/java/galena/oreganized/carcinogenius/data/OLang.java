@@ -1,10 +1,10 @@
-package galena.oreganized.data;
+package galena.oreganized.carcinogenius.data;
 
-import galena.oreganized.OreganizedCarcinogenius;
-import galena.oreganized.data.provider.OLangProvider;
-import galena.oreganized.index.OBlocks;
-import galena.oreganized.index.OEffects;
-import galena.oreganized.index.OPotions;
+import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
+import galena.oreganized.carcinogenius.data.provider.OLangProvider;
+import galena.oreganized.carcinogenius.index.OBlocks;
+import galena.oreganized.carcinogenius.index.OEffects;
+import galena.oreganized.carcinogenius.index.OPotions;
 import net.minecraft.data.PackOutput;
 
 public class OLang extends OLangProvider {

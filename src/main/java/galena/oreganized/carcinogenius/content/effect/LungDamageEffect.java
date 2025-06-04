@@ -1,6 +1,6 @@
-package galena.oreganized.content.effect;
+package galena.oreganized.carcinogenius.content.effect;
 
-import galena.oreganized.OreganizedCarcinogenius;
+import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;

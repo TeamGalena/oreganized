@@ -1,8 +1,8 @@
-package galena.oreganized.data;
+package galena.oreganized.carcinogenius.data;
 
-import galena.oreganized.OreganizedCarcinogenius;
-import galena.oreganized.data.provider.OBlockStateProvider;
-import galena.oreganized.index.OBlocks;
+import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
+import galena.oreganized.carcinogenius.data.provider.OBlockStateProvider;
+import galena.oreganized.carcinogenius.index.OBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
 

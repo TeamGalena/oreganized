@@ -1,6 +1,6 @@
-package galena.oreganized.index;
+package galena.oreganized.carcinogenius.index;
 
-import galena.oreganized.OreganizedCarcinogenius;
+import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraftforge.registries.DeferredRegister;

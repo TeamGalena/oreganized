@@ -1,4 +1,4 @@
-package galena.oreganized.data.provider;
+package galena.oreganized.carcinogenius.data.provider;
 
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
