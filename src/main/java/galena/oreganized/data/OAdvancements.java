@@ -7,6 +7,10 @@ import galena.oreganized.index.OCriteriaTriggers;
 import galena.oreganized.index.OEffects;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
+import javax.annotation.Nullable;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.DisplayInfo;
 import net.minecraft.advancements.FrameType;
@@ -27,11 +31,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.ForgeAdvancementProvider;
-
-import javax.annotation.Nullable;
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
 
 public class OAdvancements extends ForgeAdvancementProvider {
 

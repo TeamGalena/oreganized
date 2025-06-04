@@ -1,6 +1,7 @@
 package galena.oreganized.index;
 
 import galena.oreganized.Oreganized;
+import java.util.Map;
 import net.minecraft.Util;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
@@ -12,8 +13,6 @@ import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.armortrim.TrimMaterial;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.Map;
 
 public class OTrimMaterials {
 

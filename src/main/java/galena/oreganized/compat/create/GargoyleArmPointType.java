@@ -3,7 +3,6 @@ package galena.oreganized.compat.create;
 import com.simibubi.create.content.kinetics.mechanicalArm.AllArmInteractionPointTypes;
 import com.simibubi.create.content.kinetics.mechanicalArm.ArmInteractionPoint;
 import com.simibubi.create.content.kinetics.mechanicalArm.ArmInteractionPointType;
-import galena.oreganized.Oreganized;
 import galena.oreganized.content.entity.GargoyleBlockEntity;
 import galena.oreganized.index.OBlocks;
 import net.minecraft.core.BlockPos;

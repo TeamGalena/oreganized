@@ -1,9 +1,13 @@
 package galena.oreganized.data;
 
+import static galena.oreganized.index.OTags.Items.*;
+
 import galena.oreganized.Oreganized;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
+import java.util.concurrent.CompletableFuture;
+import javax.annotation.Nullable;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -13,12 +17,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
-
-import javax.annotation.Nullable;
-
-import java.util.concurrent.CompletableFuture;
-
-import static galena.oreganized.index.OTags.Items.*;
 
 public class OItemTags extends ItemTagsProvider {
 

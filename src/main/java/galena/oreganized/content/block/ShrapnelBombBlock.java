@@ -2,6 +2,7 @@ package galena.oreganized.content.block;
 
 import galena.oreganized.content.entity.ShrapnelBomb;
 import galena.oreganized.index.OSoundEvents;
+import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundSource;
@@ -11,8 +12,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.TntBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-
-import javax.annotation.Nullable;
 
 public class ShrapnelBombBlock extends TntBlock {
 

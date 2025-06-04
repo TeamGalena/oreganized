@@ -1,8 +1,16 @@
 package galena.oreganized.content.item;
 
+import static galena.oreganized.index.OTags.Blocks.MINEABLE_WITH_SCRIBE;
+import static galena.oreganized.index.OTags.Blocks.SILKTOUCH_WITH_SCRIBE;
+import static galena.oreganized.index.OTags.Blocks.SILKTOUCH_WITH_SCRIBE_BLACKLIST;
+
 import galena.oreganized.OreganizedConfig;
 import galena.oreganized.content.block.ICrystalGlass;
 import galena.oreganized.index.OBlocks;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Supplier;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionResult;
@@ -20,15 +28,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.Supplier;
-
-import static galena.oreganized.index.OTags.Blocks.MINEABLE_WITH_SCRIBE;
-import static galena.oreganized.index.OTags.Blocks.SILKTOUCH_WITH_SCRIBE;
-import static galena.oreganized.index.OTags.Blocks.SILKTOUCH_WITH_SCRIBE_BLACKLIST;
 
 public class ScribeItem extends Item {
 

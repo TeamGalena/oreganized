@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import galena.oreganized.Oreganized;
 import galena.oreganized.index.OStructures;
+import java.util.Optional;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
@@ -18,8 +19,6 @@ import net.minecraft.world.level.levelgen.structure.pools.JigsawPlacement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import org.apache.logging.log4j.Level;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Optional;
 
 public class BoulderStructure extends Structure {
 

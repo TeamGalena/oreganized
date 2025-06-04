@@ -1,5 +1,7 @@
 package galena.oreganized.data.provider;
 
+import java.util.Set;
+import java.util.function.Supplier;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
@@ -11,9 +13,6 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-
-import java.util.Set;
-import java.util.function.Supplier;
 
 public abstract class OBlockLootProvider extends BlockLootSubProvider {
 

@@ -1,71 +1,39 @@
-modLoader="javafml" #mandatory
-loaderVersion="[43,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
-license="MIT"
-issueTrackerURL="https://github.com/TeamGalena/oreganised/issues/" #optional
+modLoader="javafml"
+loaderVersion="[47,)"
+license="https://github.com/${repository}/blob/1.20.x/LICENSE.md"
+issueTrackerURL="https://github.com/${repository}/issues/"
 
-[[mods]] #mandatory
-modId="oreganized" #mandatory
-version="${file.jarVersion}" #mandatory
-displayName="Oreganized" #mandatory
-updateJSONURL="https://api.modrinth.com/updates/oreganized/forge_updates.json" #optional
-displayURL="https://www.curseforge.com/minecraft/mc-mods/oreganized" #optional
-logoFile="oreganized.png" #optional
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+updateJSONURL="https://api.modrinth.com/updates/oreganized/forge_updates.json"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/oreganized"
+logoFile="oreganized.png"
 logoBlur=false
 itemIcon="oreganized:silver_ore"
 configBackground="oreganized:textures/block/glance_bricks.png"
-credits="Thanks to our wonderful Patreon members and those who help participate in discussions on our Discord server!" #optional
-authors="Xaidee as part of Team Galena" #optional
-description='''
-Oreganized is a mod focusing on adding new ores and metals to Minecraft. Currently it adds, Lead and Silver as base metals and a new alloy known as Electrum.
+credits="Thanks to our wonderful Patreon members and those who help participate in discussions on our Discord server!"
+authors="${mod_author}"
+description='''TODO'''
 
-This mod is designed to be a Vanilla plus mod while also adding unique uses and abilities to its content rather than just meaningless toolsets for a more engaging experience that tries to match the quality of Mojang's own implementations of new content.
-'''
-
-[[dependencies.oreganized]]
-    modId="forge" #mandatory
-    mandatory=true #mandatory
-    versionRange="[43,)" #mandatory
+[[dependencies.${mod_id}]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47,)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.oreganized]]
+[[dependencies.${mod_id}]]
     modId="minecraft"
     mandatory=true
     versionRange="[1.20,1.21)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.oreganized]]
+[[dependencies.${mod_id}]]
     modId="blueprint"
     mandatory=true
     versionRange="[7.1.0,)"
-    ordering="AFTER"
-    side="BOTH"
-
-[[dependencies.oreganized]]
-    modId="shieldexp"
-    mandatory=false
-    versionRange="*"
-    ordering="AFTER"
-    side="BOTH"
-
-[[dependencies.oreganized]]
-    modId="nethersdelight"
-    mandatory=false
-    versionRange="*"
-    ordering="AFTER"
-    side="BOTH"
-
-[[dependencies.oreganized]]
-    modId="farmersdelight"
-    mandatory=false
-    versionRange="*"
-    ordering="AFTER"
-    side="BOTH"
-
-[[dependencies.oreganized]]
-    modId="create"
-    mandatory=false
-    versionRange=">=6.0.0"
     ordering="AFTER"
     side="BOTH"

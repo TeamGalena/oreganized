@@ -1,5 +1,7 @@
 package galena.oreganized.world;
 
+import java.util.EnumSet;
+import javax.annotation.Nullable;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.MobType;
@@ -9,9 +11,6 @@ import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.util.DefaultRandomPos;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
-
-import javax.annotation.Nullable;
-import java.util.EnumSet;
 
 public class ScaredOfGargoyleGoal extends Goal {
 

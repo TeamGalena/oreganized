@@ -10,6 +10,7 @@ import galena.oreganized.index.OTags;
 import galena.oreganized.network.OreganizedNetwork;
 import galena.oreganized.network.packet.GargoyleParticlePacket;
 import galena.oreganized.world.ScaredOfGargoyleGoal;
+import java.util.Collection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
@@ -34,8 +35,6 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Collection;
 
 public class GargoyleBlockEntity extends BlockEntity {
 

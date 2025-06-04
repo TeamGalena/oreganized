@@ -1,5 +1,6 @@
 package galena.oreganized.content.block;
 
+import javax.annotation.Nullable;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Block;
@@ -7,8 +8,6 @@ import net.minecraft.world.level.block.StainedGlassPaneBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-
-import javax.annotation.Nullable;
 
 public class CrystalGlassPaneBlock extends StainedGlassPaneBlock implements ICrystalGlass {
 

@@ -1,10 +1,9 @@
 package galena.oreganized.compat.farmers_delight;
 
 import galena.oreganized.index.OItemTiers;
+import java.util.function.Function;
 import net.minecraft.world.item.Item;
 import vectorwing.farmersdelight.common.item.KnifeItem;
-
-import java.util.function.Function;
 
 public class FarmersDelightCompat {
 

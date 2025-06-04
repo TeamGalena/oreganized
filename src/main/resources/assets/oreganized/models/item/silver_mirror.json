@@ -4,12 +4,47 @@
     "layer0": "oreganized:item/silver_mirror"
   },
   "overrides": [
-    { "predicate": { "level": 1 }, "model": "oreganized:item/silver_mirror_level_7" },
-    { "predicate": { "level": 2 }, "model": "oreganized:item/silver_mirror_level_6" },
-    { "predicate": { "level": 3 }, "model": "oreganized:item/silver_mirror_level_5" },
-    { "predicate": { "level": 4 }, "model": "oreganized:item/silver_mirror_level_4" },
-    { "predicate": { "level": 5 }, "model": "oreganized:item/silver_mirror_level_3" },
-    { "predicate": { "level": 6 }, "model": "oreganized:item/silver_mirror_level_2" },
-    { "predicate": { "level": 7 }, "model": "oreganized:item/silver_mirror_level_1" }
+    {
+      "predicate": {
+        "level": 1
+      },
+      "model": "oreganized:item/silver_mirror_level_7"
+    },
+    {
+      "predicate": {
+        "level": 2
+      },
+      "model": "oreganized:item/silver_mirror_level_6"
+    },
+    {
+      "predicate": {
+        "level": 3
+      },
+      "model": "oreganized:item/silver_mirror_level_5"
+    },
+    {
+      "predicate": {
+        "level": 4
+      },
+      "model": "oreganized:item/silver_mirror_level_4"
+    },
+    {
+      "predicate": {
+        "level": 5
+      },
+      "model": "oreganized:item/silver_mirror_level_3"
+    },
+    {
+      "predicate": {
+        "level": 6
+      },
+      "model": "oreganized:item/silver_mirror_level_2"
+    },
+    {
+      "predicate": {
+        "level": 7
+      },
+      "model": "oreganized:item/silver_mirror_level_1"
+    }
   ]
 }

@@ -1,7 +1,15 @@
 {
   "values": [
     {
+<<<<<<< HEAD
       "id": "oreganized:waxed_green_concrete_powder",
+=======
+      "id": "oreganized:waxed_white_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_orange_concrete_powder",
+>>>>>>> 1.20.x
       "required": false
     },
     {
@@ -9,7 +17,58 @@
       "required": false
     },
     {
+<<<<<<< HEAD
       "id": "oreganized:waxed_yellow_concrete_powder",
+=======
+      "id": "oreganized:waxed_light_blue_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_yellow_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_lime_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_pink_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_gray_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_light_gray_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_cyan_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_purple_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_blue_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_brown_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_green_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_red_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_black_concrete_powder",
       "required": false
     },
     {
@@ -17,7 +76,44 @@
       "required": false
     },
     {
+      "id": "oreganized:waxed_rose_concrete_powder",
+>>>>>>> 1.20.x
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_maroon_concrete_powder",
+      "required": false
+    },
+    {
+<<<<<<< HEAD
       "id": "oreganized:waxed_cyan_concrete_powder",
+=======
+      "id": "oreganized:waxed_indigo_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_navy_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_slate_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_olive_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_amber_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_beige_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_teal_concrete_powder",
+>>>>>>> 1.20.x
       "required": false
     },
     {
@@ -29,7 +125,15 @@
       "required": false
     },
     {
+<<<<<<< HEAD
       "id": "oreganized:waxed_blue_concrete_powder",
+=======
+      "id": "oreganized:waxed_verdant_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_forest_concrete_powder",
+>>>>>>> 1.20.x
       "required": false
     },
     {
@@ -37,11 +141,15 @@
       "required": false
     },
     {
+<<<<<<< HEAD
       "id": "oreganized:waxed_black_concrete_powder",
       "required": false
     },
     {
       "id": "oreganized:waxed_beige_concrete_powder",
+=======
+      "id": "oreganized:waxed_tan_concrete_powder",
+>>>>>>> 1.20.x
       "required": false
     },
     {

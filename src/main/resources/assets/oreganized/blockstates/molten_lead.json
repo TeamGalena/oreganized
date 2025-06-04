@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "oreganized:block/molten_lead" }
+    "": {
+      "model": "oreganized:block/molten_lead"
+    }
   }
 }

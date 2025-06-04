@@ -5,9 +5,10 @@ import com.google.common.collect.Multimap;
 import galena.oreganized.Oreganized;
 import galena.oreganized.client.model.ElectrumArmorModel;
 import galena.oreganized.index.OArmorMaterials;
-import galena.oreganized.index.OItems;
+import java.util.UUID;
+import java.util.function.Consumer;
+import javax.annotation.Nullable;
 import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -18,11 +19,6 @@ import net.minecraft.world.item.*;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
-
-import javax.annotation.Nullable;
-import java.util.EnumMap;
-import java.util.UUID;
-import java.util.function.Consumer;
 
 public class ElectrumArmorItem extends ArmorItem {
     private static final String TEXTURE = Oreganized.MOD_ID + ":textures/entity/electrum_armor.png";

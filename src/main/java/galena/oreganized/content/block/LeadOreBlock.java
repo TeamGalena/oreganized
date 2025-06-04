@@ -7,6 +7,7 @@ import galena.oreganized.index.OEffects;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OParticleTypes;
 import galena.oreganized.index.OTags;
+import java.util.stream.Stream;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -24,8 +25,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import java.util.stream.Stream;
 
 @Mod.EventBusSubscriber(modid = Oreganized.MOD_ID)
 public class LeadOreBlock {

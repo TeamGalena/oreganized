@@ -1,5 +1,9 @@
 package galena.oreganized.index;
 
+import static galena.oreganized.ModCompat.FARMERS_DELIGHT_ID;
+import static galena.oreganized.ModCompat.NETHERS_DELIGHT_ID;
+import static galena.oreganized.ModCompat.SHIELD_EXPANSION_ID;
+
 import galena.oreganized.Oreganized;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.*;
@@ -9,10 +13,6 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.versions.forge.ForgeVersion;
-
-import static galena.oreganized.ModCompat.FARMERS_DELIGHT_ID;
-import static galena.oreganized.ModCompat.NETHERS_DELIGHT_ID;
-import static galena.oreganized.ModCompat.SHIELD_EXPANSION_ID;
 
 public class OTags {
 

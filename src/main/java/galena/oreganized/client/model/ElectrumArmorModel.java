@@ -2,6 +2,7 @@ package galena.oreganized.client.model;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import galena.oreganized.Oreganized;
 import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -15,8 +16,6 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import galena.oreganized.Oreganized;
 
 @OnlyIn(Dist.CLIENT)
 public class ElectrumArmorModel<T extends LivingEntity> extends HumanoidArmorModel<T> {

@@ -1,24 +1,5 @@
 package galena.oreganized.data;
 
-import galena.oreganized.Oreganized;
-import galena.oreganized.index.OBlocks;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import org.jetbrains.annotations.NotNull;
-
-import javax.annotation.Nullable;
-import java.util.concurrent.CompletableFuture;
-import java.util.stream.Stream;
-
 import static galena.oreganized.index.OTags.Blocks.BLOWS_LEAD_CLOUD;
 import static galena.oreganized.index.OTags.Blocks.CREATES_LEAD_CLOUD;
 import static galena.oreganized.index.OTags.Blocks.CRYSTAL_GLASS;
@@ -38,6 +19,28 @@ import static galena.oreganized.index.OTags.Blocks.STORAGE_BLOCKS_RAW_LEAD;
 import static galena.oreganized.index.OTags.Blocks.STORAGE_BLOCKS_RAW_SILVER;
 import static galena.oreganized.index.OTags.Blocks.STORAGE_BLOCKS_SILVER;
 
+import galena.oreganized.Oreganized;
+import galena.oreganized.index.OBlocks;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
+import javax.annotation.Nullable;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.NotNull;
+
 public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
 
     public OBlockTags(PackOutput output, CompletableFuture<HolderLookup.Provider> future, @Nullable ExistingFileHelper helper) {
@@ -49,12 +52,21 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
         return "Oreganized Block Tags";
     }
 
+    private void tag(TagKey<Block> key, Map<DyeColor, ? extends Supplier<? extends Block>> values) {
+        var tag = tag(key);
+        values.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .map(it -> it.getValue().get())
+                .map(BuiltInRegistries.BLOCK::getKey)
+                .forEach(tag::addOptional);
+    }
+
     @SuppressWarnings("unchecked")
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         // Oreganized
-        OBlocks.CRYSTAL_GLASS.forEach((c, b) -> tag(CRYSTAL_GLASS).addOptional(BuiltInRegistries.BLOCK.getKey(b.get())));
-        OBlocks.CRYSTAL_GLASS_PANES.forEach((c, b) -> tag(CRYSTAL_GLASS_PANES).addOptional(BuiltInRegistries.BLOCK.getKey(b.get())));
+        tag(CRYSTAL_GLASS, OBlocks.CRYSTAL_GLASS);
+        tag(CRYSTAL_GLASS_PANES, OBlocks.CRYSTAL_GLASS_PANES);
 
         tag(FIRE_SOURCE).addTag(BlockTags.FIRE).addTag(BlockTags.CAMPFIRES);
         tag(STONE_TYPES_GLANCE).add(
@@ -146,7 +158,7 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
                 OBlocks.GROOVED_BLUE_ICE.get()
         );
 
-        OBlocks.WAXED_CONCRETE_POWDER.forEach((c, b) -> tag(BlockTags.MINEABLE_WITH_SHOVEL).addOptional(b.getId()));
+        tag(BlockTags.MINEABLE_WITH_SHOVEL, OBlocks.WAXED_CONCRETE_POWDER);
 
         tag(BlockTags.NEEDS_STONE_TOOL).add(
                 OBlocks.LEAD_ORE.get(),

@@ -1,35 +1,25 @@
 package galena.oreganized.index;
 
+import static net.minecraft.tags.BlockTags.DEEPSLATE_ORE_REPLACEABLES;
+import static net.minecraft.tags.BlockTags.STONE_ORE_REPLACEABLES;
+
 import com.google.common.collect.ImmutableList;
 import galena.oreganized.Oreganized;
-import galena.oreganized.OreganizedConfig;
-import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
-import net.minecraft.data.worldgen.features.OreFeatures;
 import net.minecraft.data.worldgen.placement.OrePlacements;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.util.Mth;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.OreFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-
-import java.util.List;
-import java.util.function.Supplier;
-
-import static net.minecraft.tags.BlockTags.DEEPSLATE_ORE_REPLACEABLES;
-import static net.minecraft.tags.BlockTags.STONE_ORE_REPLACEABLES;
 
 public class OFeatures {
 

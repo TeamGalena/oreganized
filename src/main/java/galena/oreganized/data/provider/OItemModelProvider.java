@@ -1,7 +1,10 @@
 package galena.oreganized.data.provider;
 
+import static galena.oreganized.ModCompat.SHIELD_EXPANSION_ID;
+
 import com.teamabnormals.blueprint.core.data.client.BlueprintItemModelProvider;
 import galena.oreganized.Oreganized;
+import java.util.function.Supplier;
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -11,10 +14,6 @@ import net.minecraft.world.level.block.WallBlock;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.function.Supplier;
-
-import static galena.oreganized.ModCompat.SHIELD_EXPANSION_ID;
 
 public abstract class OItemModelProvider extends BlueprintItemModelProvider {
 

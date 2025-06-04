@@ -7,6 +7,7 @@ import galena.oreganized.data.provider.ORecipeProvider;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
+import java.util.function.Consumer;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -22,8 +23,6 @@ import net.minecraftforge.common.Tags;
 import org.infernalstudios.shieldexp.init.ItemsInit;
 import umpaz.nethersdelight.common.registry.NDItems;
 import vectorwing.farmersdelight.common.registry.ModItems;
-
-import java.util.function.Consumer;
 
 public class ORecipes extends ORecipeProvider {
 

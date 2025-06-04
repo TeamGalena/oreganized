@@ -1,12 +1,11 @@
 package galena.oreganized.network.packet;
 
 import galena.oreganized.world.IDoorProgressHolder;
+import java.util.UUID;
+import java.util.function.Supplier;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
-
-import java.util.UUID;
-import java.util.function.Supplier;
 
 public record DoorPushingPacket(UUID player, boolean pushing) {
 

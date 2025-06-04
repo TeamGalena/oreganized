@@ -1,11 +1,10 @@
 package galena.oreganized.network.packet;
 
 import galena.oreganized.world.KineticDamage;
+import java.util.function.Supplier;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
-
-import java.util.function.Supplier;
 
 public record KineticHitPacket(int target, double factor) {
 

@@ -1,18 +1,16 @@
 package galena.oreganized.data;
 
+import static galena.oreganized.index.OTags.Fluids.MOLTEN_LEAD;
+
 import galena.oreganized.Oreganized;
 import galena.oreganized.index.OFluids;
+import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.FluidTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.concurrent.CompletableFuture;
-
-import static galena.oreganized.index.OTags.Fluids.MOLTEN_LEAD;
 
 public class OFluidTags extends FluidTagsProvider {
 

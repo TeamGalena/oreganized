@@ -1,10 +1,9 @@
 package galena.oreganized.index;
 
+import java.util.function.Supplier;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.function.Supplier;
 
 public enum OItemTiers implements Tier {
     LEAD(0, 150, 7.0F, 1.5F, 8, () -> Ingredient.of(OTags.Items.INGOTS_LEAD)),

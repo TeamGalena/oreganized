@@ -1,5 +1,7 @@
 package galena.oreganized.index;
 
+import static galena.oreganized.ModCompat.FARMERS_DELIGHT_ID;
+
 import com.teamabnormals.blueprint.common.item.BlueprintRecordItem;
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import galena.oreganized.Oreganized;
@@ -12,6 +14,8 @@ import galena.oreganized.content.item.MinecartShrapnelBombItem;
 import galena.oreganized.content.item.OSmithingTemplateItem;
 import galena.oreganized.content.item.ScribeItem;
 import galena.oreganized.content.item.SilverMirrorItem;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.AxeItem;
@@ -28,11 +32,6 @@ import net.minecraft.world.item.SwordItem;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
-
-import java.util.function.Function;
-import java.util.function.Supplier;
-
-import static galena.oreganized.ModCompat.FARMERS_DELIGHT_ID;
 
 @SuppressWarnings("Convert2MethodRef")
 @Mod.EventBusSubscriber(modid = Oreganized.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)

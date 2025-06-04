@@ -4,6 +4,7 @@ import galena.oreganized.index.OCriteriaTriggers;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OSoundEvents;
 import galena.oreganized.index.OTags;
+import java.util.stream.Stream;
 import net.minecraft.core.Position;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -26,8 +27,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.stream.Stream;
 
 public class LeadBoltEntity extends AbstractArrow {
 

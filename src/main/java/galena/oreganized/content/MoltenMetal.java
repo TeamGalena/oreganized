@@ -1,12 +1,8 @@
 package galena.oreganized.content;
 
-import net.minecraft.core.cauldron.CauldronInteraction;
-import net.minecraft.world.item.Item;
+import java.util.function.Supplier;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
-
-import java.util.Map;
-import java.util.function.Supplier;
 
 public class MoltenMetal {
 

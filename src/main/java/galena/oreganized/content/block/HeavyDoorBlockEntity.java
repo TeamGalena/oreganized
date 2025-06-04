@@ -1,9 +1,13 @@
 package galena.oreganized.content.block;
 
+import static galena.oreganized.content.block.LeadDoorBlock.ANIMATED;
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.OPEN;
+
 import galena.oreganized.index.OBlockEntities;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.ODamageSources;
 import galena.oreganized.world.IDoorProgressHolder;
+import java.util.Optional;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionResult;
@@ -17,11 +21,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Optional;
-
-import static galena.oreganized.content.block.LeadDoorBlock.ANIMATED;
-import static net.minecraft.world.level.block.state.properties.BlockStateProperties.OPEN;
 
 public class HeavyDoorBlockEntity extends BlockEntity {
 
@@ -107,8 +106,6 @@ public class HeavyDoorBlockEntity extends BlockEntity {
         if (pressure == 0) {
             setAnimationState(level, pos, state, true);
         }
-
-        if (!level.isClientSide) System.out.println(pressure);
 
         if (pressure < REQUIRED_PRESSURE_OPEN) {
             pressure += 6;

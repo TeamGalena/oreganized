@@ -1,5 +1,8 @@
 package galena.oreganized.data.provider;
 
+import static galena.oreganized.Oreganized.MOD_ID;
+import static net.minecraftforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
+
 import galena.oreganized.Oreganized;
 import galena.oreganized.compat.ColorCompat;
 import galena.oreganized.content.block.BulbBlock;
@@ -9,6 +12,11 @@ import galena.oreganized.content.block.GargoyleBlock;
 import galena.oreganized.content.block.IMeltableBlock;
 import galena.oreganized.content.block.LeadDoorBlock;
 import galena.oreganized.content.block.MoltenLeadCauldronBlock;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -35,15 +43,6 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.BiFunction;
-import java.util.function.Function;
-import java.util.function.Supplier;
-
-import static galena.oreganized.Oreganized.MOD_ID;
-import static net.minecraftforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
 
 public abstract class OBlockStateProvider extends BlockStateProvider {
 

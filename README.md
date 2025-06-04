@@ -18,7 +18,7 @@
     <img alt="CurseForge" src="https://img.shields.io/curseforge/dt/769203?label=&color=ff8c5a&labelColor=525474&style=for-the-badge&logo=Curseforge&logoColor=white">
   </a>
 
-  <a href="https://modrinth.com/mod/doom-gloom">
+  <a href="https://modrinth.com/mod/oreganized">
     <img alt="Modrinth" src="https://img.shields.io/modrinth/dt/oreganized?label=&color=ff8c5a&labelColor=525474&style=for-the-badge&logo=Modrinth&logoColor=white">
   </a>
 
