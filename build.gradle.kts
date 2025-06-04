@@ -37,7 +37,6 @@ plugins {
     id("org.spongepowered.mixin") version "0.7-SNAPSHOT"
     id("org.parchmentmc.librarian.forgegradle") version "1.+"
     id("com.diffplug.spotless") version "7.0.4"
-    id("org.sonarqube") version "6.2.0.5505"
     id("com.modrinth.minotaur") version "2.+"
     id("net.darkhax.curseforgegradle") version "1.1.15"
 }
@@ -291,14 +290,6 @@ spotless {
     json {
         target("src/main/**/*.json")
         gson().indentWithSpaces(2)
-    }
-}
-
-sonar {
-    properties {
-        property("sonar.projectKey", mod_id)
-        property("sonar.gradle.skipCompile", "true")
-        property("sonar.links.scm", "https://github.com/${repository}")
     }
 }
 

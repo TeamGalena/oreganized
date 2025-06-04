@@ -18,13 +18,6 @@ jobs:
         with:
           lfs: true
 
-      - name: Update version
-        uses: christian-draeger/write-properties@1.0.1
-        with:
-          path: "gradle.properties"
-          property: "mod_version"
-          value: ${{ github.event.release.tag_name }}
-
       - uses: actions/setup-java@v4
         with:
           java-version: 21
@@ -43,3 +36,4 @@ jobs:
           MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
           CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
           CHANGELOG: ${{ github.event.release.body }}
+          RELEASE_VERSION: ${{ github.event.release.tag_name }}
