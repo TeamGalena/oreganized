@@ -2,7 +2,7 @@ package galena.oreganized.carcinogenius.data;
 
 import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
 import galena.oreganized.carcinogenius.data.provider.OBlockStateProvider;
-import galena.oreganized.carcinogenius.index.OBlocks;
+import galena.oreganized.carcinogenius.index.OCBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -19,11 +19,11 @@ public class OBlockStates extends OBlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        simpleBlock(OBlocks.ASBESTOS_ORE);
-        simpleBlock(OBlocks.DEEPSLATE_ASBESTOS_ORE);
+        simpleBlock(OCBlocks.ASBESTOS_ORE);
+        simpleBlock(OCBlocks.DEEPSLATE_ASBESTOS_ORE);
 
-        simpleBlock(OBlocks.ASBESTOS_BLOCK.get(), cubeBottomTop(OBlocks.ASBESTOS_BLOCK));
-        simpleBlock(OBlocks.RAW_ASBESTOS_BLOCK);
+        simpleBlock(OCBlocks.ASBESTOS_BLOCK.get(), cubeBottomTop(OCBlocks.ASBESTOS_BLOCK));
+        simpleBlock(OCBlocks.RAW_ASBESTOS_BLOCK);
     }
 
 }

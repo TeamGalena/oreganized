@@ -2,8 +2,8 @@ package galena.oreganized.carcinogenius.data;
 
 import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
 import galena.oreganized.carcinogenius.data.provider.OBlockLootProvider;
-import galena.oreganized.carcinogenius.index.OBlocks;
-import galena.oreganized.carcinogenius.index.OItems;
+import galena.oreganized.carcinogenius.index.OCBlocks;
+import galena.oreganized.carcinogenius.index.OCItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
@@ -33,10 +33,10 @@ public class OLootTables extends LootTableProvider {
     public static class BlockLoot extends OBlockLootProvider {
 
         protected void generate() {
-            ore(OBlocks.ASBESTOS_ORE, OItems.RAW_ASBESTOS);
-            ore(OBlocks.DEEPSLATE_ASBESTOS_ORE, OItems.RAW_ASBESTOS);
-            dropSelf(OBlocks.ASBESTOS_BLOCK);
-            dropSelf(OBlocks.RAW_ASBESTOS_BLOCK);
+            ore(OCBlocks.ASBESTOS_ORE, OCItems.RAW_ASBESTOS);
+            ore(OCBlocks.DEEPSLATE_ASBESTOS_ORE, OCItems.RAW_ASBESTOS);
+            dropSelf(OCBlocks.ASBESTOS_BLOCK);
+            dropSelf(OCBlocks.RAW_ASBESTOS_BLOCK);
         }
 
         @Override

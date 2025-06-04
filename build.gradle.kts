@@ -166,13 +166,7 @@ tasks.withType<ProcessResources> {
     }
 }
 
-jarJar.enable()
-tasks.jarJar {
-    archiveClassifier.set("")
-}
-
 tasks.jar {
-    archiveClassifier.set("raw")
     finalizedBy("reobfJar")
 }
 
@@ -230,7 +224,7 @@ spotless {
     }
 }
 
-val upload = tasks.jarJar.get().archiveFile.get()
+val upload = tasks.jar.get().archiveFile.get()
 
 modrinth {
     projectId = modrinth_project_id

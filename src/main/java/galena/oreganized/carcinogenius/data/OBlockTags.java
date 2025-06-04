@@ -1,7 +1,7 @@
 package galena.oreganized.carcinogenius.data;
 
 import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
-import galena.oreganized.carcinogenius.index.OBlocks;
+import galena.oreganized.carcinogenius.index.OCBlocks;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -44,14 +44,14 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         // Forge
-        tag(Tags.Blocks.ORES).add(OBlocks.ASBESTOS_ORE.get(),OBlocks.DEEPSLATE_ASBESTOS_ORE.get());
+        tag(Tags.Blocks.ORES).add(OCBlocks.ASBESTOS_ORE.get(), OCBlocks.DEEPSLATE_ASBESTOS_ORE.get());
 
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
 
-                OBlocks.ASBESTOS_ORE.get(),
-                OBlocks.DEEPSLATE_ASBESTOS_ORE.get(),
-                OBlocks.ASBESTOS_BLOCK.get(),
-                OBlocks.RAW_ASBESTOS_BLOCK.get()
+                OCBlocks.ASBESTOS_ORE.get(),
+                OCBlocks.DEEPSLATE_ASBESTOS_ORE.get(),
+                OCBlocks.ASBESTOS_BLOCK.get(),
+                OCBlocks.RAW_ASBESTOS_BLOCK.get()
         );
     }
 }

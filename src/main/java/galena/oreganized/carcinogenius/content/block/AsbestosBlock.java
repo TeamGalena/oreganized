@@ -1,7 +1,7 @@
 package galena.oreganized.carcinogenius.content.block;
 
-import galena.oreganized.carcinogenius.index.OEffects;
-import galena.oreganized.carcinogenius.index.OParticleTypes;
+import galena.oreganized.carcinogenius.index.OCEffects;
+import galena.oreganized.carcinogenius.index.OCParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -28,8 +28,8 @@ public class AsbestosBlock extends Block {
 
         var vec = Vec3.atCenterOf(pPos).add(0,0.05,0);
         var cloud = new AreaEffectCloud(pLevel, vec.x, vec.y, vec.z);
-        cloud.addEffect(new MobEffectInstance(OEffects.LUNG_DAMAGE.get(),50));
-        cloud.setParticle(OParticleTypes.ASBESTOS_CLOUD.get());
+        cloud.addEffect(new MobEffectInstance(OCEffects.LUNG_DAMAGE.get(),50));
+        cloud.setParticle(OCParticleTypes.ASBESTOS_CLOUD.get());
         cloud.setRadius(2F);
         cloud.setRadiusPerTick(-0.01F);
         cloud.setDuration((int) (80));
@@ -42,8 +42,8 @@ public class AsbestosBlock extends Block {
         var vec = Vec3.atCenterOf(pPos).add(0,0.2,0);
         var cloud = new AreaEffectCloud(pLevel, vec.x, vec.y, vec.z);
 
-        cloud.addEffect(new MobEffectInstance(OEffects.LUNG_DAMAGE.get(),50));
-        cloud.setParticle(OParticleTypes.ASBESTOS_CLOUD.get());
+        cloud.addEffect(new MobEffectInstance(OCEffects.LUNG_DAMAGE.get(),50));
+        cloud.setParticle(OCParticleTypes.ASBESTOS_CLOUD.get());
         cloud.setRadius(4F);
         cloud.setRadiusPerTick(-0.02F);
         cloud.setDuration(120);

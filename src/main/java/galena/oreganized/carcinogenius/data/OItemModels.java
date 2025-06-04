@@ -2,8 +2,8 @@ package galena.oreganized.carcinogenius.data;
 
 import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
 import galena.oreganized.carcinogenius.data.provider.OItemModelProvider;
-import galena.oreganized.carcinogenius.index.OBlocks;
-import galena.oreganized.carcinogenius.index.OItems;
+import galena.oreganized.carcinogenius.index.OCBlocks;
+import galena.oreganized.carcinogenius.index.OCItems;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -21,13 +21,13 @@ public class OItemModels extends OItemModelProvider {
     @Override
     protected void registerModels() {
 
-        normalItem(OItems.RAW_ASBESTOS);
-        normalItem(OItems.REFINED_ASBESTOS);
+        normalItem(OCItems.RAW_ASBESTOS);
+        normalItem(OCItems.REFINED_ASBESTOS);
 
-        block(OBlocks.ASBESTOS_BLOCK);
-        block(OBlocks.RAW_ASBESTOS_BLOCK);
-        block(OBlocks.ASBESTOS_ORE);
-        block(OBlocks.DEEPSLATE_ASBESTOS_ORE);
+        block(OCBlocks.ASBESTOS_BLOCK);
+        block(OCBlocks.RAW_ASBESTOS_BLOCK);
+        block(OCBlocks.ASBESTOS_ORE);
+        block(OCBlocks.DEEPSLATE_ASBESTOS_ORE);
     }
 
 }

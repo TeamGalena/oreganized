@@ -1,11 +1,7 @@
 package galena.oreganized.carcinogenius.index;
 
 import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
-import galena.oreganized.client.particle.CustomDrippingParticle;
-import galena.oreganized.client.particle.KineticHitParticle;
 import galena.oreganized.client.particle.LeadCloudParticleProvider;
-import galena.oreganized.client.particle.LeadShrapnelParticle;
-import galena.oreganized.client.particle.VengeanceParticleProvider;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.core.particles.ParticleType;
@@ -19,7 +15,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 @Mod.EventBusSubscriber(modid = OreganizedCarcinogenius.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class OParticleTypes {
+public class OCParticleTypes {
 
     public static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, OreganizedCarcinogenius.NAMESPACE);
 
