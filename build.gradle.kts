@@ -6,6 +6,7 @@ val repository: String by extra
 val mod_name: String by extra
 val mod_author: String by extra
 val mod_id: String by extra
+val mod_version_suffix: String by extra
 val release_type: String by extra
 val modrinth_project_id: String by extra
 val curseforge_project_id: String by extra
@@ -19,7 +20,8 @@ val jei_version: String by extra
 val mixin_version: String by extra
 val mixin_extras_version: String by extra
 
-val mod_version = System.getenv("RELEASE_VERSION") ?: extra["mod_version"] as String
+val mod_version = System.getenv("RELEASE_VERSION")?.replace("-$mod_version_suffix", "")
+    ?: extra["mod_version"] as String
 
 plugins {
     java
