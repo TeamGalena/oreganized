@@ -2,28 +2,21 @@ package galena.oreganized.carcinogenius.data.provider;
 
 import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
+import net.minecraft.data.CachedOutput;
+import net.minecraft.data.DataProvider;
+import net.minecraft.data.PackOutput;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.level.block.Block;
+import net.minecraftforge.registries.ForgeRegistries;
+
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
-import net.minecraft.Util;
-import net.minecraft.data.CachedOutput;
-import net.minecraft.data.DataProvider;
-import net.minecraft.data.PackOutput;
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.decoration.PaintingVariant;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.RecordItem;
-import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 public abstract class OLangProvider implements DataProvider {
     private final Map<String, String> data = new TreeMap<>();
@@ -68,7 +61,15 @@ public abstract class OLangProvider implements DataProvider {
         add(key.get(), name);
     }
 
+    public void addItem(Supplier<? extends Item> key, String name) {
+        add(key.get(), name);
+    }
+
     public void add(Block key, String name) {
+        add(key.getDescriptionId(), name);
+    }
+
+    public void add(Item key, String name) {
         add(key.getDescriptionId(), name);
     }
 

@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_raw_asbestos_block": {
+    "has_asbestos_block": {
       "conditions": {
         "items": [
           {
             "items": [
-              "oreganized:raw_asbestos_block"
+              "oreganized:asbestos_block"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oreganized_carcinogenius:raw_asbestos_from_block"
+        "recipe": "oreganized:asbestos_from_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_raw_asbestos_block",
+      "has_asbestos_block",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "oreganized_carcinogenius:raw_asbestos_from_block"
+      "oreganized:asbestos_from_block"
     ]
   },
   "sends_telemetry_event": false

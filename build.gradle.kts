@@ -5,7 +5,6 @@ import java.time.LocalDateTime
 val repository: String by extra
 val mod_name: String by extra
 val mod_author: String by extra
-val mod_version: String by extra
 val mod_id: String by extra
 val release_type: String by extra
 val modrinth_project_id: String by extra
@@ -19,6 +18,8 @@ val jade_version: String by extra
 val jei_version: String by extra
 val mixin_version: String by extra
 val mixin_extras_version: String by extra
+
+val mod_version = System.getenv("RELEASE_VERSION") ?: extra["mod_version"] as String
 
 plugins {
     java
@@ -251,7 +252,6 @@ tasks.register<TaskPublishCurseForge>("curseforge") {
         changelogType = Constants.CHANGELOG_MARKDOWN
         changelog = System.getenv("CHANGELOG")
         releaseType = release_type
-        version = mod_version
         displayName = "$mod_name $mod_version"
         addGameVersion(minecraft_version)
         addRelation("oreganized", Constants.RELATION_REQUIRED)
