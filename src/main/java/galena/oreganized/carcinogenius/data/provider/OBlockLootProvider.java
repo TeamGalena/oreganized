@@ -1,13 +1,11 @@
 package galena.oreganized.carcinogenius.data.provider;
 
+import java.util.Set;
+import java.util.function.Supplier;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
-
-import java.util.Set;
-import java.util.function.Supplier;
 
 public abstract class OBlockLootProvider extends BlockLootSubProvider {
 

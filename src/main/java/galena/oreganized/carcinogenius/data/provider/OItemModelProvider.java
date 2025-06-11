@@ -1,11 +1,9 @@
 package galena.oreganized.carcinogenius.data.provider;
 
-import static galena.oreganized.ModCompat.SHIELD_EXPANSION_ID;
 
 import com.teamabnormals.blueprint.core.data.client.BlueprintItemModelProvider;
 import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
 import java.util.function.Supplier;
-
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;

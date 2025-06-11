@@ -1,10 +1,9 @@
 package galena.oreganized.carcinogenius.world.event;
 
 import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
+import galena.oreganized.carcinogenius.index.OCBlocks;
 import galena.oreganized.carcinogenius.index.OCEffects;
 import galena.oreganized.carcinogenius.index.OCParticleTypes;
-import galena.oreganized.carcinogenius.index.OCBlocks;
-
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.level.Level;

@@ -16,6 +16,11 @@ import galena.oreganized.carcinogenius.index.OCParticleTypes;
 import galena.oreganized.carcinogenius.index.OCPotions;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OItems;
+import java.util.Arrays;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import net.minecraft.DetectedVersion;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -44,12 +49,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.Arrays;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 @Mod(OreganizedCarcinogenius.MOD_ID)
 public class OreganizedCarcinogenius {

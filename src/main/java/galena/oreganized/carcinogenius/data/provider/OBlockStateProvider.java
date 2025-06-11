@@ -1,6 +1,9 @@
 package galena.oreganized.carcinogenius.data.provider;
 
+import static net.minecraftforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
+
 import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
+import java.util.function.Supplier;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -9,10 +12,6 @@ import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.function.Supplier;
-
-import static net.minecraftforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
 
 public abstract class OBlockStateProvider extends BlockStateProvider {
 
