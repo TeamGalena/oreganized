@@ -29,7 +29,7 @@ public class PlayerEvents {
             cloud.setParticle(OCParticleTypes.ASBESTOS_CLOUD.get());
             cloud.setRadius(4F);
             cloud.setRadiusPerTick(-0.02F);
-            cloud.setDuration((int) (120));
+            cloud.setDuration(120);
             level.addFreshEntity(cloud);
 
         }
