@@ -1,0 +1,13 @@
+{
+  "block.oreganized.asbestos_block": "Asbestblock",
+  "block.oreganized.asbestos_ore": "Asbesterz",
+  "block.oreganized.deepslate_asbestos_ore": "Tiefenschiefer-Asbesterz",
+  "block.oreganized.raw_asbestos_block": "Rohasbestblock",
+  "effect.oreganized.lung_damage": "Lungenschaden",
+  "item.minecraft.lingering_potion.effect.lung_damage": "Verweiltrank des Lungenschadens",
+  "item.minecraft.potion.effect.lung_damage": "Trank des Lungenschadens",
+  "item.minecraft.splash_potion.effect.lung_damage": "Wurftrank des Lungenschadens",
+  "item.minecraft.tipped_arrow.effect.lung_damage": "Pfeil des Lungenschadens",
+  "item.oreganized.raw_asbestos": "Rohasbest",
+  "item.oreganized.refined_asbestos": "Verfeinerter Asbest"
+}
