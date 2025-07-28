@@ -1,8 +1,5 @@
 package galena.oreganized;
 
-import static galena.oreganized.ModCompat.FARMERS_DELIGHT_ID;
-import static galena.oreganized.ModCompat.NETHERS_DELIGHT_ID;
-import static galena.oreganized.ModCompat.SHIELD_EXPANSION_ID;
 
 import com.google.common.collect.ImmutableBiMap;
 import com.mojang.serialization.Codec;
@@ -47,7 +44,6 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import net.minecraft.DetectedVersion;
@@ -59,7 +55,6 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.metadata.PackMetadataGenerator;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
@@ -67,13 +62,11 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.alchemy.Potions;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -86,12 +79,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
-import net.minecraftforge.common.util.MutableHashedLinkedMap;
 import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fluids.FluidInteractionRegistry;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
@@ -102,9 +92,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.infernalstudios.shieldexp.init.ItemsInit;
-import umpaz.nethersdelight.common.registry.NDItems;
-import vectorwing.farmersdelight.common.registry.ModItems;
 
 @Mod(Oreganized.MOD_ID)
 public class Oreganized {
@@ -128,7 +115,6 @@ public class Oreganized {
         modBus.addListener(this::setup);
         modBus.addListener(this::clientSetup);
         modBus.addListener(this::gatherData);
-        modBus.addListener(this::buildCreativeModeTabContents);
         forgeBus.addListener(this::injectVillagerTrades);
 
         LOOT_MODIFIERS.register("add_item", () -> AddItemLootModifier.CODEC);
@@ -284,120 +270,5 @@ public class Oreganized {
                 DetectedVersion.BUILT_IN.getPackVersion(PackType.CLIENT_RESOURCES),
                 Arrays.stream(PackType.values()).collect(Collectors.toMap(Function.identity(), DetectedVersion.BUILT_IN::getPackVersion))
         )));
-    }
-
-    @SubscribeEvent
-    public void buildCreativeModeTabContents(BuildCreativeModeTabContentsEvent event) {
-        ResourceKey<CreativeModeTab> tab = event.getTabKey();
-        MutableHashedLinkedMap<ItemStack, CreativeModeTab.TabVisibility> entries = event.getEntries();
-
-        putBefore(entries, Items.DEEPSLATE, OBlocks.GLANCE);
-        putAfter(entries, OBlocks.GLANCE.get(), OBlocks.SPOTTED_GLANCE);
-        putAfter(entries, OBlocks.SPOTTED_GLANCE.get(), OBlocks.GLANCE_STAIRS);
-        putAfter(entries, OBlocks.GLANCE_STAIRS.get(), OBlocks.GLANCE_SLAB);
-        putAfter(entries, OBlocks.GLANCE_SLAB.get(), OBlocks.GLANCE_WALL);
-        putAfter(entries, OBlocks.GLANCE_WALL.get(), OBlocks.CHISELED_GLANCE);
-        putAfter(entries, OBlocks.CHISELED_GLANCE.get(), OBlocks.POLISHED_GLANCE);
-        putAfter(entries, OBlocks.POLISHED_GLANCE.get(), OBlocks.POLISHED_GLANCE_STAIRS);
-        putAfter(entries, OBlocks.POLISHED_GLANCE_STAIRS.get(), OBlocks.POLISHED_GLANCE_SLAB);
-        putAfter(entries, OBlocks.POLISHED_GLANCE_SLAB.get(), OBlocks.GLANCE_BRICKS);
-        putAfter(entries, OBlocks.GLANCE_BRICKS.get(), OBlocks.GLANCE_BRICK_STAIRS);
-        putAfter(entries, OBlocks.GLANCE_BRICK_STAIRS.get(), OBlocks.GLANCE_BRICK_SLAB);
-        putAfter(entries, OBlocks.GLANCE_BRICK_SLAB.get(), OBlocks.GLANCE_BRICK_WALL);
-        putAfter(entries, OBlocks.GLANCE_BRICK_WALL.get(), OBlocks.WAXED_SPOTTED_GLANCE);
-        putBefore(entries, Items.REDSTONE_BLOCK, OBlocks.SILVER_BLOCK);
-        putBefore(entries, Items.NETHERITE_BLOCK, OBlocks.ELECTRUM_BLOCK);
-        putAfter(entries, Items.WAXED_OXIDIZED_CUT_COPPER_SLAB, OBlocks.LEAD_BLOCK);
-        putAfter(entries, OBlocks.LEAD_BLOCK.get(), OBlocks.CUT_LEAD);
-        putAfter(entries, OBlocks.CUT_LEAD.get(), OBlocks.LEAD_BRICKS);
-        putAfter(entries, OBlocks.LEAD_PILLAR.get(), OBlocks.CUT_LEAD);
-        putAfter(entries, OBlocks.LEAD_BRICKS.get(), OBlocks.LEAD_PILLAR);
-        putAfter(entries, Blocks.IRON_BARS, OBlocks.LEAD_BARS);
-
-        putBefore(entries, Blocks.CHEST, OBlocks.LEAD_BOLT_CRATE);
-
-        OBlocks.CRYSTAL_GLASS.entrySet()
-                .stream()
-                .sorted(Map.Entry.comparingByKey())
-                .forEach(entry -> putBefore(entries, Items.GLASS_PANE, entry.getValue()));
-
-        OBlocks.CRYSTAL_GLASS_PANES.entrySet()
-                .stream()
-                .sorted(Map.Entry.comparingByKey())
-                .forEach(entry -> putBefore(entries, Items.SHULKER_BOX, entry.getValue()));
-
-        putAfter(entries, Items.DEEPSLATE_COPPER_ORE, OBlocks.LEAD_ORE);
-        putAfter(entries, OBlocks.LEAD_ORE.get(), OBlocks.DEEPSLATE_LEAD_ORE);
-        putAfter(entries, Items.DEEPSLATE_GOLD_ORE, OBlocks.SILVER_ORE);
-        putAfter(entries, OBlocks.SILVER_ORE.get(), OBlocks.DEEPSLATE_SILVER_ORE);
-        putAfter(entries, Items.RAW_COPPER_BLOCK, OBlocks.RAW_LEAD_BLOCK);
-        putAfter(entries, Items.RAW_GOLD_BLOCK, OBlocks.RAW_SILVER_BLOCK);
-        putAfter(entries, Blocks.ICE, OBlocks.GROOVED_ICE);
-        putAfter(entries, Blocks.PACKED_ICE, OBlocks.GROOVED_PACKED_ICE);
-        putAfter(entries, Blocks.BLUE_ICE, OBlocks.GROOVED_BLUE_ICE);
-
-        putBefore(entries, Items.NOTE_BLOCK, OBlocks.GARGOYLE);
-        putAfter(entries, Items.TNT_MINECART, OItems.SHRAPNEL_BOMB_MINECART);
-        putAfter(entries, Items.TNT, OBlocks.SHRAPNEL_BOMB);
-        putAfter(entries, Blocks.REDSTONE_LAMP, OBlocks.LEAD_BULB);
-        putAfter(entries, Blocks.IRON_DOOR, OBlocks.LEAD_DOOR);
-        putAfter(entries, Blocks.IRON_TRAPDOOR, OBlocks.LEAD_TRAPDOOR);
-
-        putBefore(entries, Items.NETHERITE_SHOVEL, OItems.ELECTRUM_SHOVEL);
-        putAfter(entries, OItems.ELECTRUM_SHOVEL.get(), OItems.ELECTRUM_PICKAXE);
-        putAfter(entries, OItems.ELECTRUM_PICKAXE.get(), OItems.ELECTRUM_AXE);
-        putAfter(entries, OItems.ELECTRUM_AXE.get(), OItems.ELECTRUM_HOE);
-        putBefore(entries, Items.MILK_BUCKET, OItems.MOLTEN_LEAD_BUCKET);
-        putBefore(entries, Items.SPYGLASS, OItems.SILVER_MIRROR);
-        putBefore(entries, OItems.SILVER_MIRROR.get(), OItems.THERMOMETER);
-        putBefore(entries, OItems.THERMOMETER.get(), OItems.SPEEDOMETER);
-        putBefore(entries, OItems.SPEEDOMETER.get(), OItems.UNKNOWN_DEVICE);
-        putAfter(entries, Items.TNT_MINECART, OItems.SHRAPNEL_BOMB_MINECART);
-        putBefore(entries, Items.MUSIC_DISC_5, OItems.MUSIC_DISC_STRUCTURE);
-        putAfter(entries, Items.SHEARS, OItems.SCRIBE);
-        putAfter(entries, Items.FLINT_AND_STEEL, OItems.FLINT_AND_PEWTER);
-
-        putBefore(entries, Items.NETHERITE_SWORD, OItems.ELECTRUM_SWORD);
-        putBefore(entries, Items.NETHERITE_HELMET, OItems.ELECTRUM_HELMET);
-        putAfter(entries, OItems.ELECTRUM_HELMET.get(), OItems.ELECTRUM_CHESTPLATE);
-        putAfter(entries, OItems.ELECTRUM_CHESTPLATE.get(), OItems.ELECTRUM_LEGGINGS);
-        putAfter(entries, OItems.ELECTRUM_LEGGINGS.get(), OItems.ELECTRUM_BOOTS);
-        putAfter(entries, Items.TNT, OBlocks.SHRAPNEL_BOMB);
-        putBefore(entries, Items.ARROW, OItems.LEAD_BOLT);
-
-        putAfter(entries, Items.RAW_COPPER, OItems.RAW_LEAD);
-        putAfter(entries, Items.RAW_GOLD, OItems.RAW_SILVER);
-        putAfter(entries, Items.IRON_NUGGET, OItems.LEAD_NUGGET);
-        putAfter(entries, Items.GOLD_NUGGET, OItems.SILVER_NUGGET);
-        putBefore(entries, Items.IRON_INGOT, OItems.ELECTRUM_NUGGET);
-        putAfter(entries, Items.COPPER_INGOT, OItems.LEAD_INGOT);
-        putAfter(entries, Items.GOLD_INGOT, OItems.SILVER_INGOT);
-        putBefore(entries, Items.NETHERITE_SCRAP, OItems.ELECTRUM_INGOT);
-        putBefore(entries, Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, OItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE);
-
-        putAfter(entries, Items.LILY_OF_THE_VALLEY, OBlocks.PURPLE_DATURA);
-        putAfter(entries, OBlocks.PURPLE_DATURA.get(), OBlocks.WHITE_DATURA);
-
-        if (ModList.get().isLoaded(FARMERS_DELIGHT_ID)) {
-            putAfter(entries, ModItems.NETHERITE_KNIFE.get(), OItems.ELECTRUM_KNIFE);
-        }
-        if (ModList.get().isLoaded(SHIELD_EXPANSION_ID)) {
-            putAfter(entries, ItemsInit.NETHERITE_SHIELD.get(), OItems.ELECTRUM_SHIELD);
-        }
-        if (ModList.get().isLoaded(NETHERS_DELIGHT_ID)) {
-            putAfter(entries, NDItems.NETHERITE_MACHETE.get(), OItems.ELECTRUM_MACHETE);
-        }
-    }
-
-    private static void putAfter(MutableHashedLinkedMap<ItemStack, CreativeModeTab.TabVisibility> entries, ItemLike after, Supplier<? extends ItemLike> supplier) {
-        ItemLike key = supplier.get();
-        if (!entries.contains(new ItemStack(after))) return;
-        entries.putAfter(new ItemStack(after), new ItemStack(key), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-    }
-
-    private static void putBefore(MutableHashedLinkedMap<ItemStack, CreativeModeTab.TabVisibility> entries, ItemLike before, Supplier<? extends ItemLike> supplier) {
-        ItemLike key = supplier.get();
-        if (!entries.contains(new ItemStack(before))) return;
-        entries.putBefore(new ItemStack(before), new ItemStack(key), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
     }
 }
