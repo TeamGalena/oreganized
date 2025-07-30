@@ -12,10 +12,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
 
-@Mod.EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT)
 public class StunningEffect extends MobEffect {
 
     private static final String SLOWNESS_UUID = "019150f6-e85e-777f-a566-1eafd7c7e1a5";

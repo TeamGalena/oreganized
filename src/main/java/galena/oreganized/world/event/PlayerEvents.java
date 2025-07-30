@@ -36,9 +36,8 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = Oreganized.MOD_ID)
+@EventBusSubscriber(modid = Oreganized.MOD_ID)
 public class PlayerEvents {
 
     @SubscribeEvent

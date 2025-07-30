@@ -2,8 +2,9 @@ package galena.oreganized.content.item;
 
 import com.mojang.logging.annotations.MethodsReturnNonnullByDefault;
 import galena.oreganized.content.ISilver;
+import galena.oreganized.index.OComponents;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -13,36 +14,19 @@ import net.minecraft.world.level.Level;
 @MethodsReturnNonnullByDefault
 public class SilverMirrorItem extends Item implements ISilver {
 
-    public static final int TexturedFrames = 8;
+    public static final int TEXTURED_FRAMES = 8;
+    public static final ResourceLocation PROPERTY_KEY = ResourceLocation.withDefaultNamespace("level");
 
     public SilverMirrorItem(Item.Properties properties) {
         super(properties);
     }
 
-    /*@Override
-    public InteractionResult interactLivingEntity(ItemStack item, Player player, LivingEntity entity, InteractionHand hand) {
-        RandomSource random = player.getRandom();
-        if (entity instanceof ZombieVillager zombieVillager && entity.hasEffect(MobEffects.WEAKNESS)) {
-            int unbreakingLevel = 0;
-            if (!player.getAbilities().instabuild && random.nextInt(1 + unbreakingLevel) == 0) {
-                player.playSound(SoundEvents.ITEM_BREAK);
-                player.setItemInHand(hand, new ItemStack(OItems.BROKEN_SILVER_MIRROR.get()));
-            }
-            if (!entity.level.isClientSide)
-                zombieVillager.startConverting(player.getUUID(), player.getRandom().nextInt(2401) + 3600);
-
-            return InteractionResult.SUCCESS;
-        }
-        return super.interactLivingEntity(item, player, entity, hand);
-    }*/
-
     @Override
     public void inventoryTick(ItemStack stack, Level world, Entity entity, int i, boolean idk) {
         if (!(entity instanceof Player player)) return;
         BlockPos pos = player.getOnPos();
-        int dist = getUndeadDistance(world, pos, player, TexturedFrames);
+        int dist = getUndeadDistance(world, pos, player, TEXTURED_FRAMES);
 
-        CompoundTag nbt = stack.getOrCreateTag();
-        nbt.putInt("Level", dist);
+        stack.set(OComponents.LEVEL.get(), dist);
     }
 }

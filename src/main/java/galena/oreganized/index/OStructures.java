@@ -6,7 +6,7 @@ import galena.oreganized.world.gen.structure.BoulderStructure;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureType;
-import net.minecraftforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 

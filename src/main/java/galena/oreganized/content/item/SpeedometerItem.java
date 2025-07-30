@@ -14,7 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 public class SpeedometerItem extends Item {
-    public static final ResourceLocation PROPERTY_KEY = new ResourceLocation("level");
+    public static final ResourceLocation PROPERTY_KEY = ResourceLocation.withDefaultNamespace("level");
 
     public SpeedometerItem(Properties pProperties) {
         super(pProperties);

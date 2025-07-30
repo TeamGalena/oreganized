@@ -6,10 +6,9 @@ import galena.oreganized.content.block.HeavyDoorBlockEntity;
 import galena.oreganized.content.entity.GargoyleBlockEntity;
 import java.util.Set;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 
-@Mod.EventBusSubscriber(modid = Oreganized.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Oreganized.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class OBlockEntities {
     public static final BlockEntitySubRegistryHelper HELPER = Oreganized.REGISTRY_HELPER.getBlockEntitySubHelper();
 

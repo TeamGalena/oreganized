@@ -1,6 +1,6 @@
 modLoader="javafml"
-loaderVersion="[47,)"
-license="https://github.com/${repository}/blob/1.20.x/LICENSE.md"
+loaderVersion="[1,)"
+license="https://github.com/${repository}/blob/1.21.x/LICENSE.md"
 issueTrackerURL="https://github.com/${repository}/issues/"
 
 [[mods]]
@@ -22,50 +22,50 @@ This mod is designed to be a Vanilla plus mod while also adding unique uses and 
 '''
 
 [[dependencies.${mod_id}]]
-    modId="forge"
-    mandatory=true
-    versionRange="[47,)"
+    modId="neoforge"
+    versionRange="[21,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
     modId="minecraft"
-    mandatory=true
-    versionRange="[1.20,1.21)"
+    versionRange="[1.21,1.22)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
     modId="blueprint"
-    mandatory=true
-    versionRange="[7.1.0,)"
+    versionRange="[8.0.0,)"
     ordering="AFTER"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
     modId="shieldexp"
-    mandatory=false
+    type="optional"
     versionRange="*"
     ordering="AFTER"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
     modId="nethersdelight"
-    mandatory=false
+    type="optional"
     versionRange="*"
     ordering="AFTER"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
     modId="farmersdelight"
-    mandatory=false
+    type="optional"
     versionRange="*"
     ordering="AFTER"
     side="BOTH"
 
 [[dependencies.${mod_id}]]
     modId="create"
-    mandatory=false
+    type="optional"
     versionRange="*"
     ordering="AFTER"
     side="BOTH"
+
+[[mixins]]
+    config="${mod_id}.mixins.json"

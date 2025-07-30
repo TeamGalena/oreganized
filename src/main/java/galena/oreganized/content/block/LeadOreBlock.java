@@ -24,9 +24,8 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = Oreganized.MOD_ID)
+@EventBusSubscriber(modid = Oreganized.MOD_ID)
 public class LeadOreBlock {
 
     private static Stream<MobEffectInstance> getEffects(int durationMultiplier) {

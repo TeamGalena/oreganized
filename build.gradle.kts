@@ -11,20 +11,18 @@ val modrinth_project_id: String by extra
 val curseforge_project_id: String by extra
 val minecraft_version: String by extra
 val maven_group: String by extra
-val forge_version: String by extra
+val neoforge_version: String by extra
 val blueprint_version: String by extra
-val mixin_version: String by extra
-val mixin_extras_version: String by extra
 val farmersdelight_version: String by extra
-val nethersdelight_version: String by extra
-val shieldexpansion_version: String by extra
+//val nethersdelight_version: String by extra
+//val shieldexpansion_version: String by extra
 val create_version: String by extra
 val ponder_version: String by extra
 val supplementaries_version: String by extra
-val scannable_version: String by extra
-val architectury_version: String by extra
+//val scannable_version: String by extra
+//val architectury_version: String by extra
 val moonlight_lib_version: String by extra
-val dye_depot_version: String by extra
+//val dye_depot_version: String by extra
 val jade_version: String by extra
 val jei_version: String by extra
 val galena_hats_version: String by extra
@@ -35,9 +33,8 @@ val mod_version = System.getenv("RELEASE_VERSION") ?: extra["mod_version"] as St
 plugins {
     java
     `maven-publish`
-    id("net.minecraftforge.gradle") version "[6.0,6.2)"
-    id("org.spongepowered.mixin") version "0.7-SNAPSHOT"
-    id("org.parchmentmc.librarian.forgegradle") version "1.+"
+    id("net.neoforged.gradle.userdev") version "7.0.184"
+// TODO  id("org.parchmentmc.librarian.forgegradle") version "1.+"
     id("com.diffplug.spotless") version "7.0.4"
     id("org.sonarqube") version "6.2.0.5505"
     id("com.modrinth.minotaur") version "2.+"
@@ -48,65 +45,58 @@ base {
     archivesName = "$mod_name $minecraft_version-$mod_version"
 }
 
-mixin {
-    add(sourceSets.main.get(), "${mod_id}.refmap.json")
-    config("${mod_id}.mixins.json")
-}
-
 java {
-    toolchain.languageVersion = JavaLanguageVersion.of(17)
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
     withSourcesJar()
 }
 
-minecraft {
-    mappings("parchment", "2023.09.03-1.20.1")
+// TODO accessTransformer(file("src/main/resources/META-INF/accesstransformer.cfg"))
 
-    accessTransformer(file("src/main/resources/META-INF/accesstransformer.cfg"))
+/* TODO
+runs {
+    create("client") {
+        taskName = "Client"
+    }
 
-    runs {
-        create("client") {
-            taskName = "Client"
-        }
+    create("server") {
+        taskName = "Server"
+        workingDirectory("run/server")
+    }
 
-        create("server") {
-            taskName = "Server"
-            workingDirectory("run/server")
-        }
+    create("data") {
+        taskName = "Data"
+        workingDirectory("run/data")
 
-        create("data") {
-            taskName = "Data"
-            workingDirectory("run/data")
+        val existingMods = listOf(
+            "blueprint",
+            "shieldexp",
+            "dye_depot",
+        )
 
-            val existingMods = listOf(
-                "blueprint",
-                "shieldexp",
-                "dye_depot",
-            )
+        args(
+            listOf(
+                "--mod",
+                mod_id,
+                "--all",
+                "--output",
+                file("src/generated/resources/"),
+                "--existing",
+                file("src/main/resources/"),
+            ) + existingMods.flatMap {
+                listOf("--existing-mod", it)
+            })
+    }
 
-            args(
-                listOf(
-                    "--mod",
-                    mod_id,
-                    "--all",
-                    "--output",
-                    file("src/generated/resources/"),
-                    "--existing",
-                    file("src/main/resources/"),
-                ) + existingMods.flatMap {
-                    listOf("--existing-mod", it)
-                })
-        }
-
-        forEach {
-            it.args("-mixin.config=${mod_id}.mixins.json")
-            it.mods {
-                create(mod_id) {
-                    source(sourceSets.main.get())
-                }
+    forEach {
+        it.args("-mixin.config=${mod_id}.mixins.json")
+        it.mods {
+            create(mod_id) {
+                source(sourceSets.main.get())
             }
         }
     }
 }
+*/
 
 sourceSets.main {
     resources.srcDir("src/generated/resources")
@@ -134,6 +124,12 @@ repositories {
         }
     }
     maven {
+        url = uri("https://maven.tterrag.com/")
+        content {
+            includeGroup("com.tterrag.registrate")
+        }
+    }
+    maven {
         url = uri("https://maven.createmod.net")
         content {
             includeGroup("com.simibubi.create")
@@ -154,57 +150,39 @@ repositories {
 jarJar.enable()
 
 dependencies {
-    minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
-    implementation(fg.deobf("com.teamabnormals:blueprint:${minecraft_version}-${blueprint_version}"))
-    annotationProcessor("org.spongepowered:mixin:${mixin_version}:processor")
-
-    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:${mixin_extras_version}")!!)
-    implementation(jarJar("io.github.llamalad7:mixinextras-forge:${mixin_extras_version}") {
-        version {
-            strictly("[${mixin_extras_version},)")
-            prefer(mixin_extras_version)
-        }
-    })
+    implementation("net.neoforged:neoforge:${neoforge_version}")
+    implementation("com.teamabnormals:blueprint:${minecraft_version}-${blueprint_version}")
 
     val hatsVersion = "${minecraft_version}-${galena_hats_version}"
-    implementation(fg.deobf(jarJar("dev.galena:hats-forge:${hatsVersion}") {
+    implementation(jarJar("dev.galena:hats-neoforge:${hatsVersion}") {
         version {
             strictly("[${hatsVersion},)")
             prefer(hatsVersion)
         }
-    }))
+    })
 
     val multikultiVersion = "$minecraft_version-$multikulti_version"
-    implementation(fg.deobf("com.possible-triangle:multikulti-core-forge:$multikultiVersion"))
-    implementation(fg.deobf("com.possible-triangle:multikulti-datagen-forge:$multikultiVersion"))
-    implementation(fg.deobf(jarJar("com.possible-triangle:multikulti-datagen-forge-fix:$multikultiVersion") {
-        version {
-            strictly("[${multikultiVersion},)")
-            prefer(multikultiVersion)
-        }
-    }))
+    implementation("com.possible-triangle:multikulti-core-neoforge:$multikultiVersion")
+    implementation("com.possible-triangle:multikulti-datagen-neoforge:$multikultiVersion")
 
     // Compatibilities
-    implementation(fg.deobf("maven.modrinth:farmers-delight:${farmersdelight_version}"))
-    implementation(fg.deobf("maven.modrinth:nethers-delight:${nethersdelight_version}"))
-    implementation(fg.deobf("maven.modrinth:shield-expansion:${shieldexpansion_version}"))
-    implementation(fg.deobf("com.simibubi.create:create-${minecraft_version}:${create_version}:all"))
-    compileOnly(fg.deobf("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}"))
-    implementation(fg.deobf("maven.modrinth:supplementaries:${supplementaries_version}"))
+    implementation("maven.modrinth:farmers-delight:${farmersdelight_version}")
+    // implementation("maven.modrinth:nethers-delight:${nethersdelight_version}")
+    // implementation("maven.modrinth:shield-expansion:${shieldexpansion_version}")
+    implementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { isTransitive = false }
+    compileOnly("net.createmod.ponder:Ponder-NeoForge-${minecraft_version}:${ponder_version}")
+    implementation("maven.modrinth:supplementaries:${supplementaries_version}")
 
     // For dev testing
-    runtimeOnly(fg.deobf("maven.modrinth:scannable:${scannable_version}"))
-    runtimeOnly(fg.deobf("maven.modrinth:architectury-api:${architectury_version}"))
-    runtimeOnly(fg.deobf("maven.modrinth:moonlight:${moonlight_lib_version}"))
-    runtimeOnly(fg.deobf("maven.modrinth:dye-depot:${dye_depot_version}"))
-    runtimeOnly(fg.deobf("maven.modrinth:jade:${jade_version}"))
+    // runtimeOnly("maven.modrinth:scannable:${scannable_version}")
+    // runtimeOnly("maven.modrinth:architectury-api:${architectury_version}")
+    runtimeOnly("maven.modrinth:moonlight:${moonlight_lib_version}")
+    // runtimeOnly("maven.modrinth:dye-depot:${dye_depot_version}")
+    runtimeOnly("maven.modrinth:jade:${jade_version}")
 
-    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"))
-    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"))
-    runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}"))
-
-    runtimeOnly(fg.deobf("maven.modrinth:scannable:${scannable_version}"))
-    runtimeOnly(fg.deobf("maven.modrinth:architectury-api:${architectury_version}"))
+    compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+    compileOnly("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
+    runtimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
 }
 
 tasks.withType<Jar> {
@@ -250,14 +228,13 @@ tasks.withType<ProcessResources> {
 
 tasks.jar {
     archiveClassifier.set("slim")
-    finalizedBy("reobfJar")
 }
 
 tasks.jarJar {
     archiveClassifier.set("")
-    finalizedBy("reobfJarJar")
 }
 
+// TODO check
 val upload = tasks.jarJar.get().archiveFile.get()
 
 publishing {

@@ -19,9 +19,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = Oreganized.MOD_ID)
+@EventBusSubscriber(modid = Oreganized.MOD_ID)
 public class DeviceItem extends Item {
 
     public static final int FRAMES = 10;

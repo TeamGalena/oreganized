@@ -3,8 +3,7 @@ package galena.oreganized.compat.create;
 import com.simibubi.create.api.registry.CreateBuiltInRegistries;
 import galena.oreganized.Oreganized;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class CreateCompat {
 
@@ -13,7 +12,7 @@ public class CreateCompat {
 
         interactionPointTypes.register("gargoyle", GargoyleArmPointType::new);
 
-        IEventBus modBus = Mod.EventBusSubscriber.Bus.MOD.bus().get();
+        IEventBus modBus = EventBusSubscriber.Bus.MOD.bus().get();
         interactionPointTypes.register(modBus);
     }
 

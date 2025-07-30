@@ -11,9 +11,11 @@ import galena.oreganized.client.tooltips.ClientThermometerTooltip;
 import galena.oreganized.client.tooltips.DeviceTooltip;
 import galena.oreganized.client.tooltips.ThermometerTooltip;
 import galena.oreganized.content.item.DeviceItem;
+import galena.oreganized.content.item.SilverMirrorItem;
 import galena.oreganized.content.item.SpeedometerItem;
 import galena.oreganized.content.item.ThermometerItem;
 import galena.oreganized.index.OBlocks;
+import galena.oreganized.index.OComponents;
 import galena.oreganized.index.OEntityTypes;
 import galena.oreganized.index.OItems;
 import galena.oreganized.world.IDoorProgressHolder;
@@ -27,28 +29,27 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
-import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.client.event.RegisterClientTooltipComponentFactoriesEvent;
-import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
-import net.minecraftforge.client.event.RenderHandEvent;
-import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterClientTooltipComponentFactoriesEvent;
+import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
+import net.neoforged.neoforge.client.event.RenderHandEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
-@Mod.EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class OreganizedClient {
 
     private static void render(Supplier<? extends Block> block, RenderType render) {
@@ -62,13 +63,9 @@ public class OreganizedClient {
     }
 
     private static void registerItemProperties() {
-        ItemProperties.register(OItems.SILVER_MIRROR.get(), new ResourceLocation("level"), (stack, world, entity, seed) -> {
-            if (entity == null) {
-                return 8;
-            } else {
-                return stack.getOrCreateTag().getInt("Level");
-            }
-        });
+        ItemProperties.register(OItems.SILVER_MIRROR.get(), SilverMirrorItem.PROPERTY_KEY, (stack, world, entity, seed) ->
+                stack.getOrDefault(OComponents.LEVEL.get(), 8)
+        );
 
         ItemProperties.register(OItems.SPEEDOMETER.get(), SpeedometerItem.PROPERTY_KEY, (stack, world, entity, seed) -> {
             if (entity == null) return 0;
@@ -81,11 +78,11 @@ public class OreganizedClient {
             return ThermometerItem.getHeatLevel(stack);
         });
 
-        ItemProperties.register(Items.CROSSBOW, new ResourceLocation(Oreganized.MOD_ID, "lead_bolt"), (stack, level, user, i) ->
-                CrossbowItem.isCharged(stack) && CrossbowItem.containsChargedProjectile(stack, OItems.LEAD_BOLT.get()) ? 1.0F : 0.0F
+        ItemProperties.register(Items.CROSSBOW, Oreganized.modLoc("lead_bolt"), (stack, level, user, i) ->
+                stack.get(DataComponents.CHARGED_PROJECTILES).contains(OItems.LEAD_BOLT.get()) ? 1.0F : 0.0F
         );
 
-        ItemProperties.register(OItems.ELECTRUM_SHIELD.get(), new ResourceLocation("blocking"), (stack, level, user, i) ->
+        ItemProperties.register(OItems.ELECTRUM_SHIELD.get(), ResourceLocation.withDefaultNamespace("blocking"), (stack, level, user, i) ->
                 user != null && user.isUsingItem() && user.getUseItem() == stack ? 1.0F : 0.0F
         );
 
@@ -118,8 +115,7 @@ public class OreganizedClient {
     }
 
     @SubscribeEvent
-    public static void registerGuiOverlays(RegisterGuiOverlaysEvent event) {
-        MinecraftForge.EVENT_BUS.register(new StunningOverlay());
+    public static void registerGuiOverlays(RegisterGuiLayersEvent event) {
         event.registerAbove(VanillaGuiOverlay.FROSTBITE.id(), "stunning", new StunningOverlay());
     }
 
@@ -134,7 +130,7 @@ public class OreganizedClient {
         event.register(DeviceTooltip.class, ClientDeviceTooltip::new);
     }
 
-    @Mod.EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
+    @EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.FORGE)
     public static class ForgeBusEvents {
 
         @SubscribeEvent

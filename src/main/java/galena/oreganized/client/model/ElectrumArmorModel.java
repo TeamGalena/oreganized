@@ -14,10 +14,7 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public class ElectrumArmorModel<T extends LivingEntity> extends HumanoidArmorModel<T> {
 
     public static final ModelLayerLocation ELECTRUM_ARMOR = new ModelLayerLocation(Oreganized.modLoc( "electrum_armor"), "main");
@@ -77,7 +74,7 @@ public class ElectrumArmorModel<T extends LivingEntity> extends HumanoidArmorMod
     }
 
     @Override
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, int color) {
         if (slot == EquipmentSlot.HEAD) {
             poseStack.pushPose();
             this.Head.copyFrom(this.head);

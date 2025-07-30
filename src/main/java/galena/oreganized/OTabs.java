@@ -20,7 +20,7 @@ import net.minecraftforge.common.util.MutableHashedLinkedMap;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.EventBusSubscriber;
 import org.infernalstudios.shieldexp.init.ItemsInit;
 import umpaz.nethersdelight.common.registry.NDItems;
 import vectorwing.farmersdelight.common.registry.ModItems;

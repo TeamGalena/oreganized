@@ -3,10 +3,10 @@ package galena.oreganized.index;
 import com.teamabnormals.blueprint.core.util.registry.SoundSubRegistryHelper;
 import galena.oreganized.Oreganized;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.fml.common.EventBusSubscriber;
 
-@Mod.EventBusSubscriber(modid = Oreganized.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Oreganized.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class OSoundEvents {
     public static SoundSubRegistryHelper HELPER = Oreganized.REGISTRY_HELPER.getSoundSubHelper();
 

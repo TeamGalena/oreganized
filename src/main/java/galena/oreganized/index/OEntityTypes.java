@@ -6,7 +6,7 @@ import galena.oreganized.content.entity.MinecartShrapnelBomb;
 import galena.oreganized.content.entity.ShrapnelBomb;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraftforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
