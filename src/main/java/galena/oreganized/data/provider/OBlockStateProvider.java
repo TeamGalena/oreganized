@@ -1,7 +1,7 @@
 package galena.oreganized.data.provider;
 
 import static galena.oreganized.Oreganized.MOD_ID;
-import static net.minecraftforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
+import static net.neoforged.neoforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
 
 import galena.oreganized.Oreganized;
 import galena.oreganized.compat.ColorCompat;
@@ -18,6 +18,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
@@ -37,13 +38,12 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoorHingeSide;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.Half;
-import net.minecraftforge.client.model.generators.BlockModelBuilder;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
+import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.client.model.generators.MultiPartBlockStateBuilder;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public abstract class OBlockStateProvider extends BlockStateProvider {
 
@@ -56,7 +56,7 @@ public abstract class OBlockStateProvider extends BlockStateProvider {
     }
 
     protected String name(Block block) {
-        return ForgeRegistries.BLOCKS.getKey(block).getPath();
+        return BuiltInRegistries.BLOCK.getKey(block).getPath();
     }
 
     protected String name(Supplier<? extends Block> block) {
@@ -102,7 +102,7 @@ public abstract class OBlockStateProvider extends BlockStateProvider {
 
     public ModelFile cubeBottomTop(Supplier<? extends Block> block) {
         BlockModelBuilder model = models().getBuilder(name(block));
-        model.parent(models().getExistingFile(new ResourceLocation("minecraft", "block" + "/cube_bottom_top")));
+        model.parent(models().getExistingFile(ResourceLocation.withDefaultNamespace("block" + "/cube_bottom_top")));
         model.texture("top", texture(name(block) + "_top"));
         model.texture("bottom", texture(name(block) + "_bottom"));
         model.texture("side", texture(name(block) + "_side"));
@@ -163,7 +163,7 @@ public abstract class OBlockStateProvider extends BlockStateProvider {
                 Direction dir = e.getKey();
                 if (dir.getAxis().isHorizontal()) {
                     boolean alt = dir == Direction.SOUTH;
-                    var topTexture = new ResourceLocation(ColorCompat.getNamespace(color), "block/" + color.getSerializedName() + "_stained_glass_pane_top");
+                    var topTexture = ResourceLocation.fromNamespaceAndPath(ColorCompat.getNamespace(color), "block/" + color.getSerializedName() + "_stained_glass_pane_top");
                     builder.part().modelFile(models().panePost(paneName + "_post" + suffixByIndex(finalI), Oreganized.modLoc("block/" + baseName + suffixByIndex(finalI)), topTexture)).addModel().condition(CrystalGlassPaneBlock.TYPE, finalI).end()
                             .part().modelFile(alt || dir == Direction.WEST ? models().paneSideAlt(paneName + "_side_alt" + suffixByIndex(finalI), Oreganized.modLoc("block/" + baseName + suffixByIndex(finalI)), topTexture) :
                                     models().paneSide(paneName + "_side" + suffixByIndex(finalI), Oreganized.modLoc("block/" + baseName + suffixByIndex(finalI)), topTexture)).rotationY(dir.getAxis() == Direction.Axis.X ? 90 : 0).addModel()
@@ -179,7 +179,7 @@ public abstract class OBlockStateProvider extends BlockStateProvider {
     public ModelFile engravedFace(Block block, Boolean engraved) {
         BlockModelBuilder model = models().getBuilder(name(block));
         ResourceLocation textureLoc = engraved ? texture("engraved/" + name(block)) : texture(name(block));
-        model.parent(models().getExistingFile(new ResourceLocation("minecraft", "block" + "/template_single_face")));
+        model.parent(models().getExistingFile(ResourceLocation.withDefaultNamespace("block" + "/template_single_face")));
         model.texture("texture", textureLoc);
         return model;
     }
@@ -392,7 +392,7 @@ public abstract class OBlockStateProvider extends BlockStateProvider {
     public void pottedPlant(Supplier<? extends FlowerPotBlock> block) {
         var name = name(block);
         var model = models().withExistingParent(name, "block/flower_pot_cross")
-                .texture("plant", blockTexture(block.get().getContent()));
+                .texture("plant", blockTexture(block.get().getPotted()));
         simpleBlock(block.get(), model);
     }
 }

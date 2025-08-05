@@ -1,5 +1,6 @@
 package galena.oreganized.content.item;
 
+import galena.oreganized.Oreganized;
 import galena.oreganized.client.accessors.GuiAccessor;
 import galena.oreganized.index.OCriteriaTriggers;
 import galena.oreganized.index.OItems;
@@ -14,7 +15,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 public class SpeedometerItem extends Item {
-    public static final ResourceLocation PROPERTY_KEY = ResourceLocation.withDefaultNamespace("level");
+
+    public static final ResourceLocation PROPERTY_KEY = Oreganized.modLoc("level");
 
     public SpeedometerItem(Properties pProperties) {
         super(pProperties);
@@ -27,7 +29,7 @@ public class SpeedometerItem extends Item {
         }
 
         if (player instanceof ServerPlayer serverPlayer && player.getDeltaMovement().y < (-3.5)) {
-            OCriteriaTriggers.TERMINAL_VELOCITY.trigger(serverPlayer);
+            OCriteriaTriggers.TERMINAL_VELOCITY.get().trigger(serverPlayer);
         }
 
         player.getCooldowns().addCooldown(OItems.SPEEDOMETER.get(), 40);

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "O": {
+      "item": "minecraft:compass"
+    },
+    "X": {
+      "tag": "c:ingots/lead"
+    }
+  },
+  "pattern": [
+    " X ",
+    "XOX",
+    " X "
+  ],
+  "result": {
+    "count": 1,
+    "id": "oreganized:thermometer"
+  }
+}

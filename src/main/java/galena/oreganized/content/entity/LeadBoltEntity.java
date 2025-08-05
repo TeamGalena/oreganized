@@ -21,8 +21,8 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.Equipable;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShieldItem;
+import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
@@ -33,7 +33,7 @@ public class LeadBoltEntity extends AbstractArrow {
     private static boolean canShootOff(ItemStack stack, LivingEntity entity) {
         if (entity.getType().is(OTags.Entities.BOLT_RESISTANT)) return false;
         if (stack.isEmpty()) return false;
-        if (stack.getEnchantmentLevel(Enchantments.BINDING_CURSE) > 0) return false;
+        if (EnchantmentHelper.has(stack, EnchantmentEffectComponents.PREVENT_ARMOR_CHANGE)) return false;
         return true;
     }
 
@@ -64,12 +64,12 @@ public class LeadBoltEntity extends AbstractArrow {
         super(type, level);
     }
 
-    public LeadBoltEntity(EntityType<? extends LeadBoltEntity> type, Level level, Position pos) {
-        super(type, pos.x(), pos.y(), pos.z(), level);
+    public LeadBoltEntity(EntityType<? extends LeadBoltEntity> type, Level level, Position pos, ItemStack stack) {
+        super(type, pos.x(), pos.y(), pos.z(), level, stack, null);
     }
 
-    public LeadBoltEntity(EntityType<? extends LeadBoltEntity> type, Level level, LivingEntity user) {
-        super(type, user, level);
+    public LeadBoltEntity(EntityType<? extends LeadBoltEntity> type, Level level, LivingEntity user, ItemStack stack, @Nullable ItemStack weapon) {
+        super(type, user, level, stack, weapon);
     }
 
     @Override
@@ -89,12 +89,12 @@ public class LeadBoltEntity extends AbstractArrow {
 
                 playSound(OSoundEvents.BOLT_HIT_ARMOR.get(), 1.5F, 1.2F / (random.nextFloat() * 0.2F + 0.9F));
                 if (knockedOff.getItem() instanceof Equipable item) {
-                    playSound(item.getEquipSound());
+                    playSound(item.getEquipSound().value());
                 }
 
                 if (result.getEntity() instanceof Pillager && knockedOff.is(ItemTags.BANNERS)) {
                     if (getOwner() instanceof ServerPlayer player) {
-                        OCriteriaTriggers.KNOCKED_BANNER_OFF.trigger(player);
+                        OCriteriaTriggers.KNOCKED_BANNER_OFF.get().trigger(player);
                     }
                 }
 
@@ -134,14 +134,12 @@ public class LeadBoltEntity extends AbstractArrow {
     }
 
     private ItemStack knockOff(LivingEntity entity) {
-        if (!entity.shouldDropLoot()) return null;
-
         var slot = randomSlot(entity);
         if (slot == null) return null;
 
         var stack = entity.getItemBySlot(slot);
 
-        if (!EnchantmentHelper.hasVanishingCurse(stack)) {
+        if (!EnchantmentHelper.has(stack, EnchantmentEffectComponents.PREVENT_EQUIPMENT_DROP)) {
             if (entity instanceof Mob && stack.isDamageableItem()) {
                 stack.setDamageValue(stack.getMaxDamage() - random.nextInt(1 + random.nextInt(Math.max(stack.getMaxDamage() - 3, 1))));
             }
@@ -160,4 +158,10 @@ public class LeadBoltEntity extends AbstractArrow {
     public void shootFromRotation(Entity user, float p_37253_, float p_37254_, float p_37255_, float p_37256_, float p_37257_) {
         super.shootFromRotation(user, p_37253_, p_37254_, p_37255_, p_37256_ * 0.5F, p_37257_);
     }
+
+    @Override
+    protected ItemStack getDefaultPickupItem() {
+        return new ItemStack(OItems.LEAD_BOLT.get());
+    }
+
 }

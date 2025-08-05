@@ -1,23 +1,19 @@
 package galena.oreganized.index;
 
-import static galena.oreganized.ModCompat.FARMERS_DELIGHT_ID;
 import static galena.oreganized.ModCompat.NETHERS_DELIGHT_ID;
 import static galena.oreganized.ModCompat.SHIELD_EXPANSION_ID;
 
 import galena.oreganized.Oreganized;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BiomeTags;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.EntityTypeTags;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.versions.forge.ForgeVersion;
 
 public class OTags {
 
@@ -53,21 +49,22 @@ public class OTags {
         public static final TagKey<Item> BUCKETS_MOLTEN_LEAD = forgeTag("buckets/molten_lead");
         public static final TagKey<Item> TOOLS_BUSH_HAMMER = forgeTag("tools/bush_hammer");
 
-        public static final TagKey<Item> TOOLS_KNIVES = forgeTag("tools/knives");
-        public static final TagKey<Item> TOOLS_KNIVES_FD = ItemTags.create(new ResourceLocation(FARMERS_DELIGHT_ID, "tools/knives"));
+        public static final TagKey<Item> TOOLS_KNIVES = forgeTag("tools/knife");
         public static final TagKey<Item> SHIELDS = forgeTag("shields");
-        public static final TagKey<Item> SHIELDS_SE = ItemTags.create(new ResourceLocation(SHIELD_EXPANSION_ID, "shields"));
-        public static final TagKey<Item> MACHETES = ItemTags.create(new ResourceLocation(NETHERS_DELIGHT_ID, "tools/machetes"));
+        public static final TagKey<Item> SHIELDS_SE = ItemTags.create(ResourceLocation.fromNamespaceAndPath(SHIELD_EXPANSION_ID, "shields"));
+        public static final TagKey<Item> MACHETES = ItemTags.create(ResourceLocation.fromNamespaceAndPath(NETHERS_DELIGHT_ID, "tools/machete"));
 
-        public static final TagKey<Item> HAS_KINETIC_DAMAGE = tag( "has_kinetic_damage");
+        public static final TagKey<Item> HAS_KINETIC_DAMAGE = tag("has_kinetic_damage");
 
         public static final TagKey<Item> GARGOYLE_SNACK = tag("gargoyle_snack");
 
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(Oreganized.modLoc(name));
         }
+
         private static TagKey<Item> forgeTag(String name) {
-            return ItemTags.create(new ResourceLocation(ForgeVersion.MOD_ID, name));
+            // TODO check, these should be #c tags now
+            return ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
         }
     }
 
@@ -95,7 +92,7 @@ public class OTags {
 
         public static final TagKey<Block> STORAGE_BLOCKS_RAW_LEAD = forgeTag("storage_blocks/raw_lead");
 
-        public static final TagKey<Block> MELTS_LEAD = forgeTag("melts_lead");
+        public static final TagKey<Block> MELTS_LEAD = tag("melts_lead");
         public static final TagKey<Block> PREVENTS_LEAD_CLOUD = tag("prevents_lead_cloud");
         public static final TagKey<Block> BLOWS_LEAD_CLOUD = tag("blows_lead_cloud");
         public static final TagKey<Block> CREATES_LEAD_CLOUD = tag("creates_lead_cloud");
@@ -104,10 +101,11 @@ public class OTags {
         public static final TagKey<Block> LAVA_HEAT_LEVEL = tag("heat_level/lava");
 
         private static TagKey<Block> tag(String name) {
-            return BlockTags.create(Oreganized.modLoc(name));
+            return TagKey.create(Registries.BLOCK, Oreganized.modLoc(name));
         }
+
         private static TagKey<Block> forgeTag(String name) {
-            return BlockTags.create(new ResourceLocation(ForgeVersion.MOD_ID, name));
+            return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", name));
         }
     }
 
@@ -115,9 +113,10 @@ public class OTags {
 
         public static final TagKey<EntityType<?>> LIGHTER_THAN_LEAD = tag("lighter_than_lead");
         public static final TagKey<EntityType<?>> BOLT_RESISTANT = tag("bolt_resistant");
+        public static final TagKey<EntityType<?>> SCARED_OF_GARGOYLE = tag("scared_of_gargoyle");
 
         private static TagKey<EntityType<?>> tag(String name) {
-            return EntityTypeTags.create(Oreganized.modLoc(name).toString());
+            return TagKey.create(Registries.ENTITY_TYPE, Oreganized.modLoc(name));
         }
     }
 
@@ -126,11 +125,11 @@ public class OTags {
         public static final TagKey<Fluid> MOLTEN_LEAD = forgeTag("molten_lead");
 
         private static TagKey<Fluid> tag(String name) {
-            return FluidTags.create(Oreganized.modLoc(name));
+            return TagKey.create(Registries.FLUID, Oreganized.modLoc(name));
         }
 
         private static TagKey<Fluid> forgeTag(String name) {
-            return FluidTags.create(new ResourceLocation(ForgeVersion.MOD_ID, name));
+            return TagKey.create(Registries.FLUID, ResourceLocation.fromNamespaceAndPath("c", name));
         }
     }
 
@@ -142,7 +141,17 @@ public class OTags {
         public static final TagKey<Biome> HAS_SPARSE_DATURA = tag("has_feature/sparse_datura");
 
         private static TagKey<Biome> tag(String name) {
-            return BiomeTags.create(Oreganized.modLoc(name).toString());
+            return TagKey.create(Registries.BIOME, Oreganized.modLoc(name));
+        }
+    }
+
+    public static class Enchantments {
+
+        public static final TagKey<Enchantment> PREVENTS_LEAD_CLOUD = tag("prevents_lead_cloud");
+        public static final TagKey<Enchantment> HEAD_IMMUNITY = tag("heat_immunity");
+
+        private static TagKey<Enchantment> tag(String name) {
+            return TagKey.create(Registries.ENCHANTMENT, Oreganized.modLoc(name));
         }
     }
 }

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "oreganized:lead_bolt_crate"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "oreganized:lead_bolt"
+  }
+}

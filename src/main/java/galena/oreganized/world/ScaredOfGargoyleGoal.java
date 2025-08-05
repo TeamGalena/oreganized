@@ -1,10 +1,10 @@
 package galena.oreganized.world;
 
+import galena.oreganized.index.OTags;
 import java.util.EnumSet;
 import javax.annotation.Nullable;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
@@ -21,7 +21,7 @@ public class ScaredOfGargoyleGoal extends Goal {
     private final PathfinderMob mob;
 
     public static void addGoal(Entity entity) {
-        if (entity instanceof PathfinderMob mob && mob.getMobType() == MobType.UNDEAD) {
+        if (entity instanceof PathfinderMob mob && mob.getType().is(OTags.Entities.SCARED_OF_GARGOYLE)) {
             mob.goalSelector.addGoal(1, new ScaredOfGargoyleGoal(mob));
         }
     }
@@ -44,7 +44,9 @@ public class ScaredOfGargoyleGoal extends Goal {
         var data = mob.getPersistentData();
         if (!data.contains(AVOID_TAG_KEY)) return false;
 
-        var toAvoid = NbtUtils.readBlockPos(data.getCompound(AVOID_TAG_KEY));
+        var toAvoid = NbtUtils.readBlockPos(data, AVOID_TAG_KEY).orElse(null);
+        if (toAvoid == null) return false;
+
         avoiding = Vec3.atCenterOf(toAvoid);
 
         if (mob.distanceToSqr(avoiding) > MAX_DISTANCE_SQR) return false;

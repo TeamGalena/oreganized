@@ -7,24 +7,24 @@ import galena.oreganized.index.OCriteriaTriggers;
 import galena.oreganized.index.OParticleTypes;
 import galena.oreganized.index.OSoundEvents;
 import galena.oreganized.index.OTags;
-import galena.oreganized.network.OreganizedNetwork;
 import galena.oreganized.network.packet.GargoyleParticlePacket;
 import galena.oreganized.world.ScaredOfGargoyleGoal;
 import java.util.Collection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -33,7 +33,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.PacketDistributor;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
 
 public class GargoyleBlockEntity extends BlockEntity {
@@ -62,7 +62,7 @@ public class GargoyleBlockEntity extends BlockEntity {
 
     private static Collection<Mob> getTargets(Level level, BlockPos pos) {
         var box = new AABB(pos).inflate(10.0);
-        return level.getEntitiesOfClass(Mob.class, box, it -> it.getMobType() == MobType.UNDEAD);
+        return level.getEntitiesOfClass(Mob.class, box, it -> it.getType().is(OTags.Entities.SCARED_OF_GARGOYLE));
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, GargoyleBlockEntity be) {
@@ -107,7 +107,7 @@ public class GargoyleBlockEntity extends BlockEntity {
 
                 if (fluid.is(Fluids.WATER)) {
                     level.getEntitiesOfClass(ServerPlayer.class, new AABB(pos).inflate(10.0, 5.0, 10.0)).forEach(player -> {
-                        OCriteriaTriggers.SEE_GARGOYLE_GARGLE.trigger(player);
+                        OCriteriaTriggers.SEE_GARGOYLE_GARGLE.get().trigger(player);
                     });
                 }
 
@@ -135,27 +135,27 @@ public class GargoyleBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag) {
-        super.saveAdditional(tag);
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider lookup) {
+        super.saveAdditional(tag, lookup);
         tag.putInt("cooldown", growlCooldown);
     }
 
     @Override
-    public void load(CompoundTag tag) {
-        super.load(tag);
+    public void loadAdditional(CompoundTag tag, HolderLookup.Provider lookup) {
+        super.loadAdditional(tag, lookup);
         if (tag.contains("cooldown")) growlCooldown = tag.getInt("cooldown");
     }
 
-    public InteractionResult interact(Level level, BlockPos pos, @Nullable Player player, ItemStack stack, boolean simulate) {
-        if (growlCooldown > 0) return InteractionResult.PASS;
-        if (player != null && player.getPersistentData().getInt(GROWL_COOLDOWN_TAG) > 0) return InteractionResult.PASS;
-        if (!stack.is(OTags.Items.GARGOYLE_SNACK)) return InteractionResult.PASS;
+    public ItemInteractionResult interact(Level level, BlockPos pos, @Nullable Player player, ItemStack stack, boolean simulate) {
+        if (!stack.is(OTags.Items.GARGOYLE_SNACK)) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        if (player != null && player.getPersistentData().getInt(GROWL_COOLDOWN_TAG) > 0) return ItemInteractionResult.FAIL;
+        if (growlCooldown > 0) return ItemInteractionResult.FAIL;
 
         if (player == null || !player.getAbilities().instabuild) {
             stack.shrink(1);
         }
 
-        if (simulate) return InteractionResult.SUCCESS;
+        if (simulate) return ItemInteractionResult.SUCCESS;
 
         getTargets(level, pos).forEach(mob -> scare(mob, pos));
 
@@ -166,11 +166,11 @@ public class GargoyleBlockEntity extends BlockEntity {
             player.getPersistentData().putInt(GROWL_COOLDOWN_TAG, COOLDOWN);
         }
 
-        if (!level.isClientSide) {
-            OreganizedNetwork.CHANNEL.send(PacketDistributor.DIMENSION.with(level::dimension), new GargoyleParticlePacket(pos));
+        if (level instanceof ServerLevel serverLevel) {
+            PacketDistributor.sendToPlayersInDimension(serverLevel, new GargoyleParticlePacket(pos));
         }
 
-        return InteractionResult.SUCCESS;
+        return ItemInteractionResult.SUCCESS;
     }
 
     private void scare(Entity mob, BlockPos pos) {

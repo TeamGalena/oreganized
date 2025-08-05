@@ -9,7 +9,7 @@ import java.util.List;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.OrePlacements;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
@@ -17,8 +17,6 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.OreFeature;
-import net.minecraft.world.level.levelgen.feature.RandomPatchFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
@@ -31,20 +29,8 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import net.minecraft.world.level.levelgen.placement.RarityFilter;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
-import net.neoforged.neoforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 public class OFeatures {
-
-    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, Oreganized.MOD_ID);
-
-    public static final RegistryObject<Feature<OreConfiguration>> SILVER_ORE = FEATURES.register("silver_ore", () -> new OreFeature(OreConfiguration.CODEC));
-    public static final RegistryObject<Feature<OreConfiguration>> SILVER_ORE_EXTRA = FEATURES.register("silver_ore_extra", () -> new OreFeature(OreConfiguration.CODEC));
-    public static final RegistryObject<Feature<OreConfiguration>> LEAD_ORE = FEATURES.register("lead_ore", () -> new OreFeature(OreConfiguration.CODEC));
-    public static final RegistryObject<Feature<OreConfiguration>> LEAD_ORE_EXTRA = FEATURES.register("lead_ore_extra", () -> new OreFeature(OreConfiguration.CODEC));
-    public static final RegistryObject<Feature<RandomPatchConfiguration>> DATURA = FEATURES.register("datura", () -> new RandomPatchFeature(RandomPatchConfiguration.CODEC));
-    public static final RegistryObject<Feature<RandomPatchConfiguration>> PURPLE_DATURA = FEATURES.register("purple_datura", () -> new RandomPatchFeature(RandomPatchConfiguration.CODEC));
 
     public static final class Configured {
 
@@ -62,7 +48,7 @@ public class OFeatures {
             return ResourceKey.create(Registries.CONFIGURED_FEATURE, Oreganized.modLoc(name));
         }
 
-        public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
+        public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
             context.register(SILVER_ORE, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(ImmutableList.of(OreConfiguration.target(new TagMatchTest(STONE_ORE_REPLACEABLES), OBlocks.SILVER_ORE.get().defaultBlockState()), OreConfiguration.target(new TagMatchTest(DEEPSLATE_ORE_REPLACEABLES), OBlocks.DEEPSLATE_SILVER_ORE.get().defaultBlockState())), 3, 0.8F)));
             context.register(SILVER_ORE_EXTRA, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(ImmutableList.of(OreConfiguration.target(new TagMatchTest(STONE_ORE_REPLACEABLES), OBlocks.SILVER_ORE.get().defaultBlockState()), OreConfiguration.target(new TagMatchTest(DEEPSLATE_ORE_REPLACEABLES), OBlocks.DEEPSLATE_SILVER_ORE.get().defaultBlockState())), 2, 1F)));
             context.register(LEAD_ORE, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(ImmutableList.of(OreConfiguration.target(new TagMatchTest(STONE_ORE_REPLACEABLES), OBlocks.LEAD_ORE.get().defaultBlockState()), OreConfiguration.target(new TagMatchTest(DEEPSLATE_ORE_REPLACEABLES), OBlocks.DEEPSLATE_LEAD_ORE.get().defaultBlockState())), 8)));
@@ -93,7 +79,7 @@ public class OFeatures {
             return ResourceKey.create(Registries.PLACED_FEATURE, Oreganized.modLoc(name));
         }
 
-        public static void bootstrap(BootstapContext<PlacedFeature> context) {
+        public static void bootstrap(BootstrapContext<PlacedFeature> context) {
             HolderGetter<ConfiguredFeature<?, ?>> features = context.lookup(Registries.CONFIGURED_FEATURE);
 
             context.register(SILVER_ORE, new PlacedFeature(features.getOrThrow(Configured.SILVER_ORE), OrePlacements.commonOrePlacement(5, HeightRangePlacement.uniform(VerticalAnchor.absolute(-15), VerticalAnchor.absolute(5)))));

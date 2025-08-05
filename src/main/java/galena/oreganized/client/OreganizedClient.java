@@ -10,12 +10,10 @@ import galena.oreganized.client.tooltips.ClientDeviceTooltip;
 import galena.oreganized.client.tooltips.ClientThermometerTooltip;
 import galena.oreganized.client.tooltips.DeviceTooltip;
 import galena.oreganized.client.tooltips.ThermometerTooltip;
-import galena.oreganized.content.item.DeviceItem;
-import galena.oreganized.content.item.SilverMirrorItem;
 import galena.oreganized.content.item.SpeedometerItem;
 import galena.oreganized.content.item.ThermometerItem;
 import galena.oreganized.index.OBlocks;
-import galena.oreganized.index.OComponents;
+import galena.oreganized.index.ODataComponents;
 import galena.oreganized.index.OEntityTypes;
 import galena.oreganized.index.OItems;
 import galena.oreganized.world.IDoorProgressHolder;
@@ -46,7 +44,7 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterClientTooltipComponentFactoriesEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RenderHandEvent;
-import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
 @EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
@@ -63,8 +61,8 @@ public class OreganizedClient {
     }
 
     private static void registerItemProperties() {
-        ItemProperties.register(OItems.SILVER_MIRROR.get(), SilverMirrorItem.PROPERTY_KEY, (stack, world, entity, seed) ->
-                stack.getOrDefault(OComponents.LEVEL.get(), 8)
+        ItemProperties.register(OItems.SILVER_MIRROR.get(), ODataComponents.MIRROR_LEVEL.getId(), (stack, world, entity, seed) ->
+                stack.getOrDefault(ODataComponents.MIRROR_LEVEL.get(), 8)
         );
 
         ItemProperties.register(OItems.SPEEDOMETER.get(), SpeedometerItem.PROPERTY_KEY, (stack, world, entity, seed) -> {
@@ -74,7 +72,7 @@ public class OreganizedClient {
             return Mth.clamp(Math.round(motionHolder.oreganised$getMotion() * 100), 0, 16);
         });
 
-        ItemProperties.register(OItems.THERMOMETER.get(), ThermometerItem.PROPERTY_KEY, (stack, world, entity, seed) -> {
+        ItemProperties.register(OItems.THERMOMETER.get(), ODataComponents.HEAT_LEVEL.getId(), (stack, world, entity, seed) -> {
             return ThermometerItem.getHeatLevel(stack);
         });
 
@@ -86,7 +84,7 @@ public class OreganizedClient {
                 user != null && user.isUsingItem() && user.getUseItem() == stack ? 1.0F : 0.0F
         );
 
-        ItemProperties.register(OItems.UNKNOWN_DEVICE.get(), DeviceItem.PROPERTY_KEY, new DevicePropertyFunction());
+        ItemProperties.register(OItems.UNKNOWN_DEVICE.get(), ODataComponents.DEVICE_VALUE.getId(), new DevicePropertyFunction());
     }
 
     private static void registerBlockRenderers() {
@@ -109,14 +107,15 @@ public class OreganizedClient {
 
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(OEntityTypes.SHRAPNEL_BOMB.get(), ShrapnelBombRender::new);
+        event.registerEntityRenderer(OEntityTypes.SHRAPNEL_BOMB.value(), ShrapnelBombRender::new);
         event.registerEntityRenderer(OEntityTypes.SHRAPNEL_BOMB_MINECART.get(), ShrapnelBombMinecartRender::new);
         event.registerEntityRenderer(OEntityTypes.LEAD_BOLT.get(), LeadBoltRender::new);
     }
 
     @SubscribeEvent
     public static void registerGuiOverlays(RegisterGuiLayersEvent event) {
-        event.registerAbove(VanillaGuiOverlay.FROSTBITE.id(), "stunning", new StunningOverlay());
+        // TODO check
+        event.registerAbove(VanillaGuiLayers.EFFECTS, Oreganized.modLoc("stunning"), new StunningOverlay());
     }
 
     public static void renderThirdPersonArm(ModelPart arm, boolean rightArm) {
@@ -130,7 +129,7 @@ public class OreganizedClient {
         event.register(DeviceTooltip.class, ClientDeviceTooltip::new);
     }
 
-    @EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.FORGE)
+    @EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT)
     public static class ForgeBusEvents {
 
         @SubscribeEvent
@@ -177,26 +176,5 @@ public class OreganizedClient {
             event.setCanceled(true);
         }
 
-        /*@SubscribeEvent
-        public static void renderMoltenLeadFogColor(ViewportEvent.ComputeFogColor event) {
-            Camera camera = event.getCamera();
-            FluidState fluidState = camera.getBlockAtCamera().getFluidState();
-
-            if(fluidState.getType().isSame(OFluids.MOLTEN_LEAD.get())) {
-                event.setRed(57F / 255F);
-                event.setGreen(57F / 255F);
-                event.setBlue(95F / 255F);
-            }
-        }
-        @SubscribeEvent
-        public static void renderMoltenLeadFogDensity(ViewportEvent.RenderFog event) {
-            Camera camera = event.getCamera();
-            FluidState fluidState = camera.getBlockAtCamera().getFluidState();
-
-            if(fluidState.getType().isSame(OFluids.MOLTEN_LEAD.get())) {
-                event.setFarPlaneDistance(15.0F);
-                event.setCanceled(true);
-            }
-        }*/
     }
 }

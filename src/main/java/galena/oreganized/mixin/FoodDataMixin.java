@@ -16,7 +16,7 @@ public class FoodDataMixin {
             at = @At(value = "CONSTANT", args = "floatValue=6F", ordinal = 1)
     )
     private float modifyHealthAmount(float value, @Local Player player) {
-        if (player.hasEffect(OEffects.STUNNING.get())) return value * 2;
+        if (player.hasEffect(OEffects.STUNNING)) return value * 2;
         return value;
     }
 
@@ -25,7 +25,7 @@ public class FoodDataMixin {
             at = @At(value = "CONSTANT", args = "floatValue=1F", ordinal = 1)
     )
     private float modifyHealthAmount2(float value, @Local Player player) {
-        if (player.hasEffect(OEffects.STUNNING.get())) return value / 2;
+        if (player.hasEffect(OEffects.STUNNING)) return value / 2;
         return value;
     }
 

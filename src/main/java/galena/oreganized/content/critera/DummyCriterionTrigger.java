@@ -1,43 +1,38 @@
 package galena.oreganized.content.critera;
 
-import com.google.gson.JsonObject;
-import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
+import com.mojang.serialization.Codec;
+import java.util.Optional;
+import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.ContextAwarePredicate;
-import net.minecraft.advancements.critereon.DeserializationContext;
 import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 
 public class DummyCriterionTrigger extends SimpleCriterionTrigger<DummyCriterionTrigger.TriggerInstance> {
-
-    private final ResourceLocation id;
-
-    public DummyCriterionTrigger(ResourceLocation id) {
-        this.id = id;
-    }
-
-    public TriggerInstance instance() {
-        return new TriggerInstance(getId());
-    }
-
-    @Override
-    protected TriggerInstance createInstance(JsonObject json, ContextAwarePredicate contextAwarePredicate, DeserializationContext deserializationContext) {
-        return instance();
-    }
 
     public void trigger(ServerPlayer player) {
         this.trigger(player, instance -> true);
     }
 
     @Override
-    public ResourceLocation getId() {
-        return id;
+    public Codec<TriggerInstance> codec() {
+        return Codec.unit(TriggerInstance::new);
     }
 
-    public static class TriggerInstance extends AbstractCriterionTriggerInstance {
-        public TriggerInstance(ResourceLocation idIn) {
-            super(idIn, ContextAwarePredicate.ANY);
+    public TriggerInstance instance() {
+        return new TriggerInstance();
+    }
+
+    public Criterion<TriggerInstance> createCriterion() {
+        return createCriterion(instance());
+    }
+
+    public static class TriggerInstance implements SimpleInstance {
+
+        @Override
+        public Optional<ContextAwarePredicate> player() {
+            return Optional.empty();
         }
+
     }
 
 }

@@ -14,11 +14,11 @@ public class IceBlockMixin {
 
     @ModifyExpressionValue(
             method = "playerDestroy(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/item/ItemStack;)V",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/enchantment/EnchantmentHelper;getItemEnchantmentLevel(Lnet/minecraft/world/item/enchantment/Enchantment;Lnet/minecraft/world/item/ItemStack;)I")
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/enchantment/EnchantmentHelper;hasTag(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/tags/TagKey;)Z")
     )
-    private int modifyLootBuilder(int original, @Local ItemStack stack, @Local BlockState state) {
+    private boolean modifyLootBuilder(boolean original, @Local ItemStack stack, @Local BlockState state) {
         if (stack.getItem() instanceof ScribeItem scribe && scribe.isCorrectToolForDrops(stack, state)) {
-            return 1;
+            return true;
         }
         return original;
     }

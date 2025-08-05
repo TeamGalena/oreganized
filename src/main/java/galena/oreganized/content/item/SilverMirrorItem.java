@@ -2,9 +2,8 @@ package galena.oreganized.content.item;
 
 import com.mojang.logging.annotations.MethodsReturnNonnullByDefault;
 import galena.oreganized.content.ISilver;
-import galena.oreganized.index.OComponents;
+import galena.oreganized.index.ODataComponents;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -15,7 +14,6 @@ import net.minecraft.world.level.Level;
 public class SilverMirrorItem extends Item implements ISilver {
 
     public static final int TEXTURED_FRAMES = 8;
-    public static final ResourceLocation PROPERTY_KEY = ResourceLocation.withDefaultNamespace("level");
 
     public SilverMirrorItem(Item.Properties properties) {
         super(properties);
@@ -27,6 +25,6 @@ public class SilverMirrorItem extends Item implements ISilver {
         BlockPos pos = player.getOnPos();
         int dist = getUndeadDistance(world, pos, player, TEXTURED_FRAMES);
 
-        stack.set(OComponents.LEVEL.get(), dist);
+        stack.set(ODataComponents.MIRROR_LEVEL, dist);
     }
 }

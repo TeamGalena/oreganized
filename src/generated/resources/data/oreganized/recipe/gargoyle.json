@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "#": {
+      "tag": "minecraft:stone_crafting_materials"
+    },
+    "P": {
+      "item": "minecraft:carved_pumpkin"
+    },
+    "S": {
+      "tag": "c:ingots/silver"
+    }
+  },
+  "pattern": [
+    " P ",
+    "#S#",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "oreganized:gargoyle"
+  }
+}

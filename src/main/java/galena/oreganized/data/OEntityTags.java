@@ -8,8 +8,9 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.entity.EntityType;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class OEntityTags extends EntityTypeTagsProvider {
 
@@ -27,8 +28,9 @@ public class OEntityTags extends EntityTypeTagsProvider {
         // Oreganized
         tag(OTags.Entities.LIGHTER_THAN_LEAD).add(EntityType.IRON_GOLEM);
         tag(OTags.Entities.BOLT_RESISTANT)
-                .addOptional(new ResourceLocation("alexsmobs:mimicube"))
-                .addOptional(new ResourceLocation("caverns_and_chasms:mime"));
+                .addOptional(ResourceLocation.fromNamespaceAndPath("alexsmobs", "mimicube"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath("caverns_and_chasms", "mime"));
+        tag(OTags.Entities.SCARED_OF_GARGOYLE).addTags(EntityTypeTags.UNDEAD);
 
         // Vanilla
         //tag(EntityTypeTags.IMPACT_PROJECTILES).add(OEntityTypes.LEAD_BOLT.get());

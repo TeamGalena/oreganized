@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Stream;
 import net.minecraft.world.item.DyeColor;
-import net.minecraftforge.fml.ModList;
+import net.neoforged.fml.ModList;
 
 public class DyeColors {
 

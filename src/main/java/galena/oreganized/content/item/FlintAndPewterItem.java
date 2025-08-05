@@ -5,6 +5,7 @@ import galena.oreganized.index.OParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.UseOnContext;
 
@@ -40,9 +41,7 @@ public class FlintAndPewterItem extends Item {
         }
 
         if (player != null) {
-            context.getItemInHand().hurtAndBreak(1, player, it -> {
-                it.broadcastBreakEvent(context.getHand());
-            });
+            context.getItemInHand().hurtAndBreak(1, player, LivingEntity.getSlotForHand(context.getHand()));
         }
 
         return InteractionResult.sidedSuccess(level.isClientSide());

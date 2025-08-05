@@ -1,11 +1,10 @@
 package galena.oreganized.mixin;
 
-import galena.oreganized.network.OreganizedNetwork;
 import galena.oreganized.network.packet.DoorPushingPacket;
 import galena.oreganized.world.IDoorProgressHolder;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.network.PacketDistributor;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -31,9 +30,9 @@ public class PlayerMixin implements IDoorProgressHolder {
     private void oreganized$syncProgress(boolean pushing) {
         var self = (Player) (Object) this;
 
-        if (self instanceof ServerPlayer) {
+        if (self instanceof ServerPlayer player) {
             var packet = new DoorPushingPacket(self.getUUID(), pushing);
-            OreganizedNetwork.CHANNEL.send(PacketDistributor.DIMENSION.with(self.level()::dimension), packet);
+            PacketDistributor.sendToPlayersInDimension(player.serverLevel(), packet);
         }
     }
 

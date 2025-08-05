@@ -1,10 +1,11 @@
 package galena.oreganized.content.block;
 
+import com.mojang.serialization.MapCodec;
+import galena.oreganized.Oreganized;
 import galena.oreganized.OreganizedConfig;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
-import java.util.Map;
 import java.util.function.Predicate;
 import java.util.function.ToIntFunction;
 import net.minecraft.core.BlockPos;
@@ -18,7 +19,7 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -26,6 +27,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.AbstractCauldronBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -43,7 +45,14 @@ import org.jetbrains.annotations.NotNull;
 
 public class MoltenLeadCauldronBlock extends AbstractCauldronBlock implements CauldronInteraction {
 
-    public static final Map<Item, CauldronInteraction> INTERACTION_MAP = CauldronInteraction.newInteractionMap();
+    private static final MapCodec<MoltenLeadCauldronBlock> CODEC = simpleCodec(MoltenLeadCauldronBlock::new);
+
+    @Override
+    protected MapCodec<? extends AbstractCauldronBlock> codec() {
+        return CODEC;
+    }
+
+    public static final InteractionMap INTERACTION_MAP = CauldronInteraction.newInteractionMap(Oreganized.MOD_ID + ":lead");
 
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
 
@@ -65,7 +74,7 @@ public class MoltenLeadCauldronBlock extends AbstractCauldronBlock implements Ca
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter level, BlockPos pos, Player player) {
+    public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos, Player player) {
         return new ItemStack(Items.CAULDRON);
     }
 
@@ -92,7 +101,7 @@ public class MoltenLeadCauldronBlock extends AbstractCauldronBlock implements Ca
 
     public void entityInside(BlockState state, Level level, BlockPos blockPos, Entity entity) {
         if (this.isEntityInsideContent(state, blockPos, entity)) {
-            entity.setSecondsOnFire(10);
+            entity.setRemainingFireTicks(10);
         }
     }
 
@@ -105,9 +114,10 @@ public class MoltenLeadCauldronBlock extends AbstractCauldronBlock implements Ca
         this.tick(state, world, pos, random);
     }
 
-        @Override
+    @Override
     public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
-        if (!world.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
+        if (!world.isAreaLoaded(pos, 1))
+            return; // Forge: prevent loading unloaded chunks when checking neighbor's light
         int max_age = AGE.getPossibleValues().size() - 1;
         int age = state.getValue(AGE);
         if (age < max_age && random.nextInt(1) == 0) {
@@ -121,13 +131,13 @@ public class MoltenLeadCauldronBlock extends AbstractCauldronBlock implements Ca
     }
 
     @Override
-    public @NotNull InteractionResult interact(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, ItemStack stack) {
+    public @NotNull ItemInteractionResult interact(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, ItemStack stack) {
         ItemStack itemstack = player.getItemInHand(hand);
-        CauldronInteraction cauldroninteraction = INTERACTION_MAP.get(itemstack.getItem());
+        CauldronInteraction cauldroninteraction = INTERACTION_MAP.map().get(itemstack.getItem());
         return cauldroninteraction.interact(state, world, pos, player, hand, itemstack);
     }
 
-    static InteractionResult placeBlock(Level world, BlockPos pos, Player player, InteractionHand hand, ItemStack stack, BlockState state, SoundEvent sound) {
+    static ItemInteractionResult placeBlock(Level world, BlockPos pos, Player player, InteractionHand hand, ItemStack stack, BlockState state, SoundEvent sound) {
         if (!world.isClientSide) {
             Item item = stack.getItem();
             player.awardStat(Stats.FILL_CAULDRON);
@@ -138,12 +148,12 @@ public class MoltenLeadCauldronBlock extends AbstractCauldronBlock implements Ca
             world.gameEvent(null, GameEvent.BLOCK_PLACE, pos);
         }
 
-        return InteractionResult.sidedSuccess(world.isClientSide);
+        return ItemInteractionResult.sidedSuccess(world.isClientSide);
     }
 
-    static InteractionResult dropResource(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, ItemStack usedStack, ItemStack droppedStack, Predicate<BlockState> stateCondition, SoundEvent sound) {
+    static ItemInteractionResult dropResource(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, ItemStack usedStack, ItemStack droppedStack, Predicate<BlockState> stateCondition, SoundEvent sound) {
         if (!stateCondition.test(state))
-            return InteractionResult.PASS;
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         if (!world.isClientSide) {
             Item item = usedStack.getItem();
             player.awardStat(Stats.USE_CAULDRON);
@@ -153,6 +163,6 @@ public class MoltenLeadCauldronBlock extends AbstractCauldronBlock implements Ca
             world.playSound(null, pos, sound, SoundSource.BLOCKS, 1.0F, 1.0F);
         }
 
-        return InteractionResult.sidedSuccess(world.isClientSide);
+        return ItemInteractionResult.sidedSuccess(world.isClientSide);
     }
 }

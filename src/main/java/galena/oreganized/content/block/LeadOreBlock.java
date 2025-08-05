@@ -22,8 +22,9 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.level.BlockEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.level.BlockEvent;
 
 @EventBusSubscriber(modid = Oreganized.MOD_ID)
 public class LeadOreBlock {
@@ -34,7 +35,7 @@ public class LeadOreBlock {
         }
 
         return Stream.of(
-                new MobEffectInstance(OEffects.STUNNING.get(), 600 * durationMultiplier),
+                new MobEffectInstance(OEffects.STUNNING, 600 * durationMultiplier),
                 new MobEffectInstance(MobEffects.POISON, 40)
         );
     }
@@ -56,13 +57,13 @@ public class LeadOreBlock {
         var held = player.getMainHandItem();
 
         if (shouldSpawnCloud(state, level, pos, held)) {
-            OCriteriaTriggers.IN_LEAD_CLOUD.trigger(player);
+            OCriteriaTriggers.IN_LEAD_CLOUD.get().trigger(player);
         }
     }
 
     private static boolean shouldSpawnCloud(BlockState state, LevelAccessor level, BlockPos pos, ItemStack stack) {
         if (!OreganizedConfig.COMMON.leadDustCloud.get()) return false;
-        if (stack.is(OItems.SCRIBE.get()) || EnchantmentHelper.hasSilkTouch(stack)) return false;
+        if (stack.is(OItems.SCRIBE.get()) || EnchantmentHelper.hasTag(stack, OTags.Enchantments.PREVENTS_LEAD_CLOUD)) return false;
         if (!state.is(OTags.Blocks.CREATES_LEAD_CLOUD)) return false;
 
         for (var direction : Direction.values()) {
@@ -103,7 +104,7 @@ public class LeadOreBlock {
                         facing.getStepX() * speed, facing.getStepY() * speed, facing.getStepZ() * speed
                 );
 
-                var targets = level.getEntitiesOfClass(LivingEntity.class, new AABB(frontPos, pos.relative(facing, maxDistance)).expandTowards(1, 1, 1));
+                var targets = level.getEntitiesOfClass(LivingEntity.class, AABB.encapsulatingFullBlocks(frontPos, pos.relative(facing, maxDistance)).expandTowards(1, 1, 1));
 
                 targets.forEach(target -> {
                     getEffects(1)

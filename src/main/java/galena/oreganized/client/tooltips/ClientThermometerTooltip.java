@@ -30,11 +30,12 @@ public class ClientThermometerTooltip implements ClientTooltipComponent {
         return 14;
     }
 
+    @Override
     public void renderImage(Font font, int x, int y, GuiGraphics graphics) {
         int i = 0;
         int offset = 0;
         long time = Minecraft.getInstance().level.getGameTime();
-        double delta = Minecraft.getInstance().getDeltaFrameTime();
+        double delta = Minecraft.getInstance().getTimer().getGameTimeDeltaTicks();
         var text = I18n.get(getDescriptionId(heat));
         for (char a : text.toCharArray()) {
             graphics.pose().pushPose();

@@ -44,10 +44,8 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.material.MapColor;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
-@EventBusSubscriber(modid = Oreganized.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class OBlocks {
     public static final BlockSubRegistryHelper HELPER = Oreganized.REGISTRY_HELPER.getBlockSubHelper();
 
@@ -186,4 +184,8 @@ public class OBlocks {
             return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties());
         };
     }
+    public static void register() {
+        // Load this class
+    }
+
 }

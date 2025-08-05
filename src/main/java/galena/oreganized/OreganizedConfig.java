@@ -1,18 +1,16 @@
 package galena.oreganized;
 
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.EventBusSubscriber;
-import net.minecraftforge.fml.config.ModConfig;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.common.ModConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec.ConfigValue;
 import org.apache.commons.lang3.tuple.Pair;
 
-@EventBusSubscriber(modid = Oreganized.MOD_ID)
 public class OreganizedConfig {
     public static final Common COMMON;
     public static final Client CLIENT;
-    private static final ForgeConfigSpec COMMON_SPEC;
-    private static final ForgeConfigSpec CLIENT_SPEC;
+    private static final ModConfigSpec COMMON_SPEC;
+    private static final ModConfigSpec CLIENT_SPEC;
 
     public static class Common {
         public final ConfigValue<Boolean> poisonInsteadOfStunning;
@@ -22,7 +20,7 @@ public class OreganizedConfig {
         public final ConfigValue<Integer> moltenLeadDelay;
         public final ConfigValue<Boolean> cauldronLeadMelting;
 
-        private Common(ForgeConfigSpec.Builder builder) {
+        private Common(ModConfigSpec.Builder builder) {
             builder.comment("Common");
             builder.push("common");
 
@@ -41,7 +39,7 @@ public class OreganizedConfig {
 
         public final ConfigValue<Boolean> renderStunningOverlay;
 
-        public Client(ForgeConfigSpec.Builder builder) {
+        public Client(ModConfigSpec.Builder builder) {
             builder.comment("Client");
             builder.push("client");
 
@@ -52,8 +50,8 @@ public class OreganizedConfig {
     }
 
     static {
-        final Pair<Common, ForgeConfigSpec> commonSpecPair = new ForgeConfigSpec.Builder().configure(Common::new);
-        final Pair<Client, ForgeConfigSpec> clientSpecPair = new ForgeConfigSpec.Builder().configure(Client::new);
+        final Pair<Common, ModConfigSpec> commonSpecPair = new ModConfigSpec.Builder().configure(Common::new);
+        final Pair<Client, ModConfigSpec> clientSpecPair = new ModConfigSpec.Builder().configure(Client::new);
 
         COMMON = commonSpecPair.getLeft();
         CLIENT = clientSpecPair.getLeft();
@@ -61,10 +59,9 @@ public class OreganizedConfig {
         CLIENT_SPEC = clientSpecPair.getRight();
     }
 
-    public static void register() {
-        var context = ModLoadingContext.get();
-        context.registerConfig(ModConfig.Type.COMMON, COMMON_SPEC);
-        context.registerConfig(ModConfig.Type.CLIENT, CLIENT_SPEC);
+    public static void register(ModContainer container) {
+        container.registerConfig(ModConfig.Type.COMMON, COMMON_SPEC);
+        container.registerConfig(ModConfig.Type.CLIENT, CLIENT_SPEC);
     }
 
 }

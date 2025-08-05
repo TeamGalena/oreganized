@@ -9,19 +9,20 @@ import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OEntityTypes;
 import galena.oreganized.index.OItems;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.EntityLootSubProvider;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.data.loot.LootTableSubProvider;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
@@ -31,7 +32,6 @@ import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.ValidationContext;
 import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
@@ -43,19 +43,19 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 public class OLootTables extends LootTableProvider {
 
-    public OLootTables(PackOutput output) {
+    public OLootTables(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup) {
         super(output, Set.of(), List.of(
                 new SubProviderEntry(BlockLoot::new, LootContextParamSets.BLOCK),
                 new SubProviderEntry(EntityLoot::new, LootContextParamSets.ENTITY),
-                new SubProviderEntry(OGameplayLoot::new, LootContextParamSets.GIFT)
-        ));
-    }
-
-    @Override
-    protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext tracker) {
+                new SubProviderEntry($ -> new OGameplayLoot(), LootContextParamSets.GIFT)
+        ), lookup);
     }
 
     public static class BlockLoot extends OBlockLootProvider {
+
+        protected BlockLoot(HolderLookup.Provider lookup) {
+            super(lookup);
+        }
 
         protected void generate() {
             //dropNothing(OBlocks.MOLTEN_LEAD);
@@ -113,7 +113,7 @@ public class OLootTables extends LootTableProvider {
                     .withPool(applyExplosionCondition(OBlocks.LEAD_BARS.get(), LootPool.lootPool()
                             .setRolls(ConstantValue.exactly(1.0F))
                             .add(AlternativesEntry.alternatives(
-                                    LootItem.lootTableItem(OBlocks.LEAD_BARS.get()).when(HAS_SILK_TOUCH),
+                                    LootItem.lootTableItem(OBlocks.LEAD_BARS.get()).when(hasSilkTouch()),
                                     LootItem.lootTableItem(OItems.LEAD_NUGGET.get())
                                             .apply(SetItemCountFunction.setCount((UniformGenerator.between(2F, 3F))))
                                             .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(OBlocks.LEAD_BARS.get())
@@ -138,7 +138,7 @@ public class OLootTables extends LootTableProvider {
                             .setRolls(ConstantValue.exactly(1.0F))
                             .add(AlternativesEntry.alternatives(
                                     LootItem.lootTableItem(block.get().asItem())
-                                            .when(HAS_SILK_TOUCH),
+                                            .when(hasSilkTouch()),
                                     LootItem.lootTableItem(other.asItem())
                                             .when(hasScribe)
                             ))
@@ -153,8 +153,8 @@ public class OLootTables extends LootTableProvider {
 
     public static class EntityLoot extends EntityLootSubProvider {
 
-        public EntityLoot() {
-            super(FeatureFlags.REGISTRY.allFlags());
+        public EntityLoot(HolderLookup.Provider lookup) {
+            super(FeatureFlags.REGISTRY.allFlags(), lookup);
         }
 
         @Override
@@ -171,7 +171,7 @@ public class OLootTables extends LootTableProvider {
     public static class OGameplayLoot implements LootTableSubProvider {
 
         @Override
-        public void generate(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
+        public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> consumer) {
             consumer.accept(
                     ThermometerItem.BREAK_LOOT_TABLE,
                     LootTable.lootTable()

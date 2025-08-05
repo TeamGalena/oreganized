@@ -9,21 +9,20 @@ import java.util.TreeMap;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 import net.minecraft.Util;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.RecordItem;
 import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 public abstract class OLangProvider implements DataProvider {
     private final Map<String, String> data = new TreeMap<>();
@@ -85,18 +84,18 @@ public abstract class OLangProvider implements DataProvider {
     }
 
     public void addPotion(Supplier<? extends Potion> potion, String name) {
-        add("item.minecraft.potion.effect." + ForgeRegistries.POTIONS.getKey(potion.get()).getPath(), "Potion of " + name);
-        add("item.minecraft.splash_potion.effect." + ForgeRegistries.POTIONS.getKey(potion.get()).getPath(), "Splash Potion of " + name);
-        add("item.minecraft.lingering_potion.effect." + ForgeRegistries.POTIONS.getKey(potion.get()).getPath(), "Lingering Potion of " + name);
-        add("item.minecraft.tipped_arrow.effect." + ForgeRegistries.POTIONS.getKey(potion.get()).getPath(), "Arrow of " + name);
+        add("item.minecraft.potion.effect." + BuiltInRegistries.POTION.getKey(potion.get()).getPath(), "Potion of " + name);
+        add("item.minecraft.splash_potion.effect." + BuiltInRegistries.POTION.getKey(potion.get()).getPath(), "Splash Potion of " + name);
+        add("item.minecraft.lingering_potion.effect." + BuiltInRegistries.POTION.getKey(potion.get()).getPath(), "Lingering Potion of " + name);
+        add("item.minecraft.tipped_arrow.effect." + BuiltInRegistries.POTION.getKey(potion.get()).getPath(), "Arrow of " + name);
     }
 
-    public void addDisc(Supplier<? extends RecordItem> disc, String desc) {
+    public void addDisc(Supplier<? extends Item> disc, String desc) {
         addItem(disc, "Music Disc");
         add(disc.get().getDescriptionId() + ".desc", desc);
     }
 
-    public void addDisc(Supplier<? extends RecordItem> disc, String artist, String song) {
+    public void addDisc(Supplier<? extends Item> disc, String artist, String song) {
         addDisc(disc, artist + " - " + song);
     }
 
@@ -121,14 +120,6 @@ public abstract class OLangProvider implements DataProvider {
     }
 
     public void add(ItemStack key, String name) {
-        add(key.getDescriptionId(), name);
-    }
-
-    public void addEnchantment(Supplier<? extends Enchantment> key, String name) {
-        add(key.get(), name);
-    }
-
-    public void add(Enchantment key, String name) {
         add(key.getDescriptionId(), name);
     }
 
@@ -163,27 +154,27 @@ public abstract class OLangProvider implements DataProvider {
             throw new IllegalStateException("Duplicate translation key " + key);
     }
 
-    public void tryBlock(Supplier<? extends Block> block) {
-        String key = block.get().getDescriptionId();
-        String value = formatString(ForgeRegistries.BLOCKS.getKey(block.get()).getPath());
+    public void tryBlock(Holder<? extends Block> block) {
+        String key = block.value().getDescriptionId();
+        String value = formatString(block.getKey().location().getPath());
         data.putIfAbsent(key, value);
     }
 
-    public void tryItem(Supplier<? extends Item> item) {
-        String key = item.get().getDescriptionId();
-        String value = formatString(ForgeRegistries.ITEMS.getKey(item.get()).getPath());
+    public void tryItem(Holder<? extends Item> item) {
+        String key = item.value().getDescriptionId();
+        String value = formatString(item.getKey().location().getPath());
         data.putIfAbsent(key, value);
     }
 
-    public void tryFluid(Supplier<? extends Fluid> fluid) {
-        String key = Util.makeDescriptionId("fluid", ForgeRegistries.FLUIDS.getKey(fluid.get()));
-        String value = formatString(ForgeRegistries.FLUIDS.getKey(fluid.get()).getPath());
+    public void tryFluid(Holder<? extends Fluid> fluid) {
+        String key = Util.makeDescriptionId("fluid", fluid.getKey().location());
+        String value = formatString(fluid.getKey().location().getPath());
         data.putIfAbsent(key, value);
     }
 
-    public void tryEntity(Supplier<? extends EntityType<?>> entity) {
-        String key = entity.get().getDescriptionId();
-        String value = formatString(ForgeRegistries.ENTITY_TYPES.getKey(entity.get()).getPath());
+    public void tryEntity(Holder<? extends EntityType<?>> entity) {
+        String key = entity.value().getDescriptionId();
+        String value = formatString(entity.getKey().location().getPath());
         data.putIfAbsent(key, value);
     }
 
@@ -200,10 +191,10 @@ public abstract class OLangProvider implements DataProvider {
         return res.toString().trim();
     }
 
-    public void addPainting(RegistryObject<PaintingVariant> variant, String title, String author) {
-        var key = variant.getKey().location();
-        add("painting.%s.%s.title".formatted(key.getNamespace(), key.getPath()), title);
-        add("painting.%s.%s.author".formatted(key.getNamespace(), key.getPath()), author);
+    public void addPainting(ResourceKey<PaintingVariant> key, String title, String author) {
+        var id = key.location();
+        add("painting.%s.%s.title".formatted(id.getNamespace(), id.getPath()), title);
+        add("painting.%s.%s.author".formatted(id.getNamespace(), id.getPath()), author);
     }
 
 }

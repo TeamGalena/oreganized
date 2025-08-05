@@ -5,9 +5,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -24,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
 public class LeadTrapdoorBlock extends TrapDoorBlock implements IMeltableBlock, EntityBlock, IHeavyDoor {
 
     public LeadTrapdoorBlock(Properties properties) {
-        super(properties, OBlocks.LEAD_BLOCK_SET);
+        super(OBlocks.LEAD_BLOCK_SET, properties);
     }
 
     @Override
@@ -38,8 +39,10 @@ public class LeadTrapdoorBlock extends TrapDoorBlock implements IMeltableBlock, 
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        return HeavyDoorBlockEntity.getAt(level, pos).map(it -> it.use(state, level, pos, player)).orElse(InteractionResult.PASS);
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        return HeavyDoorBlockEntity.getAt(level, pos)
+                .map(it -> it.use(state, level, pos, player))
+                .orElse(ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION);
     }
 
     @Override

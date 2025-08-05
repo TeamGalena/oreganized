@@ -4,55 +4,55 @@
     {
       "model": "oreganized:item/thermometer_0",
       "predicate": {
-        "minecraft:level": 0.0
+        "oreganized:heat_level": 0.0
       }
     },
     {
       "model": "oreganized:item/thermometer_1",
       "predicate": {
-        "minecraft:level": 1.0
+        "oreganized:heat_level": 1.0
       }
     },
     {
       "model": "oreganized:item/thermometer_2",
       "predicate": {
-        "minecraft:level": 2.0
+        "oreganized:heat_level": 2.0
       }
     },
     {
       "model": "oreganized:item/thermometer_3",
       "predicate": {
-        "minecraft:level": 3.0
+        "oreganized:heat_level": 3.0
       }
     },
     {
       "model": "oreganized:item/thermometer_4",
       "predicate": {
-        "minecraft:level": 4.0
+        "oreganized:heat_level": 4.0
       }
     },
     {
       "model": "oreganized:item/thermometer_5",
       "predicate": {
-        "minecraft:level": 5.0
+        "oreganized:heat_level": 5.0
       }
     },
     {
       "model": "oreganized:item/thermometer_6",
       "predicate": {
-        "minecraft:level": 6.0
+        "oreganized:heat_level": 6.0
       }
     },
     {
       "model": "oreganized:item/thermometer_7",
       "predicate": {
-        "minecraft:level": 7.0
+        "oreganized:heat_level": 7.0
       }
     },
     {
       "model": "oreganized:item/thermometer_8",
       "predicate": {
-        "minecraft:level": 8.0
+        "oreganized:heat_level": 8.0
       }
     }
   ]

@@ -7,9 +7,10 @@ import galena.oreganized.content.item.SpeedometerItem;
 import galena.oreganized.content.item.ThermometerItem;
 import galena.oreganized.data.provider.OItemModelProvider;
 import galena.oreganized.index.OBlocks;
+import galena.oreganized.index.ODataComponents;
 import galena.oreganized.index.OItems;
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class OItemModels extends OItemModelProvider {
 
@@ -55,7 +56,9 @@ public class OItemModels extends OItemModelProvider {
         toolItem(OItems.ELECTRUM_HOE);
         toolItem(OItems.ELECTRUM_KNIFE);
         toolItem(OItems.ELECTRUM_MACHETE);
-        shieldItem(OItems.ELECTRUM_SHIELD);
+        // TODO re-add when mod is updated to 1.21.1
+        // shieldItem(OItems.ELECTRUM_SHIELD);
+        normalItem(OItems.ELECTRUM_SHIELD);
 
         crossbowOverwrite("crossbow_lead_bolt");
 
@@ -107,8 +110,8 @@ public class OItemModels extends OItemModelProvider {
             withExistingParent(blockName(waxed), unwaxed.withPrefix("block/"));
         });
 
-        leveledDevice(OItems.UNKNOWN_DEVICE, DeviceItem.FRAMES, DeviceItem.PROPERTY_KEY);
-        leveledDevice(OItems.THERMOMETER, ThermometerItem.HEAT_LEVELS, ThermometerItem.PROPERTY_KEY);
+        leveledDevice(OItems.UNKNOWN_DEVICE, DeviceItem.FRAMES, ODataComponents.DEVICE_VALUE.getId());
+        leveledDevice(OItems.THERMOMETER, ThermometerItem.HEAT_LEVELS, ODataComponents.HEAT_LEVEL.getId());
         leveledDevice(OItems.SPEEDOMETER, 16, SpeedometerItem.PROPERTY_KEY);
     }
 

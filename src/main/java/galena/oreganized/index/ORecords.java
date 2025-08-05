@@ -2,17 +2,17 @@ package galena.oreganized.index;
 
 import galena.oreganized.Oreganized;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.JukeboxSong;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
 
-@EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class ORecords {
 
-    private static final DeferredRegister<JukeboxSong> JUKEBOX_SONGS = DeferredRegister.create(Registries.JUKEBOX_SONG, Oreganized.MOD_ID);
+    public static final ResourceKey<JukeboxSong> STRUCTURE = ResourceKey.create(Registries.JUKEBOX_SONG, Oreganized.modLoc("structure"));
 
-    public static final DeferredHolder<JukeboxSong, JukeboxSong> STRUCTURE = JUKEBOX_SONGS.register("structure", () -> new JukeboxSong(OSoundEvents.MUSIC_DISC_STRUCTURE, Component.translateable(), 2980 / 20, 13));
+    public static void bootstrap(BootstrapContext<JukeboxSong> context) {
+        context.register(STRUCTURE,  new JukeboxSong(OSoundEvents.MUSIC_DISC_STRUCTURE, Component.translatable("item.oreganized.music_disc_structure.desc"), 2980 / 20, 13));
+    }
 
 }

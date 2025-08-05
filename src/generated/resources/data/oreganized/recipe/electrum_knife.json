@@ -1,0 +1,22 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "oreganized:electrum_ingot"
+  },
+  "base": {
+    "item": "farmersdelight:diamond_knife"
+  },
+  "result": {
+    "count": 1,
+    "id": "oreganized:electrum_knife"
+  },
+  "template": {
+    "item": "oreganized:electrum_upgrade_smithing_template"
+  }
+}

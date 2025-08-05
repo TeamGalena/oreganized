@@ -56,7 +56,7 @@ public class ShrapnelBomb extends PrimedTnt {
 
                 living.addEffect(new MobEffectInstance(MobEffects.POISON, 260));
                 if (!OreganizedConfig.COMMON.poisonInsteadOfStunning.get()) {
-                    living.addEffect(new MobEffectInstance(OEffects.STUNNING.get(), 800));
+                    living.addEffect(new MobEffectInstance(OEffects.STUNNING, 800));
                 }
             }
         }

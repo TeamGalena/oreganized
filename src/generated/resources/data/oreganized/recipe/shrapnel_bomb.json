@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "A": {
+      "tag": "c:gunpowders"
+    },
+    "B": {
+      "tag": "c:nuggets/lead"
+    }
+  },
+  "pattern": [
+    "ABA",
+    "BAB",
+    "ABA"
+  ],
+  "result": {
+    "count": 1,
+    "id": "oreganized:shrapnel_bomb"
+  }
+}

@@ -17,10 +17,11 @@ import galena.oreganized.index.OFluids;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
 import java.util.List;
-import java.util.function.Consumer;
+import java.util.concurrent.CompletableFuture;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
@@ -29,9 +30,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.Tags;
-import org.infernalstudios.shieldexp.init.ItemsInit;
-import umpaz.nethersdelight.common.registry.NDItems;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.crafting.IntersectionIngredient;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
 public class ORecipes extends ORecipeProvider {
@@ -39,12 +39,12 @@ public class ORecipes extends ORecipeProvider {
     protected static final ImmutableList<ItemLike> LEAD_SMELTABLES = ImmutableList.of(OBlocks.LEAD_ORE.get(), OBlocks.DEEPSLATE_LEAD_ORE.get(), OItems.RAW_LEAD.get());
     protected static final ImmutableList<ItemLike> SILVER_SMELTABLES = ImmutableList.of(OBlocks.SILVER_ORE.get(), OBlocks.DEEPSLATE_SILVER_ORE.get(), OItems.RAW_SILVER.get());
 
-    public ORecipes(PackOutput output) {
-        super(output);
+    public ORecipes(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup) {
+        super(output, lookup);
     }
 
     @Override
-    protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
+    protected void buildRecipes(RecipeOutput consumer) {
         ore(OItems.LEAD_INGOT.get(), LEAD_SMELTABLES, 0.7F, "oreganized:lead_ingot", consumer);
         ore(OItems.SILVER_INGOT.get(), SILVER_SMELTABLES, 1.0F, "oreganized:silver_ingot", consumer);
 
@@ -145,8 +145,9 @@ public class ORecipes extends ORecipeProvider {
         smithingElectrum(() -> Items.DIAMOND_AXE, OItems.ELECTRUM_AXE).save(consumer, Oreganized.modLoc("electrum_axe"));
         smithingElectrum(() -> Items.DIAMOND_HOE, OItems.ELECTRUM_HOE).save(consumer, Oreganized.modLoc("electrum_hoe"));
         whenLoaded(smithingElectrum(ModItems.DIAMOND_KNIFE, OItems.ELECTRUM_KNIFE), "farmersdelight").save(consumer, Oreganized.modLoc("electrum_knife"));
-        whenLoaded(smithingElectrum(ItemsInit.DIAMOND_SHIELD, OItems.ELECTRUM_SHIELD), "shieldexp").save(consumer, Oreganized.modLoc("electrum_shield"));
-        whenLoaded(smithingElectrum(NDItems.DIAMOND_MACHETE, OItems.ELECTRUM_MACHETE), "nethersdelight").save(consumer, Oreganized.modLoc("electrum_machete"));
+        // TODO re-add when either is ported to 1.21.1
+        // whenLoaded(smithingElectrum(ItemsInit.DIAMOND_SHIELD, OItems.ELECTRUM_SHIELD), "shieldexp").save(consumer, Oreganized.modLoc("electrum_shield"));
+        // whenLoaded(smithingElectrum(NDItems.DIAMOND_MACHETE, OItems.ELECTRUM_MACHETE), "nethersdelight").save(consumer, Oreganized.modLoc("electrum_machete"));
         smithingElectrum(() -> Items.DIAMOND_HELMET, OItems.ELECTRUM_HELMET).save(consumer, Oreganized.modLoc("electrum_helmet"));
         smithingElectrum(() -> Items.DIAMOND_CHESTPLATE, OItems.ELECTRUM_CHESTPLATE).save(consumer, Oreganized.modLoc("electrum_chestplate"));
         smithingElectrum(() -> Items.DIAMOND_LEGGINGS, OItems.ELECTRUM_LEGGINGS).save(consumer, Oreganized.modLoc("electrum_leggings"));
@@ -161,7 +162,7 @@ public class ORecipes extends ORecipeProvider {
             var unwaxed = ColorCompat.getColoredBlock("concrete_powder", color);
             dyed(color, makeWaxed(waxed, unwaxed)).save(consumer);
 
-            dyed(color, processing(DeployerApplicationRecipe::new, waxed.getId().getPath())
+            dyed(color, application(DeployerApplicationRecipe::new, waxed.getId().getPath())
                     .output(waxed.get())
                     .require(Blocks.HONEYCOMB_BLOCK)
                     .require(unwaxed)
@@ -215,9 +216,9 @@ public class ORecipes extends ORecipeProvider {
                 .pattern("ABA")
                 .pattern("BAB")
                 .pattern("ABA")
-                .define('A', Tags.Items.GUNPOWDER)
+                .define('A', Tags.Items.GUNPOWDERS)
                 .define('B', OTags.Items.NUGGETS_LEAD)
-                .unlockedBy("has_gunpowder", has(Tags.Items.GUNPOWDER))
+                .unlockedBy("has_gunpowder", has(Tags.Items.GUNPOWDERS))
                 .unlockedBy("has_lead_nugget", has(OTags.Items.NUGGETS_LEAD))
                 .save(consumer);
 
@@ -336,14 +337,14 @@ public class ORecipes extends ORecipeProvider {
                 .build(consumer);
 
         processing(CrushingRecipe::new, "glance")
-                .output(0.8F, new ResourceLocation("create", "crushed_raw_lead"), 1)
+                .output(0.8F, ResourceLocation.fromNamespaceAndPath("create", "crushed_raw_lead"), 1)
                 .output(0.8F, OItems.LEAD_NUGGET.get())
                 .require(OBlocks.GLANCE.get())
                 .duration(250)
                 .build(consumer);
 
         processing(CrushingRecipe::new, "glance_recycling")
-                .output(0.8F, new ResourceLocation("create", "crushed_raw_lead"), 1)
+                .output(0.8F, ResourceLocation.fromNamespaceAndPath("create", "crushed_raw_lead"), 1)
                 .output(0.8F, OItems.LEAD_NUGGET.get())
                 .require(OTags.Items.STONE_TYPES_GLANCE)
                 .duration(250)
@@ -376,7 +377,7 @@ public class ORecipes extends ORecipeProvider {
 
         processing(MixingRecipe::new, "molten_lead")
                 .output(OFluids.MOLTEN_LEAD.get(), 1000)
-                .require(Ingredient.merge(List.of(
+                .require(new IntersectionIngredient(List.of(
                         Ingredient.of(OTags.Items.STORAGE_BLOCKS_LEAD),
                         Ingredient.of(OTags.Items.STORAGE_BLOCKS_RAW_LEAD)
                 )))

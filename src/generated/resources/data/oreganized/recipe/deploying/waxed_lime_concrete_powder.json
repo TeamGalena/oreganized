@@ -1,0 +1,23 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "minecraft:honeycomb_block"
+    },
+    {
+      "item": "minecraft:lime_concrete_powder"
+    }
+  ],
+  "keep_held_item": true,
+  "results": [
+    {
+      "id": "oreganized:waxed_lime_concrete_powder"
+    }
+  ]
+}

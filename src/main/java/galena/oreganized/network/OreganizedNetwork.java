@@ -1,26 +1,17 @@
 package galena.oreganized.network;
 
-import galena.oreganized.Oreganized;
 import galena.oreganized.network.packet.DoorPushingPacket;
 import galena.oreganized.network.packet.GargoyleParticlePacket;
 import galena.oreganized.network.packet.KineticHitPacket;
-import net.minecraftforge.network.NetworkRegistry;
-import net.minecraftforge.network.simple.SimpleChannel;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 
 public class OreganizedNetwork {
-    private static final String PROTOCOL_VERSION = "1";
-    public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
-            Oreganized.modLoc("main"),
-            () -> PROTOCOL_VERSION,
-            PROTOCOL_VERSION::equals,
-            PROTOCOL_VERSION::equals
-    );
+    private static final String PROTOCOL_VERSION = "2";
 
-    public static void register() {
-        int id = 0;
-
-        CHANNEL.registerMessage(id++, GargoyleParticlePacket.class, GargoyleParticlePacket::write, GargoyleParticlePacket::from, GargoyleParticlePacket::handle);
-        CHANNEL.registerMessage(id++, DoorPushingPacket.class, DoorPushingPacket::write, DoorPushingPacket::from, DoorPushingPacket::handle);
-        CHANNEL.registerMessage(id++, KineticHitPacket.class, KineticHitPacket::write, KineticHitPacket::from, KineticHitPacket::handle);
+    public static void register(RegisterPayloadHandlersEvent event) {
+        var registrar = event.registrar(PROTOCOL_VERSION);
+        registrar.playToClient(GargoyleParticlePacket.TYPE.type(), GargoyleParticlePacket.TYPE.codec(), GargoyleParticlePacket::handle);
+        registrar.playToClient(DoorPushingPacket.TYPE.type(), DoorPushingPacket.TYPE.codec(), DoorPushingPacket::handle);
+        registrar.playToClient(KineticHitPacket.TYPE.type(), KineticHitPacket.TYPE.codec(), KineticHitPacket::handle);
     }
 }

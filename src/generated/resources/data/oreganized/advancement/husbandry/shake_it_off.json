@@ -1,0 +1,29 @@
+{
+  "parent": "minecraft:husbandry/root",
+  "criteria": {
+    "shaken_thermometer": {
+      "trigger": "oreganized:shaken_thermometer"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.oreganized.shake_it_off.description"
+    },
+    "icon": {
+      "components": {
+        "oreganized:heat_level": 1
+      },
+      "count": 1,
+      "id": "oreganized:thermometer"
+    },
+    "title": {
+      "translate": "advancements.oreganized.shake_it_off.title"
+    }
+  },
+  "requirements": [
+    [
+      "shaken_thermometer"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

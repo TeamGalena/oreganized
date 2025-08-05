@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "O": {
+      "item": "minecraft:compass"
+    },
+    "X": {
+      "tag": "c:ingots/electrum"
+    }
+  },
+  "pattern": [
+    " O ",
+    " X "
+  ],
+  "result": {
+    "count": 1,
+    "id": "oreganized:speedometer"
+  }
+}

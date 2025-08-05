@@ -1,0 +1,26 @@
+{
+  "parent": "oreganized:story/like_the_romans",
+  "criteria": {
+    "stunned": {
+      "trigger": "oreganized:profound_brain_damage"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.oreganized.profound_brain_damage.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "oreganized:molten_lead_bucket"
+    },
+    "title": {
+      "translate": "advancements.oreganized.profound_brain_damage.title"
+    }
+  },
+  "requirements": [
+    [
+      "stunned"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

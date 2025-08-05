@@ -6,7 +6,8 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
 import net.minecraft.world.item.ItemStack;
@@ -24,7 +25,7 @@ import net.minecraft.world.phys.Vec3;
 @MethodsReturnNonnullByDefault
 public class SpottedGlanceBlock extends Block {
 
-    public static final ResourceLocation WASH_LOOT_TABLE = Oreganized.modLoc("gameplay/spotted_glance");
+    public static final ResourceKey<LootTable> WASH_LOOT_TABLE = ResourceKey.create(Registries.LOOT_TABLE, Oreganized.modLoc("gameplay/spotted_glance"));
 
     public SpottedGlanceBlock(Properties properties) {
         super(properties);
@@ -41,7 +42,7 @@ public class SpottedGlanceBlock extends Block {
 
     private void dropLeadNuggets(LevelAccessor level, BlockPos pos) {
         if (level instanceof ServerLevel) {
-            LootTable lootTable = level.getServer().getLootData().getLootTable(WASH_LOOT_TABLE);
+            LootTable lootTable = level.getServer().reloadableRegistries().getLootTable(WASH_LOOT_TABLE);
 
             LootParams params = new LootParams.Builder((ServerLevel) level)
                     .withLuck(((ServerLevel) level).random.nextFloat())

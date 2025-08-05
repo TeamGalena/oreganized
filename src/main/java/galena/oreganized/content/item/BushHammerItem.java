@@ -18,8 +18,8 @@ import net.minecraft.world.level.block.state.BlockState;
 public class BushHammerItem extends DiggerItem {
     protected static final Map<Block, Block> ENGRAVEABLES = (new ImmutableMap.Builder<Block, Block>().put(Blocks.STONE, Blocks.STONE)).build();
 
-    public BushHammerItem(Tier tier, float attack, float modifier, Item.Properties properties) {
-        super(attack, modifier, tier, OTags.Blocks.MINEABLE_WITH_BUSH_HAMMER, properties);
+    public BushHammerItem(Tier tier, Item.Properties properties) {
+        super(tier, OTags.Blocks.MINEABLE_WITH_BUSH_HAMMER, properties);
     }
 
     public InteractionResult useOn(UseOnContext context) {

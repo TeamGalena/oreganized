@@ -16,7 +16,6 @@ import net.minecraft.resources.ResourceLocation;
 public class StunningOverlay implements LayeredDraw.Layer {
 
     protected static final ResourceLocation STUNNING_VIGNETTE_LOCATION = Oreganized.modLoc( "textures/misc/stunning_overlay.png");
-    protected static final ResourceLocation STUNNED_HEARTS = Oreganized.modLoc( "textures/gui/stunned_hearts.png");
 
     private static final IntObjectHashMap<ResourceLocation> STUNNING_OVERLAY_LOCATIONS = new IntObjectHashMap<>();
 
@@ -32,10 +31,6 @@ public class StunningOverlay implements LayeredDraw.Layer {
         var player = Minecraft.getInstance().player;
         if (player == null) return;
 
-        var screenWidth = minecraft.getWindow().getGuiScaledWidth();
-        var screenHeight = minecraft.getWindow().getGuiScaledHeight();
-        RenderSystem.enableBlend();
-
         var stunning = minecraft.player.getEffect(OEffects.STUNNING);
         if (stunning != null && OreganizedConfig.CLIENT.renderStunningOverlay.get()) {
             var opacity = stunning.getAmplifier() * 1F / StunningEffect.MAX_AMPLIFIER;
@@ -47,8 +42,16 @@ public class StunningOverlay implements LayeredDraw.Layer {
             renderTextureOverlay(graphics, STUNNING_VIGNETTE_LOCATION, 1F);
     }
 
-    public static void renderStunnedHeart(GuiGraphics graphics, int u, int x, int y, int v) {
-        graphics.blit(STUNNED_HEARTS, x, y, u, v, 9, 9, 72, 18);
+    private void renderTextureOverlay(GuiGraphics graphics, ResourceLocation texture, float opacity) {
+        RenderSystem.disableDepthTest();
+        RenderSystem.depthMask(false);
+        RenderSystem.enableBlend();
+        graphics.setColor(1.0F, 1.0F, 1.0F, opacity);
+        graphics.blit(texture, 0, 0, -90, 0.0F, 0.0F, graphics.guiWidth(), graphics.guiHeight(), graphics.guiWidth(), graphics.guiHeight());
+        RenderSystem.disableBlend();
+        RenderSystem.depthMask(true);
+        RenderSystem.enableDepthTest();
+        graphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
 }

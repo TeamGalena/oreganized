@@ -6,16 +6,16 @@ import com.teamabnormals.blueprint.core.data.client.BlueprintItemModelProvider;
 import galena.oreganized.Oreganized;
 import java.util.function.Supplier;
 import net.minecraft.client.renderer.block.model.BlockModel;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.WallBlock;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public abstract class OItemModelProvider extends BlueprintItemModelProvider {
 
@@ -24,7 +24,7 @@ public abstract class OItemModelProvider extends BlueprintItemModelProvider {
     }
 
     protected String blockName(Supplier<? extends Block> block) {
-        return ForgeRegistries.BLOCKS.getKey(block.get()).getPath();
+        return BuiltInRegistries.BLOCK.getKey(block.get()).getPath();
     }
 
     private ResourceLocation blockTexture(Supplier<? extends Block> block) {
@@ -65,7 +65,7 @@ public abstract class OItemModelProvider extends BlueprintItemModelProvider {
     }
 
     public ItemModelBuilder toolItem(Supplier<? extends Item> item) {
-        return withExistingParent(ForgeRegistries.ITEMS.getKey(item.get()).getPath(), mcLoc("item/handheld"))
+        return withExistingParent(BuiltInRegistries.ITEM.getKey(item.get()).getPath(), mcLoc("item/handheld"))
                 .texture("layer0", itemTexture(item.get()));
     }
 
@@ -73,17 +73,17 @@ public abstract class OItemModelProvider extends BlueprintItemModelProvider {
         var texture = itemTexture(item.get());
         var name = name(item.get());
 
-        var blockingModel = withExistingParent(name + "_blocking", new ResourceLocation(SHIELD_EXPANSION_ID, "item/netherite_shield_blocking"))
+        var blockingModel = withExistingParent(name + "_blocking", ResourceLocation.fromNamespaceAndPath(SHIELD_EXPANSION_ID, "item/netherite_shield_blocking"))
                 .guiLight(BlockModel.GuiLight.FRONT)
                 .texture("1", texture)
                 .texture("particle", texture);
 
-        return withExistingParent(name, new ResourceLocation(SHIELD_EXPANSION_ID, "item/netherite_shield"))
+        return withExistingParent(name, ResourceLocation.fromNamespaceAndPath(SHIELD_EXPANSION_ID, "item/netherite_shield"))
                 .guiLight(BlockModel.GuiLight.FRONT)
                 .texture("1", texture)
                 .texture("particle", texture)
                 .override()
-                .predicate(new ResourceLocation("blocking"), 1.0F)
+                .predicate(ResourceLocation.withDefaultNamespace("blocking"), 1.0F)
                 .model(blockingModel)
                 .end();
     }
@@ -94,14 +94,14 @@ public abstract class OItemModelProvider extends BlueprintItemModelProvider {
     }
 
     public ItemModelBuilder wall(Supplier<? extends WallBlock> wall, Supplier<? extends Block> fullBlock) {
-        return wallInventory(ForgeRegistries.BLOCKS.getKey(wall.get()).getPath(), blockTexture(fullBlock));
+        return wallInventory(BuiltInRegistries.BLOCK.getKey(wall.get()).getPath(), blockTexture(fullBlock));
     }
 
-    public ItemModelBuilder leveledDevice(RegistryObject<? extends Item> item, int levels, ResourceLocation property) {
-        var model = withExistingParent(name(item.get()), "item/generated");
+    public ItemModelBuilder leveledDevice(Holder<? extends Item> item, int levels, ResourceLocation property) {
+        var model = withExistingParent(name(item.value()), "item/generated");
 
         for(int i = 0; i < levels; i++) {
-            var subName = key(item.get()).withSuffix("_" + i);
+            var subName = key(item.value()).withSuffix("_" + i);
             var subModel = generated(subName.getPath(), subName.withPrefix("item/"));
             model.override()
                     .model(subModel)

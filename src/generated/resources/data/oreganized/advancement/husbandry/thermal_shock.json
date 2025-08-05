@@ -1,0 +1,29 @@
+{
+  "parent": "oreganized:husbandry/shake_it_off",
+  "criteria": {
+    "broken_thermometer": {
+      "trigger": "oreganized:broken_thermometer"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.oreganized.thermal_shock.description"
+    },
+    "icon": {
+      "components": {
+        "oreganized:heat_level": 7
+      },
+      "count": 1,
+      "id": "oreganized:thermometer"
+    },
+    "title": {
+      "translate": "advancements.oreganized.thermal_shock.title"
+    }
+  },
+  "requirements": [
+    [
+      "broken_thermometer"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

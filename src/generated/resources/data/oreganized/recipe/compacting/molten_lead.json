@@ -1,0 +1,21 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:compacting",
+  "ingredients": [
+    {
+      "type": "fluid_tag",
+      "amount": 1000,
+      "fluid_tag": "c:molten_lead"
+    }
+  ],
+  "results": [
+    {
+      "id": "oreganized:lead_block"
+    }
+  ]
+}

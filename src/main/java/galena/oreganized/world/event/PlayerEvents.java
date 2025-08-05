@@ -9,7 +9,6 @@ import galena.oreganized.index.OAttributes;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
-import java.util.UUID;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
@@ -17,37 +16,37 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.DiggerItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.ToolAction;
-import net.minecraftforge.common.ToolActions;
-import net.minecraftforge.event.ItemAttributeModifierEvent;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.level.BlockEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.event.ItemAttributeModifierEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 @EventBusSubscriber(modid = Oreganized.MOD_ID)
 public class PlayerEvents {
 
     @SubscribeEvent
     public static void blockToolInteractions(final BlockEvent.BlockToolModificationEvent event) {
-        ToolAction action = event.getToolAction();
+        var action = event.getItemAbility();
         BlockState state = event.getState();
         if (event.isSimulated()) return;
 
         // Removing Wax ('Unwaxing' - Using an Axe on a waxed block).
-        if (action.equals(ToolActions.AXE_WAX_OFF)) {
+        if (action.equals(ItemAbilities.AXE_WAX_OFF)) {
             Block unWaxedBlock = OBlocks.WAXED_BLOCKS.get(state.getBlock());
             if (unWaxedBlock == null) return;
             event.setFinalState(unWaxedBlock.defaultBlockState());
@@ -55,7 +54,7 @@ public class PlayerEvents {
     }
 
     /**
-     * Use if interaction is not defined in {@link ToolActions}
+     * Use if interaction is not defined in {@link ItemAbilities}
      **/
     @SubscribeEvent
     public static void blockItemInteractions(final PlayerInteractEvent.RightClickBlock event) {
@@ -102,10 +101,8 @@ public class PlayerEvents {
     }
 
     @SubscribeEvent
-    public static void tickPlayer(final TickEvent.PlayerTickEvent event) {
-        if (event.phase == TickEvent.Phase.START) return;
-
-        var data = event.player.getPersistentData();
+    public static void tickPlayer(final PlayerTickEvent.Post event) {
+        var data = event.getEntity().getPersistentData();
         if (data.contains(GargoyleBlockEntity.GROWL_COOLDOWN_TAG, 99)) {
             var cooldown = data.getInt(GargoyleBlockEntity.GROWL_COOLDOWN_TAG);
             if (cooldown > 0) {
@@ -115,12 +112,12 @@ public class PlayerEvents {
             }
         }
 
-        var stack = event.player.getItemInHand(InteractionHand.MAIN_HAND);
+        var stack = event.getEntity().getItemInHand(InteractionHand.MAIN_HAND);
 
-        if (event.player.level().getGameTime() % 20L != 0) return;
+        if (event.getEntity().level().getGameTime() % 20L != 0) return;
         if (stack.is(OItems.THERMOMETER.get()) && !ThermometerItem.isLocked(stack)) {
-            var heatLevel = ThermometerItem.ambientMeasurement(event.player);
-            ThermometerItem.setHeatLevel(stack, event.player.level(), heatLevel);
+            var heatLevel = ThermometerItem.ambientMeasurement(event.getEntity());
+            ThermometerItem.setHeatLevel(stack, event.getEntity().level(), heatLevel);
         }
     }
 
@@ -129,25 +126,27 @@ public class PlayerEvents {
         var stack = event.getPlayer().getMainHandItem();
 
         if (stack.getItem() instanceof ScribeItem scribe && scribe.dropsLikeSilktouch(stack, event.getState())) {
-            event.setExpToDrop(0);
+            // TODO use data components now?
+            // event.setExpToDrop(0);
         }
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void onItemAttributes(ItemAttributeModifierEvent event) {
         var stack = event.getItemStack();
-        var mods = event.getModifiers();
 
-        if (event.getSlotType() != EquipmentSlot.MAINHAND) return;
+        if (stack.is(OTags.Items.HAS_KINETIC_DAMAGE)) {
+            // TODO check
+            var damage = event.getModifiers().stream()
+                    .filter(it -> it.matches(Attributes.ATTACK_DAMAGE, Item.BASE_ATTACK_DAMAGE_ID))
+                    .map(it -> it.modifier().amount())
+                    .findFirst()
+                    .orElse(2.0);
 
-        if (stack.is(OTags.Items.HAS_KINETIC_DAMAGE) && !mods.containsKey(OAttributes.KINETIC_DAMAGE.get())) {
-            var damage = stack.getItem() instanceof DiggerItem item
-                    ? item.getAttackDamage()
-                    : stack.getItem() instanceof SwordItem item
-                    ? item.getDamage()
-                    : 2.0F;
-            event.addModifier(OAttributes.KINETIC_DAMAGE.get(), new AttributeModifier(
-                    UUID.fromString("0191ff58-54d7-711d-8a94-692379277c23"), "Kinetic Damage", damage / 3, AttributeModifier.Operation.ADDITION)
+            event.addModifier(
+                    OAttributes.KINETIC_DAMAGE,
+                    new AttributeModifier(Oreganized.modLoc("kinetic_damage"), damage / 3, AttributeModifier.Operation.ADD_VALUE),
+                    EquipmentSlotGroup.MAINHAND
             );
         }
     }

@@ -10,7 +10,7 @@ import galena.oreganized.index.OFluids;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OPaintingVariants;
 import galena.oreganized.index.OPotions;
-import java.util.function.Supplier;
+import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
@@ -53,6 +53,7 @@ public class OLang extends OLangProvider {
         add("trim_material.oreganized.silver", "Silver material");
         add("trim_material.oreganized.electrum", "Electrum material");
         add("upgrade.oreganized.electrum_upgrade", "Electrum Upgrade");
+        addItem(OItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE, "Smithing Template");
         add("item.oreganized.smithing_template.electrum_upgrade.applies_to", "Diamond Equipment");
         add("item.oreganized.smithing_template.electrum_upgrade.ingredients", "Electrum Ingot");
 
@@ -93,16 +94,16 @@ public class OLang extends OLangProvider {
             This must be at the very bottom to avoid overwriting errors. These functions ignore objects
             that have already been translated above.
          */
-        for (Supplier<? extends Block> blocks : Oreganized.REGISTRY_HELPER.getBlockSubHelper().getDeferredRegister().getEntries()) {
+        for (Holder<? extends Block> blocks : Oreganized.REGISTRY_HELPER.getBlockSubHelper().getDeferredRegister().getEntries()) {
             tryBlock(blocks);
         }
-        for (Supplier<? extends Item> items : Oreganized.REGISTRY_HELPER.getItemSubHelper().getDeferredRegister().getEntries()) {
+        for (Holder<? extends Item> items : Oreganized.REGISTRY_HELPER.getItemSubHelper().getDeferredRegister().getEntries()) {
             if (!items.equals(OItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE)) tryItem(items);
         }
-        for (Supplier<? extends Fluid> fluids : OFluids.FLUIDS.getEntries()) {
+        for (Holder<? extends Fluid> fluids : OFluids.FLUIDS.getEntries()) {
             tryFluid(fluids);
         }
-        for (Supplier<? extends EntityType<?>> entities : OEntityTypes.ENTITIES.getEntries()) {
+        for (Holder<? extends EntityType<?>> entities : OEntityTypes.ENTITIES.getEntries()) {
             tryEntity(entities);
         }
     }

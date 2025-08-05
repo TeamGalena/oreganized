@@ -20,6 +20,7 @@ Oreganized is a mod focusing on adding new ores and metals to Minecraft. Current
 
 This mod is designed to be a Vanilla plus mod while also adding unique uses and abilities to its content rather than just meaningless toolsets for a more engaging experience that tries to match the quality of Mojang's own implementations of new content.
 '''
+enumExtensions="META-INF/enumextensions.json"
 
 [[dependencies.${mod_id}]]
     modId="neoforge"

@@ -30,8 +30,8 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -47,14 +47,13 @@ public class MoltenLeadBlock extends LiquidBlock {
     public static final BooleanProperty WAITING = BooleanProperty.create("waiting");
 
     public MoltenLeadBlock(Supplier<? extends FlowingFluid> fluid, Properties properties) {
-        super(fluid, properties.noCollission().strength(-1.0F, 3600000.0F).noLootTable().lightLevel((state) -> 8));
+        super(fluid.get(), properties.noCollission().strength(-1.0F, 3600000.0F).noLootTable().lightLevel((state) -> 8));
         registerDefaultState(defaultBlockState().setValue(WAITING, true));
     }
 
-    @Nullable
     @Override
-    public BlockPathTypes getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, @Nullable Mob entity) {
-        return BlockPathTypes.WALKABLE;
+    public PathType getAdjacentBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob, PathType originalType) {
+        return PathType.WALKABLE;
     }
 
     @Override
@@ -93,7 +92,7 @@ public class MoltenLeadBlock extends LiquidBlock {
 
     @Override
     public boolean canBeReplaced(BlockState state, Fluid fluid) {
-        if (getFluid() == fluid) return false;
+        if (this.fluid == fluid) return false;
         return super.canBeReplaced(state, fluid);
     }
 
@@ -110,7 +109,7 @@ public class MoltenLeadBlock extends LiquidBlock {
     private boolean tryEscape(BlockState state, Level level, BlockPos pos, Direction direction) {
         var adjancentPos = pos.relative(direction);
         var adjacentState = level.getBlockState(adjancentPos);
-        if (adjacentState.canBeReplaced(getFluid())) {
+        if (adjacentState.canBeReplaced(this.fluid)) {
             level.setBlockAndUpdate(adjancentPos, state);
 
             getPickupSound().ifPresent(sound -> {
@@ -137,11 +136,11 @@ public class MoltenLeadBlock extends LiquidBlock {
     @Override
     public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
         if (entity.getY() < pos.getY() + STABLE_SHAPE.max(Direction.Axis.Y)) {
-            if (!(entity instanceof LivingEntity) || entity.getFeetBlockState().is(this)) {
+            if (!(entity instanceof LivingEntity) || entity.getBlockStateOn().is(this)) {
                 entity.makeStuckInBlock(state, new Vec3(0.9F, 1.0D, 0.9F));
             }
 
-            entity.setSecondsOnFire(10);
+            entity.setRemainingFireTicks(10 * 20);
             if (!world.isClientSide) entity.setSharedFlagOnFire(true);
         }
     }
@@ -200,7 +199,8 @@ public class MoltenLeadBlock extends LiquidBlock {
     }
 
     @Override
-    public boolean isPathfindable(BlockState state, BlockGetter getter, BlockPos pos, PathComputationType pathFinder) {
+    protected boolean isPathfindable(BlockState state, PathComputationType type) {
         return true;
     }
+
 }

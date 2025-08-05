@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.BlockGetter;
@@ -93,7 +94,7 @@ public interface IMeltableBlock {
 
     default void hurt(BlockState state, Level world, Entity entity) {
         if (getGoopyness(state) < 2) return;
-        if (!entity.isSteppingCarefully() && entity instanceof LivingEntity le && !EnchantmentHelper.hasFrostWalker(le)) {
+        if (!entity.isSteppingCarefully() && entity instanceof LivingEntity le && EnchantmentHelper.hasTag(le.getItemBySlot(EquipmentSlot.FEET), OTags.Enchantments.HEAD_IMMUNITY)) {
             entity.hurt(world.damageSources().hotFloor(), 1.0F);
         }
     }

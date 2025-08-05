@@ -12,16 +12,16 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.Block;
@@ -53,9 +53,7 @@ public class ScribeItem extends Item {
 
     public boolean mineBlock(ItemStack stack, Level level, BlockState state, BlockPos pos, LivingEntity user) {
         if (!level.isClientSide && state.getDestroySpeed(level, pos) != 0F) {
-            stack.hurtAndBreak(1, user, it -> {
-                it.broadcastBreakEvent(EquipmentSlot.MAINHAND);
-            });
+            stack.hurtAndBreak(1, user, LivingEntity.getSlotForHand(user.getUsedItemHand()));
         }
 
         return true;
@@ -69,7 +67,7 @@ public class ScribeItem extends Item {
     }
 
     public boolean dropsLikeSilktouch(ItemStack stack, BlockState state) {
-        return isCorrectToolForDrops(state) && !shouldNotSilktouch(stack, state);
+        return isCorrectToolForDrops(stack, state) && !shouldNotSilktouch(stack, state);
     }
 
     private boolean shouldNotSilktouch(ItemStack stack, BlockState state) {
@@ -77,7 +75,7 @@ public class ScribeItem extends Item {
     }
 
     @Override
-    public boolean isCorrectToolForDrops(BlockState state) {
+    public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
         if(OreganizedConfig.COMMON.scribeSilkTouchStone.get()) {
             return state.is(SILKTOUCH_WITH_SCRIBE);
         } else {
@@ -91,9 +89,9 @@ public class ScribeItem extends Item {
     }
 
     @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        if (enchantment.category == EnchantmentCategory.DIGGER) return true;
-        return super.canApplyAtEnchantingTable(stack, enchantment);
+    public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
+        if(enchantment.is(EnchantmentTags.MINING_EXCLUSIVE)) return true;
+        return super.supportsEnchantment(stack, enchantment);
     }
 
     private InteractionResult replaceBlock(UseOnContext context, BlockState to, boolean particles) {
@@ -111,9 +109,7 @@ public class ScribeItem extends Item {
         if (context.getPlayer() != null) {
             context.getPlayer().playSound(SoundEvents.GRINDSTONE_USE, 1F, 1.5F);
 
-            context.getItemInHand().hurtAndBreak(1, context.getPlayer(), player -> {
-                player.broadcastBreakEvent(context.getHand());
-            });
+            context.getItemInHand().hurtAndBreak(1, context.getPlayer(), LivingEntity.getSlotForHand(context.getHand()));
         }
 
         return InteractionResult.sidedSuccess(level.isClientSide);
@@ -135,7 +131,7 @@ public class ScribeItem extends Item {
 
         if (state.getBlock() instanceof AmethystClusterBlock && !state.is(Blocks.SMALL_AMETHYST_BUD)) {
             var tool = new ItemStack(Items.IRON_PICKAXE);
-            tool.setTag(context.getItemInHand().getTag());
+            tool.applyComponents(context.getItemInHand().getComponents());
             Block.dropResources(state, context.getLevel(), context.getClickedPos(), null, context.getPlayer(), tool);
             return replaceBlock(context, Blocks.SMALL_AMETHYST_BUD.withPropertiesOf(state), false);
         }

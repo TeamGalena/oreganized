@@ -1,6 +1,7 @@
 package galena.oreganized.world.gen.structure;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import galena.oreganized.Oreganized;
 import galena.oreganized.index.OStructures;
@@ -15,14 +16,17 @@ import net.minecraft.world.level.levelgen.WorldGenerationContext;
 import net.minecraft.world.level.levelgen.heightproviders.HeightProvider;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureType;
+import net.minecraft.world.level.levelgen.structure.pools.DimensionPadding;
 import net.minecraft.world.level.levelgen.structure.pools.JigsawPlacement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
+import net.minecraft.world.level.levelgen.structure.pools.alias.PoolAliasLookup;
+import net.minecraft.world.level.levelgen.structure.templatesystem.LiquidSettings;
 import org.apache.logging.log4j.Level;
 import org.jetbrains.annotations.NotNull;
 
 public class BoulderStructure extends Structure {
 
-    public static final Codec<BoulderStructure> CODEC = RecordCodecBuilder.<BoulderStructure>mapCodec(instance ->
+    public static final MapCodec<BoulderStructure> CODEC = RecordCodecBuilder.mapCodec(instance ->
             instance.group(BoulderStructure.settingsCodec(instance),
                     StructureTemplatePool.CODEC.fieldOf("start_pool").forGetter(structure -> structure.startPool),
                     ResourceLocation.CODEC.optionalFieldOf("start_jigsaw_name").forGetter(structure -> structure.startJigsawName),
@@ -30,7 +34,7 @@ public class BoulderStructure extends Structure {
                     HeightProvider.CODEC.fieldOf("start_height").forGetter(structure -> structure.startHeight),
                     Heightmap.Types.CODEC.optionalFieldOf("project_start_to_heightmap").forGetter(structure -> structure.projectStartToHeightmap),
                     Codec.intRange(1, 128).fieldOf("max_distance_from_center").forGetter(structure -> structure.maxDistanceFromCenter)
-            ).apply(instance, BoulderStructure::new)).codec();
+            ).apply(instance, BoulderStructure::new));
 
     private final Holder<StructureTemplatePool> startPool;
     private final Optional<ResourceLocation> startJigsawName;
@@ -81,7 +85,10 @@ public class BoulderStructure extends Structure {
                         // Here, blockpos's y value is 60 which means the structure spawn 60 blocks above terrain height.
                         // Set this to false for structure to be place only at the passed in blockpos's Y value instead.
                         // Definitely keep this false when placing structures in the nether as otherwise, heightmap placing will put the structure on the Bedrock roof.
-                        this.maxDistanceFromCenter
+                        this.maxDistanceFromCenter,
+                        PoolAliasLookup.EMPTY,
+                        new DimensionPadding(10, 10),
+                        LiquidSettings.APPLY_WATERLOGGING
                 );
 
         if (structurePiecesGenerator.isPresent()) {

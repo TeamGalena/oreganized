@@ -9,8 +9,9 @@ import galena.oreganized.index.ODamageSources;
 import galena.oreganized.world.IDoorProgressHolder;
 import java.util.Optional;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -80,18 +81,18 @@ public class HeavyDoorBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void saveAdditional(CompoundTag nbt) {
-        super.saveAdditional(nbt);
+    protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider lookup) {
+        super.saveAdditional(nbt, lookup);
         nbt.putInt("Pressure", pressure);
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
+    public void loadAdditional(CompoundTag nbt, HolderLookup.Provider lookup) {
+        super.loadAdditional(nbt, lookup);
         if(nbt.contains("Pressure", 99)) pressure = nbt.getInt("Pressure");
     }
 
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player) {
+    public ItemInteractionResult use(BlockState state, Level level, BlockPos pos, Player player) {
         var progressHolder = (IDoorProgressHolder) player;
         progressHolder.oreganised$incrementOpeningProgress();
 
@@ -100,7 +101,7 @@ public class HeavyDoorBlockEntity extends BlockEntity {
             if (goopyness > 0) {
                 player.hurt(level.damageSources().source(ODamageSources.MOLTEN_LEAD), 1F);
             }
-            if (goopyness > 1) return InteractionResult.FAIL;
+            if (goopyness > 1) return ItemInteractionResult.FAIL;
         }
 
         if (pressure == 0) {
@@ -119,7 +120,7 @@ public class HeavyDoorBlockEntity extends BlockEntity {
             stopUsing(state, level, pos, player);
         }
 
-        return InteractionResult.FAIL;
+        return ItemInteractionResult.FAIL;
     }
 
 }

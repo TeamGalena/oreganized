@@ -4,97 +4,97 @@
     {
       "model": "oreganized:item/speedometer_0",
       "predicate": {
-        "minecraft:level": 0.0
+        "oreganized:level": 0.0
       }
     },
     {
       "model": "oreganized:item/speedometer_1",
       "predicate": {
-        "minecraft:level": 1.0
+        "oreganized:level": 1.0
       }
     },
     {
       "model": "oreganized:item/speedometer_2",
       "predicate": {
-        "minecraft:level": 2.0
+        "oreganized:level": 2.0
       }
     },
     {
       "model": "oreganized:item/speedometer_3",
       "predicate": {
-        "minecraft:level": 3.0
+        "oreganized:level": 3.0
       }
     },
     {
       "model": "oreganized:item/speedometer_4",
       "predicate": {
-        "minecraft:level": 4.0
+        "oreganized:level": 4.0
       }
     },
     {
       "model": "oreganized:item/speedometer_5",
       "predicate": {
-        "minecraft:level": 5.0
+        "oreganized:level": 5.0
       }
     },
     {
       "model": "oreganized:item/speedometer_6",
       "predicate": {
-        "minecraft:level": 6.0
+        "oreganized:level": 6.0
       }
     },
     {
       "model": "oreganized:item/speedometer_7",
       "predicate": {
-        "minecraft:level": 7.0
+        "oreganized:level": 7.0
       }
     },
     {
       "model": "oreganized:item/speedometer_8",
       "predicate": {
-        "minecraft:level": 8.0
+        "oreganized:level": 8.0
       }
     },
     {
       "model": "oreganized:item/speedometer_9",
       "predicate": {
-        "minecraft:level": 9.0
+        "oreganized:level": 9.0
       }
     },
     {
       "model": "oreganized:item/speedometer_10",
       "predicate": {
-        "minecraft:level": 10.0
+        "oreganized:level": 10.0
       }
     },
     {
       "model": "oreganized:item/speedometer_11",
       "predicate": {
-        "minecraft:level": 11.0
+        "oreganized:level": 11.0
       }
     },
     {
       "model": "oreganized:item/speedometer_12",
       "predicate": {
-        "minecraft:level": 12.0
+        "oreganized:level": 12.0
       }
     },
     {
       "model": "oreganized:item/speedometer_13",
       "predicate": {
-        "minecraft:level": 13.0
+        "oreganized:level": 13.0
       }
     },
     {
       "model": "oreganized:item/speedometer_14",
       "predicate": {
-        "minecraft:level": 14.0
+        "oreganized:level": 14.0
       }
     },
     {
       "model": "oreganized:item/speedometer_15",
       "predicate": {
-        "minecraft:level": 15.0
+        "oreganized:level": 15.0
       }
     }
   ]

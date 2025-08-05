@@ -3,11 +3,10 @@ package galena.oreganized.content.item;
 import galena.oreganized.Oreganized;
 import galena.oreganized.client.accessors.GuiAccessor;
 import galena.oreganized.client.tooltips.DeviceTooltip;
+import galena.oreganized.index.ODataComponents;
 import galena.oreganized.index.OItems;
 import java.util.Optional;
-import java.util.OptionalInt;
 import net.minecraft.client.Minecraft;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -17,14 +16,14 @@ import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
 @EventBusSubscriber(modid = Oreganized.MOD_ID)
 public class DeviceItem extends Item {
 
     public static final int FRAMES = 10;
-    public static final ResourceLocation PROPERTY_KEY = Oreganized.modLoc("device_value");
     public static final int TOOLTIP_COLOR = 0x8c2115;
 
     public DeviceItem(Properties properties) {
@@ -32,16 +31,15 @@ public class DeviceItem extends Item {
     }
 
     private static void generateValue(ItemStack stack, RandomSource random) {
-        stack.getOrCreateTag().putInt("Value", random.nextInt(999999));
+        stack.set(ODataComponents.DEVICE_VALUE, random.nextInt(999999));
     }
 
     private static void clearValue(ItemStack stack) {
-        stack.getOrCreateTag().remove("Value");
+        stack.remove(ODataComponents.DEVICE_VALUE);
     }
 
-    public static OptionalInt getValue(ItemStack stack) {
-        if (!stack.hasTag() || !stack.getOrCreateTag().contains("Value")) return OptionalInt.empty();
-        return OptionalInt.of(stack.getOrCreateTag().getInt("Value"));
+    public static Optional<Integer> getValue(ItemStack stack) {
+        return Optional.ofNullable(stack.get(ODataComponents.DEVICE_VALUE));
     }
 
     @Override
@@ -61,7 +59,7 @@ public class DeviceItem extends Item {
     @Override
     public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
         return getValue(stack).stream()
-                .<TooltipComponent>mapToObj(DeviceTooltip::new)
+                .<TooltipComponent>map(DeviceTooltip::new)
                 .findAny();
     }
 

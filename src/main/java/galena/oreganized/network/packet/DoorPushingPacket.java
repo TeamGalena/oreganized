@@ -1,39 +1,39 @@
 package galena.oreganized.network.packet;
 
+import galena.oreganized.Oreganized;
 import galena.oreganized.world.IDoorProgressHolder;
 import java.util.UUID;
-import java.util.function.Supplier;
-import net.minecraft.client.Minecraft;
+import net.minecraft.core.UUIDUtil;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-public record DoorPushingPacket(UUID player, boolean pushing) {
+public record DoorPushingPacket(UUID player, boolean pushing) implements CustomPacketPayload {
 
-    public void write(FriendlyByteBuf buffer) {
-        buffer.writeUUID(player);
-        buffer.writeBoolean(pushing);
-    }
+    public static final TypeAndCodec<FriendlyByteBuf, DoorPushingPacket> TYPE = new TypeAndCodec<>(
+            new Type<>(Oreganized.modLoc("door_pushing")),
+            StreamCodec.composite(
+                    UUIDUtil.STREAM_CODEC, DoorPushingPacket::player,
+                    ByteBufCodecs.BOOL, DoorPushingPacket::pushing,
+                    DoorPushingPacket::new
+            )
+    );
 
-    public void handle(Supplier<NetworkEvent.Context> contextSupplier) {
-        var context = contextSupplier.get();
+    public void handle(IPayloadContext context) {
         context.enqueueWork(() -> {
-            var level = Minecraft.getInstance().level;
-            if (level == null) return;
-
-            var player = level.getPlayerByUUID(player());
+            var player = context.player().level().getPlayerByUUID(player());
             if (player instanceof IDoorProgressHolder progressHolder) {
                 if (pushing) progressHolder.oreganised$incrementOpeningProgress();
                 else progressHolder.oreganised$resetOpeningProgress();
             }
         });
-
-        context.setPacketHandled(true);
     }
 
-    public static DoorPushingPacket from(FriendlyByteBuf buffer) {
-        var player = buffer.readUUID();
-        var pushing = buffer.readBoolean();
-        return new DoorPushingPacket(player, pushing);
+    @Override
+    public Type<? extends CustomPacketPayload> type() {
+        return TYPE.type();
     }
 
 }

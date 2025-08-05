@@ -8,7 +8,7 @@ import net.minecraft.world.entity.Entity;
 
 public class LeadBoltRender  extends ArrowRenderer {
 
-    public static final ResourceLocation TEXTURE = new ResourceLocation(Oreganized.MOD_ID, "textures/item/lead_bolt_projectile.png");
+    public static final ResourceLocation TEXTURE = Oreganized.modLoc("textures/item/lead_bolt_projectile.png");
 
     public LeadBoltRender(EntityRendererProvider.Context context) {
         super(context);

@@ -1,37 +1,36 @@
 package galena.oreganized.network.packet;
 
+import galena.oreganized.Oreganized;
 import galena.oreganized.world.KineticDamage;
-import java.util.function.Supplier;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-public record KineticHitPacket(int target, double factor) {
+public record KineticHitPacket(int target, float factor) implements CustomPacketPayload {
 
-    public void write(FriendlyByteBuf buffer) {
-        buffer.writeInt(target);
-        buffer.writeDouble(factor);
-    }
+    public static final TypeAndCodec<FriendlyByteBuf, KineticHitPacket> TYPE = new TypeAndCodec<>(
+            new Type<>(Oreganized.modLoc("kinetic_hit")),
+            StreamCodec.composite(
+                    ByteBufCodecs.INT, KineticHitPacket::target,
+                    ByteBufCodecs.FLOAT, KineticHitPacket::factor,
+                    KineticHitPacket::new
+            )
+    );
 
-    public void handle(Supplier<NetworkEvent.Context> contextSupplier) {
-        var context = contextSupplier.get();
+    public void handle(IPayloadContext context) {
         context.enqueueWork(() -> {
-            var level = Minecraft.getInstance().level;
-            if (level == null) return;
-
-            var target = level.getEntity(target());
+            var target = context.player().level().getEntity(target());
             if (target == null) return;
 
             KineticDamage.spawnParticles(target, factor);
         });
-
-        context.setPacketHandled(true);
     }
 
-    public static KineticHitPacket from(FriendlyByteBuf buffer) {
-        var target = buffer.readInt();
-        var factor = buffer.readDouble();
-        return new KineticHitPacket(target, factor);
+    @Override
+    public CustomPacketPayload.Type<? extends CustomPacketPayload> type() {
+        return TYPE.type();
     }
 
 }

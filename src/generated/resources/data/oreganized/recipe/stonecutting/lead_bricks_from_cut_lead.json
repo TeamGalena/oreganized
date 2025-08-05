@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "oreganized:cut_lead"
+  },
+  "result": {
+    "count": 1,
+    "id": "oreganized:lead_bricks"
+  }
+}

@@ -5,9 +5,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -33,7 +34,7 @@ public class LeadDoorBlock extends DoorBlock implements IMeltableBlock, EntityBl
 
 
     public LeadDoorBlock(Properties properties) {
-        super(properties, OBlocks.LEAD_BLOCK_SET);
+        super(OBlocks.LEAD_BLOCK_SET, properties);
         //registerDefaultState(defaultBlockState().setValue(ANIMATED, false));
     }
 
@@ -49,9 +50,11 @@ public class LeadDoorBlock extends DoorBlock implements IMeltableBlock, EntityBl
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         var controller = state.getValue(HALF) == DoubleBlockHalf.UPPER ? pos.below() : pos;
-        return HeavyDoorBlockEntity.getAt(level, controller).map(it -> it.use(state, level, pos, player)).orElse(InteractionResult.PASS);
+        return HeavyDoorBlockEntity.getAt(level, controller)
+                .map(it -> it.use(state, level, pos, player))
+                .orElse(ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION);
     }
 
     @Override

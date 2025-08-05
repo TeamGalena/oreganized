@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "count": 2,
-  "ingredient": {
-    "item": "oreganized:lead_block"
-  },
-  "result": "oreganized:cut_lead"
-}

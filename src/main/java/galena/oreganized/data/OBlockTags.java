@@ -39,8 +39,8 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 
 public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
@@ -102,7 +102,7 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
         tag(Tags.Blocks.ORES).addTags(ORES_SILVER, ORES_LEAD);
         tag(Tags.Blocks.ORE_RATES_SINGULAR).addTags(ORES_SILVER, ORES_LEAD);
         tag(Tags.Blocks.STORAGE_BLOCKS).addTags(STORAGE_BLOCKS_SILVER, STORAGE_BLOCKS_LEAD, STORAGE_BLOCKS_ELECTRUM, STORAGE_BLOCKS_RAW_SILVER, STORAGE_BLOCKS_RAW_LEAD);
-        tag(Tags.Blocks.GLASS).addTag(CRYSTAL_GLASS);
+        tag(Tags.Blocks.GLASS_BLOCKS).addTag(CRYSTAL_GLASS);
         tag(Tags.Blocks.GLASS_PANES).addTag(CRYSTAL_GLASS_PANES);
         tag(Tags.Blocks.ORES_IN_GROUND_STONE).add(OBlocks.LEAD_ORE.get(), OBlocks.SILVER_ORE.get());
         tag(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE).add(OBlocks.DEEPSLATE_LEAD_ORE.get(), OBlocks.DEEPSLATE_SILVER_ORE.get());
@@ -182,19 +182,18 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
                 .add(OBlocks.GROOVED_BLUE_ICE.get());
 
         var scribeMineable = tag(MINEABLE_WITH_SCRIBE)
-                .addTags(Tags.Blocks.GLASS)
+                .addTags(Tags.Blocks.GLASS_BLOCKS)
                 .addTags(Tags.Blocks.GLASS_PANES)
-                .addTags(Tags.Blocks.OBSIDIAN)
+                .addTags(Tags.Blocks.OBSIDIANS)
                 .addTags(BlockTags.ICE)
                 .addTags(BlockTags.CRYSTAL_SOUND_BLOCKS)
-                .addTags(Tags.Blocks.STORAGE_BLOCKS_AMETHYST)
+                .add(Blocks.AMETHYST_BLOCK)
                 .add(Blocks.AMETHYST_CLUSTER)
                 .add(Blocks.LARGE_AMETHYST_BUD)
                 .add(Blocks.MEDIUM_AMETHYST_BUD)
                 .add(Blocks.SMALL_AMETHYST_BUD);
 
         scribeMineable
-                .addTags(Tags.Blocks.STORAGE_BLOCKS_QUARTZ)
                 .add(Blocks.QUARTZ_BRICKS)
                 .add(Blocks.QUARTZ_PILLAR)
                 .add(Blocks.QUARTZ_SLAB)
@@ -204,26 +203,28 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
                 .add(Blocks.SMOOTH_QUARTZ_SLAB)
                 .add(Blocks.SMOOTH_QUARTZ_STAIRS);
 
+        scribeMineable.addOptionalTag(ResourceLocation.fromNamespaceAndPath("botania", "quartz_blocks"));
+
         Stream.of("%s", "waxed_%s", "%s_cluster", "%s_pane").forEach(pattern -> {
             scribeMineable
-                    .addOptional(new ResourceLocation("quark", pattern.formatted("red_corundum")))
-                    .addOptional(new ResourceLocation("quark", pattern.formatted("orange_corundum")))
-                    .addOptional(new ResourceLocation("quark", pattern.formatted("yellow_corundum")))
-                    .addOptional(new ResourceLocation("quark", pattern.formatted("green_corundum")))
-                    .addOptional(new ResourceLocation("quark", pattern.formatted("blue_corundum")))
-                    .addOptional(new ResourceLocation("quark", pattern.formatted("indigo_corundum")))
-                    .addOptional(new ResourceLocation("quark", pattern.formatted("violet_corundum")))
-                    .addOptional(new ResourceLocation("quark", pattern.formatted("white_corundum")))
-                    .addOptional(new ResourceLocation("quark", pattern.formatted("black_corundum")))
+                    .addOptional(ResourceLocation.fromNamespaceAndPath("quark", pattern.formatted("red_corundum")))
+                    .addOptional(ResourceLocation.fromNamespaceAndPath("quark", pattern.formatted("orange_corundum")))
+                    .addOptional(ResourceLocation.fromNamespaceAndPath("quark", pattern.formatted("yellow_corundum")))
+                    .addOptional(ResourceLocation.fromNamespaceAndPath("quark", pattern.formatted("green_corundum")))
+                    .addOptional(ResourceLocation.fromNamespaceAndPath("quark", pattern.formatted("blue_corundum")))
+                    .addOptional(ResourceLocation.fromNamespaceAndPath("quark", pattern.formatted("indigo_corundum")))
+                    .addOptional(ResourceLocation.fromNamespaceAndPath("quark", pattern.formatted("violet_corundum")))
+                    .addOptional(ResourceLocation.fromNamespaceAndPath("quark", pattern.formatted("white_corundum")))
+                    .addOptional(ResourceLocation.fromNamespaceAndPath("quark", pattern.formatted("black_corundum")))
             ;
         });
 
         scribeMineable
-                .addOptional(new ResourceLocation("ae2", "quartz_cluster"))
-                .addOptional(new ResourceLocation("ae2", "flawless_budding_quartz"))
-                .addOptional(new ResourceLocation("ae2", "flawed_budding_quartz"))
-                .addOptional(new ResourceLocation("ae2", "damaged_budding_quartz"))
-                .addOptional(new ResourceLocation("ae2", "chipped_budding_quartz"));
+                .addOptional(ResourceLocation.fromNamespaceAndPath("ae2", "quartz_cluster"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath("ae2", "flawless_budding_quartz"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath("ae2", "flawed_budding_quartz"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath("ae2", "damaged_budding_quartz"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath("ae2", "chipped_budding_quartz"));
 
         tag(SILKTOUCH_WITH_SCRIBE_BLACKLIST)
                 .add(OBlocks.GROOVED_ICE.get())
@@ -240,7 +241,7 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
 
         tag(PREVENTS_LEAD_CLOUD)
                 .add(Blocks.WATER)
-                .addOptional(new ResourceLocation("spelunkery", "spring_water"));
+                .addOptional(ResourceLocation.fromNamespaceAndPath("spelunkery", "spring_water"));
 
         tag(CREATES_LEAD_CLOUD)
                 .addTags(ORES_LEAD)

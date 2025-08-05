@@ -22,7 +22,7 @@ public class MobEffectInstanceMixin {
     )
     private int replaceStunning(int original) {
         var self = (MobEffectInstance) (Object) this;
-        if (self.getEffect() == OEffects.STUNNING.get()) return StunningEffect.MAX_AMPLIFIER + 1;
+        if (OEffects.STUNNING.getKey().equals(self.getEffect().getKey())) return StunningEffect.MAX_AMPLIFIER + 1;
         return original;
     }
 

@@ -7,7 +7,7 @@ import vectorwing.farmersdelight.common.item.KnifeItem;
 
 public class FarmersDelightCompat {
 
-    public static final Function<Item.Properties, ? extends Item> KNIFE_FACTORY = (it) ->
-            new KnifeItem(OItemTiers.ELECTRUM, 0.5F, -1.8F, it);
+    public static final Function<Item.Properties, ? extends Item> KNIFE_FACTORY = it ->
+            new KnifeItem(OItemTiers.ELECTRUM, it);
 
 }

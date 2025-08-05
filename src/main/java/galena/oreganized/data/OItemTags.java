@@ -15,8 +15,8 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class OItemTags extends ItemTagsProvider {
 
@@ -72,7 +72,6 @@ public class OItemTags extends ItemTagsProvider {
         copy(BlockTags.STAIRS, ItemTags.STAIRS);
         copy(BlockTags.SLABS, ItemTags.SLABS);
         tag(ItemTags.BEACON_PAYMENT_ITEMS).add(OItems.ELECTRUM_INGOT.get());
-        tag(ItemTags.MUSIC_DISCS).add(OItems.MUSIC_DISC_STRUCTURE.get());
         tag(ItemTags.TRIMMABLE_ARMOR).add(OItems.ELECTRUM_HELMET.get(), OItems.ELECTRUM_CHESTPLATE.get(), OItems.ELECTRUM_LEGGINGS.get(), OItems.ELECTRUM_BOOTS.get());
         tag(ItemTags.TRIM_MATERIALS).add(OItems.LEAD_INGOT.get(), OItems.SILVER_INGOT.get(), OItems.ELECTRUM_INGOT.get());
         tag(ItemTags.SMALL_FLOWERS).add(OBlocks.WHITE_DATURA.get().asItem());
@@ -82,7 +81,7 @@ public class OItemTags extends ItemTagsProvider {
         tag(Tags.Items.INGOTS).addTags(INGOTS_SILVER, INGOTS_LEAD, INGOTS_ELECTRUM);
         tag(Tags.Items.ORES).addTags(ORES_SILVER, ORES_LEAD);
         tag(Tags.Items.STORAGE_BLOCKS).addTags(STORAGE_BLOCKS_SILVER, STORAGE_BLOCKS_LEAD, STORAGE_BLOCKS_ELECTRUM);
-        tag(Tags.Items.GLASS).addTags(CRYSTAL_GLASS);
+        tag(Tags.Items.GLASS_BLOCKS).addTags(CRYSTAL_GLASS);
         tag(Tags.Items.GLASS_PANES).addTags(CRYSTAL_GLASS_PANES);
         tag(Tags.Items.RAW_MATERIALS).addTags(RAW_MATERIALS_SILVER, RAW_MATERIALS_LEAD);
         copy(Tags.Blocks.ORES_IN_GROUND_STONE, Tags.Items.ORES_IN_GROUND_STONE);
@@ -97,7 +96,6 @@ public class OItemTags extends ItemTagsProvider {
         tag(ItemTags.SHOVELS).add(OItems.ELECTRUM_SHOVEL.get());
         tag(ItemTags.HOES).add(OItems.ELECTRUM_HOE.get());
         tag(TOOLS_KNIVES).add(OItems.ELECTRUM_KNIFE.get());
-        tag(TOOLS_KNIVES_FD).add(OItems.ELECTRUM_KNIFE.get());
         tag(SHIELDS).add(OItems.ELECTRUM_SHIELD.get());
         tag(SHIELDS_SE).add(OItems.ELECTRUM_SHIELD.get());
         tag(MACHETES).add(OItems.ELECTRUM_MACHETE.get());

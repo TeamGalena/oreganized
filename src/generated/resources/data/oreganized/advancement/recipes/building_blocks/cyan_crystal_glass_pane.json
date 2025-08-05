@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cyan_crystal_glass": {
+      "conditions": {
+        "items": [
+          {
+            "items": "oreganized:cyan_crystal_glass"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "oreganized:cyan_crystal_glass_pane"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_cyan_crystal_glass"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "oreganized:cyan_crystal_glass_pane"
+    ]
+  }
+}

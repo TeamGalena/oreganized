@@ -5,13 +5,15 @@ import galena.oreganized.client.accessors.GuiAccessor;
 import galena.oreganized.client.tooltips.ThermometerTooltip;
 import galena.oreganized.content.block.IMeltableBlock;
 import galena.oreganized.index.OCriteriaTriggers;
+import galena.oreganized.index.ODataComponents;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
 import java.util.Optional;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -34,22 +36,22 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.EventBusSubscriber;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @EventBusSubscriber(modid = Oreganized.MOD_ID)
 public class ThermometerItem extends Item {
 
-    public static final ResourceLocation BREAK_LOOT_TABLE = Oreganized.modLoc("gameplay/thermometer_breaking");
-    public static final ResourceLocation PROPERTY_KEY = new ResourceLocation("level");
+    public static final ResourceKey<LootTable> BREAK_LOOT_TABLE = ResourceKey.create(Registries.LOOT_TABLE, Oreganized.modLoc("gameplay/thermometer_breaking"));
     private static final int AMBIENT_RANGE = 5;
     public static final int HEAT_LEVELS = 9;
 
@@ -79,8 +81,8 @@ public class ThermometerItem extends Item {
         var level = player.level();
         var pos = player.blockPosition();
 
-        if (player.getFeetBlockState().is(OTags.Blocks.LAVA_HEAT_LEVEL)) return 8;
-        if (player.getFeetBlockState().is(OTags.Blocks.FIRE_HEAT_LEVEL)) return 7;
+        if (player.getBlockStateOn().is(OTags.Blocks.LAVA_HEAT_LEVEL)) return 8;
+        if (player.getBlockStateOn().is(OTags.Blocks.FIRE_HEAT_LEVEL)) return 7;
         if (player.isOnFire()) return 5;
         if (player.isFreezing()) return 0;
 
@@ -117,7 +119,7 @@ public class ThermometerItem extends Item {
 
         if (entity.isInvertedHealAndHarm()) return 1;
 
-        if (entity.getActiveEffects().stream().anyMatch(it -> !it.getEffect().isBeneficial())) return 3;
+        if (entity.getActiveEffects().stream().anyMatch(it -> !it.getEffect().value().isBeneficial())) return 3;
 
         return 2;
     }
@@ -163,7 +165,7 @@ public class ThermometerItem extends Item {
         if (heatLevel > 6) {
             stack.shrink(1);
             if (player.level() instanceof ServerLevel level) {
-                var lootTable = level.getServer().getLootData().getLootTable(BREAK_LOOT_TABLE);
+                var lootTable = level.getServer().reloadableRegistries().getLootTable(BREAK_LOOT_TABLE);
                 var lootParams = new LootParams.Builder(level)
                         .withParameter(LootContextParams.ORIGIN, pos)
                         .withParameter(LootContextParams.THIS_ENTITY, player)
@@ -176,7 +178,7 @@ public class ThermometerItem extends Item {
                     Containers.dropItemStack(level, pos.x(), pos.y(), pos.z(), drop);
                 });
 
-                OCriteriaTriggers.BROKEN_THERMOMETER.trigger((ServerPlayer) player);
+                OCriteriaTriggers.BROKEN_THERMOMETER.get().trigger((ServerPlayer) player);
             }
         } else {
             setLocked(player, stack, false);
@@ -191,14 +193,12 @@ public class ThermometerItem extends Item {
     }
 
     public static int getHeatLevel(ItemStack stack) {
-        if (!stack.hasTag()) return 0;
-        return stack.getOrCreateTag().getInt("OreganizedHeat");
+        return stack.getOrDefault(ODataComponents.HEAT_LEVEL, 0);
     }
 
     public static void setHeatLevel(ItemStack stack, @Nullable Level level, int heatLevel) {
         if (getHeatLevel(stack) == heatLevel) return;
-        var nbt = stack.getOrCreateTag();
-        nbt.putInt("OreganizedHeat", heatLevel);
+        stack.set(ODataComponents.HEAT_LEVEL, heatLevel);
         if (level != null && level.isClientSide()) {
             if (Minecraft.getInstance().gui instanceof GuiAccessor accessor) {
                 accessor.oreganized$setToolHighlightTimer(60);
@@ -207,15 +207,12 @@ public class ThermometerItem extends Item {
     }
 
     public static boolean isLocked(ItemStack stack) {
-        return Optional.ofNullable(stack.getTag())
-                .filter(it -> it.getBoolean("Locked"))
-                .isPresent();
+        return stack.getOrDefault(ODataComponents.LOCKED, false);
     }
 
     private static void setLocked(@Nullable Entity user, ItemStack stack, boolean locked) {
-        var tag = stack.getOrCreateTag();
-        if (tag.getBoolean("Locked") == locked) return;
-        tag.putBoolean("Locked", locked);
+        if (isLocked(stack) == locked) return;
+        stack.set(ODataComponents.LOCKED, locked);
         var sound = locked ? SoundEvents.LODESTONE_COMPASS_LOCK : SoundEvents.AMETHYST_BLOCK_RESONATE;
         if (user != null) {
             user.level().playSound(user, user.blockPosition(), sound, SoundSource.PLAYERS, 1.0F, 1.2F);
@@ -229,7 +226,7 @@ public class ThermometerItem extends Item {
         setLocked(event.getEntity(), stack, false);
 
         if (event.getEntity() instanceof ServerPlayer player) {
-            OCriteriaTriggers.SHAKEN_THERMOMETER.trigger(player);
+            OCriteriaTriggers.SHAKEN_THERMOMETER.get().trigger(player);
         }
     }
 

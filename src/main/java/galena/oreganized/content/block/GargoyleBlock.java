@@ -2,6 +2,7 @@ package galena.oreganized.content.block;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
 
+import com.mojang.serialization.MapCodec;
 import galena.oreganized.content.entity.GargoyleBlockEntity;
 import galena.oreganized.index.OBlockEntities;
 import java.util.Map;
@@ -12,8 +13,9 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -36,18 +38,25 @@ import org.jetbrains.annotations.Nullable;
 
 public class GargoyleBlock extends HorizontalDirectionalBlock implements EntityBlock {
 
+    private static final MapCodec<GargoyleBlock> CODEC = simpleCodec(GargoyleBlock::new);
+
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return CODEC;
+    }
+
     public static final EnumProperty<AttachmentType> ATTACHMENT = EnumProperty.create("attachment", AttachmentType.class);
 
     public final Map<BlockState, VoxelShape> SHAPES = getShapeForEachState(this::getShapeFor);
 
     public static final DispenseItemBehavior DISPENSE_ITEM_BEHAVIOR = (source, stack) -> {
-        var dispenser = source.getBlockState();
+        var dispenser = source.state();
         var facing = dispenser.getValue(DispenserBlock.FACING);
-        var targetPos = source.getPos().relative(facing);
-        var target = source.getLevel().getBlockEntity(targetPos);
+        var targetPos = source.pos().relative(facing);
+        var target = source.level().getBlockEntity(targetPos);
 
         if (target instanceof GargoyleBlockEntity gargoyle) {
-            gargoyle.interact(source.getLevel(), targetPos, null, stack, false);
+            gargoyle.interact(source.level(), targetPos, null, stack, false);
         }
 
         return stack;
@@ -102,14 +111,13 @@ public class GargoyleBlock extends HorizontalDirectionalBlock implements EntityB
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         var blockEntity = level.getBlockEntity(pos);
         if (blockEntity instanceof GargoyleBlockEntity gargoyle) {
-            var stack = player.getItemInHand(hand);
             return gargoyle.interact(level, pos, player, stack, false);
         }
 
-        return super.use(state, level, pos, player, hand, hit);
+        return super.useItemOn(stack, state, level, pos, player, hand, hit);
     }
 
     public static void dripParticles(BlockState state, Level level, BlockPos pos, RandomSource random, ParticleOptions type) {

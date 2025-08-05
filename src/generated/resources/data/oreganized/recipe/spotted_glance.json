@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "O": {
+      "item": "oreganized:glance"
+    },
+    "X": {
+      "tag": "c:nuggets/lead"
+    }
+  },
+  "pattern": [
+    " X ",
+    "XOX",
+    " X "
+  ],
+  "result": {
+    "count": 1,
+    "id": "oreganized:spotted_glance"
+  }
+}

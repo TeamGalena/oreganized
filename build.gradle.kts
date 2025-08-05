@@ -17,7 +17,6 @@ val farmersdelight_version: String by extra
 //val nethersdelight_version: String by extra
 //val shieldexpansion_version: String by extra
 val create_version: String by extra
-val ponder_version: String by extra
 val supplementaries_version: String by extra
 //val scannable_version: String by extra
 //val architectury_version: String by extra
@@ -50,21 +49,20 @@ java {
     withSourcesJar()
 }
 
-// TODO accessTransformer(file("src/main/resources/META-INF/accesstransformer.cfg"))
-
-/* TODO
-runs {
-    create("client") {
-        taskName = "Client"
+minecraft {
+    accessTransformers {
+        file("src/main/resources/META-INF/accesstransformer.cfg")
     }
+}
+
+runs {
+    create("client")
 
     create("server") {
-        taskName = "Server"
         workingDirectory("run/server")
     }
 
     create("data") {
-        taskName = "Data"
         workingDirectory("run/data")
 
         val existingMods = listOf(
@@ -73,30 +71,27 @@ runs {
             "dye_depot",
         )
 
-        args(
+        arguments(
             listOf(
                 "--mod",
                 mod_id,
                 "--all",
                 "--output",
-                file("src/generated/resources/"),
+                file("src/generated/resources/").path,
                 "--existing",
-                file("src/main/resources/"),
+                file("src/main/resources/").path,
             ) + existingMods.flatMap {
                 listOf("--existing-mod", it)
             })
     }
 
-    forEach {
-        it.args("-mixin.config=${mod_id}.mixins.json")
-        it.mods {
-            create(mod_id) {
-                source(sourceSets.main.get())
-            }
+    configureEach {
+        dependencies {
+            // remove once transient dependencies are including in multikulti
+            runtime("org.jetbrains.kotlin:kotlin-stdlib:2.2.0")
         }
     }
 }
-*/
 
 sourceSets.main {
     resources.srcDir("src/generated/resources")
@@ -139,7 +134,7 @@ repositories {
     }
 
     maven {
-        url = uri("https://registry.somethingcatchy.net/repository/maven-releases/")
+        url = uri("https://registry.somethingcatchy.net/repository/maven-public/")
         content {
             includeGroup("dev.galena")
             includeGroup("com.possible-triangle")
@@ -169,8 +164,7 @@ dependencies {
     implementation("maven.modrinth:farmers-delight:${farmersdelight_version}")
     // implementation("maven.modrinth:nethers-delight:${nethersdelight_version}")
     // implementation("maven.modrinth:shield-expansion:${shieldexpansion_version}")
-    implementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { isTransitive = false }
-    compileOnly("net.createmod.ponder:Ponder-NeoForge-${minecraft_version}:${ponder_version}")
+    implementation("com.simibubi.create:create-${minecraft_version}:${create_version}:all") { isTransitive = false }
     implementation("maven.modrinth:supplementaries:${supplementaries_version}")
 
     // For dev testing

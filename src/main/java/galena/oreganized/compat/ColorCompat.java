@@ -19,7 +19,7 @@ public class ColorCompat {
     }
 
     public static ResourceLocation createId(String suffix, DyeColor color) {
-        return new ResourceLocation(getNamespace(color), color.getSerializedName() + "_" + suffix);
+        return ResourceLocation.fromNamespaceAndPath(getNamespace(color), color.getSerializedName() + "_" + suffix);
     }
 
     public static Block getColoredBlock(String suffix, DyeColor color) {

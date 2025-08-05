@@ -1,16 +1,6 @@
 {
-  "parent": "shieldexp:item/netherite_shield",
-  "gui_light": "front",
-  "overrides": [
-    {
-      "model": "oreganized:item/electrum_shield_blocking",
-      "predicate": {
-        "minecraft:blocking": 1.0
-      }
-    }
-  ],
+  "parent": "minecraft:item/generated",
   "textures": {
-    "1": "oreganized:item/electrum_shield",
-    "particle": "oreganized:item/electrum_shield"
+    "layer0": "oreganized:item/electrum_shield"
   }
 }

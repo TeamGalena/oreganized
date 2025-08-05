@@ -1,0 +1,44 @@
+{
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "activated_gargoyle": {
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "oreganized:gargoyle"
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": "#c:ingots/silver"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:item_used_on_block"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.oreganized.weeping_devil.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "oreganized:gargoyle"
+    },
+    "title": {
+      "translate": "advancements.oreganized.weeping_devil.title"
+    }
+  },
+  "requirements": [
+    [
+      "activated_gargoyle"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
