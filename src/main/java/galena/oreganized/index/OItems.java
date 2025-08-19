@@ -22,6 +22,7 @@ import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -61,14 +62,14 @@ public class OItems {
     public static final DeferredItem<Item> BUSH_HAMMER = HELPER.createItem("bush_hammer", () -> new BushHammerItem(OItemTiers.LEAD, new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> SCRIBE = HELPER.createItem("scribe", () -> new ScribeItem(new Item.Properties().durability(250)));
 
-    public static final DeferredItem<Item> ELECTRUM_SWORD = HELPER.createItem("electrum_sword", () -> new SwordItem(OItemTiers.ELECTRUM, new Item.Properties()));
-    public static final DeferredItem<Item> ELECTRUM_SHOVEL = HELPER.createItem("electrum_shovel", () -> new ShovelItem(OItemTiers.ELECTRUM, new Item.Properties()));
-    public static final DeferredItem<Item> ELECTRUM_PICKAXE = HELPER.createItem("electrum_pickaxe", () -> new PickaxeItem(OItemTiers.ELECTRUM, new Item.Properties()));
-    public static final DeferredItem<Item> ELECTRUM_AXE = HELPER.createItem("electrum_axe", () -> new AxeItem(OItemTiers.ELECTRUM, new Item.Properties()));
-    public static final DeferredItem<Item> ELECTRUM_HOE = HELPER.createItem("electrum_hoe", () -> new HoeItem(OItemTiers.ELECTRUM, new Item.Properties()));
+    public static final DeferredItem<Item> ELECTRUM_SWORD = HELPER.createItem("electrum_sword", () -> new SwordItem(OItemTiers.ELECTRUM, new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.ELECTRUM, 3, -2.4F))));
+    public static final DeferredItem<Item> ELECTRUM_SHOVEL = HELPER.createItem("electrum_shovel", () -> new ShovelItem(OItemTiers.ELECTRUM, new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.ELECTRUM, 1.5F, -3.0F))));
+    public static final DeferredItem<Item> ELECTRUM_PICKAXE = HELPER.createItem("electrum_pickaxe", () -> new PickaxeItem(OItemTiers.ELECTRUM, new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.ELECTRUM, 1.0F, -2.8F))));
+    public static final DeferredItem<Item> ELECTRUM_AXE = HELPER.createItem("electrum_axe", () -> new AxeItem(OItemTiers.ELECTRUM, new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.ELECTRUM, 6.0F, -3.1F))));
+    public static final DeferredItem<Item> ELECTRUM_HOE = HELPER.createItem("electrum_hoe", () -> new HoeItem(OItemTiers.ELECTRUM, new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.ELECTRUM, -2.0F, -1.0F))));
 
     @SuppressWarnings({"Convert2MethodRef", "FunctionalExpressionCanBeFolded"})
-    public static final DeferredItem<Item> ELECTRUM_KNIFE = HELPER.createItem("electrum_knife", compat(FARMERS_DELIGHT_ID, it -> FarmersDelightCompat.KNIFE_FACTORY.apply(it), new Item.Properties()));
+    public static final DeferredItem<Item> ELECTRUM_KNIFE = HELPER.createItem("electrum_knife", compat(FARMERS_DELIGHT_ID, it -> FarmersDelightCompat.KNIFE_FACTORY.apply(it), new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.ELECTRUM, 0.5F, -2.0F))));
     public static final DeferredItem<Item> ELECTRUM_SHIELD = HELPER.createItem("electrum_shield", () -> new ShieldItem(new Item.Properties().durability(363)));
     public static final DeferredItem<Item> ELECTRUM_MACHETE = HELPER.createItem("electrum_machete", () -> new SwordItem(OItemTiers.ELECTRUM,  new Item.Properties()));
 
