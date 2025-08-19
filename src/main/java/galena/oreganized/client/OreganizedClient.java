@@ -2,6 +2,8 @@ package galena.oreganized.client;
 
 import com.mojang.math.Axis;
 import galena.oreganized.Oreganized;
+import galena.oreganized.client.extensions.ElectrumArmorClientExtensions;
+import galena.oreganized.client.extensions.MoltenLeadClientExtensions;
 import galena.oreganized.client.render.entity.LeadBoltRender;
 import galena.oreganized.client.render.entity.ShrapnelBombMinecartRender;
 import galena.oreganized.client.render.entity.ShrapnelBombRender;
@@ -15,6 +17,7 @@ import galena.oreganized.content.item.ThermometerItem;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.ODataComponents;
 import galena.oreganized.index.OEntityTypes;
+import galena.oreganized.index.OFluids;
 import galena.oreganized.index.OItems;
 import galena.oreganized.world.IDoorProgressHolder;
 import galena.oreganized.world.IMotionHolder;
@@ -44,6 +47,7 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterClientTooltipComponentFactoriesEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RenderHandEvent;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
@@ -127,6 +131,12 @@ public class OreganizedClient {
     public static void registerClientTooltips(RegisterClientTooltipComponentFactoriesEvent event) {
         event.register(ThermometerTooltip.class, ClientThermometerTooltip::new);
         event.register(DeviceTooltip.class, ClientDeviceTooltip::new);
+    }
+
+    @SubscribeEvent
+    public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
+        event.registerFluidType(new MoltenLeadClientExtensions(), OFluids.MOLTEN_LEAD_TYPE);
+        event.registerItem(new ElectrumArmorClientExtensions(), OItems.ELECTRUM_HELMET, OItems.ELECTRUM_CHESTPLATE, OItems.ELECTRUM_LEGGINGS, OItems.ELECTRUM_BOOTS);
     }
 
     @EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT)
