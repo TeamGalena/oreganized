@@ -2,6 +2,8 @@ package galena.oreganized.content.block;
 
 import galena.oreganized.Oreganized;
 import galena.oreganized.OreganizedConfig;
+import galena.oreganized.api.LeadProtections;
+import galena.oreganized.api.PreventableEffectCloud;
 import galena.oreganized.index.OCriteriaTriggers;
 import galena.oreganized.index.OEffects;
 import galena.oreganized.index.OItems;
@@ -63,7 +65,8 @@ public class LeadOreBlock {
 
     private static boolean shouldSpawnCloud(BlockState state, LevelAccessor level, BlockPos pos, ItemStack stack) {
         if (!OreganizedConfig.COMMON.leadDustCloud.get()) return false;
-        if (stack.is(OItems.SCRIBE.get()) || EnchantmentHelper.hasTag(stack, OTags.Enchantments.PREVENTS_LEAD_CLOUD)) return false;
+        if (stack.is(OItems.SCRIBE.get()) || EnchantmentHelper.hasTag(stack, OTags.Enchantments.PREVENTS_LEAD_CLOUD))
+            return false;
         if (!state.is(OTags.Blocks.CREATES_LEAD_CLOUD)) return false;
 
         for (var direction : Direction.values()) {
@@ -77,6 +80,9 @@ public class LeadOreBlock {
     public static AreaEffectCloud spawnCloud(Level level, BlockPos pos, float size) {
         var vec = Vec3.atCenterOf(pos);
         var cloud = new AreaEffectCloud(level, vec.x, vec.y, vec.z);
+        if (cloud instanceof PreventableEffectCloud preventable) {
+            preventable.setPreventable(true);
+        }
 
         getEffects(Math.max(1, (int) (size))).forEach(cloud::addEffect);
 
@@ -104,7 +110,7 @@ public class LeadOreBlock {
                         facing.getStepX() * speed, facing.getStepY() * speed, facing.getStepZ() * speed
                 );
 
-                var targets = level.getEntitiesOfClass(LivingEntity.class, AABB.encapsulatingFullBlocks(frontPos, pos.relative(facing, maxDistance)).expandTowards(1, 1, 1));
+                var targets = level.getEntitiesOfClass(LivingEntity.class, AABB.encapsulatingFullBlocks(frontPos, pos.relative(facing, maxDistance)).expandTowards(1, 1, 1), LeadProtections::isNotProtected);
 
                 targets.forEach(target -> {
                     getEffects(1)

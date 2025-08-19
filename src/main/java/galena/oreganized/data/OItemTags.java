@@ -11,6 +11,7 @@ import javax.annotation.Nullable;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
@@ -111,5 +112,19 @@ public class OItemTags extends ItemTagsProvider {
         );
 
         tag(OTags.Items.GARGOYLE_SNACK).addTags(INGOTS_SILVER);
+
+        var protectiveArmorParts = tag(OTags.Items.PROTECTIVE_ARMOR_PART);
+
+        protectiveArmorParts
+                .addOptional(ResourceLocation.fromNamespaceAndPath("thermal", "hazmat_helmet"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath("thermal", "hazmat_chestplate"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath("thermal", "hazmat_leggings"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath("thermal", "hazmat_boots"));
+
+        protectiveArmorParts
+                .addOptional(ResourceLocation.fromNamespaceAndPath("alexscaves", "hazmat_mask"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath("alexscaves", "hazmat_chestplate"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath("alexscaves", "hazmat_leggings"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath("alexscaves", "hazmat_boots"));
     }
 }
