@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "createbigcannons:gas_mask",
+      "required": false
+    },
+    {
+      "id": "scguns:anthralite_respirator",
+      "required": false
+    },
+    {
+      "id": "scguns:netherite_respirator",
+      "required": false
+    }
+  ]
+}

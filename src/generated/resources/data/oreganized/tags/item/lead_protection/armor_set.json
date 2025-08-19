@@ -15,6 +15,22 @@
     {
       "id": "thermal:hazmat_boots",
       "required": false
+    },
+    {
+      "id": "alexscaves:hazmat_mask",
+      "required": false
+    },
+    {
+      "id": "alexscaves:hazmat_chestplate",
+      "required": false
+    },
+    {
+      "id": "alexscaves:hazmat_leggings",
+      "required": false
+    },
+    {
+      "id": "alexscaves:hazmat_boots",
+      "required": false
     }
   ]
 }

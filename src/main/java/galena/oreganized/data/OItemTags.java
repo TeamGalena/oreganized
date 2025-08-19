@@ -116,6 +116,7 @@ public class OItemTags extends ItemTagsProvider {
         tag(OTags.Items.GARGOYLE_SNACK).addTags(INGOTS_SILVER);
 
         var protectiveArmorParts = tag(OTags.Items.PROTECTIVE_ARMOR_PART);
+        var protectiveHelmets = tag(OTags.Items.PROTECTIVE_HELMET);
 
         protectiveArmorParts
                 .addOptional(ResourceLocation.fromNamespaceAndPath("thermal", "hazmat_helmet"))
@@ -128,5 +129,12 @@ public class OItemTags extends ItemTagsProvider {
                 .addOptional(ResourceLocation.fromNamespaceAndPath("alexscaves", "hazmat_chestplate"))
                 .addOptional(ResourceLocation.fromNamespaceAndPath("alexscaves", "hazmat_leggings"))
                 .addOptional(ResourceLocation.fromNamespaceAndPath("alexscaves", "hazmat_boots"));
+
+        protectiveHelmets
+                .addOptional(ResourceLocation.fromNamespaceAndPath("createbigcannons", "gas_mask"));
+
+        protectiveHelmets
+                .addOptional(ResourceLocation.fromNamespaceAndPath("scguns", "anthralite_respirator"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath("scguns", "netherite_respirator"));
     }
 }
