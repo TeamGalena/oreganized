@@ -111,7 +111,7 @@ public class ORecipes extends ORecipeProvider {
                 .pattern("XOX")
                 .pattern(" X ")
                 .define('X', OTags.Items.INGOTS_LEAD)
-                .define('O', Items.COMPASS)
+                .define('O', Items.REDSTONE)
                 .unlockedBy("has_lead_ingot", has(OItems.LEAD_INGOT.get()))
                 .save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, OItems.SPEEDOMETER.get())

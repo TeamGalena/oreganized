@@ -3,7 +3,7 @@
   "category": "equipment",
   "key": {
     "O": {
-      "item": "minecraft:compass"
+      "item": "minecraft:redstone"
     },
     "X": {
       "tag": "forge:ingots/lead"
