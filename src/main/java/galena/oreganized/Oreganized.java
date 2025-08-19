@@ -6,6 +6,7 @@ import com.mojang.serialization.Codec;
 import com.teamabnormals.blueprint.common.dispenser.FishBucketDispenseItemBehavior;
 import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
+import galena.oreganized.api.LeadProtections;
 import galena.oreganized.compat.ColorCompat;
 import galena.oreganized.compat.create.CreateCompat;
 import galena.oreganized.content.block.LeadOreBlock;
@@ -38,6 +39,7 @@ import galena.oreganized.index.OPaintingVariants;
 import galena.oreganized.index.OParticleTypes;
 import galena.oreganized.index.OPotions;
 import galena.oreganized.index.OStructures;
+import galena.oreganized.index.OTags;
 import galena.oreganized.network.OreganizedNetwork;
 import galena.oreganized.world.AddItemLootModifier;
 import java.util.Arrays;
@@ -59,6 +61,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -148,6 +151,14 @@ public class Oreganized {
         if (createLoaded) {
             CreateCompat.register();
         }
+
+        LeadProtections.register(entity -> entity.getItemBySlot(EquipmentSlot.HEAD).is(OTags.Items.PROTECTIVE_HELMET));
+        LeadProtections.register(entity -> {
+            for (var slot : entity.getArmorSlots()) {
+                if (!slot.is(OTags.Items.PROTECTIVE_ARMOR_PART)) return false;
+            }
+            return true;
+        });
     }
 
     private void injectVillagerTrades(VillagerTradesEvent event) {

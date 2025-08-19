@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "AbstractArrowMixin",
+    "AreaEffectCloudMixin",
     "BlockBehaviourMixin",
     "BlockMixin",
     "CrossbowMixin",

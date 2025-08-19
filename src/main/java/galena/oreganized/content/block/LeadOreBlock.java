@@ -2,6 +2,8 @@ package galena.oreganized.content.block;
 
 import galena.oreganized.Oreganized;
 import galena.oreganized.OreganizedConfig;
+import galena.oreganized.api.LeadProtections;
+import galena.oreganized.api.PreventableEffectCloud;
 import galena.oreganized.index.OCriteriaTriggers;
 import galena.oreganized.index.OEffects;
 import galena.oreganized.index.OItems;
@@ -77,6 +79,9 @@ public class LeadOreBlock {
     public static AreaEffectCloud spawnCloud(Level level, BlockPos pos, float size) {
         var vec = Vec3.atCenterOf(pos);
         var cloud = new AreaEffectCloud(level, vec.x, vec.y, vec.z);
+        if (cloud instanceof PreventableEffectCloud preventable) {
+            preventable.setPreventable(true);
+        }
 
         getEffects(Math.max(1, (int) (size))).forEach(cloud::addEffect);
 
@@ -104,7 +109,7 @@ public class LeadOreBlock {
                         facing.getStepX() * speed, facing.getStepY() * speed, facing.getStepZ() * speed
                 );
 
-                var targets = level.getEntitiesOfClass(LivingEntity.class, new AABB(frontPos, pos.relative(facing, maxDistance)).expandTowards(1, 1, 1));
+                var targets = level.getEntitiesOfClass(LivingEntity.class, new AABB(frontPos, pos.relative(facing, maxDistance)).expandTowards(1, 1, 1), LeadProtections::isNotProtected);
 
                 targets.forEach(target -> {
                     getEffects(1)

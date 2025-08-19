@@ -1,0 +1,20 @@
+{
+  "values": [
+    {
+      "id": "thermal:hazmat_helmet",
+      "required": false
+    },
+    {
+      "id": "thermal:hazmat_chestplate",
+      "required": false
+    },
+    {
+      "id": "thermal:hazmat_leggings",
+      "required": false
+    },
+    {
+      "id": "thermal:hazmat_boots",
+      "required": false
+    }
+  ]
+}

@@ -63,6 +63,9 @@ public class OTags {
 
         public static final TagKey<Item> GARGOYLE_SNACK = tag("gargoyle_snack");
 
+        public static final TagKey<Item> PROTECTIVE_HELMET = tag("lead_protection/helmet_standalone");
+        public static final TagKey<Item> PROTECTIVE_ARMOR_PART = tag("lead_protection/armor_set");
+
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(Oreganized.modLoc(name));
         }

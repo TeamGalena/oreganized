@@ -54,9 +54,11 @@ public class ShrapnelBomb extends PrimedTnt {
             if (shouldPoison && entity instanceof LivingEntity living) {
                 living.hurt(this.damageSources().source(ODamageSources.LEAD_POISONING), 2);
 
-                living.addEffect(new MobEffectInstance(MobEffects.POISON, 260));
-                if (!OreganizedConfig.COMMON.poisonInsteadOfStunning.get()) {
-                    living.addEffect(new MobEffectInstance(OEffects.STUNNING.get(), 800));
+                if (LeadProtections.isNotProtected(living)) {
+                    living.addEffect(new MobEffectInstance(MobEffects.POISON, 260));
+                    if (!OreganizedConfig.COMMON.poisonInsteadOfStunning.get()) {
+                        living.addEffect(new MobEffectInstance(OEffects.STUNNING.get(), 800));
+                    }
                 }
             }
         }
