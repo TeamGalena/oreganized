@@ -76,12 +76,12 @@ public class BulbBlock extends Block implements IMeltableBlock {
     }
 
     @Override
-    protected boolean hasAnalogOutputSignal(BlockState state) {
+    public boolean hasAnalogOutputSignal(BlockState state) {
         return true;
     }
 
     @Override
-    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+    public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
         var goopyness = state.getValue(GOOPYNESS_4);
         return (3 - goopyness) * 5;
     }

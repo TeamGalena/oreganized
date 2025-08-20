@@ -15,7 +15,7 @@ public class CreateArmorProtection implements Predicate<LivingEntity> {
         if (backtanks.isEmpty()) return false;
 
         if (entity.level().getGameTime() % 20 == 0L) {
-            BacktankUtil.consumeAir(entity, backtanks.getFirst(), 1);
+            BacktankUtil.consumeAir(entity, backtanks.get(0), 1);
         }
 
         return true;

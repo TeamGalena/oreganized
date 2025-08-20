@@ -1,6 +1,7 @@
 package galena.oreganized.content.entity;
 
 import galena.oreganized.OreganizedConfig;
+import galena.oreganized.api.LeadProtections;
 import galena.oreganized.index.ODamageSources;
 import galena.oreganized.index.OEffects;
 import galena.oreganized.index.OEntityTypes;

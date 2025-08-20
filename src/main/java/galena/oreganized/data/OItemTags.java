@@ -119,22 +119,22 @@ public class OItemTags extends ItemTagsProvider {
         var protectiveHelmets = tag(OTags.Items.PROTECTIVE_HELMET);
 
         protectiveArmorParts
-                .addOptional(ResourceLocation.fromNamespaceAndPath("thermal", "hazmat_helmet"))
-                .addOptional(ResourceLocation.fromNamespaceAndPath("thermal", "hazmat_chestplate"))
-                .addOptional(ResourceLocation.fromNamespaceAndPath("thermal", "hazmat_leggings"))
-                .addOptional(ResourceLocation.fromNamespaceAndPath("thermal", "hazmat_boots"));
+                .addOptional(new ResourceLocation("thermal", "hazmat_helmet"))
+                .addOptional(new ResourceLocation("thermal", "hazmat_chestplate"))
+                .addOptional(new ResourceLocation("thermal", "hazmat_leggings"))
+                .addOptional(new ResourceLocation("thermal", "hazmat_boots"));
 
         protectiveArmorParts
-                .addOptional(ResourceLocation.fromNamespaceAndPath("alexscaves", "hazmat_mask"))
-                .addOptional(ResourceLocation.fromNamespaceAndPath("alexscaves", "hazmat_chestplate"))
-                .addOptional(ResourceLocation.fromNamespaceAndPath("alexscaves", "hazmat_leggings"))
-                .addOptional(ResourceLocation.fromNamespaceAndPath("alexscaves", "hazmat_boots"));
+                .addOptional(new ResourceLocation("alexscaves", "hazmat_mask"))
+                .addOptional(new ResourceLocation("alexscaves", "hazmat_chestplate"))
+                .addOptional(new ResourceLocation("alexscaves", "hazmat_leggings"))
+                .addOptional(new ResourceLocation("alexscaves", "hazmat_boots"));
 
         protectiveHelmets
-                .addOptional(ResourceLocation.fromNamespaceAndPath("createbigcannons", "gas_mask"));
+                .addOptional(new ResourceLocation("createbigcannons", "gas_mask"));
 
         protectiveHelmets
-                .addOptional(ResourceLocation.fromNamespaceAndPath("scguns", "anthralite_respirator"))
-                .addOptional(ResourceLocation.fromNamespaceAndPath("scguns", "netherite_respirator"));
+                .addOptional(new ResourceLocation("scguns", "anthralite_respirator"))
+                .addOptional(new ResourceLocation("scguns", "netherite_respirator"));
     }
 }
