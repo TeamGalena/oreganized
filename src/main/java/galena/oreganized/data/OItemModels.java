@@ -92,8 +92,8 @@ public class OItemModels extends OItemModelProvider {
         normalItem(OBlocks.GARGOYLE.get()::asItem);
         block(OBlocks.SHRAPNEL_BOMB);
         block(OBlocks.LEAD_BOLT_CRATE);
-        normalItem(OBlocks.WHITE_DATURA.get()::asItem);
-        normalItem(OBlocks.PURPLE_DATURA.get()::asItem);
+        blockFlat(OBlocks.WHITE_DATURA);
+        blockFlat(OBlocks.PURPLE_DATURA);
         normalItem(OBlocks.LEAD_DOOR.get()::asItem);
         block(OBlocks.LEAD_TRAPDOOR, blockName(OBlocks.LEAD_TRAPDOOR) + "_bottom");
         blockFlat(OBlocks.LEAD_BARS);
