@@ -200,7 +200,6 @@ public class Oreganized {
             FireBlock fire = (FireBlock) Blocks.FIRE;
             fire.setFlammable(OBlocks.SHRAPNEL_BOMB.get(), 15, 100);
 
-            // TODO check
             DispenserBlock.registerBehavior(OItems.LEAD_BOLT.get(), new ProjectileDispenseBehavior(OItems.LEAD_BOLT.get()));
 
             DispenserBlock.registerBehavior(OItems.MOLTEN_LEAD_BUCKET.get(), new FishBucketDispenseItemBehavior());

@@ -66,7 +66,6 @@ public class OTags {
         }
 
         private static TagKey<Item> forgeTag(String name) {
-            // TODO check, these should be #c tags now
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
         }
     }

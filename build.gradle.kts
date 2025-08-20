@@ -10,6 +10,7 @@ val release_type: String by extra
 val modrinth_project_id: String by extra
 val curseforge_project_id: String by extra
 val minecraft_version: String by extra
+val parchment_version: String by extra
 val maven_group: String by extra
 val neoforge_version: String by extra
 val blueprint_version: String by extra
@@ -33,7 +34,6 @@ plugins {
     java
     `maven-publish`
     id("net.neoforged.gradle.userdev") version "7.0.184"
-// TODO  id("org.parchmentmc.librarian.forgegradle") version "1.+"
     id("com.diffplug.spotless") version "7.0.4"
     id("org.sonarqube") version "6.2.0.5505"
     id("com.modrinth.minotaur") version "2.+"
@@ -52,6 +52,13 @@ java {
 minecraft {
     accessTransformers {
         file("src/main/resources/META-INF/accesstransformer.cfg")
+    }
+}
+
+subsystems {
+    parchment {
+        minecraftVersion = minecraft_version
+        mappingsVersion = parchment_version
     }
 }
 
@@ -228,7 +235,6 @@ tasks.jarJar {
     archiveClassifier.set("")
 }
 
-// TODO check
 val upload = tasks.jarJar.get().archiveFile.get()
 
 publishing {

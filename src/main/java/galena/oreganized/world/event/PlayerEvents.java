@@ -33,6 +33,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.event.ItemAttributeModifierEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.level.BlockDropsEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
@@ -122,12 +123,11 @@ public class PlayerEvents {
     }
 
     @SubscribeEvent
-    public static void onBlockBreak(final BlockEvent.BreakEvent event) {
-        var stack = event.getPlayer().getMainHandItem();
+    public static void onBlockBreak(final BlockDropsEvent event) {
+        var stack = event.getTool();
 
         if (stack.getItem() instanceof ScribeItem scribe && scribe.dropsLikeSilktouch(stack, event.getState())) {
-            // TODO use data components now?
-            // event.setExpToDrop(0);
+            event.setDroppedExperience(0);
         }
     }
 
@@ -136,7 +136,6 @@ public class PlayerEvents {
         var stack = event.getItemStack();
 
         if (stack.is(OTags.Items.HAS_KINETIC_DAMAGE)) {
-            // TODO check
             var damage = event.getModifiers().stream()
                     .filter(it -> it.matches(Attributes.ATTACK_DAMAGE, Item.BASE_ATTACK_DAMAGE_ID))
                     .map(it -> it.modifier().amount())

@@ -118,7 +118,6 @@ public class OreganizedClient {
 
     @SubscribeEvent
     public static void registerGuiOverlays(RegisterGuiLayersEvent event) {
-        // TODO check
         event.registerAbove(VanillaGuiLayers.EFFECTS, Oreganized.modLoc("stunning"), new StunningOverlay());
     }
 
