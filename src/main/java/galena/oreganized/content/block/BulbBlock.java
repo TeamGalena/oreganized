@@ -74,4 +74,16 @@ public class BulbBlock extends Block implements IMeltableBlock {
         super.onPlace(state, level, pos, oldState, isMoving);
         scheduleUpdate(level, pos, state.getBlock());
     }
+
+    @Override
+    protected boolean hasAnalogOutputSignal(BlockState state) {
+        return true;
+    }
+
+    @Override
+    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+        var goopyness = state.getValue(GOOPYNESS_4);
+        return (3 - goopyness) * 5;
+    }
+
 }
