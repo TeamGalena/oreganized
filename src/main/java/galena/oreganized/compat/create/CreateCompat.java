@@ -2,6 +2,7 @@ package galena.oreganized.compat.create;
 
 import com.simibubi.create.api.registry.CreateBuiltInRegistries;
 import galena.oreganized.Oreganized;
+import galena.oreganized.api.LeadProtections;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -13,6 +14,8 @@ public class CreateCompat {
         interactionPointTypes.register("gargoyle", GargoyleArmPointType::new);
 
         interactionPointTypes.register(modBus);
+
+        LeadProtections.register(new CreateArmorProtection());
     }
 
 }
