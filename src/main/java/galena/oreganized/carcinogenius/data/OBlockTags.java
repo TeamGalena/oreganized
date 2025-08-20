@@ -2,6 +2,7 @@ package galena.oreganized.carcinogenius.data;
 
 import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
 import galena.oreganized.carcinogenius.index.OCBlocks;
+import galena.oreganized.carcinogenius.index.OCTags;
 import java.util.concurrent.CompletableFuture;
 import javax.annotation.Nullable;
 import net.minecraft.core.HolderLookup;
@@ -30,11 +31,16 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
         tag(Tags.Blocks.ORES).add(OCBlocks.ASBESTOS_ORE.get(), OCBlocks.DEEPSLATE_ASBESTOS_ORE.get());
 
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
-
                 OCBlocks.ASBESTOS_ORE.get(),
                 OCBlocks.DEEPSLATE_ASBESTOS_ORE.get(),
                 OCBlocks.ASBESTOS_BLOCK.get(),
                 OCBlocks.RAW_ASBESTOS_BLOCK.get()
         );
+
+        tag(OCTags.CREATES_ASBESTOS_CLOUD)
+                .add(OCBlocks.RAW_ASBESTOS_BLOCK.get())
+                .add(OCBlocks.ASBESTOS_BLOCK.get())
+                .add(OCBlocks.DEEPSLATE_ASBESTOS_ORE.get())
+                .add(OCBlocks.ASBESTOS_ORE.get());
     }
 }

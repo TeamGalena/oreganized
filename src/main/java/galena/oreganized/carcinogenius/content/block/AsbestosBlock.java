@@ -1,17 +1,13 @@
 package galena.oreganized.carcinogenius.content.block;
 
-import galena.oreganized.carcinogenius.index.OCEffects;
-import galena.oreganized.carcinogenius.index.OCParticleTypes;
+import galena.oreganized.carcinogenius.content.AsbestosCloud;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
 
 public class AsbestosBlock extends Block {
     public AsbestosBlock(Properties pProperties) {
@@ -25,30 +21,13 @@ public class AsbestosBlock extends Block {
 
     @Override
     public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
-
-        var vec = Vec3.atCenterOf(pPos).add(0,0.05,0);
-        var cloud = new AreaEffectCloud(pLevel, vec.x, vec.y, vec.z);
-        cloud.addEffect(new MobEffectInstance(OCEffects.LUNG_DAMAGE.get(),50));
-        cloud.setParticle(OCParticleTypes.ASBESTOS_CLOUD.get());
-        cloud.setRadius(2F);
-        cloud.setRadiusPerTick(-0.01F);
-        cloud.setDuration((int) (80));
-        pLevel.addFreshEntity(cloud);
+        AsbestosCloud.create(pPos, pLevel, 2F, 0.01F, 80);
         super.randomTick(pState, pLevel, pPos, pRandom);
     }
 
     @Override
     public void fallOn(Level pLevel, BlockState pState, BlockPos pPos, Entity pEntity, float pFallDistance) {
-        var vec = Vec3.atCenterOf(pPos).add(0,0.2,0);
-        var cloud = new AreaEffectCloud(pLevel, vec.x, vec.y, vec.z);
-
-        cloud.addEffect(new MobEffectInstance(OCEffects.LUNG_DAMAGE.get(),50));
-        cloud.setParticle(OCParticleTypes.ASBESTOS_CLOUD.get());
-        cloud.setRadius(4F);
-        cloud.setRadiusPerTick(-0.02F);
-        cloud.setDuration(120);
-
-        pLevel.addFreshEntity(cloud);
+        AsbestosCloud.create(pPos, pLevel, 4F, 0.02F, 120);
         super.fallOn(pLevel, pState, pPos, pEntity, pFallDistance);
     }
 }
