@@ -322,6 +322,7 @@ tasks.register<TaskPublishCurseForge>("curseforge") {
         releaseType = release_type
         displayName = "$mod_name $mod_version"
         addGameVersion(minecraft_version)
+        addModLoader("NeoForge")
         // addRelation("blueprint", Constants.RELATION_REQUIRED)
     }
 }
