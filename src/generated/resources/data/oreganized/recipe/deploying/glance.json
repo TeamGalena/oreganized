@@ -8,7 +8,7 @@
   "type": "create:deploying",
   "ingredients": [
     {
-      "item": "minecraft:cyan_concrete_powder"
+      "item": "oreganized:spotted_glance"
     },
     {
       "item": "minecraft:honeycomb_block"
@@ -17,7 +17,7 @@
   "keep_held_item": true,
   "results": [
     {
-      "id": "oreganized:waxed_cyan_concrete_powder"
+      "id": "oreganized:waxed_spotted_glance"
     }
   ]
 }

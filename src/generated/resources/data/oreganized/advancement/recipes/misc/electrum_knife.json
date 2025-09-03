@@ -7,7 +7,7 @@
   ],
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_oreganized:electrum_ingot": {
+    "has_electrum_ingot": {
       "conditions": {
         "items": [
           {
@@ -27,7 +27,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_oreganized:electrum_ingot"
+      "has_electrum_ingot"
     ]
   ],
   "rewards": {

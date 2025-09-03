@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_deepslate_lead_ore": {
+    "has_datura": {
       "conditions": {
         "items": [
           {
-            "items": "oreganized:deepslate_lead_ore"
+            "items": "oreganized:datura"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oreganized:smelt_deepslate_lead_ore"
+        "recipe": "oreganized:dye_from_datura"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_deepslate_lead_ore"
+      "has_datura"
     ]
   ],
   "rewards": {
     "recipes": [
-      "oreganized:smelt_deepslate_lead_ore"
+      "oreganized:dye_from_datura"
     ]
   }
 }

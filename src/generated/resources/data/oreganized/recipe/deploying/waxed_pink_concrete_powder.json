@@ -8,10 +8,10 @@
   "type": "create:deploying",
   "ingredients": [
     {
-      "item": "minecraft:honeycomb_block"
+      "item": "minecraft:pink_concrete_powder"
     },
     {
-      "item": "minecraft:pink_concrete_powder"
+      "item": "minecraft:honeycomb_block"
     }
   ],
   "keep_held_item": true,

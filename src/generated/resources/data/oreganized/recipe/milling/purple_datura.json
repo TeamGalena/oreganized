@@ -1,0 +1,24 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "item": "oreganized:purple_datura"
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "id": "minecraft:purple_dye"
+    },
+    {
+      "chance": 0.05,
+      "id": "minecraft:green_dye"
+    }
+  ]
+}

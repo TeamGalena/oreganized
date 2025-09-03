@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_oreganized:deepslate_silver_ore": {
+    "has_deepslate_silver_ore": {
       "conditions": {
         "items": [
           {
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_oreganized:deepslate_silver_ore"
+      "has_deepslate_silver_ore"
     ]
   ],
   "rewards": {
