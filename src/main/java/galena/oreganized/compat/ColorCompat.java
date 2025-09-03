@@ -22,9 +22,12 @@ public class ColorCompat {
         return ResourceLocation.fromNamespaceAndPath(getNamespace(color), color.getSerializedName() + "_" + suffix);
     }
 
+    public static ResourceKey<Block> createBlockKey(String suffix, DyeColor color) {
+        return ResourceKey.create(Registries.BLOCK, createId(suffix, color));
+    }
+
     public static Block getColoredBlock(String suffix, DyeColor color) {
-        var id = ResourceKey.create(Registries.BLOCK, createId(suffix, color));
-        return BuiltInRegistries.BLOCK.getOrThrow(id);
+        return BuiltInRegistries.BLOCK.getOrThrow(createBlockKey(suffix, color));
     }
 
 }

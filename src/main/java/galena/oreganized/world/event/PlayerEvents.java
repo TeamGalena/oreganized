@@ -9,9 +9,7 @@ import galena.oreganized.index.OAttributes;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -24,7 +22,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.EventPriority;
@@ -34,25 +31,10 @@ import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.event.ItemAttributeModifierEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockDropsEvent;
-import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
 @EventBusSubscriber(modid = Oreganized.MOD_ID)
 public class PlayerEvents {
-
-    @SubscribeEvent
-    public static void blockToolInteractions(final BlockEvent.BlockToolModificationEvent event) {
-        var action = event.getItemAbility();
-        BlockState state = event.getState();
-        if (event.isSimulated()) return;
-
-        // Removing Wax ('Unwaxing' - Using an Axe on a waxed block).
-        if (action.equals(ItemAbilities.AXE_WAX_OFF)) {
-            Block unWaxedBlock = OBlocks.WAXED_BLOCKS.get(state.getBlock());
-            if (unWaxedBlock == null) return;
-            event.setFinalState(unWaxedBlock.defaultBlockState());
-        }
-    }
 
     /**
      * Use if interaction is not defined in {@link ItemAbilities}
@@ -65,19 +47,6 @@ public class PlayerEvents {
         ItemStack itemStack = event.getItemStack();
         Player player = event.getEntity();
         InteractionHand hand = event.getHand();
-
-        // Waxing (Using Honeycomb on a waxable block).
-        if (itemStack.is(Items.HONEYCOMB) && OBlocks.WAXED_BLOCKS.inverse().get(state.getBlock()) != null) {
-
-            if (player instanceof ServerPlayer)
-                CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger((ServerPlayer) player, pos, itemStack);
-
-            player.swing(event.getHand());
-            if (!player.isCreative()) event.getItemStack().shrink(1);
-            Block waxedBlock = OBlocks.WAXED_BLOCKS.inverse().get(state.getBlock());
-            if (!world.isClientSide() && waxedBlock != null) world.setBlock(pos, waxedBlock.defaultBlockState(), 11);
-            world.levelEvent(player, 3003, pos, 0);
-        }
 
         if (itemStack.is(Items.MUSIC_DISC_11) && state.is(OBlocks.MOLTEN_LEAD_CAULDRON.get())) {
             if (!state.getValue(MoltenLeadCauldronBlock.AGE).equals(3)) return;

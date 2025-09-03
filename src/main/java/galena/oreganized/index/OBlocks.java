@@ -1,6 +1,5 @@
 package galena.oreganized.index;
 
-import com.google.common.collect.ImmutableBiMap;
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import galena.oreganized.Oreganized;
 import galena.oreganized.content.block.BulbBlock;
@@ -49,13 +48,9 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 public class OBlocks {
     public static final BlockSubRegistryHelper HELPER = Oreganized.REGISTRY_HELPER.getBlockSubHelper();
 
-    public static ImmutableBiMap<Block, Block> WAXED_BLOCKS;
-
     private static Properties glanceProperties() {
         return Properties.of().explosionResistance(6).strength(1.5F).mapColor(MapColor.CLAY);
     }
-
-    ;
 
     private static final MapColor[] LEAD_MAP_COLORS = {
             MapColor.TERRACOTTA_LIGHT_BLUE,

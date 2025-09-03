@@ -1,13 +1,11 @@
 package galena.oreganized;
 
 
-import com.google.common.collect.ImmutableBiMap;
 import com.mojang.serialization.MapCodec;
 import com.teamabnormals.blueprint.common.dispenser.FishBucketDispenseItemBehavior;
 import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import galena.oreganized.api.LeadProtections;
-import galena.oreganized.compat.ColorCompat;
 import galena.oreganized.compat.create.CreateCompat;
 import galena.oreganized.content.block.LeadOreBlock;
 import galena.oreganized.content.block.MoltenLeadCauldronBlock;
@@ -16,6 +14,7 @@ import galena.oreganized.data.OBiomeTags;
 import galena.oreganized.data.OBlockStates;
 import galena.oreganized.data.OBlockTags;
 import galena.oreganized.data.ODamageTags;
+import galena.oreganized.data.ODataMaps;
 import galena.oreganized.data.OEnchantmentTags;
 import galena.oreganized.data.OEntityTags;
 import galena.oreganized.data.OFluidTags;
@@ -63,7 +62,6 @@ import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.FireBlock;
@@ -210,14 +208,6 @@ public class Oreganized {
                 }, 1);
             });
         });
-
-        var waxedBlocks = new ImmutableBiMap.Builder<Block, Block>();
-        waxedBlocks.put(OBlocks.WAXED_SPOTTED_GLANCE.get(), OBlocks.SPOTTED_GLANCE.get());
-        OBlocks.WAXED_CONCRETE_POWDER.forEach((color, waxed) -> {
-            var unwaxed = ColorCompat.getColoredBlock("concrete_powder", color);
-            waxedBlocks.put(waxed.get(), unwaxed);
-        });
-        OBlocks.WAXED_BLOCKS = waxedBlocks.build();
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
@@ -259,6 +249,7 @@ public class Oreganized {
         generator.addProvider(server, new OBiomeTags(output, lookupProvider, helper));
         generator.addProvider(server, new ODamageTags(output, lookupProvider, helper));
         generator.addProvider(server, new OPaintingVariantTags(output, lookupProvider, helper));
+        generator.addProvider(server, new ODataMaps(output, lookupProvider));
 
         generator.addProvider(server, new PackMetadataGenerator(output).add(PackMetadataSection.TYPE, new PackMetadataSection(
                 Component.literal("Oreganized resources"),
