@@ -55,7 +55,7 @@ public class OItems {
     public static final DeferredItem<Item> LEAD_NUGGET = HELPER.createItem("lead_nugget", () -> new Item(new Item.Properties()));
 
     public static final DeferredItem<Item> ELECTRUM_INGOT = HELPER.createItem("electrum_ingot", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> NETHERITE_NUGGET = HELPER.createItem("netherite_nugget", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> NETHERITE_NUGGET = HELPER.createItem("netherite_nugget", () -> new Item(new Item.Properties().fireResistant()));
     public static final DeferredItem<Item> ELECTRUM_NUGGET = HELPER.createItem("electrum_nugget", () -> new Item(new Item.Properties()));
 
     // Tools

@@ -1,0 +1,196 @@
+{
+  "values": [
+    {
+      "id": "oreganized:white_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:orange_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:magenta_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:light_blue_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:yellow_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:lime_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:pink_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:gray_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:light_gray_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:cyan_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:purple_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:blue_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:brown_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:green_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:red_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:black_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:white_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:orange_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:magenta_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:light_blue_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:yellow_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:lime_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:pink_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:gray_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:light_gray_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:cyan_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:purple_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:blue_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:brown_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:green_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:red_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:black_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_white_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_orange_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_magenta_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_light_blue_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_yellow_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_lime_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_pink_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_gray_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_light_gray_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_cyan_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_purple_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_blue_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_brown_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_green_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_red_concrete_powder",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_black_concrete_powder",
+      "required": false
+    }
+  ]
+}

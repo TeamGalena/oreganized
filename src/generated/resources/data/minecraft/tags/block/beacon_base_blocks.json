@@ -1,5 +1,6 @@
 {
   "values": [
-    "oreganized:electrum_block"
+    "#c:storage_blocks/silver",
+    "#c:storage_blocks/electrum"
   ]
 }

@@ -4,6 +4,7 @@
     "#c:storage_blocks/lead",
     "#c:storage_blocks/electrum",
     "#c:storage_blocks/raw_silver",
-    "#c:storage_blocks/raw_lead"
+    "#c:storage_blocks/raw_lead",
+    "oreganized:lead_bolt_crate"
   ]
 }

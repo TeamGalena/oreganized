@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "oreganized:lime_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:lime_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_lime_concrete_powder",
+      "required": false
+    }
+  ]
+}

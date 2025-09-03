@@ -1,28 +1,8 @@
 package galena.oreganized.data;
 
-import static galena.oreganized.index.OTags.Blocks.BLOWS_LEAD_CLOUD;
-import static galena.oreganized.index.OTags.Blocks.CREATES_LEAD_CLOUD;
-import static galena.oreganized.index.OTags.Blocks.CRYSTAL_GLASS;
-import static galena.oreganized.index.OTags.Blocks.CRYSTAL_GLASS_PANES;
-import static galena.oreganized.index.OTags.Blocks.FIRE_HEAT_LEVEL;
-import static galena.oreganized.index.OTags.Blocks.FIRE_SOURCE;
-import static galena.oreganized.index.OTags.Blocks.LAVA_HEAT_LEVEL;
-import static galena.oreganized.index.OTags.Blocks.MELTS_LEAD;
-import static galena.oreganized.index.OTags.Blocks.MINEABLE_WITH_SCRIBE;
-import static galena.oreganized.index.OTags.Blocks.ORES_LEAD;
-import static galena.oreganized.index.OTags.Blocks.ORES_SILVER;
-import static galena.oreganized.index.OTags.Blocks.PREVENTS_LEAD_CLOUD;
-import static galena.oreganized.index.OTags.Blocks.SILKTOUCH_WITH_SCRIBE;
-import static galena.oreganized.index.OTags.Blocks.SILKTOUCH_WITH_SCRIBE_BLACKLIST;
-import static galena.oreganized.index.OTags.Blocks.STONE_TYPES_GLANCE;
-import static galena.oreganized.index.OTags.Blocks.STORAGE_BLOCKS_ELECTRUM;
-import static galena.oreganized.index.OTags.Blocks.STORAGE_BLOCKS_LEAD;
-import static galena.oreganized.index.OTags.Blocks.STORAGE_BLOCKS_RAW_LEAD;
-import static galena.oreganized.index.OTags.Blocks.STORAGE_BLOCKS_RAW_SILVER;
-import static galena.oreganized.index.OTags.Blocks.STORAGE_BLOCKS_SILVER;
-
 import galena.oreganized.Oreganized;
 import galena.oreganized.index.OBlocks;
+import galena.oreganized.index.OTags;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
@@ -41,6 +21,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 
 public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
@@ -54,79 +35,103 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
         return "Oreganized Block Tags";
     }
 
-    private void tag(TagKey<Block> key, Map<DyeColor, ? extends Supplier<? extends Block>> values) {
-        var tag = tag(key);
-        values.entrySet().stream()
-                .sorted(Map.Entry.comparingByKey())
-                .map(it -> it.getValue().get())
-                .map(BuiltInRegistries.BLOCK::getKey)
-                .forEach(tag::addOptional);
+    private static TagKey<Block> dyedTag(DyeColor color) {
+        return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", "dyed/" + color.getSerializedName()));
+    }
+
+    private void tagDyed(Map<DyeColor, ? extends Supplier<? extends Block>> values, TagKey<Block>... keys) {
+        values.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(entry -> {
+            var block = entry.getValue().get();
+            var id = BuiltInRegistries.BLOCK.getKey(block);
+            for (var key : keys) {
+                tag(key).addOptional(id);
+            }
+            tag(Tags.Blocks.DYED).addOptional(id);
+            tag(dyedTag(entry.getKey())).addOptional(id);
+        });
     }
 
     @SuppressWarnings("unchecked")
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         // Oreganized
-        tag(CRYSTAL_GLASS, OBlocks.CRYSTAL_GLASS);
-        tag(CRYSTAL_GLASS_PANES, OBlocks.CRYSTAL_GLASS_PANES);
+        tagDyed(OBlocks.CRYSTAL_GLASS, OTags.Blocks.CRYSTAL_GLASS);
+        tagDyed(OBlocks.CRYSTAL_GLASS_PANES, OTags.Blocks.CRYSTAL_GLASS_PANES);
 
-        tag(FIRE_SOURCE).addTag(BlockTags.FIRE).addTag(BlockTags.CAMPFIRES);
-        tag(STONE_TYPES_GLANCE).add(
+        tag(OTags.Blocks.FIRE_SOURCE).addTag(BlockTags.FIRE).addTag(BlockTags.CAMPFIRES);
+        tag(OTags.Blocks.STONE_TYPES_GLANCE).add(
                 OBlocks.POLISHED_GLANCE.get(), OBlocks.GLANCE_BRICKS.get(), OBlocks.CHISELED_GLANCE.get(),
                 OBlocks.GLANCE_BRICK_STAIRS.get(), OBlocks.GLANCE_BRICK_WALL.get()
         );
 
         // Oreganized Forge
-        tag(ORES_SILVER).add(OBlocks.SILVER_ORE.get(), OBlocks.DEEPSLATE_SILVER_ORE.get());
-        tag(ORES_LEAD).add(OBlocks.LEAD_ORE.get(), OBlocks.DEEPSLATE_LEAD_ORE.get());
+        tag(OTags.Blocks.ORES_SILVER).add(OBlocks.SILVER_ORE.get(), OBlocks.DEEPSLATE_SILVER_ORE.get());
+        tag(OTags.Blocks.ORES_LEAD).add(OBlocks.LEAD_ORE.get(), OBlocks.DEEPSLATE_LEAD_ORE.get());
 
-        tag(STORAGE_BLOCKS_SILVER).add(OBlocks.SILVER_BLOCK.get());
-        tag(STORAGE_BLOCKS_LEAD).add(OBlocks.LEAD_BLOCK.get());
-        tag(STORAGE_BLOCKS_ELECTRUM).add(OBlocks.ELECTRUM_BLOCK.get());
+        tag(OTags.Blocks.STORAGE_BLOCKS_SILVER).add(OBlocks.SILVER_BLOCK.get());
+        tag(OTags.Blocks.STORAGE_BLOCKS_LEAD).add(OBlocks.LEAD_BLOCK.get());
+        tag(OTags.Blocks.STORAGE_BLOCKS_ELECTRUM).add(OBlocks.ELECTRUM_BLOCK.get());
 
-        tag(STORAGE_BLOCKS_RAW_SILVER).add(OBlocks.RAW_SILVER_BLOCK.get());
-        tag(STORAGE_BLOCKS_RAW_LEAD).add(OBlocks.RAW_LEAD_BLOCK.get());
+        tag(OTags.Blocks.STORAGE_BLOCKS_RAW_SILVER).add(OBlocks.RAW_SILVER_BLOCK.get());
+        tag(OTags.Blocks.STORAGE_BLOCKS_RAW_LEAD).add(OBlocks.RAW_LEAD_BLOCK.get());
 
         // Vanilla
         tag(BlockTags.WALLS).add(OBlocks.GLANCE_WALL.get(), OBlocks.GLANCE_BRICK_WALL.get());
         tag(BlockTags.STAIRS).add(OBlocks.GLANCE_STAIRS.get(), OBlocks.POLISHED_GLANCE_STAIRS.get(), OBlocks.GLANCE_BRICK_STAIRS.get());
         tag(BlockTags.SLABS).add(OBlocks.GLANCE_SLAB.get(), OBlocks.POLISHED_GLANCE_SLAB.get(), OBlocks.GLANCE_BRICK_SLAB.get());
-        tag(BlockTags.BEACON_BASE_BLOCKS).add(OBlocks.ELECTRUM_BLOCK.get());
-        tag(BlockTags.IMPERMEABLE).addTag(CRYSTAL_GLASS);
+        tag(BlockTags.BEACON_BASE_BLOCKS)
+                .addTag(OTags.Blocks.STORAGE_BLOCKS_SILVER)
+                .addTag(OTags.Blocks.STORAGE_BLOCKS_ELECTRUM);
+        tag(BlockTags.IMPERMEABLE).addTag(OTags.Blocks.CRYSTAL_GLASS);
         tag(BlockTags.CAULDRONS).add(OBlocks.MOLTEN_LEAD_CAULDRON.get());
         tag(BlockTags.DOORS).add(OBlocks.LEAD_DOOR.get());
         tag(BlockTags.TRAPDOORS).add(OBlocks.LEAD_TRAPDOOR.get());
         tag(BlockTags.SMALL_FLOWERS).add(OBlocks.WHITE_DATURA.get());
         tag(BlockTags.SMALL_FLOWERS).add(OBlocks.PURPLE_DATURA.get());
         // Forge
-        tag(Tags.Blocks.ORES).addTags(ORES_SILVER, ORES_LEAD);
-        tag(Tags.Blocks.ORE_RATES_SINGULAR).addTags(ORES_SILVER, ORES_LEAD);
-        tag(Tags.Blocks.STORAGE_BLOCKS).addTags(STORAGE_BLOCKS_SILVER, STORAGE_BLOCKS_LEAD, STORAGE_BLOCKS_ELECTRUM, STORAGE_BLOCKS_RAW_SILVER, STORAGE_BLOCKS_RAW_LEAD);
-        tag(Tags.Blocks.GLASS_BLOCKS).addTag(CRYSTAL_GLASS);
-        tag(Tags.Blocks.GLASS_PANES).addTag(CRYSTAL_GLASS_PANES);
+        tag(Tags.Blocks.ORES).addTags(OTags.Blocks.ORES_SILVER, OTags.Blocks.ORES_LEAD);
+        tag(Tags.Blocks.ORE_RATES_SINGULAR).addTags(OTags.Blocks.ORES_SILVER, OTags.Blocks.ORES_LEAD);
+        tag(Tags.Blocks.STORAGE_BLOCKS)
+                .addTags(
+                        OTags.Blocks.STORAGE_BLOCKS_SILVER,
+                        OTags.Blocks.STORAGE_BLOCKS_LEAD,
+                        OTags.Blocks.STORAGE_BLOCKS_ELECTRUM,
+                        OTags.Blocks.STORAGE_BLOCKS_RAW_SILVER,
+                        OTags.Blocks.STORAGE_BLOCKS_RAW_LEAD
+                )
+                .add(OBlocks.LEAD_BOLT_CRATE.get());
+        tag(Tags.Blocks.GLASS_BLOCKS).addTag(OTags.Blocks.CRYSTAL_GLASS);
+        tag(Tags.Blocks.GLASS_PANES).addTag(OTags.Blocks.CRYSTAL_GLASS_PANES);
         tag(Tags.Blocks.ORES_IN_GROUND_STONE).add(OBlocks.LEAD_ORE.get(), OBlocks.SILVER_ORE.get());
         tag(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE).add(OBlocks.DEEPSLATE_LEAD_ORE.get(), OBlocks.DEEPSLATE_SILVER_ORE.get());
 
-        // Mineables!
-        /*tag(MINEABLE_WITH_BUSH_HAMMER).add(
+        Stream.of(
+                OBlocks.LEAD_ORE,
+                OBlocks.DEEPSLATE_LEAD_ORE,
+                OBlocks.RAW_LEAD_BLOCK,
 
-        );*/
+                OBlocks.LEAD_BLOCK,
+                OBlocks.LEAD_BRICKS,
+                OBlocks.LEAD_PILLAR,
+                OBlocks.LEAD_BULB,
+                OBlocks.CUT_LEAD,
+
+                OBlocks.ELECTRUM_BLOCK,
+
+                OBlocks.LEAD_DOOR,
+                OBlocks.LEAD_TRAPDOOR,
+                OBlocks.LEAD_BARS
+        ).map(DeferredHolder::get).forEach(block -> {
+            tag(BlockTags.NEEDS_STONE_TOOL).add(block);
+            tag(BlockTags.MINEABLE_WITH_PICKAXE).add(block);
+        });
+
         tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
-                OBlocks.LEAD_ORE.get(),
-                OBlocks.DEEPSLATE_LEAD_ORE.get(),
-                OBlocks.RAW_LEAD_BLOCK.get(),
-
                 OBlocks.SILVER_ORE.get(),
                 OBlocks.DEEPSLATE_SILVER_ORE.get(),
                 OBlocks.RAW_SILVER_BLOCK.get(),
 
-                OBlocks.LEAD_BLOCK.get(),
-                OBlocks.LEAD_BRICKS.get(),
-                OBlocks.LEAD_PILLAR.get(),
-                OBlocks.LEAD_BULB.get(),
-                OBlocks.CUT_LEAD.get(),
                 OBlocks.SILVER_BLOCK.get(),
-                OBlocks.ELECTRUM_BLOCK.get(),
 
                 OBlocks.GLANCE.get(),
                 OBlocks.GLANCE_STAIRS.get(),
@@ -147,30 +152,23 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
 
                 OBlocks.MOLTEN_LEAD_CAULDRON.get(),
 
-                OBlocks.LEAD_DOOR.get(),
-                OBlocks.LEAD_TRAPDOOR.get(),
-                OBlocks.LEAD_BARS.get(),
-
                 OBlocks.GROOVED_ICE.get(),
                 OBlocks.GROOVED_PACKED_ICE.get(),
                 OBlocks.GROOVED_BLUE_ICE.get()
         );
 
-        tag(BlockTags.MINEABLE_WITH_SHOVEL, OBlocks.WAXED_CONCRETE_POWDER);
-
-        tag(BlockTags.NEEDS_STONE_TOOL).add(
-                OBlocks.LEAD_ORE.get(),
-                OBlocks.DEEPSLATE_LEAD_ORE.get()
-        );
+        tagDyed(OBlocks.WAXED_CONCRETE_POWDER, BlockTags.MINEABLE_WITH_SHOVEL);
 
         tag(BlockTags.NEEDS_IRON_TOOL).add(
                 OBlocks.SILVER_ORE.get(),
-                OBlocks.DEEPSLATE_SILVER_ORE.get()
+                OBlocks.DEEPSLATE_SILVER_ORE.get(),
+                OBlocks.SILVER_BLOCK.get(),
+                OBlocks.RAW_SILVER_BLOCK.get()
         );
 
         tag(BlockTags.MINEABLE_WITH_AXE).add(OBlocks.LEAD_BOLT_CRATE.get());
 
-        tag(MELTS_LEAD)
+        tag(OTags.Blocks.MELTS_LEAD)
                 .add(Blocks.LAVA)
                 .add(Blocks.MAGMA_BLOCK)
                 .addTags(BlockTags.CAMPFIRES)
@@ -181,7 +179,7 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
                 .add(OBlocks.GROOVED_PACKED_ICE.get())
                 .add(OBlocks.GROOVED_BLUE_ICE.get());
 
-        var scribeMineable = tag(MINEABLE_WITH_SCRIBE)
+        var scribeMineable = tag(OTags.Blocks.MINEABLE_WITH_SCRIBE)
                 .addTags(Tags.Blocks.GLASS_BLOCKS)
                 .addTags(Tags.Blocks.GLASS_PANES)
                 .addTags(Tags.Blocks.OBSIDIANS)
@@ -226,7 +224,7 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
                 .addOptional(ResourceLocation.fromNamespaceAndPath("ae2", "damaged_budding_quartz"))
                 .addOptional(ResourceLocation.fromNamespaceAndPath("ae2", "chipped_budding_quartz"));
 
-        tag(SILKTOUCH_WITH_SCRIBE_BLACKLIST)
+        tag(OTags.Blocks.SILKTOUCH_WITH_SCRIBE_BLACKLIST)
                 .add(OBlocks.GROOVED_ICE.get())
                 .add(OBlocks.GROOVED_PACKED_ICE.get())
                 .add(OBlocks.GROOVED_BLUE_ICE.get());
@@ -235,30 +233,37 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
                 .add(OBlocks.GROOVED_ICE.get())
                 .add(OBlocks.GROOVED_PACKED_ICE.get());
 
-        tag(SILKTOUCH_WITH_SCRIBE)
-                .addTags(MINEABLE_WITH_SCRIBE)
+        tag(OTags.Blocks.SILKTOUCH_WITH_SCRIBE)
+                .addTags(OTags.Blocks.MINEABLE_WITH_SCRIBE)
                 .addTags(BlockTags.MINEABLE_WITH_PICKAXE);
 
-        tag(PREVENTS_LEAD_CLOUD)
+        tag(OTags.Blocks.PREVENTS_LEAD_CLOUD)
                 .add(Blocks.WATER)
                 .addOptional(ResourceLocation.fromNamespaceAndPath("spelunkery", "spring_water"));
 
-        tag(CREATES_LEAD_CLOUD)
-                .addTags(ORES_LEAD)
-                .addTags(STORAGE_BLOCKS_RAW_LEAD);
+        tag(OTags.Blocks.CREATES_LEAD_CLOUD)
+                .addTags(OTags.Blocks.ORES_LEAD)
+                .addTags(OTags.Blocks.STORAGE_BLOCKS_RAW_LEAD);
 
-        tag(BLOWS_LEAD_CLOUD)
-                .addTags(CREATES_LEAD_CLOUD);
+        tag(OTags.Blocks.BLOWS_LEAD_CLOUD)
+                .addTags(OTags.Blocks.CREATES_LEAD_CLOUD);
 
-        tag(FIRE_HEAT_LEVEL)
+        tag(OTags.Blocks.FIRE_HEAT_LEVEL)
                 .addTags(BlockTags.FIRE)
                 .addTags(BlockTags.CAMPFIRES);
 
-        tag(LAVA_HEAT_LEVEL)
+        tag(OTags.Blocks.LAVA_HEAT_LEVEL)
                 .add(Blocks.MAGMA_BLOCK)
                 .add(Blocks.LAVA)
                 .add(OBlocks.MOLTEN_LEAD.get())
                 .add(Blocks.LAVA_CAULDRON)
                 .add(OBlocks.MOLTEN_LEAD_CAULDRON.get());
+
+        tag(OTags.Blocks.CARRY_ON_BLACKLIST)
+                .add(OBlocks.LEAD_DOOR.get())
+                .add(OBlocks.LEAD_TRAPDOOR.get());
+
+        tag(OTags.Blocks.BOMB_BREAKABLE).add(OBlocks.SHRAPNEL_BOMB.get());
+        tag(OTags.Blocks.CANNON_TNTS).add(OBlocks.SHRAPNEL_BOMB.get());
     }
 }

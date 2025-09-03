@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "oreganized:yellow_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:yellow_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_yellow_concrete_powder",
+      "required": false
+    }
+  ]
+}
