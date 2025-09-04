@@ -1,8 +1,6 @@
 {
   "pack": {
-    "description": {
-      "text": "Oreganized Carcinogenius resources"
-    },
-    "pack_format": 15
+    "description": "Oreganized Carcinogenius resources",
+    "pack_format": 34
   }
 }

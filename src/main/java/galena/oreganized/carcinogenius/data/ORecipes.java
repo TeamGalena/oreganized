@@ -4,18 +4,19 @@ import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
 import galena.oreganized.carcinogenius.data.provider.ORecipeProvider;
 import galena.oreganized.carcinogenius.index.OCBlocks;
 import galena.oreganized.carcinogenius.index.OCItems;
-import java.util.function.Consumer;
+import java.util.concurrent.CompletableFuture;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeOutput;
 
 public class ORecipes extends ORecipeProvider {
 
-    public ORecipes(PackOutput output) {
-        super(output);
+    public ORecipes(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup) {
+        super(output, lookup);
     }
 
     @Override
-    protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
+    protected void buildRecipes(RecipeOutput consumer) {
         smeltingRecipe(OCItems.REFINED_ASBESTOS.get(), OCItems.RAW_ASBESTOS.get(), 0.1F).save(consumer, OreganizedCarcinogenius.modLoc("asbestos_from_raw_asbestos_smelting"));
         blastingRecipe(OCItems.REFINED_ASBESTOS.get(), OCItems.RAW_ASBESTOS.get(), 0.1F).save(consumer, OreganizedCarcinogenius.modLoc("asbestos_from_raw_asbestos_blasting"));
 

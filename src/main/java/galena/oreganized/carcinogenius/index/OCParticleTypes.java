@@ -2,31 +2,30 @@ package galena.oreganized.carcinogenius.index;
 
 import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
 import galena.oreganized.client.particle.LeadCloudParticleProvider;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
-@Mod.EventBusSubscriber(modid = OreganizedCarcinogenius.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = OreganizedCarcinogenius.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class OCParticleTypes {
 
-    public static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, OreganizedCarcinogenius.NAMESPACE);
+    private static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(BuiltInRegistries.PARTICLE_TYPE, OreganizedCarcinogenius.NAMESPACE);
 
-    public static final RegistryObject<SimpleParticleType> ASBESTOS_CLOUD = PARTICLES.register( "asbestos_cloud", () -> new SimpleParticleType(true));
-
-
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> ASBESTOS_CLOUD = PARTICLES.register( "asbestos_cloud", () -> new SimpleParticleType(true));
 
     @SubscribeEvent
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
-        ParticleEngine engine = Minecraft.getInstance().particleEngine;
+        event.registerSpriteSet(ASBESTOS_CLOUD.get(), LeadCloudParticleProvider::new);
+    }
 
-        engine.register(ASBESTOS_CLOUD.get(), LeadCloudParticleProvider::new);
+    public static void register(IEventBus modBus) {
+        PARTICLES.register(modBus);
     }
 }

@@ -3,11 +3,11 @@ package galena.oreganized.carcinogenius.world.event;
 import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
 import galena.oreganized.carcinogenius.content.AsbestosCloud;
 import galena.oreganized.carcinogenius.index.OCTags;
-import net.minecraftforge.event.level.BlockEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.level.BlockEvent;
 
-@Mod.EventBusSubscriber(modid = OreganizedCarcinogenius.MOD_ID)
+@EventBusSubscriber(modid = OreganizedCarcinogenius.MOD_ID)
 public class PlayerEvents {
 
     @SubscribeEvent

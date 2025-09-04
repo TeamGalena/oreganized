@@ -2,14 +2,20 @@ package galena.oreganized.carcinogenius.index;
 
 import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
 import galena.oreganized.carcinogenius.content.effect.LungDamageEffect;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class OCEffects {
 
-    public static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, OreganizedCarcinogenius.NAMESPACE);
+    private static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(Registries.MOB_EFFECT, OreganizedCarcinogenius.NAMESPACE);
 
-    public static final RegistryObject<MobEffect> LUNG_DAMAGE = EFFECTS.register("lung_damage", LungDamageEffect::new);
+    public static final DeferredHolder<MobEffect, MobEffect> LUNG_DAMAGE = EFFECTS.register("lung_damage", LungDamageEffect::new);
+
+    public static void register(IEventBus modBus) {
+        EFFECTS.register(modBus);
+    }
+
 }

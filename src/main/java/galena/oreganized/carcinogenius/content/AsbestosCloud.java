@@ -19,7 +19,7 @@ public class AsbestosCloud {
             preventable.setPreventable(true);
         }
 
-        cloud.addEffect(new MobEffectInstance(OCEffects.LUNG_DAMAGE.get(), 50));
+        cloud.addEffect(new MobEffectInstance(OCEffects.LUNG_DAMAGE, 50));
         cloud.setParticle(OCParticleTypes.ASBESTOS_CLOUD.get());
         cloud.setRadius(radius);
         cloud.setRadiusPerTick(-shrinkage);

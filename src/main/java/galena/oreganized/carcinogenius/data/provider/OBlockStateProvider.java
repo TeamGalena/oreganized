@@ -1,17 +1,16 @@
 package galena.oreganized.carcinogenius.data.provider;
 
-import static net.minecraftforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
-
 import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
 import java.util.function.Supplier;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.client.model.generators.BlockModelBuilder;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
+import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.client.model.generators.ModelProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public abstract class OBlockStateProvider extends BlockStateProvider {
 
@@ -20,11 +19,11 @@ public abstract class OBlockStateProvider extends BlockStateProvider {
     }
 
     protected ResourceLocation texture(String name) {
-        return modLoc(BLOCK_FOLDER + "/" + name);
+        return modLoc(ModelProvider.BLOCK_FOLDER + "/" + name);
     }
 
     protected String name(Block block) {
-        return ForgeRegistries.BLOCKS.getKey(block).getPath();
+        return BuiltInRegistries.BLOCK.getKey(block).getPath();
     }
 
     protected String name(Supplier<? extends Block> block) {
@@ -37,7 +36,7 @@ public abstract class OBlockStateProvider extends BlockStateProvider {
 
     public ModelFile cubeBottomTop(Supplier<? extends Block> block) {
         BlockModelBuilder model = models().getBuilder(name(block));
-        model.parent(models().getExistingFile(new ResourceLocation("minecraft", "block" + "/cube_bottom_top")));
+        model.parent(models().getExistingFile(ResourceLocation.withDefaultNamespace("block" + "/cube_bottom_top")));
         model.texture("top", texture(name(block) + "_top"));
         model.texture("bottom", texture(name(block) + "_bottom"));
         model.texture("side", texture(name(block) + "_side"));

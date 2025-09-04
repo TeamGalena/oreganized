@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
+import net.minecraft.core.Holder;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
@@ -15,7 +16,6 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public abstract class OLangProvider implements DataProvider {
     private final Map<String, String> data = new TreeMap<>();
@@ -72,11 +72,12 @@ public abstract class OLangProvider implements DataProvider {
         add(key.getDescriptionId(), name);
     }
 
-    public void addPotion(Supplier<? extends Potion> potion, String name) {
-        add("item.minecraft.potion.effect." + ForgeRegistries.POTIONS.getKey(potion.get()).getPath(), "Potion of " + name);
-        add("item.minecraft.splash_potion.effect." + ForgeRegistries.POTIONS.getKey(potion.get()).getPath(), "Splash Potion of " + name);
-        add("item.minecraft.lingering_potion.effect." + ForgeRegistries.POTIONS.getKey(potion.get()).getPath(), "Lingering Potion of " + name);
-        add("item.minecraft.tipped_arrow.effect." + ForgeRegistries.POTIONS.getKey(potion.get()).getPath(), "Arrow of " + name);
+    public void addPotion(Holder<? extends Potion> potion, String name) {
+        var id = potion.getKey().location().getPath();
+        add("item.minecraft.potion.effect." + id, "Potion of " + name);
+        add("item.minecraft.splash_potion.effect." + id, "Splash Potion of " + name);
+        add("item.minecraft.lingering_potion.effect." + id, "Lingering Potion of " + name);
+        add("item.minecraft.tipped_arrow.effect." + id, "Arrow of " + name);
     }
 
     public void addEffect(Supplier<? extends MobEffect> key, String name) {

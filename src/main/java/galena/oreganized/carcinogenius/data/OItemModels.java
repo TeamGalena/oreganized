@@ -5,7 +5,7 @@ import galena.oreganized.carcinogenius.data.provider.OItemModelProvider;
 import galena.oreganized.carcinogenius.index.OCBlocks;
 import galena.oreganized.carcinogenius.index.OCItems;
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class OItemModels extends OItemModelProvider {
 

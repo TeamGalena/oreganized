@@ -4,21 +4,18 @@ import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
 import galena.oreganized.carcinogenius.index.OCBlocks;
 import galena.oreganized.carcinogenius.index.OCTags;
 import java.util.concurrent.CompletableFuture;
-import javax.annotation.Nullable;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.data.BlockTagsProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 
-public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
+public class OBlockTags extends BlockTagsProvider {
 
-    public OBlockTags(PackOutput output, CompletableFuture<HolderLookup.Provider> future, @Nullable ExistingFileHelper helper) {
-        super(output, Registries.BLOCK, future, block -> block.builtInRegistryHolder().key(), OreganizedCarcinogenius.NAMESPACE, helper);
+    public OBlockTags(PackOutput output, CompletableFuture<HolderLookup.Provider> future, ExistingFileHelper helper) {
+        super(output, future, OreganizedCarcinogenius.NAMESPACE, helper);
     }
 
     @Override
@@ -36,6 +33,14 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
                 OCBlocks.ASBESTOS_BLOCK.get(),
                 OCBlocks.RAW_ASBESTOS_BLOCK.get()
         );
+
+        tag(Tags.Blocks.STORAGE_BLOCKS)
+                .add(OCBlocks.RAW_ASBESTOS_BLOCK.get())
+                .add(OCBlocks.ASBESTOS_BLOCK.get());
+
+        tag(Tags.Blocks.ORES)
+                .add(OCBlocks.ASBESTOS_ORE.get())
+                .add(OCBlocks.DEEPSLATE_ASBESTOS_ORE.get());
 
         tag(OCTags.CREATES_ASBESTOS_CLOUD)
                 .add(OCBlocks.RAW_ASBESTOS_BLOCK.get())

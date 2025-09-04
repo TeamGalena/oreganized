@@ -4,7 +4,7 @@ import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
 import galena.oreganized.carcinogenius.data.provider.OBlockStateProvider;
 import galena.oreganized.carcinogenius.index.OCBlocks;
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class OBlockStates extends OBlockStateProvider {
 

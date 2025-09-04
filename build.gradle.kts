@@ -11,14 +11,14 @@ val release_type: String by extra
 val modrinth_project_id: String by extra
 val curseforge_project_id: String by extra
 val minecraft_version: String by extra
+val parchment_version: String by extra
 val maven_group: String by extra
-val forge_version: String by extra
+val neoforge_version: String by extra
 val blueprint_version: String by extra
 val oreganized_version: String by extra
 val jade_version: String by extra
 val jei_version: String by extra
-val mixin_version: String by extra
-val mixin_extras_version: String by extra
+val multikulti_version: String by extra
 
 val mod_version = System.getenv("RELEASE_VERSION")?.replace("-$mod_version_suffix", "")
     ?: extra["mod_version"] as String
@@ -26,10 +26,9 @@ val mod_version = System.getenv("RELEASE_VERSION")?.replace("-$mod_version_suffi
 plugins {
     java
     `maven-publish`
-    id("net.minecraftforge.gradle") version "[6.0,6.2)"
-    id("org.spongepowered.mixin") version "0.7-SNAPSHOT"
-    id("org.parchmentmc.librarian.forgegradle") version "1.+"
+    id("net.neoforged.gradle.userdev") version "7.0.184"
     id("com.diffplug.spotless") version "7.0.4"
+    id("org.sonarqube") version "6.2.0.5505"
     id("com.modrinth.minotaur") version "2.+"
     id("net.darkhax.curseforgegradle") version "1.1.15"
 }
@@ -39,49 +38,38 @@ base {
 }
 
 java {
-    toolchain.languageVersion = JavaLanguageVersion.of(17)
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
     withSourcesJar()
 }
 
-minecraft {
-    mappings("parchment", "2023.09.03-1.20.1")
+subsystems {
+    parchment {
+        minecraftVersion = minecraft_version
+        mappingsVersion = parchment_version
+    }
+}
 
-    accessTransformer(file("src/main/resources/META-INF/accesstransformer.cfg"))
+runs {
+    create("client")
 
-    runs {
-        create("client") {
-            taskName = "Client"
-        }
+    create("server") {
+        workingDirectory("run/server")
+    }
 
-        create("server") {
-            taskName = "Server"
-            workingDirectory("run/server")
-        }
+    create("data") {
+        workingDirectory("run/data")
 
-        create("data") {
-            taskName = "Data"
-
-            args(
-                "--mod",
-                mod_id,
-                "--all",
-                "--output",
-                file("src/generated/resources/"),
-                "--existing",
-                file("src/main/resources/"),
-                "--existing-mod",
-                "blueprint"
-            )
-        }
-
-        forEach {
-            it.workingDirectory(project.file("run"))
-            it.mods {
-                create(mod_id) {
-                    source(sourceSets.main.get())
-                }
-            }
-        }
+        arguments(
+            "--mod",
+            mod_id,
+            "--all",
+            "--output",
+            file("src/generated/resources/").path,
+            "--existing",
+            file("src/main/resources/").path,
+            "--existing-mod",
+            "blueprint",
+        )
     }
 }
 
@@ -111,27 +99,26 @@ repositories {
         }
     }
     maven {
-        url = uri("https://registry.somethingcatchy.net/repository/maven-releases/")
+        url = uri("https://registry.somethingcatchy.net/repository/maven-public/")
         content {
             includeGroup("dev.galena")
+            includeGroup("com.possible-triangle")
         }
     }
 }
 
 dependencies {
-    minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
-    implementation(fg.deobf("com.teamabnormals:blueprint:${minecraft_version}-${blueprint_version}"))
-    implementation(fg.deobf("dev.galena:oreganized:${oreganized_version}"))
-
-    annotationProcessor("org.spongepowered:mixin:${mixin_version}:processor")
-    annotationProcessor("io.github.llamalad7:mixinextras-common:${mixin_extras_version}")
+    implementation("net.neoforged:neoforge:${neoforge_version}")
+    implementation("com.teamabnormals:blueprint:${minecraft_version}-${blueprint_version}")
+    implementation("dev.galena:oreganized:${oreganized_version}")
+    runtimeOnly("com.possible-triangle:multikulti-datagen-neoforge:${minecraft_version}-${multikulti_version}")
 
     // For dev testing
-    runtimeOnly(fg.deobf("maven.modrinth:jade:${jade_version}"))
+    runtimeOnly("maven.modrinth:jade:${jade_version}")
 
-    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"))
-    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"))
-    runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}"))
+    compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+    compileOnly("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
+    runtimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
 }
 
 tasks.withType<Jar> {
@@ -173,10 +160,6 @@ tasks.withType<ProcessResources> {
             )
         )
     }
-}
-
-tasks.jar {
-    finalizedBy("reobfJar")
 }
 
 publishing {
@@ -256,6 +239,7 @@ tasks.register<TaskPublishCurseForge>("curseforge") {
         releaseType = release_type
         displayName = "$mod_name $mod_version"
         addGameVersion(minecraft_version)
+        addModLoader("NeoForge")
         addRelation("oreganized", Constants.RELATION_REQUIRED)
     }
 }

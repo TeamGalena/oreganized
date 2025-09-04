@@ -4,14 +4,14 @@ package galena.oreganized.carcinogenius.data.provider;
 import com.teamabnormals.blueprint.core.data.client.BlueprintItemModelProvider;
 import galena.oreganized.carcinogenius.OreganizedCarcinogenius;
 import java.util.function.Supplier;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.WallBlock;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public abstract class OItemModelProvider extends BlueprintItemModelProvider {
 
@@ -20,7 +20,7 @@ public abstract class OItemModelProvider extends BlueprintItemModelProvider {
     }
 
     protected String blockName(Supplier<? extends Block> block) {
-        return ForgeRegistries.BLOCKS.getKey(block.get()).getPath();
+        return BuiltInRegistries.BLOCK.getKey(block.get()).getPath();
     }
 
     private ResourceLocation texture(String name) {
@@ -36,10 +36,10 @@ public abstract class OItemModelProvider extends BlueprintItemModelProvider {
     }
 
     public ItemModelBuilder normalItem(Supplier<? extends Item> item) {
-        return withExistingParent(ForgeRegistries.ITEMS.getKey(item.get()).getPath(), mcLoc("item/generated"))
-                .texture("layer0", modLoc("item/" + ForgeRegistries.ITEMS.getKey(item.get()).getPath()));
+        return withExistingParent(BuiltInRegistries.ITEM.getKey(item.get()).getPath(), mcLoc("item/generated"))
+                .texture("layer0", modLoc("item/" + BuiltInRegistries.ITEM.getKey(item.get()).getPath()));
     }
     public ItemModelBuilder wall(Supplier<? extends WallBlock> wall, Supplier<? extends Block> fullBlock) {
-        return wallInventory(ForgeRegistries.BLOCKS.getKey(wall.get()).getPath(), texture(blockName(fullBlock)));
+        return wallInventory(blockName(wall), texture(blockName(fullBlock)));
     }
 }
