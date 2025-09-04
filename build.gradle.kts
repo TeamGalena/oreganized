@@ -91,13 +91,6 @@ runs {
                 listOf("--existing-mod", it)
             })
     }
-
-    configureEach {
-        dependencies {
-            // remove once transient dependencies are including in multikulti
-            runtime("org.jetbrains.kotlin:kotlin-stdlib:2.2.0")
-        }
-    }
 }
 
 sourceSets.main {
@@ -163,9 +156,7 @@ dependencies {
         }
     })
 
-    val multikultiVersion = "$minecraft_version-$multikulti_version"
-    implementation("com.possible-triangle:multikulti-core-neoforge:$multikultiVersion")
-    implementation("com.possible-triangle:multikulti-datagen-neoforge:$multikultiVersion")
+    implementation("com.possible-triangle:multikulti-datagen-neoforge:$minecraft_version-$multikulti_version")
 
     // Compatibilities
     implementation("maven.modrinth:farmers-delight:${farmersdelight_version}")
