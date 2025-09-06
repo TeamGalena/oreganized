@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_lead_ore": {
+    "has_datura": {
       "conditions": {
         "items": [
           {
             "items": [
-              "oreganized:lead_ore"
+              "oreganized:datura"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oreganized:smelt_lead_ore"
+        "recipe": "oreganized:dye_from_datura"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_lead_ore",
+      "has_datura",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "oreganized:smelt_lead_ore"
+      "oreganized:dye_from_datura"
     ]
   },
   "sends_telemetry_event": false

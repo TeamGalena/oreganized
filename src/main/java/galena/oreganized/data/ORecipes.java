@@ -103,9 +103,13 @@ public class ORecipes extends ORecipeProvider {
         stonecutting(OBlocks.POLISHED_GLANCE, OBlocks.GLANCE_BRICK_WALL.get()).save(consumer, Oreganized.modLoc("stonecutting/glance_brick_wall_from_polished"));
 
         makeWaxed(OBlocks.WAXED_SPOTTED_GLANCE, OBlocks.SPOTTED_GLANCE).save(consumer);
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, Items.PURPLE_DYE).requires(OBlocks.PURPLE_DATURA.get()).unlockedBy("has_datura_purple", has(OBlocks.PURPLE_DATURA.get()));
+        processing(DeployerApplicationRecipe::new, "glance")
+                .output(OBlocks.WAXED_SPOTTED_GLANCE.get())
+                .require(OBlocks.SPOTTED_GLANCE.get())
+                .require(Blocks.HONEYCOMB_BLOCK)
+                .toolNotConsumed()
+                .build(consumer);
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, Items.WHITE_DYE).requires(OBlocks.WHITE_DATURA.get()).unlockedBy("has_datura_white", has(OBlocks.WHITE_DATURA.get()));
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, OItems.THERMOMETER.get())
                 .pattern(" X ")
                 .pattern("XOX")
@@ -168,6 +172,9 @@ public class ORecipes extends ORecipeProvider {
                     .toolNotConsumed()
             ).build(consumer);
         });
+
+        flowerDye(OBlocks.WHITE_DATURA, Items.WHITE_DYE, consumer);
+        flowerDye(OBlocks.PURPLE_DATURA, Items.PURPLE_DYE, consumer);
 
         OBlocks.CRYSTAL_GLASS_PANES.forEach((color, pane) ->
                 dyed(color, makeBars(pane, OBlocks.CRYSTAL_GLASS.get(color))).save(consumer)

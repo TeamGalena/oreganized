@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_oreganized:raw_lead": {
+    "has_raw_lead": {
       "conditions": {
         "items": [
           {
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_oreganized:raw_lead",
+      "has_raw_lead",
       "has_the_recipe"
     ]
   ],
