@@ -3,12 +3,13 @@ package galena.oreganized.index;
 import galena.oreganized.Oreganized;
 import java.util.List;
 import net.minecraft.client.gui.Gui;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.asm.enumextension.EnumProxy;
 import net.neoforged.neoforge.event.entity.player.PlayerHeartTypeEvent;
 
-@EventBusSubscriber
+@EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT)
 public class OHeartTypes {
 
     public static final EnumProxy<Gui.HeartType> STUNNED = new EnumProxy<>(
