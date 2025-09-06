@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_oreganized:bush_hammer": {
+    "has_bush_hammer": {
       "conditions": {
         "items": [
           {
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_oreganized:bush_hammer",
+      "has_bush_hammer",
       "has_the_recipe"
     ]
   ],

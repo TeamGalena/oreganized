@@ -1,0 +1,24 @@
+{
+  "type": "create:milling",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "oreganized:purple_datura"
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "item": "minecraft:purple_dye"
+    },
+    {
+      "chance": 0.05,
+      "item": "minecraft:green_dye"
+    }
+  ]
+}

@@ -60,7 +60,6 @@ public class OTabs {
             putAfter(entries, Items.WAXED_OXIDIZED_CUT_COPPER_SLAB, OBlocks.LEAD_BLOCK);
             putAfter(entries, OBlocks.LEAD_BLOCK.get(), OBlocks.CUT_LEAD);
             putAfter(entries, OBlocks.CUT_LEAD.get(), OBlocks.LEAD_BRICKS);
-            putAfter(entries, OBlocks.LEAD_PILLAR.get(), OBlocks.CUT_LEAD);
             putAfter(entries, OBlocks.LEAD_BRICKS.get(), OBlocks.LEAD_PILLAR);
             putAfter(entries, Blocks.IRON_BARS, OBlocks.LEAD_BARS);
 
@@ -116,6 +115,7 @@ public class OTabs {
             putBefore(entries, Items.NETHERITE_SHOVEL, OItems.ELECTRUM_SHOVEL);
             putAfter(entries, OItems.ELECTRUM_SHOVEL.get(), OItems.ELECTRUM_PICKAXE);
             putAfter(entries, OItems.ELECTRUM_PICKAXE.get(), OItems.ELECTRUM_AXE);
+            putAfter(entries, OItems.ELECTRUM_AXE.get(), OItems.ELECTRUM_HOE);
             putBefore(entries, Items.MILK_BUCKET, OItems.MOLTEN_LEAD_BUCKET);
             putBefore(entries, Items.SPYGLASS, OItems.SILVER_MIRROR);
             putBefore(entries, OItems.SILVER_MIRROR.get(), OItems.THERMOMETER);
@@ -127,8 +127,8 @@ public class OTabs {
         }
 
         if (tab == CreativeModeTabs.COMBAT) {
-            putAfter(entries, OItems.ELECTRUM_AXE.get(), OItems.ELECTRUM_HOE);
-            putBefore(entries, Items.NETHERITE_SWORD, OItems.ELECTRUM_SWORD);
+            putBefore(entries, Items.DIAMOND_SWORD, OItems.ELECTRUM_SWORD);
+            putAfter(entries, Items.DIAMOND_AXE, OItems.ELECTRUM_AXE);
             putBefore(entries, Items.NETHERITE_HELMET, OItems.ELECTRUM_HELMET);
             putAfter(entries, OItems.ELECTRUM_HELMET.get(), OItems.ELECTRUM_CHESTPLATE);
             putAfter(entries, OItems.ELECTRUM_CHESTPLATE.get(), OItems.ELECTRUM_LEGGINGS);

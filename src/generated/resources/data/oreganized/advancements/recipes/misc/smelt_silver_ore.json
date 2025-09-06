@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_oreganized:silver_ore": {
+    "has_silver_ore": {
       "conditions": {
         "items": [
           {
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_oreganized:silver_ore",
+      "has_silver_ore",
       "has_the_recipe"
     ]
   ],
