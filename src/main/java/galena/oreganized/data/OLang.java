@@ -85,7 +85,7 @@ public class OLang extends OLangProvider {
 
         add("item.oreganized.flint_and_pewter", "Flint and Pewter");
 
-        addPainting(OPaintingVariants.VINDICATING_BAD, "Vidicating Bad", "Xaidee");
+        addPainting(OPaintingVariants.VINDICATING_BAD, "Vindicating Bad", "Xaidee");
 
         /*
             Automatically create translations for blocks and items based on their registry name.
