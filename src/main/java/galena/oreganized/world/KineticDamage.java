@@ -18,6 +18,7 @@ public class KineticDamage {
         var factor = Math.min(motion / 0.12, 1F);
         if (factor <= 0.0) return;
 
+        if (!cause.getAttributes().hasAttribute(OAttributes.KINETIC_DAMAGE)) return;
         var kineticDamage = factor * cause.getAttributeValue(OAttributes.KINETIC_DAMAGE);
         var source = target.level().damageSources().generic();
 
