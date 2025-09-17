@@ -20,7 +20,7 @@ public class ElectrumArmorItem extends ArmorItem {
     private final Supplier<ItemAttributeModifiers> modifiers;
 
     public ElectrumArmorItem(ArmorItem.Type slot) {
-        super(OArmorMaterials.ELECTRUM, slot, new Properties());
+        super(OArmorMaterials.ELECTRUM, slot, new Properties().durability(slot.getDurability(33)));
 
         modifiers = Suppliers.memoize(() -> {
             var builder = ItemAttributeModifiers.builder();

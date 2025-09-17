@@ -77,7 +77,7 @@ public class OItems {
     // Misc Tools
     public static final DeferredItem<Item> THERMOMETER = HELPER.createItem("thermometer", () -> new ThermometerItem(new Item.Properties().component(ODataComponents.LOCKED, false).component(ODataComponents.HEAT_LEVEL, 2)));
     public static final DeferredItem<Item> SPEEDOMETER = HELPER.createItem("speedometer", () -> new SpeedometerItem(new Item.Properties()));
-    public static final DeferredItem<Item> UNKNOWN_DEVICE = HELPER.createItem("unknown_device", () -> new DeviceItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
+    public static final DeferredItem<Item> UNKNOWN_DEVICE = HELPER.createItem("unknown_device", () -> new DeviceItem(new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant()));
     public static final DeferredItem<Item> SILVER_MIRROR = HELPER.createItem("silver_mirror", () -> new SilverMirrorItem(new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> MOLTEN_LEAD_BUCKET = HELPER.createItem("molten_lead_bucket", () -> new BucketItem(OFluids.MOLTEN_LEAD.get(), new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET)));
 
