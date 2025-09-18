@@ -167,8 +167,8 @@ public class ORecipes extends ORecipeProvider {
 
             dyed(color, processing(DeployerApplicationRecipe::new, waxed.getId().getPath())
                     .output(waxed.get())
-                    .require(Blocks.HONEYCOMB_BLOCK)
                     .require(unwaxed)
+                    .require(Blocks.HONEYCOMB_BLOCK)
                     .toolNotConsumed()
             ).build(consumer);
         });

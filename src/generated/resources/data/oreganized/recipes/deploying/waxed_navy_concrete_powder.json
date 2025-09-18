@@ -12,10 +12,10 @@
   ],
   "ingredients": [
     {
-      "item": "minecraft:honeycomb_block"
+      "item": "dye_depot:navy_concrete_powder"
     },
     {
-      "item": "dye_depot:navy_concrete_powder"
+      "item": "minecraft:honeycomb_block"
     }
   ],
   "keepHeldItem": true,

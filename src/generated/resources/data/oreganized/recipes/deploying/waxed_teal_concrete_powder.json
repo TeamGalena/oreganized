@@ -12,10 +12,10 @@
   ],
   "ingredients": [
     {
-      "item": "minecraft:honeycomb_block"
+      "item": "dye_depot:teal_concrete_powder"
     },
     {
-      "item": "dye_depot:teal_concrete_powder"
+      "item": "minecraft:honeycomb_block"
     }
   ],
   "keepHeldItem": true,
