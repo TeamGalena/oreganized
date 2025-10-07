@@ -1,0 +1,20 @@
+{
+  "molding": "json",
+  "remolder": {
+    "type": "add",
+    "target": "overrides[]",
+    "value": {
+      "predicate": {
+        "oreganized:lead_bolt": 1,
+        "charged": 1
+      },
+      "model": "oreganized:item/crossbow_lead_bolt"
+    }
+  },
+  "selector": {
+    "type": "names",
+    "config": [
+      "minecraft:models/item/crossbow"
+    ]
+  }
+}
