@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "oreganized:verdant_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:verdant_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_verdant_concrete_powder",
+      "required": false
+    }
+  ]
+}

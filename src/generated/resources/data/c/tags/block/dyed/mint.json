@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "oreganized:mint_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:mint_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_mint_concrete_powder",
+      "required": false
+    }
+  ]
+}

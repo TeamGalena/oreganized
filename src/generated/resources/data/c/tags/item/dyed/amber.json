@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "oreganized:amber_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:amber_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_amber_concrete_powder",
+      "required": false
+    }
+  ]
+}

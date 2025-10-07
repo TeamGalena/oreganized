@@ -1,5 +1,53 @@
 {
   "values": {
+    "dye_depot:amber_concrete_powder": {
+      "waxed": "oreganized:waxed_amber_concrete_powder"
+    },
+    "dye_depot:aqua_concrete_powder": {
+      "waxed": "oreganized:waxed_aqua_concrete_powder"
+    },
+    "dye_depot:beige_concrete_powder": {
+      "waxed": "oreganized:waxed_beige_concrete_powder"
+    },
+    "dye_depot:coral_concrete_powder": {
+      "waxed": "oreganized:waxed_coral_concrete_powder"
+    },
+    "dye_depot:forest_concrete_powder": {
+      "waxed": "oreganized:waxed_forest_concrete_powder"
+    },
+    "dye_depot:ginger_concrete_powder": {
+      "waxed": "oreganized:waxed_ginger_concrete_powder"
+    },
+    "dye_depot:indigo_concrete_powder": {
+      "waxed": "oreganized:waxed_indigo_concrete_powder"
+    },
+    "dye_depot:maroon_concrete_powder": {
+      "waxed": "oreganized:waxed_maroon_concrete_powder"
+    },
+    "dye_depot:mint_concrete_powder": {
+      "waxed": "oreganized:waxed_mint_concrete_powder"
+    },
+    "dye_depot:navy_concrete_powder": {
+      "waxed": "oreganized:waxed_navy_concrete_powder"
+    },
+    "dye_depot:olive_concrete_powder": {
+      "waxed": "oreganized:waxed_olive_concrete_powder"
+    },
+    "dye_depot:rose_concrete_powder": {
+      "waxed": "oreganized:waxed_rose_concrete_powder"
+    },
+    "dye_depot:slate_concrete_powder": {
+      "waxed": "oreganized:waxed_slate_concrete_powder"
+    },
+    "dye_depot:tan_concrete_powder": {
+      "waxed": "oreganized:waxed_tan_concrete_powder"
+    },
+    "dye_depot:teal_concrete_powder": {
+      "waxed": "oreganized:waxed_teal_concrete_powder"
+    },
+    "dye_depot:verdant_concrete_powder": {
+      "waxed": "oreganized:waxed_verdant_concrete_powder"
+    },
     "minecraft:black_concrete_powder": {
       "waxed": "oreganized:waxed_black_concrete_powder"
     },

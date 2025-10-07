@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "dye_depot"
+    }
+  ],
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "dye_depot:coral_concrete_powder"
+    },
+    {
+      "item": "minecraft:honeycomb_block"
+    }
+  ],
+  "keep_held_item": true,
+  "results": [
+    {
+      "id": "oreganized:waxed_coral_concrete_powder"
+    }
+  ]
+}

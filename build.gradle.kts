@@ -145,7 +145,7 @@ dependencies {
     implementation(libs.multikulti.datagen)
 
     // Compatibilities
-    implementation(pack.modrinth.supplementaries)
+    implementation(pack.modrinth.farmers.delight)
     // implementation(pack.modrinth.nethers.delight)
     // implementation(pack.modrinth.shield.expansion)
     implementation(variantOf(libs.create) {
@@ -161,6 +161,7 @@ dependencies {
     runtimeOnly(pack.modrinth.moonlight)
     runtimeOnly(libs.dye.depot)
     runtimeOnly(pack.modrinth.jade)
+    runtimeOnly(pack.modrinth.biolith)
     runtimeOnly(pack.modrinth.no.mans.land)
 
     compileOnly(libs.jei.common.api)
