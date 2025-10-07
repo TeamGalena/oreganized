@@ -1,6 +1,7 @@
 package galena.oreganized.data;
 
 import galena.oreganized.Oreganized;
+import galena.oreganized.index.DyeColors;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
@@ -41,7 +42,7 @@ public class OItemTags extends ItemTagsProvider {
     }
 
     private void tagDyed(Map<DyeColor, ? extends Supplier<? extends ItemLike>> values, TagKey<Item>... keys) {
-        values.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(entry -> {
+        values.entrySet().stream().sorted(Map.Entry.comparingByKey(DyeColors.comparator())).forEach(entry -> {
             var item = entry.getValue().get().asItem();
             var id = BuiltInRegistries.ITEM.getKey(item);
             for (var key : keys) {

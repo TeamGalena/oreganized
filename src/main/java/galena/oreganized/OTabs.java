@@ -3,6 +3,7 @@ package galena.oreganized;
 import static galena.oreganized.ModCompat.FARMERS_DELIGHT_ID;
 import static galena.oreganized.ModCompat.NETHERS_DELIGHT_ID;
 
+import galena.oreganized.index.DyeColors;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OItems;
 import java.util.Map;
@@ -70,13 +71,18 @@ public class OTabs {
         if (tab == CreativeModeTabs.COLORED_BLOCKS) {
             OBlocks.CRYSTAL_GLASS.entrySet()
                     .stream()
-                    .sorted(Map.Entry.comparingByKey())
+                    .sorted(Map.Entry.comparingByKey(DyeColors.comparator()))
                     .forEach(entry -> putBefore(event, Items.GLASS_PANE, entry.getValue()));
 
             OBlocks.CRYSTAL_GLASS_PANES.entrySet()
                     .stream()
-                    .sorted(Map.Entry.comparingByKey())
-                    .forEach(entry -> putBefore(event, Items.SHULKER_BOX, entry.getValue()));
+                    .sorted(Map.Entry.comparingByKey(DyeColors.comparator()))
+                    .forEach(entry -> putAfter(event, Items.SHULKER_BOX, entry.getValue()));
+
+            OBlocks.WAXED_CONCRETE_POWDER.entrySet()
+                    .stream()
+                    .sorted(Map.Entry.comparingByKey(DyeColors.comparator()))
+                    .forEach(entry -> putBefore(event, Items.WHITE_GLAZED_TERRACOTTA, entry.getValue()));
         }
 
         if (tab == CreativeModeTabs.NATURAL_BLOCKS) {

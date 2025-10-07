@@ -1,6 +1,7 @@
 package galena.oreganized.data;
 
 import galena.oreganized.Oreganized;
+import galena.oreganized.index.DyeColors;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OTags;
 import java.util.Map;
@@ -40,7 +41,7 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
     }
 
     private void tagDyed(Map<DyeColor, ? extends Supplier<? extends Block>> values, TagKey<Block>... keys) {
-        values.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(entry -> {
+        values.entrySet().stream().sorted(Map.Entry.comparingByKey(DyeColors.comparator())).forEach(entry -> {
             var block = entry.getValue().get();
             var id = BuiltInRegistries.BLOCK.getKey(block);
             for (var key : keys) {
