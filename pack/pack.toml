@@ -1,0 +1,11 @@
+name = "Oreganized Dev"
+pack-format = "packwiz:1.1.0"
+
+[index]
+file = "index.toml"
+hash-format = "sha256"
+hash = "3fb20f9027af949927e8fa688fa376c70b4a413b8690377f01be817addbafd64"
+
+[versions]
+minecraft = "1.21.1"
+neoforge = "21.1.152"
