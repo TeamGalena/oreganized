@@ -22,6 +22,7 @@ import static galena.oreganized.index.OTags.Blocks.STORAGE_BLOCKS_RAW_SILVER;
 import static galena.oreganized.index.OTags.Blocks.STORAGE_BLOCKS_SILVER;
 
 import galena.oreganized.Oreganized;
+import galena.oreganized.index.DyeColors;
 import galena.oreganized.index.OBlocks;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -57,7 +58,7 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
     private void tag(TagKey<Block> key, Map<DyeColor, ? extends Supplier<? extends Block>> values) {
         var tag = tag(key);
         values.entrySet().stream()
-                .sorted(Map.Entry.comparingByKey())
+                .sorted(Map.Entry.comparingByKey(DyeColors.comparator()))
                 .map(it -> it.getValue().get())
                 .map(BuiltInRegistries.BLOCK::getKey)
                 .forEach(tag::addOptional);

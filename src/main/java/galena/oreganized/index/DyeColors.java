@@ -1,5 +1,6 @@
 package galena.oreganized.index;
 
+import java.util.Comparator;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Stream;
@@ -58,6 +59,10 @@ public class DyeColors {
                 vanillaColors(),
                 depotColors()
         ).flatMap(Function.identity());
+    }
+
+    public static Comparator<DyeColor> comparator() {
+        return Comparator.comparing(DyeColor::getId);
     }
 
 }
