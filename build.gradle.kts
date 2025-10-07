@@ -12,36 +12,19 @@ val curseforge_project_id: String by extra
 val minecraft_version: String by extra
 val maven_group: String by extra
 val forge_version: String by extra
-val blueprint_version: String by extra
-val mixin_version: String by extra
-val mixin_extras_version: String by extra
-val farmersdelight_version: String by extra
-val nethersdelight_version: String by extra
-val shieldexpansion_version: String by extra
-val create_version: String by extra
-val ponder_version: String by extra
-val supplementaries_version: String by extra
-val scannable_version: String by extra
-val architectury_version: String by extra
-val moonlight_lib_version: String by extra
-val dye_depot_version: String by extra
-val jade_version: String by extra
-val jei_version: String by extra
-val galena_hats_version: String by extra
-val multikulti_version: String by extra
 
 val mod_version = System.getenv("RELEASE_VERSION") ?: extra["mod_version"] as String
 
 plugins {
     java
     `maven-publish`
-    id("net.minecraftforge.gradle") version "[6.0,6.2)"
-    id("org.spongepowered.mixin") version "0.7-SNAPSHOT"
-    id("org.parchmentmc.librarian.forgegradle") version "1.+"
-    id("com.diffplug.spotless") version "7.0.4"
-    id("org.sonarqube") version "6.2.0.5505"
-    id("com.modrinth.minotaur") version "2.+"
-    id("net.darkhax.curseforgegradle") version "1.1.15"
+    alias(libs.plugins.forge)
+    alias(libs.plugins.mixin)
+    alias(libs.plugins.parchment)
+    alias(libs.plugins.spotless)
+    alias(libs.plugins.sonarqube)
+    alias(libs.plugins.minotaur)
+    alias(libs.plugins.cursegradle)
 }
 
 base {
@@ -98,7 +81,6 @@ minecraft {
         }
 
         forEach {
-            it.args("-mixin.config=${mod_id}.mixins.json")
             it.mods {
                 create(mod_id) {
                     source(sourceSets.main.get())
@@ -143,10 +125,11 @@ repositories {
     }
 
     maven {
-        url = uri("https://registry.somethingcatchy.net/repository/maven-releases/")
+        url = uri("https://registry.somethingcatchy.net/repository/maven-public/")
         content {
             includeGroup("dev.galena")
             includeGroup("com.possible-triangle")
+            includeGroup("com.ninni.dye_depot")
         }
     }
 }
@@ -155,56 +138,53 @@ jarJar.enable()
 
 dependencies {
     minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
-    implementation(fg.deobf("com.teamabnormals:blueprint:${minecraft_version}-${blueprint_version}"))
-    annotationProcessor("org.spongepowered:mixin:${mixin_version}:processor")
+    annotationProcessor(variantOf(libs.mixin) { classifier("processor") })
+    implementation(fg.deobf(libs.blueprint))
 
-    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:${mixin_extras_version}")!!)
-    implementation(jarJar("io.github.llamalad7:mixinextras-forge:${mixin_extras_version}") {
+    compileOnly(annotationProcessor(libs.mixin.extras.common.get())!!)
+    implementation(jarJar(libs.mixin.extras.forge.get().copy()) {
         version {
-            strictly("[${mixin_extras_version},)")
-            prefer(mixin_extras_version)
+            strictly("[${version},)")
+            prefer(version!!)
         }
     })
 
-    val hatsVersion = "${minecraft_version}-${galena_hats_version}"
-    implementation(fg.deobf(jarJar("dev.galena:hats-forge:${hatsVersion}") {
+    implementation(fg.deobf(jarJar(libs.galena.hats.get().copy()) {
         version {
-            strictly("[${hatsVersion},)")
-            prefer(hatsVersion)
+            strictly("[${version},)")
+            prefer(version!!)
         }
     }))
 
-    val multikultiVersion = "$minecraft_version-$multikulti_version"
-    implementation(fg.deobf("com.possible-triangle:multikulti-core-forge:$multikultiVersion"))
-    implementation(fg.deobf("com.possible-triangle:multikulti-datagen-forge:$multikultiVersion"))
-    implementation(fg.deobf(jarJar("com.possible-triangle:multikulti-datagen-forge-fix:$multikultiVersion") {
+    implementation(fg.deobf(libs.multikulti.core))
+    implementation(fg.deobf(libs.multikulti.datagen))
+    implementation(fg.deobf(jarJar(libs.multikulti.datagen.fix.get().copy()) {
         version {
-            strictly("[${multikultiVersion},)")
-            prefer(multikultiVersion)
+            strictly("[${version},)")
+            prefer(version!!)
         }
     }))
 
     // Compatibilities
-    implementation(fg.deobf("maven.modrinth:farmers-delight:${farmersdelight_version}"))
-    implementation(fg.deobf("maven.modrinth:nethers-delight:${nethersdelight_version}"))
-    implementation(fg.deobf("maven.modrinth:shield-expansion:${shieldexpansion_version}"))
-    implementation(fg.deobf("com.simibubi.create:create-${minecraft_version}:${create_version}:all"))
-    compileOnly(fg.deobf("net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}"))
-    implementation(fg.deobf("maven.modrinth:supplementaries:${supplementaries_version}"))
+    implementation(fg.deobf(pack.modrinth.farmers.delight))
+    implementation(fg.deobf(pack.modrinth.nethers.delight))
+    implementation(fg.deobf(pack.modrinth.shield.expansion))
+    implementation(fg.deobf(variantOf(libs.create) {
+        classifier("all")
+    }))
+    compileOnly(fg.deobf(libs.ponder))
+    implementation(fg.deobf(pack.modrinth.supplementaries))
 
     // For dev testing
-    runtimeOnly(fg.deobf("maven.modrinth:scannable:${scannable_version}"))
-    runtimeOnly(fg.deobf("maven.modrinth:architectury-api:${architectury_version}"))
-    runtimeOnly(fg.deobf("maven.modrinth:moonlight:${moonlight_lib_version}"))
-    runtimeOnly(fg.deobf("maven.modrinth:dye-depot:${dye_depot_version}"))
-    runtimeOnly(fg.deobf("maven.modrinth:jade:${jade_version}"))
+    runtimeOnly(fg.deobf(pack.modrinth.scannable))
+    runtimeOnly(fg.deobf(pack.modrinth.architectury.api))
+    runtimeOnly(fg.deobf(pack.modrinth.moonlight))
+    runtimeOnly(fg.deobf(libs.dye.depot))
+    runtimeOnly(fg.deobf(pack.modrinth.jade))
 
-    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"))
-    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"))
-    runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}"))
-
-    runtimeOnly(fg.deobf("maven.modrinth:scannable:${scannable_version}"))
-    runtimeOnly(fg.deobf("maven.modrinth:architectury-api:${architectury_version}"))
+    compileOnly(fg.deobf(libs.jei.common.api))
+    compileOnly(fg.deobf(libs.jei.forge.api))
+    runtimeOnly(fg.deobf(libs.jei.forge))
 }
 
 tasks.withType<Jar> {
@@ -345,6 +325,6 @@ tasks.register<TaskPublishCurseForge>("curseforge") {
         releaseType = release_type
         displayName = "$mod_name $mod_version"
         addGameVersion(minecraft_version)
-        // addRelation("blueprint", Constants.RELATION_REQUIRED)
+        addRelation("blueprint", Constants.RELATION_REQUIRED, "382216")
     }
 }

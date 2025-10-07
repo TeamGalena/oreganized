@@ -1,0 +1,13 @@
+name = "Nether's Delight"
+filename = "nethersdelight-1.20.1-4.0.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/Vv0RM7WN/versions/MTDQhZd2/nethersdelight-1.20.1-4.0.jar"
+hash-format = "sha512"
+hash = "3146b9438caac5e148748beed7e7f1a5e446c40ca826e476e46fb623175b2bd58c1f4a74cab4a08dd1749add5d088440217ad68dd0b800d1ac8938582d2e81b9"
+
+[update]
+[update.modrinth]
+mod-id = "Vv0RM7WN"
+version = "MTDQhZd2"
