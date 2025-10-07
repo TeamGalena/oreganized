@@ -1,34 +1,24 @@
 [versions]
-multikulti = "1.20.1-1.0.4"
-jei = "15.20.0.106"
-mixin-extras = "0.4.1"
+multikulti = "1.21.1-1.2.0"
+jei = "19.21.0.247"
 
 [libraries]
-multikulti-core = { group = "com.possible-triangle", name = "multikulti-core-forge", version.ref = "multikulti" }
-multikulti-datagen = { group = "com.possible-triangle", name = "multikulti-datagen-forge", version.ref = "multikulti" }
-multikulti-datagen-fix = { group = "com.possible-triangle", name = "multikulti-datagen-forge-fix", version.ref = "multikulti" }
+multikulti-datagen = { group = "com.possible-triangle", name = "multikulti-datagen-neoforge", version.ref = "multikulti" }
 
-blueprint = { group = "com.teamabnormals", name = "blueprint", version = "1.20.1-7.1.0" }
+blueprint = { group = "com.teamabnormals", name = "blueprint", version = "1.21.1-8.0.5" }
 
-galena-hats = { "group" = "dev.galena", name = "hats-forge", version = "1.20.1-1.2.0" }
+galena-hats = { "group" = "dev.galena", name = "hats-neoforge", version = "1.21.1-1.2.2" }
 
-dye-depot = { group = "com.ninni.dye_depot", name = "dye_depot", version = "1.20.1-1.2.0-forge" }
+dye-depot = { group = "com.ninni.dye_depot", name = "dye_depot", version = "1.21.1-2.0.0-neoforge" }
 
-create = { group = "com.simibubi.create", name = "create-1.20.1", version = "6.0.6-163" }
-ponder = { group = "net.createmod.ponder", name = "Ponder-Forge-1.20.1", version = "1.0.43" }
+create = { group = "com.simibubi.create", name = "create-1.21.1", version = "6.0.6-99" }
 
-jei-common-api = { group = "mezz.jei", name = "jei-1.20.1-common-api", version.ref = "jei" }
-jei-forge-api = { group = "mezz.jei", name = "jei-1.20.1-forge-api", version.ref = "jei" }
-jei-forge = { group = "mezz.jei", name = "jei-1.20.1-forge", version.ref = "jei" }
-
-mixin = { group = "org.spongepowered", name = "mixin", version = "0.8.5" }
-mixin-extras-common = { group = "io.github.llamalad7", name = "mixinextras-common", version.ref = "mixin-extras" }
-mixin-extras-forge = { group = "io.github.llamalad7", name = "mixinextras-forge", version.ref = "mixin-extras" }
+jei-common-api = { group = "mezz.jei", name = "jei-1.21.1-common-api", version.ref = "jei" }
+jei-neoforge-api = { group = "mezz.jei", name = "jei-1.21.1-neoforge-api", version.ref = "jei" }
+jei-neoforge = { group = "mezz.jei", name = "jei-1.21.1-neoforge", version.ref = "jei" }
 
 [plugins]
-forge = { id = "net.minecraftforge.gradle", version = "[6.0,6.2)" }
-mixin = { id = "org.spongepowered.mixin", version = "0.7-SNAPSHOT" }
-parchment = { id = "org.parchmentmc.librarian.forgegradle", version = "1.+" }
+neoforge = { id = "net.neoforged.gradle.userdev", version = "7.0.184" }
 spotless = { id = "com.diffplug.spotless", version = "7.0.4" }
 sonarqube = { id = "org.sonarqube", version = "6.2.0.5505" }
 minotaur = { id = "com.modrinth.minotaur", version = "2.+" }

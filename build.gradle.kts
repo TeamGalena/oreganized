@@ -13,31 +13,17 @@ val minecraft_version: String by extra
 val parchment_version: String by extra
 val maven_group: String by extra
 val neoforge_version: String by extra
-val blueprint_version: String by extra
-val farmersdelight_version: String by extra
-//val nethersdelight_version: String by extra
-//val shieldexpansion_version: String by extra
-val create_version: String by extra
-val supplementaries_version: String by extra
-//val scannable_version: String by extra
-//val architectury_version: String by extra
-val moonlight_lib_version: String by extra
-//val dye_depot_version: String by extra
-val jade_version: String by extra
-val jei_version: String by extra
-val galena_hats_version: String by extra
-val multikulti_version: String by extra
 
 val mod_version = System.getenv("RELEASE_VERSION") ?: extra["mod_version"] as String
 
 plugins {
     java
     `maven-publish`
-    id("net.neoforged.gradle.userdev") version "7.0.184"
-    id("com.diffplug.spotless") version "7.0.4"
-    id("org.sonarqube") version "6.2.0.5505"
-    id("com.modrinth.minotaur") version "2.+"
-    id("net.darkhax.curseforgegradle") version "1.1.15"
+    alias(libs.plugins.neoforge)
+    alias(libs.plugins.spotless)
+    alias(libs.plugins.sonarqube)
+    alias(libs.plugins.minotaur)
+    alias(libs.plugins.cursegradle)
 }
 
 base {
@@ -138,6 +124,7 @@ repositories {
         content {
             includeGroup("dev.galena")
             includeGroup("com.possible-triangle")
+            includeGroup("com.ninni.dye_depot")
         }
     }
 }
@@ -146,35 +133,39 @@ jarJar.enable()
 
 dependencies {
     implementation("net.neoforged:neoforge:${neoforge_version}")
-    implementation("com.teamabnormals:blueprint:${minecraft_version}-${blueprint_version}")
+    implementation(libs.blueprint)
 
-    val hatsVersion = "${minecraft_version}-${galena_hats_version}"
-    implementation(jarJar("dev.galena:hats-neoforge:${hatsVersion}") {
+    implementation(jarJar(libs.galena.hats.get().copy()) {
         version {
-            strictly("[${hatsVersion},)")
-            prefer(hatsVersion)
+            strictly("[${version},)")
+            prefer(version!!)
         }
     })
 
-    implementation("com.possible-triangle:multikulti-datagen-neoforge:$minecraft_version-$multikulti_version")
+    implementation(libs.multikulti.datagen)
 
     // Compatibilities
-    implementation("maven.modrinth:farmers-delight:${farmersdelight_version}")
-    // implementation("maven.modrinth:nethers-delight:${nethersdelight_version}")
-    // implementation("maven.modrinth:shield-expansion:${shieldexpansion_version}")
-    implementation("com.simibubi.create:create-${minecraft_version}:${create_version}:all") { isTransitive = false }
-    implementation("maven.modrinth:supplementaries:${supplementaries_version}")
+    implementation(pack.modrinth.supplementaries)
+    // implementation(pack.modrinth.nethers.delight)
+    // implementation(pack.modrinth.shield.expansion)
+    implementation(variantOf(libs.create) {
+        classifier("all")
+    }) {
+        isTransitive = false
+    }
+    implementation(pack.modrinth.supplementaries)
 
     // For dev testing
-    // runtimeOnly("maven.modrinth:scannable:${scannable_version}")
-    // runtimeOnly("maven.modrinth:architectury-api:${architectury_version}")
-    runtimeOnly("maven.modrinth:moonlight:${moonlight_lib_version}")
-    // runtimeOnly("maven.modrinth:dye-depot:${dye_depot_version}")
-    runtimeOnly("maven.modrinth:jade:${jade_version}")
+    // runtimeOnly(pack.modrinth.scannable)
+    // runtimeOnly(pack.modrinth.architectury.api)
+    runtimeOnly(pack.modrinth.moonlight)
+    runtimeOnly(libs.dye.depot)
+    runtimeOnly(pack.modrinth.jade)
+    runtimeOnly(pack.modrinth.no.mans.land)
 
-    compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
-    compileOnly("mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}")
-    runtimeOnly("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
+    compileOnly(libs.jei.common.api)
+    compileOnly(libs.jei.neoforge.api)
+    runtimeOnly(libs.jei.neoforge)
 }
 
 tasks.withType<Jar> {
@@ -314,6 +305,6 @@ tasks.register<TaskPublishCurseForge>("curseforge") {
         displayName = "$mod_name $mod_version"
         addGameVersion(minecraft_version)
         addModLoader("NeoForge")
-        // addRelation("blueprint", Constants.RELATION_REQUIRED)
+        addRelation("blueprint", Constants.RELATION_REQUIRED, "382216")
     }
 }
