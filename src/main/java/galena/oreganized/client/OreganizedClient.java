@@ -38,6 +38,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.ChargedProjectiles;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -81,7 +82,7 @@ public class OreganizedClient {
         });
 
         ItemProperties.register(Items.CROSSBOW, Oreganized.modLoc("lead_bolt"), (stack, level, user, i) ->
-                stack.get(DataComponents.CHARGED_PROJECTILES).contains(OItems.LEAD_BOLT.get()) ? 1.0F : 0.0F
+                stack.getOrDefault(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY).contains(OItems.LEAD_BOLT.get()) ? 1.0F : 0.0F
         );
 
         ItemProperties.register(OItems.ELECTRUM_SHIELD.get(), ResourceLocation.withDefaultNamespace("blocking"), (stack, level, user, i) ->
