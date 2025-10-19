@@ -16,10 +16,3 @@ create = { group = "com.simibubi.create", name = "create-1.21.1", version = "6.0
 jei-common-api = { group = "mezz.jei", name = "jei-1.21.1-common-api", version.ref = "jei" }
 jei-neoforge-api = { group = "mezz.jei", name = "jei-1.21.1-neoforge-api", version.ref = "jei" }
 jei-neoforge = { group = "mezz.jei", name = "jei-1.21.1-neoforge", version.ref = "jei" }
-
-[plugins]
-neoforge = { id = "net.neoforged.gradle.userdev", version = "7.0.184" }
-spotless = { id = "com.diffplug.spotless", version = "7.0.4" }
-sonarqube = { id = "org.sonarqube", version = "6.2.0.5505" }
-minotaur = { id = "com.modrinth.minotaur", version = "2.+" }
-cursegradle = { id = "com.possible-triangle.curseforgegradle", version = "1.2.5" }
