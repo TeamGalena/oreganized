@@ -10,6 +10,7 @@ import galena.oreganized.ModCompat;
 import galena.oreganized.Oreganized;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
+import galena.oreganized.world.recipe.ScribeRecipe;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
@@ -25,7 +26,6 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
 public abstract class ORecipeProvider extends RecipeProvider {
@@ -243,6 +243,31 @@ public abstract class ORecipeProvider extends RecipeProvider {
         );
     }
 
+    public ScribeRecipe.Builder scribeConversion(Block from, Block to) {
+        return new ScribeRecipe.Builder()
+                .from(from)
+                .result(to);
+    }
+
+    public ScribeRecipe.Builder scribeHarvesting(TagKey<Block> from, Block to) {
+        return new ScribeRecipe.Builder()
+                .from(from)
+                .result(to)
+                .dropResources();
+    }
+
+    public CuttingBoardRecipeBuilder scribeCuttingBoard(ItemLike from, ItemLike to) {
+        return CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(from), Ingredient.of(OItems.SCRIBE.asItem()), to);
+    }
+
+    public void scribeConversionAndCutting(RecipeOutput output, Block from, Block to) {
+        var id = RecipeBuilder.getDefaultRecipeId(to);
+        scribeConversion(from, to).save(output, id);
+        Conditional.with(this, List.of(new ModLoaded(ModCompat.FARMERS_DELIGHT_ID)), () -> {
+            scribeCuttingBoard(from, to).save(output, id);
+        });
+    }
+
     public void flowerDye(Supplier<? extends ItemLike> flower, ItemLike primary, RecipeOutput consumer) {
         var name = getItemName(flower.get());
 
@@ -257,8 +282,10 @@ public abstract class ORecipeProvider extends RecipeProvider {
                 .output(0.05F, Items.GREEN_DYE)
                 .build(consumer);
 
-        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(flower.get()), Ingredient.of(OTags.Items.TOOLS_KNIVES), primary, 2)
-                .save(consumer.withConditions(new ModLoadedCondition(ModCompat.FARMERS_DELIGHT_ID)));
+        Conditional.with(this, List.of(new ModLoaded(ModCompat.FARMERS_DELIGHT_ID)), () -> {
+            CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(flower.get()), Ingredient.of(OTags.Items.TOOLS_KNIVES), primary, 2)
+                    .save(consumer);
+        });
     }
 
     public <T> T unlessLoaded(T value, String... modIds) {

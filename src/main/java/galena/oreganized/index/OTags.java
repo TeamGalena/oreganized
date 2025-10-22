@@ -106,6 +106,9 @@ public class OTags {
         public static final TagKey<Block> BOMB_BREAKABLE = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("supplementaries", "bomb_breakable"));
         public static final TagKey<Block> CANNON_TNTS = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("supplementaries", "cannon_tnts"));
 
+        public static final TagKey<Block> AMETHYST_CLUSTERS = forgeTag("clusters/amethyst");
+        public static final TagKey<Block> QUARTZITE_CLUSTERS = forgeTag("clusters/quartzite");
+
         private static TagKey<Block> tag(String name) {
             return TagKey.create(Registries.BLOCK, Oreganized.modLoc(name));
         }

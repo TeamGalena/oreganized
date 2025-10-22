@@ -6,11 +6,8 @@ import static galena.oreganized.index.OTags.Blocks.SILKTOUCH_WITH_SCRIBE_BLACKLI
 
 import galena.oreganized.OreganizedConfig;
 import galena.oreganized.content.block.ICrystalGlass;
-import galena.oreganized.index.OBlocks;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.function.Supplier;
+import galena.oreganized.index.ORecipeTypes;
+import galena.oreganized.world.recipe.BlockRecipeInput;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvents;
@@ -21,31 +18,15 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.pattern.BlockInWorld;
 import net.minecraft.world.level.gameevent.GameEvent;
 
 public class ScribeItem extends Item {
-
-    private static final Map<Block, Supplier<Block>> GROOVED_BLOCKS = new HashMap<>();
-
-    public static void registerGroovedBlock(Block from, Supplier<Block> to) {
-        GROOVED_BLOCKS.put(from, to);
-    }
-
-    public static Set<Map.Entry<Block, Supplier<Block>>> getGroovedBlocks() {
-        return GROOVED_BLOCKS.entrySet();
-    }
-
-    static {
-        registerGroovedBlock(Blocks.ICE, OBlocks.GROOVED_ICE);
-        registerGroovedBlock(Blocks.PACKED_ICE, OBlocks.GROOVED_PACKED_ICE);
-        registerGroovedBlock(Blocks.BLUE_ICE, OBlocks.GROOVED_BLUE_ICE);
-    }
 
     public ScribeItem(Properties properties) {
         super(properties);
@@ -76,7 +57,7 @@ public class ScribeItem extends Item {
 
     @Override
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
-        if(OreganizedConfig.COMMON.scribeSilkTouchStone.get()) {
+        if (OreganizedConfig.COMMON.scribeSilkTouchStone.get()) {
             return state.is(SILKTOUCH_WITH_SCRIBE);
         } else {
             return state.is(MINEABLE_WITH_SCRIBE);
@@ -90,7 +71,7 @@ public class ScribeItem extends Item {
 
     @Override
     public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
-        if(enchantment.is(EnchantmentTags.MINING_EXCLUSIVE)) return true;
+        if (enchantment.is(EnchantmentTags.MINING_EXCLUSIVE)) return true;
         return super.supportsEnchantment(stack, enchantment);
     }
 
@@ -124,16 +105,17 @@ public class ScribeItem extends Item {
             return replaceBlock(context, state.setValue(ICrystalGlass.TYPE, (type + 1) % (ICrystalGlass.MAX_TYPE + 1)), true);
         }
 
-        var grooved = GROOVED_BLOCKS.get(state.getBlock());
-        if (grooved != null) {
-            return replaceBlock(context, grooved.get().defaultBlockState(), true);
-        }
-
-        if (state.getBlock() instanceof AmethystClusterBlock && !state.is(Blocks.SMALL_AMETHYST_BUD)) {
-            var tool = new ItemStack(Items.IRON_PICKAXE);
-            tool.applyComponents(context.getItemInHand().getComponents());
-            Block.dropResources(state, context.getLevel(), context.getClickedPos(), null, context.getPlayer(), tool);
-            return replaceBlock(context, Blocks.SMALL_AMETHYST_BUD.withPropertiesOf(state), false);
+        var input = new BlockRecipeInput(new BlockInWorld(context.getLevel(), context.getClickedPos(), false));
+        var recipe = context.getLevel().getRecipeManager().getRecipeFor(ORecipeTypes.SCRIBE_RECIPE.get(), input, context.getLevel())
+                .map(RecipeHolder::value)
+                .orElse(null);
+        if (recipe != null) {
+            if (recipe.dropResources()) {
+                var tool = new ItemStack(Items.IRON_PICKAXE);
+                tool.applyComponents(context.getItemInHand().getComponents());
+                Block.dropResources(state, context.getLevel(), context.getClickedPos(), null, context.getPlayer(), tool);
+            }
+            return replaceBlock(context, recipe.to().withPropertiesOf(state), !recipe.dropResources());
         }
 
         return super.useOn(context);

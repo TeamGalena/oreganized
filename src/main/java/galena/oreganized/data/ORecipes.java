@@ -9,6 +9,7 @@ import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;
 import com.simibubi.create.content.kinetics.mixer.CompactingRecipe;
 import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
+import galena.oreganized.ModCompat;
 import galena.oreganized.Oreganized;
 import galena.oreganized.compat.ColorCompat;
 import galena.oreganized.data.provider.ORecipeProvider;
@@ -19,6 +20,7 @@ import galena.oreganized.index.OTags;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -166,12 +168,13 @@ public class ORecipes extends ORecipeProvider {
             var unwaxed = ColorCompat.getColoredBlock("concrete_powder", color);
             dyed(color, makeWaxed(waxed, unwaxed)).save(consumer);
 
-            dyed(color, application(DeployerApplicationRecipe::new, waxed.getId().getPath())
+            dyed(color, this, () -> application(DeployerApplicationRecipe::new, waxed.getId().getPath())
                     .output(waxed.get())
                     .require(unwaxed)
                     .require(Blocks.HONEYCOMB_BLOCK)
                     .toolNotConsumed()
-            ).build(consumer);
+                    .build(consumer)
+            );
         });
 
         OBlocks.CRYSTAL_GLASS_PANES.forEach((color, pane) ->
@@ -390,6 +393,15 @@ public class ORecipes extends ORecipeProvider {
 
         flowerDye(OBlocks.WHITE_DATURA, Items.WHITE_DYE, consumer);
         flowerDye(OBlocks.PURPLE_DATURA, Items.PURPLE_DYE, consumer);
+
+        scribeConversionAndCutting(consumer, Blocks.ICE, OBlocks.GROOVED_ICE.get());
+        scribeConversionAndCutting(consumer, Blocks.PACKED_ICE, OBlocks.GROOVED_PACKED_ICE.get());
+        scribeConversionAndCutting(consumer, Blocks.BLUE_ICE, OBlocks.GROOVED_BLUE_ICE.get());
+
+        scribeHarvesting(OTags.Blocks.AMETHYST_CLUSTERS, Blocks.SMALL_AMETHYST_BUD).save(consumer);
+        scribeHarvesting(OTags.Blocks.QUARTZITE_CLUSTERS, BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath(ModCompat.NO_MANS_LAND, "small_quartzite_bud")))
+                .when(ModCompat.NO_MANS_LAND)
+                .save(consumer);
     }
 
 }

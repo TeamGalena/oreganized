@@ -1,5 +1,6 @@
 package galena.oreganized.data;
 
+import galena.oreganized.ModCompat;
 import galena.oreganized.Oreganized;
 import galena.oreganized.index.DyeColors;
 import galena.oreganized.index.OBlocks;
@@ -180,17 +181,27 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
                 .add(OBlocks.GROOVED_PACKED_ICE.get())
                 .add(OBlocks.GROOVED_BLUE_ICE.get());
 
-        var scribeMineable = tag(OTags.Blocks.MINEABLE_WITH_SCRIBE)
-                .addTags(Tags.Blocks.GLASS_BLOCKS)
-                .addTags(Tags.Blocks.GLASS_PANES)
-                .addTags(Tags.Blocks.OBSIDIANS)
-                .addTags(BlockTags.ICE)
-                .addTags(BlockTags.CRYSTAL_SOUND_BLOCKS)
-                .add(Blocks.AMETHYST_BLOCK)
+        tag(OTags.Blocks.AMETHYST_CLUSTERS)
                 .add(Blocks.AMETHYST_CLUSTER)
                 .add(Blocks.LARGE_AMETHYST_BUD)
                 .add(Blocks.MEDIUM_AMETHYST_BUD)
                 .add(Blocks.SMALL_AMETHYST_BUD);
+
+        tag(OTags.Blocks.QUARTZITE_CLUSTERS)
+                .addOptional(ResourceLocation.fromNamespaceAndPath(ModCompat.NO_MANS_LAND, "quartzite_cluster"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(ModCompat.NO_MANS_LAND, "large_quartzite_bud"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(ModCompat.NO_MANS_LAND, "medium_quartzite_bud"))
+                .addOptional(ResourceLocation.fromNamespaceAndPath(ModCompat.NO_MANS_LAND, "small_quartzite_bud"));
+
+        var scribeMineable = tag(OTags.Blocks.MINEABLE_WITH_SCRIBE)
+                .addTags(Tags.Blocks.GLASS_BLOCKS)
+                .addTags(Tags.Blocks.GLASS_PANES)
+                .addTags(Tags.Blocks.OBSIDIANS)
+                .addTags(OTags.Blocks.AMETHYST_CLUSTERS)
+                .addTags(OTags.Blocks.QUARTZITE_CLUSTERS)
+                .addTags(BlockTags.ICE)
+                .addTags(BlockTags.CRYSTAL_SOUND_BLOCKS)
+                .add(Blocks.AMETHYST_BLOCK);
 
         scribeMineable
                 .add(Blocks.QUARTZ_BRICKS)

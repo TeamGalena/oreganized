@@ -39,6 +39,7 @@ import galena.oreganized.index.OFluids;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OParticleTypes;
 import galena.oreganized.index.OPotions;
+import galena.oreganized.index.ORecipeTypes;
 import galena.oreganized.index.OSoundEvents;
 import galena.oreganized.index.OStructures;
 import galena.oreganized.index.OTags;
@@ -127,6 +128,7 @@ public class Oreganized {
         OItems.register();
         OCriteriaTriggers.register(modBus);
         OSoundEvents.register();
+        ORecipeTypes.register(modBus);
 
         REGISTRY_HELPER.register(modBus);
 
