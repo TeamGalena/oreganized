@@ -10,9 +10,12 @@ import galena.oreganized.ModCompat;
 import galena.oreganized.Oreganized;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
+import galena.oreganized.world.recipe.ScribeRecipe;
+
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.TagKey;
@@ -24,8 +27,6 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.crafting.ConditionalRecipe;
-import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
 public abstract class ORecipeProvider extends RecipeProvider {
@@ -146,7 +147,7 @@ public abstract class ORecipeProvider extends RecipeProvider {
 
     public SimpleCookingRecipeBuilder smeltingRecipeTag(ItemLike result, TagKey<Item> ingredient, float exp, int count) {
         return SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient), RecipeCategory.MISC, result, exp, 200)
-                .unlockedBy("has_" + ingredient, has(ingredient));
+                .unlockedBy("has_" + ingredient.location().getPath(), has(ingredient));
     }
 
     public SimpleCookingRecipeBuilder blastingRecipe(ItemLike result, ItemLike ingredient, float exp) {
@@ -236,6 +237,31 @@ public abstract class ORecipeProvider extends RecipeProvider {
         );
     }
 
+    public ScribeRecipe.Builder scribeConversion(Block from, Block to) {
+        return new ScribeRecipe.Builder()
+                .from(from)
+                .result(to);
+    }
+
+    public ScribeRecipe.Builder scribeHarvesting(TagKey<Block> from, Block to) {
+        return new ScribeRecipe.Builder()
+                .from(from)
+                .result(to)
+                .dropResources();
+    }
+
+    public CuttingBoardRecipeBuilder scribeCuttingBoard(ItemLike from, ItemLike to) {
+        return CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(from), Ingredient.of(OItems.SCRIBE.get()), to);
+    }
+
+    public void scribeConversionAndCutting(Consumer<FinishedRecipe> output, Block from, Block to) {
+        var id = RecipeBuilder.getDefaultRecipeId(to);
+        scribeConversion(from, to).save(output, id);
+        Conditional.with(this, List.of(new ModLoaded(ModCompat.FARMERS_DELIGHT_ID)), () -> {
+            scribeCuttingBoard(from, to).build(output, id.withPrefix("cutting/"));
+        });
+    }
+
     public void flowerDye(Supplier<? extends ItemLike> flower, ItemLike primary, Consumer<FinishedRecipe> consumer) {
         var name = getItemName(flower.get());
 
@@ -250,10 +276,10 @@ public abstract class ORecipeProvider extends RecipeProvider {
                 .output(0.05F, Items.GREEN_DYE)
                 .build(consumer);
 
-        ConditionalRecipe.builder()
-                .addCondition(new ModLoadedCondition(ModCompat.FARMERS_DELIGHT_ID))
-                .addRecipe(CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(flower.get()), Ingredient.of(OTags.Items.TOOLS_KNIVES), primary, 2)::build)
-                .build(consumer, Oreganized.modLoc("cutting/" + getItemName(flower.get())));
+        Conditional.with(this, List.of(new ModLoaded(ModCompat.FARMERS_DELIGHT_ID)), () -> {
+            CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(flower.get()), Ingredient.of(OTags.Items.TOOLS_KNIVES), primary, 2)
+                    .build(consumer);
+        });
     }
 
     public <T> T unlessLoaded(T value, String... modIds) {

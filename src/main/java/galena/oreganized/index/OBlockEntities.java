@@ -16,4 +16,7 @@ public class OBlockEntities {
     public static final RegistryObject<BlockEntityType<GargoyleBlockEntity>> GARGOYLE = HELPER.createBlockEntity("gargoyle", GargoyleBlockEntity::new, () -> Set.of(OBlocks.GARGOYLE.get()));
     public static final RegistryObject<BlockEntityType<HeavyDoorBlockEntity>> HEAVY_DOOR = HELPER.createBlockEntity("heavy_door", HeavyDoorBlockEntity::new, () -> Set.of(OBlocks.LEAD_DOOR.get(), OBlocks.LEAD_TRAPDOOR.get()));
 
+    public static void register() {
+        // Loads this class
+    }
 }

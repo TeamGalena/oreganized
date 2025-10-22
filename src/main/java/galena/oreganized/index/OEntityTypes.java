@@ -8,6 +8,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraftforge.event.entity.EntityAttributeModificationEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
@@ -31,5 +32,9 @@ public class OEntityTypes {
                 event.add(entityType, OAttributes.KINETIC_DAMAGE.get());
             }
         }
+    }
+
+    public static void register(IEventBus modBus) {
+        ENTITIES.register(modBus);
     }
 }

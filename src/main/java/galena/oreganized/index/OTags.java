@@ -5,6 +5,7 @@ import static galena.oreganized.ModCompat.NETHERS_DELIGHT_ID;
 import static galena.oreganized.ModCompat.SHIELD_EXPANSION_ID;
 
 import galena.oreganized.Oreganized;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
@@ -105,6 +106,12 @@ public class OTags {
 
         public static final TagKey<Block> FIRE_HEAT_LEVEL = tag("heat_level/fire");
         public static final TagKey<Block> LAVA_HEAT_LEVEL = tag("heat_level/lava");
+
+        public static final TagKey<Block> CARRY_ON_BLACKLIST = TagKey.create(Registries.BLOCK, new ResourceLocation("carryon", "block_blacklist"));
+        public static final TagKey<Block> BOMB_BREAKABLE = TagKey.create(Registries.BLOCK, new ResourceLocation("supplementaries", "bomb_breakable"));
+        public static final TagKey<Block> CANNON_TNTS = TagKey.create(Registries.BLOCK, new ResourceLocation("supplementaries", "cannon_tnts"));
+
+        public static final TagKey<Block> AMETHYST_CLUSTERS = forgeTag("clusters/amethyst");
 
         private static TagKey<Block> tag(String name) {
             return BlockTags.create(Oreganized.modLoc(name));

@@ -18,4 +18,8 @@ public class OSoundEvents {
 
     public static final RegistryObject<SoundEvent> BOLT_HIT = HELPER.createSoundEvent("entity.bolt_hit");
     public static final RegistryObject<SoundEvent> BOLT_HIT_ARMOR = HELPER.createSoundEvent("entity.bolt_hit_armor");
+
+    public static void register() {
+        // Loads this class
+    }
 }

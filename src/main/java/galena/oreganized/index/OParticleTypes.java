@@ -13,6 +13,7 @@ import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
@@ -22,7 +23,7 @@ import net.minecraftforge.registries.RegistryObject;
 @Mod.EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class OParticleTypes {
 
-    public static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, Oreganized.MOD_ID);
+    private static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, Oreganized.MOD_ID);
 
     public static final RegistryObject<SimpleParticleType> DRIPPING_LEAD = PARTICLES.register("dripping_lead", () -> new SimpleParticleType(true));
     public static final RegistryObject<SimpleParticleType> FALLING_LEAD = PARTICLES.register("falling_lead", () -> new SimpleParticleType(true));
@@ -46,5 +47,9 @@ public class OParticleTypes {
         engine.register(KINETIC_HIT.get(), KineticHitParticle.Provider::new);
         engine.register(LEAD_CLOUD.get(), LeadCloudParticleProvider::new);
         engine.register(LEAD_BLOW.get(), ExplodeParticle.Provider::new);
+    }
+
+    public static void register(IEventBus modBus) {
+        PARTICLES.register(modBus);
     }
 }

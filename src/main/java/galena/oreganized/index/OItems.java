@@ -102,4 +102,8 @@ public class OItems {
 
     // Transportation
     public static final RegistryObject<Item> SHRAPNEL_BOMB_MINECART = HELPER.createItem("shrapnel_bomb_minecart", () -> new MinecartShrapnelBombItem(AbstractMinecart.Type.TNT, OEntityTypes.SHRAPNEL_BOMB_MINECART));
+
+    public static void register() {
+        // Loads this class
+    }
 }

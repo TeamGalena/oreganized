@@ -183,4 +183,8 @@ public class OBlocks {
             return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties());
         };
     }
+
+    public static void register() {
+        // Loads this class
+    }
 }

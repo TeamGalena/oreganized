@@ -9,6 +9,7 @@ import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;
 import com.simibubi.create.content.kinetics.mixer.CompactingRecipe;
 import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
+import galena.oreganized.ModCompat;
 import galena.oreganized.Oreganized;
 import galena.oreganized.compat.ColorCompat;
 import galena.oreganized.data.provider.ORecipeProvider;
@@ -18,6 +19,7 @@ import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
 import java.util.List;
 import java.util.function.Consumer;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -165,16 +167,14 @@ public class ORecipes extends ORecipeProvider {
             var unwaxed = ColorCompat.getColoredBlock("concrete_powder", color);
             dyed(color, makeWaxed(waxed, unwaxed)).save(consumer);
 
-            dyed(color, processing(DeployerApplicationRecipe::new, waxed.getId().getPath())
+            dyed(color, this, () -> processing(DeployerApplicationRecipe::new, waxed.getId().getPath())
                     .output(waxed.get())
                     .require(unwaxed)
                     .require(Blocks.HONEYCOMB_BLOCK)
                     .toolNotConsumed()
-            ).build(consumer);
+                    .build(consumer)
+            );
         });
-
-        flowerDye(OBlocks.WHITE_DATURA, Items.WHITE_DYE, consumer);
-        flowerDye(OBlocks.PURPLE_DATURA, Items.PURPLE_DYE, consumer);
 
         OBlocks.CRYSTAL_GLASS_PANES.forEach((color, pane) ->
                 dyed(color, makeBars(pane, OBlocks.CRYSTAL_GLASS.get(color))).save(consumer)
@@ -389,6 +389,15 @@ public class ORecipes extends ORecipeProvider {
                 )))
                 .requiresHeat(HeatCondition.HEATED)
                 .build(consumer);
+
+        flowerDye(OBlocks.WHITE_DATURA, Items.WHITE_DYE, consumer);
+        flowerDye(OBlocks.PURPLE_DATURA, Items.PURPLE_DYE, consumer);
+
+        scribeConversionAndCutting(consumer, Blocks.ICE, OBlocks.GROOVED_ICE.get());
+        scribeConversionAndCutting(consumer, Blocks.PACKED_ICE, OBlocks.GROOVED_PACKED_ICE.get());
+        scribeConversionAndCutting(consumer, Blocks.BLUE_ICE, OBlocks.GROOVED_BLUE_ICE.get());
+
+        scribeHarvesting(OTags.Blocks.AMETHYST_CLUSTERS, Blocks.SMALL_AMETHYST_BUD).save(consumer);
     }
 
 }

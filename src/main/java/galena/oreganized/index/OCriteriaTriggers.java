@@ -17,4 +17,7 @@ public class OCriteriaTriggers {
     public static final DummyCriterionTrigger BROKEN_THERMOMETER = CriteriaTriggers.register(new DummyCriterionTrigger(Oreganized.modLoc("broken_thermometer")));
     public static final DummyCriterionTrigger SHAKEN_THERMOMETER = CriteriaTriggers.register(new DummyCriterionTrigger(Oreganized.modLoc("shaken_thermometer")));
 
+    public static void register() {
+        // Loads this class
+    }
 }
