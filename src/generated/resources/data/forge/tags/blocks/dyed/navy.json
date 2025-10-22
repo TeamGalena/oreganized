@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "oreganized:navy_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:navy_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_navy_concrete_powder",
+      "required": false
+    }
+  ]
+}

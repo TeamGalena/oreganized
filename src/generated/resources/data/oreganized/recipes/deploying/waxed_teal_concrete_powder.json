@@ -4,10 +4,6 @@
     {
       "type": "forge:mod_loaded",
       "modid": "create"
-    },
-    {
-      "type": "forge:mod_loaded",
-      "modid": "dye_depot"
     }
   ],
   "ingredients": [

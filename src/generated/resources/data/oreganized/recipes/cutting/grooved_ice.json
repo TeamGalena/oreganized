@@ -1,0 +1,16 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:ice"
+    }
+  ],
+  "result": [
+    {
+      "item": "oreganized:grooved_ice"
+    }
+  ],
+  "tool": {
+    "item": "oreganized:scribe"
+  }
+}

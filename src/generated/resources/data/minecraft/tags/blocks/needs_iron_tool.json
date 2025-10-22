@@ -1,6 +1,8 @@
 {
   "values": [
     "oreganized:silver_ore",
-    "oreganized:deepslate_silver_ore"
+    "oreganized:deepslate_silver_ore",
+    "oreganized:silver_block",
+    "oreganized:raw_silver_block"
   ]
 }

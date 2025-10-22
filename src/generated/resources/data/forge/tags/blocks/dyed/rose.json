@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "oreganized:rose_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:rose_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_rose_concrete_powder",
+      "required": false
+    }
+  ]
+}

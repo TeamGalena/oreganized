@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "oreganized:slate_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:slate_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_slate_concrete_powder",
+      "required": false
+    }
+  ]
+}

@@ -1,6 +1,16 @@
 {
   "values": [
     "oreganized:lead_ore",
-    "oreganized:deepslate_lead_ore"
+    "oreganized:deepslate_lead_ore",
+    "oreganized:raw_lead_block",
+    "oreganized:lead_block",
+    "oreganized:lead_bricks",
+    "oreganized:lead_pillar",
+    "oreganized:lead_bulb",
+    "oreganized:cut_lead",
+    "oreganized:electrum_block",
+    "oreganized:lead_door",
+    "oreganized:lead_trapdoor",
+    "oreganized:lead_bars"
   ]
 }

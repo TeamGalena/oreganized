@@ -1,0 +1,10 @@
+{
+  "type": "oreganized:scribe",
+  "from": {
+    "blocks": [
+      "minecraft:ice"
+    ]
+  },
+  "id": "oreganized:scribe/grooved_ice",
+  "to": "oreganized:grooved_ice"
+}

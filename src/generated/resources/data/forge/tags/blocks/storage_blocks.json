@@ -4,6 +4,7 @@
     "#forge:storage_blocks/lead",
     "#forge:storage_blocks/electrum",
     "#forge:storage_blocks/raw_silver",
-    "#forge:storage_blocks/raw_lead"
+    "#forge:storage_blocks/raw_lead",
+    "oreganized:lead_bolt_crate"
   ]
 }

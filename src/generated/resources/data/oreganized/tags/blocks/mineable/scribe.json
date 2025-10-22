@@ -3,14 +3,10 @@
     "#forge:glass",
     "#forge:glass_panes",
     "#forge:obsidian",
+    "#forge:clusters/amethyst",
     "#minecraft:ice",
     "#minecraft:crystal_sound_blocks",
-    "#forge:storage_blocks/amethyst",
-    "minecraft:amethyst_cluster",
-    "minecraft:large_amethyst_bud",
-    "minecraft:medium_amethyst_bud",
-    "minecraft:small_amethyst_bud",
-    "#forge:storage_blocks/quartz",
+    "minecraft:amethyst_block",
     "minecraft:quartz_bricks",
     "minecraft:quartz_pillar",
     "minecraft:quartz_slab",
@@ -19,6 +15,10 @@
     "minecraft:smooth_quartz",
     "minecraft:smooth_quartz_slab",
     "minecraft:smooth_quartz_stairs",
+    {
+      "id": "#botania:quartz_blocks",
+      "required": false
+    },
     {
       "id": "quark:red_corundum",
       "required": false

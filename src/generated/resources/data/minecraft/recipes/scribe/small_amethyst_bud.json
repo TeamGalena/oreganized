@@ -1,0 +1,9 @@
+{
+  "type": "oreganized:scribe",
+  "drop_resources": true,
+  "from": {
+    "tag": "forge:clusters/amethyst"
+  },
+  "id": "minecraft:scribe/small_amethyst_bud",
+  "to": "minecraft:small_amethyst_bud"
+}

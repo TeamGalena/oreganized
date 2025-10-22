@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "oreganized:magenta_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:magenta_crystal_glass_pane",
+      "required": false
+    },
+    {
+      "id": "oreganized:waxed_magenta_concrete_powder",
+      "required": false
+    }
+  ]
+}
