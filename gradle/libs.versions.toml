@@ -1,7 +1,6 @@
 [versions]
 multikulti = "1.20.1-1.0.4"
 jei = "15.20.0.106"
-mixin-extras = "0.4.1"
 
 [libraries]
 multikulti-core = { group = "com.possible-triangle", name = "multikulti-core-forge", version.ref = "multikulti" }
@@ -12,7 +11,7 @@ blueprint = { group = "com.teamabnormals", name = "blueprint", version = "1.20.1
 
 galena-hats = { "group" = "dev.galena", name = "hats-forge", version = "1.20.1-1.2.0" }
 
-dye-depot = { group = "com.ninni.dye_depot", name = "dye_depot", version = "1.20.1-1.2.0-forge" }
+dye-depot = { group = "com.ninni.dye_depot", name = "dye_depot", version = "1.20.1-1.2.2-forge" }
 
 create = { group = "com.simibubi.create", name = "create-1.20.1", version = "6.0.6-163" }
 ponder = { group = "net.createmod.ponder", name = "Ponder-Forge-1.20.1", version = "1.0.43" }
@@ -21,15 +20,5 @@ jei-common-api = { group = "mezz.jei", name = "jei-1.20.1-common-api", version.r
 jei-forge-api = { group = "mezz.jei", name = "jei-1.20.1-forge-api", version.ref = "jei" }
 jei-forge = { group = "mezz.jei", name = "jei-1.20.1-forge", version.ref = "jei" }
 
-mixin = { group = "org.spongepowered", name = "mixin", version = "0.8.5" }
-mixin-extras-common = { group = "io.github.llamalad7", name = "mixinextras-common", version.ref = "mixin-extras" }
-mixin-extras-forge = { group = "io.github.llamalad7", name = "mixinextras-forge", version.ref = "mixin-extras" }
-
 [plugins]
-forge = { id = "net.minecraftforge.gradle", version = "[6.0,6.2)" }
-mixin = { id = "org.spongepowered.mixin", version = "0.7-SNAPSHOT" }
 parchment = { id = "org.parchmentmc.librarian.forgegradle", version = "1.+" }
-spotless = { id = "com.diffplug.spotless", version = "7.0.4" }
-sonarqube = { id = "org.sonarqube", version = "6.2.0.5505" }
-minotaur = { id = "com.modrinth.minotaur", version = "2.+" }
-cursegradle = { id = "com.possible-triangle.curseforgegradle", version = "1.2.5" }
