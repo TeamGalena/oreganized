@@ -1,0 +1,20 @@
+{
+  "values": [
+    {
+      "id": "nomansland:quartzite_cluster",
+      "required": false
+    },
+    {
+      "id": "nomansland:large_quartzite_bud",
+      "required": false
+    },
+    {
+      "id": "nomansland:medium_quartzite_bud",
+      "required": false
+    },
+    {
+      "id": "nomansland:small_quartzite_bud",
+      "required": false
+    }
+  ]
+}

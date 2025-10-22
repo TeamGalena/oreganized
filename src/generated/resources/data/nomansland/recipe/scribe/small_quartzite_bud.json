@@ -1,0 +1,14 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "nomansland"
+    }
+  ],
+  "type": "oreganized:scribe",
+  "drop_resources": true,
+  "from": {
+    "blocks": "#c:clusters/quartzite"
+  },
+  "to": "nomansland:small_quartzite_bud"
+}

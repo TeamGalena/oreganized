@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:blue_ice"
+    }
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 1,
+        "id": "oreganized:grooved_blue_ice"
+      }
+    }
+  ],
+  "tool": {
+    "item": "oreganized:scribe"
+  }
+}

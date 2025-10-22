@@ -1,0 +1,8 @@
+{
+  "type": "oreganized:scribe",
+  "drop_resources": true,
+  "from": {
+    "blocks": "#c:clusters/amethyst"
+  },
+  "to": "minecraft:small_amethyst_bud"
+}
