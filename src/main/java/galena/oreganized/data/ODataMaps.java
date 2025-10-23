@@ -2,17 +2,22 @@ package galena.oreganized.data;
 
 import galena.oreganized.compat.ColorCompat;
 import galena.oreganized.index.OBlocks;
-import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.neoforged.neoforge.common.conditions.ICondition;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.data.DataMapProvider;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.datamaps.builtin.Compostable;
 import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
 import net.neoforged.neoforge.registries.datamaps.builtin.Waxable;
+
+import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 public class ODataMaps extends DataMapProvider {
 
@@ -37,7 +42,12 @@ public class ODataMaps extends DataMapProvider {
 
         OBlocks.WAXED_CONCRETE_POWDER.forEach((color, waxed) -> {
             var unwaxed = ColorCompat.createBlockKey("concrete_powder", color);
-            waxables.add(unwaxed, new Waxable(waxed.get()), false);
+            var conditions = Optional.of(unwaxed.location().getNamespace())
+                    .filter(it -> !it.equals(ResourceLocation.DEFAULT_NAMESPACE))
+                    .map(ModLoadedCondition::new)
+                    .stream()
+                    .toArray(ICondition[]::new);
+            waxables.add(unwaxed, new Waxable(waxed.get()), false, conditions);
         });
     }
 }
