@@ -243,5 +243,10 @@
   "tooltip.oreganized.lead": "Bleimaterial",
   "tooltip.oreganized.speed": "Geschwindigkeit: %s",
   "advancements.oreganized.shake_it_off.description": "Schüttel das Thermometer um den Wert zurückzusetzen",
-  "advancements.oreganized.shake_it_off.title": "Locker aus dem Handgelenk geschüttelt!"
+  "advancements.oreganized.shake_it_off.title": "Locker aus dem Handgelenk geschüttelt!",
+  "advancements.oreganized.thermal_shock.description": "Kühle dein Thermometer zu schnell im Wasser ab und zerstöre es dadurch",
+  "advancements.oreganized.thermal_shock.title": "Thermoschock",
+  "block.oreganized.potted_datura": "Eingetopfter Weißer Stechapfel",
+  "block.oreganized.potted_purple_datura": "Eingetopfter Violetter Stechapfel",
+  "item.oreganized.unknown_device": "Unbekanntes Gerät"
 }
