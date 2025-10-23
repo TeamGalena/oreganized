@@ -241,5 +241,7 @@
   "tooltip.oreganized.heat_6": "Siedend",
   "tooltip.oreganized.heat_7": "Kochend",
   "tooltip.oreganized.lead": "Bleimaterial",
-  "tooltip.oreganized.speed": "Geschwindigkeit: %s"
+  "tooltip.oreganized.speed": "Geschwindigkeit: %s",
+  "advancements.oreganized.shake_it_off.description": "Schüttel das Thermometer um den Wert zurückzusetzen",
+  "advancements.oreganized.shake_it_off.title": "Locker aus dem Handgelenk geschüttelt!"
 }
