@@ -1,5 +1,5 @@
 [versions]
-multikulti = "1.20.1-1.0.4"
+multikulti = "1.20.1-1.1.5"
 jei = "15.20.0.106"
 
 [libraries]
@@ -9,7 +9,7 @@ multikulti-datagen-fix = { group = "com.possible-triangle", name = "multikulti-d
 
 blueprint = { group = "com.teamabnormals", name = "blueprint", version = "1.20.1-7.1.0" }
 
-galena-hats = { "group" = "dev.galena", name = "hats-forge", version = "1.20.1-1.2.0" }
+galena-hats = { "group" = "dev.galena", name = "hats-forge", version = "1.20.1-1.2.2" }
 
 dye-depot = { group = "com.ninni.dye_depot", name = "dye_depot", version = "1.20.1-1.2.2-forge" }
 
