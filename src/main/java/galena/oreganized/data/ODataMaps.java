@@ -2,6 +2,8 @@ package galena.oreganized.data;
 
 import galena.oreganized.compat.ColorCompat;
 import galena.oreganized.index.OBlocks;
+import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -15,9 +17,6 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.datamaps.builtin.Compostable;
 import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
 import net.neoforged.neoforge.registries.datamaps.builtin.Waxable;
-
-import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
 
 public class ODataMaps extends DataMapProvider {
 
