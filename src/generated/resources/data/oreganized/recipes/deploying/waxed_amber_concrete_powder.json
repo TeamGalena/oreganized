@@ -3,6 +3,10 @@
   "conditions": [
     {
       "type": "forge:mod_loaded",
+      "modid": "dye_depot"
+    },
+    {
+      "type": "forge:mod_loaded",
       "modid": "create"
     }
   ],

@@ -109,6 +109,7 @@ upload {
 
     forEach {
         versionName = "${mod.name.get()} ${mod.version.get()}"
+        includeKotlinDependency = false
     }
 }
 

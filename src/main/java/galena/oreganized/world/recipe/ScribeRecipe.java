@@ -1,8 +1,10 @@
 package galena.oreganized.world.recipe;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import galena.oreganized.index.ORecipeTypes;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -24,6 +26,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -101,8 +104,7 @@ public record ScribeRecipe(
             buffer.writeBoolean(recipe.dropResources());
         }
 
-        public void toJson(ResourceLocation id, ScribeRecipe recipe, JsonObject json) {
-            json.addProperty("id", id.toString());
+        public void toJson(ScribeRecipe recipe, JsonObject json) {
             json.add("from", recipe.from().serializeToJson());
             json.addProperty("to", ForgeRegistries.BLOCKS.getKey(recipe.to()).toString());
             if (recipe.dropResources()) json.addProperty("drop_resources", true);
@@ -175,15 +177,20 @@ public record ScribeRecipe(
 
         @Override
         public void save(Consumer<FinishedRecipe> output, ResourceLocation id) {
-            output.accept(new Finished(id.withPrefix("scribe/"), build(id)));
+            output.accept(new Finished(id.withPrefix("scribe/"), build(id), conditions));
         }
     }
 
-    public record Finished(ResourceLocation id, ScribeRecipe recipe) implements FinishedRecipe {
+    public record Finished(ResourceLocation id, ScribeRecipe recipe, Collection<ICondition> conditions) implements FinishedRecipe {
 
         @Override
         public void serializeRecipeData(JsonObject json) {
-            ORecipeTypes.SCRIBE_SERIALIZER.get().toJson(id(), recipe, json);
+            ORecipeTypes.SCRIBE_SERIALIZER.get().toJson(recipe, json);
+            if (!conditions.isEmpty()) {
+                JsonArray array = new JsonArray();
+                conditions.forEach(it -> array.add(CraftingHelper.serialize(it)));
+                json.add("conditions", array);
+            }
         }
 
         @Override
