@@ -1,17 +1,14 @@
 package galena.oreganized.data;
 
-import galena.oreganized.ModCompat;
 import galena.oreganized.Oreganized;
 import galena.oreganized.index.DyeColors;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OTags;
-
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 import javax.annotation.Nullable;
-
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
