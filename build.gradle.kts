@@ -13,20 +13,19 @@ forge {
     mappingVersion = "2023.09.03-1.20.1"
 
     enableMixins()
+    accessTransformer()
 
     dataGen {
         existing("blueprint")
         existing("shieldexp")
         existing("dye_depot")
+
+        splitSourceSet()
     }
 }
 
 base {
     archivesName = "${mod.name.get()} ${mod.minecraftVersion.get()}-${mod.version.get()}"
-}
-
-minecraft {
-    accessTransformer(file("src/main/resources/META-INF/accesstransformer.cfg"))
 }
 
 repositories {
