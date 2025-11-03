@@ -1,0 +1,11 @@
+name = "Oreganized Carcinogenius Dev"
+pack-format = "packwiz:1.1.0"
+
+[index]
+file = "index.toml"
+hash-format = "sha256"
+hash = "02315fc9564cb3e481a011bbca48b2d5336d7532ff889633b96378c5d03d3f70"
+
+[versions]
+forge = "47.3.10"
+minecraft = "1.20.1"

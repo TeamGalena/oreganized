@@ -42,6 +42,6 @@ Addon for Oreganized that includes the asbestos content added for april fools in
 [[dependencies.${mod_id}]]
     modId="oreganized"
     mandatory=true
-    versionRange="[4.2.3,)"
+    versionRange="*"
     ordering="AFTER"
     side="BOTH"

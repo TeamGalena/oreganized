@@ -1,0 +1,8 @@
+[libraries]
+oreganized = { "group" = "dev.galena", name = "oreganized", version = "4.3.1" }
+blueprint = { group = "com.teamabnormals", name = "blueprint", version = "1.20.1-7.1.0" }
+
+jei-forge = { group = "mezz.jei", name = "jei-1.20.1-forge", version = "15.20.0.106" }
+
+[plugins]
+parchment = { id = "org.parchmentmc.librarian.forgegradle", version = "1.+" }

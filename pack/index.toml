@@ -1,0 +1,6 @@
+hash-format = "sha256"
+
+[[files]]
+file = "mods/jade.pw.toml"
+hash = "0d5b36e9c2913a082fd2b251df7876120ff275e14b15ac935342e3930b557399"
+metafile = true
