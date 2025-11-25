@@ -23,6 +23,6 @@ public class LeadProtections {
         return !isProtected(entity);
     }
 
-    private static Supplier<Predicate<LivingEntity>> PREDICATE = Suppliers.memoize(() -> PROTECTIONS.stream().reduce($ -> false, Predicate::or));
+    private static final Supplier<Predicate<LivingEntity>> PREDICATE = Suppliers.memoize(() -> PROTECTIONS.stream().reduce($ -> false, Predicate::or));
 
 }

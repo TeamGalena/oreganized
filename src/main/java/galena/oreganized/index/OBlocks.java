@@ -2,20 +2,8 @@ package galena.oreganized.index;
 
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import galena.oreganized.Oreganized;
-import galena.oreganized.content.block.BulbBlock;
-import galena.oreganized.content.block.CrystalGlassBlock;
-import galena.oreganized.content.block.CrystalGlassPaneBlock;
-import galena.oreganized.content.block.GargoyleBlock;
-import galena.oreganized.content.block.IMeltableBlock;
-import galena.oreganized.content.block.LeadBarsBlock;
-import galena.oreganized.content.block.LeadDoorBlock;
-import galena.oreganized.content.block.LeadTrapdoorBlock;
-import galena.oreganized.content.block.MeltableBlock;
-import galena.oreganized.content.block.MeltablePillarBlock;
-import galena.oreganized.content.block.MoltenLeadBlock;
-import galena.oreganized.content.block.MoltenLeadCauldronBlock;
-import galena.oreganized.content.block.ShrapnelBombBlock;
-import galena.oreganized.content.block.SpottedGlanceBlock;
+import galena.oreganized.content.block.*;
+
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -108,8 +96,12 @@ public class OBlocks {
     // Storage Blocks
     public static final DeferredBlock<Block> RAW_SILVER_BLOCK = register("raw_silver_block", () -> new Block(Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK).mapColor(MapColor.CLAY)));
     public static final DeferredBlock<Block> RAW_LEAD_BLOCK = register("raw_lead_block", () -> new Block(Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK).mapColor(LEAD_MAP_COLORS[0])));
-    public static final DeferredBlock<Block> SILVER_BLOCK = register("silver_block", () -> new Block(Properties.ofFullCopy(Blocks.IRON_BLOCK)
+    public static final DeferredBlock<Block> SILVER_BLOCK = register("silver_block", () -> new SilverBlock(Properties.ofFullCopy(Blocks.IRON_BLOCK)
             .strength(5.0F, 6.0F).sound(SoundType.METAL)));
+    public  static final DeferredBlock<Block> BLEMISHED_SILVER_BLOCK = register("blemished_silver_block",
+            () -> new SilverBlock(Properties.ofFullCopy(SILVER_BLOCK.get())));
+    public static final DeferredBlock<Block> TARNISHED_SILVER_BLOCK = register("tarnished_silver_block",
+            () -> new SilverBlock(Properties.ofFullCopy(SILVER_BLOCK.get())));
 
     public static final DeferredBlock<Block> GARGOYLE = register("gargoyle", () -> new GargoyleBlock(Properties.ofFullCopy(Blocks.STONE).noOcclusion()));
 

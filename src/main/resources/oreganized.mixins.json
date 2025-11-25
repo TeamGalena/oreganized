@@ -8,6 +8,8 @@
     "AreaEffectCloudMixin",
     "BlockBehaviourMixin",
     "BlockMixin",
+    "BrushItemMixin",
+    "BrushItemMixin",
     "CrossbowMixin",
     "DispenserBlockMixin",
     "EnchantmentHelperMixin",
