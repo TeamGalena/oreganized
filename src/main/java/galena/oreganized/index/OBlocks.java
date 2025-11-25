@@ -103,6 +103,16 @@ public class OBlocks {
     public static final DeferredBlock<Block> TARNISHED_SILVER_BLOCK = register("tarnished_silver_block",
             () -> new SilverBlock(Properties.ofFullCopy(SILVER_BLOCK.get())));
 
+    public static final DeferredBlock<Block> SILVER_BULB = register("silver_bulb", () ->
+            new SilverBulbBlock(Properties.ofFullCopy(SILVER_BLOCK.get())
+                    .lightLevel(state -> 4)));
+    public static final DeferredBlock<Block> BLEMISHED_SILVER_BULB = register("blemished_silver_bulb", () ->
+            new SilverBulbBlock((Properties.ofFullCopy(BLEMISHED_SILVER_BLOCK.get())
+                    .lightLevel(state -> 15))));
+    public static final DeferredBlock<Block> TARNISHED_SILVER_BULB = register("tarnished_silver_bulb", () ->
+            new SilverBulbBlock((Properties.ofFullCopy(TARNISHED_SILVER_BLOCK.get())
+                    .lightLevel(state -> 15))));
+
     public static final DeferredBlock<Block> GARGOYLE = register("gargoyle", () -> new GargoyleBlock(Properties.ofFullCopy(Blocks.STONE).noOcclusion()));
 
     public static final DeferredBlock<Block> WHITE_DATURA = register("datura", () -> new FlowerBlock(OEffects.STUNNING, 21, Properties.ofFullCopy(Blocks.OXEYE_DAISY)));

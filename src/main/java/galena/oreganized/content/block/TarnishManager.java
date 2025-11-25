@@ -20,7 +20,6 @@ import org.jetbrains.annotations.Nullable;
 public class TarnishManager {
 
     private static final BiMap<Block, Block> NEXT_BY_BLOCK = HashBiMap.create();
-
     private static final BiMap<Block, Block> PREVIOUS_BY_BLOCK = HashBiMap.create();
 
 
@@ -28,6 +27,10 @@ public class TarnishManager {
         registerTarnish(OBlocks.SILVER_BLOCK.get(),
                 OBlocks.BLEMISHED_SILVER_BLOCK.get(),
                 OBlocks.TARNISHED_SILVER_BLOCK.get());
+
+        registerTarnish(OBlocks.SILVER_BULB.get(),
+                OBlocks.BLEMISHED_SILVER_BULB.get(),
+                OBlocks.TARNISHED_SILVER_BULB.get());
     }
 
 

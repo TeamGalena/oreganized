@@ -3,6 +3,7 @@ package galena.oreganized.mixin;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
+import galena.oreganized.content.block.IBrushable;
 import galena.oreganized.content.block.SilverBlock;
 import net.mehvahdjukaar.supplementaries.common.block.ISimpleBrushable;
 import net.minecraft.core.BlockPos;
@@ -33,7 +34,7 @@ public class BrushItemMixin {
     )
     public void supp$blackboardBrush(BrushItem instance, Level level, BlockHitResult hit, BlockState state, Vec3 viewVec, HumanoidArm arm, Operation<Void> original, @Local BlockPos pos, @Local(argsOnly = true) ItemStack stack, @Local Player livingEntity) {
         Block var12 = state.getBlock();
-        if (var12 instanceof SilverBlock sb) {
+        if (var12 instanceof IBrushable sb) {
             BrushItem.DustParticlesDelta d = BrushItem.DustParticlesDelta.fromDirection(viewVec, hit.getDirection());
             if (sb.brush(state, pos, level, stack, livingEntity, arm, hit, new Vec3(d.xd(), d.yd(), d.zd()))) {
                 return;
