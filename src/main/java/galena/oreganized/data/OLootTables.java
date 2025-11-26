@@ -3,6 +3,7 @@ package galena.oreganized.data;
 import galena.oreganized.Oreganized;
 import galena.oreganized.content.block.IMeltableBlock;
 import galena.oreganized.content.block.SpottedGlanceBlock;
+import galena.oreganized.content.block.TarnishManager;
 import galena.oreganized.content.item.ThermometerItem;
 import galena.oreganized.data.provider.OBlockLootProvider;
 import galena.oreganized.index.OBlocks;
@@ -81,7 +82,6 @@ public class OLootTables extends LootTableProvider {
             ore(OBlocks.DEEPSLATE_LEAD_ORE, OItems.RAW_LEAD);
             dropSelf(OBlocks.RAW_SILVER_BLOCK);
             dropSelf(OBlocks.RAW_LEAD_BLOCK);
-            dropSelf(OBlocks.SILVER_BLOCK);
             dropSelf(OBlocks.WHITE_DATURA);
             dropSelf(OBlocks.PURPLE_DATURA);
             dropSelf(OBlocks.LEAD_BLOCK);
@@ -125,6 +125,8 @@ public class OLootTables extends LootTableProvider {
             OBlocks.CRYSTAL_GLASS.forEach((c, b) -> dyed(c, () -> dropAsSilk(b)));
             OBlocks.CRYSTAL_GLASS_PANES.forEach((c, b) -> dyed(c, () -> dropAsSilk(b)));
             OBlocks.WAXED_CONCRETE_POWDER.forEach((c, b) -> dyed(c, () -> dropSelf(b)));
+
+            TarnishManager.getAllTarnishables().forEach(this::dropSelf);
         }
 
         private void pottedPlant(Supplier<? extends FlowerPotBlock> block) {

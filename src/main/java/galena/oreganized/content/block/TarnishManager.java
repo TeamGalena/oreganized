@@ -16,6 +16,9 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @EventBusSubscriber(modid = Oreganized.MOD_ID)
 public class TarnishManager {
 
@@ -106,5 +109,12 @@ public class TarnishManager {
             }
         }
 
+    }
+
+    public static Iterable<Block> getAllTarnishables() {
+        Set<Block> s = new HashSet<>();
+        s.addAll(NEXT_BY_BLOCK.keySet());
+        s.addAll(NEXT_BY_BLOCK.values());
+        return s;
     }
 }

@@ -2,6 +2,7 @@ package galena.oreganized.data;
 
 import galena.oreganized.Oreganized;
 import galena.oreganized.compat.ColorCompat;
+import galena.oreganized.content.block.TarnishManager;
 import galena.oreganized.data.provider.OBlockStateProvider;
 import galena.oreganized.index.OBlocks;
 import net.minecraft.data.PackOutput;
@@ -40,7 +41,6 @@ public class OBlockStates extends OBlockStateProvider {
         simpleBlock(OBlocks.DEEPSLATE_LEAD_ORE);
         simpleBlock(OBlocks.RAW_SILVER_BLOCK);
         simpleBlock(OBlocks.RAW_LEAD_BLOCK);
-        simpleBlock(OBlocks.SILVER_BLOCK);
         meltableBlock(OBlocks.LEAD_BLOCK, (n, t) -> models().cubeAll(n, t));
         meltableBlock(OBlocks.LEAD_BRICKS, (n, t) -> models().cubeAll(n, t));
         meltablePillar(OBlocks.LEAD_PILLAR);
@@ -74,6 +74,9 @@ public class OBlockStates extends OBlockStateProvider {
 
         pottedPlant(OBlocks.POTTED_PURPLE_DATURA);
         pottedPlant(OBlocks.POTTED_WHITE_DATURA);
+
+        TarnishManager.getAllTarnishables().forEach(this::simpleBlock);
+
     }
 
 }
