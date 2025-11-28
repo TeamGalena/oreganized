@@ -1,11 +1,7 @@
 package galena.oreganized.index;
 
 import galena.oreganized.Oreganized;
-import galena.oreganized.client.particle.CustomDrippingParticle;
-import galena.oreganized.client.particle.KineticHitParticle;
-import galena.oreganized.client.particle.LeadCloudParticleProvider;
-import galena.oreganized.client.particle.LeadShrapnelParticle;
-import galena.oreganized.client.particle.VengeanceParticleProvider;
+import galena.oreganized.client.particle.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ExplodeParticle;
 import net.minecraft.client.particle.GlowParticle;
@@ -47,7 +43,7 @@ public class OParticleTypes {
         event.registerSpriteSet(KINETIC_HIT.get(), KineticHitParticle.Provider::new);
         event.registerSpriteSet(LEAD_CLOUD.get(), LeadCloudParticleProvider::new);
         event.registerSpriteSet(LEAD_BLOW.get(), ExplodeParticle.Provider::new);
-        event.registerSpriteSet(TARNISH.get(), GlowParticle.WaxOnProvider::new);
+        event.registerSpriteSet(TARNISH.get(), TarnishParticle.Provider::new);
     }
 
     public static void register(IEventBus modBus) {
