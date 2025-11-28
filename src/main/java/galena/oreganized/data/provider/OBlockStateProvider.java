@@ -22,17 +22,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.CrossCollisionBlock;
-import net.minecraft.world.level.block.DoorBlock;
-import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.IronBarsBlock;
-import net.minecraft.world.level.block.PipeBlock;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.StairBlock;
-import net.minecraft.world.level.block.TrapDoorBlock;
-import net.minecraft.world.level.block.WallBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoorHingeSide;
@@ -211,6 +201,17 @@ public abstract class OBlockStateProvider extends BlockStateProvider {
             var texture = texture(name);
             var model = goopyness < 3 ? models().cubeAll(name, texture) : redHotModel;
 
+            return ConfiguredModel.builder().modelFile(model).build();
+        });
+    }
+
+    public void lamp(Block block){
+        getVariantBuilder(block).forAllStates(state -> {
+            boolean lit = state.getValue(RedstoneLampBlock.LIT);
+            String name = name(block) + (lit ? "_on" : "_off");
+            String modelName = lit ? name(block) + "_on" : name(block);
+            ResourceLocation texture = texture(name);
+            ModelFile model = models().cubeAll(modelName, texture);
             return ConfiguredModel.builder().modelFile(model).build();
         });
     }

@@ -5,7 +5,9 @@ import com.google.common.collect.HashBiMap;
 import galena.oreganized.Oreganized;
 import galena.oreganized.OreganizedConfig;
 import galena.oreganized.index.OBlocks;
+import galena.oreganized.network.packet.TarnishParticlePacket;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
@@ -14,14 +16,17 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @EventBusSubscriber(modid = Oreganized.MOD_ID)
 public class TarnishManager {
 
+    private static final List<Block> HEADS = new ArrayList<>();
     private static final BiMap<Block, Block> NEXT_BY_BLOCK = HashBiMap.create();
     private static final BiMap<Block, Block> PREVIOUS_BY_BLOCK = HashBiMap.create();
 
@@ -37,15 +42,45 @@ public class TarnishManager {
     }
 
 
-    public static void registerTarnish(Block ... blocks) {
+    public static void registerTarnish(Block... blocks) {
         for (int i = 0; i < blocks.length - 1; i++) {
             registerTarnish(blocks[i], blocks[i + 1]);
         }
     }
 
-    public static void registerTarnish(Block prev, Block second) {
-        NEXT_BY_BLOCK.put(prev, second);
-        PREVIOUS_BY_BLOCK.put(second, prev);
+    public static void registerTarnish(Block before, Block after) {
+        NEXT_BY_BLOCK.put(before, after);
+        PREVIOUS_BY_BLOCK.put(after, before);
+        var newHead = first(before);
+        if (!HEADS.contains(newHead)) {
+            HEADS.add(newHead);
+        } else if (HEADS.contains(after)) {
+            HEADS.set(HEADS.indexOf(before), after);
+        }
+    }
+
+    public static Block first(Block block) {
+        Block current = block;
+        Block previous;
+        do {
+            previous = previous(current);
+            if (previous != null) {
+                current = previous;
+            }
+        } while (previous != null);
+        return current;
+    }
+
+    public static Block last(Block block) {
+        Block current = block;
+        Block next;
+        do {
+            next = next(current);
+            if (next != null) {
+                current = next;
+            }
+        } while (next != null);
+        return current;
     }
 
     @Nullable
@@ -103,7 +138,8 @@ public class TarnishManager {
                 var tarnished = TarnishManager.next(state);
                 if (tarnished != null) {
                     level.setBlockAndUpdate(randomPos, tarnished);
-                    //TODO: particle/sound
+                    if (level instanceof ServerLevel sl)
+                        PacketDistributor.sendToPlayersInDimension(sl, new TarnishParticlePacket(randomPos, true));
                     break;
                 }
             }
@@ -111,10 +147,22 @@ public class TarnishManager {
 
     }
 
-    public static Iterable<Block> getAllTarnishables() {
-        Set<Block> s = new HashSet<>();
-        s.addAll(NEXT_BY_BLOCK.keySet());
-        s.addAll(NEXT_BY_BLOCK.values());
-        return s;
+    public static Collection<Block> getAllTarnishables() {
+        List<Block> blocks = new ArrayList<>();
+        //start from head , add all in order
+        for (Block head : HEADS) {
+            Block current = head;
+            blocks.add(current);
+            Block next;
+            do {
+                next = next(current);
+                if (next != null) {
+                    blocks.add(next);
+                    current = next;
+                }
+            } while (next != null);
+        }
+        return blocks;
     }
+
 }

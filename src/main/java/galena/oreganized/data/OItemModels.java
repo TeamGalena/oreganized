@@ -2,6 +2,7 @@ package galena.oreganized.data;
 
 import galena.oreganized.Oreganized;
 import galena.oreganized.compat.ColorCompat;
+import galena.oreganized.content.block.TarnishManager;
 import galena.oreganized.content.item.DeviceItem;
 import galena.oreganized.content.item.SpeedometerItem;
 import galena.oreganized.content.item.ThermometerItem;
@@ -79,7 +80,6 @@ public class OItemModels extends OItemModelProvider {
         block(OBlocks.LEAD_ORE);
         block(OBlocks.DEEPSLATE_LEAD_ORE);
         block(OBlocks.RAW_SILVER_BLOCK);
-        block(OBlocks.SILVER_BLOCK);
         block(OBlocks.RAW_LEAD_BLOCK);
         block(OBlocks.LEAD_BLOCK);
         block(OBlocks.LEAD_BRICKS);
@@ -111,6 +111,10 @@ public class OItemModels extends OItemModelProvider {
         leveledDevice(OItems.UNKNOWN_DEVICE, DeviceItem.FRAMES, ODataComponents.DEVICE_VALUE.getId());
         leveledDevice(OItems.THERMOMETER, ThermometerItem.HEAT_LEVELS, ODataComponents.HEAT_LEVEL.getId());
         leveledDevice(OItems.SPEEDOMETER, 16, SpeedometerItem.PROPERTY_KEY);
+
+        TarnishManager.getAllTarnishables().forEach(block -> {
+            block(() -> block);
+        });
     }
 
 }

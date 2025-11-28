@@ -4,10 +4,8 @@ import galena.oreganized.Oreganized;
 import galena.oreganized.content.block.GargoyleBlock;
 import galena.oreganized.index.OBlockEntities;
 import galena.oreganized.index.OCriteriaTriggers;
-import galena.oreganized.index.OParticleTypes;
 import galena.oreganized.index.OSoundEvents;
 import galena.oreganized.index.OTags;
-import galena.oreganized.network.packet.GargoyleParticlePacket;
 import galena.oreganized.world.ScaredOfGargoyleGoal;
 import java.util.Collection;
 import net.minecraft.core.BlockPos;
@@ -20,8 +18,6 @@ import net.minecraft.nbt.NbtUtils;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.ParticleUtils;
-import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
@@ -33,7 +29,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
 
 public class GargoyleBlockEntity extends BlockEntity {
@@ -166,8 +161,9 @@ public class GargoyleBlockEntity extends BlockEntity {
             player.getPersistentData().putInt(GROWL_COOLDOWN_TAG, COOLDOWN);
         }
 
-        if (level instanceof ServerLevel serverLevel) {
-            PacketDistributor.sendToPlayersInDimension(serverLevel, new GargoyleParticlePacket(pos));
+        //so other players see the particle as use only gets called on client for local player
+        if (level instanceof ServerLevel) {
+            level.blockEvent(pos, getBlockState().getBlock(), 1, 0);
         }
 
         return ItemInteractionResult.SUCCESS;
@@ -182,16 +178,5 @@ public class GargoyleBlockEntity extends BlockEntity {
         mob.getPersistentData().put(ScaredOfGargoyleGoal.AVOID_TAG_KEY, NbtUtils.writeBlockPos(pos));
     }
 
-    public void spawnParticles() {
-        var pos = getBlockPos();
-        var state = getBlockState();
-        var facing = state.getValue(GargoyleBlock.FACING);
-        var attachment = state.getValue(GargoyleBlock.ATTACHMENT);
 
-        ParticleUtils.spawnParticlesOnBlockFaces(level, pos, OParticleTypes.VENGEANCE.get(), UniformInt.of(0, 2));
-
-        if (attachment == GargoyleBlock.AttachmentType.WALL) {
-            ParticleUtils.spawnParticlesOnBlockFaces(level, pos.relative(facing.getOpposite()), OParticleTypes.VENGEANCE.get(), UniformInt.of(0, 1));
-        }
-    }
 }

@@ -6,6 +6,8 @@ import galena.oreganized.content.block.TarnishManager;
 import galena.oreganized.data.provider.OBlockStateProvider;
 import galena.oreganized.index.OBlocks;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.block.IronBarsBlock;
+import net.minecraft.world.level.block.RedstoneLampBlock;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class OBlockStates extends OBlockStateProvider {
@@ -75,7 +77,13 @@ public class OBlockStates extends OBlockStateProvider {
         pottedPlant(OBlocks.POTTED_PURPLE_DATURA);
         pottedPlant(OBlocks.POTTED_WHITE_DATURA);
 
-        TarnishManager.getAllTarnishables().forEach(this::simpleBlock);
+        TarnishManager.getAllTarnishables().forEach(b -> {
+            if (b instanceof RedstoneLampBlock) {
+                lamp(b);
+            }else if(b instanceof IronBarsBlock){
+             //   meltableBars(()->b);
+            }else simpleBlock(b);
+        });
 
     }
 

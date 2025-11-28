@@ -4,11 +4,10 @@ import static galena.oreganized.ModCompat.FARMERS_DELIGHT_ID;
 import static galena.oreganized.ModCompat.NETHERS_DELIGHT_ID;
 import static galena.oreganized.ModCompat.SHIELD_EXPANSION_ID;
 
+import galena.oreganized.content.block.TarnishManager;
 import galena.oreganized.index.DyeColors;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OItems;
-import java.util.Map;
-import java.util.function.Supplier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
@@ -24,6 +23,12 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import org.infernalstudios.shieldexp.init.ItemsInit;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
+import java.util.Map;
+import java.util.function.Supplier;
+
+import static galena.oreganized.ModCompat.FARMERS_DELIGHT_ID;
+import static galena.oreganized.ModCompat.NETHERS_DELIGHT_ID;
+
 @EventBusSubscriber(modid = Oreganized.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class OTabs {
 
@@ -33,7 +38,7 @@ public class OTabs {
     @SubscribeEvent
     public static void buildCreativeModeTabContents(BuildCreativeModeTabContentsEvent event) {
         ResourceKey<CreativeModeTab> tab = event.getTabKey();
-        
+
         if (tab == CreativeModeTabs.NATURAL_BLOCKS || tab == CreativeModeTabs.BUILDING_BLOCKS) {
             putBefore(event, Items.DEEPSLATE, OBlocks.GLANCE);
             putAfter(event, OBlocks.GLANCE.get(), OBlocks.SPOTTED_GLANCE);
@@ -53,13 +58,14 @@ public class OTabs {
             putAfter(event, OBlocks.GLANCE_BRICK_SLAB.get(), OBlocks.GLANCE_BRICK_WALL);
             putAfter(event, OBlocks.GLANCE_BRICK_WALL.get(), OBlocks.WAXED_SPOTTED_GLANCE);
 
-            putBefore(event, Items.GOLD_BLOCK, OBlocks.SILVER_BLOCK);
+            putBefore(event, Items.GOLD_BLOCK, TarnishManager.getAllTarnishables()
+                    .stream().map(a -> (Supplier<Object>) () -> a).toArray(Supplier[]::new));
             putBefore(event, Items.NETHERITE_BLOCK, OBlocks.ELECTRUM_BLOCK);
             putAfter(event, Items.WAXED_OXIDIZED_CUT_COPPER_SLAB, OBlocks.LEAD_BLOCK);
             putAfter(event, OBlocks.LEAD_BLOCK.get(), OBlocks.CUT_LEAD);
             putAfter(event, OBlocks.CUT_LEAD.get(), OBlocks.LEAD_BRICKS);
             putAfter(event, OBlocks.LEAD_BRICKS.get(), OBlocks.LEAD_PILLAR);
-            putAfter(event, Blocks.IRON_BARS, OBlocks.LEAD_BARS);
+            putAfter(event, OBlocks.LEAD_PILLAR.get(), OBlocks.LEAD_BARS, OBlocks.LEAD_DOOR, OBlocks.LEAD_TRAPDOOR);
 
             putAfter(event, Blocks.CUT_RED_SANDSTONE_SLAB, OBlocks.GROOVED_ICE);
             putAfter(event, OBlocks.GROOVED_ICE.get(), OBlocks.GROOVED_PACKED_ICE);
@@ -109,7 +115,7 @@ public class OTabs {
             putAfter(event, Items.TNT, OBlocks.SHRAPNEL_BOMB);
         }
 
-        if (tab == CreativeModeTabs.REDSTONE_BLOCKS || tab == CreativeModeTabs.BUILDING_BLOCKS) {
+        if (tab == CreativeModeTabs.REDSTONE_BLOCKS) {
             putAfter(event, Blocks.IRON_DOOR, OBlocks.LEAD_DOOR);
             putAfter(event, Blocks.IRON_TRAPDOOR, OBlocks.LEAD_TRAPDOOR);
         }
@@ -174,14 +180,20 @@ public class OTabs {
         // }
     }
 
-    private static void putAfter(BuildCreativeModeTabContentsEvent event, ItemLike after, Supplier<? extends ItemLike> supplier) {
-        ItemLike key = supplier.get();
-        event.insertAfter(new ItemStack(after), new ItemStack(key), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+    @SafeVarargs
+    private static void putAfter(BuildCreativeModeTabContentsEvent event, ItemLike after, Supplier<? extends ItemLike>... supplier) {
+        for (int i = supplier.length - 1; i >= 0; i--) {
+            ItemLike key = supplier[i].get();
+            event.insertAfter(new ItemStack(after), new ItemStack(key), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+        }
     }
 
-    private static void putBefore(BuildCreativeModeTabContentsEvent event, ItemLike before, Supplier<? extends ItemLike> supplier) {
-        ItemLike key = supplier.get();
-        event.insertBefore(new ItemStack(before), new ItemStack(key), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+    @SafeVarargs
+    private static void putBefore(BuildCreativeModeTabContentsEvent event, ItemLike before, Supplier<? extends ItemLike>... supplier) {
+        for (Supplier<? extends ItemLike> supplier1 : supplier) {
+            ItemLike key = supplier1.get();
+            event.insertBefore(new ItemStack(before), new ItemStack(key), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+        }
     }
 
 }
