@@ -96,13 +96,14 @@ public class OBlocks {
     // Storage Blocks
     public static final DeferredBlock<Block> RAW_SILVER_BLOCK = register("raw_silver_block", () -> new Block(Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK).mapColor(MapColor.CLAY)));
     public static final DeferredBlock<Block> RAW_LEAD_BLOCK = register("raw_lead_block", () -> new Block(Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK).mapColor(LEAD_MAP_COLORS[0])));
+    // Silver
     public static final DeferredBlock<Block> SILVER_BLOCK = register("silver_block", () -> new SilverBlock(Properties.ofFullCopy(Blocks.IRON_BLOCK)
             .strength(5.0F, 6.0F).sound(SoundType.METAL)));
     public  static final DeferredBlock<Block> BLEMISHED_SILVER_BLOCK = register("blemished_silver_block",
             () -> new SilverBlock(Properties.ofFullCopy(SILVER_BLOCK.get())));
     public static final DeferredBlock<Block> TARNISHED_SILVER_BLOCK = register("tarnished_silver_block",
             () -> new SilverBlock(Properties.ofFullCopy(SILVER_BLOCK.get())));
-
+    // Silver Bulbs
     public static final DeferredBlock<Block> SILVER_BULB = register("silver_bulb", () ->
             new SilverBulbBlock(Properties.ofFullCopy(SILVER_BLOCK.get())
                     .lightLevel(state -> 4)));
@@ -112,6 +113,29 @@ public class OBlocks {
     public static final DeferredBlock<Block> TARNISHED_SILVER_BULB = register("tarnished_silver_bulb", () ->
             new SilverBulbBlock((Properties.ofFullCopy(TARNISHED_SILVER_BLOCK.get())
                     .lightLevel(state -> 15))));
+    // Cut Silver
+    public static final DeferredBlock<SilverBlock> CUT_SILVER = register("cut_silver",
+            () -> new SilverBlock(Properties.ofFullCopy(SILVER_BLOCK.get())));
+    public static final DeferredBlock<SilverBlock> CUT_BLEMISHED_SILVER = register("cut_blemished_silver",
+            () -> new SilverBlock(Properties.ofFullCopy(BLEMISHED_SILVER_BLOCK.get())));
+    public static final DeferredBlock<SilverBlock> CUT_TARNISHED_SILVER = register("cut_tarnished_silver",
+            () -> new SilverBlock(Properties.ofFullCopy(TARNISHED_SILVER_BLOCK.get())));
+
+    // Silver Lattice
+    public static final DeferredBlock<Block> SILVER_LATTICE = register("silver_lattice",
+            () -> new SilverBlock(Properties.ofFullCopy(Blocks.IRON_BARS).noOcclusion()));
+    public static final DeferredBlock<Block> BLEMISHED_SILVER_LATTICE = register("blemished_silver_lattice",
+            () -> new SilverBlock(Properties.ofFullCopy(SILVER_LATTICE.get()).noOcclusion()));
+    public static final DeferredBlock<Block> TARNISHED_SILVER_LATTICE = register("tarnished_silver_lattice",
+            () -> new SilverBlock(Properties.ofFullCopy(SILVER_LATTICE.get()).noOcclusion()));
+
+    //Silver Pillar
+    public static final DeferredBlock<SilverPillarBlock> SILVER_PILLAR = register("silver_pillar",
+            () -> new SilverPillarBlock(Properties.ofFullCopy(SILVER_BLOCK.get())));
+    public static final DeferredBlock<SilverPillarBlock> BLEMISHED_SILVER_PILLAR = register("blemished_silver_pillar",
+            () -> new SilverPillarBlock(Properties.ofFullCopy(BLEMISHED_SILVER_BLOCK.get())));
+    public static final DeferredBlock<SilverPillarBlock> TARNISHED_SILVER_PILLAR = register("tarnished_silver_pillar",
+            () -> new SilverPillarBlock(Properties.ofFullCopy(TARNISHED_SILVER_BLOCK.get())));
 
     public static final DeferredBlock<Block> GARGOYLE = register("gargoyle", () -> new GargoyleBlock(Properties.ofFullCopy(Blocks.STONE).noOcclusion()));
 

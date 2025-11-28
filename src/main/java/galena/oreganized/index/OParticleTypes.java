@@ -2,6 +2,7 @@ package galena.oreganized.index;
 
 import galena.oreganized.Oreganized;
 import galena.oreganized.client.particle.*;
+import galena.oreganized.content.block.TarnishManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.ExplodeParticle;
 import net.minecraft.client.particle.GlowParticle;

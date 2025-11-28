@@ -7,6 +7,7 @@ import galena.oreganized.OreganizedConfig;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.network.packet.TarnishParticlePacket;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.RandomSource;
@@ -36,9 +37,22 @@ public class TarnishManager {
                 OBlocks.BLEMISHED_SILVER_BLOCK.get(),
                 OBlocks.TARNISHED_SILVER_BLOCK.get());
 
+        registerTarnish(OBlocks.CUT_SILVER.get(),
+                OBlocks.CUT_BLEMISHED_SILVER.get(),
+                OBlocks.CUT_TARNISHED_SILVER.get());
+
+        registerTarnish(OBlocks.SILVER_PILLAR.get(),
+                OBlocks.BLEMISHED_SILVER_PILLAR.get(),
+                OBlocks.TARNISHED_SILVER_PILLAR.get());
+
         registerTarnish(OBlocks.SILVER_BULB.get(),
                 OBlocks.BLEMISHED_SILVER_BULB.get(),
                 OBlocks.TARNISHED_SILVER_BULB.get());
+
+        registerTarnish(OBlocks.SILVER_LATTICE.get(),
+                OBlocks.BLEMISHED_SILVER_LATTICE.get(),
+                OBlocks.TARNISHED_SILVER_LATTICE.get());
+
     }
 
 
@@ -57,6 +71,10 @@ public class TarnishManager {
         } else if (HEADS.contains(after)) {
             HEADS.set(HEADS.indexOf(before), after);
         }
+    }
+
+    public static boolean isPristine(Block b) {
+        return first(b) == b;
     }
 
     public static Block first(Block block) {
@@ -137,6 +155,17 @@ public class TarnishManager {
                 BlockState state = level.getBlockState(randomPos);
                 var tarnished = TarnishManager.next(state);
                 if (tarnished != null) {
+                    double chance = OreganizedConfig.COMMON.tarnishChance.get();
+                    boolean isPristine = isPristine(state.getBlock());
+                    if (!isPristine) {
+                        chance /= 2.0D;
+                    }
+                    if (random.nextDouble() > chance) {
+                        continue;
+                    }
+                    if (!isPristine && hasPristineAround(randomPos, level)) {
+                        continue;
+                    }
                     level.setBlockAndUpdate(randomPos, tarnished);
                     if (level instanceof ServerLevel sl)
                         PacketDistributor.sendToPlayersInDimension(sl, new TarnishParticlePacket(randomPos, true));
@@ -146,6 +175,18 @@ public class TarnishManager {
         }
 
     }
+
+    private static boolean hasPristineAround(BlockPos pos, Level level) {
+        for (Direction dir : Direction.values()) {
+            BlockPos checkPos = pos.relative(dir);
+            BlockState checkState = level.getBlockState(checkPos);
+            if (isPristine(checkState.getBlock())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public static Collection<Block> getAllTarnishables() {
         List<Block> blocks = new ArrayList<>();

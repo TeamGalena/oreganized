@@ -28,7 +28,7 @@ public record TarnishParticlePacket(BlockPos pos, Boolean tarnished) implements 
         context.enqueueWork(() -> {
             var level = context.player().level();
             ParticleUtils.spawnParticlesOnBlockFaces(level, pos,
-                    OParticleTypes.TARNISH.get(), UniformInt.of(5,7));
+                    OParticleTypes.TARNISH.get(), UniformInt.of(8,12));
         });
     }
 

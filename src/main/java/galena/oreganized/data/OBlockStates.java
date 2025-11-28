@@ -8,6 +8,7 @@ import galena.oreganized.index.OBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.block.RedstoneLampBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class OBlockStates extends OBlockStateProvider {
@@ -80,9 +81,11 @@ public class OBlockStates extends OBlockStateProvider {
         TarnishManager.getAllTarnishables().forEach(b -> {
             if (b instanceof RedstoneLampBlock) {
                 lamp(b);
-            }else if(b instanceof IronBarsBlock){
-             //   meltableBars(()->b);
-            }else simpleBlock(b);
+            } else if (b instanceof RotatedPillarBlock) {
+                rotatedPillar(b);
+            } else if (b instanceof IronBarsBlock) {
+                //   meltableBars(()->b);
+            } else simpleBlock(b);
         });
 
     }

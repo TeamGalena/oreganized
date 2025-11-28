@@ -228,6 +228,21 @@ public abstract class OBlockStateProvider extends BlockStateProvider {
         );
     }
 
+    public void rotatedPillar(Block block) {
+        //has directions
+        getVariantBuilder(block).forAllStates(state -> {
+            ModelFile model = models().cubeColumn(name(block), texture(name(block) + "_side"), texture(name(block) + "_top"));
+            ConfiguredModel.Builder<?> builder = ConfiguredModel.builder().modelFile(model);
+            switch (state.getValue(RotatedPillarBlock.AXIS)) {
+                case X -> builder.rotationX(90).rotationY(90);
+                case Y -> {
+                }
+                case Z -> builder.rotationX(90);
+            }
+            return builder.build();
+        });
+    }
+
     public <T extends TrapDoorBlock & IMeltableBlock> void meltableTrapdoor(Supplier<T> block) {
         var baseName = name(block);
         var prefixes = List.of("", "goopy_", "red_hot_");
