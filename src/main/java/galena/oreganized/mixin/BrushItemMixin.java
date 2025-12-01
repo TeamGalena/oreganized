@@ -4,8 +4,6 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import galena.oreganized.content.block.IBrushable;
-import galena.oreganized.content.block.SilverBlock;
-import net.mehvahdjukaar.supplementaries.common.block.ISimpleBrushable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.player.Player;
@@ -44,4 +42,3 @@ public class BrushItemMixin {
         original.call(instance, level, hit, state, viewVec, arm);
     }
 }
-

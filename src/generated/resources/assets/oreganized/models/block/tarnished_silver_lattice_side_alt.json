@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/template_glass_pane_side_alt",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "edge": "oreganized:block/tarnished_silver_lattice",
+    "pane": "oreganized:block/tarnished_silver_lattice"
+  }
+}

@@ -5,7 +5,11 @@ import com.google.common.collect.HashBiMap;
 import galena.oreganized.Oreganized;
 import galena.oreganized.OreganizedConfig;
 import galena.oreganized.index.OBlocks;
+import galena.oreganized.index.TarnishedBlocks;
 import galena.oreganized.network.packet.TarnishParticlePacket;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -20,10 +24,6 @@ import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 @EventBusSubscriber(modid = Oreganized.MOD_ID)
 public class TarnishManager {
 
@@ -33,28 +33,16 @@ public class TarnishManager {
 
 
     public static void setup() {
-        registerTarnish(OBlocks.SILVER_BLOCK.get(),
-                OBlocks.BLEMISHED_SILVER_BLOCK.get(),
-                OBlocks.TARNISHED_SILVER_BLOCK.get());
-
-        registerTarnish(OBlocks.CUT_SILVER.get(),
-                OBlocks.CUT_BLEMISHED_SILVER.get(),
-                OBlocks.CUT_TARNISHED_SILVER.get());
-
-        registerTarnish(OBlocks.SILVER_PILLAR.get(),
-                OBlocks.BLEMISHED_SILVER_PILLAR.get(),
-                OBlocks.TARNISHED_SILVER_PILLAR.get());
-
-        registerTarnish(OBlocks.SILVER_BULB.get(),
-                OBlocks.BLEMISHED_SILVER_BULB.get(),
-                OBlocks.TARNISHED_SILVER_BULB.get());
-
-        registerTarnish(OBlocks.SILVER_LATTICE.get(),
-                OBlocks.BLEMISHED_SILVER_LATTICE.get(),
-                OBlocks.TARNISHED_SILVER_LATTICE.get());
-
+        registerTarnish(OBlocks.SILVER_BLOCKS);
+        registerTarnish(OBlocks.CUT_SILVERS);
+        registerTarnish(OBlocks.SILVER_PILLARS);
+        registerTarnish(OBlocks.SILVER_BULBS);
+        registerTarnish(OBlocks.SILVER_LATTICES);
     }
 
+    public static void registerTarnish(TarnishedBlocks<?> blocks) {
+        registerTarnish(blocks.base().get(), blocks.blemished().get(), blocks.tarnished().get());
+    }
 
     public static void registerTarnish(Block... blocks) {
         for (int i = 0; i < blocks.length - 1; i++) {

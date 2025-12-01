@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "oreganized:block/tarnished_silver_bulb"
+    },
+    "lit=true": {
+      "model": "oreganized:block/tarnished_silver_bulb_on"
+    }
+  }
+}

@@ -2,7 +2,18 @@
   "values": [
     "oreganized:silver_ore",
     "oreganized:deepslate_silver_ore",
+    "oreganized:raw_silver_block",
     "oreganized:silver_block",
-    "oreganized:raw_silver_block"
+    "oreganized:blemished_silver_block",
+    "oreganized:tarnished_silver_block",
+    "oreganized:silver_lattice",
+    "oreganized:blemished_silver_lattice",
+    "oreganized:tarnished_silver_lattice",
+    "oreganized:silver_bulb",
+    "oreganized:blemished_silver_bulb",
+    "oreganized:tarnished_silver_bulb",
+    "oreganized:silver_pillar",
+    "oreganized:blemished_silver_pillar",
+    "oreganized:tarnished_silver_pillar"
   ]
 }

@@ -11,6 +11,8 @@ neoforge {
         existing("blueprint")
         existing("shieldexp")
         existing("dye_depot")
+
+        splitSourceSet()
     }
 }
 

@@ -1,9 +1,12 @@
 package galena.oreganized.content.block;
 
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
+
 import com.mojang.serialization.MapCodec;
 import galena.oreganized.content.entity.GargoyleBlockEntity;
 import galena.oreganized.index.OBlockEntities;
 import galena.oreganized.index.OParticleTypes;
+import java.util.Map;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
@@ -35,10 +38,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Map;
-
-import static net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
 
 public class GargoyleBlock extends HorizontalDirectionalBlock implements EntityBlock {
 

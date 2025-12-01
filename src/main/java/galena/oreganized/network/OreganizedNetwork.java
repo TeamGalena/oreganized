@@ -1,8 +1,8 @@
 package galena.oreganized.network;
 
 import galena.oreganized.network.packet.DoorPushingPacket;
-import galena.oreganized.network.packet.TarnishParticlePacket;
 import galena.oreganized.network.packet.KineticHitPacket;
+import galena.oreganized.network.packet.TarnishParticlePacket;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 
 public class OreganizedNetwork {

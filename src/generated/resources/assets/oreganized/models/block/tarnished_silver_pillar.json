@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "oreganized:block/tarnished_silver_pillar_end",
+    "side": "oreganized:block/tarnished_silver_pillar_side"
+  }
+}

@@ -8,6 +8,10 @@ import galena.oreganized.content.block.TarnishManager;
 import galena.oreganized.index.DyeColors;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OItems;
+
+import java.util.Map;
+import java.util.function.Supplier;
+
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
@@ -22,12 +26,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import org.infernalstudios.shieldexp.init.ItemsInit;
 import vectorwing.farmersdelight.common.registry.ModItems;
-
-import java.util.Map;
-import java.util.function.Supplier;
-
-import static galena.oreganized.ModCompat.FARMERS_DELIGHT_ID;
-import static galena.oreganized.ModCompat.NETHERS_DELIGHT_ID;
 
 @EventBusSubscriber(modid = Oreganized.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class OTabs {
@@ -58,8 +56,10 @@ public class OTabs {
             putAfter(event, OBlocks.GLANCE_BRICK_SLAB.get(), OBlocks.GLANCE_BRICK_WALL);
             putAfter(event, OBlocks.GLANCE_BRICK_WALL.get(), OBlocks.WAXED_SPOTTED_GLANCE);
 
-            putBefore(event, Items.GOLD_BLOCK, TarnishManager.getAllTarnishables()
-                    .stream().map(a -> (Supplier<Object>) () -> a).toArray(Supplier[]::new));
+            putBefore(event, Items.GOLD_BLOCK, OBlocks.SILVER_BLOCKS.array());
+            putBefore(event, Items.GOLD_BLOCK, OBlocks.CUT_SILVERS.array());
+            putBefore(event, Items.GOLD_BLOCK, OBlocks.SILVER_PILLARS.array());
+            putBefore(event, Items.GOLD_BLOCK, OBlocks.SILVER_LATTICES.array());
             putBefore(event, Items.NETHERITE_BLOCK, OBlocks.ELECTRUM_BLOCK);
             putAfter(event, Items.WAXED_OXIDIZED_CUT_COPPER_SLAB, OBlocks.LEAD_BLOCK);
             putAfter(event, OBlocks.LEAD_BLOCK.get(), OBlocks.CUT_LEAD);
@@ -74,6 +74,7 @@ public class OTabs {
 
         if (tab == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
             putBefore(event, Blocks.BARREL, OBlocks.LEAD_BOLT_CRATE);
+            putBefore(event, Items.REDSTONE_LAMP, OBlocks.SILVER_BULBS.array());
         }
 
         if (tab == CreativeModeTabs.COLORED_BLOCKS) {
