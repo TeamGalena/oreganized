@@ -113,6 +113,7 @@ public class OItemModels extends OItemModelProvider {
 
         OBlocks.SILVER_BLOCKS.all().forEach(this::block);
         OBlocks.CUT_SILVERS.all().forEach(this::block);
+        OBlocks.SILVER_LATTICES.all().forEach(this::block);
         OBlocks.SILVER_PILLARS.all().forEach(this::block);
         OBlocks.SILVER_BULBS.all().forEach(this::block);
         OBlocks.SILVER_BARS.all().forEach(this::blockFlat);

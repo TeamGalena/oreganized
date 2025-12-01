@@ -57,6 +57,7 @@ public class OTabs {
 
             putBefore(event, Items.GOLD_BLOCK, OBlocks.SILVER_BLOCKS.array());
             putBefore(event, Items.GOLD_BLOCK, OBlocks.CUT_SILVERS.array());
+            putBefore(event, Items.GOLD_BLOCK, OBlocks.SILVER_LATTICES.array());
             putBefore(event, Items.GOLD_BLOCK, OBlocks.SILVER_PILLARS.array());
             putBefore(event, Items.GOLD_BLOCK, OBlocks.SILVER_BARS.array());
             putBefore(event, Items.NETHERITE_BLOCK, OBlocks.ELECTRUM_BLOCK);

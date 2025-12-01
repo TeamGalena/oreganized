@@ -35,6 +35,7 @@ public class TarnishManager {
     public static void setup() {
         registerTarnish(OBlocks.SILVER_BLOCKS);
         registerTarnish(OBlocks.CUT_SILVERS);
+        registerTarnish(OBlocks.SILVER_LATTICES);
         registerTarnish(OBlocks.SILVER_PILLARS);
         registerTarnish(OBlocks.SILVER_BULBS);
         registerTarnish(OBlocks.SILVER_BARS);

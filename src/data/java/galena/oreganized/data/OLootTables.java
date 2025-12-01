@@ -126,6 +126,7 @@ public class OLootTables extends LootTableProvider {
             OBlocks.WAXED_CONCRETE_POWDER.forEach((c, b) -> dyed(c, () -> dropSelf(b)));
 
             OBlocks.CUT_SILVERS.all().forEach(this::dropSelf);
+            OBlocks.SILVER_LATTICES.all().forEach(this::dropSelf);
             OBlocks.SILVER_BLOCKS.all().forEach(this::dropSelf);
             OBlocks.SILVER_BULBS.all().forEach(this::dropSelf);
             OBlocks.SILVER_BARS.all().forEach(this::dropSelf);

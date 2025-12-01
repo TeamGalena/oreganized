@@ -76,6 +76,7 @@ public class OBlockStates extends OBlockStateProvider {
 
         OBlocks.SILVER_BULBS.all().forEach(it -> lamp(it.get()));
         OBlocks.CUT_SILVERS.all().forEach(this::simpleBlock);
+        OBlocks.SILVER_LATTICES.all().forEach(this::simpleBlock);
         OBlocks.SILVER_BLOCKS.all().forEach(this::simpleBlock);
         OBlocks.SILVER_BARS.all().forEach(this::bars);
         OBlocks.SILVER_PILLARS.all().forEach(it -> axisBlock(it.get()));
