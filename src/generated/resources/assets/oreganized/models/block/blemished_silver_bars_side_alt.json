@@ -2,7 +2,7 @@
   "parent": "minecraft:block/template_glass_pane_side_alt",
   "render_type": "minecraft:cutout",
   "textures": {
-    "edge": "oreganized:block/blemished_silver_lattice",
-    "pane": "oreganized:block/blemished_silver_lattice"
+    "edge": "oreganized:block/blemished_silver_bars",
+    "pane": "oreganized:block/blemished_silver_bars"
   }
 }

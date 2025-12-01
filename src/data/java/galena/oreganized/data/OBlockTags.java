@@ -164,7 +164,7 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
                         OBlocks.RAW_SILVER_BLOCK
                 ),
                 OBlocks.SILVER_BLOCKS.all(),
-                OBlocks.SILVER_LATTICES.all(),
+                OBlocks.SILVER_BARS.all(),
                 OBlocks.SILVER_BULBS.all(),
                 OBlocks.SILVER_PILLARS.all()
         ).flatMap(Function.identity());

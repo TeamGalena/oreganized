@@ -51,9 +51,9 @@ public class OLang extends OLangProvider {
         addBlock(OBlocks.SILVER_PILLARS.base(), "Silver Pillar");
         addBlock(OBlocks.SILVER_PILLARS.blemished(), "Blemished Silver Pillar");
         addBlock(OBlocks.SILVER_PILLARS.tarnished(), "Tarnished Silver Pillar");
-        addBlock(OBlocks.SILVER_LATTICES.base(), "Silver Lattice");
-        addBlock(OBlocks.SILVER_LATTICES.blemished(), "Blemished Silver Lattice");
-        addBlock(OBlocks.SILVER_LATTICES.tarnished(), "Tarnished Silver Lattice");
+        addBlock(OBlocks.SILVER_BARS.base(), "Silver Bars");
+        addBlock(OBlocks.SILVER_BARS.blemished(), "Blemished Silver Bars");
+        addBlock(OBlocks.SILVER_BARS.tarnished(), "Tarnished Silver Bars");
         addBlock(OBlocks.SILVER_BULBS.base(), "Silver Bulb");
         addBlock(OBlocks.SILVER_BULBS.blemished(), "Blemished Silver Bulb");
         addBlock(OBlocks.SILVER_BULBS.tarnished(), "Tarnished Silver Bulb");

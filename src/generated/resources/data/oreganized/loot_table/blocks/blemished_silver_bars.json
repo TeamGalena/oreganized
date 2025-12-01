@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "oreganized:blemished_silver_lattice"
+          "name": "oreganized:blemished_silver_bars"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "oreganized:blocks/blemished_silver_lattice"
+  "random_sequence": "oreganized:blocks/blemished_silver_bars"
 }

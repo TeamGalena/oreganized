@@ -2,12 +2,12 @@
   "multipart": [
     {
       "apply": {
-        "model": "oreganized:block/silver_lattice_post"
+        "model": "oreganized:block/tarnished_silver_bars_post"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/silver_lattice_side"
+        "model": "oreganized:block/tarnished_silver_bars_side"
       },
       "when": {
         "north": "true"
@@ -15,7 +15,7 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/silver_lattice_noside"
+        "model": "oreganized:block/tarnished_silver_bars_noside"
       },
       "when": {
         "north": "false"
@@ -23,7 +23,7 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/silver_lattice_side_alt"
+        "model": "oreganized:block/tarnished_silver_bars_side_alt"
       },
       "when": {
         "south": "true"
@@ -31,7 +31,7 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/silver_lattice_noside_alt",
+        "model": "oreganized:block/tarnished_silver_bars_noside_alt",
         "y": 90
       },
       "when": {
@@ -40,7 +40,7 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/silver_lattice_side_alt",
+        "model": "oreganized:block/tarnished_silver_bars_side_alt",
         "y": 90
       },
       "when": {
@@ -49,7 +49,7 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/silver_lattice_noside",
+        "model": "oreganized:block/tarnished_silver_bars_noside",
         "y": 270
       },
       "when": {
@@ -58,7 +58,7 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/silver_lattice_side",
+        "model": "oreganized:block/tarnished_silver_bars_side",
         "y": 90
       },
       "when": {
@@ -67,7 +67,7 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/silver_lattice_noside_alt"
+        "model": "oreganized:block/tarnished_silver_bars_noside_alt"
       },
       "when": {
         "east": "false"

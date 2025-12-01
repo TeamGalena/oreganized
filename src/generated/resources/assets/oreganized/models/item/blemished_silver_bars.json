@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "oreganized:block/silver_lattice"
+    "layer0": "oreganized:block/blemished_silver_bars"
   }
 }

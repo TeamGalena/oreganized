@@ -2,7 +2,6 @@ package galena.oreganized.data;
 
 import galena.oreganized.Oreganized;
 import galena.oreganized.compat.ColorCompat;
-import galena.oreganized.content.block.TarnishManager;
 import galena.oreganized.content.item.DeviceItem;
 import galena.oreganized.content.item.SpeedometerItem;
 import galena.oreganized.content.item.ThermometerItem;
@@ -116,7 +115,7 @@ public class OItemModels extends OItemModelProvider {
         OBlocks.CUT_SILVERS.all().forEach(this::block);
         OBlocks.SILVER_PILLARS.all().forEach(this::block);
         OBlocks.SILVER_BULBS.all().forEach(this::block);
-        OBlocks.SILVER_LATTICES.all().forEach(this::blockFlat);
+        OBlocks.SILVER_BARS.all().forEach(this::blockFlat);
     }
 
 }

@@ -128,7 +128,7 @@ public class OBlocks {
     });
     public static final TarnishedBlocks<SilverBlock> CUT_SILVERS = registerTarnished("cut_silver", $ -> new SilverBlock(silverProperties()));
 
-    public static final TarnishedBlocks<IronBarsBlock> SILVER_LATTICES = registerTarnished("silver_lattice",
+    public static final TarnishedBlocks<IronBarsBlock> SILVER_BARS = registerTarnished("silver_bars",
             $ -> new SilverBarsBlock(Properties.ofFullCopy(Blocks.IRON_BARS).noOcclusion())
     );
 

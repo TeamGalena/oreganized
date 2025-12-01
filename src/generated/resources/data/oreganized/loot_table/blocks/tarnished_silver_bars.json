@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "oreganized:silver_lattice"
+          "name": "oreganized:tarnished_silver_bars"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "oreganized:blocks/silver_lattice"
+  "random_sequence": "oreganized:blocks/tarnished_silver_bars"
 }

@@ -2,6 +2,6 @@
   "parent": "minecraft:block/template_glass_pane_noside",
   "render_type": "minecraft:cutout",
   "textures": {
-    "pane": "oreganized:block/blemished_silver_lattice"
+    "pane": "oreganized:block/silver_bars"
   }
 }
