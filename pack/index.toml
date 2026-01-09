@@ -17,15 +17,15 @@ metafile = true
 
 [[files]]
 file = "mods/moonlight.pw.toml"
-hash = "bcdf2b7b2e4648346526c576824ff02f6d519edf406f8fbcf6d6d73fc1de507d"
+hash = "80c0d9b10a22bfb81f7664043c67bef9b78f95a1c8ba62efae4335658a0c72e0"
 metafile = true
 
 [[files]]
 file = "mods/no-mans-land.pw.toml"
-hash = "833d1751bfaa826ee1289e9e3fab87b7d44442b2558e3e1412412d8f66923e06"
+hash = "2d51fa52a16d97c242e860e649cd4c5ed8ab00190c428974793425745c0d92c7"
 metafile = true
 
 [[files]]
 file = "mods/supplementaries.pw.toml"
-hash = "b58d586a0560ceab0ab47d7e3e8b738cf2bec7c5df5ed8f94e95326c61a8b792"
+hash = "70fab1377063ea642ca352ebf364dde768ab65223308605b63b2aa63519515eb"
 metafile = true
