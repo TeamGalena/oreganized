@@ -1,7 +1,6 @@
 package galena.oreganized.content.block;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.IronBarsBlock;
 
 public class SilverBarsBlock extends IronBarsBlock implements IBrushableSilver {

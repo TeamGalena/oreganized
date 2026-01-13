@@ -1,7 +1,6 @@
 package galena.oreganized.index;
 
 import java.util.stream.Stream;
-
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredBlock;
 

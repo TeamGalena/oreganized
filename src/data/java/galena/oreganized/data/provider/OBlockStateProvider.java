@@ -12,13 +12,11 @@ import galena.oreganized.content.block.GargoyleBlock;
 import galena.oreganized.content.block.IMeltableBlock;
 import galena.oreganized.content.block.LeadDoorBlock;
 import galena.oreganized.content.block.MoltenLeadCauldronBlock;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
-
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
