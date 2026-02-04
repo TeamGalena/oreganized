@@ -1,0 +1,19 @@
+{
+  "sources": [
+    {
+      "type": "blueprint:paletted_permutations",
+      "palette_key": "minecraft:trims/color_palettes/trim_palette",
+      "permutations": {
+        "oreganized_electrum": "oreganized:trims/color_palettes/electrum",
+        "oreganized_lead": "oreganized:trims/color_palettes/lead",
+        "oreganized_silver": "oreganized:trims/color_palettes/silver"
+      },
+      "textures": [
+        "minecraft:trims/items/helmet_trim",
+        "minecraft:trims/items/chestplate_trim",
+        "minecraft:trims/items/leggings_trim",
+        "minecraft:trims/items/boots_trim"
+      ]
+    }
+  ]
+}
