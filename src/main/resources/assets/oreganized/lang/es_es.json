@@ -1,1 +1,27 @@
-{}
+{
+  "advancements.oreganized.demoted.description": "Usa virotes de plomo en una ballesta para arrebatarle su Estandarte Ominoso a un saqueador",
+  "advancements.oreganized.demoted.title": "Destituido",
+  "advancements.oreganized.disc_smith.description": "Sumerge un disco de música roto en plomo fundido",
+  "advancements.oreganized.disc_smith.title": "Herrero Discográfico",
+  "advancements.oreganized.electrum_gear.description": "Obtén un set de armadura completo de electro",
+  "advancements.oreganized.electrum_gear.title": "Cúbreme en... Alas?",
+  "advancements.oreganized.garglin_water.description": "Dale a una Gárgola con una fuente de agua que expulsar incluso sin lluvia",
+  "advancements.oreganized.garglin_water.title": "Gárgoras con agua",
+  "advancements.oreganized.lead_to_dust.description": "Rompe una mena de plomo sin agua adyacente que bloquee la formación de la nube tóxica",
+  "advancements.oreganized.like_the_romans.description": "Sufre de Daño Cerebral al interactuar con plomo",
+  "advancements.oreganized.like_the_romans.title": "Como los Romanos",
+  "advancements.oreganized.melting_point.description": "Recoge Plomo Fundido de un caldero",
+  "advancements.oreganized.melting_point.title": "Punto de Fusión",
+  "advancements.oreganized.mirror_mirror.description": "Obtén un Espejo de Plata",
+  "advancements.oreganized.mirror_mirror.title": "Espejito, Espejito ¿quién es la más bella?",
+  "advancements.oreganized.obtain_silver.description": "Funde Plata en Bruto",
+  "advancements.oreganized.obtain_silver.title": "No hay Piedra que con Plata no Venga",
+  "advancements.oreganized.profound_brain_damage.description": "Deja que tu salud baje a medio corazón bajo el efecto de Daño Cerebral",
+  "advancements.oreganized.profound_brain_damage.title": "Daño Cerebral Profundo",
+  "advancements.oreganized.shake_it_off.description": "Agita el Termómetro para recalibrar su valor",
+  "advancements.oreganized.shake_it_off.title": "¡Muévelo!",
+  "advancements.oreganized.terminal_velocity.description": "Alcanza Velocidad Terminal mientras caes",
+  "advancements.oreganized.terminal_velocity.title": "Tengo Cosas que Caer",
+  "advancements.oreganized.thermal_shock.description": "Enfría tu Termómetro demasiado rápido en agua, destruyéndolo",
+  "advancements.oreganized.thermal_shock.title": "Shock Térmico"
+}
