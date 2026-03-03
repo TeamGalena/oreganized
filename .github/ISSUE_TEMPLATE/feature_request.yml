@@ -1,6 +1,12 @@
+# <meta>
+#    <source>@pssbletrngle/github-meta-generator</source>
+#    <version>0.0.0-dev</version>
+#    <timestamp>2026-03-03T15:40:10.769Z</timestamp>
+# </meta>
+
 name: Feature Request
 description: Suggest a feature
-labels: ["enhancement", "feature", "feature-request"]
+labels: ["enhancement"]
 
 body:
   - type: textarea

@@ -1,19 +1,25 @@
+# <meta>
+#    <source>@pssbletrngle/github-meta-generator</source>
+#    <version>0.0.0-dev</version>
+#    <timestamp>2026-03-03T15:40:10.769Z</timestamp>
+# </meta>
+
 name: "Issue Labeler"
 
 on:
-   issues:
-      types: [opened, edited]
+  issues:
+    types: [opened, edited]
 
 permissions:
-   issues: write
-   contents: read
+  issues: write
+  contents: read
 
 jobs:
-   label:
-      runs-on: ubuntu-latest
-      steps:
-         - uses: github/issue-labeler@v3.4
-           with:
-              configuration-path: .github/labeler.yml
-              enable-versioned-regex: 0
-              repo-token: ${{ github.token }}
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: github/issue-labeler@v3.4
+        with:
+          configuration-path: .github/labeler.yml
+          enable-versioned-regex: 0
+          repo-token: ${{ github.token }}
