@@ -106,7 +106,6 @@ public class Oreganized {
         OreganizedConfig.register(container);
 
         modBus.addListener(this::setup);
-        modBus.addListener(this::clientSetup);
         modBus.addListener(this::gatherData);
         forgeBus.addListener(this::injectVillagerTrades);
         forgeBus.addListener(this::registerPotionMixes);
@@ -210,9 +209,6 @@ public class Oreganized {
                 }, 1);
             });
         });
-    }
-
-    private void clientSetup(FMLClientSetupEvent event) {
     }
 
     private void registerPotionMixes(RegisterBrewingRecipesEvent event) {

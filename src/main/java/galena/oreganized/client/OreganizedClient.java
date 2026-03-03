@@ -61,8 +61,10 @@ public class OreganizedClient {
 
     @SubscribeEvent
     public static void setup(FMLClientSetupEvent event) {
-        OreganizedClient.registerBlockRenderers();
-        OreganizedClient.registerItemProperties();
+        event.enqueueWork(() -> {
+            OreganizedClient.registerBlockRenderers();
+            OreganizedClient.registerItemProperties();
+        });
     }
 
     private static void registerItemProperties() {
