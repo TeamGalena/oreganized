@@ -1,6 +1,7 @@
-blank_issues_enabled: false
+# <meta>
+#    <source>@pssbletrngle/github-meta-generator</source>
+#    <version>0.0.0-dev</version>
+#    <timestamp>2026-03-03T15:08:54.759Z</timestamp>
+# </meta>
 
-contact_links:
-  - name: Discord
-    url: https://discord.gg/JmMf7CEKsx
-    about: Any questions? Join the discord server!
+blank_issues_enabled: false
