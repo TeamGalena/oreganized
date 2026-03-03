@@ -4,6 +4,7 @@ import galena.oreganized.index.OAttributes;
 import galena.oreganized.index.OParticleTypes;
 import galena.oreganized.network.OreganizedNetwork;
 import galena.oreganized.network.packet.KineticHitPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.network.PacketDistributor;
@@ -12,6 +13,7 @@ public class KineticDamage {
 
     public static void apply(LivingEntity cause, Entity target) {
         if (!(cause instanceof IMotionHolder motionHolder)) return;
+        if (!(target.level() instanceof ServerLevel)) return;
 
         var motion = Math.sqrt(motionHolder.oreganised$getHorizontalMotion()) - 0.15;
 
@@ -26,10 +28,12 @@ public class KineticDamage {
 
         target.invulnerableTime = 0;
         target.hurt(source, (float) kineticDamage);
-        OreganizedNetwork.CHANNEL.send(
-                PacketDistributor.NEAR.with(PacketDistributor.TargetPoint.p(target.getX(), target.getY(), target.getZ(), 16.0, target.level().dimension())),
-                new KineticHitPacket(target.getId(), factor)
-        );
+        if (target.level() instanceof ServerLevel level) {
+            OreganizedNetwork.CHANNEL.send(
+                    PacketDistributor.NEAR.with(PacketDistributor.TargetPoint.p(target.getX(), target.getY(), target.getZ(), 16.0, target.level().dimension())),
+                    new KineticHitPacket(target.getId(), factor)
+            );
+        }
     }
 
     public static void spawnParticles(Entity target, double factor) {
