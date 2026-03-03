@@ -4,6 +4,7 @@ import galena.oreganized.index.OAttributes;
 import galena.oreganized.index.OParticleTypes;
 import galena.oreganized.network.OreganizedNetwork;
 import galena.oreganized.network.packet.KineticHitPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.network.PacketDistributor;
@@ -12,6 +13,7 @@ public class KineticDamage {
 
     public static void apply(LivingEntity cause, Entity target) {
         if (!(cause instanceof IMotionHolder motionHolder)) return;
+        if (!(target.level() instanceof ServerLevel)) return;
 
         var motion = Math.sqrt(motionHolder.oreganised$getHorizontalMotion()) - 0.15;
 
