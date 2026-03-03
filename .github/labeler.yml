@@ -1,11 +1,19 @@
-1.18.x:
-  - "1.18"
+# <meta>
+#    <source>@pssbletrngle/github-meta-generator</source>
+#    <version>0.0.0-dev</version>
+#    <timestamp>2026-03-03T15:40:10.769Z</timestamp>
+# </meta>
 
-1.19.x:
-  - "1.19"
+forge:
+  - "forge"
+neoforge:
+  - "neoforge"
 
-1.20.x:
-  - "1.20"
-
-1.21.x:
+1.21:
   - "1.21"
+1.20:
+  - "1.20"
+1.19:
+  - "1.19"
+1.18:
+  - "1.18"
