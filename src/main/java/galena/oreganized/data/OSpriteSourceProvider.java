@@ -17,8 +17,13 @@ public class OSpriteSourceProvider extends SpriteSourceProvider {
 
     @Override
     protected void gather() {
-        atlas(BlueprintTrims.ARMOR_TRIMS_ATLAS)
-                .addSource(BlueprintTrims.materialPatternPermutations(
+        atlas(BlueprintTrims.ARMOR_TRIMS_ATLAS).addSource(BlueprintTrims.materialPatternPermutations(
+                OTrimMaterials.LEAD,
+                OTrimMaterials.SILVER,
+                OTrimMaterials.ELECTRUM
+        ));
+
+        atlas(BLOCKS_ATLAS).addSource(BlueprintTrims.materialPermutationsForItemLayers(
                 OTrimMaterials.LEAD,
                 OTrimMaterials.SILVER,
                 OTrimMaterials.ELECTRUM
