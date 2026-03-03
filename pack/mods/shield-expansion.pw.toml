@@ -1,13 +1,13 @@
 name = "Shield Expansion"
-filename = "shieldexp-forge-1.20.1-1.3.5.jar"
+filename = "shieldexp-forge-1.20.1-1.3.6.jar"
 side = "server"
 
 [download]
-url = "https://cdn.modrinth.com/data/sjxWxSao/versions/9fDTdQ39/shieldexp-forge-1.20.1-1.3.5.jar"
-hash-format = "sha256"
-hash = "758ddcba74f541d8fee403eb80f14394c89ac00a1e1f371c30dd188e4143137c"
+url = "https://cdn.modrinth.com/data/sjxWxSao/versions/iVLxCrwb/shieldexp-forge-1.20.1-1.3.6.jar"
+hash-format = "sha512"
+hash = "e679ad26421ba50d9c6277182e6b6b696bbc69270e016cd8bf5c4dd487782f2beb5b3eb997887fc94d3e73a34d2e15e6444e0b8351d1a9693b58fc0f796c86e7"
 
 [update]
 [update.modrinth]
 mod-id = "sjxWxSao"
-version = "9fDTdQ39"
+version = "iVLxCrwb"
