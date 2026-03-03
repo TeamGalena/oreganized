@@ -17,6 +17,7 @@ public class AirCurrentMixin {
     )
     private void spawnLeadDustClouds(CallbackInfo ci) {
         var self = (AirCurrent) (Object) this;
+        if (self.direction == null) return;
         var pos = self.source.getAirCurrentPos();
         var level = self.source.getAirCurrentWorld();
         var facing = self.pushing ? self.direction : self.direction.getOpposite();
