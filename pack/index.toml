@@ -7,17 +7,17 @@ metafile = true
 
 [[files]]
 file = "mods/farmers-delight.pw.toml"
-hash = "44abae510395f12f9ea97b8296b2f72e25f18b9f3f2cc0ee42c0d9afd73fe0b3"
+hash = "b75ba223cc0d159d38890b0c5db42e9454210f874dd0d0b9060f8277e803a5d8"
 metafile = true
 
 [[files]]
 file = "mods/jade.pw.toml"
-hash = "e7d3f7e0472ba9a3ef946fa5defcb157e4126636e603c2306d4ad6065936d5e2"
+hash = "b6e0a61fea06f8d6d8e1672cf07b682625c4b74efd548d5093cd9c1fed167eec"
 metafile = true
 
 [[files]]
 file = "mods/moonlight.pw.toml"
-hash = "80c0d9b10a22bfb81f7664043c67bef9b78f95a1c8ba62efae4335658a0c72e0"
+hash = "8471fa58c70dfd48a7b5c63970412636d1b38347cab8a24850a18b3d03723655"
 metafile = true
 
 [[files]]
@@ -26,6 +26,11 @@ hash = "2d51fa52a16d97c242e860e649cd4c5ed8ab00190c428974793425745c0d92c7"
 metafile = true
 
 [[files]]
+file = "mods/shield-expansion.pw.toml"
+hash = "ecfdba5b82cc0b1a20d6feb2ee6dd4bbde5c8190e95ace0b9c188de4003e6c0c"
+metafile = true
+
+[[files]]
 file = "mods/supplementaries.pw.toml"
-hash = "70fab1377063ea642ca352ebf364dde768ab65223308605b63b2aa63519515eb"
+hash = "599e373cbd3ff6fbe64a00ec53a5275fe583e60d3c5593508d13d1846e329952"
 metafile = true

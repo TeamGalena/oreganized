@@ -34,6 +34,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.IntersectionIngredient;
+import org.infernalstudios.shieldexp.init.ItemsInit;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
 public class ORecipes extends ORecipeProvider {
@@ -144,15 +145,14 @@ public class ORecipes extends ORecipeProvider {
                 .unlockedBy("has_glance", has(OBlocks.GLANCE.get()))
                 .save(consumer);
 
-
         smithingElectrum(() -> Items.DIAMOND_SWORD, OItems.ELECTRUM_SWORD).save(consumer, Oreganized.modLoc("electrum_sword"));
         smithingElectrum(() -> Items.DIAMOND_SHOVEL, OItems.ELECTRUM_SHOVEL).save(consumer, Oreganized.modLoc("electrum_shovel"));
         smithingElectrum(() -> Items.DIAMOND_PICKAXE, OItems.ELECTRUM_PICKAXE).save(consumer, Oreganized.modLoc("electrum_pickaxe"));
         smithingElectrum(() -> Items.DIAMOND_AXE, OItems.ELECTRUM_AXE).save(consumer, Oreganized.modLoc("electrum_axe"));
         smithingElectrum(() -> Items.DIAMOND_HOE, OItems.ELECTRUM_HOE).save(consumer, Oreganized.modLoc("electrum_hoe"));
         whenLoaded(smithingElectrum(ModItems.DIAMOND_KNIFE, OItems.ELECTRUM_KNIFE), "farmersdelight").save(consumer, Oreganized.modLoc("electrum_knife"));
-        // TODO re-add when either is ported to 1.21.1
-        // whenLoaded(smithingElectrum(ItemsInit.DIAMOND_SHIELD, OItems.ELECTRUM_SHIELD), "shieldexp").save(consumer, Oreganized.modLoc("electrum_shield"));
+        whenLoaded(smithingElectrum(ItemsInit.DIAMOND_SHIELD, OItems.ELECTRUM_SHIELD), "shieldexp").save(consumer, Oreganized.modLoc("electrum_shield"));
+        // TODO re-add when ported to 1.21.1
         // whenLoaded(smithingElectrum(NDItems.DIAMOND_MACHETE, OItems.ELECTRUM_MACHETE), "nethersdelight").save(consumer, Oreganized.modLoc("electrum_machete"));
         smithingElectrum(() -> Items.DIAMOND_HELMET, OItems.ELECTRUM_HELMET).save(consumer, Oreganized.modLoc("electrum_helmet"));
         smithingElectrum(() -> Items.DIAMOND_CHESTPLATE, OItems.ELECTRUM_CHESTPLATE).save(consumer, Oreganized.modLoc("electrum_chestplate"));

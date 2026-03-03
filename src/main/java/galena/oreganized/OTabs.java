@@ -2,6 +2,7 @@ package galena.oreganized;
 
 import static galena.oreganized.ModCompat.FARMERS_DELIGHT_ID;
 import static galena.oreganized.ModCompat.NETHERS_DELIGHT_ID;
+import static galena.oreganized.ModCompat.SHIELD_EXPANSION_ID;
 
 import galena.oreganized.index.DyeColors;
 import galena.oreganized.index.OBlocks;
@@ -20,6 +21,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import org.infernalstudios.shieldexp.init.ItemsInit;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
 @EventBusSubscriber(modid = Oreganized.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
@@ -162,10 +164,11 @@ public class OTabs {
         if (ModList.get().isLoaded(FARMERS_DELIGHT_ID) && tab.location().equals(FD_TAB)) {
             putAfter(event, ModItems.NETHERITE_KNIFE.get(), OItems.ELECTRUM_KNIFE);
         }
-        // TODO enable again after mods are ported to 1.21.1
-        // if (ModList.get().isLoaded(SHIELD_EXPANSION_ID) && tab == CreativeModeTabs.COMBAT) {
-        //     putAfter(event, ItemsInit.NETHERITE_SHIELD.get(), OItems.ELECTRUM_SHIELD);
-        // }
+         if (ModList.get().isLoaded(SHIELD_EXPANSION_ID) && tab == CreativeModeTabs.COMBAT) {
+             putAfter(event, ItemsInit.NETHERITE_SHIELD.get(), OItems.ELECTRUM_SHIELD);
+         }
+
+        // TODO enable again after mod is ported to 1.21.1
         // if (ModList.get().isLoaded(NETHERS_DELIGHT_ID) && (tab.location().equals(ND_TAB) || tab == CreativeModeTabs.TOOLS_AND_UTILITIES)) {
         //     putAfter(event, NDItems.NETHERITE_MACHETE.get(), OItems.ELECTRUM_MACHETE);
         // }

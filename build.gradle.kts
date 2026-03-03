@@ -63,7 +63,7 @@ dependencies {
     // Compatibilities
     modImplementation(pack.modrinth.farmers.delight)
     // modApi(pack.modrinth.nethers.delight)
-    // modApi(pack.modrinth.shield.expansion)
+    modImplementation(pack.modrinth.shield.expansion)
     modImplementation(
         variantOf(libs.create) {
             classifier("all")

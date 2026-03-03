@@ -1,0 +1,13 @@
+name = "Shield Expansion"
+filename = "shieldexp-neoforge-1.21.1-1.3.6.jar"
+side = "server"
+
+[download]
+url = "https://cdn.modrinth.com/data/sjxWxSao/versions/yCQwwaVd/shieldexp-neoforge-1.21.1-1.3.6.jar"
+hash-format = "sha512"
+hash = "6a861985bdf4b438ebc56693578fea533e0768c1dfc112dc9063b1a03a9c0182baccdfb272bbaf16b6b01d7f42b5a026263a0cf7c8cc5d05f1c23b988a66b2e7"
+
+[update]
+[update.modrinth]
+mod-id = "sjxWxSao"
+version = "yCQwwaVd"

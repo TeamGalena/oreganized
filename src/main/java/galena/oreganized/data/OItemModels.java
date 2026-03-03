@@ -56,9 +56,7 @@ public class OItemModels extends OItemModelProvider {
         toolItem(OItems.ELECTRUM_HOE);
         toolItem(OItems.ELECTRUM_KNIFE);
         toolItem(OItems.ELECTRUM_MACHETE);
-        // TODO re-add when mod is updated to 1.21.1
-        // shieldItem(OItems.ELECTRUM_SHIELD);
-        normalItem(OItems.ELECTRUM_SHIELD);
+        shieldItem(OItems.ELECTRUM_SHIELD);
 
         crossbowOverwrite("crossbow_lead_bolt");
 
