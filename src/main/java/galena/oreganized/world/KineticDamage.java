@@ -28,10 +28,12 @@ public class KineticDamage {
 
         target.invulnerableTime = 0;
         target.hurt(source, (float) kineticDamage);
-        OreganizedNetwork.CHANNEL.send(
-                PacketDistributor.NEAR.with(PacketDistributor.TargetPoint.p(target.getX(), target.getY(), target.getZ(), 16.0, target.level().dimension())),
-                new KineticHitPacket(target.getId(), factor)
-        );
+        if (target.level() instanceof ServerLevel level) {
+            OreganizedNetwork.CHANNEL.send(
+                    PacketDistributor.NEAR.with(PacketDistributor.TargetPoint.p(target.getX(), target.getY(), target.getZ(), 16.0, target.level().dimension())),
+                    new KineticHitPacket(target.getId(), factor)
+            );
+        }
     }
 
     public static void spawnParticles(Entity target, double factor) {
