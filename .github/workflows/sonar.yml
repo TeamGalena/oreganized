@@ -1,12 +1,13 @@
+# <meta>
+#    <source>@pssbletrngle/github-meta-generator</source>
+#    <version>0.0.0-dev</version>
+#    <timestamp>2026-03-03T15:40:10.769Z</timestamp>
+# </meta>
+
 name: Analyze
 on:
-  workflow_dispatch:
   push:
-    branches: ["[0-9]+.[0-9]+.x"]
-    paths:
-      - '**/*.kt'
-      - '**/*.kts'
-      - '**/*.java'
+    branches: ["[0-9]+.[0-9]+.[0-9x]+"]
 
 env:
   CI: true
@@ -32,6 +33,8 @@ jobs:
           java-version: 21
           distribution: temurin
 
+      - uses: gradle/actions/setup-gradle@v4
+
       - name: Cache SonarQube packages
         uses: actions/cache@v4
         with:
@@ -39,11 +42,8 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-
-      - name: Build
-        run: ./gradlew build spotlessCheck sonar
+      - name: Build & Analyze
+        run: ./gradlew build check sonar
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
