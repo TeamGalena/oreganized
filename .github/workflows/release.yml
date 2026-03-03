@@ -1,3 +1,9 @@
+# <meta>
+#    <source>@pssbletrngle/github-meta-generator</source>
+#    <version>0.0.0-dev</version>
+#    <timestamp>2026-03-03T15:40:10.769Z</timestamp>
+# </meta>
+
 name: Release
 on:
   release:
@@ -12,7 +18,7 @@ jobs:
     timeout-minutes: 20
     permissions:
       contents: read
-      packages: write
+      packages: read
     steps:
       - uses: actions/checkout@v4
         with:
@@ -23,17 +29,16 @@ jobs:
           java-version: 21
           distribution: temurin
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+      - uses: gradle/actions/setup-gradle@v4
 
       - name: Build and upload
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: build curseforge modrinth publish
+          arguments: build publish
         env:
-          NEXUS_USER: ${{ secrets.NEXUS_USER }}
-          NEXUS_TOKEN: ${{ secrets.NEXUS_TOKEN }}
           MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
           CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
           CHANGELOG: ${{ github.event.release.body }}
           RELEASE_VERSION: ${{ github.event.release.tag_name }}
+          NEXUS_USER: ${{ secrets.NEXUS_USER }}
+          NEXUS_TOKEN: ${{ secrets.NEXUS_TOKEN }}
