@@ -1,7 +1,7 @@
 # <meta>
 #    <source>@pssbletrngle/github-meta-generator</source>
-#    <version>0.0.0-dev</version>
-#    <timestamp>2026-03-11T14:13:56.609Z</timestamp>
+#    <version>1.0.18</version>
+#    <timestamp>2026-03-21T06:23:58.287Z</timestamp>
 # </meta>
 
 name: Test
@@ -20,9 +20,8 @@ on:
 
   push:
     branches:
-      - "[0-9]+.[0-9]+.[0-9x]+"
-      - "forge/[0-9]+.[0-9]+.[0-9x]+"
-      - "neoforge/[0-9]+.[0-9]+.[0-9x]+"
+      - "main"
+      - "main/**"
 
 env:
   CI: true
@@ -49,6 +48,8 @@ jobs:
           distribution: temurin
 
       - uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-read-only: ${{ github.event_name != 'push' }}
 
       - name: Cache SonarQube packages
         if: ${{ github.event_name == 'push' }}
