@@ -1,8 +1,9 @@
 <!---
 <meta>
    <source>@pssbletrngle/github-meta-generator</source>
-   <version>1.0.18</version>
-   <timestamp>2026-03-21T06:23:58.287Z</timestamp>
+   <version>1.0.19</version>
+   <timestamp>2026-03-21T08:03:41.023Z</timestamp>
+   <hash>b5e943bce0cdfa7e</hash>
 </meta>
 -->
 
@@ -16,9 +17,7 @@ Copyright (c) 2026 TeamGalena
 
 This license applies to any files under the following directories:
 
-- ./common/src/main/resources/assets/
-- ./forge/src/main/resources/assets/
-- ./neoforge/src/main/resources/assets/
+- ./src/main/resources/assets/
 
 ---
 
