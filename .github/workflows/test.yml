@@ -1,8 +1,8 @@
 # <meta>
 #    <source>@pssbletrngle/github-meta-generator</source>
-#    <version>1.0.19</version>
-#    <timestamp>2026-03-21T08:03:41.023Z</timestamp>
-#    <hash>a4cde207f4ec9e51</hash>
+#    <version>1.0.30</version>
+#    <timestamp>2026-03-23T21:14:24.364Z</timestamp>
+#    <hash>f14bde545df6c0b2</hash>
 # </meta>
 
 name: Test
@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
-      contents: read
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -51,6 +51,7 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           cache-read-only: ${{ github.event_name != 'push' }}
+          dependency-graph: generate-and-submit
 
       - name: Cache SonarQube packages
         if: ${{ github.event_name == 'push' }}
@@ -69,6 +70,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          GITHUB_DEPENDENCY_GRAPH_ENABLED: false
 
       - uses: actions/upload-artifact@v4
         if: ${{ inputs.upload }}
