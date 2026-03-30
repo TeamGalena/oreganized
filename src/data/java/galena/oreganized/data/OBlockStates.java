@@ -80,6 +80,9 @@ public class OBlockStates extends OBlockStateProvider {
         OBlocks.SILVER_BLOCKS.all().forEach(this::simpleBlock);
         OBlocks.SILVER_BARS.all().forEach(this::bars);
         OBlocks.SILVER_PILLARS.all().forEach(it -> axisBlock(it.get()));
+        OBlocks.CHISELED_SILVER.all().forEach(this::simpleBlock);
+        OBlocks.CUT_SILVER_SLABS.indexed().forEach(it -> slabBlock(it.getFirst(), OBlocks.CUT_SILVERS.get(it.getSecond())));
+        OBlocks.CUT_SILVER_STAIRS.indexed().forEach(it -> stairsBlock(it.getFirst(), OBlocks.CUT_SILVERS.get(it.getSecond())));
     }
 
 }

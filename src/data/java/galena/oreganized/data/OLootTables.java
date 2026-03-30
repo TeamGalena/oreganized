@@ -131,6 +131,9 @@ public class OLootTables extends LootTableProvider {
             OBlocks.SILVER_BULBS.all().forEach(this::dropSelf);
             OBlocks.SILVER_BARS.all().forEach(this::dropSelf);
             OBlocks.SILVER_PILLARS.all().forEach(this::dropSelf);
+            OBlocks.CHISELED_SILVER.all().forEach(this::dropSelf);
+            OBlocks.CUT_SILVER_STAIRS.all().forEach(this::dropSelf);
+            OBlocks.CUT_SILVER_SLABS.all().forEach(this::dropSelf);
         }
 
         private void pottedPlant(Supplier<? extends FlowerPotBlock> block) {

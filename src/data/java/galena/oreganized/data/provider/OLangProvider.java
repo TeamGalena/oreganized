@@ -2,6 +2,7 @@ package galena.oreganized.data.provider;
 
 import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
+import galena.oreganized.index.TarnishedBlocks;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
@@ -195,6 +196,12 @@ public abstract class OLangProvider implements DataProvider {
         var id = key.location();
         add("painting.%s.%s.title".formatted(id.getNamespace(), id.getPath()), title);
         add("painting.%s.%s.author".formatted(id.getNamespace(), id.getPath()), author);
+    }
+
+    public void addTarnished(TarnishedBlocks<?> blocks, String pristine) {
+        addBlock(blocks.base(), pristine);
+        addBlock(blocks.blemished(), "Blemished " + pristine);
+        addBlock(blocks.tarnished(), "Tarnished " + pristine);
     }
 
 }
