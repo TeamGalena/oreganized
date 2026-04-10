@@ -2,6 +2,9 @@
   "values": [
     "oreganized:glance_slab",
     "oreganized:polished_glance_slab",
-    "oreganized:glance_brick_slab"
+    "oreganized:glance_brick_slab",
+    "oreganized:cut_silver_slab",
+    "oreganized:blemished_cut_silver_slab",
+    "oreganized:tarnished_cut_silver_slab"
   ]
 }

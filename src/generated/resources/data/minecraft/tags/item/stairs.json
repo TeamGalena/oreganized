@@ -2,6 +2,9 @@
   "values": [
     "oreganized:glance_stairs",
     "oreganized:polished_glance_stairs",
-    "oreganized:glance_brick_stairs"
+    "oreganized:glance_brick_stairs",
+    "oreganized:cut_silver_stairs",
+    "oreganized:blemished_cut_silver_stairs",
+    "oreganized:tarnished_cut_silver_stairs"
   ]
 }

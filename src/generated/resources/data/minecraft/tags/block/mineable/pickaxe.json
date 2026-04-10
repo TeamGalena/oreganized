@@ -45,6 +45,15 @@
     "oreganized:tarnished_silver_bulb",
     "oreganized:silver_pillar",
     "oreganized:blemished_silver_pillar",
-    "oreganized:tarnished_silver_pillar"
+    "oreganized:tarnished_silver_pillar",
+    "oreganized:chiseled_silver",
+    "oreganized:blemished_chiseled_silver",
+    "oreganized:tarnished_chiseled_silver",
+    "oreganized:cut_silver_slab",
+    "oreganized:blemished_cut_silver_slab",
+    "oreganized:tarnished_cut_silver_slab",
+    "oreganized:cut_silver_stairs",
+    "oreganized:blemished_cut_silver_stairs",
+    "oreganized:tarnished_cut_silver_stairs"
   ]
 }

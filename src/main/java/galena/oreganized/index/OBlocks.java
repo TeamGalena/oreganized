@@ -15,10 +15,7 @@ import galena.oreganized.content.block.MeltablePillarBlock;
 import galena.oreganized.content.block.MoltenLeadBlock;
 import galena.oreganized.content.block.MoltenLeadCauldronBlock;
 import galena.oreganized.content.block.ShrapnelBombBlock;
-import galena.oreganized.content.block.SilverBarsBlock;
-import galena.oreganized.content.block.SilverBlock;
 import galena.oreganized.content.block.SilverBulbBlock;
-import galena.oreganized.content.block.SilverPillarBlock;
 import galena.oreganized.content.block.SpottedGlanceBlock;
 import java.util.Map;
 import java.util.Objects;
@@ -40,6 +37,7 @@ import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.IceBlock;
 import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
@@ -121,19 +119,32 @@ public class OBlocks {
                 .sound(SoundType.METAL);
     }
 
-    public static final TarnishedBlocks<Block> SILVER_BLOCKS = registerTarnished("silver_block", $ -> new SilverBlock(silverProperties()));
+    public static final TarnishedBlocks<Block> SILVER_BLOCKS = registerTarnished("silver_block", $ -> new Block(silverProperties()));
     public static final TarnishedBlocks<Block> SILVER_BULBS = registerTarnished("silver_bulb", i -> {
-        var lightLevel = i == 0 ? 4 : 15;
+        var lightLevel = switch (i) {
+            case 0 -> 4;
+            case 1 -> 10;
+            default -> 15;
+        };
         return new SilverBulbBlock(silverProperties().lightLevel($ -> lightLevel));
     });
-    public static final TarnishedBlocks<SilverBlock> CUT_SILVERS = registerTarnished("cut_silver", $ -> new SilverBlock(silverProperties()));
-    public static final TarnishedBlocks<SilverBlock> SILVER_LATTICES = registerTarnished("silver_lattice", $ -> new SilverBlock(silverProperties()));
+    public static final TarnishedBlocks<Block> CUT_SILVERS = registerTarnished("cut_silver", $ -> new Block(silverProperties()));
+    public static final TarnishedBlocks<Block> SILVER_LATTICES = registerTarnished("silver_lattice", $ -> new Block(silverProperties()));
 
     public static final TarnishedBlocks<IronBarsBlock> SILVER_BARS = registerTarnished("silver_bars",
-            $ -> new SilverBarsBlock(Properties.ofFullCopy(Blocks.IRON_BARS).noOcclusion())
+            $ -> new IronBarsBlock(Properties.ofFullCopy(Blocks.IRON_BARS).noOcclusion())
     );
 
-    public static final TarnishedBlocks<SilverPillarBlock> SILVER_PILLARS = registerTarnished("silver_pillar", $ -> new SilverPillarBlock(silverProperties()));
+    public static final TarnishedBlocks<StairBlock> CUT_SILVER_STAIRS = registerTarnished("cut_silver_stairs",
+            i -> new StairBlock(CUT_SILVERS.get(i).get().defaultBlockState(), silverProperties())
+    );
+
+    public static final TarnishedBlocks<SlabBlock> CUT_SILVER_SLABS = registerTarnished("cut_silver_slab",
+            $ -> new SlabBlock(silverProperties())
+    );
+
+    public static final TarnishedBlocks<RotatedPillarBlock> SILVER_PILLARS = registerTarnished("silver_pillar", $ -> new RotatedPillarBlock(silverProperties()));
+    public static final TarnishedBlocks<Block> CHISELED_SILVER = registerTarnished("chiseled_silver", $ -> new Block(silverProperties()));
 
     public static final DeferredBlock<Block> GARGOYLE = register("gargoyle", () -> new GargoyleBlock(Properties.ofFullCopy(Blocks.STONE).noOcclusion()));
 

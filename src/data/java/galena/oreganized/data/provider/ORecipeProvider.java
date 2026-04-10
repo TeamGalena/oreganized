@@ -58,12 +58,20 @@ public abstract class ORecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(blockIn.get()), has(blockIn.get()));
     }
 
-    public ShapedRecipeBuilder makeBars(Supplier<? extends Block> barsOut, Supplier<? extends Block> blockIn) {
+    public ShapedRecipeBuilder makePane(Supplier<? extends Block> barsOut, Supplier<? extends Block> blockIn) {
         return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, barsOut.get(), 16)
                 .pattern("AAA")
                 .pattern("AAA")
                 .define('A', blockIn.get())
                 .unlockedBy(getHasName(blockIn.get()), has(blockIn.get()));
+    }
+
+    public ShapedRecipeBuilder makeBars(Supplier<? extends Block> barsOut, TagKey<Item> itemIn) {
+        return ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, barsOut.get(), 16)
+                .define('#', itemIn)
+                .pattern("###")
+                .pattern("###")
+                .unlockedBy("has_lead", has(itemIn));
     }
 
     public ShapedRecipeBuilder quadTransform(Supplier<? extends Block> blockOut, Supplier<? extends Block> blockIn) {
@@ -226,6 +234,11 @@ public abstract class ORecipeProvider extends RecipeProvider {
 
     public void makeChiseledStonecutting(Supplier<? extends Block> blockOut, Supplier<? extends Block> blockIn, Supplier<? extends SlabBlock> slabIn, RecipeOutput consumer) {
         makeChiseled(blockOut, slabIn).save(consumer);
+        stonecutting(blockIn, blockOut.get()).save(consumer, Oreganized.modLoc("stonecutting/" + getItemName(blockOut.get())));
+    }
+
+    public void makePolishedStonecutting(Supplier<? extends Block> blockOut, Supplier<? extends Block> blockIn, RecipeOutput consumer) {
+        polished(consumer, RecipeCategory.BUILDING_BLOCKS, blockOut.get(), blockIn.get());
         stonecutting(blockIn, blockOut.get()).save(consumer, Oreganized.modLoc("stonecutting/" + getItemName(blockOut.get())));
     }
 
