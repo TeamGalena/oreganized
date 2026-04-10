@@ -178,7 +178,7 @@ public class ORecipes extends ORecipeProvider {
         });
 
         OBlocks.CRYSTAL_GLASS_PANES.forEach((color, pane) ->
-                dyed(color, makeBars(pane, OBlocks.CRYSTAL_GLASS.get(color))).save(consumer)
+                dyed(color, makePane(pane, OBlocks.CRYSTAL_GLASS.get(color))).save(consumer)
         );
 
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, OBlocks.GLANCE.get(), 2)
@@ -306,12 +306,7 @@ public class ORecipes extends ORecipeProvider {
                 .unlockedBy("has_lead", has(OTags.Items.INGOTS_LEAD))
                 .save(consumer);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, OBlocks.LEAD_BARS.get(), 16)
-                .define('#', OTags.Items.INGOTS_LEAD)
-                .pattern("###")
-                .pattern("###")
-                .unlockedBy("has_lead", has(OTags.Items.INGOTS_LEAD))
-                .save(consumer);
+        makeBars(OBlocks.LEAD_BARS, OTags.Items.INGOTS_LEAD).save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, OItems.SCRIBE.get())
                 .define('A', Items.AMETHYST_SHARD)
@@ -401,6 +396,50 @@ public class ORecipes extends ORecipeProvider {
         scribeHarvesting(OTags.Blocks.AMETHYST_CLUSTERS, Blocks.SMALL_AMETHYST_BUD).save(consumer);
         scribeHarvesting(OTags.Blocks.QUARTZITE_CLUSTERS, BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath(ModCompat.NO_MANS_LAND, "small_quartzite_bud")))
                 .when(ModCompat.NO_MANS_LAND)
+                .save(consumer);
+
+        OBlocks.CUT_SILVERS.indexed().forEach(pair -> {
+            var index = pair.getSecond();
+            var cutSilver = pair.getFirst();
+
+            var silverBlock = OBlocks.SILVER_BLOCKS.get(index);
+            makePolishedStonecutting(cutSilver, silverBlock, consumer);
+
+            var slab = OBlocks.CUT_SILVER_SLABS.get(index);
+            makeSlabStonecutting(slab, cutSilver, consumer);
+
+            var stairs = OBlocks.CUT_SILVER_STAIRS.get(index);
+            makeStairsStonecutting(stairs, cutSilver, consumer);
+
+            var pillar = OBlocks.SILVER_PILLARS.get(index);
+            stonecutting(silverBlock, pillar).save(consumer, Oreganized.modLoc("stonecutting/" + getItemName(pillar)));
+            makePillar(pillar, silverBlock).save(consumer);
+
+            var chiseled = OBlocks.CHISELED_SILVER.get(index);
+            makeChiseledStonecutting(chiseled, silverBlock, slab, consumer);
+
+            var lattice = OBlocks.SILVER_LATTICES.get(index);
+            stonecutting(silverBlock, lattice).save(consumer, Oreganized.modLoc("stonecutting/" + getItemName(lattice)));
+            ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, lattice, 4)
+                    .pattern(" # ")
+                    .pattern("# #")
+                    .pattern(" # ")
+                    .define('#', cutSilver)
+                    .unlockedBy("has_cut_silver", has(cutSilver))
+                    .save(consumer);
+        });
+
+        makeBars(OBlocks.SILVER_BARS.base(), OTags.Items.INGOTS_SILVER).save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, OBlocks.SILVER_BULBS.base())
+                .pattern(" C ")
+                .pattern("CBC")
+                .pattern(" R ")
+                .define('C', OBlocks.CUT_SILVERS.base())
+                .define('B', Items.BREEZE_ROD)
+                .define('R', Items.REDSTONE)
+                .unlockedBy("has_cut_silver", has(OBlocks.CUT_SILVERS.base()))
+                .unlockedBy("has_breeze_rod", has(Items.BREEZE_ROD))
                 .save(consumer);
     }
 

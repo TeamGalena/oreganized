@@ -121,7 +121,11 @@ public class OBlocks {
 
     public static final TarnishedBlocks<Block> SILVER_BLOCKS = registerTarnished("silver_block", $ -> new Block(silverProperties()));
     public static final TarnishedBlocks<Block> SILVER_BULBS = registerTarnished("silver_bulb", i -> {
-        var lightLevel = i == 0 ? 4 : 15;
+        var lightLevel = switch (i) {
+            case 0 -> 4;
+            case 1 -> 10;
+            default -> 15;
+        };
         return new SilverBulbBlock(silverProperties().lightLevel($ -> lightLevel));
     });
     public static final TarnishedBlocks<Block> CUT_SILVERS = registerTarnished("cut_silver", $ -> new Block(silverProperties()));
