@@ -90,7 +90,10 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
                 .addTag(OTags.Blocks.STORAGE_BLOCKS_ELECTRUM);
         tag(BlockTags.IMPERMEABLE).addTag(OTags.Blocks.CRYSTAL_GLASS);
         tag(BlockTags.CAULDRONS).add(OBlocks.MOLTEN_LEAD_CAULDRON.get());
+        OBlocks.SILVER_DOORS.all().forEach(it -> tag(BlockTags.MOB_INTERACTABLE_DOORS).add(it.get()));
+        OBlocks.SILVER_DOORS.all().forEach(it -> tag(BlockTags.DOORS).add(it.get()));
         tag(BlockTags.DOORS).add(OBlocks.LEAD_DOOR.get());
+        OBlocks.SILVER_TRAPDOORS.all().forEach(it -> tag(BlockTags.TRAPDOORS).add(it.get()));
         tag(BlockTags.TRAPDOORS).add(OBlocks.LEAD_TRAPDOOR.get());
         tag(BlockTags.SMALL_FLOWERS).add(OBlocks.WHITE_DATURA.get());
         tag(BlockTags.SMALL_FLOWERS).add(OBlocks.PURPLE_DATURA.get());
@@ -171,7 +174,9 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
                 OBlocks.SILVER_PILLARS.all(),
                 OBlocks.CHISELED_SILVER.all(),
                 OBlocks.CUT_SILVER_SLABS.all(),
-                OBlocks.CUT_SILVER_STAIRS.all()
+                OBlocks.CUT_SILVER_STAIRS.all(),
+                OBlocks.SILVER_DOORS.all(),
+                OBlocks.SILVER_TRAPDOORS.all()
         ).flatMap(Function.identity());
 
         silverBlocks.map(DeferredHolder::get).forEach(block -> {

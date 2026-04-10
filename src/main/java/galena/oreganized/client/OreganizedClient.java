@@ -14,11 +14,7 @@ import galena.oreganized.client.tooltips.DeviceTooltip;
 import galena.oreganized.client.tooltips.ThermometerTooltip;
 import galena.oreganized.content.item.SpeedometerItem;
 import galena.oreganized.content.item.ThermometerItem;
-import galena.oreganized.index.OBlocks;
-import galena.oreganized.index.ODataComponents;
-import galena.oreganized.index.OEntityTypes;
-import galena.oreganized.index.OFluids;
-import galena.oreganized.index.OItems;
+import galena.oreganized.index.*;
 import galena.oreganized.world.IDoorProgressHolder;
 import galena.oreganized.world.IMotionHolder;
 import java.util.List;
@@ -98,6 +94,8 @@ public class OreganizedClient {
         RenderType cutout = RenderType.cutout();
         RenderType translucent = RenderType.translucent();
 
+        OBlocks.SILVER_DOORS.all().forEach(deferredBlock -> render(deferredBlock, cutout));
+        OBlocks.SILVER_TRAPDOORS.all().forEach(deferredBlock -> render(deferredBlock, cutout));
         render(OBlocks.LEAD_DOOR, cutout);
         render(OBlocks.LEAD_TRAPDOOR, cutout);
         render(OBlocks.LEAD_BARS, cutout);

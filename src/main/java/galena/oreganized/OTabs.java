@@ -54,13 +54,15 @@ public class OTabs {
             putAfter(event, OBlocks.GLANCE_BRICK_WALL.get(), OBlocks.WAXED_SPOTTED_GLANCE);
 
             putBefore(event, Items.GOLD_BLOCK, OBlocks.SILVER_BLOCKS.array());
-            putBefore(event, Items.GOLD_BLOCK, OBlocks.CUT_SILVERS.array());
+            putBefore(event, Items.GOLD_BLOCK, OBlocks.CHISELED_SILVER.array());
             putBefore(event, Items.GOLD_BLOCK, OBlocks.SILVER_LATTICES.array());
             putBefore(event, Items.GOLD_BLOCK, OBlocks.SILVER_PILLARS.array());
-            putBefore(event, Items.GOLD_BLOCK, OBlocks.CHISELED_SILVER.array());
-            putBefore(event, Items.GOLD_BLOCK, OBlocks.SILVER_BARS.array());
+            putBefore(event, Items.GOLD_BLOCK, OBlocks.CUT_SILVERS.array());
             putBefore(event, Items.GOLD_BLOCK, OBlocks.CUT_SILVER_STAIRS.array());
             putBefore(event, Items.GOLD_BLOCK, OBlocks.CUT_SILVER_SLABS.array());
+            putBefore(event, Items.GOLD_BLOCK, OBlocks.SILVER_BARS.array());
+            putBefore(event, Items.GOLD_BLOCK, OBlocks.SILVER_DOORS.array());
+            putBefore(event, Items.GOLD_BLOCK, OBlocks.SILVER_TRAPDOORS.array());
             putBefore(event, Items.NETHERITE_BLOCK, OBlocks.ELECTRUM_BLOCK);
             putAfter(event, Items.WAXED_OXIDIZED_CUT_COPPER_SLAB, OBlocks.LEAD_BLOCK);
             putAfter(event, OBlocks.LEAD_BLOCK.get(), OBlocks.CUT_LEAD);

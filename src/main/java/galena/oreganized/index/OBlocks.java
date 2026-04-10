@@ -2,24 +2,11 @@ package galena.oreganized.index;
 
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import galena.oreganized.Oreganized;
-import galena.oreganized.content.block.BulbBlock;
-import galena.oreganized.content.block.CrystalGlassBlock;
-import galena.oreganized.content.block.CrystalGlassPaneBlock;
-import galena.oreganized.content.block.GargoyleBlock;
-import galena.oreganized.content.block.IMeltableBlock;
-import galena.oreganized.content.block.LeadBarsBlock;
-import galena.oreganized.content.block.LeadDoorBlock;
-import galena.oreganized.content.block.LeadTrapdoorBlock;
-import galena.oreganized.content.block.MeltableBlock;
-import galena.oreganized.content.block.MeltablePillarBlock;
-import galena.oreganized.content.block.MoltenLeadBlock;
-import galena.oreganized.content.block.MoltenLeadCauldronBlock;
-import galena.oreganized.content.block.ShrapnelBombBlock;
-import galena.oreganized.content.block.SilverBulbBlock;
-import galena.oreganized.content.block.SpottedGlanceBlock;
+import galena.oreganized.content.block.*;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.function.IntFunction;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
@@ -29,19 +16,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DoubleHighBlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.DropExperienceBlock;
-import net.minecraft.world.level.block.FlowerBlock;
-import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.IceBlock;
-import net.minecraft.world.level.block.IronBarsBlock;
-import net.minecraft.world.level.block.LiquidBlock;
-import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.StairBlock;
-import net.minecraft.world.level.block.WallBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
@@ -116,6 +91,7 @@ public class OBlocks {
     private static Properties silverProperties() {
         return Properties.ofFullCopy(Blocks.IRON_BLOCK)
                 .strength(5.0F, 6.0F)
+                .requiresCorrectToolForDrops()
                 .sound(SoundType.METAL);
     }
 
@@ -145,6 +121,15 @@ public class OBlocks {
 
     public static final TarnishedBlocks<RotatedPillarBlock> SILVER_PILLARS = registerTarnished("silver_pillar", $ -> new RotatedPillarBlock(silverProperties()));
     public static final TarnishedBlocks<Block> CHISELED_SILVER = registerTarnished("chiseled_silver", $ -> new Block(silverProperties()));
+
+    public static final BlockSetType SILVER_BLOCK_SET = BlockSetType.register(new BlockSetType("silver",
+            false, true, false,
+            BlockSetType.PressurePlateSensitivity.MOBS, SoundType.METAL,
+            SoundEvents.IRON_DOOR_CLOSE, SoundEvents.IRON_DOOR_OPEN, SoundEvents.IRON_TRAPDOOR_CLOSE, SoundEvents.IRON_TRAPDOOR_OPEN,
+            SoundEvents.METAL_PRESSURE_PLATE_CLICK_OFF, SoundEvents.METAL_PRESSURE_PLATE_CLICK_ON, SoundEvents.STONE_BUTTON_CLICK_OFF, SoundEvents.STONE_BUTTON_CLICK_ON));
+
+    public static final TarnishedBlocks<SilverDoorBlock> SILVER_DOORS = registerTarnished("silver_door", $ -> new SilverDoorBlock(silverProperties().noOcclusion()));
+    public static final TarnishedBlocks<SilverTrapdoorBlock> SILVER_TRAPDOORS = registerTarnished("silver_trapdoor", $ -> new SilverTrapdoorBlock(silverProperties().noOcclusion()));
 
     public static final DeferredBlock<Block> GARGOYLE = register("gargoyle", () -> new GargoyleBlock(Properties.ofFullCopy(Blocks.STONE).noOcclusion()));
 
@@ -199,7 +184,7 @@ public class OBlocks {
         return registerColored(color -> color + "_" + baseName, factory);
     }
 
-    public static <T extends Block> TarnishedBlocks<T> registerTarnished(String baseName, Function<Integer, ? extends T> factory) {
+    public static <T extends Block> TarnishedBlocks<T> registerTarnished(String baseName, IntFunction<? extends T> factory) {
         return new TarnishedBlocks<>(
                 register(baseName, () -> factory.apply(0)),
                 register("blemished_" + baseName, () -> factory.apply(1)),

@@ -134,6 +134,14 @@ public class OLootTables extends LootTableProvider {
             OBlocks.CHISELED_SILVER.all().forEach(this::dropSelf);
             OBlocks.CUT_SILVER_STAIRS.all().forEach(this::dropSelf);
             OBlocks.CUT_SILVER_SLABS.all().forEach(this::dropSelf);
+            OBlocks.SILVER_DOORS.all().forEach(deferredBlock -> {
+                var isLowerHalf = LootItemBlockStatePropertyCondition.hasBlockStateProperties(deferredBlock.get())
+                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoorBlock.HALF, DoubleBlockHalf.LOWER));
+                var itemEntry = LootItem.lootTableItem(deferredBlock.get()).when(isLowerHalf);
+                var pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(itemEntry);
+                add(deferredBlock.get(), LootTable.lootTable().withPool(applyExplosionCondition(deferredBlock.get(), pool)));
+            });
+            OBlocks.SILVER_TRAPDOORS.all().forEach(this::dropSelf);
         }
 
         private void pottedPlant(Supplier<? extends FlowerPotBlock> block) {

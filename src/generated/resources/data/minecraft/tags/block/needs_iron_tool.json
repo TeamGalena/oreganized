@@ -23,6 +23,12 @@
     "oreganized:tarnished_cut_silver_slab",
     "oreganized:cut_silver_stairs",
     "oreganized:blemished_cut_silver_stairs",
-    "oreganized:tarnished_cut_silver_stairs"
+    "oreganized:tarnished_cut_silver_stairs",
+    "oreganized:silver_door",
+    "oreganized:blemished_silver_door",
+    "oreganized:tarnished_silver_door",
+    "oreganized:silver_trapdoor",
+    "oreganized:blemished_silver_trapdoor",
+    "oreganized:tarnished_silver_trapdoor"
   ]
 }

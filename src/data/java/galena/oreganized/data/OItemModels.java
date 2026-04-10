@@ -120,6 +120,8 @@ public class OItemModels extends OItemModelProvider {
         OBlocks.CUT_SILVER_SLABS.all().forEach(this::block);
         OBlocks.CUT_SILVER_STAIRS.all().forEach(this::block);
         OBlocks.SILVER_BARS.all().forEach(this::blockFlat);
+        OBlocks.SILVER_DOORS.all().forEach(deferredBlock -> normalItem(deferredBlock.get()::asItem));
+        OBlocks.SILVER_TRAPDOORS.all().forEach(deferredBlock -> block(deferredBlock, blockName(deferredBlock) + "_bottom"));
     }
 
 }

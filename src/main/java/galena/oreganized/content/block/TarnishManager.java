@@ -37,6 +37,8 @@ public class TarnishManager {
         registerTarnish(OBlocks.SILVER_BARS);
         registerTarnish(OBlocks.CUT_SILVER_STAIRS);
         registerTarnish(OBlocks.CUT_SILVER_SLABS);
+        registerTarnish(OBlocks.SILVER_DOORS);
+        registerTarnish(OBlocks.SILVER_TRAPDOORS);
     }
 
     public static void registerTarnish(TarnishedBlocks<?> blocks) {

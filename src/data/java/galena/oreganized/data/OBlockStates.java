@@ -83,6 +83,11 @@ public class OBlockStates extends OBlockStateProvider {
         OBlocks.CHISELED_SILVER.all().forEach(this::simpleBlock);
         OBlocks.CUT_SILVER_SLABS.indexed().forEach(it -> slabBlock(it.getFirst(), OBlocks.CUT_SILVERS.get(it.getSecond())));
         OBlocks.CUT_SILVER_STAIRS.indexed().forEach(it -> stairsBlock(it.getFirst(), OBlocks.CUT_SILVERS.get(it.getSecond())));
+        OBlocks.SILVER_DOORS.all().forEach(deferredBlock -> doorBlock(deferredBlock.get(),
+                blockTexture(deferredBlock.get()).withSuffix("_bottom"),
+                blockTexture(deferredBlock.get()).withSuffix("_top")));
+        OBlocks.SILVER_TRAPDOORS.all().forEach(deferredBlock -> trapdoorBlock(deferredBlock.get(),
+                blockTexture(deferredBlock.get()), true));
     }
 
 }
