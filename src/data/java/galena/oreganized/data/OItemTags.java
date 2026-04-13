@@ -131,8 +131,10 @@ public class OItemTags extends ItemTagsProvider {
         copy(Tags.Blocks.ORES_IN_GROUND_STONE, Tags.Items.ORES_IN_GROUND_STONE);
         copy(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE, Tags.Items.ORES_IN_GROUND_DEEPSLATE);
 
-        tag(ItemTags.DOORS).add(OBlocks.LEAD_DOOR.get().asItem());
-        tag(ItemTags.TRAPDOORS).add(OBlocks.LEAD_TRAPDOOR.get().asItem());
+        OBlocks.SILVER_DOORS.all().forEach(it -> tag(ItemTags.DOORS).add(it.asItem()));
+        tag(ItemTags.DOORS).add(OBlocks.LEAD_DOOR.asItem());
+        OBlocks.SILVER_TRAPDOORS.all().forEach(it -> tag(ItemTags.TRAPDOORS).add(it.asItem()));
+        tag(ItemTags.TRAPDOORS).add(OBlocks.LEAD_TRAPDOOR.asItem());
 
         tag(ItemTags.AXES).add(OItems.ELECTRUM_AXE.get());
         tag(ItemTags.PICKAXES).add(OItems.ELECTRUM_PICKAXE.get());

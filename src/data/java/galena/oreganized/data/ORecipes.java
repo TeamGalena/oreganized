@@ -441,6 +441,21 @@ public class ORecipes extends ORecipeProvider {
                 .unlockedBy("has_cut_silver", has(OBlocks.CUT_SILVERS.base()))
                 .unlockedBy("has_breeze_rod", has(Items.BREEZE_ROD))
                 .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, OBlocks.SILVER_DOORS.base())
+                .define('#', Ingredient.of(OTags.Items.INGOTS_SILVER))
+                .pattern("##")
+                .pattern("##")
+                .pattern("##")
+                .unlockedBy("has_silver", has(OTags.Items.INGOTS_SILVER))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, OBlocks.SILVER_TRAPDOORS.base())
+                .define('#', OTags.Items.INGOTS_SILVER)
+                .pattern("##")
+                .pattern("##")
+                .unlockedBy("has_silver", has(OTags.Items.INGOTS_SILVER))
+                .save(consumer);
     }
 
 }

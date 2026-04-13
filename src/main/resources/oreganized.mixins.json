@@ -9,7 +9,6 @@
     "BlockBehaviourMixin",
     "BlockMixin",
     "BrushItemMixin",
-    "BrushItemMixin",
     "CrossbowMixin",
     "DispenserBlockMixin",
     "EnchantmentHelperMixin",
@@ -21,6 +20,7 @@
     "MobMixin",
     "PillagerMixin",
     "PlayerMixin",
+    "WalkNodeEvaluatorMixin",
     "compat.AirCurrentMixin",
     "compat.BellowBlockTileMixin",
     "compat.LogStrippingFakeRecipesMixin"
