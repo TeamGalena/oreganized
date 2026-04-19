@@ -26,6 +26,7 @@ public class OEntityTags extends EntityTypeTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
         // Oreganized
         tag(OTags.Entities.LIGHTER_THAN_LEAD).add(EntityType.IRON_GOLEM);
+        tag(OTags.Entities.BOLT_SUSCEPTIBLE).add(EntityType.IRON_GOLEM);
         tag(OTags.Entities.BOLT_RESISTANT)
                 .addOptional(new ResourceLocation("alexsmobs:mimicube"))
                 .addOptional(new ResourceLocation("caverns_and_chasms:mime"));

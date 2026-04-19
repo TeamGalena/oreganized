@@ -114,7 +114,7 @@ public class LeadBoltEntity extends AbstractArrow {
         var baseDamage = 3.0;
         setBaseDamage(baseDamage);
 
-        if (result.getEntity().getType() == EntityType.IRON_GOLEM) {
+        if (result.getEntity().getType().is(OTags.Entities.BOLT_SUSCEPTIBLE)) {
             setBaseDamage(baseDamage * 3);
         }
 
