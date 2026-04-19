@@ -1,7 +1,6 @@
 {
-  "parent": "minecraft:block/iron_bars_side_alt",
+  "parent": "minecraft:block/iron_bars_post_ends",
   "textures": {
-    "bars": "oreganized:block/tarnished_silver_bars",
     "edge": "oreganized:block/tarnished_silver_bars_edge",
     "particle": "oreganized:block/tarnished_silver_bars"
   }

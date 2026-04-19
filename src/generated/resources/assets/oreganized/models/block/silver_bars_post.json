@@ -1,8 +1,7 @@
 {
-  "parent": "minecraft:block/template_glass_pane_post",
-  "render_type": "minecraft:cutout",
+  "parent": "minecraft:block/iron_bars_post",
   "textures": {
-    "edge": "oreganized:block/silver_bars",
-    "pane": "oreganized:block/silver_bars"
+    "bars": "oreganized:block/silver_bars_edge",
+    "particle": "oreganized:block/silver_bars"
   }
 }

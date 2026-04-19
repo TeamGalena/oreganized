@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "oreganized:block/datura"
+    "cross": "oreganized:block/purple_datura"
   }
 }

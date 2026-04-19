@@ -1,8 +1,8 @@
 {
-  "parent": "minecraft:block/template_glass_pane_side_alt",
-  "render_type": "minecraft:cutout",
+  "parent": "minecraft:block/iron_bars_side_alt",
   "textures": {
-    "edge": "oreganized:block/blemished_silver_bars",
-    "pane": "oreganized:block/blemished_silver_bars"
+    "bars": "oreganized:block/blemished_silver_bars",
+    "edge": "oreganized:block/blemished_silver_bars_edge",
+    "particle": "oreganized:block/blemished_silver_bars"
   }
 }
