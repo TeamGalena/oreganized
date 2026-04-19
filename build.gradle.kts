@@ -1,17 +1,8 @@
 plugins {
     id("com.possible-triangle.forge")
-    alias(libs.plugins.parchment)
-}
-
-mod {
-    mods.include(libs.galena.hats)
-    mods.include(libs.multikulti.datagen.fix)
 }
 
 forge {
-    mappingChannel = "parchment"
-    mappingVersion = "2023.09.03-1.20.1"
-
     enableMixins()
     accessTransformer()
 
@@ -60,6 +51,9 @@ repositories {
 }
 
 dependencies {
+    modInclude(libs.galena.hats)
+    modInclude(libs.multikulti.datagen.fix)
+
     modImplementation(libs.blueprint)
 
     modImplementation(libs.multikulti.core)

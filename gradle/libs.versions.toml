@@ -19,6 +19,3 @@ ponder = { group = "net.createmod.ponder", name = "Ponder-Forge-1.20.1", version
 jei-common-api = { group = "mezz.jei", name = "jei-1.20.1-common-api", version.ref = "jei" }
 jei-forge-api = { group = "mezz.jei", name = "jei-1.20.1-forge-api", version.ref = "jei" }
 jei-forge = { group = "mezz.jei", name = "jei-1.20.1-forge", version.ref = "jei" }
-
-[plugins]
-parchment = { id = "org.parchmentmc.librarian.forgegradle", version = "1.+" }
