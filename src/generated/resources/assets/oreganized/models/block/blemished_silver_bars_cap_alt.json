@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/iron_bars_side",
+  "parent": "minecraft:block/iron_bars_cap_alt",
   "textures": {
     "bars": "oreganized:block/blemished_silver_bars",
     "edge": "oreganized:block/blemished_silver_bars_edge",

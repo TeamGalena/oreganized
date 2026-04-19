@@ -106,6 +106,7 @@ public class OreganizedClient {
         render(OBlocks.POTTED_PURPLE_DATURA, cutout);
         OBlocks.CRYSTAL_GLASS.forEach((c, b) -> render(b, translucent));
         OBlocks.CRYSTAL_GLASS_PANES.forEach((c, b) -> render(b, translucent));
+        OBlocks.SILVER_BARS.all().forEach((b) -> render(b, translucent));
 
         render(OBlocks.GROOVED_ICE, translucent);
     }

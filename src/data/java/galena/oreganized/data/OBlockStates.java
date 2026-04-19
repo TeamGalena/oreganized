@@ -20,35 +20,34 @@ public class OBlockStates extends OBlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        simpleBlock(OBlocks.GLANCE);
-        simpleBlock(OBlocks.POLISHED_GLANCE);
-        simpleBlock(OBlocks.GLANCE_BRICKS);
-        simpleBlock(OBlocks.CHISELED_GLANCE);
-        slabBlock(OBlocks.GLANCE_SLAB, OBlocks.GLANCE);
-        slabBlock(OBlocks.POLISHED_GLANCE_SLAB, OBlocks.POLISHED_GLANCE);
-        slabBlock(OBlocks.GLANCE_BRICK_SLAB, OBlocks.GLANCE_BRICKS);
-        stairsBlock(OBlocks.GLANCE_STAIRS, OBlocks.GLANCE);
-        stairsBlock(OBlocks.POLISHED_GLANCE_STAIRS, OBlocks.POLISHED_GLANCE);
-        stairsBlock(OBlocks.GLANCE_BRICK_STAIRS, OBlocks.GLANCE_BRICKS);
-        wallBlock(OBlocks.GLANCE_WALL, OBlocks.GLANCE);
-        wallBlock(OBlocks.GLANCE_BRICK_WALL, OBlocks.GLANCE_BRICKS);
-        simpleBlock(OBlocks.SPOTTED_GLANCE);
+        block(OBlocks.GLANCE);
+        block(OBlocks.POLISHED_GLANCE);
+        block(OBlocks.GLANCE_BRICKS);
+        block(OBlocks.CHISELED_GLANCE);
+        slabBlock(OBlocks.GLANCE.get(), OBlocks.GLANCE_SLAB.get());
+        slabBlock(OBlocks.POLISHED_GLANCE.get(), OBlocks.POLISHED_GLANCE_SLAB.get());
+        slabBlock(OBlocks.GLANCE_BRICKS.get(), OBlocks.GLANCE_BRICK_SLAB.get());
+        stairsBlock(OBlocks.GLANCE.get(), OBlocks.GLANCE_STAIRS.get());
+        stairsBlock(OBlocks.POLISHED_GLANCE.get(), OBlocks.POLISHED_GLANCE_STAIRS.get());
+        stairsBlock(OBlocks.GLANCE_BRICKS.get(), OBlocks.GLANCE_BRICK_STAIRS.get());
+        wallBlock(OBlocks.GLANCE.get(), OBlocks.GLANCE_WALL.get());
+        wallBlock(OBlocks.GLANCE_BRICKS.get(), OBlocks.GLANCE_BRICK_WALL.get());
+        block(OBlocks.SPOTTED_GLANCE);
         waxedBlock(OBlocks.WAXED_SPOTTED_GLANCE, OBlocks.SPOTTED_GLANCE.get());
-        simpleBlock(OBlocks.SILVER_ORE);
-        simpleBlock(OBlocks.DEEPSLATE_SILVER_ORE);
-        simpleBlock(OBlocks.LEAD_ORE);
-        simpleBlock(OBlocks.DEEPSLATE_LEAD_ORE);
-        simpleBlock(OBlocks.RAW_SILVER_BLOCK);
-        simpleBlock(OBlocks.RAW_LEAD_BLOCK);
+        block(OBlocks.SILVER_ORE);
+        block(OBlocks.DEEPSLATE_SILVER_ORE);
+        block(OBlocks.LEAD_ORE);
+        block(OBlocks.DEEPSLATE_LEAD_ORE);
+        block(OBlocks.RAW_SILVER_BLOCK);
+        block(OBlocks.RAW_LEAD_BLOCK);
         meltableBlock(OBlocks.LEAD_BLOCK, (n, t) -> models().cubeAll(n, t));
         meltableBlock(OBlocks.LEAD_BRICKS, (n, t) -> models().cubeAll(n, t));
         meltablePillar(OBlocks.LEAD_PILLAR);
         meltablePillar(OBlocks.CUT_LEAD);
-        bulb(OBlocks.LEAD_BULB);
-        simpleBlock(OBlocks.ELECTRUM_BLOCK);
-        simpleBlock(OBlocks.SHRAPNEL_BOMB.get(), cubeBottomTop(OBlocks.SHRAPNEL_BOMB));
+        meltableLamp(OBlocks.LEAD_BULB);
+        block(OBlocks.ELECTRUM_BLOCK);
+        cubeBottomTopBlock(OBlocks.SHRAPNEL_BOMB);
 
-        //doorBlock(OBlocks.LEAD_DOOR.get(), blockTexture(OBlocks.LEAD_DOOR.get()).withSuffix("_bottom"), blockTexture(OBlocks.LEAD_DOOR.get()).withSuffix("_top"));
         meltableDoor(OBlocks.LEAD_DOOR);
         meltableTrapdoor(OBlocks.LEAD_TRAPDOOR);
         meltableBars(OBlocks.LEAD_BARS);
@@ -58,36 +57,33 @@ public class OBlockStates extends OBlockStateProvider {
             waxedBlock(block, unwaxed);
         });
 
-        crate(OBlocks.LEAD_BOLT_CRATE);
+        cubeBottomTopBlock(OBlocks.LEAD_BOLT_CRATE);
 
         moltenCauldron(OBlocks.MOLTEN_LEAD_CAULDRON, OBlocks.LEAD_BLOCK);
 
         OBlocks.CRYSTAL_GLASS.forEach((color, block) -> crystalGlassBlock(block));
         OBlocks.CRYSTAL_GLASS_PANES.forEach((color, block) -> crystalGlassPaneBlock(color, block, OBlocks.CRYSTAL_GLASS.get(color)));
 
-        simpleBlock(OBlocks.GROOVED_ICE);
-        simpleBlock(OBlocks.GROOVED_PACKED_ICE);
-        simpleBlock(OBlocks.GROOVED_BLUE_ICE);
+        block(OBlocks.GROOVED_ICE);
+        block(OBlocks.GROOVED_PACKED_ICE);
+        block(OBlocks.GROOVED_BLUE_ICE);
 
         gargoyleBlock(OBlocks.GARGOYLE);
 
-        pottedPlant(OBlocks.POTTED_PURPLE_DATURA);
-        pottedPlant(OBlocks.POTTED_WHITE_DATURA);
+        crossBlockWithPot(OBlocks.PURPLE_DATURA, OBlocks.POTTED_PURPLE_DATURA);
+        crossBlockWithPot(OBlocks.WHITE_DATURA, OBlocks.POTTED_WHITE_DATURA);
 
         OBlocks.SILVER_BULBS.all().forEach(it -> lamp(it.get()));
-        OBlocks.CUT_SILVERS.all().forEach(this::simpleBlock);
-        OBlocks.SILVER_LATTICES.all().forEach(this::simpleBlock);
-        OBlocks.SILVER_BLOCKS.all().forEach(this::simpleBlock);
-        OBlocks.SILVER_BARS.all().forEach(this::bars);
-        OBlocks.SILVER_PILLARS.all().forEach(it -> axisBlock(it.get()));
-        OBlocks.CHISELED_SILVER.all().forEach(this::simpleBlock);
-        OBlocks.CUT_SILVER_SLABS.indexed().forEach(it -> slabBlock(it.getFirst(), OBlocks.CUT_SILVERS.get(it.getSecond())));
-        OBlocks.CUT_SILVER_STAIRS.indexed().forEach(it -> stairsBlock(it.getFirst(), OBlocks.CUT_SILVERS.get(it.getSecond())));
-        OBlocks.SILVER_DOORS.all().forEach(deferredBlock -> doorBlock(deferredBlock.get(),
-                blockTexture(deferredBlock.get()).withSuffix("_bottom"),
-                blockTexture(deferredBlock.get()).withSuffix("_top")));
-        OBlocks.SILVER_TRAPDOORS.all().forEach(deferredBlock -> trapdoorBlock(deferredBlock.get(),
-                blockTexture(deferredBlock.get()), true));
+        OBlocks.CUT_SILVERS.all().forEach(this::block);
+        OBlocks.SILVER_LATTICES.all().forEach(this::block);
+        OBlocks.SILVER_BLOCKS.all().forEach(this::block);
+        OBlocks.SILVER_BARS.all().forEach(this::ironBarsBlock);
+        OBlocks.SILVER_PILLARS.all().forEach(this::logBlock);
+        OBlocks.CHISELED_SILVER.all().forEach(this::block);
+        OBlocks.CUT_SILVER_SLABS.indexed().forEach(it -> slabBlock(OBlocks.CUT_SILVERS.get(it.getSecond()).get(), it.getFirst().get()));
+        OBlocks.CUT_SILVER_STAIRS.indexed().forEach(it -> stairsBlock(OBlocks.CUT_SILVERS.get(it.getSecond()).get(), it.getFirst().get()));
+        OBlocks.SILVER_DOORS.all().forEach(it -> doorBlock(it.get()));
+        OBlocks.SILVER_TRAPDOORS.all().forEach(it -> trapDoorBlock(it.get()));
     }
 
 }
