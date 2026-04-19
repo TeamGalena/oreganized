@@ -2,10 +2,6 @@ plugins {
     id("com.possible-triangle.neoforge")
 }
 
-mod {
-    mods.include(libs.galena.hats)
-}
-
 neoforge {
     dataGen {
         existing("blueprint")
@@ -56,6 +52,8 @@ repositories {
 }
 
 dependencies {
+    modInclude(libs.galena.hats)
+
     modApi(libs.blueprint)
 
     modImplementation(libs.multikulti.datagen)
