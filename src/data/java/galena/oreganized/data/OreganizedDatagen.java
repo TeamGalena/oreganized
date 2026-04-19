@@ -1,6 +1,7 @@
 package galena.oreganized.data;
 
 import galena.oreganized.Oreganized;
+import galena.oreganized.compat.ponder.PonderCompat;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import net.minecraft.DetectedVersion;
@@ -19,6 +20,8 @@ public class OreganizedDatagen {
 
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
+        PonderCompat.register();
+
         var generator = event.getGenerator();
         var output = generator.getPackOutput();
         var lookup = event.getLookupProvider();

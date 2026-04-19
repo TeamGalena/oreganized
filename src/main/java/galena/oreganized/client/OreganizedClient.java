@@ -12,6 +12,7 @@ import galena.oreganized.client.tooltips.ClientDeviceTooltip;
 import galena.oreganized.client.tooltips.ClientThermometerTooltip;
 import galena.oreganized.client.tooltips.DeviceTooltip;
 import galena.oreganized.client.tooltips.ThermometerTooltip;
+import galena.oreganized.compat.ponder.PonderCompat;
 import galena.oreganized.content.item.SpeedometerItem;
 import galena.oreganized.content.item.ThermometerItem;
 import galena.oreganized.index.*;
@@ -38,6 +39,7 @@ import net.minecraft.world.item.component.ChargedProjectiles;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
@@ -61,6 +63,10 @@ public class OreganizedClient {
             OreganizedClient.registerBlockRenderers();
             OreganizedClient.registerItemProperties();
         });
+
+        if (ModList.get().isLoaded("ponder")) {
+            PonderCompat.register();
+        }
     }
 
     private static void registerItemProperties() {

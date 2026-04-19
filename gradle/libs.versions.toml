@@ -16,3 +16,5 @@ create = { group = "com.simibubi.create", name = "create-1.21.1", version = "6.0
 jei-common-api = { group = "mezz.jei", name = "jei-1.21.1-common-api", version.ref = "jei" }
 jei-neoforge-api = { group = "mezz.jei", name = "jei-1.21.1-neoforge-api", version.ref = "jei" }
 jei-neoforge = { group = "mezz.jei", name = "jei-1.21.1-neoforge", version.ref = "jei" }
+
+ponder = { group = "net.createmod.ponder", name = "Ponder-NeoForge-1.21.1", version = "1.0.69" }

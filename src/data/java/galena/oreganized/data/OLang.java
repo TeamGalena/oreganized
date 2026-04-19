@@ -10,6 +10,7 @@ import galena.oreganized.index.OFluids;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OPaintingVariants;
 import galena.oreganized.index.OPotions;
+import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.entity.EntityType;
@@ -117,6 +118,8 @@ public class OLang extends OLangProvider {
         for (Holder<? extends EntityType<?>> entities : OEntityTypes.ENTITIES.getEntries()) {
             tryEntity(entities);
         }
+
+        PonderIndex.getLangAccess().provideLang(Oreganized.MOD_ID, this::add);
     }
 
 }
