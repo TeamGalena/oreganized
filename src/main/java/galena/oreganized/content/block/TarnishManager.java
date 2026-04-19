@@ -7,6 +7,8 @@ import galena.oreganized.OreganizedConfig;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.TarnishedBlocks;
 import galena.oreganized.network.packet.TarnishParticlePacket;
+import java.util.ArrayList;
+import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -21,11 +23,15 @@ import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * This would be a good use case for <a href="https://docs.neoforged.net/docs/resources/server/datamaps/">NeoForge's DataMaps</a>
+ * This would enable mod (or even datapack) authors to add tarnished block sets without having to depend on oreganized
+ */
 @EventBusSubscriber(modid = Oreganized.MOD_ID)
 public class TarnishManager {
 
     private static final BiMap<Block, Block> NEXT_BY_BLOCK = HashBiMap.create();
-    private static final BiMap<Block, Block> PREVIOUS_BY_BLOCK = HashBiMap.create();
+    private static final List<Block> PRISTINE = new ArrayList<>();
 
     public static void setup() {
         registerTarnish(OBlocks.SILVER_BLOCKS);
@@ -48,6 +54,7 @@ public class TarnishManager {
     public static void registerTarnish(Block... blocks) {
         if (blocks.length < 2) throw new IllegalArgumentException("tarnished block set must be at least 2 blocks");
 
+        PRISTINE.add(blocks[0]);
         for (int i = 0; i < blocks.length - 1; i++) {
             registerTarnish(blocks[i], blocks[i + 1]);
         }
@@ -55,11 +62,10 @@ public class TarnishManager {
 
     private static void registerTarnish(Block before, Block after) {
         NEXT_BY_BLOCK.put(before, after);
-        PREVIOUS_BY_BLOCK.put(after, before);
     }
 
     public static boolean isPristine(Block b) {
-        return first(b) == b;
+        return PRISTINE.contains(b);
     }
 
     public static Block first(Block block) {
@@ -90,7 +96,7 @@ public class TarnishManager {
 
     @Nullable
     public static Block previous(Block block) {
-        return PREVIOUS_BY_BLOCK.get(block);
+        return NEXT_BY_BLOCK.inverse().get(block);
     }
 
     @Nullable
@@ -109,18 +115,12 @@ public class TarnishManager {
     private static void tryTarnishing(BlockState state, BlockPos pos, Level level, RandomSource random) {
         var tarnished = TarnishManager.next(state);
         if (tarnished != null) {
-            double chance = OreganizedConfig.COMMON.tarnishChance.get();
             boolean isPristine = isPristine(state.getBlock());
-            if (!isPristine) {
-                chance /= 2.0D;
-            }
-            if (random.nextDouble() > chance) return;
             if (!isPristine && hasPristineAround(pos, level)) return;
 
             level.setBlockAndUpdate(pos, tarnished);
             if (level instanceof ServerLevel sl)
                 PacketDistributor.sendToPlayersInDimension(sl, new TarnishParticlePacket(pos, true));
-
         }
     }
 
