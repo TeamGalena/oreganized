@@ -3,7 +3,6 @@ package galena.oreganized.index;
 import galena.oreganized.Oreganized;
 import galena.oreganized.client.particle.*;
 import net.minecraft.client.particle.ExplodeParticle;
-import net.minecraft.client.particle.GlowParticle;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.Registries;
@@ -42,7 +41,7 @@ public class OParticleTypes {
         event.registerSpriteSet(LEAD_CLOUD.get(), LeadCloudParticleProvider::new);
         event.registerSpriteSet(LEAD_BLOW.get(), ExplodeParticle.Provider::new);
         event.registerSpriteSet(TARNISH.get(), TarnishParticle.Provider::new);
-        event.registerSpriteSet(POLISH.get(), PolishParticleProvider::new);
+        event.registerSpriteSet(POLISH.get(), PolishParticle.Provider::new);
     }
 
     public static void register(IEventBus modBus) {

@@ -9,7 +9,6 @@ import galena.oreganized.api.LeadProtections;
 import galena.oreganized.compat.create.CreateCompat;
 import galena.oreganized.content.block.LeadOreBlock;
 import galena.oreganized.content.block.MoltenLeadCauldronBlock;
-import galena.oreganized.content.block.TarnishManager;
 import galena.oreganized.index.OArmorMaterials;
 import galena.oreganized.index.OAttributes;
 import galena.oreganized.index.OBlockEntities;
@@ -179,8 +178,6 @@ public class Oreganized {
                     return StructurePoolElement.legacy(Oreganized.MOD_ID + ":pillager_outpost/" + name).apply(StructureTemplatePool.Projection.RIGID);
                 }, 1);
             });
-
-            TarnishManager.setup();
         });
     }
 
