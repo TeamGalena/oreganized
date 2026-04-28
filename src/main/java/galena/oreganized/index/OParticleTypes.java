@@ -28,10 +28,10 @@ public class OParticleTypes {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LEAD_CLOUD = PARTICLES.register( "lead_cloud", () -> new SimpleParticleType(true));
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LEAD_BLOW = PARTICLES.register( "lead_blow", () -> new SimpleParticleType(true));
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> TARNISH = PARTICLES.register( "tarnish", () -> new SimpleParticleType(true));
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> POLISH = PARTICLES.register( "polish", () -> new SimpleParticleType(true));
 
     @SubscribeEvent
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
-
         event.registerSpriteSet(DRIPPING_LEAD.get(), CustomDrippingParticle.LeadHangProvider::new);
         event.registerSpriteSet(FALLING_LEAD.get(), CustomDrippingParticle.LeadFallProvider::new);
         event.registerSpriteSet(LANDING_LEAD.get(), CustomDrippingParticle.LeadLandProvider::new);
@@ -41,6 +41,7 @@ public class OParticleTypes {
         event.registerSpriteSet(LEAD_CLOUD.get(), LeadCloudParticleProvider::new);
         event.registerSpriteSet(LEAD_BLOW.get(), ExplodeParticle.Provider::new);
         event.registerSpriteSet(TARNISH.get(), TarnishParticle.Provider::new);
+        event.registerSpriteSet(POLISH.get(), PolishParticle.Provider::new);
     }
 
     public static void register(IEventBus modBus) {

@@ -3,8 +3,8 @@ package galena.oreganized.mixin;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
-import galena.oreganized.content.block.TarnishManager;
 import galena.oreganized.network.packet.TarnishParticlePacket;
+import galena.oreganized.world.TarnishManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.HumanoidArm;
@@ -30,16 +30,13 @@ public class BrushItemMixin {
             )
     )
     public void oreganized$brushTarnished(BrushItem instance, Level level, BlockHitResult hit, BlockState state, Vec3 viewVec, HumanoidArm arm, Operation<Void> original, @Local BlockPos pos, @Local(argsOnly = true) ItemStack stack, @Local Player livingEntity) {
-        var previous = TarnishManager.previous(state);
-
-        if (previous != null) {
+        TarnishManager.previous(state).ifPresentOrElse(previous -> {
             level.setBlockAndUpdate(pos, previous);
             if (level instanceof ServerLevel sl)
                 PacketDistributor.sendToPlayersInDimension(sl, new TarnishParticlePacket(pos, false));
-            return;
-        }
-
-        original.call(instance, level, hit, state, viewVec, arm);
+        }, () -> {
+            original.call(instance, level, hit, state, viewVec, arm);
+        });
     }
 
 }

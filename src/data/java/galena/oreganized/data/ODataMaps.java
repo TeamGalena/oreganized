@@ -1,7 +1,10 @@
 package galena.oreganized.data;
 
+import galena.oreganized.api.Tarnishable;
 import galena.oreganized.compat.ColorCompat;
 import galena.oreganized.index.OBlocks;
+import galena.oreganized.index.ODataMapTypes;
+import galena.oreganized.index.TarnishedBlocks;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup;
@@ -48,5 +51,24 @@ public class ODataMaps extends DataMapProvider {
                     .toArray(ICondition[]::new);
             waxables.add(unwaxed, new Waxable(waxed.get()), false, conditions);
         });
+
+        registerTarnishable(OBlocks.SILVER_BLOCKS);
+        registerTarnishable(OBlocks.SILVER_BULBS);
+        registerTarnishable(OBlocks.SILVER_BARS);
+        registerTarnishable(OBlocks.SILVER_DOORS);
+        registerTarnishable(OBlocks.SILVER_TRAPDOORS);
+        registerTarnishable(OBlocks.SILVER_LATTICES);
+        registerTarnishable(OBlocks.SILVER_PILLARS);
+        registerTarnishable(OBlocks.CHISELED_SILVER);
+        registerTarnishable(OBlocks.CUT_SILVERS);
+        registerTarnishable(OBlocks.CUT_SILVER_SLABS);
+        registerTarnishable(OBlocks.CUT_SILVER_STAIRS);
     }
+
+    private void registerTarnishable(TarnishedBlocks<?> blocks) {
+        var tarnishables = builder(ODataMapTypes.TARNISHABLES);
+        tarnishables.add(blocks.base(), new Tarnishable(blocks.blemished().get()), false);
+        tarnishables.add(blocks.blemished(), new Tarnishable(blocks.tarnished().get()), false);
+    }
+
 }
