@@ -10,8 +10,8 @@ import org.jetbrains.annotations.Nullable;
 
 public class KineticHitParticle extends CritParticle {
 
-    protected KineticHitParticle(ClientLevel p_105919_, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-        super(p_105919_, x, y, z, xSpeed, ySpeed, zSpeed);
+    protected KineticHitParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+        super(level, x, y, z, xSpeed, ySpeed, zSpeed);
     }
 
     @Override
