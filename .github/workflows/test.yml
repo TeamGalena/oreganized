@@ -1,8 +1,8 @@
 # <meta>
 #    <source>@pssbletrngle/github-meta-generator</source>
-#    <version>1.0.59</version>
-#    <timestamp>2026-05-12T15:02:54.310Z</timestamp>
-#    <hash>f14bde545df6c0b2</hash>
+#    <version>1.0.60</version>
+#    <timestamp>2026-05-13T07:26:12.811Z</timestamp>
+#    <hash>b7cdd1c495497dad</hash>
 # </meta>
 
 name: Test
@@ -67,6 +67,7 @@ jobs:
       - name: Analyze
         if: ${{ github.event_name == 'push' }}
         run: ./gradlew sonar
+        continue-on-error: true
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
