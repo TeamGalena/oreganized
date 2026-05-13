@@ -1,0 +1,38 @@
+# <meta>
+#    <source>@pssbletrngle/github-meta-generator</source>
+#    <version>1.0.60</version>
+#    <timestamp>2026-05-13T07:26:16.530Z</timestamp>
+#    <hash>9da437811bc1d494</hash>
+# </meta>
+
+root = true
+
+
+[*]
+
+# Change these settings to your own preference
+indent_style = space
+indent_size = 4
+
+# We recommend you to keep these unchanged
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# ktlint rules
+[*.{kt,kts}]
+ktlint_standard_no-unused-imports = enabled
+ktlint_standard_no-wildcard-imports = disabled
+
+[*.kt]
+ktlint_standard_package-name = disabled
+
+[*.kts]
+ktlint_standard_property-naming = disabled
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.{yml,json}]
+indent_size = 2

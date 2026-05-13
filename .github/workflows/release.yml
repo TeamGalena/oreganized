@@ -1,8 +1,8 @@
 # <meta>
 #    <source>@pssbletrngle/github-meta-generator</source>
-#    <version>1.0.30</version>
-#    <timestamp>2026-03-23T21:14:24.531Z</timestamp>
-#    <hash>8a5b89fda48fdd78</hash>
+#    <version>1.0.60</version>
+#    <timestamp>2026-05-13T07:26:16.530Z</timestamp>
+#    <hash>2dfc95df89e02cd0</hash>
 # </meta>
 
 name: Release
@@ -35,7 +35,7 @@ jobs:
           cache-read-only: ${{ github.event_name != 'push' }}
 
       - name: Build and upload
-        run: ./gradlew build publish
+        run: ./gradlew build upload
         env:
           MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
           CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
@@ -43,3 +43,10 @@ jobs:
           RELEASE_VERSION: ${{ github.event.release.tag_name }}
           NEXUS_USER: ${{ secrets.NEXUS_USER }}
           NEXUS_TOKEN: ${{ secrets.NEXUS_TOKEN }}
+
+      - name: Publish Release Metadata
+        uses: actions/upload-artifact@v7
+        with:
+          archive: false
+          path: build/release.json
+          retention-days: 1

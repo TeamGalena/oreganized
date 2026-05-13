@@ -121,6 +121,7 @@ public class OTags {
     public static class Entities {
 
         public static final TagKey<EntityType<?>> LIGHTER_THAN_LEAD = tag("lighter_than_lead");
+        public static final TagKey<EntityType<?>> BOLT_SUSCEPTIBLE = tag("bolt_susceptible");
         public static final TagKey<EntityType<?>> BOLT_RESISTANT = tag("bolt_resistant");
         public static final TagKey<EntityType<?>> SCARED_OF_GARGOYLE = tag("scared_of_gargoyle");
 
