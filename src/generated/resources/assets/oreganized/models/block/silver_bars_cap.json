@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/iron_bars_cap",
+  "textures": {
+    "bars": "oreganized:block/silver_bars",
+    "edge": "oreganized:block/silver_bars_edge",
+    "particle": "oreganized:block/silver_bars"
+  }
+}

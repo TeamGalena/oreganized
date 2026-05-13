@@ -14,11 +14,7 @@ import galena.oreganized.client.tooltips.DeviceTooltip;
 import galena.oreganized.client.tooltips.ThermometerTooltip;
 import galena.oreganized.content.item.SpeedometerItem;
 import galena.oreganized.content.item.ThermometerItem;
-import galena.oreganized.index.OBlocks;
-import galena.oreganized.index.ODataComponents;
-import galena.oreganized.index.OEntityTypes;
-import galena.oreganized.index.OFluids;
-import galena.oreganized.index.OItems;
+import galena.oreganized.index.*;
 import galena.oreganized.world.IDoorProgressHolder;
 import galena.oreganized.world.IMotionHolder;
 import java.util.List;
@@ -98,6 +94,8 @@ public class OreganizedClient {
         RenderType cutout = RenderType.cutout();
         RenderType translucent = RenderType.translucent();
 
+        OBlocks.SILVER_DOORS.all().forEach(deferredBlock -> render(deferredBlock, cutout));
+        OBlocks.SILVER_TRAPDOORS.all().forEach(deferredBlock -> render(deferredBlock, cutout));
         render(OBlocks.LEAD_DOOR, cutout);
         render(OBlocks.LEAD_TRAPDOOR, cutout);
         render(OBlocks.LEAD_BARS, cutout);
@@ -108,6 +106,7 @@ public class OreganizedClient {
         render(OBlocks.POTTED_PURPLE_DATURA, cutout);
         OBlocks.CRYSTAL_GLASS.forEach((c, b) -> render(b, translucent));
         OBlocks.CRYSTAL_GLASS_PANES.forEach((c, b) -> render(b, translucent));
+        OBlocks.SILVER_BARS.all().forEach((b) -> render(b, translucent));
 
         render(OBlocks.GROOVED_ICE, translucent);
     }
@@ -159,6 +158,7 @@ public class OreganizedClient {
         @SubscribeEvent
         public static void renderHand(RenderHandEvent event) {
             var player = Minecraft.getInstance().player;
+            //TODO: might want to use attachments here instead
             if (!(player instanceof IDoorProgressHolder progressHolder)) return;
             var progress = progressHolder.oreganised$getOpeningProgress();
             if (progress == 0) return;
@@ -168,6 +168,7 @@ public class OreganizedClient {
 
             poseStack.pushPose();
 
+            //TODO: also would be nice if the hand was slightly animate to indicate opening progress
             var rightArm = player.getMainArm() == HumanoidArm.RIGHT;
             float factor = rightArm ? 1.0F : -1.0F;
             poseStack.translate(factor * 0.84000005F, -0.4F, -0.4F);
@@ -189,4 +190,5 @@ public class OreganizedClient {
         }
 
     }
+
 }

@@ -4,11 +4,10 @@
     48,
     48
   ],
-  "ambientocclusion": false,
   "textures": {
-    "0": "oreganized:block/gargoyle_model",
-    "2": "oreganized:block/gargoyle_model2",
-    "particle": "oreganized:block/gargoyle_model"
+    "0": "gargoyle",
+    "2": "gargoyle2",
+    "particle": "gargoyle"
   },
   "elements": [
     {

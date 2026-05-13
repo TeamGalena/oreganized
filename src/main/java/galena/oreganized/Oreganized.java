@@ -9,24 +9,6 @@ import galena.oreganized.api.LeadProtections;
 import galena.oreganized.compat.create.CreateCompat;
 import galena.oreganized.content.block.LeadOreBlock;
 import galena.oreganized.content.block.MoltenLeadCauldronBlock;
-import galena.oreganized.data.OAdvancements;
-import galena.oreganized.data.OBiomeTags;
-import galena.oreganized.data.OBlockStates;
-import galena.oreganized.data.OBlockTags;
-import galena.oreganized.data.ODamageTags;
-import galena.oreganized.data.ODataMaps;
-import galena.oreganized.data.OEnchantmentTags;
-import galena.oreganized.data.OEntityTags;
-import galena.oreganized.data.OFluidTags;
-import galena.oreganized.data.OItemModels;
-import galena.oreganized.data.OItemTags;
-import galena.oreganized.data.OLang;
-import galena.oreganized.data.OLootTables;
-import galena.oreganized.data.OPaintingVariantTags;
-import galena.oreganized.data.ORecipes;
-import galena.oreganized.data.ORegistries;
-import galena.oreganized.data.OSoundDefinitions;
-import galena.oreganized.data.OSpriteSourceProvider;
 import galena.oreganized.index.OArmorMaterials;
 import galena.oreganized.index.OAttributes;
 import galena.oreganized.index.OBlockEntities;
@@ -45,18 +27,10 @@ import galena.oreganized.index.OStructures;
 import galena.oreganized.index.OTags;
 import galena.oreganized.network.OreganizedNetwork;
 import galena.oreganized.world.AddItemLootModifier;
-import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
 import java.util.stream.Stream;
-import net.minecraft.DetectedVersion;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.core.dispenser.ProjectileDispenseBehavior;
-import net.minecraft.data.metadata.PackMetadataGenerator;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.PackType;
-import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.npc.VillagerProfession;
@@ -75,9 +49,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.BasicItemListing;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
-import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.neoforged.neoforge.fluids.FluidInteractionRegistry;
@@ -105,7 +77,6 @@ public class Oreganized {
         OreganizedConfig.register(container);
 
         modBus.addListener(this::setup);
-        modBus.addListener(this::gatherData);
         forgeBus.addListener(this::injectVillagerTrades);
         forgeBus.addListener(this::registerPotionMixes);
 
@@ -215,43 +186,4 @@ public class Oreganized {
         event.getBuilder().addMix(OPotions.STUNNING, Items.REDSTONE, OPotions.LONG_STUNNING);
     }
 
-    public void gatherData(GatherDataEvent event) {
-        var generator = event.getGenerator();
-        var output = generator.getPackOutput();
-        var lookup = event.getLookupProvider();
-        var helper = event.getExistingFileHelper();
-        boolean client = event.includeClient();
-        boolean server = event.includeServer();
-
-        var lang = new OLang(output);
-
-        generator.addProvider(client, new OBlockStates(output, helper));
-        generator.addProvider(client, new OItemModels(output, helper));
-        generator.addProvider(client, lang);
-        generator.addProvider(client, new OSoundDefinitions(output, helper));
-        generator.addProvider(client, new OSpriteSourceProvider(output, lookup, helper));
-
-        generator.addProvider(server, new ORecipes(output, lookup));
-        generator.addProvider(server, new OLootTables(output, lookup));
-        OBlockTags blockTags = new OBlockTags(output, lookup, helper);
-        generator.addProvider(server, blockTags);
-        generator.addProvider(server, new OItemTags(output, lookup, blockTags.contentsGetter(), helper));
-        generator.addProvider(server, new OEntityTags(output, lookup, helper));
-        generator.addProvider(server, new OAdvancements(output, lookup, helper, lang));
-        generator.addProvider(server, new OFluidTags(output, lookup, helper));
-        generator.addProvider(server, new OEnchantmentTags(output, lookup, helper));
-        DatapackBuiltinEntriesProvider datapackProvider = new ORegistries(output, lookup);
-        CompletableFuture<HolderLookup.Provider> lookupProvider = datapackProvider.getRegistryProvider();
-        generator.addProvider(server, datapackProvider);
-        generator.addProvider(server, new OBiomeTags(output, lookupProvider, helper));
-        generator.addProvider(server, new ODamageTags(output, lookupProvider, helper));
-        generator.addProvider(server, new OPaintingVariantTags(output, lookupProvider, helper));
-        generator.addProvider(server, new ODataMaps(output, lookupProvider));
-
-        generator.addProvider(server, new PackMetadataGenerator(output).add(PackMetadataSection.TYPE, new PackMetadataSection(
-                Component.literal("Oreganized resources"),
-                DetectedVersion.BUILT_IN.getPackVersion(PackType.CLIENT_RESOURCES),
-                Optional.empty()
-        )));
-    }
 }

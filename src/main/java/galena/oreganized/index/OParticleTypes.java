@@ -1,14 +1,8 @@
 package galena.oreganized.index;
 
 import galena.oreganized.Oreganized;
-import galena.oreganized.client.particle.CustomDrippingParticle;
-import galena.oreganized.client.particle.KineticHitParticle;
-import galena.oreganized.client.particle.LeadCloudParticleProvider;
-import galena.oreganized.client.particle.LeadShrapnelParticle;
-import galena.oreganized.client.particle.VengeanceParticleProvider;
-import net.minecraft.client.Minecraft;
+import galena.oreganized.client.particle.*;
 import net.minecraft.client.particle.ExplodeParticle;
-import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.Registries;
@@ -33,19 +27,21 @@ public class OParticleTypes {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> KINETIC_HIT = PARTICLES.register( "kinetic_hit", () -> new SimpleParticleType(true));
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LEAD_CLOUD = PARTICLES.register( "lead_cloud", () -> new SimpleParticleType(true));
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LEAD_BLOW = PARTICLES.register( "lead_blow", () -> new SimpleParticleType(true));
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> TARNISH = PARTICLES.register( "tarnish", () -> new SimpleParticleType(true));
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> POLISH = PARTICLES.register( "polish", () -> new SimpleParticleType(true));
 
     @SubscribeEvent
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
-        ParticleEngine engine = Minecraft.getInstance().particleEngine;
-
-        engine.register(DRIPPING_LEAD.get(), CustomDrippingParticle.LeadHangProvider::new);
-        engine.register(FALLING_LEAD.get(), CustomDrippingParticle.LeadFallProvider::new);
-        engine.register(LANDING_LEAD.get(), CustomDrippingParticle.LeadLandProvider::new);
-        engine.register(LEAD_SHRAPNEL.get(), LeadShrapnelParticle.Provider::new);
-        engine.register(VENGEANCE.get(), VengeanceParticleProvider::new);
-        engine.register(KINETIC_HIT.get(), KineticHitParticle.Provider::new);
-        engine.register(LEAD_CLOUD.get(), LeadCloudParticleProvider::new);
-        engine.register(LEAD_BLOW.get(), ExplodeParticle.Provider::new);
+        event.registerSpriteSet(DRIPPING_LEAD.get(), CustomDrippingParticle.LeadHangProvider::new);
+        event.registerSpriteSet(FALLING_LEAD.get(), CustomDrippingParticle.LeadFallProvider::new);
+        event.registerSpriteSet(LANDING_LEAD.get(), CustomDrippingParticle.LeadLandProvider::new);
+        event.registerSpriteSet(LEAD_SHRAPNEL.get(), LeadShrapnelParticle.Provider::new);
+        event.registerSpriteSet(VENGEANCE.get(), VengeanceParticleProvider::new);
+        event.registerSpriteSet(KINETIC_HIT.get(), KineticHitParticle.Provider::new);
+        event.registerSpriteSet(LEAD_CLOUD.get(), LeadCloudParticleProvider::new);
+        event.registerSpriteSet(LEAD_BLOW.get(), ExplodeParticle.Provider::new);
+        event.registerSpriteSet(TARNISH.get(), TarnishParticle.Provider::new);
+        event.registerSpriteSet(POLISH.get(), PolishParticle.Provider::new);
     }
 
     public static void register(IEventBus modBus) {

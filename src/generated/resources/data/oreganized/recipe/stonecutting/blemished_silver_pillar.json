@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "oreganized:blemished_silver_block"
+  },
+  "result": {
+    "count": 1,
+    "id": "oreganized:blemished_silver_pillar"
+  }
+}

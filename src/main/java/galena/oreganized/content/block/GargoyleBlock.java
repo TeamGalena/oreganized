@@ -5,13 +5,16 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 import com.mojang.serialization.MapCodec;
 import galena.oreganized.content.entity.GargoyleBlockEntity;
 import galena.oreganized.index.OBlockEntities;
+import galena.oreganized.index.OParticleTypes;
 import java.util.Map;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -207,5 +210,27 @@ public class GargoyleBlock extends HorizontalDirectionalBlock implements EntityB
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return SHAPES.get(state);
+    }
+
+    @Override
+    protected boolean triggerEvent(BlockState state, Level level, BlockPos pos, int p_60493_, int p_60494_) {
+        if (p_60493_ == 1) {
+            if (level.isClientSide) {
+                spawnParticles(pos, state, level);
+            }
+            return true;
+        }
+        return super.triggerEvent(state, level, pos, p_60493_, p_60494_);
+    }
+
+    private void spawnParticles(BlockPos pos, BlockState state, Level level) {
+        var facing = state.getValue(GargoyleBlock.FACING);
+        var attachment = state.getValue(GargoyleBlock.ATTACHMENT);
+
+        ParticleUtils.spawnParticlesOnBlockFaces(level, pos, OParticleTypes.VENGEANCE.get(), UniformInt.of(0, 2));
+
+        if (attachment == GargoyleBlock.AttachmentType.WALL) {
+            ParticleUtils.spawnParticlesOnBlockFaces(level, pos.relative(facing.getOpposite()), OParticleTypes.VENGEANCE.get(), UniformInt.of(0, 1));
+        }
     }
 }

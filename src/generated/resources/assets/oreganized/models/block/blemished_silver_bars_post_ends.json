@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/iron_bars_post_ends",
+  "textures": {
+    "edge": "oreganized:block/blemished_silver_bars_edge",
+    "particle": "oreganized:block/blemished_silver_bars"
+  }
+}

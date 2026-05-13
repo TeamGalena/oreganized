@@ -20,6 +20,7 @@ public class VengeanceParticleProvider implements ParticleProvider<SimpleParticl
     public @Nullable Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
         var particle = (GlowParticle) inner.createParticle(type, level, x, y, z, xSpeed, ySpeed, zSpeed);
         particle.quadSize *= 2F;
+        particle.setColor(1F, 1F, 1F);
         return particle;
     }
 }

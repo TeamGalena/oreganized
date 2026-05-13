@@ -1,27 +1,36 @@
 {
+  "format_version": "1.21.6",
   "credit": "Made with Blockbench",
   "texture_size": [
     48,
     48
   ],
   "textures": {
-    "0": "oreganized:block/gargoyle_model",
-    "2": "oreganized:block/gargoyle_model2",
-    "particle": "oreganized:block/gargoyle_model"
+    "0": "gargoyle_model_side",
+    "2": "gargoyle_model2",
+    "particle": "gargoyle_model_side"
   },
-  "ambientocclusion": false,
   "elements": [
     {
       "from": [
-        4,
+        4.01,
         5,
         -12
       ],
       "to": [
-        12,
+        12.01,
         13,
         -4
       ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          0,
+          -2,
+          -12
+        ]
+      },
       "faces": {
         "north": {
           "uv": [
@@ -90,6 +99,15 @@
         8,
         -12
       ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          0,
+          -2,
+          -12
+        ]
+      },
       "faces": {
         "north": {
           "uv": [
@@ -149,12 +167,12 @@
     },
     {
       "from": [
-        1,
+        1.01,
         0,
         -7
       ],
       "to": [
-        5,
+        5.01,
         4,
         5
       ],
@@ -230,12 +248,12 @@
     },
     {
       "from": [
-        11,
+        10.99,
         0,
         -7
       ],
       "to": [
-        15,
+        14.99,
         4,
         5
       ],
@@ -320,6 +338,15 @@
         17,
         -9
       ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          0,
+          -2,
+          -12
+        ]
+      },
       "faces": {
         "north": {
           "uv": [
@@ -388,6 +415,15 @@
         17,
         -9
       ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          0,
+          -2,
+          -12
+        ]
+      },
       "faces": {
         "north": {
           "uv": [
@@ -456,6 +492,15 @@
         5,
         10
       ],
+      "rotation": {
+        "angle": 0,
+        "axis": "x",
+        "origin": [
+          0,
+          -4,
+          12
+        ]
+      },
       "faces": {
         "north": {
           "uv": [
@@ -528,6 +573,15 @@
         5,
         10
       ],
+      "rotation": {
+        "angle": 0,
+        "axis": "x",
+        "origin": [
+          0,
+          -4,
+          12
+        ]
+      },
       "faces": {
         "north": {
           "uv": [
@@ -591,15 +645,24 @@
     },
     {
       "from": [
-        3,
+        3.01,
         7,
         -4
       ],
       "to": [
-        13,
+        13.01,
         16,
         5
       ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          0,
+          0,
+          -10
+        ]
+      },
       "faces": {
         "north": {
           "uv": [
@@ -1062,6 +1125,15 @@
         12,
         14
       ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          3,
+          3,
+          16
+        ]
+      },
       "faces": {
         "north": {
           "uv": [
@@ -1134,6 +1206,15 @@
         12,
         14
       ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          -3,
+          3,
+          16
+        ]
+      },
       "faces": {
         "north": {
           "uv": [
@@ -1206,6 +1287,15 @@
         4,
         14
       ],
+      "rotation": {
+        "angle": 0,
+        "axis": "y",
+        "origin": [
+          17,
+          -5,
+          25
+        ]
+      },
       "faces": {
         "north": {
           "uv": [

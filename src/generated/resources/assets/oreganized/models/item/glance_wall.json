@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:block/wall_inventory",
-  "textures": {
-    "wall": "oreganized:block/glance"
-  }
+  "parent": "oreganized:block/glance_wall_inventory"
 }
