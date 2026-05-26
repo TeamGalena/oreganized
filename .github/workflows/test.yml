@@ -1,8 +1,8 @@
 # <meta>
 #    <source>@pssbletrngle/github-meta-generator</source>
-#    <version>1.0.60</version>
-#    <timestamp>2026-05-13T07:26:16.530Z</timestamp>
-#    <hash>b7cdd1c495497dad</hash>
+#    <version>1.0.76</version>
+#    <timestamp>2026-05-26T14:24:44.514Z</timestamp>
+#    <hash>6dbd94304d7e8be4</hash>
 # </meta>
 
 name: Test
@@ -45,7 +45,7 @@ jobs:
 
       - uses: actions/setup-java@v4
         with:
-          java-version: 21
+          java-version: 26
           distribution: temurin
 
       - uses: gradle/actions/setup-gradle@v4
@@ -62,7 +62,7 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar
 
       - name: Test
-        run: ./gradlew build check
+        run: ./gradlew build check --stacktrace
 
       - name: Analyze
         if: ${{ github.event_name == 'push' }}
