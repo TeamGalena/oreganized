@@ -5,7 +5,7 @@ jei = "19.21.0.247"
 [libraries]
 multikulti-datagen = { group = "com.possible-triangle", name = "multikulti-datagen-neoforge", version.ref = "multikulti" }
 
-blueprint = { group = "com.teamabnormals", name = "blueprint", version = "1.21.1-8.0.5" }
+blueprint = { group = "com.teamabnormals", name = "blueprint", version = "1.21.1-8.1.0" }
 
 galena-hats = { "group" = "dev.galena", name = "hats-neoforge", version = "1.21.1-1.2.4" }
 
