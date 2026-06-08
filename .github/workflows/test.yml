@@ -1,20 +1,14 @@
 # <meta>
 #    <source>@pssbletrngle/github-meta-generator</source>
-#    <version>1.0.76</version>
-#    <timestamp>2026-05-26T14:24:40.870Z</timestamp>
-#    <hash>6dbd94304d7e8be4</hash>
+#    <version>1.0.83</version>
+#    <timestamp>2026-06-08T09:29:16.786Z</timestamp>
+#    <hash>3b7c624c47ce74a6</hash>
 # </meta>
 
 name: Test
 
 on:
   workflow_dispatch:
-    inputs:
-      upload:
-        description: "Upload Artifact"
-        default: false
-        required: true
-        type: boolean
 
   pull_request:
     types: [opened, synchronize]
@@ -54,18 +48,27 @@ jobs:
           dependency-graph: generate-and-submit
 
       - name: Cache SonarQube packages
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name != 'pull_request' }}
         uses: actions/cache@v4
         with:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
+      - uses: PssbleTrngle/find-release@v1
+        if: ${{ github.event_name != 'pull_request' }}
+        id: action
+        with:
+          type: draft
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Test
         run: ./gradlew build check --stacktrace
+        env:
+          RELEASE_VERSION: ${{ steps.action.outputs.tag }}
 
       - name: Analyze
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name != 'pull_request' }}
         run: ./gradlew sonar
         continue-on-error: true
         env:
@@ -73,8 +76,12 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
           GITHUB_DEPENDENCY_GRAPH_ENABLED: false
 
-      - uses: actions/upload-artifact@v4
-        if: ${{ inputs.upload }}
-        with:
-          name: build
-          path: "**/build/libs/*.jar"
+      - name: Publish -SNAPSHOT version
+        if: ${{ steps.action.outputs.matched }}
+        run: ./gradlew publish
+        continue-on-error: true
+        env:
+          NEXUS_USER: ${{ secrets.NEXUS_USER }}
+          NEXUS_TOKEN: ${{ secrets.NEXUS_TOKEN }}
+          RELEASE_VERSION: ${{ steps.action.outputs.tag }}
+          SNAPSHOT: true
