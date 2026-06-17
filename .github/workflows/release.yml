@@ -1,8 +1,8 @@
 # <meta>
 #    <source>@pssbletrngle/github-meta-generator</source>
-#    <version>1.0.93</version>
-#    <timestamp>2026-06-17T16:45:44.700Z</timestamp>
-#    <hash>73eae463f4d3e807</hash>
+#    <version>1.0.94</version>
+#    <timestamp>2026-06-17T17:33:48.488Z</timestamp>
+#    <hash>d159e077e1fac78c</hash>
 # </meta>
 
 name: Release
@@ -30,7 +30,7 @@ jobs:
           java-version: 26
           distribution: temurin
 
-      - uses: gradle/actions/setup-gradle@v4
+      - uses: gradle/actions/setup-gradle@v6
         with:
           cache-read-only: ${{ github.event_name != 'push' }}
 
