@@ -121,7 +121,9 @@ public class LeadDoorBlock extends DoorBlock implements IMeltableBlock, EntityBl
 
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
-        return super.getStateForPlacement(context).setValue(POWERED, false);
+        var state = super.getStateForPlacement(context);
+        if (state == null) return null;
+        return state.setValue(OPEN, false);
     }
 
     @Override
