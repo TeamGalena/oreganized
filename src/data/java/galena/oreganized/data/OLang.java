@@ -89,9 +89,9 @@ public class OLang extends OLangProvider {
 
         add("item.oreganized.smithing_template.electrum_upgrade.additions_slot_description", "Add Electrum Ingot");
 
-        add("death.attack.lead_bolt", "%1$s was shot %2$s");
-        add("death.attack.lead_bolt.item", "%1$s was shot %2$s using %3$s");
-        add("death.attack.molten_lead", "%1$s refused to let go of the soaring hot metal");
+        add("death.attack.lead_bolt", "%1$s was shot by %2$s");
+        add("death.attack.lead_bolt.item", "%1$s was shot by %2$s using %3$s");
+        add("death.attack.molten_lead", "%1$s refused to let go of the searing hot metal");
 
         add("attribute.oreganized.kinetic_damage", "Kinetic Damage");
 
