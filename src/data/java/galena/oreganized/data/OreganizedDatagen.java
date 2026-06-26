@@ -47,7 +47,7 @@ public class OreganizedDatagen {
         CompletableFuture<HolderLookup.Provider> lookupProvider = datapackProvider.getRegistryProvider();
         generator.addProvider(server, datapackProvider);
         generator.addProvider(server, new OBiomeTags(output, lookupProvider, helper));
-        generator.addProvider(server, new ODamageTags(output, lookupProvider, helper));
+        generator.addProvider(server, new ODamageTypeTags(output, lookupProvider, helper));
         generator.addProvider(server, new OPaintingVariantTags(output, lookupProvider, helper));
         generator.addProvider(server, new ODataMaps(output, lookupProvider));
 

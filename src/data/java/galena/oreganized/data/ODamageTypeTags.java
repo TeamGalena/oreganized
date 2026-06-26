@@ -13,9 +13,9 @@ import net.minecraft.world.damagesource.DamageType;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 
-public class ODamageTags extends TagsProvider<DamageType> {
+public class ODamageTypeTags extends TagsProvider<DamageType> {
 
-    public ODamageTags(PackOutput output, CompletableFuture<HolderLookup.Provider> future, @Nullable ExistingFileHelper helper) {
+    public ODamageTypeTags(PackOutput output, CompletableFuture<HolderLookup.Provider> future, @Nullable ExistingFileHelper helper) {
         super(output, Registries.DAMAGE_TYPE, future, Oreganized.MOD_ID, helper);
     }
 
@@ -26,6 +26,7 @@ public class ODamageTags extends TagsProvider<DamageType> {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
+      tag(DamageTypeTags.IS_FIRE).add(ODamageSources.MOLTEN_LEAD);
       tag(DamageTypeTags.NO_KNOCKBACK).add(ODamageSources.MOLTEN_LEAD);
     }
 }
