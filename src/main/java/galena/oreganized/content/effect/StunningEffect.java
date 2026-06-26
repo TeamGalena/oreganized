@@ -32,7 +32,7 @@ public class StunningEffect extends MobEffect {
         var health = entity.getHealth() / entity.getMaxHealth();
         var targetAmplifier = (int) Math.ceil((1.0 - health) * MAX_AMPLIFIER);
 
-        if (entity.getHealth() <= 1 && entity instanceof ServerPlayer player) {
+        if (entity.getHealth() == 1 && entity.getHealth() > 0 && entity instanceof ServerPlayer player) {
             OCriteriaTriggers.PROFOUND_BRAIN_DAMAGE.get().trigger(player);
         }
 
