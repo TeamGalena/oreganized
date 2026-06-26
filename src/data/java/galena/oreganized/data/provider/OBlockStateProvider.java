@@ -1,6 +1,5 @@
 package galena.oreganized.data.provider;
 
-import static galena.oreganized.Oreganized.MOD_ID;
 import static net.neoforged.neoforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
 
 import com.teamabnormals.blueprint.core.data.client.BlueprintBlockStateProvider;
@@ -11,7 +10,6 @@ import galena.oreganized.content.block.CrystalGlassBlock;
 import galena.oreganized.content.block.CrystalGlassPaneBlock;
 import galena.oreganized.content.block.GargoyleBlock;
 import galena.oreganized.content.block.IMeltableBlock;
-import galena.oreganized.content.block.LeadDoorBlock;
 import galena.oreganized.content.block.MoltenLeadCauldronBlock;
 import java.util.Arrays;
 import java.util.List;
@@ -22,9 +20,11 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.CrossCollisionBlock;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.IronBarsBlock;
+import net.minecraft.world.level.block.LeverBlock;
 import net.minecraft.world.level.block.PipeBlock;
 import net.minecraft.world.level.block.RedstoneLampBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
@@ -42,8 +42,8 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 
 public abstract class OBlockStateProvider extends BlueprintBlockStateProvider {
 
-    public OBlockStateProvider(PackOutput output, ExistingFileHelper help) {
-        super(output, MOD_ID, help);
+    protected OBlockStateProvider(PackOutput output, ExistingFileHelper help) {
+        super(output, Oreganized.MOD_ID, help);
     }
 
     protected ResourceLocation blockTexture(String name) {
@@ -233,24 +233,21 @@ public abstract class OBlockStateProvider extends BlueprintBlockStateProvider {
         var baseName = name(block);
         var prefixes = List.of("", "goopy_", "red_hot_");
 
-        getVariantBuilder(block.get()).forAllStatesExcept((state) -> {
-            boolean animated = state.hasProperty(LeadDoorBlock.ANIMATED) && state.getValue(LeadDoorBlock.ANIMATED);
+        getVariantBuilder(block.get()).forAllStatesExcept(state -> {
             boolean right = state.getValue(DoorBlock.HINGE) == DoorHingeSide.RIGHT;
             boolean open = state.getValue(DoorBlock.OPEN);
             boolean lower = state.getValue(DoorBlock.HALF) == DoubleBlockHalf.LOWER;
 
             int goopyness = block.get().getGoopyness(state);
             var name = prefixes.get(goopyness) + baseName;
-            var textureSuffix = (open
-                    ? animated ? "_closing" : "_open"
-                    : animated ? "_opening" : "");
+            var textureSuffix = open ? "_open" : "";
             var bottom = blockTexture(goopyness < 2 ? (name + "_bottom" + textureSuffix) : "red_hot_lead");
             var top = blockTexture(goopyness < 2 ? (name + "_top" + textureSuffix) : "red_hot_lead");
 
-            var bottomLeft = this.models().doorBottomLeft(name + "_bottom_left" + textureSuffix, bottom, top);
-            var bottomRight = this.models().doorBottomRight(name + "_bottom_right" + textureSuffix, bottom, top);
-            var topLeft = this.models().doorTopLeft(name + "_top_left" + textureSuffix, bottom, top);
-            var topRight = this.models().doorTopRight(name + "_top_right" + textureSuffix, bottom, top);
+            var bottomLeft = models().doorBottomLeft(name + "_bottom_left" + textureSuffix, bottom, top);
+            var bottomRight = models().doorBottomRight(name + "_bottom_right" + textureSuffix, bottom, top);
+            var topLeft = models().doorTopLeft(name + "_top_left" + textureSuffix, bottom, top);
+            var topRight = models().doorTopRight(name + "_top_right" + textureSuffix, bottom, top);
 
             int yRot = (int) state.getValue(DoorBlock.FACING).toYRot() + 90;
             if (open) {

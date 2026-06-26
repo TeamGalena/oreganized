@@ -12,10 +12,14 @@ import galena.oreganized.client.tooltips.ClientDeviceTooltip;
 import galena.oreganized.client.tooltips.ClientThermometerTooltip;
 import galena.oreganized.client.tooltips.DeviceTooltip;
 import galena.oreganized.client.tooltips.ThermometerTooltip;
+import galena.oreganized.content.block.PushableBlockEntity;
 import galena.oreganized.content.item.SpeedometerItem;
 import galena.oreganized.content.item.ThermometerItem;
-import galena.oreganized.index.*;
-import galena.oreganized.world.IDoorProgressHolder;
+import galena.oreganized.index.OBlocks;
+import galena.oreganized.index.ODataComponents;
+import galena.oreganized.index.OEntityTypes;
+import galena.oreganized.index.OFluids;
+import galena.oreganized.index.OItems;
 import galena.oreganized.world.IMotionHolder;
 import java.util.List;
 import java.util.function.Supplier;
@@ -31,7 +35,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.ChargedProjectiles;
@@ -48,7 +51,7 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
-@EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT)
 public class OreganizedClient {
 
     private static void render(Supplier<? extends Block> block, RenderType render) {
@@ -124,7 +127,7 @@ public class OreganizedClient {
     }
 
     public static void renderThirdPersonArm(ModelPart arm, boolean rightArm) {
-        arm.xRot = -1.7F;
+        arm.xRot = -1.0F;
         arm.yRot = rightArm ? -0.1F : 0.2F;
     }
 
@@ -158,33 +161,36 @@ public class OreganizedClient {
         @SubscribeEvent
         public static void renderHand(RenderHandEvent event) {
             var player = Minecraft.getInstance().player;
-            //TODO: might want to use attachments here instead
-            if (!(player instanceof IDoorProgressHolder progressHolder)) return;
-            var progress = progressHolder.oreganised$getOpeningProgress();
-            if (progress == 0) return;
-            if (event.getHand() == InteractionHand.OFF_HAND) return;
+
+            if (!PushableBlockEntity.isPushing(player)) return;
+            if (player.isInvisible()) return;
 
             var poseStack = event.getPoseStack();
 
-            poseStack.pushPose();
+            for (var arm : HumanoidArm.values()) {
+                poseStack.pushPose();
+                boolean rightArm = arm == HumanoidArm.RIGHT;
+                float factor = rightArm ? 1.0F : -1.0F;
+                poseStack.translate(factor * 0.84000005F, -0.4F, -0.4F);
+                poseStack.mulPose(Axis.YP.rotationDegrees(factor * -20F - event.getSwingProgress()));
+                poseStack.mulPose(Axis.ZP.rotationDegrees(factor * 45F));
+                poseStack.mulPose(Axis.XP.rotationDegrees(-45F));
 
-            //TODO: also would be nice if the hand was slightly animate to indicate opening progress
-            var rightArm = player.getMainArm() == HumanoidArm.RIGHT;
-            float factor = rightArm ? 1.0F : -1.0F;
-            poseStack.translate(factor * 0.84000005F, -0.4F, -0.4F);
-            poseStack.mulPose(Axis.YP.rotationDegrees(factor * -20F - event.getSwingProgress()));
-            poseStack.mulPose(Axis.ZP.rotationDegrees(factor * 45F));
-            poseStack.mulPose(Axis.XP.rotationDegrees(-45F));
+                float time = player.tickCount + event.getPartialTick();
+                float movement = Mth.sin(time * 0.1F) * 0.008F;
+                float rotation = factor * (float) Math.toDegrees(Mth.cos(time * 0.09F) * -0.005);
+                poseStack.translate(factor * movement, 0, movement);
+                poseStack.mulPose(Axis.ZP.rotationDegrees(rotation));
 
-            var renderer = (PlayerRenderer) Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(player);
+                var renderer = (PlayerRenderer) Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(player);
 
-            if (rightArm) {
-                renderer.renderRightHand(poseStack, event.getMultiBufferSource(), event.getPackedLight(), player);
-            } else {
-                renderer.renderLeftHand(poseStack, event.getMultiBufferSource(), event.getPackedLight(), player);
+                if (rightArm) {
+                    renderer.renderRightHand(poseStack, event.getMultiBufferSource(), event.getPackedLight(), player);
+                } else {
+                    renderer.renderLeftHand(poseStack, event.getMultiBufferSource(), event.getPackedLight(), player);
+                }
+                poseStack.popPose();
             }
-
-            poseStack.popPose();
 
             event.setCanceled(true);
         }
