@@ -308,6 +308,22 @@ public class ORecipes extends ORecipeProvider {
 
         makeBars(OBlocks.LEAD_BARS, OTags.Items.INGOTS_LEAD).save(consumer);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, OBlocks.STURDY_LEVER.get())
+                .define('#', Items.LEVER)
+                .define('X', OTags.Items.INGOTS_LEAD)
+                .pattern("X")
+                .pattern("#")
+                .unlockedBy("has_lead", has(OTags.Items.INGOTS_LEAD))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, OBlocks.STURDY_BUTTON.get())
+                .define('#', ItemTags.STONE_BUTTONS)
+                .define('X', OTags.Items.INGOTS_LEAD)
+                .pattern("X")
+                .pattern("#")
+                .unlockedBy("has_lead", has(OTags.Items.INGOTS_LEAD))
+                .save(consumer);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, OItems.SCRIBE.get())
                 .define('A', Items.AMETHYST_SHARD)
                 .define('S', OTags.Items.INGOTS_SILVER)

@@ -338,6 +338,77 @@ public abstract class OBlockStateProvider extends BlueprintBlockStateProvider {
         generatedItem(block.get(), "block");
     }
 
+    public <T extends LeverBlock & IMeltableBlock> void sturdyLever(DeferredBlock<T> block) {
+        var baseName = name(block);
+        var prefixes = List.of("", "goopy_", "red_hot_");
+
+        getVariantBuilder(block.get()).forAllStates(state -> {
+            var facing = state.getValue(LeverBlock.FACING);
+            var face = state.getValue(LeverBlock.FACE);
+            boolean powered = state.getValue(LeverBlock.POWERED);
+            int goopyness = block.get().getGoopyness(state);
+
+            var name = prefixes.get(goopyness) + baseName;
+            var poweredSuffix = powered ? "_on" : "";
+
+            ModelFile model = goopyness == 0
+                    ? models().getExistingFile(blockTexture(name + poweredSuffix))
+                    : models().withExistingParent(name + poweredSuffix, blockTexture(baseName + poweredSuffix))
+                            .texture("base", blockTexture(name + "_base"))
+                            .texture("lever", blockTexture(name));
+
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .rotationX(switch (face) {
+                        case FLOOR -> 0;
+                        case WALL -> 270;
+                        case CEILING -> 180;
+                    })
+                    .rotationY((int) (switch (face) {
+                        case FLOOR, WALL -> facing;
+                        case CEILING -> facing.getOpposite();
+                    }).toYRot())
+                    .build();
+        });
+
+        generatedItem(block.get(), Oreganized.modLoc("block/" + baseName + "_item"));
+    }
+
+    public <T extends ButtonBlock & IMeltableBlock> void sturdyButton(DeferredBlock<T> block) {
+        var baseName = name(block);
+        var prefixes = List.of("", "goopy_", "red_hot_");
+
+        getVariantBuilder(block.get()).forAllStates(state -> {
+            var facing = state.getValue(ButtonBlock.FACING);
+            var face = state.getValue(ButtonBlock.FACE);
+            boolean powered = state.getValue(ButtonBlock.POWERED);
+            int goopyness = block.get().getGoopyness(state);
+
+            var name = prefixes.get(goopyness) + baseName;
+            var poweredSuffix = powered ? "_pressed" : "";
+
+            ModelFile model = goopyness == 0
+                    ? models().getExistingFile(blockTexture(name + poweredSuffix))
+                    : models().withExistingParent(name + poweredSuffix, blockTexture(baseName + poweredSuffix))
+                            .texture("texture", blockTexture(name));
+
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .rotationX(switch (face) {
+                        case FLOOR -> 0;
+                        case WALL -> 270;
+                        case CEILING -> 180;
+                    })
+                    .rotationY((int) (switch (face) {
+                        case FLOOR -> facing.getOpposite();
+                        case WALL, CEILING -> facing;
+                    }).toYRot())
+                    .build();
+        });
+
+        simpleBlockItem(block.get(), new ModelFile.ExistingModelFile(blockTexture(block.get()).withSuffix("_inventory"), models().existingFileHelper));
+    }
+
     public void gargoyleBlock(DeferredBlock<? extends Block> block) {
         var texture = blockTexture(block.get());
         var floorModel = models().getExistingFile(texture);

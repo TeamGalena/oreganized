@@ -2,7 +2,6 @@ package galena.oreganized.index;
 
 import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import galena.oreganized.Oreganized;
-import galena.oreganized.content.block.*;
 import galena.oreganized.content.block.BulbBlock;
 import galena.oreganized.content.block.CrystalGlassBlock;
 import galena.oreganized.content.block.CrystalGlassPaneBlock;
@@ -20,6 +19,8 @@ import galena.oreganized.content.block.SilverBulbBlock;
 import galena.oreganized.content.block.SilverDoorBlock;
 import galena.oreganized.content.block.SilverTrapdoorBlock;
 import galena.oreganized.content.block.SpottedGlanceBlock;
+import galena.oreganized.content.block.SturdyButtonBlock;
+import galena.oreganized.content.block.SturdyLeverBlock;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -188,6 +189,9 @@ public class OBlocks {
     public static final DeferredBlock<LeadDoorBlock> LEAD_DOOR = baseRegister("lead_door", () -> new LeadDoorBlock(leadDecoProperties()), block -> () -> new DoubleHighBlockItem(block.get(), new Item.Properties()));
     public static final DeferredBlock<LeadTrapdoorBlock> LEAD_TRAPDOOR = register("lead_trapdoor", () -> new LeadTrapdoorBlock(leadDecoProperties()));
     public static final DeferredBlock<LeadBarsBlock> LEAD_BARS = register("lead_bars", () -> new LeadBarsBlock(leadDecoProperties()));
+
+    public static final DeferredBlock<SturdyLeverBlock> STURDY_LEVER = register("sturdy_lever", () -> new SturdyLeverBlock(leadProperties().noCollission().pushReaction(PushReaction.DESTROY)));
+    public static final DeferredBlock<SturdyButtonBlock> STURDY_BUTTON = register("sturdy_button", () -> new SturdyButtonBlock(leadProperties().noCollission().pushReaction(PushReaction.DESTROY)));
 
     public static final DeferredBlock<Block> ELECTRUM_BLOCK = register("electrum_block", () -> new Block(Properties.of().strength(5.0F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.METAL).mapColor(MapColor.SAND)));
 
