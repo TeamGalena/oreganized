@@ -1,8 +1,8 @@
 # <meta>
 #    <source>@pssbletrngle/github-meta-generator</source>
-#    <version>1.0.95</version>
-#    <timestamp>2026-06-21T19:15:59.327Z</timestamp>
-#    <hash>d5ba0f0d510fcb71</hash>
+#    <version>1.0.105</version>
+#    <timestamp>2026-06-30T07:43:37.888Z</timestamp>
+#    <hash>776d0b03b286ddf9</hash>
 # </meta>
 
 name: Test
@@ -56,8 +56,7 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar
 
       - uses: PssbleTrngle/find-release@v1
-        if: ${{ github.event_name != 'pull_request' }}
-        id: action
+        id: draft
         with:
           type: draft
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -77,11 +76,11 @@ jobs:
           GITHUB_DEPENDENCY_GRAPH_ENABLED: false
 
       - name: Publish -SNAPSHOT version
-        if: ${{ fromJSON(steps.action.outputs.matched) }}
+        if: ${{ github.event_name != 'pull_request' && fromJSON(steps.draft.outputs.matched) }}
         run: ./gradlew publish
         continue-on-error: true
         env:
           NEXUS_USER: ${{ secrets.NEXUS_USER }}
           NEXUS_TOKEN: ${{ secrets.NEXUS_TOKEN }}
-          RELEASE_VERSION: ${{ steps.action.outputs.tag }}
+          RELEASE_VERSION: ${{ steps.draft.outputs.tag }}
           SNAPSHOT: true
