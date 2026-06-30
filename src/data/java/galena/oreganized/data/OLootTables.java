@@ -121,6 +121,9 @@ public class OLootTables extends LootTableProvider {
                                     LootItem.lootTableItem(OBlocks.LEAD_BARS.get())
                             )))));
 
+            dropSelf(OBlocks.STURDY_LEVER);
+            dropSelf(OBlocks.STURDY_BUTTON);
+
             OBlocks.CRYSTAL_GLASS.forEach((c, b) -> dyed(c, () -> dropAsSilk(b)));
             OBlocks.CRYSTAL_GLASS_PANES.forEach((c, b) -> dyed(c, () -> dropAsSilk(b)));
             OBlocks.WAXED_CONCRETE_POWDER.forEach((c, b) -> dyed(c, () -> dropSelf(b)));

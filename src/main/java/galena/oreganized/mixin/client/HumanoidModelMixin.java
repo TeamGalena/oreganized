@@ -1,7 +1,7 @@
 package galena.oreganized.mixin.client;
 
 import galena.oreganized.client.OreganizedClient;
-import galena.oreganized.world.IDoorProgressHolder;
+import galena.oreganized.content.block.PushableBlockEntity;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -14,8 +14,7 @@ public class HumanoidModelMixin<T extends LivingEntity> {
 
     @Inject(method = "poseRightArm", at = @At(value = "HEAD"), cancellable = true)
     public void poseRightArm(T entity, CallbackInfo ci) {
-        if (!(entity instanceof IDoorProgressHolder progressHolder)) return;
-        if (progressHolder.oreganised$getOpeningProgress() == 0) return;
+        if (!PushableBlockEntity.isPushing(entity)) return;
 
         var model = (HumanoidModel<T>) (Object) this;
         OreganizedClient.renderThirdPersonArm(model.rightArm, true);
@@ -25,8 +24,7 @@ public class HumanoidModelMixin<T extends LivingEntity> {
 
     @Inject(method = "poseLeftArm", at = @At(value = "HEAD"), cancellable = true)
     public void poseLeftArm(T entity, CallbackInfo ci) {
-        if (!(entity instanceof IDoorProgressHolder progressHolder)) return;
-        if (progressHolder.oreganised$getOpeningProgress() == 0) return;
+        if (!PushableBlockEntity.isPushing(entity)) return;
 
         var model = (HumanoidModel<T>) (Object) this;
         OreganizedClient.renderThirdPersonArm(model.leftArm, false);

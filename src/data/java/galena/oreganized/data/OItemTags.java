@@ -136,6 +136,8 @@ public class OItemTags extends ItemTagsProvider {
         OBlocks.SILVER_TRAPDOORS.all().forEach(it -> tag(ItemTags.TRAPDOORS).add(it.asItem()));
         tag(ItemTags.TRAPDOORS).add(OBlocks.LEAD_TRAPDOOR.asItem());
 
+        tag(ItemTags.BUTTONS).add(OBlocks.STURDY_BUTTON.asItem());
+
         tag(ItemTags.AXES).add(OItems.ELECTRUM_AXE.get());
         tag(ItemTags.PICKAXES).add(OItems.ELECTRUM_PICKAXE.get());
         tag(ItemTags.SWORDS).add(OItems.ELECTRUM_SWORD.get());

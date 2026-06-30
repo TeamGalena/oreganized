@@ -19,7 +19,6 @@
     "MobEffectInstanceMixin",
     "MobMixin",
     "PillagerMixin",
-    "PlayerMixin",
     "WalkNodeEvaluatorMixin",
     "compat.AirCurrentMixin",
     "compat.BellowBlockTileMixin",

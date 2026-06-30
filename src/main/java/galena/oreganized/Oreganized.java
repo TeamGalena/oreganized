@@ -1,6 +1,5 @@
 package galena.oreganized;
 
-
 import com.mojang.serialization.MapCodec;
 import com.teamabnormals.blueprint.common.dispenser.FishBucketDispenseItemBehavior;
 import com.teamabnormals.blueprint.core.util.DataUtil;
@@ -10,6 +9,7 @@ import galena.oreganized.compat.create.CreateCompat;
 import galena.oreganized.content.block.LeadOreBlock;
 import galena.oreganized.content.block.MoltenLeadCauldronBlock;
 import galena.oreganized.index.OArmorMaterials;
+import galena.oreganized.index.OAttachmentTypes;
 import galena.oreganized.index.OAttributes;
 import galena.oreganized.index.OBlockEntities;
 import galena.oreganized.index.OBlocks;
@@ -98,6 +98,7 @@ public class Oreganized {
         OCriteriaTriggers.register(modBus);
         OSoundEvents.register();
         ORecipeTypes.register(modBus);
+        OAttachmentTypes.register(modBus);
 
         REGISTRY_HELPER.register(modBus);
 

@@ -6,7 +6,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class OSoundEvents {
-    public static SoundSubRegistryHelper HELPER = Oreganized.REGISTRY_HELPER.getSoundSubHelper();
+    public static final SoundSubRegistryHelper HELPER = Oreganized.REGISTRY_HELPER.getSoundSubHelper();
 
     public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DISC_STRUCTURE = HELPER.createSoundEvent("music.disc.structure");
 

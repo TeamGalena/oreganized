@@ -3,6 +3,7 @@ package galena.oreganized.content.block;
 import galena.oreganized.index.OBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
@@ -12,35 +13,21 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
-import org.jetbrains.annotations.Nullable;
 
-public class LeadTrapdoorBlock extends TrapDoorBlock implements IMeltableBlock, EntityBlock, IHeavyDoor {
+public class LeadTrapdoorBlock extends TrapDoorBlock implements IMeltableBlock, IPushableBlock {
 
     public LeadTrapdoorBlock(Properties properties) {
         super(OBlocks.LEAD_BLOCK_SET, properties);
     }
 
     @Override
-    public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new HeavyDoorBlockEntity(pos, state);
-    }
-
-    @Override
-    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return HeavyDoorBlockEntity.getTicker(level, state, type);
-    }
-
-    @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        return HeavyDoorBlockEntity.getAt(level, pos)
+        return PushableBlockEntity.getAt(level, pos)
                 .map(it -> it.use(state, level, pos, player))
                 .orElse(ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION);
     }
@@ -68,8 +55,8 @@ public class LeadTrapdoorBlock extends TrapDoorBlock implements IMeltableBlock, 
     }
 
     @Override
-    public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
-        return super.getStateForPlacement(context).setValue(POWERED, false);
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return super.getStateForPlacement(context).setValue(OPEN, false);
     }
 
     @Override
@@ -79,7 +66,33 @@ public class LeadTrapdoorBlock extends TrapDoorBlock implements IMeltableBlock, 
     }
 
     @Override
-    public void sound(@Nullable Player player, Level level, BlockPos pos, boolean open) {
-        playSound(player, level, pos, open);
+    public void onFullyPushed(Player player, Level level, BlockPos pos, BlockState state) {
+        boolean isOpen = state.getValue(OPEN);
+        if (isOpen && !isToggleable(state)) return;
+
+        level.setBlock(pos, state.setValue(OPEN, !isOpen), UPDATE_CLIENTS);
+        level.playSound(
+                null, pos,
+                isOpen ? getType().trapdoorClose() : getType().trapdoorOpen(),
+                SoundSource.BLOCKS,
+                1.0F,
+                level.getRandom().nextFloat() * 0.1F + 0.9F
+        );
+        level.gameEvent(player, !isOpen ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
+    }
+
+    @Override
+    public void reset(Level level, BlockPos pos, BlockState state) {
+        if (!state.getValue(OPEN)) return;
+
+        state = state.setValue(OPEN, false);
+        level.setBlock(pos, state, UPDATE_CLIENTS);
+        // Not calling level.gameEvent here because TrapDoorBlock's playSound already does that
+        playSound(null, level, pos, false);
+    }
+
+    @Override
+    public boolean isToggleable(BlockState state) {
+        return state.getValue(POWERED);
     }
 }
