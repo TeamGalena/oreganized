@@ -7,7 +7,7 @@ multikulti-datagen = { group = "com.possible-triangle", name = "multikulti-datag
 
 blueprint = { group = "com.teamabnormals", name = "blueprint", version = "1.21.1-8.1.0" }
 
-galena-hats = { "group" = "dev.galena", name = "hats-1.20.1-neoforge", version = "1.3.1" }
+galena-hats = { "group" = "dev.galena", name = "hats-1.21.1-neoforge", version = "1.3.1" }
 
 dye-depot = { group = "com.ninni.dye_depot", name = "dye_depot", version = "1.21.1-2.0.0-neoforge" }
 
