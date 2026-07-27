@@ -8,6 +8,7 @@ import galena.oreganized.api.LeadProtections;
 import galena.oreganized.compat.create.CreateCompat;
 import galena.oreganized.content.block.LeadOreBlock;
 import galena.oreganized.content.block.MoltenLeadCauldronBlock;
+import galena.oreganized.debug.ODebugCommands;
 import galena.oreganized.index.OArmorMaterials;
 import galena.oreganized.index.OAttachmentTypes;
 import galena.oreganized.index.OAttributes;
@@ -47,6 +48,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.neoforge.common.BasicItemListing;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
@@ -119,6 +121,10 @@ public class Oreganized {
             }
             return true;
         });
+
+        if (!FMLLoader.isProduction()) {
+            forgeBus.addListener(ODebugCommands::register);
+        }
     }
 
     private void injectVillagerTrades(VillagerTradesEvent event) {

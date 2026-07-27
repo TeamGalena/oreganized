@@ -17,6 +17,10 @@ public class OSoundEvents {
     public static final DeferredHolder<SoundEvent, SoundEvent> BOLT_HIT = HELPER.createSoundEvent("entity.bolt_hit");
     public static final DeferredHolder<SoundEvent, SoundEvent> BOLT_HIT_ARMOR = HELPER.createSoundEvent("entity.bolt_hit_armor");
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> TARNISH = HELPER.createSoundEvent("block.tarnish");
+    public static final DeferredHolder<SoundEvent, SoundEvent> POLISH = HELPER.createSoundEvent("block.polish");
+    public static final DeferredHolder<SoundEvent, SoundEvent> POLISH_FINISH = HELPER.createSoundEvent("block.polish_finish");
+
     public static void register() {
         // Load this class
     }
