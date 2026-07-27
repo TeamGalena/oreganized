@@ -23,7 +23,7 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.registries.datamaps.DataMapsUpdatedEvent;
 
 @EventBusSubscriber(modid = Oreganized.MOD_ID)
-public class TarnishManager {
+public class TarnishBlockManager {
 
     private static final Map<Block, Block> INVERSE = HashBiMap.create();
     private static final Set<Block> PRISTINE = new HashSet<>();
@@ -83,13 +83,13 @@ public class TarnishManager {
     public static boolean tryTarnishing(BlockPos pos, Level level) {
         var state = level.getBlockState(pos);
 
-        return TarnishManager.next(state).filter(tarnished -> {
-            boolean isPristine = TarnishManager.isPristine(state.getBlock());
+        return TarnishBlockManager.next(state).filter(tarnished -> {
+            boolean isPristine = TarnishBlockManager.isPristine(state.getBlock());
             if (!isPristine && hasPristineAround(pos, level)) return false;
 
             level.setBlockAndUpdate(pos, tarnished);
             if (level instanceof ServerLevel serverLevel) {
-                serverLevel.playSound(null, pos, OSoundEvents.TARNISH.get(), SoundSource.BLOCKS, 1F, 1F);
+                serverLevel.playSound(null, pos, OSoundEvents.TARNISH.get(), SoundSource.BLOCKS);
                 PacketDistributor.sendToPlayersInDimension(serverLevel, new TarnishParticlePacket(pos, true));
             }
 
@@ -100,10 +100,10 @@ public class TarnishManager {
     public static boolean tryPolishing(BlockPos pos, Level level) {
         var state = level.getBlockState(pos);
 
-        return TarnishManager.previous(state).filter(previous -> {
+        return TarnishBlockManager.previous(state).filter(previous -> {
             level.setBlockAndUpdate(pos, previous);
             if (level instanceof ServerLevel serverLevel) {
-                serverLevel.playSound(null, pos, OSoundEvents.POLISH_FINISH.get(), SoundSource.BLOCKS, 1F, 1F);
+                serverLevel.playSound(null, pos, OSoundEvents.POLISH_FINISH.get(), SoundSource.BLOCKS);
                 PacketDistributor.sendToPlayersInDimension(serverLevel, new TarnishParticlePacket(pos, false));
             }
 
@@ -115,7 +115,7 @@ public class TarnishManager {
         for (var dir : Direction.values()) {
             var checkPos = pos.relative(dir);
             var checkState = level.getBlockState(checkPos);
-            if (TarnishManager.isPristine(checkState.getBlock())) {
+            if (TarnishBlockManager.isPristine(checkState.getBlock())) {
                 return true;
             }
         }

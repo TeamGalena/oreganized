@@ -5,8 +5,11 @@ import static net.minecraft.commands.Commands.literal;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
-import galena.oreganized.world.TarnishManager;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import galena.oreganized.world.TarnishBlockManager;
+import galena.oreganized.world.TarnishEntityManager;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.commands.arguments.coordinates.BlockPosArgument;
 
 public class PolishCommand {
@@ -17,6 +20,10 @@ public class PolishCommand {
                         .then(argument("pos", BlockPosArgument.blockPos())
                                 .executes(PolishCommand::executeOnBlock)
                         )
+                ).then(literal("entity")
+                        .then(argument("selector", EntityArgument.entities())
+                                .executes(PolishCommand::executeOnEntity)
+                        )
                 );
     }
 
@@ -24,9 +31,19 @@ public class PolishCommand {
         var pos = BlockPosArgument.getBlockPos(context, "pos");
         var level = context.getSource().getLevel();
 
-        var success = TarnishManager.tryPolishing(pos, level);
+        var success = TarnishBlockManager.tryPolishing(pos, level);
 
         return success ? 1 : 0;
+    }
+
+    private static int executeOnEntity(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
+        var entities = EntityArgument.getEntities(context, "selector");
+
+        var successes = entities.stream()
+                .filter(TarnishEntityManager::tryPolishing)
+                .count();
+
+        return Math.toIntExact(successes);
     }
 
 }

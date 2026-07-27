@@ -2,7 +2,7 @@ package galena.oreganized.world.event;
 
 import galena.oreganized.Oreganized;
 import galena.oreganized.OreganizedConfig;
-import galena.oreganized.world.TarnishManager;
+import galena.oreganized.world.TarnishBlockManager;
 import net.minecraft.tags.EntityTypeTags;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -29,7 +29,7 @@ public class TarnishEvents {
 
                 var level = entity.level();
 
-                TarnishManager.tryTarnishing(randomPos, level);
+                TarnishBlockManager.tryTarnishing(randomPos, level);
             }
         }
     }

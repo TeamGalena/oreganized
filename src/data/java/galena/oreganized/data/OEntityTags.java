@@ -33,5 +33,6 @@ public class OEntityTags extends EntityTypeTagsProvider {
                 .addOptional(ResourceLocation.fromNamespaceAndPath("alexsmobs", "mimicube"))
                 .addOptional(ResourceLocation.fromNamespaceAndPath("caverns_and_chasms", "mime"));
         tag(OTags.Entities.SCARED_OF_GARGOYLE).addTags(EntityTypeTags.UNDEAD);
+        tag(OTags.Entities.TARNISHABLE).addTags(EntityTypeTags.UNDEAD);
     }
 }

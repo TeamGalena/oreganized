@@ -4,7 +4,7 @@ import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.sugar.Local;
 import galena.oreganized.index.OSoundEvents;
 import galena.oreganized.network.packet.TarnishParticlePacket;
-import galena.oreganized.world.TarnishManager;
+import galena.oreganized.world.TarnishBlockManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -37,7 +37,7 @@ public class BrushItemMixin {
     )
     public void oreganized$finishPolishing(Level level, LivingEntity livingEntity, ItemStack stack, int remainingUseDuration, CallbackInfo ci, @Local BlockPos pos, @Local(ordinal = 1) int useTick) {
         if (useTick < 20) return;
-        if (TarnishManager.tryPolishing(pos, level)) {
+        if (TarnishBlockManager.tryPolishing(pos, level)) {
             var slot = stack.equals(livingEntity.getItemBySlot(EquipmentSlot.OFFHAND)) ? EquipmentSlot.OFFHAND : EquipmentSlot.MAINHAND;
             stack.hurtAndBreak(1, livingEntity, slot);
             livingEntity.releaseUsingItem();
@@ -52,7 +52,7 @@ public class BrushItemMixin {
             )
     )
     public boolean oreganized$spawnPolishingParticle(BrushItem instance, Level level, BlockHitResult hitResult, BlockState state, Vec3 vec, HumanoidArm arm, @Local BlockPos pos) {
-        if (TarnishManager.canPolish(state.getBlockHolder())) {
+        if (TarnishBlockManager.canPolish(state.getBlockHolder())) {
             if (level instanceof ServerLevel serverLevel)
                 PacketDistributor.sendToPlayersInDimension(serverLevel, new TarnishParticlePacket(pos, false));
             return false;
@@ -69,7 +69,7 @@ public class BrushItemMixin {
             )
     )
     public boolean oreganized$playPolishingSound(Level instance, Player player, BlockPos pos, SoundEvent soundEvent, SoundSource source, @Local BlockState state) {
-        if (TarnishManager.canPolish(state.getBlockHolder())) {
+        if (TarnishBlockManager.canPolish(state.getBlockHolder())) {
             instance.playSound(player, pos, OSoundEvents.POLISH.get(), source);
             return false;
         }

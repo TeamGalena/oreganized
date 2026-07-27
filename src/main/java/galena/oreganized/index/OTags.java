@@ -124,6 +124,7 @@ public class OTags {
         public static final TagKey<EntityType<?>> BOLT_SUSCEPTIBLE = tag("bolt_susceptible");
         public static final TagKey<EntityType<?>> BOLT_RESISTANT = tag("bolt_resistant");
         public static final TagKey<EntityType<?>> SCARED_OF_GARGOYLE = tag("scared_of_gargoyle");
+        public static final TagKey<EntityType<?>> TARNISHABLE = tag("tarnishable");
 
         private static TagKey<EntityType<?>> tag(String name) {
             return TagKey.create(Registries.ENTITY_TYPE, Oreganized.modLoc(name));
