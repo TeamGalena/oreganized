@@ -1,8 +1,8 @@
 # <meta>
 #    <source>@pssbletrngle/github-meta-generator</source>
-#    <version>1.0.107</version>
-#    <timestamp>2026-07-24T11:27:18.967Z</timestamp>
-#    <hash>ded3a8190abf9b96</hash>
+#    <version>1.0.117</version>
+#    <timestamp>2026-08-10T16:39:50.120Z</timestamp>
+#    <hash>b0c2733a3937ddbb</hash>
 # </meta>
 
 name: Test
@@ -40,8 +40,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
         with:
-          fetch-depth: 0
           lfs: true
+          fetch-depth: 0
 
       - uses: actions/setup-java@v5
         with:
