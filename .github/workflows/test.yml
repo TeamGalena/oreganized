@@ -84,10 +84,18 @@ jobs:
 
       - name: Publish -SNAPSHOT version
         if: ${{ github.event_name != 'pull_request' && fromJSON(steps.draft.outputs.matched) }}
-        run: ./gradlew publish
+        run: ./gradlew upload
         continue-on-error: true
         env:
           NEXUS_USER: ${{ secrets.NEXUS_USER }}
           NEXUS_TOKEN: ${{ secrets.NEXUS_TOKEN }}
           RELEASE_VERSION: ${{ steps.draft.outputs.tag }}
           SNAPSHOT: true
+
+      - name: Publish Release Metadata
+        if: ${{ github.event_name != 'pull_request' && fromJSON(steps.draft.outputs.matched) }}
+        uses: actions/upload-artifact@v7
+        with:
+          archive: false
+          path: build/release.json
+          retention-days: 1
