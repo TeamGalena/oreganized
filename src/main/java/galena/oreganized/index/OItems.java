@@ -26,7 +26,7 @@ import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 public class OItems {
-    public static final ItemSubRegistryHelper HELPER = Oreganized.REGISTRY_HELPER.getItemSubHelper();
+    static final ItemSubRegistryHelper HELPER = Oreganized.REGISTRY_HELPER.getItemSubHelper();
 
     public static Supplier<? extends Item> compat(String modid, Function<Item.Properties, ? extends Item> supplier, Item.Properties properties) {
         if (ModList.get().isLoaded(modid)) return () -> supplier.apply(properties);

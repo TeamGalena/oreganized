@@ -57,7 +57,7 @@ import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 public class OBlocks {
-    public static final BlockSubRegistryHelper HELPER = Oreganized.REGISTRY_HELPER.getBlockSubHelper();
+    private static final BlockSubRegistryHelper HELPER = Oreganized.REGISTRY_HELPER.getBlockSubHelper();
 
     private static Properties glanceProperties() {
         return Properties.of().explosionResistance(6).strength(1.5F).mapColor(MapColor.CLAY);

@@ -27,6 +27,6 @@ public class ORegistries extends DatapackBuiltinEntriesProvider {
             .add(BlueprintDataPackRegistries.STRUCTURE_REPALETTERS, OStructurePalettes::bootstrap);
 
     public ORegistries(PackOutput output, CompletableFuture<HolderLookup.Provider> future) {
-        super(output, future, BUILDER, Set.of("minecraft", Oreganized.MOD_ID));
+        super(output, future, BUILDER, OStructurePalettes::conditions, Set.of("minecraft", Oreganized.MOD_ID));
     }
 }
