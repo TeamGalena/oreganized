@@ -1,0 +1,7 @@
+{
+  "parent": "oreganized:block/sturdy_lever_on",
+  "textures": {
+    "base": "oreganized:block/red_hot_sturdy_lever_base",
+    "lever": "oreganized:block/red_hot_sturdy_lever"
+  }
+}

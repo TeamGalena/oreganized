@@ -1,0 +1,171 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "oreganized:config",
+      "value": "cleric_windows"
+    }
+  ],
+  "repaletter": [
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:white_stained_glass",
+      "replaces_with": "oreganized:white_crystal_glass"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:orange_stained_glass",
+      "replaces_with": "oreganized:orange_crystal_glass"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:magenta_stained_glass",
+      "replaces_with": "oreganized:magenta_crystal_glass"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:light_blue_stained_glass",
+      "replaces_with": "oreganized:light_blue_crystal_glass"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:yellow_stained_glass",
+      "replaces_with": "oreganized:yellow_crystal_glass"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:lime_stained_glass",
+      "replaces_with": "oreganized:lime_crystal_glass"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:pink_stained_glass",
+      "replaces_with": "oreganized:pink_crystal_glass"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:gray_stained_glass",
+      "replaces_with": "oreganized:gray_crystal_glass"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:light_gray_stained_glass",
+      "replaces_with": "oreganized:light_gray_crystal_glass"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:cyan_stained_glass",
+      "replaces_with": "oreganized:cyan_crystal_glass"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:purple_stained_glass",
+      "replaces_with": "oreganized:purple_crystal_glass"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:blue_stained_glass",
+      "replaces_with": "oreganized:blue_crystal_glass"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:brown_stained_glass",
+      "replaces_with": "oreganized:brown_crystal_glass"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:green_stained_glass",
+      "replaces_with": "oreganized:green_crystal_glass"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:red_stained_glass",
+      "replaces_with": "oreganized:red_crystal_glass"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:black_stained_glass",
+      "replaces_with": "oreganized:black_crystal_glass"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:white_stained_glass_pane",
+      "replaces_with": "oreganized:white_crystal_glass_pane"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:orange_stained_glass_pane",
+      "replaces_with": "oreganized:orange_crystal_glass_pane"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:magenta_stained_glass_pane",
+      "replaces_with": "oreganized:magenta_crystal_glass_pane"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:light_blue_stained_glass_pane",
+      "replaces_with": "oreganized:light_blue_crystal_glass_pane"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:yellow_stained_glass_pane",
+      "replaces_with": "oreganized:yellow_crystal_glass_pane"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:lime_stained_glass_pane",
+      "replaces_with": "oreganized:lime_crystal_glass_pane"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:pink_stained_glass_pane",
+      "replaces_with": "oreganized:pink_crystal_glass_pane"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:gray_stained_glass_pane",
+      "replaces_with": "oreganized:gray_crystal_glass_pane"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:light_gray_stained_glass_pane",
+      "replaces_with": "oreganized:light_gray_crystal_glass_pane"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:cyan_stained_glass_pane",
+      "replaces_with": "oreganized:cyan_crystal_glass_pane"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:purple_stained_glass_pane",
+      "replaces_with": "oreganized:purple_crystal_glass_pane"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:blue_stained_glass_pane",
+      "replaces_with": "oreganized:blue_crystal_glass_pane"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:brown_stained_glass_pane",
+      "replaces_with": "oreganized:brown_crystal_glass_pane"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:green_stained_glass_pane",
+      "replaces_with": "oreganized:green_crystal_glass_pane"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:red_stained_glass_pane",
+      "replaces_with": "oreganized:red_crystal_glass_pane"
+    },
+    {
+      "type": "blueprint:simple",
+      "replaces_block": "minecraft:black_stained_glass_pane",
+      "replaces_with": "oreganized:black_crystal_glass_pane"
+    }
+  ],
+  "structures": "#minecraft:village"
+}

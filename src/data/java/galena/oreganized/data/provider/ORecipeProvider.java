@@ -11,9 +11,13 @@ import galena.oreganized.Oreganized;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
 import galena.oreganized.world.recipe.ScribeRecipe;
+
+import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
+
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -174,6 +178,15 @@ public abstract class ORecipeProvider extends RecipeProvider {
 
     public SimpleCookingRecipeBuilder blastingRecipeTag(ItemLike result, TagKey<Item> ingredient, float exp) {
         return blastingRecipeTag(result, ingredient, exp, 1);
+    }
+
+    public SimpleCookingRecipeBuilder armorRecycling(ItemLike nugget, Collection<? extends Holder<? extends ItemLike>> armor) {
+        var builder = SimpleCookingRecipeBuilder.blasting(Ingredient.of(armor.stream().map(Holder::value).map(ItemStack::new)), RecipeCategory.MISC, nugget, 0.1F, 100);
+        for (var holder : armor) {
+            var item = holder.value();
+            builder.unlockedBy(getHasName(item), has(item));
+        }
+        return builder;
     }
 
     public SimpleCookingRecipeBuilder blastingRecipeTag(ItemLike result, TagKey<Item> ingredient, float exp, int count) {

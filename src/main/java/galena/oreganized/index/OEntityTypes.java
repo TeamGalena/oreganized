@@ -15,7 +15,7 @@ import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-@EventBusSubscriber(modid = Oreganized.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Oreganized.MOD_ID)
 public class OEntityTypes {
 
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(Registries.ENTITY_TYPE, Oreganized.MOD_ID);
@@ -30,6 +30,9 @@ public class OEntityTypes {
         for (var entityType : event.getTypes()) {
             if (event.has(entityType, Attributes.ATTACK_DAMAGE)) {
                 event.add(entityType, OAttributes.KINETIC_DAMAGE);
+            }
+            if (event.has(entityType, Attributes.ARMOR)) {
+                event.add(entityType, OAttributes.INVINCIBILITY_FRAMES);
             }
         }
     }

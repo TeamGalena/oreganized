@@ -7,6 +7,34 @@
     ],
     "subtitle": "subtitles.block.gargoyle.growl"
   },
+  "block.polish": {
+    "sounds": [
+      "oreganized:block/polish_1",
+      "oreganized:block/polish_2",
+      "oreganized:block/polish_3",
+      "oreganized:block/polish_4"
+    ],
+    "subtitle": "subtitles.block.polish"
+  },
+  "block.polish_finish": {
+    "sounds": [
+      "oreganized:block/polish_finish_1",
+      "oreganized:block/polish_finish_2",
+      "oreganized:block/polish_finish_3",
+      "oreganized:block/polish_finish_4",
+      "oreganized:block/polish_finish_5"
+    ]
+  },
+  "block.tarnish": {
+    "sounds": [
+      "oreganized:block/tarnish_1",
+      "oreganized:block/tarnish_2",
+      "oreganized:block/tarnish_3",
+      "oreganized:block/tarnish_4",
+      "oreganized:block/tarnish_5"
+    ],
+    "subtitle": "subtitles.block.tarnish"
+  },
   "entity.bolt_hit": {
     "sounds": [
       "oreganized:entity/bolt_hit"

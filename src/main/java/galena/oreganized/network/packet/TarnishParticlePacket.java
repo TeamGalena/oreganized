@@ -25,7 +25,7 @@ public record TarnishParticlePacket(BlockPos pos, Boolean tarnished) implements 
     public void handle(IPayloadContext context) {
         context.enqueueWork(() -> {
             var type = tarnished ? OParticleTypes.TARNISH : OParticleTypes.POLISH;
-            var amount = tarnished ? UniformInt.of(8, 12) : UniformInt.of(4, 8);
+            var amount = tarnished ? UniformInt.of(4, 6) : UniformInt.of(4, 8);
             var level = context.player().level();
             ParticleUtils.spawnParticlesOnBlockFaces(level, pos, type.get(), amount);
         });

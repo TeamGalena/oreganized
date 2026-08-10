@@ -82,6 +82,7 @@ dependencies {
     modRuntimeOnly(pack.modrinth.jade)
     modRuntimeOnly(pack.modrinth.biolith)
     modRuntimeOnly(pack.modrinth.no.mans.land)
+    modRuntimeOnly(pack.modrinth.freecam)
 
     modCompileOnly(libs.jei.common.api)
     modCompileOnly(libs.jei.neoforge.api)

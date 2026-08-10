@@ -25,15 +25,14 @@ public class OEntityTags extends EntityTypeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        // Oreganized
         tag(OTags.Entities.LIGHTER_THAN_LEAD).add(EntityType.IRON_GOLEM);
-        tag(OTags.Entities.BOLT_SUSCEPTIBLE).add(EntityType.IRON_GOLEM);
+        tag(OTags.Entities.BOLT_SUSCEPTIBLE)
+                .add(EntityType.IRON_GOLEM)
+                .addOptional(ResourceLocation.fromNamespaceAndPath("caverns_and_chasms", "copper_golem"));
         tag(OTags.Entities.BOLT_RESISTANT)
                 .addOptional(ResourceLocation.fromNamespaceAndPath("alexsmobs", "mimicube"))
                 .addOptional(ResourceLocation.fromNamespaceAndPath("caverns_and_chasms", "mime"));
         tag(OTags.Entities.SCARED_OF_GARGOYLE).addTags(EntityTypeTags.UNDEAD);
-
-        // Vanilla
-        //tag(EntityTypeTags.IMPACT_PROJECTILES).add(OEntityTypes.LEAD_BOLT.get());
+        tag(OTags.Entities.TARNISHABLE).addTags(EntityTypeTags.UNDEAD);
     }
 }

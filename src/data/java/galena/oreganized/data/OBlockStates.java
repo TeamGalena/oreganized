@@ -52,6 +52,9 @@ public class OBlockStates extends OBlockStateProvider {
         meltableTrapdoor(OBlocks.LEAD_TRAPDOOR);
         meltableBars(OBlocks.LEAD_BARS);
 
+        sturdyLever(OBlocks.STURDY_LEVER);
+        sturdyButton(OBlocks.STURDY_BUTTON);
+
         OBlocks.WAXED_CONCRETE_POWDER.forEach((color, block) -> {
             var unwaxed = ColorCompat.getColoredBlock("concrete_powder", color);
             waxedBlock(block, unwaxed);

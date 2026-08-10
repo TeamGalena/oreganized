@@ -3,13 +3,7 @@ package galena.oreganized.data;
 import galena.oreganized.Oreganized;
 import galena.oreganized.client.tooltips.ClientThermometerTooltip;
 import galena.oreganized.data.provider.OLangProvider;
-import galena.oreganized.index.OBlocks;
-import galena.oreganized.index.OEffects;
-import galena.oreganized.index.OEntityTypes;
-import galena.oreganized.index.OFluids;
-import galena.oreganized.index.OItems;
-import galena.oreganized.index.OPaintingVariants;
-import galena.oreganized.index.OPotions;
+import galena.oreganized.index.*;
 import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
@@ -75,6 +69,9 @@ public class OLang extends OLangProvider {
         addSubtitle("entity", "shrapnel_bomb.primed", "Shrapnel Bomb fizzes");
         addSubtitle("entity", "bolt_hit", "Bolt hits");
         addSubtitle("block", "gargoyle.growl", "Gargoyle growls");
+        addSubtitle("block", "tarnish", "Something tarnishes");
+        addSubtitle("block", "polish", "Polishing");
+
         add("tooltip.oreganized.speed", "Speed: %s");
         add(ClientThermometerTooltip.getDescriptionId(0), "Freezing");
         add(ClientThermometerTooltip.getDescriptionId(1), "Cold");
@@ -90,11 +87,12 @@ public class OLang extends OLangProvider {
 
         add("item.oreganized.smithing_template.electrum_upgrade.additions_slot_description", "Add Electrum Ingot");
 
-        add("death.attack.lead_bolt", "%1$s was shot %2$s");
-        add("death.attack.lead_bolt.item", "%1$s was shot %2$s using %3$s");
-        add("death.attack.molten_lead", "%1$s refused to let go of the soaring hot metal");
+        add("death.attack.lead_bolt", "%1$s was shot by %2$s");
+        add("death.attack.lead_bolt.item", "%1$s was shot by %2$s using %3$s");
+        add("death.attack.molten_lead", "%1$s refused to let go of the searing hot metal");
 
-        add("attribute.oreganized.kinetic_damage", "Kinetic Damage");
+        addAttribute(OAttributes.KINETIC_DAMAGE, "Kinetic Damage");
+        addAttribute(OAttributes.INVINCIBILITY_FRAMES, "Invincibility");
 
         add("item.oreganized.flint_and_pewter", "Flint and Pewter");
 

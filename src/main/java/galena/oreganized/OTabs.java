@@ -21,10 +21,11 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.registries.DeferredItem;
 import org.infernalstudios.shieldexp.init.ItemsInit;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
-@EventBusSubscriber(modid = Oreganized.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Oreganized.MOD_ID)
 public class OTabs {
 
     private static final ResourceLocation FD_TAB = ResourceLocation.fromNamespaceAndPath(FARMERS_DELIGHT_ID, FARMERS_DELIGHT_ID);
@@ -35,7 +36,7 @@ public class OTabs {
         ResourceKey<CreativeModeTab> tab = event.getTabKey();
 
         if (tab == CreativeModeTabs.NATURAL_BLOCKS || tab == CreativeModeTabs.BUILDING_BLOCKS) {
-            putBefore(event, Items.DEEPSLATE, OBlocks.GLANCE);
+            putBefore(event, Blocks.DEEPSLATE, OBlocks.GLANCE);
             putAfter(event, OBlocks.GLANCE.get(), OBlocks.SPOTTED_GLANCE);
         }
 
@@ -53,18 +54,18 @@ public class OTabs {
             putAfter(event, OBlocks.GLANCE_BRICK_SLAB.get(), OBlocks.GLANCE_BRICK_WALL);
             putAfter(event, OBlocks.GLANCE_BRICK_WALL.get(), OBlocks.WAXED_SPOTTED_GLANCE);
 
-            putBefore(event, Items.GOLD_BLOCK, OBlocks.SILVER_BLOCKS.array());
-            putBefore(event, Items.GOLD_BLOCK, OBlocks.CHISELED_SILVER.array());
-            putBefore(event, Items.GOLD_BLOCK, OBlocks.SILVER_LATTICES.array());
-            putBefore(event, Items.GOLD_BLOCK, OBlocks.SILVER_PILLARS.array());
-            putBefore(event, Items.GOLD_BLOCK, OBlocks.CUT_SILVERS.array());
-            putBefore(event, Items.GOLD_BLOCK, OBlocks.CUT_SILVER_STAIRS.array());
-            putBefore(event, Items.GOLD_BLOCK, OBlocks.CUT_SILVER_SLABS.array());
-            putBefore(event, Items.GOLD_BLOCK, OBlocks.SILVER_BARS.array());
-            putBefore(event, Items.GOLD_BLOCK, OBlocks.SILVER_DOORS.array());
-            putBefore(event, Items.GOLD_BLOCK, OBlocks.SILVER_TRAPDOORS.array());
-            putBefore(event, Items.NETHERITE_BLOCK, OBlocks.ELECTRUM_BLOCK);
-            putAfter(event, Items.WAXED_OXIDIZED_CUT_COPPER_SLAB, OBlocks.LEAD_BLOCK);
+            putBefore(event, Blocks.GOLD_BLOCK, OBlocks.SILVER_BLOCKS.array());
+            putBefore(event, Blocks.GOLD_BLOCK, OBlocks.CHISELED_SILVER.array());
+            putBefore(event, Blocks.GOLD_BLOCK, OBlocks.SILVER_LATTICES.array());
+            putBefore(event, Blocks.GOLD_BLOCK, OBlocks.SILVER_PILLARS.array());
+            putBefore(event, Blocks.GOLD_BLOCK, OBlocks.CUT_SILVERS.array());
+            putBefore(event, Blocks.GOLD_BLOCK, OBlocks.CUT_SILVER_STAIRS.array());
+            putBefore(event, Blocks.GOLD_BLOCK, OBlocks.CUT_SILVER_SLABS.array());
+            putBefore(event, Blocks.GOLD_BLOCK, OBlocks.SILVER_BARS.array());
+            putBefore(event, Blocks.GOLD_BLOCK, OBlocks.SILVER_DOORS.array());
+            putBefore(event, Blocks.GOLD_BLOCK, OBlocks.SILVER_TRAPDOORS.array());
+            putBefore(event, Blocks.NETHERITE_BLOCK, OBlocks.ELECTRUM_BLOCK);
+            putAfter(event, Blocks.WAXED_OXIDIZED_COPPER_BULB, OBlocks.LEAD_BLOCK);
             putAfter(event, OBlocks.LEAD_BLOCK.get(), OBlocks.CUT_LEAD);
             putAfter(event, OBlocks.CUT_LEAD.get(), OBlocks.LEAD_BRICKS);
             putAfter(event, OBlocks.LEAD_BRICKS.get(), OBlocks.LEAD_PILLAR);
@@ -77,37 +78,42 @@ public class OTabs {
 
         if (tab == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
             putBefore(event, Blocks.BARREL, OBlocks.LEAD_BOLT_CRATE);
-            putBefore(event, Items.REDSTONE_LAMP, OBlocks.SILVER_BULBS.array());
+            putBefore(event, Blocks.REDSTONE_LAMP, OBlocks.SILVER_BULBS.array());
         }
 
         if (tab == CreativeModeTabs.COLORED_BLOCKS) {
             OBlocks.CRYSTAL_GLASS.entrySet()
                     .stream()
                     .sorted(Map.Entry.comparingByKey(DyeColors.comparator()))
-                    .forEach(entry -> putBefore(event, Items.GLASS_PANE, entry.getValue()));
+                    .forEach(entry -> putBefore(event, Blocks.GLASS_PANE, entry.getValue()));
 
             OBlocks.CRYSTAL_GLASS_PANES.entrySet()
                     .stream()
                     .sorted(Map.Entry.comparingByKey(DyeColors.comparator()))
-                    .forEach(entry -> putAfter(event, Items.SHULKER_BOX, entry.getValue()));
+                    .forEach(entry -> putAfter(event, Blocks.SHULKER_BOX, entry.getValue()));
 
             OBlocks.WAXED_CONCRETE_POWDER.entrySet()
                     .stream()
                     .sorted(Map.Entry.comparingByKey(DyeColors.comparator()))
-                    .forEach(entry -> putBefore(event, Items.WHITE_GLAZED_TERRACOTTA, entry.getValue()));
+                    .forEach(entry -> putBefore(event, Blocks.WHITE_GLAZED_TERRACOTTA, entry.getValue()));
         }
 
         if (tab == CreativeModeTabs.NATURAL_BLOCKS) {
-            putAfter(event, Items.DEEPSLATE_COPPER_ORE, OBlocks.LEAD_ORE);
+            putAfter(event, Blocks.DEEPSLATE_COPPER_ORE, OBlocks.LEAD_ORE);
             putAfter(event, OBlocks.LEAD_ORE.get(), OBlocks.DEEPSLATE_LEAD_ORE);
-            putAfter(event, Items.DEEPSLATE_GOLD_ORE, OBlocks.SILVER_ORE);
+            putAfter(event, Blocks.DEEPSLATE_GOLD_ORE, OBlocks.SILVER_ORE);
             putAfter(event, OBlocks.SILVER_ORE.get(), OBlocks.DEEPSLATE_SILVER_ORE);
-            putAfter(event, Items.RAW_COPPER_BLOCK, OBlocks.RAW_LEAD_BLOCK);
-            putAfter(event, Items.RAW_GOLD_BLOCK, OBlocks.RAW_SILVER_BLOCK);
+            putAfter(event, Blocks.RAW_COPPER_BLOCK, OBlocks.RAW_LEAD_BLOCK);
+            putAfter(event, Blocks.RAW_GOLD_BLOCK, OBlocks.RAW_SILVER_BLOCK);
+        }
+
+        if (tab == CreativeModeTabs.REDSTONE_BLOCKS) {
+            putAfter(event, Blocks.LEVER, OBlocks.STURDY_LEVER);
+            putAfter(event, Blocks.STONE_BUTTON, OBlocks.STURDY_BUTTON);
         }
 
         if (tab == CreativeModeTabs.REDSTONE_BLOCKS || tab == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
-            putBefore(event, Items.NOTE_BLOCK, OBlocks.GARGOYLE);
+            putBefore(event, Blocks.NOTE_BLOCK, OBlocks.GARGOYLE);
             putAfter(event, Blocks.REDSTONE_LAMP, OBlocks.LEAD_BULB);
         }
 
@@ -116,7 +122,7 @@ public class OTabs {
         }
 
         if (tab == CreativeModeTabs.REDSTONE_BLOCKS || tab == CreativeModeTabs.COMBAT) {
-            putAfter(event, Items.TNT, OBlocks.SHRAPNEL_BOMB);
+            putAfter(event, Blocks.TNT, OBlocks.SHRAPNEL_BOMB);
         }
 
         if (tab == CreativeModeTabs.REDSTONE_BLOCKS) {
@@ -142,10 +148,8 @@ public class OTabs {
         if (tab == CreativeModeTabs.COMBAT) {
             putBefore(event, Items.DIAMOND_SWORD, OItems.ELECTRUM_SWORD);
             putAfter(event, Items.DIAMOND_AXE, OItems.ELECTRUM_AXE);
-            putBefore(event, Items.NETHERITE_HELMET, OItems.ELECTRUM_HELMET);
-            putAfter(event, OItems.ELECTRUM_HELMET.get(), OItems.ELECTRUM_CHESTPLATE);
-            putAfter(event, OItems.ELECTRUM_CHESTPLATE.get(), OItems.ELECTRUM_LEGGINGS);
-            putAfter(event, OItems.ELECTRUM_LEGGINGS.get(), OItems.ELECTRUM_BOOTS);
+            putBefore(event, Items.NETHERITE_HELMET, OItems.electrumArmor().toArray(DeferredItem[]::new));
+            putBefore(event, Items.GOLDEN_HELMET, OItems.silverArmor().toArray(DeferredItem[]::new));
             putBefore(event, Items.ARROW, OItems.LEAD_BOLT);
         }
 
@@ -165,18 +169,17 @@ public class OTabs {
             putBefore(event, Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, OItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE);
         }
 
-
         if (tab == CreativeModeTabs.NATURAL_BLOCKS) {
-            putAfter(event, Items.LILY_OF_THE_VALLEY, OBlocks.PURPLE_DATURA);
+            putAfter(event, Blocks.LILY_OF_THE_VALLEY, OBlocks.PURPLE_DATURA);
             putAfter(event, OBlocks.PURPLE_DATURA.get(), OBlocks.WHITE_DATURA);
         }
 
         if (ModList.get().isLoaded(FARMERS_DELIGHT_ID) && tab.location().equals(FD_TAB)) {
             putAfter(event, ModItems.NETHERITE_KNIFE.get(), OItems.ELECTRUM_KNIFE);
         }
-         if (ModList.get().isLoaded(SHIELD_EXPANSION_ID) && tab == CreativeModeTabs.COMBAT) {
-             putAfter(event, ItemsInit.NETHERITE_SHIELD.get(), OItems.ELECTRUM_SHIELD);
-         }
+        if (ModList.get().isLoaded(SHIELD_EXPANSION_ID) && tab == CreativeModeTabs.COMBAT) {
+            putAfter(event, ItemsInit.NETHERITE_SHIELD.get(), OItems.ELECTRUM_SHIELD);
+        }
 
         // TODO enable again after mod is ported to 1.21.1
         // if (ModList.get().isLoaded(NETHERS_DELIGHT_ID) && (tab.location().equals(ND_TAB) || tab == CreativeModeTabs.TOOLS_AND_UTILITIES)) {

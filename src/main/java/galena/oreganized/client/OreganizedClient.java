@@ -2,8 +2,10 @@ package galena.oreganized.client;
 
 import com.mojang.math.Axis;
 import galena.oreganized.Oreganized;
-import galena.oreganized.client.extensions.ElectrumArmorClientExtensions;
+import galena.oreganized.client.extensions.CustomArmorModelExtensions;
 import galena.oreganized.client.extensions.MoltenLeadClientExtensions;
+import galena.oreganized.client.model.ElectrumArmorModel;
+import galena.oreganized.client.model.SilverArmorModel;
 import galena.oreganized.client.render.entity.LeadBoltRender;
 import galena.oreganized.client.render.entity.ShrapnelBombMinecartRender;
 import galena.oreganized.client.render.entity.ShrapnelBombRender;
@@ -13,10 +15,14 @@ import galena.oreganized.client.tooltips.ClientThermometerTooltip;
 import galena.oreganized.client.tooltips.DeviceTooltip;
 import galena.oreganized.client.tooltips.ThermometerTooltip;
 import galena.oreganized.compat.ponder.PonderCompat;
+import galena.oreganized.content.block.PushableBlockEntity;
 import galena.oreganized.content.item.SpeedometerItem;
 import galena.oreganized.content.item.ThermometerItem;
-import galena.oreganized.index.*;
-import galena.oreganized.world.IDoorProgressHolder;
+import galena.oreganized.index.OBlocks;
+import galena.oreganized.index.ODataComponents;
+import galena.oreganized.index.OEntityTypes;
+import galena.oreganized.index.OFluids;
+import galena.oreganized.index.OItems;
 import galena.oreganized.world.IMotionHolder;
 import java.util.List;
 import java.util.function.Supplier;
@@ -27,12 +33,12 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.ChargedProjectiles;
@@ -50,7 +56,7 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
-@EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT)
 public class OreganizedClient {
 
     private static void render(Supplier<? extends Block> block, RenderType render) {
@@ -130,7 +136,7 @@ public class OreganizedClient {
     }
 
     public static void renderThirdPersonArm(ModelPart arm, boolean rightArm) {
-        arm.xRot = -1.7F;
+        arm.xRot = -1.0F;
         arm.yRot = rightArm ? -0.1F : 0.2F;
     }
 
@@ -143,7 +149,8 @@ public class OreganizedClient {
     @SubscribeEvent
     public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
         event.registerFluidType(new MoltenLeadClientExtensions(), OFluids.MOLTEN_LEAD_TYPE);
-        event.registerItem(new ElectrumArmorClientExtensions(), OItems.ELECTRUM_HELMET, OItems.ELECTRUM_CHESTPLATE, OItems.ELECTRUM_LEGGINGS, OItems.ELECTRUM_BOOTS);
+        event.registerItem(new CustomArmorModelExtensions(ElectrumArmorModel::new, ElectrumArmorModel::createBodyLayer), OItems.electrumArmor().toArray(Holder[]::new));
+        event.registerItem(new CustomArmorModelExtensions(SilverArmorModel::new, SilverArmorModel::createBodyLayer), OItems.silverArmor().toArray(Holder[]::new));
     }
 
     @EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT)
@@ -164,33 +171,36 @@ public class OreganizedClient {
         @SubscribeEvent
         public static void renderHand(RenderHandEvent event) {
             var player = Minecraft.getInstance().player;
-            //TODO: might want to use attachments here instead
-            if (!(player instanceof IDoorProgressHolder progressHolder)) return;
-            var progress = progressHolder.oreganised$getOpeningProgress();
-            if (progress == 0) return;
-            if (event.getHand() == InteractionHand.OFF_HAND) return;
+
+            if (!PushableBlockEntity.isPushing(player)) return;
+            if (player.isInvisible()) return;
 
             var poseStack = event.getPoseStack();
 
-            poseStack.pushPose();
+            for (var arm : HumanoidArm.values()) {
+                poseStack.pushPose();
+                boolean rightArm = arm == HumanoidArm.RIGHT;
+                float factor = rightArm ? 1.0F : -1.0F;
+                poseStack.translate(factor * 0.84000005F, -0.4F, -0.4F);
+                poseStack.mulPose(Axis.YP.rotationDegrees(factor * -20F - event.getSwingProgress()));
+                poseStack.mulPose(Axis.ZP.rotationDegrees(factor * 45F));
+                poseStack.mulPose(Axis.XP.rotationDegrees(-45F));
 
-            //TODO: also would be nice if the hand was slightly animate to indicate opening progress
-            var rightArm = player.getMainArm() == HumanoidArm.RIGHT;
-            float factor = rightArm ? 1.0F : -1.0F;
-            poseStack.translate(factor * 0.84000005F, -0.4F, -0.4F);
-            poseStack.mulPose(Axis.YP.rotationDegrees(factor * -20F - event.getSwingProgress()));
-            poseStack.mulPose(Axis.ZP.rotationDegrees(factor * 45F));
-            poseStack.mulPose(Axis.XP.rotationDegrees(-45F));
+                float time = player.tickCount + event.getPartialTick();
+                float movement = Mth.sin(time * 0.1F) * 0.008F;
+                float rotation = factor * (float) Math.toDegrees(Mth.cos(time * 0.09F) * -0.005);
+                poseStack.translate(factor * movement, 0, movement);
+                poseStack.mulPose(Axis.ZP.rotationDegrees(rotation));
 
-            var renderer = (PlayerRenderer) Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(player);
+                var renderer = (PlayerRenderer) Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(player);
 
-            if (rightArm) {
-                renderer.renderRightHand(poseStack, event.getMultiBufferSource(), event.getPackedLight(), player);
-            } else {
-                renderer.renderLeftHand(poseStack, event.getMultiBufferSource(), event.getPackedLight(), player);
+                if (rightArm) {
+                    renderer.renderRightHand(poseStack, event.getMultiBufferSource(), event.getPackedLight(), player);
+                } else {
+                    renderer.renderLeftHand(poseStack, event.getMultiBufferSource(), event.getPackedLight(), player);
+                }
+                poseStack.popPose();
             }
-
-            poseStack.popPose();
 
             event.setCanceled(true);
         }

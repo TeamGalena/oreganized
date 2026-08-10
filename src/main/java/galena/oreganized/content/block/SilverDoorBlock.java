@@ -34,7 +34,9 @@ public class SilverDoorBlock extends DoorBlock {
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return super.getStateForPlacement(context).setValue(OPEN, false);
+        var state = super.getStateForPlacement(context);
+        if (state == null) return null;
+        return state.setValue(OPEN, false);
     }
 
     @Override
@@ -42,7 +44,7 @@ public class SilverDoorBlock extends DoorBlock {
         if (state.getValue(POWERED)) {
             state = state.cycle(OPEN);
             level.setBlock(pos, state, 10);
-            playSound(player, level, pos,   state.getValue(OPEN));
+            playSound(player, level, pos, state.getValue(OPEN));
             level.gameEvent(player, isOpen(state) ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pos);
             return InteractionResult.sidedSuccess(level.isClientSide);
         }

@@ -159,6 +159,9 @@ public class ORecipes extends ORecipeProvider {
         smithingElectrum(() -> Items.DIAMOND_LEGGINGS, OItems.ELECTRUM_LEGGINGS).save(consumer, Oreganized.modLoc("electrum_leggings"));
         smithingElectrum(() -> Items.DIAMOND_BOOTS, OItems.ELECTRUM_BOOTS).save(consumer, Oreganized.modLoc("electrum_boots"));
 
+        armorRecycling(OItems.ELECTRUM_NUGGET.get(), OItems.electrumArmor().toList()).save(consumer, Oreganized.modLoc("electrum_nugget_from_blasting"));
+        armorRecycling(OItems.SILVER_NUGGET.get(), OItems.silverArmor().toList()).save(consumer, Oreganized.modLoc("silver_nugget_from_blasting"));
+
         OBlocks.CRYSTAL_GLASS.forEach((color, crystalGlass) -> {
             var glass = ColorCompat.getColoredBlock("stained_glass", color);
             dyed(color, crystalGlass(crystalGlass, glass)).save(consumer);
@@ -307,6 +310,22 @@ public class ORecipes extends ORecipeProvider {
                 .save(consumer);
 
         makeBars(OBlocks.LEAD_BARS, OTags.Items.INGOTS_LEAD).save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, OBlocks.STURDY_LEVER.get())
+                .define('#', Items.LEVER)
+                .define('X', OTags.Items.INGOTS_LEAD)
+                .pattern("X")
+                .pattern("#")
+                .unlockedBy("has_lead", has(OTags.Items.INGOTS_LEAD))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, OBlocks.STURDY_BUTTON.get())
+                .define('#', ItemTags.STONE_BUTTONS)
+                .define('X', OTags.Items.INGOTS_LEAD)
+                .pattern("X")
+                .pattern("#")
+                .unlockedBy("has_lead", has(OTags.Items.INGOTS_LEAD))
+                .save(consumer);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, OItems.SCRIBE.get())
                 .define('A', Items.AMETHYST_SHARD)

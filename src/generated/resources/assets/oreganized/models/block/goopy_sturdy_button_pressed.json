@@ -1,0 +1,6 @@
+{
+  "parent": "oreganized:block/sturdy_button_pressed",
+  "textures": {
+    "texture": "oreganized:block/goopy_sturdy_button"
+  }
+}

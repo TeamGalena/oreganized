@@ -1,0 +1,41 @@
+{
+  "type": "oreganized:add_item",
+  "conditions": [
+    {
+      "condition": "minecraft:any_of",
+      "terms": [
+        {
+          "condition": "neoforge:loot_table_id",
+          "loot_table_id": "minecraft:chests/ancient_city"
+        },
+        {
+          "condition": "neoforge:loot_table_id",
+          "loot_table_id": "minecraft:chests/abandoned_mineshaft"
+        },
+        {
+          "condition": "neoforge:loot_table_id",
+          "loot_table_id": "minecraft:chests/simple_dungeon"
+        }
+      ]
+    },
+    {
+      "chance": 0.1,
+      "condition": "minecraft:random_chance"
+    }
+  ],
+  "functions": [
+    {
+      "add": false,
+      "damage": {
+        "type": "minecraft:uniform",
+        "max": 0.8,
+        "min": 0.3
+      },
+      "function": "minecraft:set_damage"
+    }
+  ],
+  "item": {
+    "count": 1,
+    "id": "oreganized:silver_chestplate"
+  }
+}

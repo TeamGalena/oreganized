@@ -18,6 +18,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -202,6 +203,11 @@ public abstract class OLangProvider implements DataProvider {
         addBlock(blocks.base(), pristine);
         addBlock(blocks.blemished(), "Blemished " + pristine);
         addBlock(blocks.tarnished(), "Tarnished " + pristine);
+    }
+
+    protected void addAttribute(Holder<Attribute> attribute, String translation) {
+        var id = attribute.getKey().location();
+        add("attribute.%s.%s".formatted(id.getNamespace(), id.getPath()), translation);
     }
 
 }

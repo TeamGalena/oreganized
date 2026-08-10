@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "item": "oreganized:silver_boots"
+    },
+    {
+      "item": "oreganized:silver_leggings"
+    },
+    {
+      "item": "oreganized:silver_chestplate"
+    },
+    {
+      "item": "oreganized:silver_helmet"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "oreganized:silver_nugget"
+  }
+}

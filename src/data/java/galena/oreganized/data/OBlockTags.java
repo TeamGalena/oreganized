@@ -1,5 +1,6 @@
 package galena.oreganized.data;
 
+import com.simibubi.create.AllTags;
 import galena.oreganized.ModCompat;
 import galena.oreganized.Oreganized;
 import galena.oreganized.index.DyeColors;
@@ -95,8 +96,10 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
         tag(BlockTags.DOORS).add(OBlocks.LEAD_DOOR.get());
         OBlocks.SILVER_TRAPDOORS.all().forEach(it -> tag(BlockTags.TRAPDOORS).add(it.get()));
         tag(BlockTags.TRAPDOORS).add(OBlocks.LEAD_TRAPDOOR.get());
+        tag(BlockTags.BUTTONS).add(OBlocks.STURDY_BUTTON.get());
         tag(BlockTags.SMALL_FLOWERS).add(OBlocks.WHITE_DATURA.get());
         tag(BlockTags.SMALL_FLOWERS).add(OBlocks.PURPLE_DATURA.get());
+
         // Forge
         tag(Tags.Blocks.ORES).addTags(OTags.Blocks.ORES_SILVER, OTags.Blocks.ORES_LEAD);
         tag(Tags.Blocks.ORE_RATES_SINGULAR).addTags(OTags.Blocks.ORES_SILVER, OTags.Blocks.ORES_LEAD);
@@ -293,5 +296,8 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
 
         tag(OTags.Blocks.BOMB_BREAKABLE).add(OBlocks.SHRAPNEL_BOMB.get());
         tag(OTags.Blocks.CANNON_TNTS).add(OBlocks.SHRAPNEL_BOMB.get());
+
+        // Create
+        tag(AllTags.AllBlockTags.WRENCH_PICKUP.tag).add(OBlocks.STURDY_LEVER.get());
     }
 }
