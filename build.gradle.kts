@@ -72,6 +72,7 @@ dependencies {
         isTransitive = false
     }
     modImplementation(pack.modrinth.supplementaries)
+    modIncludeCompileOnly(libs.ponder)
 
     // For dev testing
     // runtimeOnly(pack.modrinth.scannable)

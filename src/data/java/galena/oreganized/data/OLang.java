@@ -4,6 +4,7 @@ import galena.oreganized.Oreganized;
 import galena.oreganized.client.tooltips.ClientThermometerTooltip;
 import galena.oreganized.data.provider.OLangProvider;
 import galena.oreganized.index.*;
+import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.entity.EntityType;
@@ -115,6 +116,8 @@ public class OLang extends OLangProvider {
         for (Holder<? extends EntityType<?>> entities : OEntityTypes.ENTITIES.getEntries()) {
             tryEntity(entities);
         }
+
+        PonderIndex.getLangAccess().provideLang(Oreganized.MOD_ID, this::add);
     }
 
 }
