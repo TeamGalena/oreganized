@@ -290,7 +290,7 @@ public abstract class ORecipeProvider extends RecipeProvider {
         var id = RecipeBuilder.getDefaultRecipeId(to);
         scribeConversion(from, to).save(output, id);
         Conditional.with(this, List.of(new ModLoaded(ModCompat.FARMERS_DELIGHT_ID)), () -> {
-            scribeCuttingBoard(from, to).save(output, id);
+            scribeCuttingBoard(from, to).save(output, id.withPrefix("cutting/"));
         });
     }
 
