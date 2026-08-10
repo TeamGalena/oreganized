@@ -349,7 +349,7 @@ public class ORecipes extends ORecipeProvider {
                         .requires(OTags.Items.INGOTS_GOLD)
                         .unlockedBy("has_gold", has(OTags.Items.INGOTS_GOLD))
                         .unlockedBy("has_silver", has(OTags.Items.INGOTS_SILVER)),
-                "create"
+                ModCompat.CREATE
         ).save(consumer);
 
         processing(CompactingRecipe::new, "molten_lead")
@@ -358,14 +358,14 @@ public class ORecipes extends ORecipeProvider {
                 .build(consumer);
 
         processing(CrushingRecipe::new, "glance")
-                .output(0.8F, ResourceLocation.fromNamespaceAndPath("create", "crushed_raw_lead"), 1)
+                .output(0.8F, ResourceLocation.fromNamespaceAndPath(ModCompat.CREATE, "crushed_raw_lead"), 1)
                 .output(0.8F, OItems.LEAD_NUGGET.get())
                 .require(OBlocks.GLANCE.get())
                 .duration(250)
                 .build(consumer);
 
         processing(CrushingRecipe::new, "glance_recycling")
-                .output(0.8F, ResourceLocation.fromNamespaceAndPath("create", "crushed_raw_lead"), 1)
+                .output(0.8F, ResourceLocation.fromNamespaceAndPath(ModCompat.CREATE, "crushed_raw_lead"), 1)
                 .output(0.8F, OItems.LEAD_NUGGET.get())
                 .require(OTags.Items.STONE_TYPES_GLANCE)
                 .duration(250)
@@ -475,6 +475,8 @@ public class ORecipes extends ORecipeProvider {
                 .pattern("##")
                 .unlockedBy("has_silver", has(OTags.Items.INGOTS_SILVER))
                 .save(consumer);
+
+        OCollections.tarnishedBlocks().forEach(it -> brushing(consumer, it));
     }
 
 }

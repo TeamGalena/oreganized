@@ -92,7 +92,7 @@ public class Oreganized {
 
         modBus.addListener(OreganizedNetwork::register);
 
-        var createLoaded = ModList.get().getModContainerById("create")
+        var createLoaded = ModList.get().getModContainerById(ModCompat.CREATE)
                 .filter(it -> it.getModInfo().getVersion().getMajorVersion() >= 6)
                 .isPresent();
 

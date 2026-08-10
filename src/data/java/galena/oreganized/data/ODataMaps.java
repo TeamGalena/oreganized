@@ -52,17 +52,7 @@ public class ODataMaps extends DataMapProvider {
             waxables.add(unwaxed, new Waxable(waxed.get()), false, conditions);
         });
 
-        registerTarnishable(OBlocks.SILVER_BLOCKS);
-        registerTarnishable(OBlocks.SILVER_BULBS);
-        registerTarnishable(OBlocks.SILVER_BARS);
-        registerTarnishable(OBlocks.SILVER_DOORS);
-        registerTarnishable(OBlocks.SILVER_TRAPDOORS);
-        registerTarnishable(OBlocks.SILVER_LATTICES);
-        registerTarnishable(OBlocks.SILVER_PILLARS);
-        registerTarnishable(OBlocks.CHISELED_SILVER);
-        registerTarnishable(OBlocks.CUT_SILVERS);
-        registerTarnishable(OBlocks.CUT_SILVER_SLABS);
-        registerTarnishable(OBlocks.CUT_SILVER_STAIRS);
+        OCollections.tarnishedBlocks().forEach(this::registerTarnishable);
     }
 
     private void registerTarnishable(TarnishedBlocks<?> blocks) {

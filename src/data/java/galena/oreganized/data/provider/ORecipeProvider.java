@@ -10,6 +10,7 @@ import galena.oreganized.ModCompat;
 import galena.oreganized.Oreganized;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
+import galena.oreganized.index.TarnishedBlocks;
 import galena.oreganized.world.recipe.ScribeRecipe;
 
 import java.util.Collection;
@@ -258,14 +259,14 @@ public abstract class ORecipeProvider extends RecipeProvider {
     public <R extends StandardProcessingRecipe<?>> StandardProcessingRecipe.Builder<R> processing(StandardProcessingRecipe.Factory<R> factory, String id) {
         return whenLoaded(
                 new StandardProcessingRecipe.Builder<>(factory, Oreganized.modLoc(id)),
-                "create"
+                ModCompat.CREATE
         );
     }
 
     public <R extends ItemApplicationRecipe> ItemApplicationRecipe.Builder<R> application(ItemApplicationRecipe.Factory<R> factory, String id) {
         return whenLoaded(
                 new ItemApplicationRecipe.Builder<>(factory, Oreganized.modLoc(id)),
-                "create"
+                ModCompat.CREATE
         );
     }
 
@@ -284,6 +285,18 @@ public abstract class ORecipeProvider extends RecipeProvider {
 
     public CuttingBoardRecipeBuilder scribeCuttingBoard(ItemLike from, ItemLike to) {
         return CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(from), Ingredient.of(OItems.SCRIBE.asItem()), to);
+    }
+
+    public void brushing(RecipeOutput output, TarnishedBlocks<?> blocks) {
+        brushing(output, blocks.tarnished(), blocks.blemished());
+        brushing(output, blocks.blemished(), blocks.base());
+    }
+
+    public void brushing(RecipeOutput output, ItemLike from, ItemLike to) {
+        Conditional.with(this, List.of(new ModLoaded(ModCompat.FARMERS_DELIGHT_ID)), () -> {
+            CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(from), Ingredient.of(Items.BRUSH), to)
+                    .save(output, RecipeBuilder.getDefaultRecipeId(from).withPrefix("brushing/"));
+        });
     }
 
     public void scribeConversionAndCutting(RecipeOutput output, Block from, Block to) {

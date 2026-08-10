@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "oreganized:blemished_silver_pillar"
+    }
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 1,
+        "id": "oreganized:silver_pillar"
+      }
+    }
+  ],
+  "tool": {
+    "item": "minecraft:brush"
+  }
+}

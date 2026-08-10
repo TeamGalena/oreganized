@@ -1,5 +1,6 @@
 package galena.oreganized.compat.ponder;
 
+import galena.oreganized.ModCompat;
 import galena.oreganized.Oreganized;
 import net.createmod.ponder.api.registration.PonderPlugin;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
@@ -10,7 +11,7 @@ import net.neoforged.fml.ModList;
 
 public class OreganizedPonderPlugin implements PonderPlugin {
 
-    static boolean CREATED_LOADED = ModList.get().isLoaded("create");
+    static boolean CREATED_LOADED = ModList.get().isLoaded(ModCompat.CREATE);
 
     @Override
     public String getModId() {
