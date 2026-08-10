@@ -21,6 +21,7 @@ import galena.oreganized.content.block.SilverTrapdoorBlock;
 import galena.oreganized.content.block.SpottedGlanceBlock;
 import galena.oreganized.content.block.SturdyButtonBlock;
 import galena.oreganized.content.block.SturdyLeverBlock;
+
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -28,6 +29,7 @@ import java.util.function.IntFunction;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
+
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.item.BlockItem;
@@ -127,14 +129,9 @@ public class OBlocks {
     }
 
     public static final TarnishedBlocks<Block> SILVER_BLOCKS = registerTarnished("silver_block", $ -> new Block(silverProperties()));
-    public static final TarnishedBlocks<Block> SILVER_BULBS = registerTarnished("silver_bulb", i -> {
-        var lightLevel = switch (i) {
-            case 0 -> 4;
-            case 1 -> 10;
-            default -> 15;
-        };
-        return new SilverBulbBlock(silverProperties().lightLevel($ -> lightLevel));
-    });
+    public static final TarnishedBlocks<Block> SILVER_BULBS = registerTarnished("silver_bulb", i ->
+            new SilverBulbBlock(silverProperties().lightLevel(SilverBulbBlock.lightLevel(i)))
+    );
     public static final TarnishedBlocks<Block> CUT_SILVERS = registerTarnished("cut_silver", $ -> new Block(silverProperties()));
     public static final TarnishedBlocks<Block> SILVER_LATTICES = registerTarnished("silver_lattice", $ -> new Block(silverProperties()));
 
