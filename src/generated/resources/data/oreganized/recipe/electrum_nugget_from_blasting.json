@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.1,
+  "ingredient": [
+    {
+      "item": "oreganized:electrum_boots"
+    },
+    {
+      "item": "oreganized:electrum_leggings"
+    },
+    {
+      "item": "oreganized:electrum_chestplate"
+    },
+    {
+      "item": "oreganized:electrum_helmet"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "oreganized:electrum_nugget"
+  }
+}

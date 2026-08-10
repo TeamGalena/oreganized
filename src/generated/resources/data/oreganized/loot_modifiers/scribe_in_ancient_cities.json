@@ -6,12 +6,12 @@
       "loot_table_id": "minecraft:chests/ancient_city"
     },
     {
-      "condition": "minecraft:random_chance",
-      "chance": 0.15
+      "chance": 0.15,
+      "condition": "minecraft:random_chance"
     }
   ],
   "item": {
-    "id": "oreganized:scribe",
-    "Count": 1
+    "count": 1,
+    "id": "oreganized:scribe"
   }
 }

@@ -2,8 +2,10 @@ package galena.oreganized.client;
 
 import com.mojang.math.Axis;
 import galena.oreganized.Oreganized;
-import galena.oreganized.client.extensions.ElectrumArmorClientExtensions;
+import galena.oreganized.client.extensions.CustomArmorModelExtensions;
 import galena.oreganized.client.extensions.MoltenLeadClientExtensions;
+import galena.oreganized.client.model.ElectrumArmorModel;
+import galena.oreganized.client.model.SilverArmorModel;
 import galena.oreganized.client.render.entity.LeadBoltRender;
 import galena.oreganized.client.render.entity.ShrapnelBombMinecartRender;
 import galena.oreganized.client.render.entity.ShrapnelBombRender;
@@ -30,6 +32,7 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -140,7 +143,8 @@ public class OreganizedClient {
     @SubscribeEvent
     public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
         event.registerFluidType(new MoltenLeadClientExtensions(), OFluids.MOLTEN_LEAD_TYPE);
-        event.registerItem(new ElectrumArmorClientExtensions(), OItems.ELECTRUM_HELMET, OItems.ELECTRUM_CHESTPLATE, OItems.ELECTRUM_LEGGINGS, OItems.ELECTRUM_BOOTS);
+        event.registerItem(new CustomArmorModelExtensions(ElectrumArmorModel::new, ElectrumArmorModel::createBodyLayer), OItems.electrumArmor().toArray(Holder[]::new));
+        event.registerItem(new CustomArmorModelExtensions(SilverArmorModel::new, SilverArmorModel::createBodyLayer), OItems.silverArmor().toArray(Holder[]::new));
     }
 
     @EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT)

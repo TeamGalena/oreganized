@@ -50,6 +50,7 @@ public class OreganizedDatagen {
         generator.addProvider(server, new ODamageTypeTags(output, lookupProvider, helper));
         generator.addProvider(server, new OPaintingVariantTags(output, lookupProvider, helper));
         generator.addProvider(server, new ODataMaps(output, lookupProvider));
+        generator.addProvider(server, new OLootModifiers(output, lookupProvider));
 
         generator.addProvider(server, new PackMetadataGenerator(output).add(PackMetadataSection.TYPE, new PackMetadataSection(
                 Component.literal("Oreganized resources"),

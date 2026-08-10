@@ -1,0 +1,13 @@
+name = "Freecam"
+filename = "freecam-neoforge-1.3.0+mc1.21.jar"
+side = "client"
+
+[download]
+url = "https://cdn.modrinth.com/data/XeEZ3fK2/versions/ROfcbxxe/freecam-neoforge-1.3.0%2Bmc1.21.jar"
+hash-format = "sha512"
+hash = "06cfa2acdde8320ca19edf3f49e7a3860cc079bbad02fda493459109d745da237e19ff6a28d879d4c863ea4cd24d83b193ec82dd351540ad27991e239f1e7a72"
+
+[update]
+[update.modrinth]
+mod-id = "XeEZ3fK2"
+version = "ROfcbxxe"

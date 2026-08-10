@@ -104,10 +104,10 @@ public class OItemTags extends ItemTagsProvider {
                 .add(OItems.SILVER_INGOT.get())
                 .add(OItems.ELECTRUM_INGOT.get());
 
-        tag(ItemTags.HEAD_ARMOR).add(OItems.ELECTRUM_HELMET.get());
-        tag(ItemTags.CHEST_ARMOR).add(OItems.ELECTRUM_CHESTPLATE.get());
-        tag(ItemTags.LEG_ARMOR).add(OItems.ELECTRUM_LEGGINGS.get());
-        tag(ItemTags.FOOT_ARMOR).add(OItems.ELECTRUM_BOOTS.get());
+        tag(ItemTags.HEAD_ARMOR).add(OItems.ELECTRUM_HELMET.get(), OItems.SILVER_HELMET.get());
+        tag(ItemTags.CHEST_ARMOR).add(OItems.ELECTRUM_CHESTPLATE.get(), OItems.SILVER_CHESTPLATE.get());
+        tag(ItemTags.LEG_ARMOR).add(OItems.ELECTRUM_LEGGINGS.get(), OItems.SILVER_LEGGINGS.get());
+        tag(ItemTags.FOOT_ARMOR).add(OItems.ELECTRUM_BOOTS.get(), OItems.SILVER_BOOTS.get());
 
         tag(ItemTags.TRIM_MATERIALS).add(OItems.LEAD_INGOT.get(), OItems.SILVER_INGOT.get(), OItems.ELECTRUM_INGOT.get());
         tag(ItemTags.SMALL_FLOWERS).add(OBlocks.WHITE_DATURA.get().asItem());

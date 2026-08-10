@@ -5,19 +5,10 @@ import static galena.oreganized.ModCompat.FARMERS_DELIGHT_ID;
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import galena.oreganized.Oreganized;
 import galena.oreganized.compat.farmers_delight.FarmersDelightCompat;
-import galena.oreganized.content.item.BushHammerItem;
-import galena.oreganized.content.item.DeviceItem;
-import galena.oreganized.content.item.ElectrumArmorItem;
-import galena.oreganized.content.item.FlintAndPewterItem;
-import galena.oreganized.content.item.LeadBoltItem;
-import galena.oreganized.content.item.MinecartShrapnelBombItem;
-import galena.oreganized.content.item.OSmithingTemplateItem;
-import galena.oreganized.content.item.ScribeItem;
-import galena.oreganized.content.item.SilverMirrorItem;
-import galena.oreganized.content.item.SpeedometerItem;
-import galena.oreganized.content.item.ThermometerItem;
+import galena.oreganized.content.item.*;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.AxeItem;
@@ -92,6 +83,23 @@ public class OItems {
             () -> new ElectrumArmorItem(ArmorItem.Type.LEGGINGS));
     public static final DeferredItem<ArmorItem> ELECTRUM_BOOTS = HELPER.createItem("electrum_boots",
             () -> new ElectrumArmorItem(ArmorItem.Type.BOOTS));
+
+    public static Stream<DeferredItem<ArmorItem>> electrumArmor() {
+        return Stream.of(ELECTRUM_BOOTS, ELECTRUM_LEGGINGS, ELECTRUM_CHESTPLATE, ELECTRUM_HELMET);
+    }
+
+    public static final DeferredItem<ArmorItem> SILVER_HELMET = HELPER.createItem("silver_helmet",
+            () -> new SilverArmorItem(ArmorItem.Type.HELMET));
+    public static final DeferredItem<ArmorItem> SILVER_CHESTPLATE = HELPER.createItem("silver_chestplate",
+            () -> new SilverArmorItem(ArmorItem.Type.CHESTPLATE));
+    public static final DeferredItem<ArmorItem> SILVER_LEGGINGS = HELPER.createItem("silver_leggings",
+            () -> new SilverArmorItem(ArmorItem.Type.LEGGINGS));
+    public static final DeferredItem<ArmorItem> SILVER_BOOTS = HELPER.createItem("silver_boots",
+            () -> new SilverArmorItem(ArmorItem.Type.BOOTS));
+
+    public static Stream<DeferredItem<ArmorItem>> silverArmor() {
+        return Stream.of(SILVER_BOOTS, SILVER_LEGGINGS, SILVER_CHESTPLATE, SILVER_HELMET);
+    }
 
     public static final DeferredItem<Item> LEAD_BOLT = HELPER.createItem("lead_bolt", () -> new LeadBoltItem(new Item.Properties()));
 

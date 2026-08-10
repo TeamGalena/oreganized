@@ -6,12 +6,12 @@
       "loot_table_id": "minecraft:chests/pillager_outpost"
     },
     {
-      "condition": "minecraft:random_chance",
-      "chance": 0.7
+      "chance": 0.7,
+      "condition": "minecraft:random_chance"
     }
   ],
   "item": {
-    "id": "oreganized:lead_bolt",
-    "Count": 2
+    "count": 2,
+    "id": "oreganized:lead_bolt"
   }
 }

@@ -16,7 +16,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 
 public class ElectrumArmorItem extends ArmorItem {
-    private static final ResourceLocation TEXTURE = Oreganized.modLoc("textures/entity/electrum_armor.png");
+    private static final ResourceLocation TEXTURE = Oreganized.modLoc("textures/models/armor/electrum.png");
     private final Supplier<ItemAttributeModifiers> modifiers;
 
     public ElectrumArmorItem(ArmorItem.Type slot) {

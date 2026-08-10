@@ -6,12 +6,12 @@
       "loot_table_id": "minecraft:chests/woodland_mansion"
     },
     {
-      "condition": "minecraft:random_chance",
-      "chance": 0.7
+      "chance": 0.7,
+      "condition": "minecraft:random_chance"
     }
   ],
   "item": {
-    "id": "oreganized:electrum_upgrade_smithing_template",
-    "Count": 1
+    "count": 1,
+    "id": "oreganized:electrum_upgrade_smithing_template"
   }
 }

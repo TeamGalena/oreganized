@@ -21,6 +21,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.registries.DeferredItem;
 import org.infernalstudios.shieldexp.init.ItemsInit;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
@@ -147,10 +148,8 @@ public class OTabs {
         if (tab == CreativeModeTabs.COMBAT) {
             putBefore(event, Items.DIAMOND_SWORD, OItems.ELECTRUM_SWORD);
             putAfter(event, Items.DIAMOND_AXE, OItems.ELECTRUM_AXE);
-            putBefore(event, Items.NETHERITE_HELMET, OItems.ELECTRUM_HELMET);
-            putAfter(event, OItems.ELECTRUM_HELMET.get(), OItems.ELECTRUM_CHESTPLATE);
-            putAfter(event, OItems.ELECTRUM_CHESTPLATE.get(), OItems.ELECTRUM_LEGGINGS);
-            putAfter(event, OItems.ELECTRUM_LEGGINGS.get(), OItems.ELECTRUM_BOOTS);
+            putBefore(event, Items.NETHERITE_HELMET, OItems.electrumArmor().toArray(DeferredItem[]::new));
+            putBefore(event, Items.GOLDEN_HELMET, OItems.silverArmor().toArray(DeferredItem[]::new));
             putBefore(event, Items.ARROW, OItems.LEAD_BOLT);
         }
 

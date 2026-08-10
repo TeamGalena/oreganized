@@ -7,6 +7,8 @@ import com.teamabnormals.blueprint.core.registry.BlueprintDataPackRegistries;
 import galena.oreganized.Oreganized;
 import galena.oreganized.compat.ColorCompat;
 import galena.oreganized.index.OBlocks;
+import java.util.Map;
+import java.util.function.Predicate;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -14,9 +16,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.StructureTags;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
-
-import java.util.Map;
-import java.util.function.Predicate;
 
 public class OStructurePalettes {
 

@@ -159,6 +159,9 @@ public class ORecipes extends ORecipeProvider {
         smithingElectrum(() -> Items.DIAMOND_LEGGINGS, OItems.ELECTRUM_LEGGINGS).save(consumer, Oreganized.modLoc("electrum_leggings"));
         smithingElectrum(() -> Items.DIAMOND_BOOTS, OItems.ELECTRUM_BOOTS).save(consumer, Oreganized.modLoc("electrum_boots"));
 
+        armorRecycling(OItems.ELECTRUM_NUGGET.get(), OItems.electrumArmor().toList()).save(consumer, Oreganized.modLoc("electrum_nugget_from_blasting"));
+        armorRecycling(OItems.SILVER_NUGGET.get(), OItems.silverArmor().toList()).save(consumer, Oreganized.modLoc("silver_nugget_from_blasting"));
+
         OBlocks.CRYSTAL_GLASS.forEach((color, crystalGlass) -> {
             var glass = ColorCompat.getColoredBlock("stained_glass", color);
             dyed(color, crystalGlass(crystalGlass, glass)).save(consumer);
