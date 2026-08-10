@@ -28,7 +28,9 @@ import galena.oreganized.index.OStructures;
 import galena.oreganized.index.OTags;
 import galena.oreganized.network.OreganizedNetwork;
 import galena.oreganized.world.AddItemLootModifier;
+
 import java.util.stream.Stream;
+
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.core.dispenser.ProjectileDispenseBehavior;
 import net.minecraft.resources.ResourceLocation;
@@ -48,7 +50,6 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.neoforge.common.BasicItemListing;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
@@ -122,9 +123,7 @@ public class Oreganized {
             return true;
         });
 
-        if (!FMLLoader.isProduction()) {
-            forgeBus.addListener(ODebugCommands::register);
-        }
+        forgeBus.addListener(ODebugCommands::register);
     }
 
     private void injectVillagerTrades(VillagerTradesEvent event) {
