@@ -1,8 +1,8 @@
 # <meta>
 #    <source>@pssbletrngle/github-meta-generator</source>
-#    <version>1.0.119</version>
-#    <timestamp>2026-08-11T16:23:29.741Z</timestamp>
-#    <hash>b0c2733a3937ddbb</hash>
+#    <version>1.0.120</version>
+#    <timestamp>2026-08-11T16:32:47.548Z</timestamp>
+#    <hash>e6eaacbda70ba2f9</hash>
 # </meta>
 
 name: Test
@@ -84,10 +84,18 @@ jobs:
 
       - name: Publish -SNAPSHOT version
         if: ${{ github.event_name != 'pull_request' && fromJSON(steps.draft.outputs.matched) }}
-        run: ./gradlew publish
+        run: ./gradlew upload
         continue-on-error: true
         env:
           NEXUS_USER: ${{ secrets.NEXUS_USER }}
           NEXUS_TOKEN: ${{ secrets.NEXUS_TOKEN }}
           RELEASE_VERSION: ${{ steps.draft.outputs.tag }}
           SNAPSHOT: true
+
+      - name: Publish Release Metadata
+        if: ${{ github.event_name != 'pull_request' && fromJSON(steps.draft.outputs.matched) }}
+        uses: actions/upload-artifact@v7
+        with:
+          archive: false
+          path: build/release.json
+          retention-days: 1
