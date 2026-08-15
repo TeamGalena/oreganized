@@ -157,7 +157,7 @@ public class GargoyleScenes {
         scene.idle(10);
 
         scene.overlay().showText(70)
-                .text("You can also feed it using a dispenser")
+                .sharedText("gargoyle_automate.dispenser")
                 .placeNearTarget()
                 .pointAt(util.vector().blockSurface(dispenserPos, Direction.SOUTH));
         scene.idle(90);

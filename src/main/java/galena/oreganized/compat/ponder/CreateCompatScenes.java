@@ -68,7 +68,7 @@ public class CreateCompatScenes {
         scene.world().showSection(cog, Direction.NORTH);
 
         scene.overlay().showText(70)
-                .text("Mechanical arms can be used to feed them")
+                .sharedText("gargoyle_automate.mechanical_arm")
                 .placeNearTarget()
                 .pointAt(util.vector().blockSurface(armPos, Direction.SOUTH));
         scene.idle(90);
