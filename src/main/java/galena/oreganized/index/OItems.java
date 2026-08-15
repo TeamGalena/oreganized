@@ -34,43 +34,68 @@ public class OItems {
     }
 
     // Discs
-    public static final DeferredItem<Item> MUSIC_DISC_STRUCTURE = HELPER.createItem("music_disc_structure", () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ORecords.STRUCTURE)));
+    public static final DeferredItem<Item> MUSIC_DISC_STRUCTURE = HELPER.createItem("music_disc_structure",
+            () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ORecords.STRUCTURE)));
 
     // Crafting Materials
-    public static final DeferredItem<Item> RAW_SILVER = HELPER.createItem("raw_silver", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> SILVER_INGOT = HELPER.createItem("silver_ingot", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> SILVER_NUGGET = HELPER.createItem("silver_nugget", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> RAW_SILVER = HELPER.createItem("raw_silver",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> SILVER_INGOT = HELPER.createItem("silver_ingot",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> SILVER_NUGGET = HELPER.createItem("silver_nugget",
+            () -> new Item(new Item.Properties()));
 
-    public static final DeferredItem<Item> RAW_LEAD = HELPER.createItem("raw_lead", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> LEAD_INGOT = HELPER.createItem("lead_ingot", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> LEAD_NUGGET = HELPER.createItem("lead_nugget", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> RAW_LEAD = HELPER.createItem("raw_lead",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> LEAD_INGOT = HELPER.createItem("lead_ingot",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> LEAD_NUGGET = HELPER.createItem("lead_nugget",
+            () -> new Item(new Item.Properties()));
 
-    public static final DeferredItem<Item> ELECTRUM_INGOT = HELPER.createItem("electrum_ingot", () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> NETHERITE_NUGGET = HELPER.createItem("netherite_nugget", () -> new Item(new Item.Properties().fireResistant()));
-    public static final DeferredItem<Item> ELECTRUM_NUGGET = HELPER.createItem("electrum_nugget", () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> ELECTRUM_INGOT = HELPER.createItem("electrum_ingot",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> NETHERITE_NUGGET = HELPER.createItem("netherite_nugget",
+            () -> new Item(new Item.Properties().fireResistant()));
+    public static final DeferredItem<Item> ELECTRUM_NUGGET = HELPER.createItem("electrum_nugget",
+            () -> new Item(new Item.Properties()));
 
     // Tools
-    public static final DeferredItem<Item> BUSH_HAMMER = HELPER.createItem("bush_hammer", () -> new BushHammerItem(OItemTiers.LEAD, new Item.Properties().stacksTo(1)));
-    public static final DeferredItem<Item> SCRIBE = HELPER.createItem("scribe", () -> new ScribeItem(new Item.Properties().durability(250)));
+    public static final DeferredItem<Item> BUSH_HAMMER = HELPER.createItem("bush_hammer",
+            () -> new BushHammerItem(OItemTiers.LEAD, new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> SCRIBE = HELPER.createItem("scribe",
+            () -> new ScribeItem(new Item.Properties().durability(250)));
 
-    public static final DeferredItem<Item> ELECTRUM_SWORD = HELPER.createItem("electrum_sword", () -> new SwordItem(OItemTiers.ELECTRUM, new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.ELECTRUM, 3, -2.4F))));
-    public static final DeferredItem<Item> ELECTRUM_SHOVEL = HELPER.createItem("electrum_shovel", () -> new ShovelItem(OItemTiers.ELECTRUM, new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.ELECTRUM, 1.5F, -3.0F))));
-    public static final DeferredItem<Item> ELECTRUM_PICKAXE = HELPER.createItem("electrum_pickaxe", () -> new PickaxeItem(OItemTiers.ELECTRUM, new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.ELECTRUM, 1.0F, -2.8F))));
-    public static final DeferredItem<Item> ELECTRUM_AXE = HELPER.createItem("electrum_axe", () -> new AxeItem(OItemTiers.ELECTRUM, new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.ELECTRUM, 6.0F, -3.1F))));
-    public static final DeferredItem<Item> ELECTRUM_HOE = HELPER.createItem("electrum_hoe", () -> new HoeItem(OItemTiers.ELECTRUM, new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.ELECTRUM, -2.0F, -1.0F))));
+    public static final DeferredItem<Item> ELECTRUM_SWORD = HELPER.createItem("electrum_sword",
+            () -> new SwordItem(OItemTiers.ELECTRUM, new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.ELECTRUM, 3, -2.4F))));
+    public static final DeferredItem<Item> ELECTRUM_SHOVEL = HELPER.createItem("electrum_shovel",
+            () -> new ShovelItem(OItemTiers.ELECTRUM, new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.ELECTRUM, 1.5F, -3.0F))));
+    public static final DeferredItem<Item> ELECTRUM_PICKAXE = HELPER.createItem("electrum_pickaxe",
+            () -> new PickaxeItem(OItemTiers.ELECTRUM, new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.ELECTRUM, 1.0F, -2.8F))));
+    public static final DeferredItem<Item> ELECTRUM_AXE = HELPER.createItem("electrum_axe",
+            () -> new AxeItem(OItemTiers.ELECTRUM, new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.ELECTRUM, 6.0F, -3.1F))));
+    public static final DeferredItem<Item> ELECTRUM_HOE = HELPER.createItem("electrum_hoe",
+            () -> new HoeItem(OItemTiers.ELECTRUM, new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.ELECTRUM, -2.0F, -1.0F))));
 
     @SuppressWarnings({"Convert2MethodRef", "FunctionalExpressionCanBeFolded"})
-    public static final DeferredItem<Item> ELECTRUM_KNIFE = HELPER.createItem("electrum_knife", compat(FARMERS_DELIGHT_ID, it -> FarmersDelightCompat.KNIFE_FACTORY.apply(it), new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.ELECTRUM, 0.5F, -2.0F))));
-    public static final DeferredItem<Item> ELECTRUM_SHIELD = HELPER.createItem("electrum_shield", () -> new ShieldItem(new Item.Properties().durability(363)));
-    public static final DeferredItem<Item> ELECTRUM_MACHETE = HELPER.createItem("electrum_machete", () -> new SwordItem(OItemTiers.ELECTRUM,  new Item.Properties()));
+    public static final DeferredItem<Item> ELECTRUM_KNIFE = HELPER.createItem("electrum_knife",
+            compat(FARMERS_DELIGHT_ID, it -> FarmersDelightCompat.KNIFE_FACTORY.apply(it), new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.ELECTRUM, 0.5F, -2.0F))));
+    public static final DeferredItem<Item> ELECTRUM_SHIELD = HELPER.createItem("electrum_shield",
+            () -> new ShieldItem(new Item.Properties().durability(363)));
+    public static final DeferredItem<Item> ELECTRUM_MACHETE = HELPER.createItem("electrum_machete",
+            () -> new SwordItem(OItemTiers.ELECTRUM, new Item.Properties()));
 
 
     // Misc Tools
-    public static final DeferredItem<Item> THERMOMETER = HELPER.createItem("thermometer", () -> new ThermometerItem(new Item.Properties().component(ODataComponents.LOCKED, false).component(ODataComponents.HEAT_LEVEL, 2)));
-    public static final DeferredItem<Item> SPEEDOMETER = HELPER.createItem("speedometer", () -> new SpeedometerItem(new Item.Properties()));
-    public static final DeferredItem<Item> UNKNOWN_DEVICE = HELPER.createItem("unknown_device", () -> new DeviceItem(new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant()));
-    public static final DeferredItem<Item> SILVER_MIRROR = HELPER.createItem("silver_mirror", () -> new SilverMirrorItem(new Item.Properties().stacksTo(1)));
-    public static final DeferredItem<Item> MOLTEN_LEAD_BUCKET = HELPER.createItem("molten_lead_bucket", () -> new BucketItem(OFluids.MOLTEN_LEAD.get(), new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET)));
+    public static final DeferredItem<Item> THERMOMETER = HELPER.createItem("thermometer",
+            () -> new ThermometerItem(new Item.Properties().component(ODataComponents.LOCKED, false).component(ODataComponents.HEAT_LEVEL, 2)));
+    public static final DeferredItem<Item> SPEEDOMETER = HELPER.createItem("speedometer",
+            () -> new SpeedometerItem(new Item.Properties()));
+    public static final DeferredItem<Item> UNKNOWN_DEVICE = HELPER.createItem("unknown_device",
+            () -> new DeviceItem(new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant()));
+    public static final DeferredItem<Item> SILVER_MIRROR = HELPER.createItem("silver_mirror",
+            () -> new SilverMirrorItem(new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> MOLTEN_LEAD_BUCKET = HELPER.createItem("molten_lead_bucket",
+            () -> new BucketItem(OFluids.MOLTEN_LEAD.get(), new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET)));
 
     // Armor
     public static final DeferredItem<Item> ELECTRUM_UPGRADE_SMITHING_TEMPLATE = HELPER.createItem("electrum_upgrade_smithing_template",
@@ -101,12 +126,15 @@ public class OItems {
         return Stream.of(SILVER_BOOTS, SILVER_LEGGINGS, SILVER_CHESTPLATE, SILVER_HELMET);
     }
 
-    public static final DeferredItem<Item> LEAD_BOLT = HELPER.createItem("lead_bolt", () -> new LeadBoltItem(new Item.Properties()));
+    public static final DeferredItem<Item> LEAD_BOLT = HELPER.createItem("lead_bolt",
+            () -> new LeadBoltItem(new Item.Properties()));
 
-    public static final DeferredItem<Item> FLINT_AND_PEWTER = HELPER.createItem("flint_and_pewter", () -> new FlintAndPewterItem(new Item.Properties().durability(64)));
+    public static final DeferredItem<Item> FLINT_AND_PEWTER = HELPER.createItem("flint_and_pewter",
+            () -> new FlintAndPewterItem(new Item.Properties().durability(64)));
 
     // Transportation
-    public static final DeferredItem<Item> SHRAPNEL_BOMB_MINECART = HELPER.createItem("shrapnel_bomb_minecart", () -> new MinecartShrapnelBombItem(AbstractMinecart.Type.TNT, OEntityTypes.SHRAPNEL_BOMB_MINECART));
+    public static final DeferredItem<Item> SHRAPNEL_BOMB_MINECART = HELPER.createItem("shrapnel_bomb_minecart",
+            () -> new MinecartShrapnelBombItem(AbstractMinecart.Type.TNT, OEntityTypes.SHRAPNEL_BOMB_MINECART));
 
     public static void register() {
         // Load this class
