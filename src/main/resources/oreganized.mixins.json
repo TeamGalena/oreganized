@@ -29,7 +29,8 @@
     "client.GuiMixin",
     "client.HumanoidArmorLayerAccessor",
     "client.HumanoidArmorLayerMixin",
-    "client.HumanoidModelMixin"
+    "client.HumanoidModelMixin",
+    "PlayerMixin"
   ],
   "server": [],
   "injectors": {

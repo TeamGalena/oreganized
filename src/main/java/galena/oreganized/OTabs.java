@@ -131,10 +131,8 @@ public class OTabs {
         }
 
         if (tab == CreativeModeTabs.TOOLS_AND_UTILITIES) {
-            putBefore(event, Items.NETHERITE_SHOVEL, OItems.ELECTRUM_SHOVEL);
-            putAfter(event, OItems.ELECTRUM_SHOVEL.get(), OItems.ELECTRUM_PICKAXE);
-            putAfter(event, OItems.ELECTRUM_PICKAXE.get(), OItems.ELECTRUM_AXE);
-            putAfter(event, OItems.ELECTRUM_AXE.get(), OItems.ELECTRUM_HOE);
+            putBefore(event, Items.NETHERITE_SHOVEL, OItems.ELECTRUM_SHOVEL, OItems.ELECTRUM_PICKAXE, OItems.ELECTRUM_AXE, OItems.ELECTRUM_HOE);
+            putBefore(event, Items.DIAMOND_SHOVEL, OItems.SILVER_SHOVEL, OItems.SILVER_PICKAXE, OItems.SILVER_AXE, OItems.SILVER_HOE);
             putBefore(event, Items.MILK_BUCKET, OItems.MOLTEN_LEAD_BUCKET);
             putBefore(event, Items.SPYGLASS, OItems.SILVER_MIRROR);
             putBefore(event, OItems.SILVER_MIRROR.get(), OItems.THERMOMETER);
@@ -146,9 +144,9 @@ public class OTabs {
         }
 
         if (tab == CreativeModeTabs.COMBAT) {
-            putBefore(event, Items.DIAMOND_SWORD, OItems.ELECTRUM_SWORD);
+            putAfter(event, Items.DIAMOND_SWORD, OItems.ELECTRUM_SWORD);
             putAfter(event, Items.DIAMOND_AXE, OItems.ELECTRUM_AXE);
-            putBefore(event, Items.GOLDEN_SWORD, OItems.SILVER_SWORD);
+            putAfter(event, Items.GOLDEN_SWORD, OItems.SILVER_SWORD);
             putAfter(event, Items.GOLDEN_AXE, OItems.SILVER_AXE);
             putBefore(event, Items.NETHERITE_HELMET, OItems.electrumArmor().toArray(DeferredItem[]::new));
             putBefore(event, Items.GOLDEN_HELMET, OItems.silverArmor().toArray(DeferredItem[]::new));
