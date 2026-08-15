@@ -25,7 +25,7 @@ public class OreganizedConfig {
         public final ConfigValue<Integer> tarnishChecksPerMob;
         @ConfigKey("cleric_windows")
         public final ConfigValue<Boolean> replaceClericWindows;
-
+        public final ConfigValue<Double> electrumSpeedBoost;
 
         private Common(ModConfigSpec.Builder builder) {
             builder.comment("Common");
@@ -39,6 +39,7 @@ public class OreganizedConfig {
             cauldronLeadMelting = builder.comment("Can lead blocks be placed into a cauldron to melt?").define("cauldronLeadMelting", true);
             replaceClericWindows = builder.comment("Replace the stained glass windows in cleric temples with crystal glass")
                     .define("replaceClericWindows", true);
+
             builder.push("silver");
             tarnishRadius = builder.comment("The radius in blocks for the tarnishing effect of undead mobs")
                     .defineInRange("tarnishRadius", 4, 1, 20);
@@ -47,6 +48,12 @@ public class OreganizedConfig {
             tarnishChecksPerMob = builder.comment("The number of blocks around an undead mob to check every times a mob dies")
                     .defineInRange("tarnishChecksPerMob", 40, 1, 100);
             builder.pop();
+
+            builder.push("electrum");
+            electrumSpeedBoost = builder.comment("the speed boost granted by electrum armor")
+                            .defineInRange("speedBoost", 0.05, 0, 1);
+            builder.pop();
+
             builder.pop();
         }
     }
