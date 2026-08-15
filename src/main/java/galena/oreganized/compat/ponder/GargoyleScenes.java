@@ -3,7 +3,11 @@ package galena.oreganized.compat.ponder;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OParticleTypes;
+
 import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.UnaryOperator;
+
 import net.createmod.catnip.math.Pointing;
 import net.createmod.ponder.api.element.ElementLink;
 import net.createmod.ponder.api.element.EntityElement;
@@ -18,16 +22,68 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.block.ComparatorBlock;
 import net.minecraft.world.level.block.LeverBlock;
+import net.minecraft.world.level.block.RedStoneWireBlock;
 import net.minecraft.world.phys.Vec3;
 
 public class GargoyleScenes {
+    private static final List<UnaryOperator<BlockPos>> DUST_OFFSETS = List.of(
+            BlockPos::north,
+            BlockPos::east,
+            BlockPos::east,
+            BlockPos::south,
+            BlockPos::south,
+            BlockPos::south,
+            BlockPos::south,
+            BlockPos::west,
+            BlockPos::west,
+            BlockPos::west
+    );
 
     static void registerScenes(PonderSceneRegistrationHelper<Holder<?>> registrar) {
         registrar
                 .forComponents(OBlocks.GARGOYLE)
                 .addStoryBoard("gargoyle", GargoyleScenes::scareScene)
+                .addStoryBoard("gargoyle", GargoyleScenes::detectScene)
                 .addStoryBoard("gargoyle", GargoyleScenes::automateGargoyle);
+    }
+
+    private static void detectScene(SceneBuilder scene, SceneBuildingUtil util) {
+        var gargoylePos = util.grid().at(3, 1, 3);
+        var comparatorPos = gargoylePos.north();
+
+        scene.title("gargoyle_detect_monsters", "Detecting Monsters with the Gargoyle");
+        scene.configureBasePlate(0, 0, 7);
+        scene.showBasePlate();
+        forEachDust(DUST_OFFSETS.size(), comparatorPos, (dustPos, $) -> {
+            scene.world().showSection(util.select().position(dustPos), Direction.UP);
+        });
+        scene.world().showSection(util.select().position(comparatorPos), Direction.UP);
+        scene.world().showSection(util.select().position(gargoylePos), Direction.UP);
+        scene.idle(20);
+
+        var spawns = List.of(util.grid().at(6, 0, 6), util.grid().at(1, 0, 2));
+
+        scene.overlay().showText(70)
+                .text("Gargoyles read out a redstone signal to comparators when an undead is nearby")
+                .placeNearTarget()
+                .pointAt(util.vector().blockSurface(gargoylePos, Direction.WEST));
+        scene.idle(90);
+
+        var random = RandomSource.create();
+        createMonster(scene, util, random, spawns.getFirst(), gargoylePos);
+        updateSignal(scene, comparatorPos, 4);
+
+        scene.overlay().showText(70)
+                .text("The signal strength depends on the distance of the closest monster")
+                .placeNearTarget()
+                .pointAt(util.vector().blockSurface(gargoylePos, Direction.WEST));
+        scene.idle(90);
+
+        createMonster(scene, util, random, spawns.get(1), gargoylePos);
+        updateSignal(scene, comparatorPos, DUST_OFFSETS.size());
+        scene.idle(20);
     }
 
     private static void scareScene(SceneBuilder scene, SceneBuildingUtil util) {
@@ -39,7 +95,6 @@ public class GargoyleScenes {
         scene.idle(5);
 
         scene.world().showSection(util.select().position(gargoylePos), Direction.DOWN);
-
         scene.idle(20);
 
         var spawns = List.of(util.grid().at(1, 0, 2), util.grid().at(5, 0, 3), util.grid().at(4, 0, 5));
@@ -52,7 +107,7 @@ public class GargoyleScenes {
         }).toList();
 
         scene.overlay().showText(70)
-                .text("Feeding a silver ingot to a gargoyle will make it scare away nearby monsters")
+                .text("Feeding a silver ingot to a gargoyle will make it scare away nearby undead monsters")
                 .placeNearTarget()
                 .pointAt(util.vector().blockSurface(gargoylePos, Direction.WEST));
         scene.idle(90);
@@ -137,6 +192,25 @@ public class GargoyleScenes {
             monster.lookAt(EntityAnchorArgument.Anchor.EYES, target);
 
             return monster;
+        });
+    }
+
+    private static void forEachDust(int strength, BlockPos comparatorPos, BiConsumer<BlockPos, Integer> consumer) {
+        var dustPos = comparatorPos;
+        for (int i = 0; i < strength; i++) {
+            dustPos = DUST_OFFSETS.get(i).apply(dustPos);
+            var dustStrength = strength - i;
+            consumer.accept(dustPos, dustStrength);
+        }
+    }
+
+    private static void updateSignal(SceneBuilder scene, BlockPos comparatorPos, int strength) {
+        scene.world().modifyBlock(comparatorPos, state -> state.setValue(ComparatorBlock.POWERED, true), false);
+        forEachDust(strength, comparatorPos, (dustPos, dustStrength) -> {
+            scene.world().modifyBlock(dustPos, state -> state.setValue(RedStoneWireBlock.POWER, dustStrength), false);
+            if (dustStrength == 1) {
+                scene.effects().indicateRedstone(dustPos);
+            }
         });
     }
 
