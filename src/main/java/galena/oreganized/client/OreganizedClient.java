@@ -24,8 +24,10 @@ import galena.oreganized.index.OEntityTypes;
 import galena.oreganized.index.OFluids;
 import galena.oreganized.index.OItems;
 import galena.oreganized.world.IMotionHolder;
+
 import java.util.List;
 import java.util.function.Supplier;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelPart;
@@ -38,6 +40,9 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.repository.Pack;
+import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.item.Items;
@@ -54,6 +59,7 @@ import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RenderHandEvent;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
+import net.neoforged.neoforge.event.AddPackFindersEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
 @EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT)
@@ -73,6 +79,18 @@ public class OreganizedClient {
         if (ModList.get().isLoaded("ponder")) {
             PonderCompat.register();
         }
+    }
+
+    @SubscribeEvent
+    public static void addResourcePacks(AddPackFindersEvent event) {
+        event.addPackFinders(
+                Oreganized.modLoc("resourcepacks/create_compat"),
+                PackType.CLIENT_RESOURCES,
+                Component.literal("Create Compat"),
+                PackSource.BUILT_IN,
+                false,
+                Pack.Position.TOP
+        );
     }
 
     private static void registerItemProperties() {

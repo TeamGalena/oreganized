@@ -2,10 +2,13 @@ package galena.oreganized.data;
 
 import galena.oreganized.Oreganized;
 import galena.oreganized.compat.ponder.PonderCompat;
+
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+
 import net.minecraft.DetectedVersion;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.metadata.PackMetadataGenerator;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.PackType;
@@ -57,6 +60,14 @@ public class OreganizedDatagen {
 
         generator.addProvider(server, new PackMetadataGenerator(output).add(PackMetadataSection.TYPE, new PackMetadataSection(
                 Component.literal("Oreganized resources"),
+                DetectedVersion.BUILT_IN.getPackVersion(PackType.CLIENT_RESOURCES),
+                Optional.empty()
+        )));
+
+        var createCompat = generator.getBuiltinDatapack(client, "create_compat");
+        var createCompatOutput = new PackOutput(output.getOutputFolder().resolve("resourcepacks/create_compat"));
+        createCompat.addProvider($ -> new PackMetadataGenerator(createCompatOutput).add(PackMetadataSection.TYPE, new PackMetadataSection(
+                Component.literal("Textures for other mods to fit Oreganized's color palettes for its materials"),
                 DetectedVersion.BUILT_IN.getPackVersion(PackType.CLIENT_RESOURCES),
                 Optional.empty()
         )));
