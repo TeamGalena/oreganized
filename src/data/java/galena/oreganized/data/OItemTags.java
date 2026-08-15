@@ -150,6 +150,9 @@ public class OItemTags extends ItemTagsProvider {
         tag(OTags.Items.SHIELDS_SE).add(OItems.ELECTRUM_SHIELD.get());
         tag(OTags.Items.MACHETES).add(OItems.ELECTRUM_MACHETE.get());
 
+        var noAnvilCost = tag(OTags.Items.NO_ANVIL_ENCHANT_COST);
+        OItems.silverTools().forEach(it -> noAnvilCost.add(it.get()));
+
         var kineticDamage = tag(OTags.Items.HAS_KINETIC_DAMAGE);
         OItems.electrumTools().forEach(it -> kineticDamage.add(it.get()));
         kineticDamage.add(
