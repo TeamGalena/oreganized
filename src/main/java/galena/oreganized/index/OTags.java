@@ -62,6 +62,7 @@ public class OTags {
         public static final TagKey<Item> PROTECTIVE_ARMOR_PART = tag("lead_protection/armor_set");
 
         public static final TagKey<Item> NO_ANVIL_ENCHANT_COST = tag("no_anvil_enchant_cost");
+        public static final TagKey<Item> ENCHANTED_BOOK_LIKE = tag("enchanted_book_like");
 
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(Oreganized.modLoc(name));

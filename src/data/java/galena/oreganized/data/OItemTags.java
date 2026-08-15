@@ -1,5 +1,6 @@
 package galena.oreganized.data;
 
+import galena.oreganized.ModCompat;
 import galena.oreganized.Oreganized;
 import galena.oreganized.index.DyeColors;
 import galena.oreganized.index.OBlocks;
@@ -149,6 +150,10 @@ public class OItemTags extends ItemTagsProvider {
         tag(OTags.Items.SHIELDS).add(OItems.ELECTRUM_SHIELD.get());
         tag(OTags.Items.SHIELDS_SE).add(OItems.ELECTRUM_SHIELD.get());
         tag(OTags.Items.MACHETES).add(OItems.ELECTRUM_MACHETE.get());
+
+        tag(OTags.Items.ENCHANTED_BOOK_LIKE)
+                .add(Items.ENCHANTED_BOOK)
+                .addOptional(ResourceLocation.fromNamespaceAndPath(ModCompat.QUARK, "ancient_tome"));
 
         var noAnvilCost = tag(OTags.Items.NO_ANVIL_ENCHANT_COST);
         OItems.silverTools().forEach(it -> noAnvilCost.add(it.get()));

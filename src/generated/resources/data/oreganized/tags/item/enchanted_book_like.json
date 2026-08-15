@@ -1,0 +1,9 @@
+{
+  "values": [
+    "minecraft:enchanted_book",
+    {
+      "id": "quark:ancient_tome",
+      "required": false
+    }
+  ]
+}

@@ -7,5 +7,6 @@ public class ModCompat {
     public static final String NETHERS_DELIGHT_ID = "nethersdelight";
     public static final String NO_MANS_LAND = "nomansland";
     public static final String CREATE = "create";
+    public static final String QUARK = "quark";
 
 }

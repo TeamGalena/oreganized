@@ -23,8 +23,7 @@ public class AnvilMenuMixin {
             at = @At(value = "INVOKE", target = "Ljava/lang/Math;max(II)I", ordinal = 1)
     )
     public int modifyEnchantmentCost(int a, int b, Operation<Integer> original, @Local(ordinal = 1) ItemStack subject, @Local(ordinal = 2) ItemStack book, @Share("no_enchant_cost") LocalBooleanRef flag) {
-        // TODO support for quarks ancient tomes
-        if (subject.is(OTags.Items.NO_ANVIL_ENCHANT_COST) && book.is(Items.ENCHANTED_BOOK)) {
+        if (subject.is(OTags.Items.NO_ANVIL_ENCHANT_COST) && book.is(OTags.Items.ENCHANTED_BOOK_LIKE)) {
             flag.set(true);
             return 0;
         }
