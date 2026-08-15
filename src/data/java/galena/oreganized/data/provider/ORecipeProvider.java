@@ -181,13 +181,32 @@ public abstract class ORecipeProvider extends RecipeProvider {
         return blastingRecipeTag(result, ingredient, exp, 1);
     }
 
-    public SimpleCookingRecipeBuilder armorRecycling(ItemLike nugget, Collection<? extends Holder<? extends ItemLike>> armor) {
-        var builder = SimpleCookingRecipeBuilder.blasting(Ingredient.of(armor.stream().map(Holder::value).map(ItemStack::new)), RecipeCategory.MISC, nugget, 0.1F, 100);
-        for (var holder : armor) {
+    public SimpleCookingRecipeBuilder blastingRecycling(ItemLike nugget, Collection<? extends Holder<? extends ItemLike>> items) {
+        var builder = SimpleCookingRecipeBuilder.blasting(Ingredient.of(items.stream().map(Holder::value).map(ItemStack::new)), RecipeCategory.MISC, nugget, 0.1F, 100);
+        for (var holder : items) {
             var item = holder.value();
             builder.unlockedBy(getHasName(item), has(item));
         }
         return builder;
+    }
+
+    public SimpleCookingRecipeBuilder smeltingRecycling(ItemLike nugget, Collection<? extends Holder<? extends ItemLike>> itemms) {
+        var builder = SimpleCookingRecipeBuilder.smelting(Ingredient.of(itemms.stream().map(Holder::value).map(ItemStack::new)), RecipeCategory.MISC, nugget, 0.1F, 100);
+        for (var holder : itemms) {
+            var item = holder.value();
+            builder.unlockedBy(getHasName(item), has(item));
+        }
+        return builder;
+    }
+
+    public void metalRecycling(RecipeOutput consumer, ItemLike nugget, Collection<? extends Holder<? extends ItemLike>> items, String suffix) {
+        var name = getItemName(nugget);
+        blastingRecycling(nugget, items).save(consumer, Oreganized.modLoc(name + "_from_blasting").withSuffix(suffix));
+        smeltingRecycling(nugget, items).save(consumer, Oreganized.modLoc(name + "_from_smelting").withSuffix(suffix));
+    }
+
+    public void metalRecycling(RecipeOutput consumer, ItemLike nugget, Collection<? extends Holder<? extends ItemLike>> items) {
+        metalRecycling(consumer, nugget, items, "");
     }
 
     public SimpleCookingRecipeBuilder blastingRecipeTag(ItemLike result, TagKey<Item> ingredient, float exp, int count) {

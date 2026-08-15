@@ -10,18 +10,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
-import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.BucketItem;
-import net.minecraft.world.item.DiggerItem;
-import net.minecraft.world.item.HoeItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.ShieldItem;
-import net.minecraft.world.item.ShovelItem;
-import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.*;
 import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.registries.DeferredItem;
 
@@ -65,6 +54,19 @@ public class OItems {
     public static final DeferredItem<Item> SCRIBE = HELPER.createItem("scribe",
             () -> new ScribeItem(new Item.Properties().durability(250)));
 
+    public static final DeferredItem<ArmorItem> ELECTRUM_HELMET = HELPER.createItem("electrum_helmet",
+            () -> new ElectrumArmorItem(ArmorItem.Type.HELMET));
+    public static final DeferredItem<ArmorItem> ELECTRUM_CHESTPLATE = HELPER.createItem("electrum_chestplate",
+            () -> new ElectrumArmorItem(ArmorItem.Type.CHESTPLATE));
+    public static final DeferredItem<ArmorItem> ELECTRUM_LEGGINGS = HELPER.createItem("electrum_leggings",
+            () -> new ElectrumArmorItem(ArmorItem.Type.LEGGINGS));
+    public static final DeferredItem<ArmorItem> ELECTRUM_BOOTS = HELPER.createItem("electrum_boots",
+            () -> new ElectrumArmorItem(ArmorItem.Type.BOOTS));
+
+    public static Stream<DeferredItem<ArmorItem>> electrumArmor() {
+        return Stream.of(ELECTRUM_BOOTS, ELECTRUM_LEGGINGS, ELECTRUM_CHESTPLATE, ELECTRUM_HELMET);
+    }
+
     public static final DeferredItem<Item> ELECTRUM_SWORD = HELPER.createItem("electrum_sword",
             () -> new SwordItem(OItemTiers.ELECTRUM, new Item.Properties().attributes(SwordItem.createAttributes(OItemTiers.ELECTRUM, 3, -2.4F))));
     public static final DeferredItem<Item> ELECTRUM_SHOVEL = HELPER.createItem("electrum_shovel",
@@ -84,6 +86,9 @@ public class OItems {
     public static final DeferredItem<Item> ELECTRUM_MACHETE = HELPER.createItem("electrum_machete",
             () -> new SwordItem(OItemTiers.ELECTRUM, new Item.Properties()));
 
+    public static Stream<DeferredItem<? extends Item>> electrumTools() {
+        return Stream.of(ELECTRUM_SWORD, ELECTRUM_SHOVEL, ELECTRUM_PICKAXE, ELECTRUM_AXE, ELECTRUM_HOE);
+    }
 
     // Misc Tools
     public static final DeferredItem<Item> THERMOMETER = HELPER.createItem("thermometer",
@@ -100,18 +105,6 @@ public class OItems {
     // Armor
     public static final DeferredItem<Item> ELECTRUM_UPGRADE_SMITHING_TEMPLATE = HELPER.createItem("electrum_upgrade_smithing_template",
             OSmithingTemplateItem::createElectrumUpgradeTemplate);
-    public static final DeferredItem<ArmorItem> ELECTRUM_HELMET = HELPER.createItem("electrum_helmet",
-            () -> new ElectrumArmorItem(ArmorItem.Type.HELMET));
-    public static final DeferredItem<ArmorItem> ELECTRUM_CHESTPLATE = HELPER.createItem("electrum_chestplate",
-            () -> new ElectrumArmorItem(ArmorItem.Type.CHESTPLATE));
-    public static final DeferredItem<ArmorItem> ELECTRUM_LEGGINGS = HELPER.createItem("electrum_leggings",
-            () -> new ElectrumArmorItem(ArmorItem.Type.LEGGINGS));
-    public static final DeferredItem<ArmorItem> ELECTRUM_BOOTS = HELPER.createItem("electrum_boots",
-            () -> new ElectrumArmorItem(ArmorItem.Type.BOOTS));
-
-    public static Stream<DeferredItem<ArmorItem>> electrumArmor() {
-        return Stream.of(ELECTRUM_BOOTS, ELECTRUM_LEGGINGS, ELECTRUM_CHESTPLATE, ELECTRUM_HELMET);
-    }
 
     public static final DeferredItem<ArmorItem> SILVER_HELMET = HELPER.createItem("silver_helmet",
             () -> new SilverArmorItem(ArmorItem.Type.HELMET));
@@ -121,6 +114,10 @@ public class OItems {
             () -> new SilverArmorItem(ArmorItem.Type.LEGGINGS));
     public static final DeferredItem<ArmorItem> SILVER_BOOTS = HELPER.createItem("silver_boots",
             () -> new SilverArmorItem(ArmorItem.Type.BOOTS));
+
+    public static Stream<DeferredItem<ArmorItem>> silverArmor() {
+        return Stream.of(SILVER_BOOTS, SILVER_LEGGINGS, SILVER_CHESTPLATE, SILVER_HELMET);
+    }
 
     public static final DeferredItem<Item> SILVER_SWORD = HELPER.createItem("silver_sword",
             () -> new SwordItem(OItemTiers.SILVER, new Item.Properties().attributes(SwordItem.createAttributes(OItemTiers.SILVER, 3, -2.4F))));
@@ -133,8 +130,8 @@ public class OItems {
     public static final DeferredItem<Item> SILVER_HOE = HELPER.createItem("silver_hoe",
             () -> new HoeItem(OItemTiers.SILVER, new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.SILVER, -2.0F, -1.0F))));
 
-    public static Stream<DeferredItem<ArmorItem>> silverArmor() {
-        return Stream.of(SILVER_BOOTS, SILVER_LEGGINGS, SILVER_CHESTPLATE, SILVER_HELMET);
+    public static Stream<DeferredItem<? extends Item>> silverTools() {
+        return Stream.of(SILVER_SWORD, SILVER_SHOVEL, SILVER_PICKAXE, SILVER_AXE, SILVER_HOE);
     }
 
     public static final DeferredItem<Item> LEAD_BOLT = HELPER.createItem("lead_bolt",

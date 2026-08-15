@@ -5,10 +5,12 @@ import galena.oreganized.index.DyeColors;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
+
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
+
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -148,14 +150,11 @@ public class OItemTags extends ItemTagsProvider {
         tag(OTags.Items.SHIELDS_SE).add(OItems.ELECTRUM_SHIELD.get());
         tag(OTags.Items.MACHETES).add(OItems.ELECTRUM_MACHETE.get());
 
-        tag(OTags.Items.HAS_KINETIC_DAMAGE).add(
-                OItems.ELECTRUM_AXE.get(),
-                OItems.ELECTRUM_HOE.get(),
+        var kineticDamage = tag(OTags.Items.HAS_KINETIC_DAMAGE);
+        OItems.electrumTools().forEach(it -> kineticDamage.add(it.get()));
+        kineticDamage.add(
                 OItems.ELECTRUM_KNIFE.get(),
-                OItems.ELECTRUM_MACHETE.get(),
-                OItems.ELECTRUM_PICKAXE.get(),
-                OItems.ELECTRUM_SHOVEL.get(),
-                OItems.ELECTRUM_SWORD.get()
+                OItems.ELECTRUM_MACHETE.get()
         );
 
         tag(Tags.Items.MELEE_WEAPON_TOOLS)

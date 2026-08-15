@@ -93,7 +93,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oreganized:electrum_nugget_from_blasting"
+        "recipe": "oreganized:electrum_nugget_from_smelting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -114,7 +114,7 @@
   ],
   "rewards": {
     "recipes": [
-      "oreganized:electrum_nugget_from_blasting"
+      "oreganized:electrum_nugget_from_smelting"
     ]
   }
 }

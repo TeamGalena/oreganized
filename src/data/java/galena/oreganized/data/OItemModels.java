@@ -45,20 +45,11 @@ public class OItemModels extends OItemModelProvider {
 
         toolItem(OItems.BUSH_HAMMER);
         toolItem(OItems.SCRIBE);
-        toolItem(OItems.ELECTRUM_SWORD);
-        toolItem(OItems.ELECTRUM_SHOVEL);
-        toolItem(OItems.ELECTRUM_PICKAXE);
-        toolItem(OItems.ELECTRUM_AXE);
-        toolItem(OItems.ELECTRUM_HOE);
+        OItems.electrumTools().forEach(this::toolItem);
         toolItem(OItems.ELECTRUM_KNIFE);
         toolItem(OItems.ELECTRUM_MACHETE);
         shieldItem(OItems.ELECTRUM_SHIELD);
-
-        toolItem(OItems.SILVER_SWORD);
-        toolItem(OItems.SILVER_SHOVEL);
-        toolItem(OItems.SILVER_PICKAXE);
-        toolItem(OItems.SILVER_AXE);
-        toolItem(OItems.SILVER_HOE);
+        OItems.silverTools().forEach(this::toolItem);
 
         crossbowOverwrite("crossbow_lead_bolt");
 

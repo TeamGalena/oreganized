@@ -6,6 +6,7 @@ import galena.oreganized.world.AddItemLootModifier;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Stream;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -60,7 +61,7 @@ public class OLootModifiers extends GlobalLootModifierProvider {
                 )
         );
 
-        OItems.silverArmor().forEach(item ->
+        Stream.concat(OItems.silverArmor(), OItems.silverTools()).forEach(item ->
                 add(
                         item.getId().getPath() + "_in_chests",
                         new AddItemLootModifier(
