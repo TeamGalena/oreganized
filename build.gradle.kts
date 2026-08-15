@@ -73,6 +73,7 @@ dependencies {
     }
     modImplementation(pack.modrinth.supplementaries)
     modIncludeCompileOnly(libs.ponder)
+    modIncludeCompileOnly(libs.flywheel)
 
     // For dev testing
     // runtimeOnly(pack.modrinth.scannable)
