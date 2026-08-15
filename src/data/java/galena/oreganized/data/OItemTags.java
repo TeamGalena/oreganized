@@ -138,11 +138,11 @@ public class OItemTags extends ItemTagsProvider {
 
         tag(ItemTags.BUTTONS).add(OBlocks.STURDY_BUTTON.asItem());
 
-        tag(ItemTags.AXES).add(OItems.ELECTRUM_AXE.get());
-        tag(ItemTags.PICKAXES).add(OItems.ELECTRUM_PICKAXE.get());
-        tag(ItemTags.SWORDS).add(OItems.ELECTRUM_SWORD.get());
-        tag(ItemTags.SHOVELS).add(OItems.ELECTRUM_SHOVEL.get());
-        tag(ItemTags.HOES).add(OItems.ELECTRUM_HOE.get());
+        tag(ItemTags.AXES).add(OItems.ELECTRUM_AXE.get(), OItems.SILVER_AXE.get());
+        tag(ItemTags.PICKAXES).add(OItems.ELECTRUM_PICKAXE.get(), OItems.SILVER_PICKAXE.get());
+        tag(ItemTags.SWORDS).add(OItems.ELECTRUM_SWORD.get(), OItems.SILVER_SWORD.get());
+        tag(ItemTags.SHOVELS).add(OItems.ELECTRUM_SHOVEL.get(), OItems.SILVER_SHOVEL.get());
+        tag(ItemTags.HOES).add(OItems.ELECTRUM_HOE.get(), OItems.SILVER_HOE.get());
         tag(OTags.Items.TOOLS_KNIVES).add(OItems.ELECTRUM_KNIFE.get());
         tag(OTags.Items.SHIELDS).add(OItems.ELECTRUM_SHIELD.get());
         tag(OTags.Items.SHIELDS_SE).add(OItems.ELECTRUM_SHIELD.get());
@@ -161,6 +161,8 @@ public class OItemTags extends ItemTagsProvider {
         tag(Tags.Items.MELEE_WEAPON_TOOLS)
                 .add(OItems.ELECTRUM_AXE.get())
                 .add(OItems.ELECTRUM_SWORD.get())
+                .add(OItems.SILVER_AXE.get())
+                .add(OItems.SILVER_SWORD.get())
                 .add(OItems.ELECTRUM_MACHETE.get());
 
         tag(OTags.Items.GARGOYLE_SNACK).addTags(OTags.Items.INGOTS_SILVER);

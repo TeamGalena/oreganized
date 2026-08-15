@@ -66,7 +66,7 @@ public class OItems {
             () -> new ScribeItem(new Item.Properties().durability(250)));
 
     public static final DeferredItem<Item> ELECTRUM_SWORD = HELPER.createItem("electrum_sword",
-            () -> new SwordItem(OItemTiers.ELECTRUM, new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.ELECTRUM, 3, -2.4F))));
+            () -> new SwordItem(OItemTiers.ELECTRUM, new Item.Properties().attributes(SwordItem.createAttributes(OItemTiers.ELECTRUM, 3, -2.4F))));
     public static final DeferredItem<Item> ELECTRUM_SHOVEL = HELPER.createItem("electrum_shovel",
             () -> new ShovelItem(OItemTiers.ELECTRUM, new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.ELECTRUM, 1.5F, -3.0F))));
     public static final DeferredItem<Item> ELECTRUM_PICKAXE = HELPER.createItem("electrum_pickaxe",
@@ -121,6 +121,17 @@ public class OItems {
             () -> new SilverArmorItem(ArmorItem.Type.LEGGINGS));
     public static final DeferredItem<ArmorItem> SILVER_BOOTS = HELPER.createItem("silver_boots",
             () -> new SilverArmorItem(ArmorItem.Type.BOOTS));
+
+    public static final DeferredItem<Item> SILVER_SWORD = HELPER.createItem("silver_sword",
+            () -> new SwordItem(OItemTiers.SILVER, new Item.Properties().attributes(SwordItem.createAttributes(OItemTiers.SILVER, 3, -2.4F))));
+    public static final DeferredItem<Item> SILVER_SHOVEL = HELPER.createItem("silver_shovel",
+            () -> new ShovelItem(OItemTiers.SILVER, new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.SILVER, 1.5F, -3.0F))));
+    public static final DeferredItem<Item> SILVER_PICKAXE = HELPER.createItem("silver_pickaxe",
+            () -> new PickaxeItem(OItemTiers.SILVER, new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.SILVER, 1.0F, -2.8F))));
+    public static final DeferredItem<Item> SILVER_AXE = HELPER.createItem("silver_axe",
+            () -> new AxeItem(OItemTiers.SILVER, new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.SILVER, 6.0F, -3.1F))));
+    public static final DeferredItem<Item> SILVER_HOE = HELPER.createItem("silver_hoe",
+            () -> new HoeItem(OItemTiers.SILVER, new Item.Properties().attributes(DiggerItem.createAttributes(OItemTiers.SILVER, -2.0F, -1.0F))));
 
     public static Stream<DeferredItem<ArmorItem>> silverArmor() {
         return Stream.of(SILVER_BOOTS, SILVER_LEGGINGS, SILVER_CHESTPLATE, SILVER_HELMET);

@@ -109,6 +109,10 @@ public class OTags {
         public static final TagKey<Block> AMETHYST_CLUSTERS = forgeTag("clusters/amethyst");
         public static final TagKey<Block> QUARTZITE_CLUSTERS = forgeTag("clusters/quartzite");
 
+        public static final TagKey<Block> INCORRECT_FOR_SILVER_TOOL = tag("incorrect_for_silver_tool");
+        public static final TagKey<Block> INCORRECT_FOR_ELECTRUM_TOOL = tag("incorrect_for_electrum_tool");
+        public static final TagKey<Block> INCORRECT_FOR_LEAD_TOOL = tag("incorrect_for_lead_tool");
+
         private static TagKey<Block> tag(String name) {
             return TagKey.create(Registries.BLOCK, Oreganized.modLoc(name));
         }

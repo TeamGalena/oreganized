@@ -299,5 +299,9 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
 
         // Create
         tag(AllTags.AllBlockTags.WRENCH_PICKUP.tag).add(OBlocks.STURDY_LEVER.get());
+
+        tag(OTags.Blocks.INCORRECT_FOR_SILVER_TOOL).addTag(BlockTags.INCORRECT_FOR_STONE_TOOL);
+        tag(OTags.Blocks.INCORRECT_FOR_LEAD_TOOL).addTag(BlockTags.INCORRECT_FOR_IRON_TOOL);
+        tag(OTags.Blocks.INCORRECT_FOR_ELECTRUM_TOOL).addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
     }
 }

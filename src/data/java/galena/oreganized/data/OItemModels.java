@@ -54,6 +54,12 @@ public class OItemModels extends OItemModelProvider {
         toolItem(OItems.ELECTRUM_MACHETE);
         shieldItem(OItems.ELECTRUM_SHIELD);
 
+        toolItem(OItems.SILVER_SWORD);
+        toolItem(OItems.SILVER_SHOVEL);
+        toolItem(OItems.SILVER_PICKAXE);
+        toolItem(OItems.SILVER_AXE);
+        toolItem(OItems.SILVER_HOE);
+
         crossbowOverwrite("crossbow_lead_bolt");
 
         leveledDevice(OItems.UNKNOWN_DEVICE, DeviceItem.FRAMES, ODataComponents.DEVICE_VALUE.getId());

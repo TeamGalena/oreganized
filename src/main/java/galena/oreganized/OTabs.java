@@ -148,6 +148,8 @@ public class OTabs {
         if (tab == CreativeModeTabs.COMBAT) {
             putBefore(event, Items.DIAMOND_SWORD, OItems.ELECTRUM_SWORD);
             putAfter(event, Items.DIAMOND_AXE, OItems.ELECTRUM_AXE);
+            putBefore(event, Items.GOLDEN_SWORD, OItems.SILVER_SWORD);
+            putAfter(event, Items.GOLDEN_AXE, OItems.SILVER_AXE);
             putBefore(event, Items.NETHERITE_HELMET, OItems.electrumArmor().toArray(DeferredItem[]::new));
             putBefore(event, Items.GOLDEN_HELMET, OItems.silverArmor().toArray(DeferredItem[]::new));
             putBefore(event, Items.ARROW, OItems.LEAD_BOLT);
