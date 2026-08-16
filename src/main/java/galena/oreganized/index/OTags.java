@@ -1,7 +1,6 @@
 package galena.oreganized.index;
 
-import static galena.oreganized.ModCompat.NETHERS_DELIGHT_ID;
-import static galena.oreganized.ModCompat.SHIELD_EXPANSION_ID;
+import static galena.oreganized.ModCompat.*;
 
 import galena.oreganized.Oreganized;
 import net.minecraft.core.registries.Registries;
@@ -49,7 +48,7 @@ public class OTags {
         public static final TagKey<Item> BUCKETS_MOLTEN_LEAD = forgeTag("buckets/molten_lead");
         public static final TagKey<Item> TOOLS_BUSH_HAMMER = forgeTag("tools/bush_hammer");
 
-        public static final TagKey<Item> TOOLS_KNIVES = forgeTag("tools/knife");
+        public static final TagKey<Item> TOOLS_KNIVES = ItemTags.create(ResourceLocation.fromNamespaceAndPath(FARMERS_DELIGHT_ID, "tools/knives"));
         public static final TagKey<Item> SHIELDS = forgeTag("shields");
         public static final TagKey<Item> SHIELDS_SE = ItemTags.create(ResourceLocation.fromNamespaceAndPath(SHIELD_EXPANSION_ID, "shields"));
         public static final TagKey<Item> MACHETES = ItemTags.create(ResourceLocation.fromNamespaceAndPath(NETHERS_DELIGHT_ID, "tools/machete"));

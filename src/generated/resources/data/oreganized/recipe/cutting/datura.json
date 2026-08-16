@@ -20,6 +20,6 @@
     }
   ],
   "tool": {
-    "tag": "c:tools/knife"
+    "tag": "farmersdelight:tools/knives"
   }
 }
