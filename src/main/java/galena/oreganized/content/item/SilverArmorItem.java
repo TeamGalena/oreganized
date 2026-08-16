@@ -32,7 +32,7 @@ public class SilverArmorItem extends ArmorItem {
             var id = ResourceLocation.withDefaultNamespace("armor." + slot.getName());
             builder.add(Attributes.ARMOR, new AttributeModifier(id, material.getDefense(slot), Operation.ADD_VALUE), slotGroup);
             builder.add(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(id, material.toughness(), Operation.ADD_VALUE), slotGroup);
-            builder.add(OAttributes.INVINCIBILITY_FRAMES, new AttributeModifier(id, 0.5, Operation.ADD_VALUE), slotGroup);
+            builder.add(OAttributes.INVINCIBILITY_FRAMES, new AttributeModifier(id, 0.2, Operation.ADD_VALUE), slotGroup);
             return builder.build();
         });
     }
