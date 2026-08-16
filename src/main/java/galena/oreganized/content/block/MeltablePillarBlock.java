@@ -24,6 +24,7 @@ public class MeltablePillarBlock extends RotatedPillarBlock implements IMeltable
         definition.add(GOOPYNESS_3);
     }
 
+    @Override
     public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         tickMelting(state, world, pos, random);
     }

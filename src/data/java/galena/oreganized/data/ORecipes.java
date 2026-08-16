@@ -36,7 +36,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.crafting.IntersectionIngredient;
+import net.neoforged.neoforge.common.crafting.CompoundIngredient;
 import org.infernalstudios.shieldexp.init.ItemsInit;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
@@ -405,7 +405,7 @@ public class ORecipes extends ORecipeProvider {
 
         processing(MixingRecipe::new, "molten_lead")
                 .output(OFluids.MOLTEN_LEAD.get(), 1000)
-                .require(new IntersectionIngredient(List.of(
+                .require(new CompoundIngredient(List.of(
                         Ingredient.of(OTags.Items.STORAGE_BLOCKS_LEAD),
                         Ingredient.of(OTags.Items.STORAGE_BLOCKS_RAW_LEAD)
                 )))

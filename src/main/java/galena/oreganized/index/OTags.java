@@ -80,7 +80,6 @@ public class OTags {
         public static final TagKey<Block> SILKTOUCH_WITH_SCRIBE_BLACKLIST = tag("no_silktouch_using_scribe");
         public static final TagKey<Block> ENGRAVABLE = tag("engravable");
         public static final TagKey<Block> ENGRAVABLE_NEEDS_PLATE = tag("engravable/needs_plate");
-        public static final TagKey<Block> FIRE_SOURCE = tag("fire_source");
         public static final TagKey<Block> CRYSTAL_GLASS = tag("crystal_glass");
         public static final TagKey<Block> CRYSTAL_GLASS_PANES = tag("crystal_glass_panes");
         public static final TagKey<Block> STONE_TYPES_GLANCE = tag("stone_types/glance");

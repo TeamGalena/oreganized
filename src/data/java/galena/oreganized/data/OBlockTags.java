@@ -63,7 +63,6 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
         tagDyed(OBlocks.CRYSTAL_GLASS, OTags.Blocks.CRYSTAL_GLASS);
         tagDyed(OBlocks.CRYSTAL_GLASS_PANES, OTags.Blocks.CRYSTAL_GLASS_PANES);
 
-        tag(OTags.Blocks.FIRE_SOURCE).addTag(BlockTags.FIRE).addTag(BlockTags.CAMPFIRES);
         tag(OTags.Blocks.STONE_TYPES_GLANCE).add(
                 OBlocks.POLISHED_GLANCE.get(), OBlocks.GLANCE_BRICKS.get(), OBlocks.CHISELED_GLANCE.get(),
                 OBlocks.GLANCE_BRICK_STAIRS.get(), OBlocks.GLANCE_BRICK_WALL.get()
@@ -193,7 +192,9 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
                 .add(Blocks.LAVA)
                 .add(Blocks.MAGMA_BLOCK)
                 .addTags(BlockTags.CAMPFIRES)
-                .addTags(BlockTags.FIRE);
+                .addTags(BlockTags.FIRE)
+                .addOptionalTag(ResourceLocation.fromNamespaceAndPath(ModCompat.FARMERS_DELIGHT_ID, "tray_heat_sources"))
+                .addOptionalTag(ResourceLocation.fromNamespaceAndPath(ModCompat.CREATE, "passive_boiler_heaters"));
 
         tag(BlockTags.ICE)
                 .add(OBlocks.GROOVED_ICE.get())
