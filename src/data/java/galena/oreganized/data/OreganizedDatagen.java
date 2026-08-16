@@ -34,12 +34,6 @@ public class OreganizedDatagen {
 
         var lang = new OLang(output);
 
-        generator.addProvider(client, new OBlockStates(output, helper));
-        generator.addProvider(client, new OItemModels(output, helper));
-        generator.addProvider(client, lang);
-        generator.addProvider(client, new OSoundDefinitions(output, helper));
-        generator.addProvider(client, new OSpriteSourceProvider(output, lookup, helper));
-
         generator.addProvider(server, new ORecipes(output, lookup));
         generator.addProvider(server, new OLootTables(output, lookup));
         OBlockTags blockTags = new OBlockTags(output, lookup, helper);
@@ -57,6 +51,12 @@ public class OreganizedDatagen {
         generator.addProvider(server, new OPaintingVariantTags(output, lookupProvider, helper));
         generator.addProvider(server, new ODataMaps(output, lookupProvider));
         generator.addProvider(server, new OLootModifiers(output, lookupProvider));
+
+        generator.addProvider(client, new OBlockStates(output, helper));
+        generator.addProvider(client, new OItemModels(output, helper));
+        generator.addProvider(client, lang);
+        generator.addProvider(client, new OSoundDefinitions(output, helper));
+        generator.addProvider(client, new OSpriteSourceProvider(output, lookup, helper));
 
         generator.addProvider(server, new PackMetadataGenerator(output).add(PackMetadataSection.TYPE, new PackMetadataSection(
                 Component.literal("Oreganized resources"),

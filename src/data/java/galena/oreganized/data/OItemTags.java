@@ -78,8 +78,7 @@ public class OItemTags extends ItemTagsProvider {
         tag(OTags.Items.NUGGETS_ELECTRUM).add(OItems.ELECTRUM_NUGGET.get());
         tag(OTags.Items.NUGGETS_NETHERITE).add(OItems.NETHERITE_NUGGET.get());
 
-        tag(OTags.Items.BUCKETS_MOLTEN_LEAD).add(OItems.MOLTEN_LEAD_BUCKET.get());
-        tag(Tags.Items.BUCKETS).addTags(OTags.Items.BUCKETS_MOLTEN_LEAD);
+        tag(Tags.Items.BUCKETS).add(OItems.MOLTEN_LEAD_BUCKET.get());
         tag(OTags.Items.TOOLS_BUSH_HAMMER).add(OItems.BUSH_HAMMER.get());
         tag(Tags.Items.TOOLS).add(OItems.FLINT_AND_PEWTER.get());
         tag(ItemTags.DURABILITY_ENCHANTABLE).add(OItems.FLINT_AND_PEWTER.get());

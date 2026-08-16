@@ -45,7 +45,6 @@ public class OTags {
 
         public static final TagKey<Item> STORAGE_BLOCKS_RAW_SILVER = forgeTag("storage_blocks/raw_silver");
         public static final TagKey<Item> STORAGE_BLOCKS_RAW_LEAD = forgeTag("storage_blocks/raw_lead");
-        public static final TagKey<Item> BUCKETS_MOLTEN_LEAD = forgeTag("buckets/molten_lead");
         public static final TagKey<Item> TOOLS_BUSH_HAMMER = forgeTag("tools/bush_hammer");
 
         public static final TagKey<Item> TOOLS_KNIVES = ItemTags.create(ResourceLocation.fromNamespaceAndPath(FARMERS_DELIGHT_ID, "tools/knives"));
@@ -164,7 +163,7 @@ public class OTags {
     public static class Enchantments {
 
         public static final TagKey<Enchantment> PREVENTS_LEAD_CLOUD = tag("prevents_lead_cloud");
-        public static final TagKey<Enchantment> HEAD_IMMUNITY = tag("heat_immunity");
+        public static final TagKey<Enchantment> HEAT_IMMUNITY = tag("heat_immunity");
 
         private static TagKey<Enchantment> tag(String name) {
             return TagKey.create(Registries.ENCHANTMENT, Oreganized.modLoc(name));
