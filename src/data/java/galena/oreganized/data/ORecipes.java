@@ -161,7 +161,6 @@ public class ORecipes extends ORecipeProvider {
 
         metalRecycling(consumer, OItems.LEAD_NUGGET.get(), List.of(OItems.BUSH_HAMMER));
         metalRecycling(consumer, OItems.SILVER_NUGGET.get(), Stream.concat(OItems.silverArmor(), OItems.silverTools()).toList());
-        metalRecycling(consumer, OItems.ELECTRUM_NUGGET.get(), Stream.concat(OItems.electrumArmor(), OItems.electrumTools()).toList());
         Conditional.with(this, List.of(new ModLoaded(ModCompat.FARMERS_DELIGHT_ID)), () ->
                 metalRecycling(consumer, OItems.ELECTRUM_NUGGET, List.of(OItems.ELECTRUM_KNIFE), "_from_knife")
         );

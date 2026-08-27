@@ -48,6 +48,7 @@ public class OTags {
         public static final TagKey<Item> TOOLS_BUSH_HAMMER = forgeTag("tools/bush_hammer");
 
         public static final TagKey<Item> TOOLS_KNIVES = ItemTags.create(ResourceLocation.fromNamespaceAndPath(FARMERS_DELIGHT_ID, "tools/knives"));
+        public static final TagKey<Item> FORGE_TOOLS_KNIVES = forgeTag("tools/knife");
         public static final TagKey<Item> SHIELDS = forgeTag("shields");
         public static final TagKey<Item> SHIELDS_SE = ItemTags.create(ResourceLocation.fromNamespaceAndPath(SHIELD_EXPANSION_ID, "shields"));
         public static final TagKey<Item> MACHETES = ItemTags.create(ResourceLocation.fromNamespaceAndPath(NETHERS_DELIGHT_ID, "tools/machete"));

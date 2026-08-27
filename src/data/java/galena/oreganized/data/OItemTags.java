@@ -146,6 +146,7 @@ public class OItemTags extends ItemTagsProvider {
         tag(ItemTags.SHOVELS).add(OItems.ELECTRUM_SHOVEL.get(), OItems.SILVER_SHOVEL.get());
         tag(ItemTags.HOES).add(OItems.ELECTRUM_HOE.get(), OItems.SILVER_HOE.get());
         tag(OTags.Items.TOOLS_KNIVES).add(OItems.ELECTRUM_KNIFE.get());
+        tag(OTags.Items.FORGE_TOOLS_KNIVES).add(OItems.ELECTRUM_KNIFE.get());
         tag(OTags.Items.SHIELDS).add(OItems.ELECTRUM_SHIELD.get());
         tag(OTags.Items.SHIELDS_SE).add(OItems.ELECTRUM_SHIELD.get());
         tag(OTags.Items.MACHETES).add(OItems.ELECTRUM_MACHETE.get());
