@@ -23,7 +23,7 @@ public class SilverArmorItem extends ArmorItem {
     private final Supplier<ItemAttributeModifiers> modifiers;
 
     public SilverArmorItem(Type slot) {
-        super(OArmorMaterials.SILVER, slot, new Properties().durability(slot.getDurability(33)));
+        super(OArmorMaterials.SILVER, slot, new Properties().durability(slot.getDurability(14)));
 
         modifiers = Suppliers.memoize(() -> {
             var builder = ItemAttributeModifiers.builder();
