@@ -1,10 +1,10 @@
 package galena.oreganized.index;
 
 import static galena.oreganized.ModCompat.*;
+import static net.minecraft.resources.ResourceLocation.fromNamespaceAndPath;
 
 import galena.oreganized.Oreganized;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
@@ -47,11 +47,11 @@ public class OTags {
         public static final TagKey<Item> STORAGE_BLOCKS_RAW_LEAD = forgeTag("storage_blocks/raw_lead");
         public static final TagKey<Item> TOOLS_BUSH_HAMMER = forgeTag("tools/bush_hammer");
 
-        public static final TagKey<Item> TOOLS_KNIVES = ItemTags.create(ResourceLocation.fromNamespaceAndPath(FARMERS_DELIGHT_ID, "tools/knives"));
+        public static final TagKey<Item> TOOLS_KNIVES = ItemTags.create(fromNamespaceAndPath(FARMERS_DELIGHT_ID, "tools/knives"));
         public static final TagKey<Item> FORGE_TOOLS_KNIVES = forgeTag("tools/knife");
         public static final TagKey<Item> SHIELDS = forgeTag("shields");
-        public static final TagKey<Item> SHIELDS_SE = ItemTags.create(ResourceLocation.fromNamespaceAndPath(SHIELD_EXPANSION_ID, "shields"));
-        public static final TagKey<Item> MACHETES = ItemTags.create(ResourceLocation.fromNamespaceAndPath(NETHERS_DELIGHT_ID, "tools/machete"));
+        public static final TagKey<Item> SHIELDS_SE = ItemTags.create(fromNamespaceAndPath(SHIELD_EXPANSION_ID, "shields"));
+        public static final TagKey<Item> MACHETES = ItemTags.create(fromNamespaceAndPath(NETHERS_DELIGHT_ID, "tools/machete"));
 
         public static final TagKey<Item> HAS_KINETIC_DAMAGE = tag("has_kinetic_damage");
 
@@ -63,12 +63,14 @@ public class OTags {
         public static final TagKey<Item> NO_ANVIL_ENCHANT_COST = tag("no_anvil_enchant_cost");
         public static final TagKey<Item> ENCHANTED_BOOK_LIKE = tag("enchanted_book_like");
 
+        public static final TagKey<Item> SLICER_TOOLS = ItemTags.create(fromNamespaceAndPath("sliceanddice", "allowed_tools"));
+
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(Oreganized.modLoc(name));
         }
 
         private static TagKey<Item> forgeTag(String name) {
-            return ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
+            return ItemTags.create(fromNamespaceAndPath("c", name));
         }
     }
 
@@ -103,9 +105,9 @@ public class OTags {
         public static final TagKey<Block> FIRE_HEAT_LEVEL = tag("heat_level/fire");
         public static final TagKey<Block> LAVA_HEAT_LEVEL = tag("heat_level/lava");
 
-        public static final TagKey<Block> CARRY_ON_BLACKLIST = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("carryon", "block_blacklist"));
-        public static final TagKey<Block> BOMB_BREAKABLE = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("supplementaries", "bomb_breakable"));
-        public static final TagKey<Block> CANNON_TNTS = TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("supplementaries", "cannon_tnts"));
+        public static final TagKey<Block> CARRY_ON_BLACKLIST = TagKey.create(Registries.BLOCK, fromNamespaceAndPath("carryon", "block_blacklist"));
+        public static final TagKey<Block> BOMB_BREAKABLE = TagKey.create(Registries.BLOCK, fromNamespaceAndPath("supplementaries", "bomb_breakable"));
+        public static final TagKey<Block> CANNON_TNTS = TagKey.create(Registries.BLOCK, fromNamespaceAndPath("supplementaries", "cannon_tnts"));
 
         public static final TagKey<Block> AMETHYST_CLUSTERS = forgeTag("clusters/amethyst");
         public static final TagKey<Block> QUARTZITE_CLUSTERS = forgeTag("clusters/quartzite");
@@ -119,7 +121,7 @@ public class OTags {
         }
 
         private static TagKey<Block> forgeTag(String name) {
-            return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("c", name));
+            return TagKey.create(Registries.BLOCK, fromNamespaceAndPath("c", name));
         }
     }
 
@@ -145,7 +147,7 @@ public class OTags {
         }
 
         private static TagKey<Fluid> forgeTag(String name) {
-            return TagKey.create(Registries.FLUID, ResourceLocation.fromNamespaceAndPath("c", name));
+            return TagKey.create(Registries.FLUID, fromNamespaceAndPath("c", name));
         }
     }
 

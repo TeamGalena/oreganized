@@ -197,5 +197,7 @@ public class OItemTags extends ItemTagsProvider {
                 .addOptional(ResourceLocation.fromNamespaceAndPath("scguns", "netherite_respirator"));
 
         tagDyed(OBlocks.WAXED_CONCRETE_POWDER);
+
+        tag(OTags.Items.SLICER_TOOLS).add(Items.BRUSH);
     }
 }
