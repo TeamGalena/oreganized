@@ -5,6 +5,7 @@ import galena.oreganized.Oreganized;
 import galena.oreganized.client.extensions.CustomArmorModelExtensions;
 import galena.oreganized.client.extensions.MoltenLeadClientExtensions;
 import galena.oreganized.client.model.ElectrumArmorModel;
+import galena.oreganized.client.model.ModdedArmorModel;
 import galena.oreganized.client.model.SilverArmorModel;
 import galena.oreganized.client.render.entity.LeadBoltRender;
 import galena.oreganized.client.render.entity.ShrapnelBombMinecartRender;
@@ -167,8 +168,8 @@ public class OreganizedClient {
     @SubscribeEvent
     public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
         event.registerFluidType(new MoltenLeadClientExtensions(), OFluids.MOLTEN_LEAD_TYPE);
-        event.registerItem(new CustomArmorModelExtensions(ElectrumArmorModel::new, ElectrumArmorModel::createBodyLayer), OItems.electrumArmor().toArray(Holder[]::new));
-        event.registerItem(new CustomArmorModelExtensions(SilverArmorModel::new, SilverArmorModel::createBodyLayer), OItems.silverArmor().toArray(Holder[]::new));
+        event.registerItem(new CustomArmorModelExtensions(ModdedArmorModel::new, ElectrumArmorModel::createBodyLayer), OItems.electrumArmor().toArray(Holder[]::new));
+        event.registerItem(new CustomArmorModelExtensions(ModdedArmorModel::new, SilverArmorModel::createBodyLayer), OItems.silverArmor().toArray(Holder[]::new));
     }
 
     @EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT)

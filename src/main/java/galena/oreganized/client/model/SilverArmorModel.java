@@ -1,15 +1,12 @@
 package galena.oreganized.client.model;
 
 import net.minecraft.client.model.HumanoidArmorModel;
-import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
 
-public class SilverArmorModel<T extends LivingEntity> extends ElectrumArmorModel<T> {
+public class SilverArmorModel {
 
     public static LayerDefinition createBodyLayer() {
         var mesh = HumanoidArmorModel.createMesh(CubeDeformation.NONE, 0.0F);
@@ -90,10 +87,6 @@ public class SilverArmorModel<T extends LivingEntity> extends ElectrumArmorModel
         );
 
         return LayerDefinition.create(mesh, 64, 64);
-    }
-
-    public SilverArmorModel(ModelPart root, EquipmentSlot slot) {
-        super(root, slot);
     }
 
 }
