@@ -18,19 +18,19 @@ public final class ElectrumArmorModel {
                         .texOffs(32, 0)
                         .addBox(-1.0F, -8.75F, -4.5F, 2.0F, 0.0F, 3.0F, new CubeDeformation(0.25F, 0.0F, 0.25F))
                         .texOffs(0, 0)
-                        .addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.5F)),
+                        .addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.55F)),
                 PartPose.ZERO
         );
 
         head.addOrReplaceChild("right_wing_r1", CubeListBuilder.create()
                         .texOffs(48, -8).mirror()
-                        .addBox(-3.0F, -3.0F, -4.0F, 0.0F, 7.0F, 8.0F, CubeDeformation.NONE).mirror(false),
+                        .addBox(-3.0F, -3.0F, -4.0F, 0.001F, 7.0F, 8.0F, CubeDeformation.NONE).mirror(false),
                 PartPose.offsetAndRotation(-2.25F, -7.0F, 1.5F, 0.0F, -0.1309F, 0.0F)
         );
 
         head.addOrReplaceChild("left_wing_r1", CubeListBuilder.create()
                         .texOffs(48, -8)
-                        .addBox(-3.0F, -3.0F, -4.0F, 0.0F, 7.0F, 8.0F, CubeDeformation.NONE),
+                        .addBox(-3.0F, -3.0F, -4.0F, 0.001F, 7.0F, 8.0F, CubeDeformation.NONE),
                 PartPose.offsetAndRotation(8.25F, -7.0F, 1.5F, 0.0F, 0.1309F, 0.0F)
         );
 
@@ -60,13 +60,13 @@ public final class ElectrumArmorModel {
 
         rightBoot.addOrReplaceChild("wing_r1", CubeListBuilder.create()
                         .texOffs(49, 2).mirror()
-                        .addBox(-2.7F, 5.0F, -1.5F, 0.0F, 6.0F, 7.0F, CubeDeformation.NONE).mirror(false),
+                        .addBox(-2.7F, 5.0F, -1.5F, 0.001F, 6.0F, 7.0F, CubeDeformation.NONE).mirror(false),
                 PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, -0.1309F, 0.0F)
         );
 
         leftBoot.addOrReplaceChild("wing_r2", CubeListBuilder.create()
                         .texOffs(49, 2)
-                        .addBox(2.7F, 5.0F, -1.5F, 0.0F, 6.0F, 7.0F, CubeDeformation.NONE),
+                        .addBox(2.7F, 5.0F, -1.5F, 0.001F, 6.0F, 7.0F, CubeDeformation.NONE),
                 PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, 0.1309F, 0.0F)
         );
 
