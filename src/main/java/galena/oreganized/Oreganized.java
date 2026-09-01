@@ -8,26 +8,13 @@ import galena.oreganized.api.LeadProtections;
 import galena.oreganized.compat.create.CreateCompat;
 import galena.oreganized.content.block.LeadOreBlock;
 import galena.oreganized.content.block.MoltenLeadCauldronBlock;
-import galena.oreganized.index.OArmorMaterials;
-import galena.oreganized.index.OAttachmentTypes;
-import galena.oreganized.index.OAttributes;
-import galena.oreganized.index.OBlockEntities;
-import galena.oreganized.index.OBlocks;
-import galena.oreganized.index.OCriteriaTriggers;
-import galena.oreganized.index.ODataComponents;
-import galena.oreganized.index.OEffects;
-import galena.oreganized.index.OEntityTypes;
-import galena.oreganized.index.OFluids;
-import galena.oreganized.index.OItems;
-import galena.oreganized.index.OParticleTypes;
-import galena.oreganized.index.OPotions;
-import galena.oreganized.index.ORecipeTypes;
-import galena.oreganized.index.OSoundEvents;
-import galena.oreganized.index.OStructures;
-import galena.oreganized.index.OTags;
+import galena.oreganized.debug.ODebugCommands;
+import galena.oreganized.index.*;
 import galena.oreganized.network.OreganizedNetwork;
 import galena.oreganized.world.AddItemLootModifier;
+
 import java.util.stream.Stream;
+
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.core.dispenser.ProjectileDispenseBehavior;
 import net.minecraft.resources.ResourceLocation;
@@ -99,12 +86,13 @@ public class Oreganized {
         OSoundEvents.register();
         ORecipeTypes.register(modBus);
         OAttachmentTypes.register(modBus);
+        OConditionTypes.register(modBus);
 
         REGISTRY_HELPER.register(modBus);
 
         modBus.addListener(OreganizedNetwork::register);
 
-        var createLoaded = ModList.get().getModContainerById("create")
+        var createLoaded = ModList.get().getModContainerById(ModCompat.CREATE)
                 .filter(it -> it.getModInfo().getVersion().getMajorVersion() >= 6)
                 .isPresent();
 
@@ -119,6 +107,8 @@ public class Oreganized {
             }
             return true;
         });
+
+        forgeBus.addListener(ODebugCommands::register);
     }
 
     private void injectVillagerTrades(VillagerTradesEvent event) {

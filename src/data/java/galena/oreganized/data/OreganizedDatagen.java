@@ -1,10 +1,14 @@
 package galena.oreganized.data;
 
 import galena.oreganized.Oreganized;
+import galena.oreganized.compat.ponder.PonderCompat;
+
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+
 import net.minecraft.DetectedVersion;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.metadata.PackMetadataGenerator;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.PackType;
@@ -19,6 +23,8 @@ public class OreganizedDatagen {
 
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
+        PonderCompat.register();
+
         var generator = event.getGenerator();
         var output = generator.getPackOutput();
         var lookup = event.getLookupProvider();
@@ -27,12 +33,6 @@ public class OreganizedDatagen {
         boolean server = event.includeServer();
 
         var lang = new OLang(output);
-
-        generator.addProvider(client, new OBlockStates(output, helper));
-        generator.addProvider(client, new OItemModels(output, helper));
-        generator.addProvider(client, lang);
-        generator.addProvider(client, new OSoundDefinitions(output, helper));
-        generator.addProvider(client, new OSpriteSourceProvider(output, lookup, helper));
 
         generator.addProvider(server, new ORecipes(output, lookup));
         generator.addProvider(server, new OLootTables(output, lookup));
@@ -50,9 +50,24 @@ public class OreganizedDatagen {
         generator.addProvider(server, new ODamageTypeTags(output, lookupProvider, helper));
         generator.addProvider(server, new OPaintingVariantTags(output, lookupProvider, helper));
         generator.addProvider(server, new ODataMaps(output, lookupProvider));
+        generator.addProvider(server, new OLootModifiers(output, lookupProvider));
+
+        generator.addProvider(client, new OBlockStates(output, helper));
+        generator.addProvider(client, new OItemModels(output, helper));
+        generator.addProvider(client, lang);
+        generator.addProvider(client, new OSoundDefinitions(output, helper));
+        generator.addProvider(client, new OSpriteSourceProvider(output, lookup, helper));
 
         generator.addProvider(server, new PackMetadataGenerator(output).add(PackMetadataSection.TYPE, new PackMetadataSection(
                 Component.literal("Oreganized resources"),
+                DetectedVersion.BUILT_IN.getPackVersion(PackType.CLIENT_RESOURCES),
+                Optional.empty()
+        )));
+
+        var createCompat = generator.getBuiltinDatapack(client, "create_compat");
+        var createCompatOutput = new PackOutput(output.getOutputFolder().resolve("resourcepacks/create_compat"));
+        createCompat.addProvider($ -> new PackMetadataGenerator(createCompatOutput).add(PackMetadataSection.TYPE, new PackMetadataSection(
+                Component.literal("Textures for other mods to fit Oreganized's color palettes for its materials"),
                 DetectedVersion.BUILT_IN.getPackVersion(PackType.CLIENT_RESOURCES),
                 Optional.empty()
         )));

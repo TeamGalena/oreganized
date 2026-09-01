@@ -14,6 +14,9 @@ public class OAttachmentTypes {
     public static final DeferredHolder<AttachmentType<?>, AttachmentType<Long>> LAST_PUSH_TIME =
             ATTACHMENT_TYPES.register("last_push_time", () -> AttachmentType.builder(() -> 0L).sync(ByteBufCodecs.VAR_LONG).build());
 
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<Boolean>> TARNISHED =
+            ATTACHMENT_TYPES.register("tarnished", () -> AttachmentType.builder(() -> false).sync(ByteBufCodecs.BOOL).build());
+
     public static void register(IEventBus modBus) {
         ATTACHMENT_TYPES.register(modBus);
     }

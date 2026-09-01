@@ -1,14 +1,17 @@
 package galena.oreganized.data;
 
+import galena.oreganized.ModCompat;
 import galena.oreganized.Oreganized;
 import galena.oreganized.index.DyeColors;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
+
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
+
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -75,8 +78,7 @@ public class OItemTags extends ItemTagsProvider {
         tag(OTags.Items.NUGGETS_ELECTRUM).add(OItems.ELECTRUM_NUGGET.get());
         tag(OTags.Items.NUGGETS_NETHERITE).add(OItems.NETHERITE_NUGGET.get());
 
-        tag(OTags.Items.BUCKETS_MOLTEN_LEAD).add(OItems.MOLTEN_LEAD_BUCKET.get());
-        tag(Tags.Items.BUCKETS).addTags(OTags.Items.BUCKETS_MOLTEN_LEAD);
+        tag(Tags.Items.BUCKETS).add(OItems.MOLTEN_LEAD_BUCKET.get());
         tag(OTags.Items.TOOLS_BUSH_HAMMER).add(OItems.BUSH_HAMMER.get());
         tag(Tags.Items.TOOLS).add(OItems.FLINT_AND_PEWTER.get());
         tag(ItemTags.DURABILITY_ENCHANTABLE).add(OItems.FLINT_AND_PEWTER.get());
@@ -104,10 +106,10 @@ public class OItemTags extends ItemTagsProvider {
                 .add(OItems.SILVER_INGOT.get())
                 .add(OItems.ELECTRUM_INGOT.get());
 
-        tag(ItemTags.HEAD_ARMOR).add(OItems.ELECTRUM_HELMET.get());
-        tag(ItemTags.CHEST_ARMOR).add(OItems.ELECTRUM_CHESTPLATE.get());
-        tag(ItemTags.LEG_ARMOR).add(OItems.ELECTRUM_LEGGINGS.get());
-        tag(ItemTags.FOOT_ARMOR).add(OItems.ELECTRUM_BOOTS.get());
+        tag(ItemTags.HEAD_ARMOR).add(OItems.ELECTRUM_HELMET.get(), OItems.SILVER_HELMET.get());
+        tag(ItemTags.CHEST_ARMOR).add(OItems.ELECTRUM_CHESTPLATE.get(), OItems.SILVER_CHESTPLATE.get());
+        tag(ItemTags.LEG_ARMOR).add(OItems.ELECTRUM_LEGGINGS.get(), OItems.SILVER_LEGGINGS.get());
+        tag(ItemTags.FOOT_ARMOR).add(OItems.ELECTRUM_BOOTS.get(), OItems.SILVER_BOOTS.get());
 
         tag(ItemTags.TRIM_MATERIALS).add(OItems.LEAD_INGOT.get(), OItems.SILVER_INGOT.get(), OItems.ELECTRUM_INGOT.get());
         tag(ItemTags.SMALL_FLOWERS).add(OBlocks.WHITE_DATURA.get().asItem());
@@ -138,29 +140,36 @@ public class OItemTags extends ItemTagsProvider {
 
         tag(ItemTags.BUTTONS).add(OBlocks.STURDY_BUTTON.asItem());
 
-        tag(ItemTags.AXES).add(OItems.ELECTRUM_AXE.get());
-        tag(ItemTags.PICKAXES).add(OItems.ELECTRUM_PICKAXE.get());
-        tag(ItemTags.SWORDS).add(OItems.ELECTRUM_SWORD.get());
-        tag(ItemTags.SHOVELS).add(OItems.ELECTRUM_SHOVEL.get());
-        tag(ItemTags.HOES).add(OItems.ELECTRUM_HOE.get());
+        tag(ItemTags.AXES).add(OItems.ELECTRUM_AXE.get(), OItems.SILVER_AXE.get());
+        tag(ItemTags.PICKAXES).add(OItems.ELECTRUM_PICKAXE.get(), OItems.SILVER_PICKAXE.get());
+        tag(ItemTags.SWORDS).add(OItems.ELECTRUM_SWORD.get(), OItems.SILVER_SWORD.get());
+        tag(ItemTags.SHOVELS).add(OItems.ELECTRUM_SHOVEL.get(), OItems.SILVER_SHOVEL.get());
+        tag(ItemTags.HOES).add(OItems.ELECTRUM_HOE.get(), OItems.SILVER_HOE.get());
         tag(OTags.Items.TOOLS_KNIVES).add(OItems.ELECTRUM_KNIFE.get());
+        tag(OTags.Items.FORGE_TOOLS_KNIVES).add(OItems.ELECTRUM_KNIFE.get());
         tag(OTags.Items.SHIELDS).add(OItems.ELECTRUM_SHIELD.get());
         tag(OTags.Items.SHIELDS_SE).add(OItems.ELECTRUM_SHIELD.get());
         tag(OTags.Items.MACHETES).add(OItems.ELECTRUM_MACHETE.get());
 
-        tag(OTags.Items.HAS_KINETIC_DAMAGE).add(
-                OItems.ELECTRUM_AXE.get(),
-                OItems.ELECTRUM_HOE.get(),
+        tag(OTags.Items.ENCHANTED_BOOK_LIKE)
+                .add(Items.ENCHANTED_BOOK)
+                .addOptional(ResourceLocation.fromNamespaceAndPath(ModCompat.QUARK, "ancient_tome"));
+
+        var noAnvilCost = tag(OTags.Items.NO_ANVIL_ENCHANT_COST);
+        OItems.silverTools().forEach(it -> noAnvilCost.add(it.get()));
+
+        var kineticDamage = tag(OTags.Items.HAS_KINETIC_DAMAGE);
+        OItems.electrumTools().forEach(it -> kineticDamage.add(it.get()));
+        kineticDamage.add(
                 OItems.ELECTRUM_KNIFE.get(),
-                OItems.ELECTRUM_MACHETE.get(),
-                OItems.ELECTRUM_PICKAXE.get(),
-                OItems.ELECTRUM_SHOVEL.get(),
-                OItems.ELECTRUM_SWORD.get()
+                OItems.ELECTRUM_MACHETE.get()
         );
 
         tag(Tags.Items.MELEE_WEAPON_TOOLS)
                 .add(OItems.ELECTRUM_AXE.get())
                 .add(OItems.ELECTRUM_SWORD.get())
+                .add(OItems.SILVER_AXE.get())
+                .add(OItems.SILVER_SWORD.get())
                 .add(OItems.ELECTRUM_MACHETE.get());
 
         tag(OTags.Items.GARGOYLE_SNACK).addTags(OTags.Items.INGOTS_SILVER);

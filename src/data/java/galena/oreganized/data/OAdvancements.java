@@ -48,8 +48,6 @@ public class OAdvancements extends AdvancementProvider {
 
         OreganizedAdvancements(OLangProvider lang) {
             this.lang = lang;
-            lang.addSubProvider(() -> this.generate(null, $ -> {
-            }, null));
         }
 
         @Override
@@ -60,8 +58,6 @@ public class OAdvancements extends AdvancementProvider {
                             "Mirror, Mirror who is the fairest?", "Obtain a Silver Mirror"))
                     .addCriterion("has_silver_mirror", InventoryChangeTrigger.TriggerInstance.hasItems(OItems.SILVER_MIRROR.get()))
                     .save(consumer, "oreganized:adventure/mirror_mirror");
-
-
 
             var likeTheRomans = Advancement.Builder.advancement()
                     .parent(getAdv("minecraft:story/upgrade_tools"))

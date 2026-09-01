@@ -3,6 +3,8 @@ package galena.oreganized.data;
 import static galena.oreganized.data.ConditionalData.dyed;
 
 import com.google.common.collect.ImmutableList;
+import com.possible_triangle.multikulti.datagen.conditions.Conditional;
+import com.possible_triangle.multikulti.datagen.conditions.ModLoaded;
 import com.simibubi.create.content.fluids.transfer.FillingRecipe;
 import com.simibubi.create.content.kinetics.crusher.CrushingRecipe;
 import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;
@@ -19,6 +21,7 @@ import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Stream;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
@@ -33,7 +36,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.crafting.IntersectionIngredient;
+import net.neoforged.neoforge.common.crafting.CompoundIngredient;
 import org.infernalstudios.shieldexp.init.ItemsInit;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
@@ -50,9 +53,6 @@ public class ORecipes extends ORecipeProvider {
     protected void buildRecipes(RecipeOutput consumer) {
         ore(OItems.LEAD_INGOT.get(), LEAD_SMELTABLES, 0.7F, "oreganized:lead_ingot", consumer);
         ore(OItems.SILVER_INGOT.get(), SILVER_SMELTABLES, 1.0F, "oreganized:silver_ingot", consumer);
-
-        smeltingRecipe(OItems.LEAD_NUGGET.get(), OItems.BUSH_HAMMER.get(), 0.1F).save(consumer, Oreganized.modLoc("lead_nugget_from_smelting"));
-        blastingRecipe(OItems.LEAD_NUGGET.get(), OItems.BUSH_HAMMER.get(), 0.1F).save(consumer, Oreganized.modLoc("lead_nugget_from_blasting"));
 
         quadTransform(OBlocks.POLISHED_GLANCE, OBlocks.GLANCE).save(consumer);
         quadTransform(OBlocks.GLANCE_BRICKS, OBlocks.POLISHED_GLANCE).save(consumer);
@@ -158,6 +158,15 @@ public class ORecipes extends ORecipeProvider {
         smithingElectrum(() -> Items.DIAMOND_CHESTPLATE, OItems.ELECTRUM_CHESTPLATE).save(consumer, Oreganized.modLoc("electrum_chestplate"));
         smithingElectrum(() -> Items.DIAMOND_LEGGINGS, OItems.ELECTRUM_LEGGINGS).save(consumer, Oreganized.modLoc("electrum_leggings"));
         smithingElectrum(() -> Items.DIAMOND_BOOTS, OItems.ELECTRUM_BOOTS).save(consumer, Oreganized.modLoc("electrum_boots"));
+
+        metalRecycling(consumer, OItems.LEAD_NUGGET.get(), List.of(OItems.BUSH_HAMMER));
+        metalRecycling(consumer, OItems.SILVER_NUGGET.get(), Stream.concat(OItems.silverArmor(), OItems.silverTools()).toList());
+        Conditional.with(this, List.of(new ModLoaded(ModCompat.FARMERS_DELIGHT_ID)), () ->
+                metalRecycling(consumer, OItems.ELECTRUM_NUGGET, List.of(OItems.ELECTRUM_KNIFE), "_from_knife")
+        );
+        Conditional.with(this, List.of(new ModLoaded(ModCompat.NETHERS_DELIGHT_ID)), () ->
+                metalRecycling(consumer, OItems.ELECTRUM_NUGGET, List.of(OItems.ELECTRUM_MACHETE), "_from_machete")
+        );
 
         OBlocks.CRYSTAL_GLASS.forEach((color, crystalGlass) -> {
             var glass = ColorCompat.getColoredBlock("stained_glass", color);
@@ -346,7 +355,7 @@ public class ORecipes extends ORecipeProvider {
                         .requires(OTags.Items.INGOTS_GOLD)
                         .unlockedBy("has_gold", has(OTags.Items.INGOTS_GOLD))
                         .unlockedBy("has_silver", has(OTags.Items.INGOTS_SILVER)),
-                "create"
+                ModCompat.CREATE
         ).save(consumer);
 
         processing(CompactingRecipe::new, "molten_lead")
@@ -355,14 +364,14 @@ public class ORecipes extends ORecipeProvider {
                 .build(consumer);
 
         processing(CrushingRecipe::new, "glance")
-                .output(0.8F, ResourceLocation.fromNamespaceAndPath("create", "crushed_raw_lead"), 1)
+                .output(0.8F, ResourceLocation.fromNamespaceAndPath(ModCompat.CREATE, "crushed_raw_lead"), 1)
                 .output(0.8F, OItems.LEAD_NUGGET.get())
                 .require(OBlocks.GLANCE.get())
                 .duration(250)
                 .build(consumer);
 
         processing(CrushingRecipe::new, "glance_recycling")
-                .output(0.8F, ResourceLocation.fromNamespaceAndPath("create", "crushed_raw_lead"), 1)
+                .output(0.8F, ResourceLocation.fromNamespaceAndPath(ModCompat.CREATE, "crushed_raw_lead"), 1)
                 .output(0.8F, OItems.LEAD_NUGGET.get())
                 .require(OTags.Items.STONE_TYPES_GLANCE)
                 .duration(250)
@@ -395,7 +404,7 @@ public class ORecipes extends ORecipeProvider {
 
         processing(MixingRecipe::new, "molten_lead")
                 .output(OFluids.MOLTEN_LEAD.get(), 1000)
-                .require(new IntersectionIngredient(List.of(
+                .require(new CompoundIngredient(List.of(
                         Ingredient.of(OTags.Items.STORAGE_BLOCKS_LEAD),
                         Ingredient.of(OTags.Items.STORAGE_BLOCKS_RAW_LEAD)
                 )))
@@ -472,6 +481,8 @@ public class ORecipes extends ORecipeProvider {
                 .pattern("##")
                 .unlockedBy("has_silver", has(OTags.Items.INGOTS_SILVER))
                 .save(consumer);
+
+        OCollections.tarnishedBlocks().forEach(it -> brushing(consumer, it));
     }
 
 }

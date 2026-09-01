@@ -25,6 +25,6 @@ public class OEnchantmentTags extends EnchantmentTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         tag(OTags.Enchantments.PREVENTS_LEAD_CLOUD).add(Enchantments.SILK_TOUCH);
-        tag(OTags.Enchantments.HEAD_IMMUNITY).add(Enchantments.FROST_WALKER);
+        tag(OTags.Enchantments.HEAT_IMMUNITY).add(Enchantments.FROST_WALKER);
     }
 }

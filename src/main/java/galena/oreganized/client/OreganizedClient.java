@@ -2,8 +2,10 @@ package galena.oreganized.client;
 
 import com.mojang.math.Axis;
 import galena.oreganized.Oreganized;
-import galena.oreganized.client.extensions.ElectrumArmorClientExtensions;
+import galena.oreganized.client.extensions.CustomArmorModelExtensions;
 import galena.oreganized.client.extensions.MoltenLeadClientExtensions;
+import galena.oreganized.client.model.ElectrumArmorModel;
+import galena.oreganized.client.model.SilverArmorModel;
 import galena.oreganized.client.render.entity.LeadBoltRender;
 import galena.oreganized.client.render.entity.ShrapnelBombMinecartRender;
 import galena.oreganized.client.render.entity.ShrapnelBombRender;
@@ -12,6 +14,7 @@ import galena.oreganized.client.tooltips.ClientDeviceTooltip;
 import galena.oreganized.client.tooltips.ClientThermometerTooltip;
 import galena.oreganized.client.tooltips.DeviceTooltip;
 import galena.oreganized.client.tooltips.ThermometerTooltip;
+import galena.oreganized.compat.ponder.PonderCompat;
 import galena.oreganized.content.block.PushableBlockEntity;
 import galena.oreganized.content.item.SpeedometerItem;
 import galena.oreganized.content.item.ThermometerItem;
@@ -21,8 +24,10 @@ import galena.oreganized.index.OEntityTypes;
 import galena.oreganized.index.OFluids;
 import galena.oreganized.index.OItems;
 import galena.oreganized.world.IMotionHolder;
+
 import java.util.List;
 import java.util.function.Supplier;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelPart;
@@ -30,10 +35,14 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.repository.Pack;
+import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.item.Items;
@@ -41,6 +50,7 @@ import net.minecraft.world.item.component.ChargedProjectiles;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
@@ -49,6 +59,7 @@ import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
 import net.neoforged.neoforge.client.event.RenderHandEvent;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
+import net.neoforged.neoforge.event.AddPackFindersEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
 @EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT)
@@ -64,6 +75,22 @@ public class OreganizedClient {
             OreganizedClient.registerBlockRenderers();
             OreganizedClient.registerItemProperties();
         });
+
+        if (ModList.get().isLoaded("ponder")) {
+            PonderCompat.register();
+        }
+    }
+
+    @SubscribeEvent
+    public static void addResourcePacks(AddPackFindersEvent event) {
+        event.addPackFinders(
+                Oreganized.modLoc("resourcepacks/create_compat"),
+                PackType.CLIENT_RESOURCES,
+                Component.literal("Create Compat"),
+                PackSource.BUILT_IN,
+                false,
+                Pack.Position.TOP
+        );
     }
 
     private static void registerItemProperties() {
@@ -140,7 +167,8 @@ public class OreganizedClient {
     @SubscribeEvent
     public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
         event.registerFluidType(new MoltenLeadClientExtensions(), OFluids.MOLTEN_LEAD_TYPE);
-        event.registerItem(new ElectrumArmorClientExtensions(), OItems.ELECTRUM_HELMET, OItems.ELECTRUM_CHESTPLATE, OItems.ELECTRUM_LEGGINGS, OItems.ELECTRUM_BOOTS);
+        event.registerItem(new CustomArmorModelExtensions(ElectrumArmorModel::new, ElectrumArmorModel::createBodyLayer), OItems.electrumArmor().toArray(Holder[]::new));
+        event.registerItem(new CustomArmorModelExtensions(SilverArmorModel::new, SilverArmorModel::createBodyLayer), OItems.silverArmor().toArray(Holder[]::new));
     }
 
     @EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT)

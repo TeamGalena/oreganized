@@ -31,6 +31,9 @@ public class OEntityTypes {
             if (event.has(entityType, Attributes.ATTACK_DAMAGE)) {
                 event.add(entityType, OAttributes.KINETIC_DAMAGE);
             }
+            if (event.has(entityType, Attributes.ARMOR)) {
+                event.add(entityType, OAttributes.INVINCIBILITY_FRAMES);
+            }
         }
     }
 

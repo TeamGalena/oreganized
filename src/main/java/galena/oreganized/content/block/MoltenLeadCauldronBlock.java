@@ -6,8 +6,10 @@ import galena.oreganized.OreganizedConfig;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
+
 import java.util.function.Predicate;
 import java.util.function.ToIntFunction;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.server.level.ServerLevel;
@@ -15,7 +17,6 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -116,17 +117,18 @@ public class MoltenLeadCauldronBlock extends AbstractCauldronBlock implements Ca
 
     @Override
     public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+        if (!OreganizedConfig.COMMON.cauldronLeadMelting.get()) return;
         if (!world.isAreaLoaded(pos, 1))
             return; // Forge: prevent loading unloaded chunks when checking neighbor's light
         int max_age = AGE.getPossibleValues().size() - 1;
         int age = state.getValue(AGE);
         if (age < max_age && random.nextInt(1) == 0) {
             BlockState below = world.getBlockState(pos.below());
-            if ((below.is(OTags.Blocks.FIRE_SOURCE) || below.getFluidState().is(FluidTags.LAVA)) && OreganizedConfig.COMMON.cauldronLeadMelting.get()) {
+            if ((below.is(OTags.Blocks.MELTS_LEAD))) {
                 world.setBlockAndUpdate(pos, state.setValue(AGE, age + 1));
-                return;
+            } else {
+                world.setBlockAndUpdate(pos, state.setValue(AGE, Mth.clamp(age - 1, 0, max_age)));
             }
-            world.setBlockAndUpdate(pos, state.setValue(AGE, Mth.clamp(age - 1, 0, max_age)));
         }
     }
 

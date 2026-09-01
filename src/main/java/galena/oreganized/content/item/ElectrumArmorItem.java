@@ -2,9 +2,12 @@ package galena.oreganized.content.item;
 
 import com.google.common.base.Suppliers;
 import galena.oreganized.Oreganized;
+import galena.oreganized.OreganizedConfig;
 import galena.oreganized.index.OArmorMaterials;
+
 import java.util.function.Supplier;
 import javax.annotation.Nullable;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -16,7 +19,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 
 public class ElectrumArmorItem extends ArmorItem {
-    private static final ResourceLocation TEXTURE = Oreganized.modLoc("textures/entity/electrum_armor.png");
+    private static final ResourceLocation TEXTURE = Oreganized.modLoc("textures/models/armor/electrum.png");
     private final Supplier<ItemAttributeModifiers> modifiers;
 
     public ElectrumArmorItem(ArmorItem.Type slot) {
@@ -29,7 +32,11 @@ public class ElectrumArmorItem extends ArmorItem {
             var id = ResourceLocation.withDefaultNamespace("armor." + slot.getName());
             builder.add(Attributes.ARMOR, new AttributeModifier(id, material.getDefense(slot), Operation.ADD_VALUE), slotGroup);
             builder.add(Attributes.ARMOR_TOUGHNESS, new AttributeModifier(id, material.toughness(), Operation.ADD_VALUE), slotGroup);
-            builder.add(Attributes.MOVEMENT_SPEED, new AttributeModifier(id, 0.05, Operation.ADD_MULTIPLIED_BASE), slotGroup);
+
+            double speedBoost = OreganizedConfig.COMMON.electrumSpeedBoost.get();
+            if (speedBoost > 0) {
+                builder.add(Attributes.MOVEMENT_SPEED, new AttributeModifier(id, speedBoost, Operation.ADD_MULTIPLIED_BASE), slotGroup);
+            }
             return builder.build();
         });
     }

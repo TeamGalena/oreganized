@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "AbstractArrowMixin",
+    "AnvilMenuMixin",
     "AreaEffectCloudMixin",
     "BlockBehaviourMixin",
     "BlockMixin",
@@ -28,7 +29,8 @@
     "client.GuiMixin",
     "client.HumanoidArmorLayerAccessor",
     "client.HumanoidArmorLayerMixin",
-    "client.HumanoidModelMixin"
+    "client.HumanoidModelMixin",
+    "PlayerMixin"
   ],
   "server": [],
   "injectors": {

@@ -3,6 +3,14 @@
     "minecraft:lava",
     "minecraft:magma_block",
     "#minecraft:campfires",
-    "#minecraft:fire"
+    "#minecraft:fire",
+    {
+      "id": "#farmersdelight:tray_heat_sources",
+      "required": false
+    },
+    {
+      "id": "#create:passive_boiler_heaters",
+      "required": false
+    }
   ]
 }

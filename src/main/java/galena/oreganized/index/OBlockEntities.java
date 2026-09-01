@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class OBlockEntities {
-    public static final BlockEntitySubRegistryHelper HELPER = Oreganized.REGISTRY_HELPER.getBlockEntitySubHelper();
+    private static final BlockEntitySubRegistryHelper HELPER = Oreganized.REGISTRY_HELPER.getBlockEntitySubHelper();
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<GargoyleBlockEntity>> GARGOYLE = HELPER.createBlockEntity("gargoyle", GargoyleBlockEntity::new, () -> Set.of(OBlocks.GARGOYLE.get()));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<PushableBlockEntity>> PUSHABLE = HELPER.createBlockEntity("pushable", PushableBlockEntity::new, () -> Set.of(OBlocks.LEAD_DOOR.get(), OBlocks.LEAD_TRAPDOOR.get(), OBlocks.STURDY_LEVER.get(), OBlocks.STURDY_BUTTON.get()));

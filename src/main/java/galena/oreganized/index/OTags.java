@@ -1,7 +1,6 @@
 package galena.oreganized.index;
 
-import static galena.oreganized.ModCompat.NETHERS_DELIGHT_ID;
-import static galena.oreganized.ModCompat.SHIELD_EXPANSION_ID;
+import static galena.oreganized.ModCompat.*;
 
 import galena.oreganized.Oreganized;
 import net.minecraft.core.registries.Registries;
@@ -46,10 +45,10 @@ public class OTags {
 
         public static final TagKey<Item> STORAGE_BLOCKS_RAW_SILVER = forgeTag("storage_blocks/raw_silver");
         public static final TagKey<Item> STORAGE_BLOCKS_RAW_LEAD = forgeTag("storage_blocks/raw_lead");
-        public static final TagKey<Item> BUCKETS_MOLTEN_LEAD = forgeTag("buckets/molten_lead");
         public static final TagKey<Item> TOOLS_BUSH_HAMMER = forgeTag("tools/bush_hammer");
 
-        public static final TagKey<Item> TOOLS_KNIVES = forgeTag("tools/knife");
+        public static final TagKey<Item> TOOLS_KNIVES = ItemTags.create(ResourceLocation.fromNamespaceAndPath(FARMERS_DELIGHT_ID, "tools/knives"));
+        public static final TagKey<Item> FORGE_TOOLS_KNIVES = forgeTag("tools/knife");
         public static final TagKey<Item> SHIELDS = forgeTag("shields");
         public static final TagKey<Item> SHIELDS_SE = ItemTags.create(ResourceLocation.fromNamespaceAndPath(SHIELD_EXPANSION_ID, "shields"));
         public static final TagKey<Item> MACHETES = ItemTags.create(ResourceLocation.fromNamespaceAndPath(NETHERS_DELIGHT_ID, "tools/machete"));
@@ -60,6 +59,9 @@ public class OTags {
 
         public static final TagKey<Item> PROTECTIVE_HELMET = tag("lead_protection/helmet_standalone");
         public static final TagKey<Item> PROTECTIVE_ARMOR_PART = tag("lead_protection/armor_set");
+
+        public static final TagKey<Item> NO_ANVIL_ENCHANT_COST = tag("no_anvil_enchant_cost");
+        public static final TagKey<Item> ENCHANTED_BOOK_LIKE = tag("enchanted_book_like");
 
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(Oreganized.modLoc(name));
@@ -78,7 +80,6 @@ public class OTags {
         public static final TagKey<Block> SILKTOUCH_WITH_SCRIBE_BLACKLIST = tag("no_silktouch_using_scribe");
         public static final TagKey<Block> ENGRAVABLE = tag("engravable");
         public static final TagKey<Block> ENGRAVABLE_NEEDS_PLATE = tag("engravable/needs_plate");
-        public static final TagKey<Block> FIRE_SOURCE = tag("fire_source");
         public static final TagKey<Block> CRYSTAL_GLASS = tag("crystal_glass");
         public static final TagKey<Block> CRYSTAL_GLASS_PANES = tag("crystal_glass_panes");
         public static final TagKey<Block> STONE_TYPES_GLANCE = tag("stone_types/glance");
@@ -109,6 +110,10 @@ public class OTags {
         public static final TagKey<Block> AMETHYST_CLUSTERS = forgeTag("clusters/amethyst");
         public static final TagKey<Block> QUARTZITE_CLUSTERS = forgeTag("clusters/quartzite");
 
+        public static final TagKey<Block> INCORRECT_FOR_SILVER_TOOL = tag("incorrect_for_silver_tool");
+        public static final TagKey<Block> INCORRECT_FOR_ELECTRUM_TOOL = tag("incorrect_for_electrum_tool");
+        public static final TagKey<Block> INCORRECT_FOR_LEAD_TOOL = tag("incorrect_for_lead_tool");
+
         private static TagKey<Block> tag(String name) {
             return TagKey.create(Registries.BLOCK, Oreganized.modLoc(name));
         }
@@ -124,6 +129,7 @@ public class OTags {
         public static final TagKey<EntityType<?>> BOLT_SUSCEPTIBLE = tag("bolt_susceptible");
         public static final TagKey<EntityType<?>> BOLT_RESISTANT = tag("bolt_resistant");
         public static final TagKey<EntityType<?>> SCARED_OF_GARGOYLE = tag("scared_of_gargoyle");
+        public static final TagKey<EntityType<?>> TARNISHABLE = tag("tarnishable");
 
         private static TagKey<EntityType<?>> tag(String name) {
             return TagKey.create(Registries.ENTITY_TYPE, Oreganized.modLoc(name));
@@ -158,7 +164,7 @@ public class OTags {
     public static class Enchantments {
 
         public static final TagKey<Enchantment> PREVENTS_LEAD_CLOUD = tag("prevents_lead_cloud");
-        public static final TagKey<Enchantment> HEAD_IMMUNITY = tag("heat_immunity");
+        public static final TagKey<Enchantment> HEAT_IMMUNITY = tag("heat_immunity");
 
         private static TagKey<Enchantment> tag(String name) {
             return TagKey.create(Registries.ENCHANTMENT, Oreganized.modLoc(name));

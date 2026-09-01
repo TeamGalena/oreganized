@@ -35,10 +35,8 @@ public class OItemModels extends OItemModelProvider {
         normalItem(OItems.ELECTRUM_NUGGET);
         normalItem(OItems.NETHERITE_NUGGET);
         normalItem(OItems.MOLTEN_LEAD_BUCKET);
-        trimmableArmorItem(OItems.ELECTRUM_HELMET);
-        trimmableArmorItem(OItems.ELECTRUM_CHESTPLATE);
-        trimmableArmorItem(OItems.ELECTRUM_LEGGINGS);
-        trimmableArmorItem(OItems.ELECTRUM_BOOTS);
+        OItems.electrumArmor().forEach(this::trimmableArmorItem);
+        OItems.silverArmor().forEach(this::trimmableArmorItem);
         normalItem(OItems.SHRAPNEL_BOMB_MINECART);
         normalItem(OItems.SHRAPNEL_BOMB_MINECART);
         normalItem(OItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE);
@@ -47,14 +45,11 @@ public class OItemModels extends OItemModelProvider {
 
         toolItem(OItems.BUSH_HAMMER);
         toolItem(OItems.SCRIBE);
-        toolItem(OItems.ELECTRUM_SWORD);
-        toolItem(OItems.ELECTRUM_SHOVEL);
-        toolItem(OItems.ELECTRUM_PICKAXE);
-        toolItem(OItems.ELECTRUM_AXE);
-        toolItem(OItems.ELECTRUM_HOE);
+        OItems.electrumTools().forEach(this::toolItem);
         toolItem(OItems.ELECTRUM_KNIFE);
         toolItem(OItems.ELECTRUM_MACHETE);
         shieldItem(OItems.ELECTRUM_SHIELD);
+        OItems.silverTools().forEach(this::toolItem);
 
         crossbowOverwrite("crossbow_lead_bolt");
 

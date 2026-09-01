@@ -94,7 +94,7 @@ public interface IMeltableBlock {
 
     default void hurt(BlockState state, Level world, Entity entity) {
         if (getGoopyness(state) < 2) return;
-        if (!entity.isSteppingCarefully() && entity instanceof LivingEntity le && EnchantmentHelper.hasTag(le.getItemBySlot(EquipmentSlot.FEET), OTags.Enchantments.HEAD_IMMUNITY)) {
+        if (!entity.isSteppingCarefully() && entity instanceof LivingEntity le && !EnchantmentHelper.hasTag(le.getItemBySlot(EquipmentSlot.FEET), OTags.Enchantments.HEAT_IMMUNITY)) {
             entity.hurt(world.damageSources().hotFloor(), 1.0F);
         }
     }

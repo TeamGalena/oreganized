@@ -34,6 +34,23 @@ public class OArmorMaterials {
             )
     );
 
+    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> SILVER = ARMOR_MATERIALS.register("silver", () ->
+            new ArmorMaterial(
+                    Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+                        map.put(ArmorItem.Type.BOOTS, 2);
+                        map.put(ArmorItem.Type.LEGGINGS, 5);
+                        map.put(ArmorItem.Type.CHESTPLATE, 6);
+                        map.put(ArmorItem.Type.HELMET, 2);
+                    }),
+                    10,
+                    SoundEvents.ARMOR_EQUIP_GOLD,
+                    () -> Ingredient.of(OTags.Items.INGOTS_SILVER),
+                    List.of(new ArmorMaterial.Layer(Oreganized.modLoc("silver"))),
+                    0.0F,
+                    0.0F
+            )
+    );
+
     public static void register(IEventBus modBus) {
         ARMOR_MATERIALS.register(modBus);
     }

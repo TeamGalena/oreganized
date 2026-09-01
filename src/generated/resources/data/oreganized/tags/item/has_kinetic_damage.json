@@ -1,11 +1,11 @@
 {
   "values": [
+    "oreganized:electrum_sword",
+    "oreganized:electrum_shovel",
+    "oreganized:electrum_pickaxe",
     "oreganized:electrum_axe",
     "oreganized:electrum_hoe",
     "oreganized:electrum_knife",
-    "oreganized:electrum_machete",
-    "oreganized:electrum_pickaxe",
-    "oreganized:electrum_shovel",
-    "oreganized:electrum_sword"
+    "oreganized:electrum_machete"
   ]
 }

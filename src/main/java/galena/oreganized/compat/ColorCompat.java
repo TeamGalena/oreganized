@@ -13,7 +13,7 @@ public class ColorCompat {
     public static String getNamespace(DyeColor color) {
         return switch (color) {
             case RED, BLACK, BLUE, BROWN, CYAN, GRAY, LIGHT_BLUE, LIGHT_GRAY, GREEN, LIME, MAGENTA, ORANGE, PINK,
-                 PURPLE, WHITE, YELLOW -> "minecraft";
+                 PURPLE, WHITE, YELLOW -> ResourceLocation.DEFAULT_NAMESPACE;
             default -> "dye_depot";
         };
     }
@@ -30,4 +30,7 @@ public class ColorCompat {
         return BuiltInRegistries.BLOCK.getOrThrow(createBlockKey(suffix, color));
     }
 
+    public static boolean isModded(DyeColor color) {
+        return !getNamespace(color).equals(ResourceLocation.DEFAULT_NAMESPACE);
+    }
 }

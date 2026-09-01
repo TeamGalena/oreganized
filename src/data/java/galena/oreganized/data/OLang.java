@@ -3,13 +3,8 @@ package galena.oreganized.data;
 import galena.oreganized.Oreganized;
 import galena.oreganized.client.tooltips.ClientThermometerTooltip;
 import galena.oreganized.data.provider.OLangProvider;
-import galena.oreganized.index.OBlocks;
-import galena.oreganized.index.OEffects;
-import galena.oreganized.index.OEntityTypes;
-import galena.oreganized.index.OFluids;
-import galena.oreganized.index.OItems;
-import galena.oreganized.index.OPaintingVariants;
-import galena.oreganized.index.OPotions;
+import galena.oreganized.index.*;
+import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.entity.EntityType;
@@ -74,6 +69,9 @@ public class OLang extends OLangProvider {
         addSubtitle("entity", "shrapnel_bomb.primed", "Shrapnel Bomb fizzes");
         addSubtitle("entity", "bolt_hit", "Bolt hits");
         addSubtitle("block", "gargoyle.growl", "Gargoyle growls");
+        addSubtitle("block", "tarnish", "Something tarnishes");
+        addSubtitle("block", "polish", "Polishing");
+
         add("tooltip.oreganized.speed", "Speed: %s");
         add(ClientThermometerTooltip.getDescriptionId(0), "Freezing");
         add(ClientThermometerTooltip.getDescriptionId(1), "Cold");
@@ -89,15 +87,82 @@ public class OLang extends OLangProvider {
 
         add("item.oreganized.smithing_template.electrum_upgrade.additions_slot_description", "Add Electrum Ingot");
 
-        add("death.attack.lead_bolt", "%1$s was shot by %2$s");
-        add("death.attack.lead_bolt.item", "%1$s was shot by %2$s using %3$s");
-        add("death.attack.molten_lead", "%1$s refused to let go of the searing hot metal");
+        addDeath("lead_bolt", "%1$s was shot by %2$s");
+        addDeath("lead_bolt.item", "%1$s was shot by %2$s using %3$s");
+        addDeath("molten_lead", "%1$s refused to let go of the searing hot metal");
 
-        add("attribute.oreganized.kinetic_damage", "Kinetic Damage");
+        addAttribute(OAttributes.KINETIC_DAMAGE, "Kinetic Damage");
+        addAttribute(OAttributes.INVINCIBILITY_FRAMES, "Invincibility");
 
-        add("item.oreganized.flint_and_pewter", "Flint and Pewter");
+        addItem(OItems.FLINT_AND_PEWTER, "Flint and Pewter");
 
         addPainting(OPaintingVariants.VINDICATING_BAD, "Vindicating Bad", "Xaidee");
+
+        PonderIndex.getLangAccess().provideLang(Oreganized.MOD_ID, this::add);
+
+        add(OTags.Items.CRYSTAL_GLASS, "Crystal Glass");
+        add(OTags.Items.CRYSTAL_GLASS_PANES, "Crystal Glass Panes");
+        add(OTags.Items.ENCHANTED_BOOK_LIKE, "Enchanted Books");
+        add(OTags.Items.GARGOYLE_SNACK, "Gargoyle Snacks");
+        add(OTags.Items.HAS_KINETIC_DAMAGE, "Has Kinetic Damage");
+        add(OTags.Items.INGOTS_ELECTRUM, "Electrum Ingots");
+        add(OTags.Items.INGOTS_SILVER, "Silver Ingots");
+        add(OTags.Items.INGOTS_LEAD, "Lead Ingots");
+        add(OTags.Items.NUGGETS_ELECTRUM, "Electrum Nuggets");
+        add(OTags.Items.NUGGETS_LEAD, "Lead Nuggets");
+        add(OTags.Items.NUGGETS_SILVER, "Silver Nuggets");
+        add(OTags.Items.NUGGETS_NETHERITE, "Netherite Nuggets");
+        add(OTags.Items.ORES_LEAD, "Lead Ores");
+        add(OTags.Items.ORES_SILVER, "Silver Ores");
+        add(OTags.Items.RAW_MATERIALS_LEAD, "Raw Lead");
+        add(OTags.Items.RAW_MATERIALS_SILVER, "Raw Silver");
+        add(OTags.Items.STORAGE_BLOCKS_ELECTRUM, "Electrum Storage Blocks");
+        add(OTags.Items.STORAGE_BLOCKS_LEAD, "Lead Storage Blocks");
+        add(OTags.Items.STORAGE_BLOCKS_SILVER, "Silver Storage Blocks");
+        add(OTags.Items.STORAGE_BLOCKS_RAW_LEAD, "Raw Lead Storage Blocks");
+        add(OTags.Items.STORAGE_BLOCKS_RAW_SILVER, "Raw Silver Storage Blocks");
+        add(OTags.Items.LIGHTER_THAN_LEAD, "Floats on Lead");
+        add(OTags.Items.NO_ANVIL_ENCHANT_COST, "Free Anvil Enchantables");
+        add(OTags.Items.PROTECTIVE_ARMOR_PART, "Lead Protecting Armor");
+        add(OTags.Items.PROTECTIVE_HELMET, "Lead Protecting Helmets");
+        add(OTags.Items.TOOLS_BUSH_HAMMER, "Bush Hammers");
+        add(OTags.Items.STONE_TYPES_GLANCE, "Processed Glance");
+
+        add(OTags.Blocks.CRYSTAL_GLASS, "Crystal Glass");
+        add(OTags.Blocks.CRYSTAL_GLASS_PANES, "Crystal Glass Panes");
+        add(OTags.Blocks.ORES_LEAD, "Lead Ores");
+        add(OTags.Blocks.ORES_SILVER, "Silver Ores");
+        add(OTags.Blocks.STORAGE_BLOCKS_ELECTRUM, "Electrum Storage Blocks");
+        add(OTags.Blocks.STORAGE_BLOCKS_LEAD, "Lead Storage Blocks");
+        add(OTags.Blocks.STORAGE_BLOCKS_SILVER, "Silver Storage Blocks");
+        add(OTags.Blocks.STORAGE_BLOCKS_RAW_LEAD, "Raw Lead Storage Blocks");
+        add(OTags.Blocks.STORAGE_BLOCKS_RAW_SILVER, "Raw Silver Storage Blocks");
+        add(OTags.Blocks.STONE_TYPES_GLANCE, "Processed Glance");
+
+        add(OTags.Blocks.AMETHYST_CLUSTERS, "Amethyst Clusters");
+        add(OTags.Blocks.BLOWS_LEAD_CLOUD, "Lead Cloud Source");
+        add(OTags.Blocks.FIRE_HEAT_LEVEL, "Lower Heat Level");
+        add(OTags.Blocks.LAVA_HEAT_LEVEL, "Higher Heat Level");
+        add(OTags.Blocks.MELTS_LEAD, "Melts Lead Blocks");
+        add(OTags.Blocks.INCORRECT_FOR_ELECTRUM_TOOL, "Incorrect for Electrum Tools");
+        add(OTags.Blocks.INCORRECT_FOR_LEAD_TOOL, "Incorrect for Lead Tools");
+        add(OTags.Blocks.INCORRECT_FOR_SILVER_TOOL, "Incorrect for Silver Tools");
+        add(OTags.Blocks.MINEABLE_WITH_BUSH_HAMMER, "Mineable with Bush Hammer");
+        add(OTags.Blocks.MINEABLE_WITH_SCRIBE, "Mineable with Scribe");
+        add(OTags.Blocks.SILKTOUCH_WITH_SCRIBE, "Silktouch-able with Scibe");
+        add(OTags.Blocks.SILKTOUCH_WITH_SCRIBE_BLACKLIST, "Not Silktouch-able with Scibe");
+        add(OTags.Blocks.PREVENTS_LEAD_CLOUD, "Prevents Lead Clouds");
+
+        add(OTags.Enchantments.HEAT_IMMUNITY, "Heat Protective Footwear");
+        add(OTags.Enchantments.PREVENTS_LEAD_CLOUD, "Prevents Lead Clouds");
+
+        add(OTags.Entities.BOLT_RESISTANT, "Bolt Resistant");
+        add(OTags.Entities.BOLT_SUSCEPTIBLE, "Bolt Susceptible");
+        add(OTags.Entities.LIGHTER_THAN_LEAD, "Floats on Lead");
+        add(OTags.Entities.SCARED_OF_GARGOYLE, "Scared of Gargoyles");
+        add(OTags.Entities.TARNISHABLE, "Can Tarnish");
+
+        add(OTags.Fluids.MOLTEN_LEAD, "Molten Lead");
 
         /*
             Automatically create translations for blocks and items based on their registry name.

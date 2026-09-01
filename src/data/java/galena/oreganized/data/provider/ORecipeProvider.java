@@ -10,10 +10,15 @@ import galena.oreganized.ModCompat;
 import galena.oreganized.Oreganized;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
+import galena.oreganized.index.TarnishedBlocks;
 import galena.oreganized.world.recipe.ScribeRecipe;
+
+import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
+
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -176,6 +181,34 @@ public abstract class ORecipeProvider extends RecipeProvider {
         return blastingRecipeTag(result, ingredient, exp, 1);
     }
 
+    public SimpleCookingRecipeBuilder blastingRecycling(ItemLike nugget, Collection<? extends Holder<? extends ItemLike>> items) {
+        var builder = SimpleCookingRecipeBuilder.blasting(Ingredient.of(items.stream().map(Holder::value).map(ItemStack::new)), RecipeCategory.MISC, nugget, 0.1F, 100);
+        for (var holder : items) {
+            var item = holder.value();
+            builder.unlockedBy(getHasName(item), has(item));
+        }
+        return builder;
+    }
+
+    public SimpleCookingRecipeBuilder smeltingRecycling(ItemLike nugget, Collection<? extends Holder<? extends ItemLike>> itemms) {
+        var builder = SimpleCookingRecipeBuilder.smelting(Ingredient.of(itemms.stream().map(Holder::value).map(ItemStack::new)), RecipeCategory.MISC, nugget, 0.1F, 100);
+        for (var holder : itemms) {
+            var item = holder.value();
+            builder.unlockedBy(getHasName(item), has(item));
+        }
+        return builder;
+    }
+
+    public void metalRecycling(RecipeOutput consumer, ItemLike nugget, Collection<? extends Holder<? extends ItemLike>> items, String suffix) {
+        var name = getItemName(nugget);
+        blastingRecycling(nugget, items).save(consumer, Oreganized.modLoc(name + "_from_blasting").withSuffix(suffix));
+        smeltingRecycling(nugget, items).save(consumer, Oreganized.modLoc(name + "_from_smelting").withSuffix(suffix));
+    }
+
+    public void metalRecycling(RecipeOutput consumer, ItemLike nugget, Collection<? extends Holder<? extends ItemLike>> items) {
+        metalRecycling(consumer, nugget, items, "");
+    }
+
     public SimpleCookingRecipeBuilder blastingRecipeTag(ItemLike result, TagKey<Item> ingredient, float exp, int count) {
         return SimpleCookingRecipeBuilder.blasting(Ingredient.of(ingredient), RecipeCategory.MISC, result, exp, 100)
                 .unlockedBy("has_" + ingredient.location().getPath(), has(ingredient));
@@ -245,14 +278,14 @@ public abstract class ORecipeProvider extends RecipeProvider {
     public <R extends StandardProcessingRecipe<?>> StandardProcessingRecipe.Builder<R> processing(StandardProcessingRecipe.Factory<R> factory, String id) {
         return whenLoaded(
                 new StandardProcessingRecipe.Builder<>(factory, Oreganized.modLoc(id)),
-                "create"
+                ModCompat.CREATE
         );
     }
 
     public <R extends ItemApplicationRecipe> ItemApplicationRecipe.Builder<R> application(ItemApplicationRecipe.Factory<R> factory, String id) {
         return whenLoaded(
                 new ItemApplicationRecipe.Builder<>(factory, Oreganized.modLoc(id)),
-                "create"
+                ModCompat.CREATE
         );
     }
 
@@ -273,11 +306,23 @@ public abstract class ORecipeProvider extends RecipeProvider {
         return CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(from), Ingredient.of(OItems.SCRIBE.asItem()), to);
     }
 
+    public void brushing(RecipeOutput output, TarnishedBlocks<?> blocks) {
+        brushing(output, blocks.tarnished(), blocks.blemished());
+        brushing(output, blocks.blemished(), blocks.base());
+    }
+
+    public void brushing(RecipeOutput output, ItemLike from, ItemLike to) {
+        Conditional.with(this, List.of(new ModLoaded(ModCompat.FARMERS_DELIGHT_ID)), () -> {
+            CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(from), Ingredient.of(Items.BRUSH), to)
+                    .save(output, RecipeBuilder.getDefaultRecipeId(from).withPrefix("brushing/"));
+        });
+    }
+
     public void scribeConversionAndCutting(RecipeOutput output, Block from, Block to) {
         var id = RecipeBuilder.getDefaultRecipeId(to);
         scribeConversion(from, to).save(output, id);
         Conditional.with(this, List.of(new ModLoaded(ModCompat.FARMERS_DELIGHT_ID)), () -> {
-            scribeCuttingBoard(from, to).save(output, id);
+            scribeCuttingBoard(from, to).save(output, id.withPrefix("cutting/"));
         });
     }
 
