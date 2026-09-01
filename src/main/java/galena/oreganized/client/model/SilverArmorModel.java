@@ -17,7 +17,7 @@ public class SilverArmorModel {
                         .addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.51F))
                         .texOffs(56, 43)
                         .addBox(-2.0F, -2.0F, 3.0F, 4.0F, 6.0F, 0.0F, CubeDeformation.NONE),
-                PartPose.offset(0.0F, 0.0F, 0.0F)
+                PartPose.ZERO
         );
 
         root.addOrReplaceChild("left_leg", CubeListBuilder.create()
@@ -43,13 +43,13 @@ public class SilverArmorModel {
                         .addBox(-4.0F, -7.5F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(1.0F))
                         .texOffs(16, -8)
                         .addBox(-4.0F, -6.5F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.74F)),
-                PartPose.offset(0.0F, 0.0F, 0.0F)
+                PartPose.ZERO
         );
 
         root.addOrReplaceChild("body", CubeListBuilder.create()
                         .texOffs(16, 16)
                         .addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.75F)),
-                PartPose.offset(0.0F, 0.0F, 0.0F)
+                PartPose.ZERO
         );
 
         root.addOrReplaceChild("left_boot", CubeListBuilder.create()

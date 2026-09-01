@@ -12,12 +12,14 @@ public class ModdedArmorModel<T extends LivingEntity> extends HumanoidArmorModel
     private final EquipmentSlot slot;
     private final ModelPart leftBoot;
     private final ModelPart rightBoot;
+    private final ModelPart waist;
 
     public ModdedArmorModel(ModelPart root, EquipmentSlot slot) {
         super(root);
         this.slot = slot;
         this.leftBoot = root.getChild("left_boot");
         this.rightBoot = root.getChild("right_boot");
+        this.waist = root.getChild("waist");
     }
 
     @Override
@@ -54,6 +56,7 @@ public class ModdedArmorModel<T extends LivingEntity> extends HumanoidArmorModel
             }
             rightLeg.render(poseStack, buffer, packedLight, packedOverlay);
             leftLeg.render(poseStack, buffer, packedLight, packedOverlay);
+            waist.render(poseStack, buffer, packedLight, packedOverlay);
         } else if (slot == EquipmentSlot.FEET) {
             rightBoot.copyFrom(rightLeg);
             leftBoot.copyFrom(leftLeg);
