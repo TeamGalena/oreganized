@@ -13,7 +13,7 @@ public class SilverArmorModel {
         var root = mesh.getRoot();
 
         root.addOrReplaceChild("waist", CubeListBuilder.create()
-                        .texOffs(40, 48)
+                        .texOffs(16, 16)
                         .addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.51F))
                         .texOffs(56, 43)
                         .addBox(-2.0F, -2.0F, 3.0F, 4.0F, 6.0F, 0.0F, CubeDeformation.NONE),
@@ -21,7 +21,7 @@ public class SilverArmorModel {
         );
 
         root.addOrReplaceChild("left_leg", CubeListBuilder.create()
-                        .texOffs(24, 48)
+                        .texOffs(0, 16)
                         .mirror()
                         .addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.5F))
                         .mirror(false),
@@ -29,7 +29,7 @@ public class SilverArmorModel {
         );
 
         root.addOrReplaceChild("right_leg", CubeListBuilder.create()
-                        .texOffs(24, 48)
+                        .texOffs(0, 16)
                         .addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.5F)),
                 PartPose.offset(-1.9F, 12.0F, 0.0F)
         );
@@ -37,12 +37,15 @@ public class SilverArmorModel {
         root.addOrReplaceChild("head", CubeListBuilder.create()
                         .texOffs(0, 0)
                         .addBox(-4.0F, -7.5F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.75F))
-                        .texOffs(0, 32)
-                        .addBox(-5.0F, -5.9F, -5.0F, 10.0F, 2.0F, 9.0F, new CubeDeformation(0.5F))
+                        // Rim
                         .texOffs(32, 0)
-                        .addBox(-4.0F, -7.5F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(1.0F))
-                        .texOffs(16, -8)
-                        .addBox(-4.0F, -6.5F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.74F)),
+                        .addBox(-4.0F, -6.0F, -4.0F, 8.0F, 2.0F, 8.0F, new CubeDeformation(1.0F, 0.25F, 1.0F))
+                        // Teeth
+                        .texOffs(49, 10)
+                        .addBox(-2F, 1.25F, -4.7F, 4.0F, 1.0F, 0.0F, new CubeDeformation(0.4F, 0.125F, 0.0F))
+                        // Nose Thing
+                        .texOffs(43, 10)
+                        .addBox(-1.0F, -3.45F, -5F, 2.0F, 3.0F, 0.0F, new CubeDeformation(0.2F, 0.3F, 0F)),
                 PartPose.ZERO
         );
 
@@ -71,22 +74,22 @@ public class SilverArmorModel {
                         .mirror()
                         .addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.75F))
                         .mirror(false),
-                        // .texOffs(0, 43)
-                        // .mirror()
-                        // .addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.7F))
-                        // .mirror(false),
+                // .texOffs(0, 43)
+                // .mirror()
+                // .addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.7F))
+                // .mirror(false),
                 PartPose.offset(5.0F, 2.0F, 0.0F)
         );
 
         root.addOrReplaceChild("right_arm", CubeListBuilder.create()
                         .texOffs(40, 16)
                         .addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.75F)),
-                        // .texOffs(0, 43)
-                        // .addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.7F)),
+                // .texOffs(0, 43)
+                // .addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.7F)),
                 PartPose.offset(-5.0F, 2.0F, 0.0F)
         );
 
-        return LayerDefinition.create(mesh, 64, 64);
+        return LayerDefinition.create(mesh, 64, 32);
     }
 
 }

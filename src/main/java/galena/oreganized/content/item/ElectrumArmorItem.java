@@ -19,11 +19,14 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 
 public class ElectrumArmorItem extends ArmorItem {
-    private static final ResourceLocation TEXTURE = Oreganized.modLoc("textures/models/armor/electrum.png");
+    private final ResourceLocation texture;
     private final Supplier<ItemAttributeModifiers> modifiers;
 
     public ElectrumArmorItem(ArmorItem.Type slot) {
         super(OArmorMaterials.ELECTRUM, slot, new Properties().durability(slot.getDurability(33)));
+
+        var index = slot == Type.LEGGINGS ? 2 : 1;
+        this.texture = Oreganized.modLoc("textures/models/armor/electrum_layer_%s.png".formatted(index));
 
         modifiers = Suppliers.memoize(() -> {
             var builder = ItemAttributeModifiers.builder();
@@ -50,7 +53,7 @@ public class ElectrumArmorItem extends ArmorItem {
     @Nullable
     @Override
     public ResourceLocation getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, ArmorMaterial.Layer layer, boolean innerModel) {
-        return TEXTURE;
+        return texture;
     }
 
 }

@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.renderer.SpriteCoordinateExpander;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 
@@ -25,11 +24,6 @@ public class ModdedArmorModel<T extends LivingEntity> extends HumanoidArmorModel
 
     @Override
     public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, int color) {
-        // trim rendering
-        if (buffer instanceof SpriteCoordinateExpander) {
-            return;
-        }
-
         poseStack.pushPose();
 
         if (young) {

@@ -13,10 +13,12 @@ public final class ElectrumArmorModel {
         var root = mesh.getRoot();
 
         var head = root.addOrReplaceChild("head", CubeListBuilder.create()
+                        .texOffs(35, 3)
+                        .addBox(-1.0F, -8.5F, -4.75F, 2.0F, 4.0F, 0.0F, new CubeDeformation(0.25F, 0.25F, 0.0F))
+                        .texOffs(32, 0)
+                        .addBox(-1.0F, -8.75F, -4.5F, 2.0F, 0.0F, 3.0F, new CubeDeformation(0.25F, 0.0F, 0.25F))
                         .texOffs(0, 0)
-                        .addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.5F))
-                        .texOffs(0, 32)
-                        .addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(1.0F)),
+                        .addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.5F)),
                 PartPose.ZERO
         );
 
@@ -33,25 +35,25 @@ public final class ElectrumArmorModel {
         );
 
         root.addOrReplaceChild("waist", CubeListBuilder.create()
-                        .texOffs(24, 16)
+                        .texOffs(16, 16)
                         .addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.3F)),
                 PartPose.ZERO
         );
 
         root.addOrReplaceChild("body", CubeListBuilder.create()
-                        .texOffs(0, 16)
+                        .texOffs(16, 16)
                         .addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.5F)),
                 PartPose.ZERO
         );
 
         var leftBoot = root.addOrReplaceChild("left_boot", CubeListBuilder.create()
-                        .texOffs(48, 16)
+                        .texOffs(0, 16)
                         .addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.5F)),
                 PartPose.ZERO
         );
 
         var rightBoot = root.addOrReplaceChild("right_boot", CubeListBuilder.create()
-                        .texOffs(48, 16).mirror()
+                        .texOffs(0, 16).mirror()
                         .addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.5F)).mirror(false),
                 PartPose.ZERO
         );
@@ -69,30 +71,30 @@ public final class ElectrumArmorModel {
         );
 
         root.addOrReplaceChild("left_arm", CubeListBuilder.create()
-                        .texOffs(32, 0)
+                        .texOffs(40, 16)
                         .addBox(-2.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.6F)),
                 PartPose.ZERO
         );
 
         root.addOrReplaceChild("right_arm", CubeListBuilder.create()
-                        .texOffs(32, 0).mirror()
+                        .texOffs(40, 16).mirror()
                         .addBox(-2.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.6F)).mirror(false),
                 PartPose.ZERO
         );
 
         root.addOrReplaceChild("left_leg", CubeListBuilder.create()
-                        .texOffs(48, 32).mirror()
+                        .texOffs(0, 16).mirror()
                         .addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.25F)).mirror(false),
                 PartPose.ZERO
         );
 
         root.addOrReplaceChild("right_leg", CubeListBuilder.create()
-                        .texOffs(48, 32)
+                        .texOffs(0, 16)
                         .addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.25F)),
                 PartPose.ZERO
         );
 
-        return LayerDefinition.create(mesh, 64, 64);
+        return LayerDefinition.create(mesh, 64, 32);
     }
 
 }
