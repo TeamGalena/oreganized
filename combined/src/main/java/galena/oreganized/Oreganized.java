@@ -71,7 +71,6 @@ public class Oreganized {
         OParticleTypes.register(modBus);
         OPotions.register(modBus);
         OStructures.register(modBus);
-        OAttributes.register(modBus);
         OArmorMaterials.register(modBus);
         ODataComponents.register(modBus);
         OBlockEntities.register();

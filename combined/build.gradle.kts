@@ -16,7 +16,10 @@ neoforge {
     accessTransformer(project(":core"))
 
     dependOn(project(":core"))
+    dependOn(project(":plumbum"))
     dependOn(project(":argentum"))
+    dependOn(project(":electrum"))
+    dependOn(project(":gothic"))
 }
 
 base {

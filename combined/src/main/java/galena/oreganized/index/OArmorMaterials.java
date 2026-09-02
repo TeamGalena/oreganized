@@ -3,7 +3,11 @@ package galena.oreganized.index;
 import galena.oreganized.Oreganized;
 import java.util.EnumMap;
 import java.util.List;
+
+import galena.oreganized.argentum.index.ArgentumItems;
+import galena.oreganized.electrum.index.ElectrumItems;
 import net.minecraft.Util;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ArmorItem;
@@ -17,22 +21,11 @@ public class OArmorMaterials {
 
     private static final DeferredRegister<ArmorMaterial> ARMOR_MATERIALS = DeferredRegister.create(Registries.ARMOR_MATERIAL, Oreganized.MOD_ID);
 
-    public static final DeferredHolder<ArmorMaterial, ArmorMaterial> ELECTRUM = ARMOR_MATERIALS.register("electrum", () ->
-            new ArmorMaterial(
-                    Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
-                        map.put(ArmorItem.Type.BOOTS, 3);
-                        map.put(ArmorItem.Type.LEGGINGS, 6);
-                        map.put(ArmorItem.Type.CHESTPLATE, 8);
-                        map.put(ArmorItem.Type.HELMET, 3);
-                    }),
-                    20,
-                    SoundEvents.ARMOR_EQUIP_CHAIN,
-                    () -> Ingredient.of(OTags.Items.INGOTS_ELECTRUM),
-                    List.of(new ArmorMaterial.Layer(Oreganized.modLoc("electrum"))),
-                    2.0F,
-                    0.0F
-            )
-    );
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final Holder<ArmorMaterial> SILVER = ArgentumItems.SILVER_MATERIAL;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final Holder<ArmorMaterial> ELECTRUM = ElectrumItems.ELECTRUM_MATERIAL;
 
     public static void register(IEventBus modBus) {
         ARMOR_MATERIALS.register(modBus);

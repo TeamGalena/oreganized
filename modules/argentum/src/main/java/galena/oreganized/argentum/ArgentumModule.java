@@ -11,9 +11,7 @@ import net.neoforged.fml.common.Mod;
 @Mod(OConstants.MOD_ID)
 public class ArgentumModule {
 
-    public ArgentumModule(IEventBus modBus, ModContainer container) {
-        OConstants.LOGGER.info("argentum module booted");
-
+    public ArgentumModule() {
         ArgentumBlocks.register();
         ArgentumItems.register();
         ArgentumAttributes.register();

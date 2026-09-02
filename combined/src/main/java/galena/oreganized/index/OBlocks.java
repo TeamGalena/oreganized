@@ -28,6 +28,7 @@ import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
+import galena.oreganized.electrum.index.ElectrumBlocks;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.item.BlockItem;
@@ -168,9 +169,6 @@ public class OBlocks {
     public static final DeferredBlock<SturdyButtonBlock> STURDY_BUTTON = register("sturdy_button",
             () -> new SturdyButtonBlock(leadProperties().noCollission().pushReaction(PushReaction.DESTROY)));
 
-    public static final DeferredBlock<Block> ELECTRUM_BLOCK = register("electrum_block",
-            () -> new Block(Properties.of().strength(5.0F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.METAL).mapColor(MapColor.SAND)));
-
     // Redstone components
     public static final DeferredBlock<Block> SHRAPNEL_BOMB = register("shrapnel_bomb",
             () -> new ShrapnelBombBlock(Properties.ofFullCopy(Blocks.TNT)));
@@ -267,5 +265,8 @@ public class OBlocks {
 
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static final TarnishedBlocks<TrapDoorBlock> SILVER_TRAPDOORS = ArgentumBlocks.SILVER_TRAPDOORS;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<Block> ELECTRUM_BLOCK = ElectrumBlocks.ELECTRUM_BLOCK;
 
 }

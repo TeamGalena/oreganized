@@ -30,7 +30,7 @@ public class ArgentumItems {
     public static final DeferredItem<Item> SILVER_NUGGET = ITEMS.createItem("silver_nugget",
             () -> new Item(new Item.Properties()));
 
-    private static final Holder<ArmorMaterial> SILVER_MATERIAL = ARMOR_MATERIALS.create("silver", id ->
+    public static final Holder<ArmorMaterial> SILVER_MATERIAL = ARMOR_MATERIALS.create("silver", id ->
             new ArmorMaterial(
                     Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
                         map.put(ArmorItem.Type.BOOTS, 2);
@@ -60,7 +60,7 @@ public class ArgentumItems {
     public static final DeferredItem<ArmorItem> SILVER_BOOTS = ITEMS.createItem("silver_boots",
             () -> ModdedArmorItem.create(SILVER_MATERIAL, ArmorItem.Type.BOOTS, 14, ArgentumItems::silverArmorAttributes));
 
-    private static final Tier SILVER_TIER = new SimpleTier(OTags.Blocks.INCORRECT_FOR_SILVER_TOOL, 191, 5F, 2.0F, 13, () -> Ingredient.of(OTags.Items.INGOTS_SILVER));
+    public static final Tier SILVER_TIER = new SimpleTier(OTags.Blocks.INCORRECT_FOR_SILVER_TOOL, 191, 5F, 2.0F, 13, () -> Ingredient.of(OTags.Items.INGOTS_SILVER));
 
     public static final DeferredItem<Item> SILVER_SWORD = ITEMS.createItem("silver_sword",
             () -> new SwordItem(SILVER_TIER, new Item.Properties().attributes(SwordItem.createAttributes(SILVER_TIER, 3, -2.4F))));
