@@ -39,13 +39,13 @@ public class SilverArmorModel {
                         .addBox(-4.0F, -7.5F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.75F))
                         // Rim
                         .texOffs(32, 0)
-                        .addBox(-4.0F, -6.0F, -4.0F, 8.0F, 2.0F, 8.0F, new CubeDeformation(1.0F, 0.25F, 1.0F))
+                        .addBox(-4.0F, -6.0F, -4.0F, 8.0F, 2.0F, 8.0F, new CubeDeformation(1.2F, 0.3F, 1.2F))
                         // Teeth
                         .texOffs(49, 10)
                         .addBox(-2F, 1.25F, -4.7F, 4.0F, 1.0F, 0.0F, new CubeDeformation(0.4F, 0.125F, 0.0F))
                         // Nose Thing
                         .texOffs(43, 10)
-                        .addBox(-1.0F, -3.45F, -5F, 2.0F, 3.0F, 0.0F, new CubeDeformation(0.2F, 0.3F, 0F)),
+                        .addBox(-1.0F, -3.45F, -5.2F, 2.0F, 3.0F, 0.0F, new CubeDeformation(0.2F, 0.3F, 0F)),
                 PartPose.ZERO
         );
 

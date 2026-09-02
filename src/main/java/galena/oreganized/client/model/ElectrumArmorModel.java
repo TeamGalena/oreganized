@@ -84,13 +84,13 @@ public final class ElectrumArmorModel {
 
         root.addOrReplaceChild("left_leg", CubeListBuilder.create()
                         .texOffs(0, 16).mirror()
-                        .addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.25F)).mirror(false),
+                        .addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.5F)).mirror(false),
                 PartPose.ZERO
         );
 
         root.addOrReplaceChild("right_leg", CubeListBuilder.create()
                         .texOffs(0, 16)
-                        .addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.25F)),
+                        .addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.5F)),
                 PartPose.ZERO
         );
 
