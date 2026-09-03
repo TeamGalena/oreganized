@@ -1,6 +1,6 @@
 package galena.oreganized;
 
-import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
+import galena.oreganized.register.ORegistryHelper;
 import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,6 +15,6 @@ public class OConstants {
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
 
-    public static final RegistryHelper REGISTRY_HELPER = ORegistryHelper.createRegistryHelper();
+    public static final ORegistryHelper REGISTRY_HELPER = ORegistryHelper.createRegistryHelper();
 
 }

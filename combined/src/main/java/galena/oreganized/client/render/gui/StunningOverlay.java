@@ -2,10 +2,10 @@ package galena.oreganized.client.render.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import galena.oreganized.Oreganized;
-import galena.oreganized.OreganizedConfig;
 import galena.oreganized.content.effect.StunningEffect;
 import galena.oreganized.index.OEffects;
 import galena.oreganized.index.OFluids;
+import galena.oreganized.plumbum.config.PlumbumConfigs;
 import io.netty.util.collection.IntObjectHashMap;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
@@ -32,7 +32,7 @@ public class StunningOverlay implements LayeredDraw.Layer {
         if (player == null) return;
 
         var stunning = minecraft.player.getEffect(OEffects.STUNNING);
-        if (stunning != null && OreganizedConfig.CLIENT.renderStunningOverlay.get()) {
+        if (stunning != null && PlumbumConfigs.CLIENT.renderStunningOverlay.get()) {
             var opacity = stunning.getAmplifier() * 1F / StunningEffect.MAX_AMPLIFIER;
             renderTextureOverlay(graphics, STUNNING_VIGNETTE_LOCATION, opacity);
             renderTextureOverlay(graphics, getStunningOutline(stunning.getAmplifier()), 1F);

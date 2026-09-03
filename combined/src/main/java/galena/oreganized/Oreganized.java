@@ -10,9 +10,8 @@ import galena.oreganized.content.block.MoltenLeadCauldronBlock;
 import galena.oreganized.debug.ODebugCommands;
 import galena.oreganized.index.*;
 import galena.oreganized.network.OreganizedNetwork;
-
+import galena.oreganized.plumbum.config.PlumbumConfigs;
 import java.util.stream.Stream;
-
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.core.dispenser.ProjectileDispenseBehavior;
 import net.minecraft.resources.ResourceLocation;
@@ -58,8 +57,6 @@ public class Oreganized {
 
     public Oreganized(IEventBus modBus, ModContainer container) {
         final IEventBus forgeBus = NeoForge.EVENT_BUS;
-
-        OreganizedConfig.register(container);
 
         modBus.addListener(this::setup);
         forgeBus.addListener(this::injectVillagerTrades);
@@ -137,7 +134,7 @@ public class Oreganized {
             POWDER_SNOW.put(OItems.MOLTEN_LEAD_BUCKET.get(), MoltenLeadCauldronBlock.FILL_MOLTEN_LEAD);
             LEAD.put(OItems.MOLTEN_LEAD_BUCKET.get(), MoltenLeadCauldronBlock.FILL_MOLTEN_LEAD);
 
-            if (OreganizedConfig.COMMON.cauldronLeadMelting.get()) {
+            if (PlumbumConfigs.COMMON.cauldronLeadMelting.get()) {
                 EMPTY.put(OBlocks.LEAD_BLOCK.get().asItem(), MoltenLeadCauldronBlock.FILL_LEAD_BLOCK);
                 WATER.put(OBlocks.LEAD_BLOCK.get().asItem(), MoltenLeadCauldronBlock.FILL_LEAD_BLOCK);
                 LAVA.put(OBlocks.LEAD_BLOCK.get().asItem(), MoltenLeadCauldronBlock.FILL_LEAD_BLOCK);

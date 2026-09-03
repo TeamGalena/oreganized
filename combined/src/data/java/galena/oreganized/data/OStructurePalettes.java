@@ -6,8 +6,8 @@ import com.teamabnormals.blueprint.common.world.modification.structure.Structure
 import com.teamabnormals.blueprint.core.api.conditions.ConfigValueCondition;
 import com.teamabnormals.blueprint.core.registry.BlueprintDataPackRegistries;
 import galena.oreganized.Oreganized;
-import galena.oreganized.OreganizedConfig;
 import galena.oreganized.compat.ColorCompat;
+import galena.oreganized.gothic.config.GothicConfigs;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OConditionTypes;
 
@@ -54,6 +54,6 @@ public class OStructurePalettes {
     }
 
     public static void conditions(BiConsumer<ResourceKey<?>, ICondition> consumer) {
-        consumer.accept(CLERIC_WINDOWS, new ConfigValueCondition(OConditionTypes.CONFIG.get(), OreganizedConfig.COMMON.replaceClericWindows, "cleric_windows", Map.of(), false));
+        consumer.accept(CLERIC_WINDOWS, new ConfigValueCondition(OConditionTypes.CONFIG.get(), GothicConfigs.COMMON.replaceClericWindows, "cleric_windows", Map.of(), false));
     }
 }

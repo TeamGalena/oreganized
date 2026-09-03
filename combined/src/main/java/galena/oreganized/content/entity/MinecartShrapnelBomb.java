@@ -1,8 +1,8 @@
 package galena.oreganized.content.entity;
 
 import com.mojang.logging.annotations.MethodsReturnNonnullByDefault;
-import galena.oreganized.OreganizedConfig;
 import galena.oreganized.index.*;
+import galena.oreganized.plumbum.config.PlumbumConfigs;
 import javax.annotation.ParametersAreNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -123,7 +123,7 @@ public class MinecartShrapnelBomb extends AbstractMinecart {
                 living.hurt(this.damageSources().source(ODamageSources.LEAD_POISONING), 2);
 
                 living.addEffect(new MobEffectInstance(MobEffects.POISON, 260));
-                if (!OreganizedConfig.COMMON.poisonInsteadOfStunning.get()) {
+                if (!PlumbumConfigs.COMMON.poisonInsteadOfStunning.get()) {
                     living.addEffect(new MobEffectInstance(OEffects.STUNNING, 800));
                 }
             }

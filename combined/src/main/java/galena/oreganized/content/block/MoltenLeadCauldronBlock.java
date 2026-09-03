@@ -2,14 +2,12 @@ package galena.oreganized.content.block;
 
 import com.mojang.serialization.MapCodec;
 import galena.oreganized.Oreganized;
-import galena.oreganized.OreganizedConfig;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
-
+import galena.oreganized.plumbum.config.PlumbumConfigs;
 import java.util.function.Predicate;
 import java.util.function.ToIntFunction;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.server.level.ServerLevel;
@@ -117,7 +115,7 @@ public class MoltenLeadCauldronBlock extends AbstractCauldronBlock implements Ca
 
     @Override
     public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
-        if (!OreganizedConfig.COMMON.cauldronLeadMelting.get()) return;
+        if (!PlumbumConfigs.COMMON.cauldronLeadMelting.get()) return;
         if (!world.isAreaLoaded(pos, 1))
             return; // Forge: prevent loading unloaded chunks when checking neighbor's light
         int max_age = AGE.getPossibleValues().size() - 1;

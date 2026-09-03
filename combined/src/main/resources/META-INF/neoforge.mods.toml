@@ -1,72 +1,72 @@
-modLoader="javafml"
-loaderVersion="[1,)"
-license="https://github.com/${repository}/blob/1.21.x/LICENSE.md"
-issueTrackerURL="https://github.com/${repository}/issues/"
+modLoader = "javafml"
+loaderVersion = "[1,)"
+license = "https://github.com/${repository}/blob/HEAD/LICENSE.md"
+issueTrackerURL = "https://github.com/${repository}/issues/"
 
 [[mods]]
-modId="${mod_id}"
-version="${mod_version}"
-displayName="${mod_name}"
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "${mod_name}"
 updateJSONURL = "https://api.modrinth.com/updates/${mod_id}/forge_updates.json?neoforge=only"
-displayURL="https://www.curseforge.com/minecraft/mc-mods/${mod_id}"
-logoFile="${mod_id}.png"
-logoBlur=false
-itemIcon="${mod_id}:silver_ore"
-configBackground="${mod_id}:textures/block/glance_bricks.png"
-credits="Thanks to our wonderful Patreon members and those who help participate in discussions on our Discord server!"
-authors="${mod_author}"
-description='''
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/${mod_id}"
+logoFile = "${mod_id}.png"
+logoBlur = false
+itemIcon = "${mod_id}:silver_ore"
+configBackground = "${mod_id}:textures/block/glance_bricks.png"
+credits = "Thanks to our wonderful Patreon members and those who help participate in discussions on our Discord server!"
+authors = "${mod_author}"
+description = '''
 Oreganized is a mod focusing on adding new ores and metals to Minecraft. Currently it adds, Lead and Silver as base metals and a new alloy known as Electrum.
 
 This mod is designed to be a Vanilla plus mod while also adding unique uses and abilities to its content rather than just meaningless toolsets for a more engaging experience that tries to match the quality of Mojang's own implementations of new content.
 '''
-enumExtensions="META-INF/enumextensions.json"
+enumExtensions = "META-INF/enumextensions.json"
 
-[[dependencies.${mod_id}]]
-    modId="neoforge"
-    versionRange="[21,)"
-    ordering="NONE"
-    side="BOTH"
+[[dependencies.${ mod_id }]]
+modId = "neoforge"
+versionRange = "[21,)"
+ordering = "NONE"
+side = "BOTH"
 
-[[dependencies.${mod_id}]]
-    modId="minecraft"
-    versionRange="[1.21,1.22)"
-    ordering="NONE"
-    side="BOTH"
+[[dependencies.${ mod_id }]]
+modId = "minecraft"
+versionRange = "[1.21,1.22)"
+ordering = "NONE"
+side = "BOTH"
 
-[[dependencies.${mod_id}]]
-    modId="blueprint"
-    versionRange="[8.0.0,)"
-    ordering="AFTER"
-    side="BOTH"
+[[dependencies.${ mod_id }]]
+modId = "blueprint"
+versionRange = "[8.0.0,)"
+ordering = "AFTER"
+side = "BOTH"
 
-[[dependencies.${mod_id}]]
-    modId="shieldexp"
-    type="optional"
-    versionRange="*"
-    ordering="AFTER"
-    side="BOTH"
+[[dependencies.${ mod_id }]]
+modId = "shieldexp"
+type = "optional"
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
 
-[[dependencies.${mod_id}]]
-    modId="nethersdelight"
-    type="optional"
-    versionRange="*"
-    ordering="AFTER"
-    side="BOTH"
+[[dependencies.${ mod_id }]]
+modId = "nethersdelight"
+type = "optional"
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
 
-[[dependencies.${mod_id}]]
-    modId="farmersdelight"
-    type="optional"
-    versionRange="*"
-    ordering="AFTER"
-    side="BOTH"
+[[dependencies.${ mod_id }]]
+modId = "farmersdelight"
+type = "optional"
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
 
-[[dependencies.${mod_id}]]
-    modId="create"
-    type="optional"
-    versionRange="*"
-    ordering="AFTER"
-    side="BOTH"
+[[dependencies.${ mod_id }]]
+modId = "create"
+type = "optional"
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
 
 [[mixins]]
-    config="${mod_id}.mixins.json"
+config = "${mod_id}.mixins.json"

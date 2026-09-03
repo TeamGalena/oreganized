@@ -9,9 +9,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-public class SimpleSubRegistryHelper<T> extends AbstractSubRegistryHelper<T, DeferredRegister<T>> {
+public class SimpleRegistryHelper<T> extends AbstractSubRegistryHelper<T, DeferredRegister<T>> {
 
-    public SimpleSubRegistryHelper(RegistryHelper parent, ResourceKey<Registry<T>> registry) {
+    public SimpleRegistryHelper(RegistryHelper parent, ResourceKey<Registry<T>> registry) {
         super(parent, DeferredRegister.create(registry, parent.getModId()));
     }
 

@@ -18,6 +18,7 @@ public class ModdedArmorItem extends ArmorItem {
     private final ResourceLocation texture;
     private final Supplier<ItemAttributeModifiers> modifiers;
 
+    // TODO module move to ItemSubHelper?
     public static ModdedArmorItem create(Holder<ArmorMaterial> material, Type slot, int durabilityFactor, Consumer<ArmorAttributeBuilder> attributes) {
         return new ModdedArmorItem(material, slot, new Properties().durability(slot.getDurability(durabilityFactor)), attributes);
     }

@@ -1,16 +1,15 @@
 package galena.oreganized.argentum.index;
 
-import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import galena.oreganized.OConstants;
 import galena.oreganized.index.OTags;
-import galena.oreganized.register.SimpleSubRegistryHelper;
+import galena.oreganized.register.ItemRegistryHelper;
+import galena.oreganized.register.SimpleRegistryHelper;
 import galena.oreganized.world.item.ModdedArmorItem;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.stream.Stream;
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.*;
@@ -20,8 +19,8 @@ import net.neoforged.neoforge.registries.DeferredItem;
 
 public class ArgentumItems {
 
-    private static final ItemSubRegistryHelper ITEMS = OConstants.REGISTRY_HELPER.getItemSubHelper();
-    private static final SimpleSubRegistryHelper<ArmorMaterial> ARMOR_MATERIALS = OConstants.REGISTRY_HELPER.getSubHelper(Registries.ARMOR_MATERIAL);
+    private static final ItemRegistryHelper ITEMS = OConstants.REGISTRY_HELPER.getItemSubHelper();
+    private static final SimpleRegistryHelper<ArmorMaterial> ARMOR_MATERIALS = OConstants.REGISTRY_HELPER.getArmorMaterialSubHelper();
 
     public static final DeferredItem<Item> RAW_SILVER = ITEMS.createItem("raw_silver",
             () -> new Item(new Item.Properties()));

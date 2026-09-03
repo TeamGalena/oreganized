@@ -6,9 +6,9 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-public class AttributeRegistrySubHelper extends SimpleSubRegistryHelper<Attribute> {
+public class AttributeRegistryHelper extends SimpleRegistryHelper<Attribute> {
 
-    public AttributeRegistrySubHelper(RegistryHelper parent) {
+    public AttributeRegistryHelper(RegistryHelper parent) {
         super(parent, Registries.ATTRIBUTE);
     }
 

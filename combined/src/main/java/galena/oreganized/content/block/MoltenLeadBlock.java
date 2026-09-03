@@ -1,9 +1,9 @@
 package galena.oreganized.content.block;
 
-import galena.oreganized.OreganizedConfig;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
+import galena.oreganized.plumbum.config.PlumbumConfigs;
 import java.util.Optional;
 import java.util.function.Supplier;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -76,7 +76,7 @@ public class MoltenLeadBlock extends LiquidBlock {
         }
 
         if (state.getValue(WAITING)) {
-            level.scheduleTick(pos, state.getBlock(), OreganizedConfig.COMMON.moltenLeadDelay.get());
+            level.scheduleTick(pos, state.getBlock(), PlumbumConfigs.COMMON.moltenLeadDelay.get());
         }
 
         super.onPlace(state, level, pos, oldState, isMoving);
@@ -180,7 +180,7 @@ public class MoltenLeadBlock extends LiquidBlock {
         if (shouldWait) {
             level.setBlockAndUpdate(pos, state.setValue(WAITING, true));
         } else {
-            level.scheduleTick(pos, state.getBlock(), OreganizedConfig.COMMON.moltenLeadDelay.get());
+            level.scheduleTick(pos, state.getBlock(), PlumbumConfigs.COMMON.moltenLeadDelay.get());
         }
     }
 

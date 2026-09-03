@@ -1,7 +1,7 @@
 package galena.oreganized.mixin;
 
-import galena.oreganized.OreganizedConfig;
 import galena.oreganized.index.OItems;
+import galena.oreganized.plumbum.config.PlumbumConfigs;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -20,7 +20,7 @@ public class PillagerMixin {
             at = @At("HEAD")
     )
     private void addBoltToOffhand(RandomSource random, DifficultyInstance difficulty, CallbackInfo ci) {
-        if (!OreganizedConfig.COMMON.pillagerSpawnWithBolts.get()) return;
+        if (!PlumbumConfigs.COMMON.pillagerSpawnWithBolts.get()) return;
 
         var self = (Pillager) (Object) this;
         var chance = difficulty.getDifficulty().getId() * 0.15;

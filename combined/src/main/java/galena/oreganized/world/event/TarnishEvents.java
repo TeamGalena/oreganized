@@ -1,7 +1,7 @@
 package galena.oreganized.world.event;
 
 import galena.oreganized.Oreganized;
-import galena.oreganized.OreganizedConfig;
+import galena.oreganized.argentum.config.ArgentumConfigs;
 import galena.oreganized.world.TarnishBlockManager;
 import net.minecraft.tags.EntityTypeTags;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -17,8 +17,8 @@ public class TarnishEvents {
 
         if (entity.getType().is(EntityTypeTags.UNDEAD)) {
             var center = entity.blockPosition();
-            int radius = OreganizedConfig.COMMON.tarnishRadius.get();
-            int maxIter = OreganizedConfig.COMMON.tarnishChecksPerMob.get();
+            int radius = ArgentumConfigs.COMMON.tarnishRadius.get();
+            int maxIter = ArgentumConfigs.COMMON.tarnishChecksPerMob.get();
             for (int i = 0; i < maxIter; i++) {
                 var random = entity.getRandom();
                 var randomPos = center.offset(

@@ -1,18 +1,14 @@
 package galena.oreganized.index;
 
-import static galena.oreganized.ModCompat.FARMERS_DELIGHT_ID;
 
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import galena.oreganized.Oreganized;
 import galena.oreganized.argentum.index.ArgentumItems;
-import galena.oreganized.compat.farmers_delight.FarmersDelightCompat;
 import galena.oreganized.content.item.*;
-
+import galena.oreganized.electrum.index.ElectrumItems;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
-
-import galena.oreganized.electrum.index.ElectrumItems;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
@@ -129,7 +125,7 @@ public class OItems {
     public static final DeferredItem<Item> ELECTRUM_NUGGET = ElectrumItems.ELECTRUM_NUGGET;
 
     @Deprecated(forRemoval = true, since = "5.3.0")
-    public static final DeferredItem<Item> ELECTRUM_UPGRADE_SMITHING_TEMPLATE = ElectrumItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE;
+    public static final DeferredItem<SmithingTemplateItem> ELECTRUM_UPGRADE_SMITHING_TEMPLATE = ElectrumItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE;
 
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static final DeferredItem<ArmorItem> ELECTRUM_HELMET = ElectrumItems.ELECTRUM_HELMET;

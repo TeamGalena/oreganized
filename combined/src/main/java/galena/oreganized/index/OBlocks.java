@@ -1,6 +1,5 @@
 package galena.oreganized.index;
 
-import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import galena.oreganized.Oreganized;
 import galena.oreganized.argentum.index.ArgentumBlocks;
 import galena.oreganized.argentum.index.TarnishedBlocks;
@@ -20,15 +19,14 @@ import galena.oreganized.content.block.ShrapnelBombBlock;
 import galena.oreganized.content.block.SpottedGlanceBlock;
 import galena.oreganized.content.block.SturdyButtonBlock;
 import galena.oreganized.content.block.SturdyLeverBlock;
-
+import galena.oreganized.electrum.index.ElectrumBlocks;
+import galena.oreganized.register.BlockRegistryHelper;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
-
-import galena.oreganized.electrum.index.ElectrumBlocks;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.item.BlockItem;
@@ -44,7 +42,7 @@ import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 public class OBlocks {
-    private static final BlockSubRegistryHelper HELPER = Oreganized.REGISTRY_HELPER.getBlockSubHelper();
+    private static final BlockRegistryHelper HELPER = Oreganized.REGISTRY_HELPER.getBlockSubHelper();
 
     private static Properties glanceProperties() {
         return Properties.of().explosionResistance(6).strength(1.5F).mapColor(MapColor.CLAY);

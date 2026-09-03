@@ -1,7 +1,6 @@
 package galena.oreganized.content.block;
 
 import galena.oreganized.Oreganized;
-import galena.oreganized.OreganizedConfig;
 import galena.oreganized.api.LeadProtections;
 import galena.oreganized.api.PreventableEffectCloud;
 import galena.oreganized.index.OCriteriaTriggers;
@@ -9,6 +8,7 @@ import galena.oreganized.index.OEffects;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OParticleTypes;
 import galena.oreganized.index.OTags;
+import galena.oreganized.plumbum.config.PlumbumConfigs;
 import java.util.stream.Stream;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -32,7 +32,7 @@ import net.neoforged.neoforge.event.level.BlockEvent;
 public class LeadOreBlock {
 
     private static Stream<MobEffectInstance> getEffects(int durationMultiplier) {
-        if (OreganizedConfig.COMMON.poisonInsteadOfStunning.get()) {
+        if (PlumbumConfigs.COMMON.poisonInsteadOfStunning.get()) {
             return Stream.of(new MobEffectInstance(MobEffects.POISON, 150 * durationMultiplier));
         }
 
@@ -64,7 +64,7 @@ public class LeadOreBlock {
     }
 
     private static boolean shouldSpawnCloud(BlockState state, LevelAccessor level, BlockPos pos, ItemStack stack) {
-        if (!OreganizedConfig.COMMON.leadDustCloud.get()) return false;
+        if (!PlumbumConfigs.COMMON.leadDustCloud.get()) return false;
         if (stack.is(OItems.SCRIBE.get()) || EnchantmentHelper.hasTag(stack, OTags.Enchantments.PREVENTS_LEAD_CLOUD))
             return false;
         if (!state.is(OTags.Blocks.CREATES_LEAD_CLOUD)) return false;

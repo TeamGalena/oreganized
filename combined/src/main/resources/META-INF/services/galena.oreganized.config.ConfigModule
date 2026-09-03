@@ -1,0 +1,4 @@
+galena.oreganized.electrum.config.ElectrumConfigModule
+galena.oreganized.argentum.config.ArgentumConfigModule
+galena.oreganized.plumbum.config.PlumbumConfigModule
+galena.oreganized.gothic.config.GothicConfigModule

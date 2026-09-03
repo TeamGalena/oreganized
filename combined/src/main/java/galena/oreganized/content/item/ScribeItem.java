@@ -4,7 +4,7 @@ import static galena.oreganized.index.OTags.Blocks.MINEABLE_WITH_SCRIBE;
 import static galena.oreganized.index.OTags.Blocks.SILKTOUCH_WITH_SCRIBE;
 import static galena.oreganized.index.OTags.Blocks.SILKTOUCH_WITH_SCRIBE_BLACKLIST;
 
-import galena.oreganized.OreganizedConfig;
+import galena.oreganized.argentum.config.ArgentumConfigs;
 import galena.oreganized.content.block.ICrystalGlass;
 import galena.oreganized.index.ORecipeTypes;
 import galena.oreganized.world.recipe.BlockRecipeInput;
@@ -57,7 +57,7 @@ public class ScribeItem extends Item {
 
     @Override
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
-        if (OreganizedConfig.COMMON.scribeSilkTouchStone.get()) {
+        if (ArgentumConfigs.COMMON.scribeSilkTouchStone.get()) {
             return state.is(SILKTOUCH_WITH_SCRIBE);
         } else {
             return state.is(MINEABLE_WITH_SCRIBE);

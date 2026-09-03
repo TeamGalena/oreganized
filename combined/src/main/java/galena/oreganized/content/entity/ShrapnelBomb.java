@@ -1,11 +1,11 @@
 package galena.oreganized.content.entity;
 
-import galena.oreganized.OreganizedConfig;
 import galena.oreganized.api.LeadProtections;
 import galena.oreganized.index.ODamageSources;
 import galena.oreganized.index.OEffects;
 import galena.oreganized.index.OEntityTypes;
 import galena.oreganized.index.OParticleTypes;
+import galena.oreganized.plumbum.config.PlumbumConfigs;
 import javax.annotation.Nullable;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -57,7 +57,7 @@ public class ShrapnelBomb extends PrimedTnt {
 
                 if (LeadProtections.isNotProtected(living)) {
                     living.addEffect(new MobEffectInstance(MobEffects.POISON, 260));
-                    if (!OreganizedConfig.COMMON.poisonInsteadOfStunning.get()) {
+                    if (!PlumbumConfigs.COMMON.poisonInsteadOfStunning.get()) {
                         living.addEffect(new MobEffectInstance(OEffects.STUNNING, 800));
                     }
                 }

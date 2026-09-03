@@ -1,10 +1,10 @@
 package galena.oreganized.argentum.index;
 
-import com.teamabnormals.blueprint.core.util.registry.BlockSubRegistryHelper;
 import galena.oreganized.OConstants;
 import galena.oreganized.argentum.world.block.SilverBulbBlock;
 import galena.oreganized.argentum.world.block.SilverDoorBlock;
 import galena.oreganized.argentum.world.block.SilverTrapdoorBlock;
+import galena.oreganized.register.BlockRegistryHelper;
 import java.util.function.IntFunction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.valueproviders.ConstantInt;
@@ -16,7 +16,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 
 public class ArgentumBlocks {
 
-    private static final BlockSubRegistryHelper BLOCKS = OConstants.REGISTRY_HELPER.getBlockSubHelper();
+    private static final BlockRegistryHelper BLOCKS = OConstants.REGISTRY_HELPER.getBlockSubHelper();
 
     public static final DeferredBlock<Block> SILVER_ORE = BLOCKS.createBlock("silver_ore",
             () -> new DropExperienceBlock(ConstantInt.of(0), BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_ORE)));
