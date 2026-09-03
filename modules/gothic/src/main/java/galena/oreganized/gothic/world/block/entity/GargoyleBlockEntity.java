@@ -29,12 +29,29 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import org.jetbrains.annotations.Nullable;
 
+@EventBusSubscriber
 public class GargoyleBlockEntity extends BlockEntity {
 
     private static final int COOLDOWN = 20 * 30;
-    public static final String GROWL_COOLDOWN_TAG = OConstants.MOD_ID + ":gargoyle_use_cooldown";
+    private static final String GROWL_COOLDOWN_TAG = OConstants.MOD_ID + ":gargoyle_use_cooldown";
+
+    @SubscribeEvent
+    public static void tickPlayer(final PlayerTickEvent.Post event) {
+        var data = event.getEntity().getPersistentData();
+        if (data.contains(GROWL_COOLDOWN_TAG, 99)) {
+            var cooldown = data.getInt(GROWL_COOLDOWN_TAG);
+            if (cooldown > 0) {
+                data.putInt(GROWL_COOLDOWN_TAG, cooldown - 1);
+            } else {
+                data.remove(GROWL_COOLDOWN_TAG);
+            }
+        }
+    }
 
     private int outputSignal = 0;
     private int updateCooldown = 0;

@@ -1,0 +1,109 @@
+package galena.oreganized.argentum.client.model;
+
+import galena.oreganized.argentum.index.ArgentumItems;
+import galena.oreganized.client.extensions.CustomArmorModelExtensions;
+import galena.oreganized.client.model.ModdedArmorModel;
+import net.minecraft.client.model.HumanoidArmorModel;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.core.Holder;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+
+@EventBusSubscriber(Dist.CLIENT)
+public class SilverArmorModel {
+
+    @SubscribeEvent
+    public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
+        event.registerItem(new CustomArmorModelExtensions(ModdedArmorModel::new, SilverArmorModel::createBodyLayer), ArgentumItems.silverArmor().toArray(Holder[]::new));
+    }
+
+    public static LayerDefinition createBodyLayer() {
+        var mesh = HumanoidArmorModel.createMesh(CubeDeformation.NONE, 0.0F);
+        var root = mesh.getRoot();
+
+        root.addOrReplaceChild("waist", CubeListBuilder.create()
+                        .texOffs(16, 16)
+                        .addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.51F))
+                        .texOffs(56, 43)
+                        .addBox(-2.0F, -2.0F, 3.0F, 4.0F, 6.0F, 0.0F, CubeDeformation.NONE),
+                PartPose.ZERO
+        );
+
+        root.addOrReplaceChild("left_leg", CubeListBuilder.create()
+                        .texOffs(0, 16)
+                        .mirror()
+                        .addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.5F))
+                        .mirror(false),
+                PartPose.offset(1.9F, 12.0F, 0.0F)
+        );
+
+        root.addOrReplaceChild("right_leg", CubeListBuilder.create()
+                        .texOffs(0, 16)
+                        .addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.5F)),
+                PartPose.offset(-1.9F, 12.0F, 0.0F)
+        );
+
+        root.addOrReplaceChild("head", CubeListBuilder.create()
+                        .texOffs(0, 0)
+                        .addBox(-4.0F, -7.5F, -4.0F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.75F))
+                        // Rim
+                        .texOffs(32, 0)
+                        .addBox(-4.0F, -6.0F, -4.0F, 8.0F, 2.0F, 8.0F, new CubeDeformation(1.2F, 0.3F, 1.2F))
+                        // Teeth
+                        .texOffs(49, 10)
+                        .addBox(-2F, 1.25F, -4.7F, 4.0F, 1.0F, 0.0F, new CubeDeformation(0.4F, 0.125F, 0.0F))
+                        // Nose Thing
+                        .texOffs(43, 10)
+                        .addBox(-1.0F, -3.45F, -5.2F, 2.0F, 3.0F, 0.0F, new CubeDeformation(0.2F, 0.3F, 0F)),
+                PartPose.ZERO
+        );
+
+        root.addOrReplaceChild("body", CubeListBuilder.create()
+                        .texOffs(16, 16)
+                        .addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.75F)),
+                PartPose.ZERO
+        );
+
+        root.addOrReplaceChild("left_boot", CubeListBuilder.create()
+                        .texOffs(0, 16)
+                        .mirror()
+                        .addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.75F))
+                        .mirror(false),
+                PartPose.offset(1.9F, 12.0F, 0.0F)
+        );
+
+        root.addOrReplaceChild("right_boot", CubeListBuilder.create()
+                        .texOffs(0, 16)
+                        .addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.75F)),
+                PartPose.offset(-1.9F, 12.0F, 0.0F)
+        );
+
+        root.addOrReplaceChild("left_arm", CubeListBuilder.create()
+                        .texOffs(40, 16)
+                        .mirror()
+                        .addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.75F))
+                        .mirror(false),
+                // .texOffs(0, 43)
+                // .mirror()
+                // .addBox(-1.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.7F))
+                // .mirror(false),
+                PartPose.offset(5.0F, 2.0F, 0.0F)
+        );
+
+        root.addOrReplaceChild("right_arm", CubeListBuilder.create()
+                        .texOffs(40, 16)
+                        .addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.75F)),
+                // .texOffs(0, 43)
+                // .addBox(-3.0F, -2.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(0.7F)),
+                PartPose.offset(-5.0F, 2.0F, 0.0F)
+        );
+
+        return LayerDefinition.create(mesh, 64, 32);
+    }
+
+}

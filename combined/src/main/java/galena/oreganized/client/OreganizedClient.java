@@ -1,49 +1,25 @@
 package galena.oreganized.client;
 
-import com.mojang.math.Axis;
 import galena.oreganized.OConstants;
-import galena.oreganized.client.extensions.CustomArmorModelExtensions;
-import galena.oreganized.client.extensions.MoltenLeadClientExtensions;
-import galena.oreganized.client.model.ElectrumArmorModel;
-import galena.oreganized.client.model.ModdedArmorModel;
-import galena.oreganized.client.model.SilverArmorModel;
-import galena.oreganized.client.render.entity.LeadBoltRender;
-import galena.oreganized.client.render.entity.ShrapnelBombMinecartRender;
-import galena.oreganized.client.render.entity.ShrapnelBombRender;
-import galena.oreganized.client.render.gui.StunningOverlay;
-import galena.oreganized.client.tooltips.ClientDeviceTooltip;
-import galena.oreganized.client.tooltips.ClientThermometerTooltip;
-import galena.oreganized.client.tooltips.DeviceTooltip;
 import galena.oreganized.compat.ponder.PonderCompat;
-import galena.oreganized.content.item.SpeedometerItem;
+import galena.oreganized.device.client.DevicePropertyFunction;
+import galena.oreganized.electrum.accessor.IMotionHolder;
+import galena.oreganized.electrum.world.item.SpeedometerItem;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.ODataComponents;
-import galena.oreganized.index.OEntityTypes;
-import galena.oreganized.index.OFluids;
 import galena.oreganized.index.OItems;
-import galena.oreganized.plumbum.client.tooltip.ThermometerTooltip;
-import galena.oreganized.plumbum.world.block.PushableBlockEntity;
 import galena.oreganized.plumbum.world.item.ThermometerItem;
-import galena.oreganized.world.IMotionHolder;
-import java.util.List;
 import java.util.function.Supplier;
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.ChargedProjectiles;
 import net.minecraft.world.level.block.Block;
@@ -52,14 +28,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.RegisterClientTooltipComponentFactoriesEvent;
-import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
-import net.neoforged.neoforge.client.event.RenderHandEvent;
-import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
-import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
-import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
 @EventBusSubscriber(Dist.CLIENT)
 public class OreganizedClient {
@@ -138,90 +107,6 @@ public class OreganizedClient {
         OBlocks.SILVER_BARS.all().forEach((b) -> render(b, translucent));
 
         render(OBlocks.GROOVED_ICE, translucent);
-    }
-
-    @SubscribeEvent
-    public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(OEntityTypes.SHRAPNEL_BOMB.value(), ShrapnelBombRender::new);
-        event.registerEntityRenderer(OEntityTypes.SHRAPNEL_BOMB_MINECART.get(), ShrapnelBombMinecartRender::new);
-        event.registerEntityRenderer(OEntityTypes.LEAD_BOLT.get(), LeadBoltRender::new);
-    }
-
-    @SubscribeEvent
-    public static void registerGuiOverlays(RegisterGuiLayersEvent event) {
-        event.registerAbove(VanillaGuiLayers.EFFECTS, OConstants.modLoc("stunning"), new StunningOverlay());
-    }
-
-    public static void renderThirdPersonArm(ModelPart arm, boolean rightArm) {
-        arm.xRot = -1.0F;
-        arm.yRot = rightArm ? -0.1F : 0.2F;
-    }
-
-    @SubscribeEvent
-    public static void registerClientTooltips(RegisterClientTooltipComponentFactoriesEvent event) {
-        event.register(ThermometerTooltip.class, ClientThermometerTooltip::new);
-        event.register(DeviceTooltip.class, ClientDeviceTooltip::new);
-    }
-
-    @SubscribeEvent
-    public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
-        event.registerFluidType(new MoltenLeadClientExtensions(), OFluids.MOLTEN_LEAD_TYPE);
-        event.registerItem(new CustomArmorModelExtensions(ModdedArmorModel::new, ElectrumArmorModel::createBodyLayer), OItems.electrumArmor().toArray(Holder[]::new));
-        event.registerItem(new CustomArmorModelExtensions(ModdedArmorModel::new, SilverArmorModel::createBodyLayer), OItems.silverArmor().toArray(Holder[]::new));
-    }
-
-    @EventBusSubscriber(Dist.CLIENT)
-    public static class ForgeBusEvents {
-
-        @SubscribeEvent
-        public static void addTooltips(ItemTooltipEvent event) {
-            if (event.getItemStack().is(OItems.BUSH_HAMMER.get())) {
-                List<Component> tooltip = event.getToolTip();
-                MutableComponent wipTitle = Component.translatable("tooltip.oreganized.wip.title");
-                MutableComponent wipDesc = Component.translatable("tooltip.oreganized.wip.description");
-
-                tooltip.add(wipTitle.withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.BOLD));
-                tooltip.add(wipDesc.withStyle(ChatFormatting.DARK_PURPLE).withStyle(ChatFormatting.ITALIC));
-            }
-        }
-
-        @SubscribeEvent
-        public static void renderHand(RenderHandEvent event) {
-            var player = Minecraft.getInstance().player;
-
-            if (!PushableBlockEntity.isPushing(player)) return;
-            if (player.isInvisible()) return;
-
-            var poseStack = event.getPoseStack();
-
-            for (var arm : HumanoidArm.values()) {
-                poseStack.pushPose();
-                boolean rightArm = arm == HumanoidArm.RIGHT;
-                float factor = rightArm ? 1.0F : -1.0F;
-                poseStack.translate(factor * 0.84000005F, -0.4F, -0.4F);
-                poseStack.mulPose(Axis.YP.rotationDegrees(factor * -20F - event.getSwingProgress()));
-                poseStack.mulPose(Axis.ZP.rotationDegrees(factor * 45F));
-                poseStack.mulPose(Axis.XP.rotationDegrees(-45F));
-
-                float time = player.tickCount + event.getPartialTick();
-                float movement = Mth.sin(time * 0.1F) * 0.008F;
-                float rotation = factor * (float) Math.toDegrees(Mth.cos(time * 0.09F) * -0.005);
-                poseStack.translate(factor * movement, 0, movement);
-                poseStack.mulPose(Axis.ZP.rotationDegrees(rotation));
-
-                var renderer = (PlayerRenderer) Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(player);
-
-                if (rightArm) {
-                    renderer.renderRightHand(poseStack, event.getMultiBufferSource(), event.getPackedLight(), player);
-                } else {
-                    renderer.renderLeftHand(poseStack, event.getMultiBufferSource(), event.getPackedLight(), player);
-                }
-                poseStack.popPose();
-            }
-
-            event.setCanceled(true);
-        }
-
     }
 
 }

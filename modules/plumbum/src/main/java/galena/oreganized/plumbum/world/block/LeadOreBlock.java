@@ -1,13 +1,15 @@
 package galena.oreganized.plumbum.world.block;
 
-import galena.oreganized.accessor.PreventableEffectCloud;
 import galena.oreganized.api.LeadProtections;
 import galena.oreganized.index.OTags;
+import galena.oreganized.plumbum.accessor.PreventableEffectCloud;
 import galena.oreganized.plumbum.config.PlumbumConfigs;
 import galena.oreganized.plumbum.index.PlumbumCriterionTriggers;
 import galena.oreganized.plumbum.index.PlumbumEffects;
 import galena.oreganized.plumbum.index.PlumbumParticles;
+
 import java.util.stream.Stream;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -79,9 +81,9 @@ public class LeadOreBlock {
         var vec = Vec3.atCenterOf(pos);
         var cloud = new AreaEffectCloud(level, vec.x, vec.y, vec.z);
 
-        // TODO modules use interface data
-        if (cloud instanceof PreventableEffectCloud preventable) {
-            preventable.setPreventable(true);
+        // TODO modular why do the interface injections not work here?
+        if(cloud instanceof PreventableEffectCloud preventable) {
+            preventable.oreganized$setPreventable(true);
         }
 
         getEffects(Math.max(1, (int) (size))).forEach(cloud::addEffect);

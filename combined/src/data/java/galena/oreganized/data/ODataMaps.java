@@ -1,10 +1,10 @@
 package galena.oreganized.data;
 
-import galena.oreganized.api.Tarnishable;
+import galena.oreganized.argentum.index.ArgentumDataMapTypes;
 import galena.oreganized.argentum.index.TarnishedBlocks;
+import galena.oreganized.argentum.world.Tarnishable;
 import galena.oreganized.compat.ColorCompat;
 import galena.oreganized.index.OBlocks;
-import galena.oreganized.index.ODataMapTypes;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup;
@@ -56,7 +56,7 @@ public class ODataMaps extends DataMapProvider {
     }
 
     private void registerTarnishable(TarnishedBlocks<?> blocks) {
-        var tarnishables = builder(ODataMapTypes.TARNISHABLES);
+        var tarnishables = builder(ArgentumDataMapTypes.TARNISHABLES);
         tarnishables.add(blocks.base(), new Tarnishable(blocks.blemished().get()), false);
         tarnishables.add(blocks.blemished(), new Tarnishable(blocks.tarnished().get()), false);
     }

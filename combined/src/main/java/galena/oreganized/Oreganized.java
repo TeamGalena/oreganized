@@ -7,7 +7,6 @@ import galena.oreganized.api.LeadProtections;
 import galena.oreganized.compat.create.CreateCompat;
 import galena.oreganized.debug.ODebugCommands;
 import galena.oreganized.index.*;
-import galena.oreganized.network.OreganizedNetwork;
 import galena.oreganized.plumbum.config.PlumbumConfigs;
 import galena.oreganized.plumbum.world.block.LeadOreBlock;
 import galena.oreganized.plumbum.world.block.MoltenLeadCauldronBlock;
@@ -45,18 +44,7 @@ public class Oreganized {
         modBus.addListener(this::setup);
         forgeBus.addListener(this::registerPotionMixes);
 
-        OParticleTypes.register(modBus);
-        OPotions.register(modBus);
-        OStructures.register(modBus);
-        ODataComponents.register(modBus);
-        OItems.register();
-        OCriteriaTriggers.register(modBus);
-        OSoundEvents.register();
-        ORecipeTypes.register(modBus);
-        OAttachmentTypes.register(modBus);
         OConditionTypes.register(modBus);
-
-        modBus.addListener(OreganizedNetwork::register);
 
         var createLoaded = ModList.get().getModContainerById(ModCompat.CREATE)
                 .filter(it -> it.getModInfo().getVersion().getMajorVersion() >= 6)

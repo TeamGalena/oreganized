@@ -17,4 +17,6 @@ public class OConstants {
 
     public static final ORegistryHelper REGISTRY_HELPER = ORegistryHelper.createRegistryHelper();
 
+    public static final String PROTOCOL_VERSION = "3";
+
 }

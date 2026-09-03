@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "galena.oreganized.argentum.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "compat.LogStrippingFakeRecipesMixin",
+    "AnvilMenuMixin",
+    "BlockMixin",
+    "IceBlockMixin",
+    "BrushItemMixin",
+    "LivingEntityMixin",
+    "WalkNodeEvaluatorMixin",
+    "LivingEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

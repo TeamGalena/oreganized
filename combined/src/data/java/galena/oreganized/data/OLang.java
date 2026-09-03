@@ -1,9 +1,9 @@
 package galena.oreganized.data;
 
 import galena.oreganized.Oreganized;
-import galena.oreganized.client.tooltips.ClientThermometerTooltip;
 import galena.oreganized.data.provider.OLangProvider;
 import galena.oreganized.index.*;
+import galena.oreganized.plumbum.client.tooltip.ClientThermometerTooltip;
 import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;

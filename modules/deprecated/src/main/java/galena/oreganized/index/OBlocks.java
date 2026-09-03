@@ -36,7 +36,7 @@ public class OBlocks {
     public static final DeferredBlock<SlabBlock> POLISHED_GLANCE_SLAB = GlanceBlocks.POLISHED_GLANCE_SLAB;
 
     @Deprecated(forRemoval = true, since = "5.3.0")
-    public static final DeferredBlock<SlabBlock> GLANCE_BRICK_SLAB = GlanceBlocks.GLANCE_SLAB;
+    public static final DeferredBlock<SlabBlock> GLANCE_BRICK_SLAB = GlanceBlocks.GLANCE_BRICK_SLAB;
 
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static final DeferredBlock<StairBlock> GLANCE_STAIRS = GlanceBlocks.GLANCE_STAIRS;

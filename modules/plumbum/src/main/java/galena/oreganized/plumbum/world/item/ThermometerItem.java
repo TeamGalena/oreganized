@@ -48,7 +48,6 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @EventBusSubscriber
@@ -63,7 +62,7 @@ public class ThermometerItem extends Item {
     }
 
     @Override
-    public @NotNull Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
+    public Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
         int heat = getHeatLevel(stack);
         return Optional.of(new ThermometerTooltip(heat));
     }

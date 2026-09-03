@@ -2,6 +2,7 @@ package galena.oreganized.electrum.index;
 
 import galena.oreganized.OConstants;
 import galena.oreganized.electrum.config.ElectrumConfigs;
+import galena.oreganized.electrum.world.item.SpeedometerItem;
 import galena.oreganized.index.OTags;
 import galena.oreganized.register.ItemRegistryHelper;
 import galena.oreganized.register.SimpleRegistryHelper;
@@ -30,6 +31,9 @@ public class ElectrumItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> ELECTRUM_NUGGET = ITEMS.createItem("electrum_nugget",
             () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> SPEEDOMETER = ITEMS.createItem("speedometer",
+            () -> new SpeedometerItem(new Item.Properties()));
 
     public static final DeferredItem<SmithingTemplateItem> ELECTRUM_UPGRADE_SMITHING_TEMPLATE = ITEMS.createUpgradeTemplate("electrum_upgrade_smithing_template", "electrum");
 
@@ -92,6 +96,5 @@ public class ElectrumItems {
     public static Stream<DeferredItem<? extends Item>> electrumTools() {
         return Stream.of(ELECTRUM_SWORD, ELECTRUM_SHOVEL, ELECTRUM_PICKAXE, ELECTRUM_AXE, ELECTRUM_HOE);
     }
-
 
 }

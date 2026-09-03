@@ -1,8 +1,8 @@
 package galena.oreganized.data;
 
-import galena.oreganized.content.item.DeviceItem;
-import galena.oreganized.content.item.SpeedometerItem;
 import galena.oreganized.data.provider.OItemModelProvider;
+import galena.oreganized.device.world.item.DeviceItem;
+import galena.oreganized.electrum.world.item.SpeedometerItem;
 import galena.oreganized.index.ODataComponents;
 import galena.oreganized.index.OItems;
 import galena.oreganized.plumbum.world.item.ThermometerItem;

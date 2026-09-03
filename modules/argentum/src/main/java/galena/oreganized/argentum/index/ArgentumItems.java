@@ -1,6 +1,8 @@
 package galena.oreganized.argentum.index;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.argentum.world.item.ScribeItem;
+import galena.oreganized.argentum.world.item.SilverMirrorItem;
 import galena.oreganized.index.OTags;
 import galena.oreganized.register.ItemRegistryHelper;
 import galena.oreganized.register.SimpleRegistryHelper;
@@ -30,6 +32,12 @@ public class ArgentumItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> SILVER_NUGGET = ITEMS.createItem("silver_nugget",
             () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> SCRIBE = ITEMS.createItem("scribe",
+            () -> new ScribeItem(new Item.Properties().durability(250)));
+
+    public static final DeferredItem<Item> SILVER_MIRROR = ITEMS.createItem("silver_mirror",
+            () -> new SilverMirrorItem(new Item.Properties().stacksTo(1)));
 
     public static final Holder<ArmorMaterial> SILVER_MATERIAL = ARMOR_MATERIALS.create("silver", id ->
             new ArmorMaterial(

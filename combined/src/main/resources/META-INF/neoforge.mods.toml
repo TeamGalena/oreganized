@@ -72,3 +72,11 @@ side = "BOTH"
 config = "${mod_id}.mixins.json"
 [[mixins]]
 config = "${mod_id}.plumbum.mixins.json"
+[[mixins]]
+config = "${mod_id}.argentum.mixins.json"
+[[mixins]]
+config = "${mod_id}.electrum.mixins.json"
+[[mixins]]
+config = "${mod_id}.gothic.mixins.json"
+[[mixins]]
+config = "${mod_id}.armament.mixins.json"

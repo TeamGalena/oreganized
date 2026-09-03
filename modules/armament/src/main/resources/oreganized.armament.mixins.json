@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "galena.oreganized.armament.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "AbstractArrowMixin",
+    "CrossbowMixin",
+    "PillagerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,18 +1,24 @@
 package galena.oreganized.plumbum.index;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.plumbum.client.extensions.MoltenLeadClientExtensions;
 import galena.oreganized.plumbum.world.fluid.MoltenLeadFluid;
 import galena.oreganized.register.SimpleRegistryHelper;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.common.SoundActions;
 import net.neoforged.neoforge.fluids.BaseFlowingFluid;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 @Mod(OConstants.MOD_ID)
+@EventBusSubscriber(Dist.CLIENT)
 public class PlumbumFluids {
 
     private static final SimpleRegistryHelper<Fluid> FLUIDS = OConstants.REGISTRY_HELPER.getFluidSubHelper();
@@ -38,6 +44,9 @@ public class PlumbumFluids {
             .block(PlumbumBlocks.MOLTEN_LEAD)
             .tickRate(30);
 
-
+    @SubscribeEvent
+    public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
+        event.registerFluidType(new MoltenLeadClientExtensions(), MOLTEN_LEAD_TYPE);
+    }
 
 }

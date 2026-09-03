@@ -11,6 +11,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.fluids.FluidType;
@@ -43,6 +44,10 @@ public class ORegistryHelper extends RegistryHelper {
         helper.putSimpleSubHelper(NeoForgeRegistries.Keys.ATTACHMENT_TYPES);
         helper.putSimpleSubHelper(Registries.MOB_EFFECT);
         helper.putSubHelper(Registries.DATA_COMPONENT_TYPE, DataComponentRegistryHelper::new);
+        helper.putSubHelper(Registries.RECIPE_TYPE, RecipeTypeRegistryHelper::new);
+        helper.putSimpleSubHelper(Registries.RECIPE_SERIALIZER);
+        helper.putSubHelper(Registries.STRUCTURE_TYPE, StructureTypeRegistryHelper::new);
+        helper.putSubHelper(Registries.POTION, PotionRegistryHelper::new);
         return helper;
     }
 
@@ -80,6 +85,22 @@ public class ORegistryHelper extends RegistryHelper {
 
     public DataComponentRegistryHelper getDataComponentSubHelper() {
         return super.getSubHelper(Registries.DATA_COMPONENT_TYPE);
+    }
+
+    public RecipeTypeRegistryHelper getRecipeTypeSubHelper() {
+        return super.getSubHelper(Registries.RECIPE_TYPE);
+    }
+
+    public SimpleRegistryHelper<RecipeSerializer<?>> getRecipeSerializerSubHelper() {
+        return super.getSubHelper(Registries.RECIPE_SERIALIZER);
+    }
+
+    public StructureTypeRegistryHelper getStructureTypeSubHelper() {
+        return super.getSubHelper(Registries.STRUCTURE_TYPE);
+    }
+
+    public PotionRegistryHelper getPotionSubHelper() {
+        return super.getSubHelper(Registries.POTION);
     }
 
 }

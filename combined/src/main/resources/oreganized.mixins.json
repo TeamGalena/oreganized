@@ -3,24 +3,8 @@
   "minVersion": "0.8",
   "package": "galena.oreganized.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [
-    "AbstractArrowMixin",
-    "AnvilMenuMixin",
-    "BlockMixin",
-    "BrushItemMixin",
-    "CrossbowMixin",
-    "DispenserBlockMixin",
-    "EnchantmentHelperMixin",
-    "EntityMixin",
-    "IceBlockMixin",
-    "MobMixin",
-    "PillagerMixin",
-    "WalkNodeEvaluatorMixin",
-    "compat.LogStrippingFakeRecipesMixin"
-  ],
   "client": [
     "client.GuiMixin",
-    "client.HumanoidModelMixin",
     "PlayerMixin"
   ],
   "server": [],

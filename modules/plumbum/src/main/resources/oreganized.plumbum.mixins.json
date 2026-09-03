@@ -12,6 +12,9 @@
     "MobEffectInstanceMixin",
     "LivingEntityMixin"
   ],
+  "client": [
+    "client.HumanoidModelMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }

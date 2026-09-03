@@ -31,6 +31,11 @@ base {
 dependencies {
     modInclude(libs.galena.hats)
 
+    // TODO modular try again
+    // interfaceInjectionData(project(":core"))
+    // interfaceInjectionData(project(":plumbum"))
+    // interfaceInjectionData(project(":electrum"))
+
     modApi(libs.blueprint)
 
     modImplementation(libs.multikulti.datagen)

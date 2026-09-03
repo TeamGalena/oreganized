@@ -8,4 +8,6 @@ dependencies {
     api(project(":armament"))
     api(project(":glance"))
     api(project(":waxed"))
+    api(project(":engraved"))
+    api(project(":device"))
 }
