@@ -1,8 +1,10 @@
-package galena.oreganized.content.entity;
+package galena.oreganized.armament.world.entity;
 
 import com.mojang.logging.annotations.MethodsReturnNonnullByDefault;
-import galena.oreganized.index.*;
+import galena.oreganized.armament.index.*;
 import galena.oreganized.plumbum.config.PlumbumConfigs;
+import galena.oreganized.plumbum.index.PlumbumDamageTypes;
+import galena.oreganized.plumbum.index.PlumbumEffects;
 import javax.annotation.ParametersAreNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -39,7 +41,7 @@ public class MinecartShrapnelBomb extends AbstractMinecart {
     }
 
     public MinecartShrapnelBomb(Level world, double x, double y, double z) {
-        super(OEntityTypes.SHRAPNEL_BOMB_MINECART.get(), world, x, y, z);
+        super(ArmamentEntities.SHRAPNEL_BOMB_MINECART.get(), world, x, y, z);
     }
 
     @Override
@@ -49,7 +51,7 @@ public class MinecartShrapnelBomb extends AbstractMinecart {
 
     @Override
     public BlockState getDefaultDisplayBlockState() {
-        return OBlocks.SHRAPNEL_BOMB.get().defaultBlockState();
+        return ArmamentBlocks.SHRAPNEL_BOMB.get().defaultBlockState();
     }
 
     @Override
@@ -99,12 +101,12 @@ public class MinecartShrapnelBomb extends AbstractMinecart {
 
     @Override
     protected Item getDropItem() {
-        return OItems.SHRAPNEL_BOMB_MINECART.get();
+        return ArmamentItems.SHRAPNEL_BOMB_MINECART.get();
     }
 
     protected void explode(double p_38689_) {
         this.level().explode(this, this.getX(), this.getY(0.0625D), this.getZ(), 4.0F,  Level.ExplosionInteraction.NONE);
-        if (!this.level().isClientSide()) ((ServerLevel)this.level()).sendParticles(OParticleTypes.LEAD_SHRAPNEL.get(),
+        if (!this.level().isClientSide()) ((ServerLevel)this.level()).sendParticles(ArmamentParticles.LEAD_SHRAPNEL.get(),
                 this.getX(), this.getY(0.0625D) , this.getZ(), 100, 0.0D, 0.0D, 0.0D, 5);
         for (Entity entity : this.level().getEntities(this, new AABB(this.getX() - 30, this.getY() - 4, this.getZ() - 30,
                 this.getX() + 30, this.getY() + 4, this.getZ() + 30))) {
@@ -120,11 +122,11 @@ public class MinecartShrapnelBomb extends AbstractMinecart {
                 if (random < 5) shouldPoison = true;
             }
             if (shouldPoison && entity instanceof LivingEntity living) {
-                living.hurt(this.damageSources().source(ODamageSources.LEAD_POISONING), 2);
+                living.hurt(this.damageSources().source(PlumbumDamageTypes.LEAD_POISONING), 2);
 
                 living.addEffect(new MobEffectInstance(MobEffects.POISON, 260));
                 if (!PlumbumConfigs.COMMON.poisonInsteadOfStunning.get()) {
-                    living.addEffect(new MobEffectInstance(OEffects.STUNNING, 800));
+                    living.addEffect(new MobEffectInstance(PlumbumEffects.STUNNING, 800));
                 }
             }
         }
@@ -164,7 +166,7 @@ public class MinecartShrapnelBomb extends AbstractMinecart {
         if (!this.level().isClientSide) {
             this.level().broadcastEntityEvent(this, (byte)10);
             if (!this.isSilent()) {
-                this.level().playSound(null, this.getX(), this.getY(), this.getZ(), OSoundEvents.SHRAPNEL_BOMB_PRIMED.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+                this.level().playSound(null, this.getX(), this.getY(), this.getZ(), ArmamentSounds.SHRAPNEL_BOMB_PRIMED.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
             }
         }
     }
@@ -204,6 +206,6 @@ public class MinecartShrapnelBomb extends AbstractMinecart {
 
     @Override
     public ItemStack getPickResult() {
-        return new ItemStack(OItems.SHRAPNEL_BOMB_MINECART.get());
+        return new ItemStack(ArmamentItems.SHRAPNEL_BOMB_MINECART.get());
     }
 }

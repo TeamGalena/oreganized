@@ -63,6 +63,13 @@ public class ArgentumBlocks {
     public static final TarnishedBlocks<DoorBlock> SILVER_DOORS = registerTarnished("silver_door", $ -> new SilverDoorBlock(SILVER_BLOCK_SET, silverProperties().noOcclusion()));
     public static final TarnishedBlocks<TrapDoorBlock> SILVER_TRAPDOORS = registerTarnished("silver_trapdoor", $ -> new SilverTrapdoorBlock(SILVER_BLOCK_SET, silverProperties().noOcclusion()));
 
+    public static final DeferredBlock<Block> GROOVED_ICE = BLOCKS.createBlock("grooved_ice",
+            () -> new IceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ICE).friction(0.6F)));
+    public static final DeferredBlock<Block> GROOVED_PACKED_ICE = BLOCKS.createBlock("grooved_packed_ice",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.PACKED_ICE).friction(0.6F)));
+    public static final DeferredBlock<Block> GROOVED_BLUE_ICE = BLOCKS.createBlock("grooved_blue_ice",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BLUE_ICE).friction(0.6F)));
+
     private static <T extends Block> TarnishedBlocks<T> registerTarnished(String baseName, IntFunction<? extends T> factory) {
         return new TarnishedBlocks<>(
                 BLOCKS.createBlock(baseName, () -> factory.apply(0)),

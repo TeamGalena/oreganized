@@ -1,6 +1,7 @@
 package galena.oreganized.index;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.armament.index.ArmamentCriterionTriggers;
 import galena.oreganized.gothic.index.GothicCriterionTriggers;
 import galena.oreganized.plumbum.index.PlumbumCriterionTriggers;
 import galena.oreganized.world.critera.DummyCriterionTrigger;
@@ -18,7 +19,9 @@ public class OCriteriaTriggers {
     public static final DeferredHolder<CriterionTrigger<?>, DummyCriterionTrigger> SEE_GARGOYLE_GARGLE = GothicCriterionTriggers.SEE_GARGOYLE_GARGLE;
 
     public static final DeferredHolder<CriterionTrigger<?>, DummyCriterionTrigger> TERMINAL_VELOCITY = TRIGGERS.register("terminal_velocity", DummyCriterionTrigger::new);
-    public static final DeferredHolder<CriterionTrigger<?>, DummyCriterionTrigger> KNOCKED_BANNER_OFF = TRIGGERS.register("knocked_banner_off", DummyCriterionTrigger::new);
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredHolder<CriterionTrigger<?>, DummyCriterionTrigger> KNOCKED_BANNER_OFF = ArmamentCriterionTriggers.KNOCKED_BANNER_OFF;
 
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static final DeferredHolder<CriterionTrigger<?>, DummyCriterionTrigger> PROFOUND_BRAIN_DAMAGE = PlumbumCriterionTriggers.PROFOUND_BRAIN_DAMAGE;

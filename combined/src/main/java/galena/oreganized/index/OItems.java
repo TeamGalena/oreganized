@@ -4,13 +4,15 @@ package galena.oreganized.index;
 import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import galena.oreganized.Oreganized;
 import galena.oreganized.argentum.index.ArgentumItems;
+import galena.oreganized.armament.index.ArmamentItems;
 import galena.oreganized.content.item.*;
 import galena.oreganized.electrum.index.ElectrumItems;
 import galena.oreganized.plumbum.index.PlumbumItems;
+
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
-import net.minecraft.world.entity.vehicle.AbstractMinecart;
+
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.neoforged.fml.ModList;
@@ -40,16 +42,6 @@ public class OItems {
             () -> new DeviceItem(new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant()));
     public static final DeferredItem<Item> SILVER_MIRROR = HELPER.createItem("silver_mirror",
             () -> new SilverMirrorItem(new Item.Properties().stacksTo(1)));
-
-    public static final DeferredItem<Item> LEAD_BOLT = HELPER.createItem("lead_bolt",
-            () -> new LeadBoltItem(new Item.Properties()));
-
-    public static final DeferredItem<Item> FLINT_AND_PEWTER = HELPER.createItem("flint_and_pewter",
-            () -> new FlintAndPewterItem(new Item.Properties().durability(64)));
-
-    // Transportation
-    public static final DeferredItem<Item> SHRAPNEL_BOMB_MINECART = HELPER.createItem("shrapnel_bomb_minecart",
-            () -> new MinecartShrapnelBombItem(AbstractMinecart.Type.TNT, OEntityTypes.SHRAPNEL_BOMB_MINECART));
 
     public static void register() {
         // Load this class
@@ -170,8 +162,19 @@ public class OItems {
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static final DeferredItem<Item> ELECTRUM_MACHETE = ElectrumItems.ELECTRUM_MACHETE;
 
+    @Deprecated(forRemoval = true, since = "5.3.0")
     public static Stream<DeferredItem<? extends Item>> electrumTools() {
         return ElectrumItems.electrumTools();
     }
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredItem<Item> LEAD_BOLT = ArmamentItems.LEAD_BOLT;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredItem<Item> FLINT_AND_PEWTER = ArmamentItems.FLINT_AND_PEWTER;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredItem<Item> SHRAPNEL_BOMB_MINECART = ArmamentItems.SHRAPNEL_BOMB_MINECART;
+
 
 }

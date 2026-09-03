@@ -1,7 +1,7 @@
 package galena.oreganized.client.render.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import galena.oreganized.content.entity.MinecartShrapnelBomb;
+import galena.oreganized.armament.world.entity.MinecartShrapnelBomb;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;

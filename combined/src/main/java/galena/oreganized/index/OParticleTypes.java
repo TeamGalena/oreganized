@@ -1,6 +1,7 @@
 package galena.oreganized.index;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.armament.index.ArmamentParticles;
 import galena.oreganized.client.particle.*;
 import galena.oreganized.gothic.index.GothicParticles;
 import galena.oreganized.plumbum.index.PlumbumParticles;
@@ -35,7 +36,7 @@ public class OParticleTypes {
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LEAD_BLOW = PlumbumParticles.LEAD_BLOW;
 
-    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LEAD_SHRAPNEL = PARTICLES.register("lead_shrapnel", () -> new SimpleParticleType(true));
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LEAD_SHRAPNEL = ArmamentParticles.LEAD_SHRAPNEL;
 
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> VENGEANCE = GothicParticles.VENGEANCE;
@@ -46,7 +47,6 @@ public class OParticleTypes {
 
     @SubscribeEvent
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
-        event.registerSpriteSet(LEAD_SHRAPNEL.get(), LeadShrapnelParticle.Provider::new);
         event.registerSpriteSet(KINETIC_HIT.get(), KineticHitParticle.Provider::new);
         event.registerSpriteSet(TARNISH.get(), TarnishParticle.Provider::new);
         event.registerSpriteSet(POLISH.get(), PolishParticle.Provider::new);

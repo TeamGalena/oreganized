@@ -1,10 +1,12 @@
-package galena.oreganized.content.entity;
+package galena.oreganized.armament.world.entity;
 
-import galena.oreganized.index.OCriteriaTriggers;
-import galena.oreganized.index.OItems;
-import galena.oreganized.index.OSoundEvents;
+import galena.oreganized.armament.index.ArmamentCriterionTriggers;
+import galena.oreganized.armament.index.ArmamentItems;
+import galena.oreganized.armament.index.ArmamentSounds;
 import galena.oreganized.index.OTags;
+
 import java.util.stream.Stream;
+
 import net.minecraft.core.Position;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -74,7 +76,7 @@ public class LeadBoltEntity extends AbstractArrow {
 
     @Override
     protected ItemStack getPickupItem() {
-        return new ItemStack(OItems.LEAD_BOLT.get());
+        return new ItemStack(ArmamentItems.LEAD_BOLT.get());
     }
 
     private void damageEntity(EntityHitResult result) {
@@ -87,14 +89,14 @@ public class LeadBoltEntity extends AbstractArrow {
                     serverLevel.sendParticles(ParticleTypes.POOF, vec.x, vec.y + 2, vec.z, 4, 0.1, 0.1, 0.1, 0.0);
                 }
 
-                playSound(OSoundEvents.BOLT_HIT_ARMOR.get(), 1.5F, 1.2F / (random.nextFloat() * 0.2F + 0.9F));
+                playSound(ArmamentSounds.BOLT_HIT_ARMOR.get(), 1.5F, 1.2F / (random.nextFloat() * 0.2F + 0.9F));
                 if (knockedOff.getItem() instanceof Equipable item) {
                     playSound(item.getEquipSound().value());
                 }
 
                 if (result.getEntity() instanceof Pillager && knockedOff.is(ItemTags.BANNERS)) {
                     if (getOwner() instanceof ServerPlayer player) {
-                        OCriteriaTriggers.KNOCKED_BANNER_OFF.get().trigger(player);
+                        ArmamentCriterionTriggers.KNOCKED_BANNER_OFF.get().trigger(player);
                     }
                 }
 
@@ -107,7 +109,7 @@ public class LeadBoltEntity extends AbstractArrow {
 
     @Override
     protected void onHitEntity(EntityHitResult result) {
-        setSoundEvent(OSoundEvents.BOLT_HIT.get());
+        setSoundEvent(ArmamentSounds.BOLT_HIT.get());
 
         var arrowCount = result.getEntity() instanceof LivingEntity living ? living.getArrowCount() : 0;
 
@@ -129,7 +131,7 @@ public class LeadBoltEntity extends AbstractArrow {
 
     @Override
     protected void onHitBlock(BlockHitResult result) {
-        setSoundEvent(OSoundEvents.BOLT_HIT.get());
+        setSoundEvent(ArmamentSounds.BOLT_HIT.get());
         super.onHitBlock(result);
     }
 
@@ -161,7 +163,7 @@ public class LeadBoltEntity extends AbstractArrow {
 
     @Override
     protected ItemStack getDefaultPickupItem() {
-        return new ItemStack(OItems.LEAD_BOLT.get());
+        return new ItemStack(ArmamentItems.LEAD_BOLT.get());
     }
 
 }

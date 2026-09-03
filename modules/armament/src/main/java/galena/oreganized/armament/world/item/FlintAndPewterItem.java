@@ -1,6 +1,6 @@
-package galena.oreganized.content.item;
+package galena.oreganized.armament.world.item;
 
-import galena.oreganized.index.OParticleTypes;
+import galena.oreganized.plumbum.index.PlumbumParticles;
 import galena.oreganized.plumbum.world.block.LeadOreBlock;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -34,7 +34,7 @@ public class FlintAndPewterItem extends Item {
 
         for (int i = 0; i < 6; i++) {
             level.addParticle(
-                    OParticleTypes.LEAD_BLOW.get(),
+                    PlumbumParticles.LEAD_BLOW.get(),
                     vec.x, vec.y, vec.z,
                     level.random.nextDouble() * 0.2 - 0.1, level.random.nextDouble() * 0.2 - 0.1, level.random.nextDouble() * 0.2 - 0.1
             );

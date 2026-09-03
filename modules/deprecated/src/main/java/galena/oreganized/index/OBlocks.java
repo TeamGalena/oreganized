@@ -1,112 +1,63 @@
 package galena.oreganized.index;
 
-import galena.oreganized.Oreganized;
 import galena.oreganized.argentum.index.ArgentumBlocks;
 import galena.oreganized.argentum.index.TarnishedBlocks;
-import galena.oreganized.content.block.ShrapnelBombBlock;
-import galena.oreganized.content.block.SpottedGlanceBlock;
+import galena.oreganized.armament.index.ArmamentBlocks;
 import galena.oreganized.electrum.index.ElectrumBlocks;
+import galena.oreganized.glance.index.GlanceBlocks;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.plumbum.index.PlumbumBlocks;
 import galena.oreganized.plumbum.world.block.*;
-import galena.oreganized.register.BlockRegistryHelper;
-
+import galena.oreganized.waxed.index.WaxedBlocks;
 import java.util.Map;
-import java.util.Objects;
-import java.util.function.Function;
-import java.util.function.Supplier;
-
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
-import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 public class OBlocks {
-    private static final BlockRegistryHelper HELPER = Oreganized.REGISTRY_HELPER.getBlockSubHelper();
 
-    private static Properties glanceProperties() {
-        return Properties.of().explosionResistance(6).strength(1.5F).mapColor(MapColor.CLAY);
-    }
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<Block> GLANCE = GlanceBlocks.GLANCE;
 
-    // Glance
-    public static final DeferredBlock<Block> GLANCE = register("glance",
-            () -> new Block(glanceProperties()));
-    public static final DeferredBlock<Block> POLISHED_GLANCE = register("polished_glance",
-            () -> new Block(glanceProperties()));
-    public static final DeferredBlock<Block> GLANCE_BRICKS = register("glance_bricks",
-            () -> new Block(glanceProperties()));
-    public static final DeferredBlock<Block> CHISELED_GLANCE = register("chiseled_glance",
-            () -> new Block(glanceProperties()));
-    public static final DeferredBlock<SlabBlock> GLANCE_SLAB = register("glance_slab",
-            () -> new SlabBlock(glanceProperties()));
-    public static final DeferredBlock<SlabBlock> POLISHED_GLANCE_SLAB = register("polished_glance_slab",
-            () -> new SlabBlock(glanceProperties()));
-    public static final DeferredBlock<SlabBlock> GLANCE_BRICK_SLAB = register("glance_brick_slab",
-            () -> new SlabBlock(glanceProperties()));
-    public static final DeferredBlock<StairBlock> GLANCE_STAIRS = register("glance_stairs",
-            () -> new StairBlock(GLANCE.get().defaultBlockState(), glanceProperties()));
-    public static final DeferredBlock<StairBlock> POLISHED_GLANCE_STAIRS = register("polished_glance_stairs",
-            () -> new StairBlock(POLISHED_GLANCE.get().defaultBlockState(), glanceProperties()));
-    public static final DeferredBlock<StairBlock> GLANCE_BRICK_STAIRS = register("glance_brick_stairs",
-            () -> new StairBlock(GLANCE_BRICKS.get().defaultBlockState(), glanceProperties()));
-    public static final DeferredBlock<WallBlock> GLANCE_WALL = register("glance_wall",
-            () -> new WallBlock(glanceProperties()));
-    public static final DeferredBlock<WallBlock> GLANCE_BRICK_WALL = register("glance_brick_wall",
-            () -> new WallBlock(glanceProperties()));
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<Block> POLISHED_GLANCE = GlanceBlocks.POLISHED_GLANCE;
 
-    public static final DeferredBlock<Block> SPOTTED_GLANCE = register("spotted_glance",
-            () -> new SpottedGlanceBlock(glanceProperties()));
-    public static final DeferredBlock<Block> WAXED_SPOTTED_GLANCE = register("waxed_spotted_glance",
-            () -> new Block(glanceProperties()));
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<Block> GLANCE_BRICKS = GlanceBlocks.GLANCE_BRICKS;
 
-    public static final DeferredBlock<Block> WHITE_DATURA = register("datura",
-            () -> new FlowerBlock(OEffects.STUNNING, 21, Properties.ofFullCopy(Blocks.OXEYE_DAISY)));
-    public static final DeferredBlock<Block> PURPLE_DATURA = register("purple_datura",
-            () -> new FlowerBlock(OEffects.STUNNING, 21, Properties.ofFullCopy(Blocks.ALLIUM)));
-    public static final DeferredBlock<FlowerPotBlock> POTTED_WHITE_DATURA = HELPER.createBlockNoItem("potted_datura",
-            () -> new FlowerPotBlock(WHITE_DATURA.get(), Properties.ofFullCopy(Blocks.POTTED_OXEYE_DAISY)));
-    public static final DeferredBlock<FlowerPotBlock> POTTED_PURPLE_DATURA = HELPER.createBlockNoItem("potted_purple_datura",
-            () -> new FlowerPotBlock(PURPLE_DATURA.get(), Properties.ofFullCopy(Blocks.POTTED_ALLIUM)));
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<Block> CHISELED_GLANCE = GlanceBlocks.CHISELED_GLANCE;
 
-    public static final DeferredBlock<Block> LEAD_BOLT_CRATE = register("lead_bolt_crate",
-            () -> new Block(Properties.of().strength(1.5F).sound(SoundType.WOOD)));
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<SlabBlock> GLANCE_SLAB = GlanceBlocks.GLANCE_SLAB;
 
-    // Redstone components
-    public static final DeferredBlock<Block> SHRAPNEL_BOMB = register("shrapnel_bomb",
-            () -> new ShrapnelBombBlock(Properties.ofFullCopy(Blocks.TNT)));
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<SlabBlock> POLISHED_GLANCE_SLAB = GlanceBlocks.POLISHED_GLANCE_SLAB;
 
-    public static final DeferredBlock<Block> GROOVED_ICE = register("grooved_ice",
-            () -> new IceBlock(Properties.ofFullCopy(Blocks.ICE).friction(0.6F)));
-    public static final DeferredBlock<Block> GROOVED_PACKED_ICE = register("grooved_packed_ice",
-            () -> new Block(Properties.ofFullCopy(Blocks.PACKED_ICE).friction(0.6F)));
-    public static final DeferredBlock<Block> GROOVED_BLUE_ICE = register("grooved_blue_ice",
-            () -> new Block(Properties.ofFullCopy(Blocks.BLUE_ICE).friction(0.6F)));
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<SlabBlock> GLANCE_BRICK_SLAB = GlanceBlocks.GLANCE_SLAB;
 
-    public static final Map<DyeColor, DeferredBlock<Block>> WAXED_CONCRETE_POWDER = HELPER.createColored(color -> "waxed_" + color + "_concrete_powder", dye -> new Block(Properties.ofFullCopy(Blocks.GREEN_CONCRETE_POWDER).mapColor(dye)));
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<StairBlock> GLANCE_STAIRS = GlanceBlocks.GLANCE_STAIRS;
 
-    public static <T extends Block> DeferredBlock<T> baseRegister(String name, Supplier<? extends T> block, Function<DeferredBlock<T>, Supplier<? extends Item>> item) {
-        DeferredBlock<T> register = HELPER.createBlockNoItem(name, block);
-        OItems.HELPER.createItem(name, item.apply(register));
-        return register;
-    }
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<StairBlock> POLISHED_GLANCE_STAIRS = GlanceBlocks.POLISHED_GLANCE_STAIRS;
 
-    public static <T extends Block> DeferredBlock<T> register(String name, Supplier<T> block) {
-        return baseRegister(name, block, OBlocks::registerBlockItem);
-    }
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<StairBlock> GLANCE_BRICK_STAIRS = GlanceBlocks.GLANCE_BRICK_STAIRS;
 
-    private static <T extends Block> Supplier<BlockItem> registerBlockItem(final DeferredBlock<T> block) {
-        return () -> new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties());
-    }
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<WallBlock> GLANCE_WALL = GlanceBlocks.GLANCE_WALL;
 
-    public static void register() {
-        // Load this class
-    }
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<WallBlock> GLANCE_BRICK_WALL = GlanceBlocks.GLANCE_BRICK_WALL;
 
-    // deprecated
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<Block> SPOTTED_GLANCE = GlanceBlocks.SPOTTED_GLANCE;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<Block> WAXED_SPOTTED_GLANCE = GlanceBlocks.WAXED_SPOTTED_GLANCE;
 
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static final DeferredBlock<Block> RAW_LEAD_BLOCK = PlumbumBlocks.RAW_LEAD_BLOCK;
@@ -212,5 +163,36 @@ public class OBlocks {
 
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static final Map<DyeColor, DeferredBlock<Block>> CRYSTAL_GLASS_PANES = GothicBlocks.CRYSTAL_GLASS_PANES;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<Block> LEAD_BOLT_CRATE = ArmamentBlocks.LEAD_BOLT_CRATE;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<Block> SHRAPNEL_BOMB = ArmamentBlocks.SHRAPNEL_BOMB;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<Block> WHITE_DATURA = PlumbumBlocks.WHITE_DATURA;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<Block> PURPLE_DATURA = PlumbumBlocks.PURPLE_DATURA;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<FlowerPotBlock> POTTED_WHITE_DATURA = PlumbumBlocks.POTTED_WHITE_DATURA;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<FlowerPotBlock> POTTED_PURPLE_DATURA = PlumbumBlocks.POTTED_PURPLE_DATURA;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final Map<DyeColor, DeferredBlock<Block>> WAXED_CONCRETE_POWDER = WaxedBlocks.WAXED_CONCRETE_POWDER;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<Block> GROOVED_ICE = ArgentumBlocks.GROOVED_ICE;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<Block> GROOVED_PACKED_ICE = ArgentumBlocks.GROOVED_PACKED_ICE;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<Block> GROOVED_BLUE_ICE = ArgentumBlocks.GROOVED_BLUE_ICE;
+
 
 }

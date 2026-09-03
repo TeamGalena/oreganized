@@ -1,6 +1,6 @@
-package galena.oreganized.content.item;
+package galena.oreganized.armament.world.item;
 
-import galena.oreganized.content.entity.MinecartShrapnelBomb;
+import galena.oreganized.armament.world.entity.MinecartShrapnelBomb;
 import java.util.function.Supplier;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

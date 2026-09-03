@@ -1,9 +1,8 @@
-package galena.oreganized.content.block;
+package galena.oreganized.glance.world.block;
 
 import galena.oreganized.OConstants;
-import galena.oreganized.index.OBlocks;
-import javax.annotation.ParametersAreNonnullByDefault;
-import net.minecraft.MethodsReturnNonnullByDefault;
+
+import galena.oreganized.glance.index.GlanceBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -21,8 +20,6 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 
-@ParametersAreNonnullByDefault
-@MethodsReturnNonnullByDefault
 public class SpottedGlanceBlock extends Block {
 
     public static final ResourceKey<LootTable> WASH_LOOT_TABLE = ResourceKey.create(Registries.LOOT_TABLE, OConstants.modLoc("gameplay/spotted_glance"));
@@ -37,7 +34,7 @@ public class SpottedGlanceBlock extends Block {
 
         dropLeadNuggets(world, pos);
 
-        return OBlocks.GLANCE.get().defaultBlockState();
+        return GlanceBlocks.GLANCE.get().defaultBlockState();
     }
 
     private void dropLeadNuggets(LevelAccessor level, BlockPos pos) {

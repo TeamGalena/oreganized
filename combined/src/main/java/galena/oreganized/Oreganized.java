@@ -45,12 +45,10 @@ public class Oreganized {
         modBus.addListener(this::setup);
         forgeBus.addListener(this::registerPotionMixes);
 
-        OEntityTypes.register(modBus);
         OParticleTypes.register(modBus);
         OPotions.register(modBus);
         OStructures.register(modBus);
         ODataComponents.register(modBus);
-        OBlocks.register();
         OItems.register();
         OCriteriaTriggers.register(modBus);
         OSoundEvents.register();

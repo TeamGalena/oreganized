@@ -2,7 +2,7 @@ package galena.oreganized.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
-import galena.oreganized.content.entity.LeadBoltEntity;
+import galena.oreganized.armament.world.entity.LeadBoltEntity;
 import galena.oreganized.index.ODamageSources;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;

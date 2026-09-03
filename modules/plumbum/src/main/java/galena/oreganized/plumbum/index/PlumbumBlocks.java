@@ -95,6 +95,13 @@ public class PlumbumBlocks {
     public static final DeferredBlock<Block> MOLTEN_LEAD_CAULDRON = BLOCKS.createBlockNoItem("molten_lead_cauldron",
             () -> new MoltenLeadCauldronBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA_CAULDRON).randomTicks()));
 
-
+    public static final DeferredBlock<Block> WHITE_DATURA = BLOCKS.createBlock("datura",
+            () -> new FlowerBlock(PlumbumEffects.STUNNING, 21, BlockBehaviour.Properties.ofFullCopy(Blocks.OXEYE_DAISY)));
+    public static final DeferredBlock<Block> PURPLE_DATURA = BLOCKS.createBlock("purple_datura",
+            () -> new FlowerBlock(PlumbumEffects.STUNNING, 21, BlockBehaviour.Properties.ofFullCopy(Blocks.ALLIUM)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_WHITE_DATURA = BLOCKS.createBlockNoItem("potted_datura",
+            () -> new FlowerPotBlock(WHITE_DATURA.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_OXEYE_DAISY)));
+    public static final DeferredBlock<FlowerPotBlock> POTTED_PURPLE_DATURA = BLOCKS.createBlockNoItem("potted_purple_datura",
+            () -> new FlowerPotBlock(PURPLE_DATURA.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_ALLIUM)));
 
 }

@@ -1,7 +1,7 @@
-package galena.oreganized.content.item;
+package galena.oreganized.armament.world.item;
 
-import galena.oreganized.content.entity.LeadBoltEntity;
-import galena.oreganized.index.OEntityTypes;
+import galena.oreganized.armament.index.ArmamentEntities;
+import galena.oreganized.armament.world.entity.LeadBoltEntity;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
 import net.minecraft.world.entity.LivingEntity;
@@ -18,15 +18,14 @@ public class LeadBoltItem extends ArrowItem {
         super(properties);
     }
 
-
     @Override
     public AbstractArrow createArrow(Level level, ItemStack stack, LivingEntity user, @Nullable ItemStack weapon) {
-        return new LeadBoltEntity(OEntityTypes.LEAD_BOLT.get(), level, user, stack, weapon);
+        return new LeadBoltEntity(ArmamentEntities.LEAD_BOLT.get(), level, user, stack, weapon);
     }
 
     @Override
     public Projectile asProjectile(Level level, Position pos, ItemStack stack, Direction direction) {
-        var bolt = new LeadBoltEntity(OEntityTypes.LEAD_BOLT.get(), level, pos, stack.copyWithCount(1));
+        var bolt = new LeadBoltEntity(ArmamentEntities.LEAD_BOLT.get(), level, pos, stack.copyWithCount(1));
         bolt.pickup = AbstractArrow.Pickup.ALLOWED;
         return bolt;
     }

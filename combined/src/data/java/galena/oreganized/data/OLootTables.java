@@ -1,8 +1,8 @@
 package galena.oreganized.data;
 
 import galena.oreganized.Oreganized;
-import galena.oreganized.content.block.SpottedGlanceBlock;
 import galena.oreganized.data.provider.OBlockLootProvider;
+import galena.oreganized.glance.index.SpottedGlanceBlock;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OEntityTypes;
 import galena.oreganized.index.OItems;
