@@ -7,8 +7,10 @@ import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredItem;
 
+@Mod(OConstants.MOD_ID)
 public class PlumbumItems {
 
     private static final ItemRegistryHelper ITEMS = OConstants.REGISTRY_HELPER.getItemSubHelper();
@@ -31,8 +33,6 @@ public class PlumbumItems {
     public static final DeferredItem<Item> MUSIC_DISC_STRUCTURE = ITEMS.createItem("music_disc_structure",
             () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(PlumbumSongs.STRUCTURE)));
 
-    public static void register() {
-        // Load this class
-    }
+
 
 }

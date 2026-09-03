@@ -10,10 +10,12 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 @EventBusSubscriber(Dist.CLIENT)
+@Mod(OConstants.MOD_ID)
 public class PlumbumParticles {
 
     private static final ParticleTypeRegistryHelper PARTICLES = OConstants.REGISTRY_HELPER.getParticleTypeSubHelper();
@@ -37,8 +39,6 @@ public class PlumbumParticles {
         event.registerSpriteSet(LEAD_BLOW.get(), ExplodeParticle.Provider::new);
     }
 
-    public static void register() {
-        // Load this class
-    }
+
 
 }

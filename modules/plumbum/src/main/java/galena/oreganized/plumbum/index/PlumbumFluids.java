@@ -6,11 +6,13 @@ import galena.oreganized.register.SimpleRegistryHelper;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.SoundActions;
 import net.neoforged.neoforge.fluids.BaseFlowingFluid;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
+@Mod(OConstants.MOD_ID)
 public class PlumbumFluids {
 
     private static final SimpleRegistryHelper<Fluid> FLUIDS = OConstants.REGISTRY_HELPER.getFluidSubHelper();
@@ -36,8 +38,6 @@ public class PlumbumFluids {
             .block(PlumbumBlocks.MOLTEN_LEAD)
             .tickRate(30);
 
-    public static void register() {
-        // Load this class
-    }
+
 
 }

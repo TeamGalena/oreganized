@@ -11,8 +11,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
+@Mod(OConstants.MOD_ID)
 public class PlumbumBlocks {
 
     private static final BlockRegistryHelper BLOCKS = OConstants.REGISTRY_HELPER.getBlockSubHelper();
@@ -93,8 +95,6 @@ public class PlumbumBlocks {
     public static final DeferredBlock<Block> MOLTEN_LEAD_CAULDRON = BLOCKS.createBlockNoItem("molten_lead_cauldron",
             () -> new MoltenLeadCauldronBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA_CAULDRON).randomTicks()));
 
-    public static void register() {
-        // Load this class
-    }
+
 
 }

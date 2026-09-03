@@ -10,8 +10,10 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
+@Mod(OConstants.MOD_ID)
 public class GothicBlocks {
 
     private static final BlockRegistryHelper BLOCKS = OConstants.REGISTRY_HELPER.getBlockSubHelper();
@@ -25,8 +27,5 @@ public class GothicBlocks {
     public static final Map<DyeColor, DeferredBlock<Block>> CRYSTAL_GLASS_PANES = BLOCKS.createColored("crystal_glass_pane", dye ->
             new CrystalGlassPaneBlock(dye, Properties.ofFullCopy(Blocks.RED_STAINED_GLASS_PANE).mapColor(dye)));
 
-    public static void register() {
-        // Load this class
-    }
 
 }

@@ -12,8 +12,10 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.material.MapColor;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
+@Mod(OConstants.MOD_ID)
 public class ArgentumBlocks {
 
     private static final BlockRegistryHelper BLOCKS = OConstants.REGISTRY_HELPER.getBlockSubHelper();
@@ -67,10 +69,6 @@ public class ArgentumBlocks {
                 BLOCKS.createBlock("blemished_" + baseName, () -> factory.apply(1)),
                 BLOCKS.createBlock("tarnished_" + baseName, () -> factory.apply(2))
         );
-    }
-
-    public static void register() {
-        // Load this class
     }
 
 }

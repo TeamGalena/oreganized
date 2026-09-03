@@ -14,9 +14,11 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.SimpleTier;
 import net.neoforged.neoforge.registries.DeferredItem;
 
+@Mod(OConstants.MOD_ID)
 public class ArgentumItems {
 
     private static final ItemRegistryHelper ITEMS = OConstants.REGISTRY_HELPER.getItemSubHelper();
@@ -80,8 +82,5 @@ public class ArgentumItems {
         return Stream.of(SILVER_SWORD, SILVER_SHOVEL, SILVER_PICKAXE, SILVER_AXE, SILVER_HOE);
     }
 
-    public static void register() {
-        // Load this class
-    }
 
 }
