@@ -1,6 +1,5 @@
 package galena.oreganized.content.item;
 
-import galena.oreganized.Oreganized;
 import galena.oreganized.client.accessors.GuiAccessor;
 import galena.oreganized.client.tooltips.DeviceTooltip;
 import galena.oreganized.index.ODataComponents;
@@ -20,7 +19,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
-@EventBusSubscriber(modid = Oreganized.MOD_ID)
+@EventBusSubscriber
 public class DeviceItem extends Item {
 
     public static final int FRAMES = 10;

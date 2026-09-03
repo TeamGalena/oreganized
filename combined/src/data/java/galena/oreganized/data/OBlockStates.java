@@ -1,6 +1,5 @@
 package galena.oreganized.data;
 
-import galena.oreganized.Oreganized;
 import galena.oreganized.compat.ColorCompat;
 import galena.oreganized.data.provider.OBlockStateProvider;
 import galena.oreganized.index.OBlocks;
@@ -15,7 +14,7 @@ public class OBlockStates extends OBlockStateProvider {
 
     @Override
     public String getName() {
-        return Oreganized.MOD_ID + " Block States";
+        return OConstants.MOD_ID + " Block States";
     }
 
     @Override

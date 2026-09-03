@@ -1,7 +1,7 @@
 package galena.oreganized.world;
 
 import com.google.common.collect.HashBiMap;
-import galena.oreganized.Oreganized;
+import galena.oreganized.OConstants;
 import galena.oreganized.api.Tarnishable;
 import galena.oreganized.index.ODataMapTypes;
 import galena.oreganized.index.OSoundEvents;
@@ -22,7 +22,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.registries.datamaps.DataMapsUpdatedEvent;
 
-@EventBusSubscriber(modid = Oreganized.MOD_ID)
+@EventBusSubscriber
 public class TarnishBlockManager {
 
     private static final Map<Block, Block> INVERSE = HashBiMap.create();
@@ -31,7 +31,7 @@ public class TarnishBlockManager {
     @SubscribeEvent
     public static void reload(DataMapsUpdatedEvent event) {
         event.ifRegistry(Registries.BLOCK, registry -> {
-            Oreganized.LOGGER.debug("reloading tarnishables");
+            OConstants.LOGGER.debug("reloading tarnishables");
 
             var map = registry.getDataMap(ODataMapTypes.TARNISHABLES);
 

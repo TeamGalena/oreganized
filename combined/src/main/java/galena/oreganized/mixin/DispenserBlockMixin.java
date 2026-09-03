@@ -1,6 +1,6 @@
 package galena.oreganized.mixin;
 
-import galena.oreganized.content.block.GargoyleBlock;
+import galena.oreganized.gothic.world.block.GargoyleBlock;
 import galena.oreganized.index.OTags;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.world.item.ItemStack;

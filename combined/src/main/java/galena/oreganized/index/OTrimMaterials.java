@@ -1,6 +1,5 @@
 package galena.oreganized.index;
 
-import galena.oreganized.Oreganized;
 import java.util.Map;
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
@@ -27,7 +26,7 @@ public class OTrimMaterials {
     }
 
     private static ResourceKey<TrimMaterial> createKey(String name) {
-        return ResourceKey.create(Registries.TRIM_MATERIAL, Oreganized.modLoc(name));
+        return ResourceKey.create(Registries.TRIM_MATERIAL, OConstants.modLoc(name));
     }
 
     private static void register(BootstrapContext<TrimMaterial> context, ResourceKey<TrimMaterial> key, Holder<Item> item, Style style, Map<Holder<ArmorMaterial>, String> overrides) {

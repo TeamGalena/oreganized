@@ -6,6 +6,7 @@ import galena.oreganized.Oreganized;
 import galena.oreganized.argentum.index.ArgentumItems;
 import galena.oreganized.content.item.*;
 import galena.oreganized.electrum.index.ElectrumItems;
+import galena.oreganized.plumbum.index.PlumbumItems;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
@@ -23,38 +24,25 @@ public class OItems {
         return () -> new Item(properties);
     }
 
-    // Discs
-    public static final DeferredItem<Item> MUSIC_DISC_STRUCTURE = HELPER.createItem("music_disc_structure",
-            () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ORecords.STRUCTURE)));
-
-    // Crafting Materials
-
-    public static final DeferredItem<Item> RAW_LEAD = HELPER.createItem("raw_lead",
-            () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> LEAD_INGOT = HELPER.createItem("lead_ingot",
-            () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> LEAD_NUGGET = HELPER.createItem("lead_nugget",
-            () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> NETHERITE_NUGGET = HELPER.createItem("netherite_nugget",
             () -> new Item(new Item.Properties().fireResistant()));
 
     // Tools
     public static final DeferredItem<Item> BUSH_HAMMER = HELPER.createItem("bush_hammer",
             () -> new BushHammerItem(OItemTiers.LEAD, new Item.Properties().stacksTo(1)));
+
     public static final DeferredItem<Item> SCRIBE = HELPER.createItem("scribe",
             () -> new ScribeItem(new Item.Properties().durability(250)));
 
-    // Misc Tools
-    public static final DeferredItem<Item> THERMOMETER = HELPER.createItem("thermometer",
-            () -> new ThermometerItem(new Item.Properties().component(ODataComponents.LOCKED, false).component(ODataComponents.HEAT_LEVEL, 2)));
+    public static final DeferredItem<Item> MUSIC_DISC_STRUCTURE = HELPER.createItem("music_disc_structure",
+            () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ORecords.STRUCTURE)));
+
     public static final DeferredItem<Item> SPEEDOMETER = HELPER.createItem("speedometer",
             () -> new SpeedometerItem(new Item.Properties()));
     public static final DeferredItem<Item> UNKNOWN_DEVICE = HELPER.createItem("unknown_device",
             () -> new DeviceItem(new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant()));
     public static final DeferredItem<Item> SILVER_MIRROR = HELPER.createItem("silver_mirror",
             () -> new SilverMirrorItem(new Item.Properties().stacksTo(1)));
-    public static final DeferredItem<Item> MOLTEN_LEAD_BUCKET = HELPER.createItem("molten_lead_bucket",
-            () -> new BucketItem(OFluids.MOLTEN_LEAD.get(), new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET)));
 
     public static final DeferredItem<Item> LEAD_BOLT = HELPER.createItem("lead_bolt",
             () -> new LeadBoltItem(new Item.Properties()));
@@ -71,6 +59,21 @@ public class OItems {
     }
 
     // deprecated
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredItem<Item> RAW_LEAD = PlumbumItems.RAW_LEAD;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredItem<Item> LEAD_INGOT = PlumbumItems.LEAD_INGOT;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredItem<Item> LEAD_NUGGET = PlumbumItems.LEAD_NUGGET;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredItem<Item> THERMOMETER = PlumbumItems.THERMOMETER;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredItem<Item> MOLTEN_LEAD_BUCKET = PlumbumItems.MOLTEN_LEAD_BUCKET;
 
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static final DeferredItem<Item> RAW_SILVER = ArgentumItems.RAW_SILVER;

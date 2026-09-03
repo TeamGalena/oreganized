@@ -1,8 +1,8 @@
 package galena.oreganized.compat.ponder;
 
-import galena.oreganized.content.block.MoltenLeadCauldronBlock;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OItems;
+import galena.oreganized.plumbum.world.block.MoltenLeadCauldronBlock;
 import net.createmod.catnip.math.Pointing;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.createmod.ponder.api.scene.SceneBuilder;

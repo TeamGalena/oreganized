@@ -1,7 +1,6 @@
 package galena.oreganized.data;
 
 import galena.oreganized.ModCompat;
-import galena.oreganized.Oreganized;
 import galena.oreganized.index.DyeColors;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OItems;
@@ -32,7 +31,7 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 public class OItemTags extends ItemTagsProvider {
 
     public OItemTags(PackOutput output, CompletableFuture<HolderLookup.Provider> future, CompletableFuture<TagLookup<Block>> provider, @Nullable ExistingFileHelper helper) {
-        super(output, future, provider, Oreganized.MOD_ID, helper);
+        super(output, future, provider, OConstants.MOD_ID, helper);
     }
 
     @Override

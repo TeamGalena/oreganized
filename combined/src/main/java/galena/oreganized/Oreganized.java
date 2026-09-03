@@ -5,20 +5,18 @@ import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import galena.oreganized.api.LeadProtections;
 import galena.oreganized.compat.create.CreateCompat;
-import galena.oreganized.content.block.LeadOreBlock;
-import galena.oreganized.content.block.MoltenLeadCauldronBlock;
 import galena.oreganized.debug.ODebugCommands;
 import galena.oreganized.index.*;
 import galena.oreganized.network.OreganizedNetwork;
 import galena.oreganized.plumbum.config.PlumbumConfigs;
+import galena.oreganized.plumbum.world.block.LeadOreBlock;
+import galena.oreganized.plumbum.world.block.MoltenLeadCauldronBlock;
 import java.util.stream.Stream;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.core.dispenser.ProjectileDispenseBehavior;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.npc.VillagerProfession;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Blocks;
@@ -31,26 +29,12 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.common.BasicItemListing;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
-import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.neoforged.neoforge.fluids.FluidInteractionRegistry;
-import org.apache.logging.log4j.Logger;
 
-@Mod(Oreganized.MOD_ID)
+@Mod(OConstants.MOD_ID)
 public class Oreganized {
-
-    @Deprecated
-    public static final Logger LOGGER = OConstants.LOGGER;
-
-    @Deprecated
-    public static final String MOD_ID = OConstants.MOD_ID;
-
-    @Deprecated
-    public static ResourceLocation modLoc(String location) {
-        return OConstants.modLoc(location);
-    }
 
     @Deprecated
     public static final RegistryHelper REGISTRY_HELPER = OConstants.REGISTRY_HELPER;
@@ -59,18 +43,13 @@ public class Oreganized {
         final IEventBus forgeBus = NeoForge.EVENT_BUS;
 
         modBus.addListener(this::setup);
-        forgeBus.addListener(this::injectVillagerTrades);
         forgeBus.addListener(this::registerPotionMixes);
 
-        OEffects.register(modBus);
         OEntityTypes.register(modBus);
-        OFluids.register(modBus);
         OParticleTypes.register(modBus);
         OPotions.register(modBus);
         OStructures.register(modBus);
-        OArmorMaterials.register(modBus);
         ODataComponents.register(modBus);
-        OBlockEntities.register();
         OBlocks.register();
         OItems.register();
         OCriteriaTriggers.register(modBus);
@@ -98,12 +77,6 @@ public class Oreganized {
         });
 
         forgeBus.addListener(ODebugCommands::register);
-    }
-
-    private void injectVillagerTrades(VillagerTradesEvent event) {
-        if (event.getType() == VillagerProfession.MASON) {
-            event.getTrades().get(5).add(new BasicItemListing(14, new ItemStack(OBlocks.GARGOYLE.get()), 5, 30, 0.05F));
-        }
     }
 
     private void setup(FMLCommonSetupEvent event) {
@@ -155,7 +128,7 @@ public class Oreganized {
 
             Stream.of("lead_bolt_crates1", "lead_bolt_crates2").forEach(name -> {
                 DataUtil.addToJigsawPattern(ResourceLocation.withDefaultNamespace("pillager_outpost/features"), $ -> {
-                    return StructurePoolElement.legacy(Oreganized.MOD_ID + ":pillager_outpost/" + name).apply(StructureTemplatePool.Projection.RIGID);
+                    return StructurePoolElement.legacy(OConstants.MOD_ID + ":pillager_outpost/" + name).apply(StructureTemplatePool.Projection.RIGID);
                 }, 1);
             });
         });

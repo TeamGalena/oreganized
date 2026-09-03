@@ -1,6 +1,5 @@
 package galena.oreganized.world.event;
 
-import galena.oreganized.Oreganized;
 import galena.oreganized.argentum.config.ArgentumConfigs;
 import galena.oreganized.world.TarnishBlockManager;
 import net.minecraft.tags.EntityTypeTags;
@@ -8,7 +7,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 
-@EventBusSubscriber(modid = Oreganized.MOD_ID)
+@EventBusSubscriber
 public class TarnishEvents {
 
     @SubscribeEvent

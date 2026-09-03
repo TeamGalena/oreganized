@@ -1,6 +1,6 @@
 package galena.oreganized.index;
 
-import galena.oreganized.Oreganized;
+import galena.oreganized.plumbum.index.PlumbumDamageTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
@@ -9,13 +9,16 @@ import net.minecraft.world.damagesource.DamageType;
 
 public class ODamageSources {
 
-    public static final ResourceKey<DamageType> MOLTEN_LEAD = create("molten_lead");
-    public static final ResourceKey<DamageType> LEAD_POISONING = create("lead_poisoning");
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final ResourceKey<DamageType> MOLTEN_LEAD = PlumbumDamageTypes.MOLTEN_LEAD;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final ResourceKey<DamageType> LEAD_POISONING = PlumbumDamageTypes.LEAD_POISONING;
 
     public static final ResourceKey<DamageType> LEAD_BOLT = create("lead_bolt");
 
     public static ResourceKey<DamageType> create(String key) {
-        return ResourceKey.create(Registries.DAMAGE_TYPE, Oreganized.modLoc(key));
+        return ResourceKey.create(Registries.DAMAGE_TYPE, OConstants.modLoc(key));
     }
 
     public static void bootStrap(BootstrapContext<DamageType> context) {

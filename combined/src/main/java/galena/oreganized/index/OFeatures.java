@@ -4,7 +4,6 @@ import static net.minecraft.tags.BlockTags.DEEPSLATE_ORE_REPLACEABLES;
 import static net.minecraft.tags.BlockTags.STONE_ORE_REPLACEABLES;
 
 import com.google.common.collect.ImmutableList;
-import galena.oreganized.Oreganized;
 import java.util.List;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
@@ -45,7 +44,7 @@ public class OFeatures {
         public static final ResourceKey<ConfiguredFeature<?, ?>> SPARSE_PURPLE_DATURA = create("sparse_purple_datura");
 
         public static ResourceKey<ConfiguredFeature<?, ?>> create(String name) {
-            return ResourceKey.create(Registries.CONFIGURED_FEATURE, Oreganized.modLoc(name));
+            return ResourceKey.create(Registries.CONFIGURED_FEATURE, OConstants.modLoc(name));
         }
 
         public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
@@ -76,7 +75,7 @@ public class OFeatures {
         public static final ResourceKey<PlacedFeature> SPARSE_PURPLE_DATURA = create("sparse_purple_datura");
 
         public static ResourceKey<PlacedFeature> create(String name) {
-            return ResourceKey.create(Registries.PLACED_FEATURE, Oreganized.modLoc(name));
+            return ResourceKey.create(Registries.PLACED_FEATURE, OConstants.modLoc(name));
         }
 
         public static void bootstrap(BootstrapContext<PlacedFeature> context) {

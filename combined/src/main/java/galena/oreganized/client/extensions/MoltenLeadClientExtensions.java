@@ -2,7 +2,6 @@ package galena.oreganized.client.extensions;
 
 import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.systems.RenderSystem;
-import galena.oreganized.Oreganized;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.FogRenderer;
@@ -15,17 +14,17 @@ public class MoltenLeadClientExtensions implements IClientFluidTypeExtensions {
 
     @Override
     public ResourceLocation getStillTexture() {
-        return Oreganized.modLoc("block/fluid/molten_lead");
+        return OConstants.modLoc("block/fluid/molten_lead");
     }
 
     @Override
     public ResourceLocation getFlowingTexture() {
-        return Oreganized.modLoc("block/fluid/molten_lead_flowing");
+        return OConstants.modLoc("block/fluid/molten_lead_flowing");
     }
 
     @Override
     public ResourceLocation getOverlayTexture() {
-        return Oreganized.modLoc("block/fluid/molten_lead_flowing");
+        return OConstants.modLoc("block/fluid/molten_lead_flowing");
     }
 
     @Override

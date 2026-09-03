@@ -1,7 +1,7 @@
 package galena.oreganized.mixin.compat;
 
 import com.simibubi.create.content.kinetics.fan.AirCurrent;
-import galena.oreganized.content.block.LeadOreBlock;
+import galena.oreganized.plumbum.world.block.LeadOreBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

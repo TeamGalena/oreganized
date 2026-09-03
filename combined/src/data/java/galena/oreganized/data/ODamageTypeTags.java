@@ -1,6 +1,5 @@
 package galena.oreganized.data;
 
-import galena.oreganized.Oreganized;
 import galena.oreganized.index.ODamageSources;
 import java.util.concurrent.CompletableFuture;
 import javax.annotation.Nullable;
@@ -16,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 public class ODamageTypeTags extends TagsProvider<DamageType> {
 
     public ODamageTypeTags(PackOutput output, CompletableFuture<HolderLookup.Provider> future, @Nullable ExistingFileHelper helper) {
-        super(output, Registries.DAMAGE_TYPE, future, Oreganized.MOD_ID, helper);
+        super(output, Registries.DAMAGE_TYPE, future, OConstants.MOD_ID, helper);
     }
 
     @Override

@@ -5,7 +5,7 @@ import com.simibubi.create.content.kinetics.deployer.ItemApplicationRecipe;
 import com.simibubi.create.content.kinetics.deployer.ManualApplicationRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingOutput;
 import com.simibubi.create.foundation.data.recipe.LogStrippingFakeRecipes;
-import galena.oreganized.Oreganized;
+import galena.oreganized.OConstants;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.ORecipeTypes;
 import java.util.ArrayList;
@@ -59,7 +59,7 @@ public class LogStrippingFakeRecipesMixin {
                                 .build();
                         newList.add(new RecipeHolder<>(holder.id(), recipe));
                     }, () -> {
-                        Oreganized.LOGGER.warn("unable to convert scribe recipe {}", holder.id());
+                        OConstants.LOGGER.warn("unable to convert scribe recipe {}", holder.id());
                     });
                 });
 

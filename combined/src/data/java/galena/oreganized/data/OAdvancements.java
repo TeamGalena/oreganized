@@ -1,13 +1,12 @@
 package galena.oreganized.data;
 
-import galena.oreganized.Oreganized;
-import galena.oreganized.content.item.ThermometerItem;
 import galena.oreganized.data.provider.OLangProvider;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OCriteriaTriggers;
 import galena.oreganized.index.OEffects;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
+import galena.oreganized.plumbum.world.item.ThermometerItem;
 import it.unimi.dsi.fastutil.ints.Int2ObjectFunction;
 import java.util.List;
 import java.util.Optional;
@@ -184,7 +183,7 @@ public class OAdvancements extends AdvancementProvider {
         }
 
         protected DisplayInfo info(ItemStack icon, String id, AdvancementType type, String title, String description) {
-            var advancementId = Oreganized.MOD_ID + "." + id;
+            var advancementId = OConstants.MOD_ID + "." + id;
             lang.addAdvTitle(advancementId, title);
             lang.addAdvDesc(advancementId, description);
             return new DisplayInfo(

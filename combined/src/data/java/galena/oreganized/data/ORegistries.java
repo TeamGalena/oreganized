@@ -1,7 +1,6 @@
 package galena.oreganized.data;
 
 import com.teamabnormals.blueprint.core.registry.BlueprintDataPackRegistries;
-import galena.oreganized.Oreganized;
 import galena.oreganized.index.ODamageSources;
 import galena.oreganized.index.OFeatures;
 import galena.oreganized.index.OPaintingVariants;
@@ -27,6 +26,6 @@ public class ORegistries extends DatapackBuiltinEntriesProvider {
             .add(BlueprintDataPackRegistries.STRUCTURE_REPALETTERS, OStructurePalettes::bootstrap);
 
     public ORegistries(PackOutput output, CompletableFuture<HolderLookup.Provider> future) {
-        super(output, future, BUILDER, OStructurePalettes::conditions, Set.of("minecraft", Oreganized.MOD_ID));
+        super(output, future, BUILDER, OStructurePalettes::conditions, Set.of("minecraft", OConstants.MOD_ID));
     }
 }

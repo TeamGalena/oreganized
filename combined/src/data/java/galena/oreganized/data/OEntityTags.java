@@ -1,6 +1,5 @@
 package galena.oreganized.data;
 
-import galena.oreganized.Oreganized;
 import galena.oreganized.index.OTags;
 import java.util.concurrent.CompletableFuture;
 import javax.annotation.Nullable;
@@ -15,7 +14,7 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 public class OEntityTags extends EntityTypeTagsProvider {
 
     public OEntityTags(PackOutput output, CompletableFuture<HolderLookup.Provider> future, @Nullable ExistingFileHelper help) {
-        super(output, future, Oreganized.MOD_ID, help);
+        super(output, future, OConstants.MOD_ID, help);
     }
 
     @Override

@@ -1,12 +1,11 @@
 package galena.oreganized.data;
 
-import galena.oreganized.Oreganized;
 import galena.oreganized.content.item.DeviceItem;
 import galena.oreganized.content.item.SpeedometerItem;
-import galena.oreganized.content.item.ThermometerItem;
 import galena.oreganized.data.provider.OItemModelProvider;
 import galena.oreganized.index.ODataComponents;
 import galena.oreganized.index.OItems;
+import galena.oreganized.plumbum.world.item.ThermometerItem;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -18,7 +17,7 @@ public class OItemModels extends OItemModelProvider {
 
     @Override
     public String getName() {
-        return Oreganized.MOD_ID + " Item Models";
+        return OConstants.MOD_ID + " Item Models";
     }
 
     @Override

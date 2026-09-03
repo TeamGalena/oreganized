@@ -3,14 +3,12 @@ package galena.oreganized.data.provider;
 import static net.neoforged.neoforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
 
 import com.teamabnormals.blueprint.core.data.client.BlueprintBlockStateProvider;
-import galena.oreganized.Oreganized;
 import galena.oreganized.compat.ColorCompat;
-import galena.oreganized.content.block.BulbBlock;
 import galena.oreganized.content.block.CrystalGlassBlock;
 import galena.oreganized.content.block.CrystalGlassPaneBlock;
-import galena.oreganized.content.block.GargoyleBlock;
-import galena.oreganized.content.block.IMeltableBlock;
-import galena.oreganized.content.block.MoltenLeadCauldronBlock;
+import galena.oreganized.gothic.world.block.GargoyleBlock;
+import galena.oreganized.plumbum.world.block.IMeltableBlock;
+import galena.oreganized.plumbum.world.block.MoltenLeadCauldronBlock;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiFunction;
@@ -43,7 +41,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 public abstract class OBlockStateProvider extends BlueprintBlockStateProvider {
 
     protected OBlockStateProvider(PackOutput output, ExistingFileHelper help) {
-        super(output, Oreganized.MOD_ID, help);
+        super(output, OConstants.MOD_ID, help);
     }
 
     protected ResourceLocation blockTexture(String name) {
@@ -104,13 +102,13 @@ public abstract class OBlockStateProvider extends BlueprintBlockStateProvider {
         getVariantBuilder(block.get()).partialState().with(CrystalGlassBlock.TYPE, CrystalGlassBlock.NORMAL).modelForState()
                 .modelFile(cubeAll(block.get())).addModel().partialState().with(CrystalGlassBlock.TYPE, CrystalGlassBlock.ROTATED)
                 .modelForState().modelFile(models().cubeAll(name(block) + "_rot",
-                        Oreganized.modLoc("block/" + name(block) + "_rot"))).addModel()
+                        OConstants.modLoc("block/" + name(block) + "_rot"))).addModel()
                 .partialState().with(CrystalGlassBlock.TYPE, CrystalGlassBlock.INNER)
                 .modelForState().modelFile(models().cubeAll(name(block) + "_in",
-                        Oreganized.modLoc("block/" + name(block) + "_in"))).addModel()
+                        OConstants.modLoc("block/" + name(block) + "_in"))).addModel()
                 .partialState().with(CrystalGlassBlock.TYPE, CrystalGlassBlock.OUTER)
                 .modelForState().modelFile(models().cubeAll(name(block) + "_out",
-                        Oreganized.modLoc("block/" + name(block) + "_out"))).addModel();
+                        OConstants.modLoc("block/" + name(block) + "_out"))).addModel();
 
         blockItem(block);
     }
@@ -126,12 +124,12 @@ public abstract class OBlockStateProvider extends BlueprintBlockStateProvider {
                 if (dir.getAxis().isHorizontal()) {
                     boolean alt = dir == Direction.SOUTH;
                     var topTexture = ResourceLocation.fromNamespaceAndPath(ColorCompat.getNamespace(color), "block/" + color.getSerializedName() + "_stained_glass_pane_top");
-                    builder.part().modelFile(models().panePost(paneName + "_post" + suffixByIndex(finalI), Oreganized.modLoc("block/" + baseName + suffixByIndex(finalI)), topTexture)).addModel().condition(CrystalGlassPaneBlock.TYPE, finalI).end()
-                            .part().modelFile(alt || dir == Direction.WEST ? models().paneSideAlt(paneName + "_side_alt" + suffixByIndex(finalI), Oreganized.modLoc("block/" + baseName + suffixByIndex(finalI)), topTexture) :
-                                    models().paneSide(paneName + "_side" + suffixByIndex(finalI), Oreganized.modLoc("block/" + baseName + suffixByIndex(finalI)), topTexture)).rotationY(dir.getAxis() == Direction.Axis.X ? 90 : 0).addModel()
+                    builder.part().modelFile(models().panePost(paneName + "_post" + suffixByIndex(finalI), OConstants.modLoc("block/" + baseName + suffixByIndex(finalI)), topTexture)).addModel().condition(CrystalGlassPaneBlock.TYPE, finalI).end()
+                            .part().modelFile(alt || dir == Direction.WEST ? models().paneSideAlt(paneName + "_side_alt" + suffixByIndex(finalI), OConstants.modLoc("block/" + baseName + suffixByIndex(finalI)), topTexture) :
+                                    models().paneSide(paneName + "_side" + suffixByIndex(finalI), OConstants.modLoc("block/" + baseName + suffixByIndex(finalI)), topTexture)).rotationY(dir.getAxis() == Direction.Axis.X ? 90 : 0).addModel()
                             .condition(e.getValue(), true).condition(CrystalGlassPaneBlock.TYPE, finalI).end()
-                            .part().modelFile(alt || dir == Direction.EAST ? models().paneNoSideAlt(paneName + "_noside_alt" + suffixByIndex(finalI), Oreganized.modLoc("block/" + baseName + suffixByIndex(finalI))) :
-                                    models().paneNoSide(paneName + "_noside" + suffixByIndex(finalI), Oreganized.modLoc("block/" + baseName + suffixByIndex(finalI)))).rotationY(dir == Direction.WEST ? 270 : dir == Direction.SOUTH ? 90 : 0).addModel()
+                            .part().modelFile(alt || dir == Direction.EAST ? models().paneNoSideAlt(paneName + "_noside_alt" + suffixByIndex(finalI), OConstants.modLoc("block/" + baseName + suffixByIndex(finalI))) :
+                                    models().paneNoSide(paneName + "_noside" + suffixByIndex(finalI), OConstants.modLoc("block/" + baseName + suffixByIndex(finalI)))).rotationY(dir == Direction.WEST ? 270 : dir == Direction.SOUTH ? 90 : 0).addModel()
                             .condition(e.getValue(), false).condition(CrystalGlassPaneBlock.TYPE, finalI);
                 }
             });
@@ -164,7 +162,7 @@ public abstract class OBlockStateProvider extends BlueprintBlockStateProvider {
         var prefixes = List.of("", "dimmer_", "goopy_", "red_hot_");
         var redHotModel = models().cubeAll("red_hot_lead", modLoc(BLOCK_FOLDER + "/red_hot_lead"));
         getVariantBuilder(block.get()).forAllStates(state -> {
-            int goopyness = state.getValue(BulbBlock.GOOPYNESS_4);
+            int goopyness = state.getValue(galena.oreganized.plumbum.world.block.LeadBulbBlock.GOOPYNESS_4);
             var name = prefixes.get(goopyness) + name(block);
             var texture = blockTexture(name);
             var model = goopyness < 3 ? models().cubeAll(name, texture) : redHotModel;
@@ -371,7 +369,7 @@ public abstract class OBlockStateProvider extends BlueprintBlockStateProvider {
                     .build();
         });
 
-        generatedItem(block.get(), Oreganized.modLoc("block/" + baseName + "_item"));
+        generatedItem(block.get(), OConstants.modLoc("block/" + baseName + "_item"));
     }
 
     public <T extends ButtonBlock & IMeltableBlock> void sturdyButton(DeferredBlock<T> block) {

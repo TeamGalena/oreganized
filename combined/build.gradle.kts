@@ -20,6 +20,7 @@ neoforge {
     dependOn(project(":argentum"))
     dependOn(project(":electrum"))
     dependOn(project(":gothic"))
+    dependOn(project(":deprecated"))
 }
 
 base {

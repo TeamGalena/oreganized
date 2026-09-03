@@ -1,6 +1,5 @@
 package galena.oreganized.content.block;
 
-import galena.oreganized.Oreganized;
 import galena.oreganized.index.OBlocks;
 import javax.annotation.ParametersAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -25,7 +24,7 @@ import net.minecraft.world.phys.Vec3;
 @MethodsReturnNonnullByDefault
 public class SpottedGlanceBlock extends Block {
 
-    public static final ResourceKey<LootTable> WASH_LOOT_TABLE = ResourceKey.create(Registries.LOOT_TABLE, Oreganized.modLoc("gameplay/spotted_glance"));
+    public static final ResourceKey<LootTable> WASH_LOOT_TABLE = ResourceKey.create(Registries.LOOT_TABLE, OConstants.modLoc("gameplay/spotted_glance"));
 
     public SpottedGlanceBlock(Properties properties) {
         super(properties);

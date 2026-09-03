@@ -3,7 +3,6 @@ package galena.oreganized.data.provider;
 import static galena.oreganized.ModCompat.SHIELD_EXPANSION_ID;
 
 import com.teamabnormals.blueprint.core.data.client.BlueprintItemModelProvider;
-import galena.oreganized.Oreganized;
 import java.util.function.Supplier;
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.core.Holder;
@@ -20,7 +19,7 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 public abstract class OItemModelProvider extends BlueprintItemModelProvider {
 
     public OItemModelProvider(PackOutput output, ExistingFileHelper help) {
-        super(output, Oreganized.MOD_ID, help);
+        super(output, OConstants.MOD_ID, help);
     }
 
     protected String blockName(Supplier<? extends Block> block) {

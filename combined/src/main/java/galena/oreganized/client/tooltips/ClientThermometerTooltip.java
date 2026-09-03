@@ -1,6 +1,7 @@
 package galena.oreganized.client.tooltips;
 
-import galena.oreganized.content.item.ThermometerItem;
+import galena.oreganized.plumbum.client.tooltip.ThermometerTooltip;
+import galena.oreganized.plumbum.world.item.ThermometerItem;
 import java.awt.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;

@@ -1,6 +1,6 @@
 package galena.oreganized.mixin;
 
-import galena.oreganized.content.block.LeadOreBlock;
+import galena.oreganized.plumbum.world.block.LeadOreBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;

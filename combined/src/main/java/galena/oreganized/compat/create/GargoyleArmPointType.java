@@ -4,7 +4,7 @@ import com.simibubi.create.content.kinetics.mechanicalArm.AllArmInteractionPoint
 import com.simibubi.create.content.kinetics.mechanicalArm.ArmBlockEntity;
 import com.simibubi.create.content.kinetics.mechanicalArm.ArmInteractionPoint;
 import com.simibubi.create.content.kinetics.mechanicalArm.ArmInteractionPointType;
-import galena.oreganized.content.entity.GargoyleBlockEntity;
+import galena.oreganized.gothic.world.block.entity.GargoyleBlockEntity;
 import galena.oreganized.index.OBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;

@@ -1,7 +1,6 @@
 package galena.oreganized.client;
 
 import com.mojang.math.Axis;
-import galena.oreganized.Oreganized;
 import galena.oreganized.client.extensions.CustomArmorModelExtensions;
 import galena.oreganized.client.extensions.MoltenLeadClientExtensions;
 import galena.oreganized.client.model.ElectrumArmorModel;
@@ -14,21 +13,19 @@ import galena.oreganized.client.render.gui.StunningOverlay;
 import galena.oreganized.client.tooltips.ClientDeviceTooltip;
 import galena.oreganized.client.tooltips.ClientThermometerTooltip;
 import galena.oreganized.client.tooltips.DeviceTooltip;
-import galena.oreganized.client.tooltips.ThermometerTooltip;
 import galena.oreganized.compat.ponder.PonderCompat;
-import galena.oreganized.content.block.PushableBlockEntity;
 import galena.oreganized.content.item.SpeedometerItem;
-import galena.oreganized.content.item.ThermometerItem;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.ODataComponents;
 import galena.oreganized.index.OEntityTypes;
 import galena.oreganized.index.OFluids;
 import galena.oreganized.index.OItems;
+import galena.oreganized.plumbum.client.tooltip.ThermometerTooltip;
+import galena.oreganized.plumbum.world.block.PushableBlockEntity;
+import galena.oreganized.plumbum.world.item.ThermometerItem;
 import galena.oreganized.world.IMotionHolder;
-
 import java.util.List;
 import java.util.function.Supplier;
-
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelPart;
@@ -63,7 +60,7 @@ import net.neoforged.neoforge.client.gui.VanillaGuiLayers;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
-@EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT)
+@EventBusSubscriber(Dist.CLIENT)
 public class OreganizedClient {
 
     private static void render(Supplier<? extends Block> block, RenderType render) {
@@ -85,7 +82,7 @@ public class OreganizedClient {
     @SubscribeEvent
     public static void addResourcePacks(AddPackFindersEvent event) {
         event.addPackFinders(
-                Oreganized.modLoc("resourcepacks/create_compat"),
+                OConstants.modLoc("resourcepacks/create_compat"),
                 PackType.CLIENT_RESOURCES,
                 Component.literal("Create Compat"),
                 PackSource.BUILT_IN,
@@ -110,7 +107,7 @@ public class OreganizedClient {
             return ThermometerItem.getHeatLevel(stack);
         });
 
-        ItemProperties.register(Items.CROSSBOW, Oreganized.modLoc("lead_bolt"), (stack, level, user, i) ->
+        ItemProperties.register(Items.CROSSBOW, OConstants.modLoc("lead_bolt"), (stack, level, user, i) ->
                 stack.getOrDefault(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY).contains(OItems.LEAD_BOLT.get()) ? 1.0F : 0.0F
         );
 
@@ -151,7 +148,7 @@ public class OreganizedClient {
 
     @SubscribeEvent
     public static void registerGuiOverlays(RegisterGuiLayersEvent event) {
-        event.registerAbove(VanillaGuiLayers.EFFECTS, Oreganized.modLoc("stunning"), new StunningOverlay());
+        event.registerAbove(VanillaGuiLayers.EFFECTS, OConstants.modLoc("stunning"), new StunningOverlay());
     }
 
     public static void renderThirdPersonArm(ModelPart arm, boolean rightArm) {
@@ -172,7 +169,7 @@ public class OreganizedClient {
         event.registerItem(new CustomArmorModelExtensions(ModdedArmorModel::new, SilverArmorModel::createBodyLayer), OItems.silverArmor().toArray(Holder[]::new));
     }
 
-    @EventBusSubscriber(modid = Oreganized.MOD_ID, value = Dist.CLIENT)
+    @EventBusSubscriber(Dist.CLIENT)
     public static class ForgeBusEvents {
 
         @SubscribeEvent

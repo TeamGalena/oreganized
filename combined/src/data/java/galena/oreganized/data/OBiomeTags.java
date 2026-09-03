@@ -1,6 +1,5 @@
 package galena.oreganized.data;
 
-import galena.oreganized.Oreganized;
 import galena.oreganized.index.OTags;
 import java.util.concurrent.CompletableFuture;
 import javax.annotation.Nullable;
@@ -16,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 public class OBiomeTags extends BiomeTagsProvider {
 
     public OBiomeTags(PackOutput output, CompletableFuture<HolderLookup.Provider> future, @Nullable ExistingFileHelper helper) {
-        super(output, future, Oreganized.MOD_ID, helper);
+        super(output, future, OConstants.MOD_ID, helper);
     }
 
     @Override

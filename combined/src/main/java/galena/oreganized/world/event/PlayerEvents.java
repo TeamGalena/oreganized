@@ -1,14 +1,13 @@
 package galena.oreganized.world.event;
 
-import galena.oreganized.Oreganized;
-import galena.oreganized.content.block.MoltenLeadCauldronBlock;
-import galena.oreganized.content.entity.GargoyleBlockEntity;
 import galena.oreganized.content.item.ScribeItem;
-import galena.oreganized.content.item.ThermometerItem;
+import galena.oreganized.gothic.world.block.entity.GargoyleBlockEntity;
 import galena.oreganized.index.OAttributes;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
+import galena.oreganized.plumbum.world.block.MoltenLeadCauldronBlock;
+import galena.oreganized.plumbum.world.item.ThermometerItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -33,7 +32,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockDropsEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 
-@EventBusSubscriber(modid = Oreganized.MOD_ID)
+@EventBusSubscriber
 public class PlayerEvents {
 
     /**
@@ -113,7 +112,7 @@ public class PlayerEvents {
 
             event.addModifier(
                     OAttributes.KINETIC_DAMAGE,
-                    new AttributeModifier(Oreganized.modLoc("kinetic_damage"), damage / 3, AttributeModifier.Operation.ADD_VALUE),
+                    new AttributeModifier(OConstants.modLoc("kinetic_damage"), damage / 3, AttributeModifier.Operation.ADD_VALUE),
                     EquipmentSlotGroup.MAINHAND
             );
         }

@@ -7,7 +7,6 @@ import com.simibubi.create.content.kinetics.deployer.ItemApplicationRecipe;
 import com.simibubi.create.content.kinetics.millstone.MillingRecipe;
 import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
 import galena.oreganized.ModCompat;
-import galena.oreganized.Oreganized;
 import galena.oreganized.argentum.index.TarnishedBlocks;
 import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
@@ -142,7 +141,7 @@ public abstract class ORecipeProvider extends RecipeProvider {
 
     private void oreSmeltingRecipe(ItemLike result, List<ItemLike> ingredients, float xp, String group, RecipeOutput consumer) {
         for (ItemLike ingredient : ingredients) {
-            smeltingRecipe(result, ingredient, xp, 1).group(group).save(consumer, Oreganized.modLoc("smelt_" + getItemName(ingredient.asItem())));
+            smeltingRecipe(result, ingredient, xp, 1).group(group).save(consumer, OConstants.modLoc("smelt_" + getItemName(ingredient.asItem())));
         }
     }
 
@@ -166,7 +165,7 @@ public abstract class ORecipeProvider extends RecipeProvider {
 
     private void oreBlastingRecipe(ItemLike result, List<ItemLike> ingredients, float xp, String group, RecipeOutput consumer) {
         for (ItemLike ingredient : ingredients) {
-            blastingRecipe(result, ingredient, xp, 1).group(group).save(consumer, Oreganized.modLoc("blast_" + getItemName(ingredient)));
+            blastingRecipe(result, ingredient, xp, 1).group(group).save(consumer, OConstants.modLoc("blast_" + getItemName(ingredient)));
         }
     }
 
@@ -199,8 +198,8 @@ public abstract class ORecipeProvider extends RecipeProvider {
 
     public void metalRecycling(RecipeOutput consumer, ItemLike nugget, Collection<? extends Holder<? extends ItemLike>> items, String suffix) {
         var name = getItemName(nugget);
-        blastingRecycling(nugget, items).save(consumer, Oreganized.modLoc(name + "_from_blasting").withSuffix(suffix));
-        smeltingRecycling(nugget, items).save(consumer, Oreganized.modLoc(name + "_from_smelting").withSuffix(suffix));
+        blastingRecycling(nugget, items).save(consumer, OConstants.modLoc(name + "_from_blasting").withSuffix(suffix));
+        smeltingRecycling(nugget, items).save(consumer, OConstants.modLoc(name + "_from_smelting").withSuffix(suffix));
     }
 
     public void metalRecycling(RecipeOutput consumer, ItemLike nugget, Collection<? extends Holder<? extends ItemLike>> items) {
@@ -250,39 +249,39 @@ public abstract class ORecipeProvider extends RecipeProvider {
 
     public void makeSlabStonecutting(Supplier<? extends Block> blockOut, Supplier<? extends Block> blockIn, RecipeOutput consumer) {
         makeSlab(blockOut, blockIn).save(consumer);
-        stonecutting(blockIn, blockOut.get(), 2).save(consumer, Oreganized.modLoc("stonecutting/" + getItemName(blockOut.get())));
+        stonecutting(blockIn, blockOut.get(), 2).save(consumer, OConstants.modLoc("stonecutting/" + getItemName(blockOut.get())));
     }
 
     public void makeStairsStonecutting(Supplier<? extends Block> blockOut, Supplier<? extends Block> blockIn, RecipeOutput consumer) {
         makeStairs(blockOut, blockIn).save(consumer);
-        stonecutting(blockIn, blockOut.get()).save(consumer, Oreganized.modLoc("stonecutting/" + getItemName(blockOut.get())));
+        stonecutting(blockIn, blockOut.get()).save(consumer, OConstants.modLoc("stonecutting/" + getItemName(blockOut.get())));
     }
 
     public void makeWallStonecutting(Supplier<? extends Block> blockOut, Supplier<? extends Block> blockIn, RecipeOutput consumer) {
         makeWall(blockOut, blockIn).save(consumer);
-        stonecutting(blockIn, blockOut.get()).save(consumer, Oreganized.modLoc("stonecutting/" + getItemName(blockOut.get())));
+        stonecutting(blockIn, blockOut.get()).save(consumer, OConstants.modLoc("stonecutting/" + getItemName(blockOut.get())));
     }
 
     public void makeChiseledStonecutting(Supplier<? extends Block> blockOut, Supplier<? extends Block> blockIn, Supplier<? extends SlabBlock> slabIn, RecipeOutput consumer) {
         makeChiseled(blockOut, slabIn).save(consumer);
-        stonecutting(blockIn, blockOut.get()).save(consumer, Oreganized.modLoc("stonecutting/" + getItemName(blockOut.get())));
+        stonecutting(blockIn, blockOut.get()).save(consumer, OConstants.modLoc("stonecutting/" + getItemName(blockOut.get())));
     }
 
     public void makePolishedStonecutting(Supplier<? extends Block> blockOut, Supplier<? extends Block> blockIn, RecipeOutput consumer) {
         polished(consumer, RecipeCategory.BUILDING_BLOCKS, blockOut.get(), blockIn.get());
-        stonecutting(blockIn, blockOut.get()).save(consumer, Oreganized.modLoc("stonecutting/" + getItemName(blockOut.get())));
+        stonecutting(blockIn, blockOut.get()).save(consumer, OConstants.modLoc("stonecutting/" + getItemName(blockOut.get())));
     }
 
     public <R extends StandardProcessingRecipe<?>> StandardProcessingRecipe.Builder<R> processing(StandardProcessingRecipe.Factory<R> factory, String id) {
         return whenLoaded(
-                new StandardProcessingRecipe.Builder<>(factory, Oreganized.modLoc(id)),
+                new StandardProcessingRecipe.Builder<>(factory, OConstants.modLoc(id)),
                 ModCompat.CREATE
         );
     }
 
     public <R extends ItemApplicationRecipe> ItemApplicationRecipe.Builder<R> application(ItemApplicationRecipe.Factory<R> factory, String id) {
         return whenLoaded(
-                new ItemApplicationRecipe.Builder<>(factory, Oreganized.modLoc(id)),
+                new ItemApplicationRecipe.Builder<>(factory, OConstants.modLoc(id)),
                 ModCompat.CREATE
         );
     }
@@ -330,7 +329,7 @@ public abstract class ORecipeProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, primary)
                 .requires(flower.get())
                 .unlockedBy(getHasName(flower.get()), has(flower.get()))
-                .save(consumer, Oreganized.modLoc("dye_from_" + name));
+                .save(consumer, OConstants.modLoc("dye_from_" + name));
 
         processing(MillingRecipe::new, name)
                 .require(flower.get())

@@ -2,7 +2,6 @@ package galena.oreganized.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
-import galena.oreganized.Oreganized;
 import galena.oreganized.api.LeadProtections;
 import galena.oreganized.api.PreventableEffectCloud;
 import net.minecraft.world.entity.AreaEffectCloud;
@@ -15,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 public class AreaEffectCloudMixin implements PreventableEffectCloud {
 
     @Unique
-    private static final String oreganized$KEY = Oreganized.modLoc("preventable").toString();
+    private static final String oreganized$KEY = OConstants.modLoc("preventable").toString();
 
     @ModifyExpressionValue(
             method = "tick",

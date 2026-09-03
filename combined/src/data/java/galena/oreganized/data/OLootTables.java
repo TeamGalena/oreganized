@@ -1,13 +1,13 @@
 package galena.oreganized.data;
 
 import galena.oreganized.Oreganized;
-import galena.oreganized.content.block.IMeltableBlock;
 import galena.oreganized.content.block.SpottedGlanceBlock;
-import galena.oreganized.content.item.ThermometerItem;
 import galena.oreganized.data.provider.OBlockLootProvider;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OEntityTypes;
 import galena.oreganized.index.OItems;
+import galena.oreganized.plumbum.world.block.IMeltableBlock;
+import galena.oreganized.plumbum.world.item.ThermometerItem;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;

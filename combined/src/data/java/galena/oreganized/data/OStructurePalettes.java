@@ -5,7 +5,6 @@ import com.teamabnormals.blueprint.common.world.modification.structure.Structure
 import com.teamabnormals.blueprint.common.world.modification.structure.StructureRepaletterEntry;
 import com.teamabnormals.blueprint.core.api.conditions.ConfigValueCondition;
 import com.teamabnormals.blueprint.core.registry.BlueprintDataPackRegistries;
-import galena.oreganized.Oreganized;
 import galena.oreganized.compat.ColorCompat;
 import galena.oreganized.gothic.config.GothicConfigs;
 import galena.oreganized.index.OBlocks;
@@ -26,7 +25,7 @@ import net.neoforged.neoforge.common.conditions.ICondition;
 
 public class OStructurePalettes {
 
-    private static final ResourceKey<StructureRepaletterEntry> CLERIC_WINDOWS = ResourceKey.create(BlueprintDataPackRegistries.STRUCTURE_REPALETTERS, Oreganized.modLoc("replace_cleric_windows"));
+    private static final ResourceKey<StructureRepaletterEntry> CLERIC_WINDOWS = ResourceKey.create(BlueprintDataPackRegistries.STRUCTURE_REPALETTERS, OConstants.modLoc("replace_cleric_windows"));
 
     private static StructureRepaletter[] replaceColored(Map<DyeColor, ? extends Holder<Block>> to, String from, Predicate<DyeColor> filter) {
         return to.entrySet().stream()

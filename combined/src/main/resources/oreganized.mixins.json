@@ -27,8 +27,6 @@
   ],
   "client": [
     "client.GuiMixin",
-    "client.HumanoidArmorLayerAccessor",
-    "client.HumanoidArmorLayerMixin",
     "client.HumanoidModelMixin",
     "PlayerMixin"
   ],

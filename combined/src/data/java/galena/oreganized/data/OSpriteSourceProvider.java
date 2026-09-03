@@ -1,7 +1,6 @@
 package galena.oreganized.data;
 
 import com.teamabnormals.blueprint.core.api.BlueprintTrims;
-import galena.oreganized.Oreganized;
 import galena.oreganized.index.OTrimMaterials;
 import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup;
@@ -12,7 +11,7 @@ import net.neoforged.neoforge.common.data.SpriteSourceProvider;
 public class OSpriteSourceProvider extends SpriteSourceProvider {
 
     public OSpriteSourceProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup, ExistingFileHelper helper) {
-        super(output, lookup, Oreganized.MOD_ID, helper);
+        super(output, lookup, OConstants.MOD_ID, helper);
     }
 
     @Override

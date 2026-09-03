@@ -1,6 +1,6 @@
 package galena.oreganized.mixin.compat;
 
-import galena.oreganized.content.block.LeadOreBlock;
+import galena.oreganized.plumbum.world.block.LeadOreBlock;
 import net.mehvahdjukaar.supplementaries.common.block.blocks.BellowsBlock;
 import net.mehvahdjukaar.supplementaries.common.block.tiles.BellowsBlockTile;
 import net.minecraft.core.BlockPos;

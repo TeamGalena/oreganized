@@ -1,6 +1,5 @@
 package galena.oreganized.content.item;
 
-import galena.oreganized.Oreganized;
 import galena.oreganized.client.accessors.GuiAccessor;
 import galena.oreganized.index.OCriteriaTriggers;
 import galena.oreganized.index.OItems;
@@ -16,7 +15,7 @@ import net.minecraft.world.level.Level;
 
 public class SpeedometerItem extends Item {
 
-    public static final ResourceLocation PROPERTY_KEY = Oreganized.modLoc("level");
+    public static final ResourceLocation PROPERTY_KEY = OConstants.modLoc("level");
 
     public SpeedometerItem(Properties pProperties) {
         super(pProperties);

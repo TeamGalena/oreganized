@@ -1,7 +1,7 @@
 package galena.oreganized.content.item;
 
-import galena.oreganized.content.block.LeadOreBlock;
 import galena.oreganized.index.OParticleTypes;
+import galena.oreganized.plumbum.world.block.LeadOreBlock;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;

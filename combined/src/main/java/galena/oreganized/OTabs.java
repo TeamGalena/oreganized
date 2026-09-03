@@ -25,7 +25,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import org.infernalstudios.shieldexp.init.ItemsInit;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
-@EventBusSubscriber(modid = Oreganized.MOD_ID)
+@EventBusSubscriber
 public class OTabs {
 
     private static final ResourceLocation FD_TAB = ResourceLocation.fromNamespaceAndPath(FARMERS_DELIGHT_ID, FARMERS_DELIGHT_ID);

@@ -1,6 +1,5 @@
 package galena.oreganized.data;
 
-import galena.oreganized.Oreganized;
 import galena.oreganized.index.OItems;
 import galena.oreganized.world.AddItemLootModifier;
 
@@ -23,7 +22,7 @@ import net.neoforged.neoforge.common.loot.LootTableIdCondition;
 public class OLootModifiers extends GlobalLootModifierProvider {
 
     public OLootModifiers(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-        super(output, registries, Oreganized.MOD_ID);
+        super(output, registries, OConstants.MOD_ID);
     }
 
     @Override

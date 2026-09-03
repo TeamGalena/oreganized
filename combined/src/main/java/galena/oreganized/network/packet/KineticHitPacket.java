@@ -1,6 +1,5 @@
 package galena.oreganized.network.packet;
 
-import galena.oreganized.Oreganized;
 import galena.oreganized.world.KineticDamage;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -11,7 +10,7 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 public record KineticHitPacket(int target, float factor) implements CustomPacketPayload {
 
     public static final TypeAndCodec<FriendlyByteBuf, KineticHitPacket> TYPE = new TypeAndCodec<>(
-            new Type<>(Oreganized.modLoc("kinetic_hit")),
+            new Type<>(OConstants.modLoc("kinetic_hit")),
             StreamCodec.composite(
                     ByteBufCodecs.INT, KineticHitPacket::target,
                     ByteBufCodecs.FLOAT, KineticHitPacket::factor,

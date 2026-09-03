@@ -1,7 +1,7 @@
 package galena.oreganized.mixin.client;
 
 import galena.oreganized.client.OreganizedClient;
-import galena.oreganized.content.block.PushableBlockEntity;
+import galena.oreganized.plumbum.world.block.PushableBlockEntity;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;

@@ -1,6 +1,5 @@
 package galena.oreganized.index;
 
-import galena.oreganized.Oreganized;
 import galena.oreganized.world.recipe.ScribeRecipe;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -11,8 +10,8 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ORecipeTypes {
 
-    private static final DeferredRegister<RecipeType<?>> TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, Oreganized.MOD_ID);
-    private static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister.create(Registries.RECIPE_SERIALIZER, Oreganized.MOD_ID);
+    private static final DeferredRegister<RecipeType<?>> TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, OConstants.MOD_ID);
+    private static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister.create(Registries.RECIPE_SERIALIZER, OConstants.MOD_ID);
 
     public static final DeferredHolder<RecipeType<?>, RecipeType<ScribeRecipe>> SCRIBE_RECIPE = TYPES.register("scribe", () -> new RecipeType<>() {
     });

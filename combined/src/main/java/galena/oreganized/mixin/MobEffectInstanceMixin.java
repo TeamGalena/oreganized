@@ -1,8 +1,8 @@
 package galena.oreganized.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import galena.oreganized.content.effect.StunningEffect;
 import galena.oreganized.index.OEffects;
+import galena.oreganized.plumbum.world.effect.StunningEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;

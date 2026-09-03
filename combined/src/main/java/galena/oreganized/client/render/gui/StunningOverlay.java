@@ -1,11 +1,10 @@
 package galena.oreganized.client.render.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import galena.oreganized.Oreganized;
-import galena.oreganized.content.effect.StunningEffect;
 import galena.oreganized.index.OEffects;
 import galena.oreganized.index.OFluids;
 import galena.oreganized.plumbum.config.PlumbumConfigs;
+import galena.oreganized.plumbum.world.effect.StunningEffect;
 import io.netty.util.collection.IntObjectHashMap;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
@@ -15,13 +14,13 @@ import net.minecraft.resources.ResourceLocation;
 
 public class StunningOverlay implements LayeredDraw.Layer {
 
-    protected static final ResourceLocation STUNNING_VIGNETTE_LOCATION = Oreganized.modLoc( "textures/misc/stunning_overlay.png");
+    protected static final ResourceLocation STUNNING_VIGNETTE_LOCATION = OConstants.modLoc( "textures/misc/stunning_overlay.png");
 
     private static final IntObjectHashMap<ResourceLocation> STUNNING_OVERLAY_LOCATIONS = new IntObjectHashMap<>();
 
     protected static ResourceLocation getStunningOutline(int amplifier) {
         return STUNNING_OVERLAY_LOCATIONS.computeIfAbsent(amplifier, i -> {
-            return Oreganized.modLoc("textures/misc/brain_damage_outline_" + (i + 1) + ".png");
+            return OConstants.modLoc("textures/misc/brain_damage_outline_" + (i + 1) + ".png");
         });
     }
 

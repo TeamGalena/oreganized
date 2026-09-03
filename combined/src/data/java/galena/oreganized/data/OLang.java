@@ -15,7 +15,7 @@ import net.minecraft.world.level.material.Fluid;
 public class OLang extends OLangProvider {
 
     public OLang(PackOutput output) {
-        super(output, Oreganized.MOD_ID, "en_us");
+        super(output, OConstants.MOD_ID, "en_us");
     }
 
     @Override
@@ -98,7 +98,7 @@ public class OLang extends OLangProvider {
 
         addPainting(OPaintingVariants.VINDICATING_BAD, "Vindicating Bad", "Xaidee");
 
-        PonderIndex.getLangAccess().provideLang(Oreganized.MOD_ID, this::add);
+        PonderIndex.getLangAccess().provideLang(OConstants.MOD_ID, this::add);
 
         add(OTags.Items.CRYSTAL_GLASS, "Crystal Glass");
         add(OTags.Items.CRYSTAL_GLASS_PANES, "Crystal Glass Panes");

@@ -51,7 +51,7 @@ public class ArgentumBlocks {
     public static final TarnishedBlocks<RotatedPillarBlock> SILVER_PILLARS = registerTarnished("silver_pillar", $ -> new RotatedPillarBlock(silverProperties()));
     public static final TarnishedBlocks<Block> CHISELED_SILVER = registerTarnished("chiseled_silver", $ -> new Block(silverProperties()));
 
-    private static final BlockSetType SILVER_BLOCK_SET = BlockSetType.register(new BlockSetType("silver",
+    public static final BlockSetType SILVER_BLOCK_SET = BlockSetType.register(new BlockSetType("silver",
             false, true, false,
             BlockSetType.PressurePlateSensitivity.MOBS, SoundType.METAL,
             SoundEvents.IRON_DOOR_CLOSE, SoundEvents.IRON_DOOR_OPEN, SoundEvents.IRON_TRAPDOOR_CLOSE, SoundEvents.IRON_TRAPDOOR_OPEN,

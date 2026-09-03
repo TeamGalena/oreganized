@@ -3,42 +3,33 @@ package galena.oreganized.index;
 import galena.oreganized.Oreganized;
 import galena.oreganized.argentum.index.ArgentumBlocks;
 import galena.oreganized.argentum.index.TarnishedBlocks;
-import galena.oreganized.content.block.BulbBlock;
 import galena.oreganized.content.block.CrystalGlassBlock;
 import galena.oreganized.content.block.CrystalGlassPaneBlock;
-import galena.oreganized.content.block.GargoyleBlock;
-import galena.oreganized.content.block.IMeltableBlock;
-import galena.oreganized.content.block.LeadBarsBlock;
-import galena.oreganized.content.block.LeadDoorBlock;
-import galena.oreganized.content.block.LeadTrapdoorBlock;
-import galena.oreganized.content.block.MeltableBlock;
-import galena.oreganized.content.block.MeltablePillarBlock;
-import galena.oreganized.content.block.MoltenLeadBlock;
-import galena.oreganized.content.block.MoltenLeadCauldronBlock;
 import galena.oreganized.content.block.ShrapnelBombBlock;
 import galena.oreganized.content.block.SpottedGlanceBlock;
-import galena.oreganized.content.block.SturdyButtonBlock;
-import galena.oreganized.content.block.SturdyLeverBlock;
 import galena.oreganized.electrum.index.ElectrumBlocks;
+import galena.oreganized.gothic.index.GothicBlocks;
+import galena.oreganized.plumbum.index.PlumbumBlocks;
+import galena.oreganized.plumbum.world.block.LeadBarsBlock;
+import galena.oreganized.plumbum.world.block.LeadDoorBlock;
+import galena.oreganized.plumbum.world.block.LeadTrapdoorBlock;
+import galena.oreganized.plumbum.world.block.MeltableBlock;
+import galena.oreganized.plumbum.world.block.MeltablePillarBlock;
+import galena.oreganized.plumbum.world.block.SturdyButtonBlock;
+import galena.oreganized.plumbum.world.block.SturdyLeverBlock;
 import galena.oreganized.register.BlockRegistryHelper;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import java.util.function.UnaryOperator;
-import java.util.stream.Collectors;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.DoubleHighBlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 public class OBlocks {
@@ -46,35 +37,6 @@ public class OBlocks {
 
     private static Properties glanceProperties() {
         return Properties.of().explosionResistance(6).strength(1.5F).mapColor(MapColor.CLAY);
-    }
-
-    private static final MapColor[] LEAD_MAP_COLORS = {
-            MapColor.TERRACOTTA_LIGHT_BLUE,
-            MapColor.TERRACOTTA_MAGENTA,
-            MapColor.TERRACOTTA_PINK
-    };
-
-    private static Properties leadProperties() {
-        return Properties.of()
-                .strength(5.0F, 6.0F)
-                .requiresCorrectToolForDrops()
-                .sound(SoundType.METAL)
-                .lightLevel(IMeltableBlock::getLightLevel)
-                .mapColor(OBlocks::leadMapColor)
-                .randomTicks();
-    }
-
-    private static MapColor leadMapColor(BlockState state) {
-        if (!(state.getBlock() instanceof MeltableBlock block)) {
-            return LEAD_MAP_COLORS[0];
-        }
-
-        int goopyness = Math.min(2, block.getGoopyness(state));
-        return LEAD_MAP_COLORS[goopyness];
-    }
-
-    private static Properties leadDecoProperties() {
-        return leadProperties().noOcclusion().isValidSpawn(Blocks::never);
     }
 
     // Glance
@@ -118,10 +80,6 @@ public class OBlocks {
     public static final DeferredBlock<Block> RAW_LEAD_BLOCK = register("raw_lead_block",
             () -> new Block(Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK).mapColor(LEAD_MAP_COLORS[0])));
 
-    // Silver
-    public static final DeferredBlock<Block> GARGOYLE = register("gargoyle",
-            () -> new GargoyleBlock(Properties.ofFullCopy(Blocks.STONE).noOcclusion()));
-
     public static final DeferredBlock<Block> WHITE_DATURA = register("datura",
             () -> new FlowerBlock(OEffects.STUNNING, 21, Properties.ofFullCopy(Blocks.OXEYE_DAISY)));
     public static final DeferredBlock<Block> PURPLE_DATURA = register("purple_datura",
@@ -133,39 +91,6 @@ public class OBlocks {
 
     public static final DeferredBlock<Block> LEAD_BOLT_CRATE = register("lead_bolt_crate",
             () -> new Block(Properties.of().strength(1.5F).sound(SoundType.WOOD)));
-
-    public static final DeferredBlock<MeltableBlock> LEAD_BLOCK = register("lead_block",
-            () -> new MeltableBlock(leadProperties()));
-    public static final DeferredBlock<MeltableBlock> LEAD_BRICKS = register("lead_bricks",
-            () -> new MeltableBlock(leadProperties()));
-    public static final DeferredBlock<MeltablePillarBlock> CUT_LEAD = register("cut_lead",
-            () -> new MeltablePillarBlock(leadProperties()));
-    public static final DeferredBlock<MeltablePillarBlock> LEAD_PILLAR = register("lead_pillar",
-            () -> new MeltablePillarBlock(leadProperties()));
-
-    public static final DeferredBlock<BulbBlock> LEAD_BULB = register("lead_bulb",
-            () -> new BulbBlock(leadProperties().lightLevel(BulbBlock::getLightLevel)));
-
-    public static final BlockSetType LEAD_BLOCK_SET = BlockSetType.register(new BlockSetType("lead",
-            false, false, false,
-            BlockSetType.PressurePlateSensitivity.MOBS, SoundType.METAL,
-            SoundEvents.IRON_DOOR_CLOSE, SoundEvents.IRON_DOOR_OPEN,
-            SoundEvents.IRON_TRAPDOOR_CLOSE, SoundEvents.IRON_TRAPDOOR_OPEN,
-            SoundEvents.METAL_PRESSURE_PLATE_CLICK_OFF, SoundEvents.METAL_PRESSURE_PLATE_CLICK_ON,
-            SoundEvents.STONE_BUTTON_CLICK_OFF, SoundEvents.STONE_BUTTON_CLICK_ON)
-    );
-
-    public static final DeferredBlock<LeadDoorBlock> LEAD_DOOR = baseRegister("lead_door",
-            () -> new LeadDoorBlock(leadDecoProperties()), block -> () -> new DoubleHighBlockItem(block.get(), new Item.Properties()));
-    public static final DeferredBlock<LeadTrapdoorBlock> LEAD_TRAPDOOR = register("lead_trapdoor",
-            () -> new LeadTrapdoorBlock(leadDecoProperties()));
-    public static final DeferredBlock<LeadBarsBlock> LEAD_BARS = register("lead_bars",
-            () -> new LeadBarsBlock(leadDecoProperties()));
-
-    public static final DeferredBlock<SturdyLeverBlock> STURDY_LEVER = register("sturdy_lever",
-            () -> new SturdyLeverBlock(leadProperties().noCollission().pushReaction(PushReaction.DESTROY)));
-    public static final DeferredBlock<SturdyButtonBlock> STURDY_BUTTON = register("sturdy_button",
-            () -> new SturdyButtonBlock(leadProperties().noCollission().pushReaction(PushReaction.DESTROY)));
 
     // Redstone components
     public static final DeferredBlock<Block> SHRAPNEL_BOMB = register("shrapnel_bomb",
@@ -182,25 +107,6 @@ public class OBlocks {
             () -> new Block(Properties.ofFullCopy(Blocks.BLUE_ICE).friction(0.6F)));
 
     public static final Map<DyeColor, DeferredBlock<Block>> WAXED_CONCRETE_POWDER = registerColored(color -> "waxed_" + color + "_concrete_powder", dye -> new Block(Properties.ofFullCopy(Blocks.GREEN_CONCRETE_POWDER).mapColor(dye)));
-
-    // Fluids and Cauldrons
-    public static final DeferredBlock<LiquidBlock> MOLTEN_LEAD = HELPER.createBlockNoItem("molten_lead",
-            () ->
-                    new MoltenLeadBlock(OFluids.MOLTEN_LEAD, Properties.ofFullCopy(Blocks.LAVA).mapColor(MapColor.COLOR_PURPLE)));
-    public static final DeferredBlock<Block> MOLTEN_LEAD_CAULDRON = HELPER.createBlockNoItem("molten_lead_cauldron",
-            () -> new MoltenLeadCauldronBlock(Properties.ofFullCopy(Blocks.LAVA_CAULDRON).randomTicks()));
-
-    public static <T extends Block> Map<DyeColor, DeferredBlock<T>> registerColored(UnaryOperator<String> nameCreator, Function<DyeColor, ? extends T> factory) {
-        return DyeColors.supported().collect(Collectors.toMap(
-                it -> it,
-                color -> register(nameCreator.apply(color.getSerializedName()),
-                        () -> factory.apply(color))
-        ));
-    }
-
-    public static <T extends Block> Map<DyeColor, DeferredBlock<T>> registerColored(String baseName, Function<DyeColor, ? extends T> factory) {
-        return registerColored(color -> color + "_" + baseName, factory);
-    }
 
     public static <T extends Block> DeferredBlock<T> baseRegister(String name, Supplier<? extends T> block, Function<DeferredBlock<T>, Supplier<? extends Item>> item) {
         DeferredBlock<T> register = HELPER.createBlockNoItem(name, block);
@@ -223,6 +129,45 @@ public class OBlocks {
     // deprecated
 
     @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<MeltableBlock> LEAD_BLOCK = PlumbumBlocks.LEAD_BLOCK;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<MeltableBlock> LEAD_BRICKS = PlumbumBlocks.LEAD_BRICKS;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<MeltablePillarBlock> CUT_LEAD = PlumbumBlocks.CUT_LEAD;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<MeltablePillarBlock> LEAD_PILLAR = PlumbumBlocks.LEAD_PILLAR;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<LeadBulbBlock> LEAD_BULB = PlumbumBlocks.LEAD_BULB;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final BlockSetType LEAD_BLOCK_SET = PlumbumBlocks.LEAD_BLOCK_SET;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<LeadDoorBlock> LEAD_DOOR = PlumbumBlocks.LEAD_DOOR;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<LeadTrapdoorBlock> LEAD_TRAPDOOR = PlumbumBlocks.LEAD_TRAPDOOR;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<LeadBarsBlock> LEAD_BARS = PlumbumBlocks.LEAD_BARS;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<SturdyLeverBlock> STURDY_LEVER = PlumbumBlocks.STURDY_LEVER;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<SturdyButtonBlock> STURDY_BUTTON = PlumbumBlocks.STURDY_BUTTON;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<LiquidBlock> MOLTEN_LEAD = PlumbumBlocks.MOLTEN_LEAD;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<Block> MOLTEN_LEAD_CAULDRON = PlumbumBlocks.MOLTEN_LEAD_CAULDRON;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
     public static final DeferredBlock<Block> SILVER_ORE = ArgentumBlocks.SILVER_ORE;
 
     @Deprecated(forRemoval = true, since = "5.3.0")
@@ -230,6 +175,9 @@ public class OBlocks {
 
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static final DeferredBlock<Block> RAW_SILVER_BLOCK = ArgentumBlocks.RAW_SILVER_BLOCK;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final BlockSetType SILVER_BLOCK_SET = ArgentumBlocks.SILVER_BLOCK_SET;
 
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static final TarnishedBlocks<Block> SILVER_BLOCKS = ArgentumBlocks.SILVER_BLOCKS;
@@ -266,5 +214,8 @@ public class OBlocks {
 
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static final DeferredBlock<Block> ELECTRUM_BLOCK = ElectrumBlocks.ELECTRUM_BLOCK;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<Block> GARGOYLE = GothicBlocks.GARGOYLE;
 
 }
