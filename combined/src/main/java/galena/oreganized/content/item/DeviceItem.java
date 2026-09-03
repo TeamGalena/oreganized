@@ -1,6 +1,6 @@
 package galena.oreganized.content.item;
 
-import galena.oreganized.client.accessors.GuiAccessor;
+import galena.oreganized.accessor.GuiAccessor;
 import galena.oreganized.client.tooltips.DeviceTooltip;
 import galena.oreganized.index.ODataComponents;
 import galena.oreganized.index.OItems;

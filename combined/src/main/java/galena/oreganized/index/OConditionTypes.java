@@ -3,6 +3,7 @@ package galena.oreganized.index;
 import com.mojang.serialization.MapCodec;
 import com.teamabnormals.blueprint.core.api.conditions.ConfigValueCondition;
 import com.teamabnormals.blueprint.core.util.DataUtil;
+import galena.oreganized.OConstants;
 import galena.oreganized.config.OreganizedConfigs;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.config.ModConfig;

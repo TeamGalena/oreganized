@@ -1,5 +1,6 @@
 package galena.oreganized.index;
 
+import galena.oreganized.OConstants;
 import galena.oreganized.world.recipe.ScribeRecipe;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeSerializer;

@@ -6,8 +6,10 @@ import galena.oreganized.index.OTags;
 import galena.oreganized.plumbum.config.PlumbumConfigs;
 import galena.oreganized.plumbum.index.PlumbumBlocks;
 import galena.oreganized.plumbum.index.PlumbumItems;
+
 import java.util.function.Predicate;
 import java.util.function.ToIntFunction;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.server.level.ServerLevel;
@@ -40,8 +42,13 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import org.jetbrains.annotations.NotNull;
 
+@EventBusSubscriber
+// TODO modules make not extend interaction?
 public class MoltenLeadCauldronBlock extends AbstractCauldronBlock implements CauldronInteraction {
 
     private static final MapCodec<MoltenLeadCauldronBlock> CODEC = simpleCodec(MoltenLeadCauldronBlock::new);
@@ -164,5 +171,36 @@ public class MoltenLeadCauldronBlock extends AbstractCauldronBlock implements Ca
         }
 
         return ItemInteractionResult.sidedSuccess(world.isClientSide);
+    }
+
+    @SubscribeEvent
+    public static void blockItemInteractions(final PlayerInteractEvent.RightClickBlock event) {
+        var level = event.getLevel();
+        var pos = event.getPos();
+        var state = level.getBlockState(pos);
+        var itemStack = event.getItemStack();
+        var player = event.getEntity();
+        var hand = event.getHand();
+
+        if (itemStack.is(Items.MUSIC_DISC_11) && state.is(PlumbumBlocks.MOLTEN_LEAD_CAULDRON.get())) {
+            if (!state.getValue(MoltenLeadCauldronBlock.AGE).equals(3)) return;
+            var newDisc = new ItemStack(PlumbumItems.MUSIC_DISC_STRUCTURE.get());
+
+            player.swing(hand);
+            if (!player.isCreative()) itemStack.shrink(1);
+            level.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundSource.BLOCKS, 1.0F, 1.0F);
+            if (!level.isClientSide()) player.awardStat(Stats.ITEM_USED.get(itemStack.getItem()));
+
+            if (itemStack.isEmpty()) {
+                player.setItemInHand(hand, newDisc);
+                return;
+            }
+
+            if (!player.getInventory().add(newDisc)) {
+                player.drop(newDisc, false);
+            }
+
+            level.setBlockAndUpdate(pos, Blocks.CAULDRON.defaultBlockState());
+        }
     }
 }

@@ -58,6 +58,8 @@ public class OTags {
 
         public static final TagKey<Item> GARGOYLE_SNACK = tag("gargoyle_snack");
 
+        public static final TagKey<Item> PREVENTS_LEAD_CLOUD = tag("tools/prevents_lead_cloud");
+
         public static final TagKey<Item> PROTECTIVE_HELMET = tag("lead_protection/helmet_standalone");
         public static final TagKey<Item> PROTECTIVE_ARMOR_PART = tag("lead_protection/armor_set");
 

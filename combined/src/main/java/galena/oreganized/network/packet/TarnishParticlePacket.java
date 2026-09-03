@@ -1,5 +1,6 @@
 package galena.oreganized.network.packet;
 
+import galena.oreganized.OConstants;
 import galena.oreganized.index.OParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;

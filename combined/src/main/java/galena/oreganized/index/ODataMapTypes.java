@@ -1,5 +1,6 @@
 package galena.oreganized.index;
 
+import galena.oreganized.OConstants;
 import galena.oreganized.api.Tarnishable;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.Block;

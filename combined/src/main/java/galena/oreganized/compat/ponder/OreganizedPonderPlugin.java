@@ -1,6 +1,7 @@
 package galena.oreganized.compat.ponder;
 
 import galena.oreganized.ModCompat;
+import galena.oreganized.OConstants;
 import net.createmod.ponder.api.registration.PonderPlugin;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.createmod.ponder.api.registration.PonderTagRegistrationHelper;

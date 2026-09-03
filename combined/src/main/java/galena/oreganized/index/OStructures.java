@@ -1,6 +1,7 @@
 package galena.oreganized.index;
 
 import com.mojang.serialization.MapCodec;
+import galena.oreganized.OConstants;
 import galena.oreganized.world.gen.structure.BoulderStructure;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.structure.Structure;

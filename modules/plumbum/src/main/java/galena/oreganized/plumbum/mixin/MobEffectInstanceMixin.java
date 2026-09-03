@@ -1,7 +1,7 @@
-package galena.oreganized.mixin;
+package galena.oreganized.plumbum.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import galena.oreganized.index.OEffects;
+import galena.oreganized.plumbum.index.PlumbumEffects;
 import galena.oreganized.plumbum.world.effect.StunningEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import org.objectweb.asm.Opcodes;
@@ -22,7 +22,7 @@ public class MobEffectInstanceMixin {
     )
     private int replaceStunning(int original) {
         var self = (MobEffectInstance) (Object) this;
-        if (OEffects.STUNNING.getKey().equals(self.getEffect().getKey())) return StunningEffect.MAX_AMPLIFIER + 1;
+        if (PlumbumEffects.STUNNING.getKey().equals(self.getEffect().getKey())) return StunningEffect.MAX_AMPLIFIER + 1;
         return original;
     }
 

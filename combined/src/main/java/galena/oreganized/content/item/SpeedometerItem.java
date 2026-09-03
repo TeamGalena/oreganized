@@ -1,6 +1,7 @@
 package galena.oreganized.content.item;
 
-import galena.oreganized.client.accessors.GuiAccessor;
+import galena.oreganized.OConstants;
+import galena.oreganized.accessor.GuiAccessor;
 import galena.oreganized.index.OCriteriaTriggers;
 import galena.oreganized.index.OItems;
 import net.minecraft.client.Minecraft;

@@ -1,5 +1,6 @@
 package galena.oreganized.index;
 
+import galena.oreganized.OConstants;
 import java.util.Map;
 import net.minecraft.Util;
 import net.minecraft.core.Holder;

@@ -1,8 +1,8 @@
-package galena.oreganized.mixin;
+package galena.oreganized.plumbum.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
-import galena.oreganized.index.OEffects;
+import galena.oreganized.plumbum.index.PlumbumEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,7 +16,7 @@ public class FoodDataMixin {
             at = @At(value = "CONSTANT", args = "floatValue=6F", ordinal = 1)
     )
     private float modifyHealthAmount(float value, @Local Player player) {
-        if (player.hasEffect(OEffects.STUNNING)) return value * 2;
+        if (player.hasEffect(PlumbumEffects.STUNNING)) return value * 2;
         return value;
     }
 
@@ -25,7 +25,7 @@ public class FoodDataMixin {
             at = @At(value = "CONSTANT", args = "floatValue=1F", ordinal = 1)
     )
     private float modifyHealthAmount2(float value, @Local Player player) {
-        if (player.hasEffect(OEffects.STUNNING)) return value / 2;
+        if (player.hasEffect(PlumbumEffects.STUNNING)) return value / 2;
         return value;
     }
 

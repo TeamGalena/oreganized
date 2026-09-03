@@ -6,23 +6,16 @@
   "mixins": [
     "AbstractArrowMixin",
     "AnvilMenuMixin",
-    "AreaEffectCloudMixin",
-    "BlockBehaviourMixin",
     "BlockMixin",
     "BrushItemMixin",
     "CrossbowMixin",
     "DispenserBlockMixin",
     "EnchantmentHelperMixin",
     "EntityMixin",
-    "FoodDataMixin",
     "IceBlockMixin",
-    "LivingEntityMixin",
-    "MobEffectInstanceMixin",
     "MobMixin",
     "PillagerMixin",
     "WalkNodeEvaluatorMixin",
-    "compat.AirCurrentMixin",
-    "compat.BellowBlockTileMixin",
     "compat.LogStrippingFakeRecipesMixin"
   ],
   "client": [

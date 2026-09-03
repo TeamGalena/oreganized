@@ -1,4 +1,4 @@
-package galena.oreganized.client.accessors;
+package galena.oreganized.accessor;
 
 public interface GuiAccessor {
 

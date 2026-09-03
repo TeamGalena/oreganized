@@ -3,7 +3,7 @@ package galena.oreganized.mixin.client;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
-import galena.oreganized.client.accessors.GuiAccessor;
+import galena.oreganized.accessor.GuiAccessor;
 import galena.oreganized.client.tooltips.ClientThermometerTooltip;
 import galena.oreganized.content.item.DeviceItem;
 import galena.oreganized.index.OItems;

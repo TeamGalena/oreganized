@@ -2,8 +2,6 @@ package galena.oreganized.data;
 
 import com.teamabnormals.blueprint.core.registry.BlueprintDataPackRegistries;
 import galena.oreganized.index.ODamageSources;
-import galena.oreganized.index.OFeatures;
-import galena.oreganized.index.OPaintingVariants;
 import galena.oreganized.index.ORecords;
 import galena.oreganized.index.OTrimMaterials;
 import java.util.Set;

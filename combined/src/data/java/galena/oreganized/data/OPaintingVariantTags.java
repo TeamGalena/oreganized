@@ -1,6 +1,6 @@
 package galena.oreganized.data;
 
-import galena.oreganized.index.OPaintingVariants;
+import galena.oreganized.OConstants;
 import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;

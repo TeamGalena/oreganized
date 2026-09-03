@@ -1,5 +1,6 @@
 package galena.oreganized.index;
 
+import galena.oreganized.OConstants;
 import galena.oreganized.plumbum.index.PlumbumDamageTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;

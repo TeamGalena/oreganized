@@ -2,6 +2,12 @@ plugins {
     id("com.possible-triangle.neoforge")
 }
 
+val modules =
+    rootProject
+        .file("modules")
+        .listFiles { it.isDirectory }
+        .map { project(":${it.name}") }
+
 neoforge {
     dataGen {
         existing("blueprint")
@@ -15,12 +21,7 @@ neoforge {
 
     accessTransformer(project(":core"))
 
-    dependOn(project(":core"))
-    dependOn(project(":plumbum"))
-    dependOn(project(":argentum"))
-    dependOn(project(":electrum"))
-    dependOn(project(":gothic"))
-    dependOn(project(":deprecated"))
+    modules.forEach(::dependOn)
 }
 
 base {

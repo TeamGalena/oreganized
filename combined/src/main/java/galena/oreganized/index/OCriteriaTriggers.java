@@ -1,5 +1,6 @@
 package galena.oreganized.index;
 
+import galena.oreganized.OConstants;
 import galena.oreganized.gothic.index.GothicCriterionTriggers;
 import galena.oreganized.plumbum.index.PlumbumCriterionTriggers;
 import galena.oreganized.world.critera.DummyCriterionTrigger;

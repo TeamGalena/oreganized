@@ -5,7 +5,7 @@ import static galena.oreganized.index.OTags.Blocks.SILKTOUCH_WITH_SCRIBE;
 import static galena.oreganized.index.OTags.Blocks.SILKTOUCH_WITH_SCRIBE_BLACKLIST;
 
 import galena.oreganized.argentum.config.ArgentumConfigs;
-import galena.oreganized.content.block.ICrystalGlass;
+import galena.oreganized.gothic.world.block.ICrystalGlass;
 import galena.oreganized.index.ORecipeTypes;
 import galena.oreganized.world.recipe.BlockRecipeInput;
 import net.minecraft.core.BlockPos;

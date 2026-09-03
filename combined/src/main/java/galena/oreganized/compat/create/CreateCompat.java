@@ -1,6 +1,7 @@
 package galena.oreganized.compat.create;
 
 import com.simibubi.create.api.registry.CreateBuiltInRegistries;
+import galena.oreganized.OConstants;
 import galena.oreganized.api.LeadProtections;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;

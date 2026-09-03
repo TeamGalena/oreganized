@@ -1,9 +1,11 @@
-package galena.oreganized.index;
+package galena.oreganized.data;
 
 import static net.minecraft.tags.BlockTags.DEEPSLATE_ORE_REPLACEABLES;
 import static net.minecraft.tags.BlockTags.STONE_ORE_REPLACEABLES;
 
 import com.google.common.collect.ImmutableList;
+import galena.oreganized.OConstants;
+import galena.oreganized.index.OBlocks;
 import java.util.List;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
@@ -32,7 +34,6 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 public class OFeatures {
 
     public static final class Configured {
-
 
         public static final ResourceKey<ConfiguredFeature<?, ?>> SILVER_ORE = create("silver_ore");
         public static final ResourceKey<ConfiguredFeature<?, ?>> SILVER_ORE_EXTRA = create("silver_ore_extra");

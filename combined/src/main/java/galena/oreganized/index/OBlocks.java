@@ -3,26 +3,19 @@ package galena.oreganized.index;
 import galena.oreganized.Oreganized;
 import galena.oreganized.argentum.index.ArgentumBlocks;
 import galena.oreganized.argentum.index.TarnishedBlocks;
-import galena.oreganized.content.block.CrystalGlassBlock;
-import galena.oreganized.content.block.CrystalGlassPaneBlock;
 import galena.oreganized.content.block.ShrapnelBombBlock;
 import galena.oreganized.content.block.SpottedGlanceBlock;
 import galena.oreganized.electrum.index.ElectrumBlocks;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.plumbum.index.PlumbumBlocks;
-import galena.oreganized.plumbum.world.block.LeadBarsBlock;
-import galena.oreganized.plumbum.world.block.LeadDoorBlock;
-import galena.oreganized.plumbum.world.block.LeadTrapdoorBlock;
-import galena.oreganized.plumbum.world.block.MeltableBlock;
-import galena.oreganized.plumbum.world.block.MeltablePillarBlock;
-import galena.oreganized.plumbum.world.block.SturdyButtonBlock;
-import galena.oreganized.plumbum.world.block.SturdyLeverBlock;
+import galena.oreganized.plumbum.world.block.*;
 import galena.oreganized.register.BlockRegistryHelper;
+
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import net.minecraft.util.valueproviders.ConstantInt;
+
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
@@ -70,16 +63,6 @@ public class OBlocks {
     public static final DeferredBlock<Block> WAXED_SPOTTED_GLANCE = register("waxed_spotted_glance",
             () -> new Block(glanceProperties()));
 
-    // Ores
-    public static final DeferredBlock<Block> LEAD_ORE = register("lead_ore",
-            () -> new DropExperienceBlock(ConstantInt.of(0), Properties.ofFullCopy(Blocks.GOLD_ORE).strength(3.0F, 3.0F)));
-    public static final DeferredBlock<Block> DEEPSLATE_LEAD_ORE = register("deepslate_lead_ore",
-            () -> new DropExperienceBlock(ConstantInt.of(0), Properties.ofFullCopy(Blocks.DEEPSLATE_GOLD_ORE)));
-
-    // Storage Blocks
-    public static final DeferredBlock<Block> RAW_LEAD_BLOCK = register("raw_lead_block",
-            () -> new Block(Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK).mapColor(LEAD_MAP_COLORS[0])));
-
     public static final DeferredBlock<Block> WHITE_DATURA = register("datura",
             () -> new FlowerBlock(OEffects.STUNNING, 21, Properties.ofFullCopy(Blocks.OXEYE_DAISY)));
     public static final DeferredBlock<Block> PURPLE_DATURA = register("purple_datura",
@@ -96,9 +79,6 @@ public class OBlocks {
     public static final DeferredBlock<Block> SHRAPNEL_BOMB = register("shrapnel_bomb",
             () -> new ShrapnelBombBlock(Properties.ofFullCopy(Blocks.TNT)));
 
-    public static final Map<DyeColor, DeferredBlock<Block>> CRYSTAL_GLASS = registerColored("crystal_glass", dye -> new CrystalGlassBlock(dye, Properties.ofFullCopy(Blocks.RED_STAINED_GLASS).mapColor(dye)));
-    public static final Map<DyeColor, DeferredBlock<Block>> CRYSTAL_GLASS_PANES = registerColored("crystal_glass_pane", dye -> new CrystalGlassPaneBlock(dye, Properties.ofFullCopy(Blocks.RED_STAINED_GLASS_PANE).mapColor(dye)));
-
     public static final DeferredBlock<Block> GROOVED_ICE = register("grooved_ice",
             () -> new IceBlock(Properties.ofFullCopy(Blocks.ICE).friction(0.6F)));
     public static final DeferredBlock<Block> GROOVED_PACKED_ICE = register("grooved_packed_ice",
@@ -106,7 +86,7 @@ public class OBlocks {
     public static final DeferredBlock<Block> GROOVED_BLUE_ICE = register("grooved_blue_ice",
             () -> new Block(Properties.ofFullCopy(Blocks.BLUE_ICE).friction(0.6F)));
 
-    public static final Map<DyeColor, DeferredBlock<Block>> WAXED_CONCRETE_POWDER = registerColored(color -> "waxed_" + color + "_concrete_powder", dye -> new Block(Properties.ofFullCopy(Blocks.GREEN_CONCRETE_POWDER).mapColor(dye)));
+    public static final Map<DyeColor, DeferredBlock<Block>> WAXED_CONCRETE_POWDER = HELPER.createColored(color -> "waxed_" + color + "_concrete_powder", dye -> new Block(Properties.ofFullCopy(Blocks.GREEN_CONCRETE_POWDER).mapColor(dye)));
 
     public static <T extends Block> DeferredBlock<T> baseRegister(String name, Supplier<? extends T> block, Function<DeferredBlock<T>, Supplier<? extends Item>> item) {
         DeferredBlock<T> register = HELPER.createBlockNoItem(name, block);
@@ -127,6 +107,15 @@ public class OBlocks {
     }
 
     // deprecated
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<Block> RAW_LEAD_BLOCK = PlumbumBlocks.RAW_LEAD_BLOCK;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<Block> LEAD_ORE = PlumbumBlocks.LEAD_ORE;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredBlock<Block> DEEPSLATE_LEAD_ORE = PlumbumBlocks.DEEPSLATE_LEAD_ORE;
 
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static final DeferredBlock<MeltableBlock> LEAD_BLOCK = PlumbumBlocks.LEAD_BLOCK;
@@ -217,5 +206,11 @@ public class OBlocks {
 
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static final DeferredBlock<Block> GARGOYLE = GothicBlocks.GARGOYLE;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final Map<DyeColor, DeferredBlock<Block>> CRYSTAL_GLASS = GothicBlocks.CRYSTAL_GLASS;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final Map<DyeColor, DeferredBlock<Block>> CRYSTAL_GLASS_PANES = GothicBlocks.CRYSTAL_GLASS_PANES;
 
 }

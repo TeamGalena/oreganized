@@ -1,5 +1,6 @@
-package galena.oreganized.index;
+package galena.oreganized.data;
 
+import galena.oreganized.OConstants;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;

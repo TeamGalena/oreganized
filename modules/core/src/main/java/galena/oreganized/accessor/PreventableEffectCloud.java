@@ -1,4 +1,4 @@
-package galena.oreganized.api;
+package galena.oreganized.accessor;
 
 public interface PreventableEffectCloud {
 

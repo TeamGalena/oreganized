@@ -1,13 +1,16 @@
 package galena.oreganized.plumbum.world.item;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.accessor.GuiAccessor;
 import galena.oreganized.index.OTags;
 import galena.oreganized.plumbum.client.tooltip.ThermometerTooltip;
 import galena.oreganized.plumbum.index.PlumbumCriterionTriggers;
 import galena.oreganized.plumbum.index.PlumbumDataComponents;
 import galena.oreganized.plumbum.index.PlumbumItems;
 import galena.oreganized.plumbum.world.block.IMeltableBlock;
+
 import java.util.Optional;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -44,6 +47,7 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -199,6 +203,8 @@ public class ThermometerItem extends Item {
         if (getHeatLevel(stack) == heatLevel) return;
         stack.set(PlumbumDataComponents.HEAT_LEVEL, heatLevel);
         if (level != null && level.isClientSide()) {
+
+            // TODO modules use interface data
             if (Minecraft.getInstance().gui instanceof GuiAccessor accessor) {
                 accessor.oreganized$setToolHighlightTimer(60);
             }
@@ -226,6 +232,18 @@ public class ThermometerItem extends Item {
 
         if (event.getEntity() instanceof ServerPlayer player) {
             PlumbumCriterionTriggers.SHAKEN_THERMOMETER.get().trigger(player);
+        }
+    }
+
+    @SubscribeEvent
+    public static void tickPlayer(final PlayerTickEvent.Post event) {
+        if (event.getEntity().level().getGameTime() % 20L != 0) return;
+
+        var stack = event.getEntity().getItemInHand(InteractionHand.MAIN_HAND);
+
+        if (stack.getItem() instanceof ThermometerItem && !ThermometerItem.isLocked(stack)) {
+            var heatLevel = ThermometerItem.ambientMeasurement(event.getEntity());
+            ThermometerItem.setHeatLevel(stack, event.getEntity().level(), heatLevel);
         }
     }
 

@@ -1,6 +1,5 @@
-package galena.oreganized.content.block;
+package galena.oreganized.gothic.world.block;
 
-import javax.annotation.Nullable;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Block;
@@ -22,7 +21,6 @@ public class CrystalGlassPaneBlock extends StainedGlassPaneBlock implements ICry
     }
 
     @Override
-    @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return super.getStateForPlacement(context).setValue(TYPE, getType(context));
     }

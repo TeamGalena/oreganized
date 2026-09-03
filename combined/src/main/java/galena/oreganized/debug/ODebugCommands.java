@@ -1,5 +1,6 @@
 package galena.oreganized.debug;
 
+import galena.oreganized.OConstants;
 import net.minecraft.commands.Commands;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 

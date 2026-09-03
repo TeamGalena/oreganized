@@ -34,9 +34,6 @@ public class OItems {
     public static final DeferredItem<Item> SCRIBE = HELPER.createItem("scribe",
             () -> new ScribeItem(new Item.Properties().durability(250)));
 
-    public static final DeferredItem<Item> MUSIC_DISC_STRUCTURE = HELPER.createItem("music_disc_structure",
-            () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(ORecords.STRUCTURE)));
-
     public static final DeferredItem<Item> SPEEDOMETER = HELPER.createItem("speedometer",
             () -> new SpeedometerItem(new Item.Properties()));
     public static final DeferredItem<Item> UNKNOWN_DEVICE = HELPER.createItem("unknown_device",
@@ -71,6 +68,8 @@ public class OItems {
 
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static final DeferredItem<Item> THERMOMETER = PlumbumItems.THERMOMETER;
+
+    public static final DeferredItem<Item> MUSIC_DISC_STRUCTURE = PlumbumItems.MUSIC_DISC_STRUCTURE;
 
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static final DeferredItem<Item> MOLTEN_LEAD_BUCKET = PlumbumItems.MOLTEN_LEAD_BUCKET;

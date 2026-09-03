@@ -1,5 +1,6 @@
 package galena.oreganized.content.block;
 
+import galena.oreganized.OConstants;
 import galena.oreganized.index.OBlocks;
 import javax.annotation.ParametersAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;

@@ -1,5 +1,6 @@
-package galena.oreganized.index;
+package galena.oreganized.plumbum.index;
 
+import galena.oreganized.OConstants;
 import java.util.List;
 import net.minecraft.client.gui.Gui;
 import net.neoforged.api.distmarker.Dist;
@@ -9,7 +10,7 @@ import net.neoforged.fml.common.asm.enumextension.EnumProxy;
 import net.neoforged.neoforge.event.entity.player.PlayerHeartTypeEvent;
 
 @EventBusSubscriber(Dist.CLIENT)
-public class OHeartTypes {
+public class PlumbumHeartTypes {
 
     public static final EnumProxy<Gui.HeartType> STUNNED = new EnumProxy<>(
             Gui.HeartType.class, parameters("stunned")
@@ -34,7 +35,7 @@ public class OHeartTypes {
 
     @SubscribeEvent
     public static void modifyHeartType(PlayerHeartTypeEvent event) {
-        if (event.getEntity().hasEffect(OEffects.STUNNING)) {
+        if (event.getEntity().hasEffect(PlumbumEffects.STUNNING)) {
             if (event.getOriginalType() == Gui.HeartType.NORMAL) event.setType(STUNNED.getValue());
             if (event.getOriginalType() == Gui.HeartType.POISIONED) event.setType(STUNNED_POISONED.getValue());
         }

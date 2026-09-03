@@ -1,5 +1,6 @@
 package galena.oreganized.network.packet;
 
+import galena.oreganized.OConstants;
 import galena.oreganized.world.KineticDamage;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;

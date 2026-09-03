@@ -1,4 +1,4 @@
-package galena.oreganized.mixin.compat;
+package galena.oreganized.plumbum.mixin.compat;
 
 import galena.oreganized.plumbum.world.block.LeadOreBlock;
 import net.mehvahdjukaar.supplementaries.common.block.blocks.BellowsBlock;

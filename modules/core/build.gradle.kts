@@ -3,3 +3,7 @@ dependencies {
 
     modImplementation(pack.modrinth.farmers.delight)
 }
+
+neoforge {
+    injectInterfaces()
+}

@@ -1,4 +1,4 @@
-package galena.oreganized.mixin.compat;
+package galena.oreganized.plumbum.mixin.compat;
 
 import com.simibubi.create.content.kinetics.fan.AirCurrent;
 import galena.oreganized.plumbum.world.block.LeadOreBlock;

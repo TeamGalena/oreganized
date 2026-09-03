@@ -1,5 +1,7 @@
 package galena.oreganized.plumbum.world.block;
 
+import galena.oreganized.accessor.PreventableEffectCloud;
+import galena.oreganized.api.LeadProtections;
 import galena.oreganized.index.OTags;
 import galena.oreganized.plumbum.config.PlumbumConfigs;
 import galena.oreganized.plumbum.index.PlumbumCriterionTriggers;
@@ -61,7 +63,7 @@ public class LeadOreBlock {
 
     private static boolean shouldSpawnCloud(BlockState state, LevelAccessor level, BlockPos pos, ItemStack stack) {
         if (!PlumbumConfigs.COMMON.leadDustCloud.get()) return false;
-        if (stack.is(OItems.SCRIBE.get()) || EnchantmentHelper.hasTag(stack, OTags.Enchantments.PREVENTS_LEAD_CLOUD))
+        if (stack.is(OTags.Items.PREVENTS_LEAD_CLOUD) || EnchantmentHelper.hasTag(stack, OTags.Enchantments.PREVENTS_LEAD_CLOUD))
             return false;
         if (!state.is(OTags.Blocks.CREATES_LEAD_CLOUD)) return false;
 
@@ -76,6 +78,8 @@ public class LeadOreBlock {
     public static AreaEffectCloud spawnCloud(Level level, BlockPos pos, float size) {
         var vec = Vec3.atCenterOf(pos);
         var cloud = new AreaEffectCloud(level, vec.x, vec.y, vec.z);
+
+        // TODO modules use interface data
         if (cloud instanceof PreventableEffectCloud preventable) {
             preventable.setPreventable(true);
         }

@@ -1,5 +1,6 @@
 package galena.oreganized.index;
 
+import galena.oreganized.OConstants;
 import galena.oreganized.client.particle.*;
 import galena.oreganized.gothic.index.GothicParticles;
 import galena.oreganized.plumbum.index.PlumbumParticles;

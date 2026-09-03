@@ -29,7 +29,7 @@ public class PlumbumFluids {
             .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL_LAVA)
     ));
 
-    public static final DeferredHolder<Fluid, FlowingFluid> MOLTEN_LEAD = FLUIDS.create("molten_lead", $ -> new MoltenLeadFluid(MOLTEN_LEAD_PROPERTIES));
+    public static final DeferredHolder<Fluid, FlowingFluid> MOLTEN_LEAD = FLUIDS.create("molten_lead", $ -> new MoltenLeadFluid(PlumbumFluids.MOLTEN_LEAD_PROPERTIES));
 
     private static final BaseFlowingFluid.Properties MOLTEN_LEAD_PROPERTIES = new BaseFlowingFluid.Properties(MOLTEN_LEAD_TYPE, MOLTEN_LEAD, MOLTEN_LEAD)
             .bucket(PlumbumItems.MOLTEN_LEAD_BUCKET)

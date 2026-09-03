@@ -5,8 +5,6 @@ import galena.oreganized.plumbum.world.block.*;
 import galena.oreganized.register.BlockRegistryHelper;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.valueproviders.ConstantInt;
-import net.minecraft.world.item.DoubleHighBlockItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -76,8 +74,8 @@ public class PlumbumBlocks {
             SoundEvents.STONE_BUTTON_CLICK_OFF, SoundEvents.STONE_BUTTON_CLICK_ON)
     );
 
-    public static final DeferredBlock<LeadDoorBlock> LEAD_DOOR = BLOCKS.createBlockWithItem("lead_door",
-            () -> new LeadDoorBlock(LEAD_BLOCK_SET, leadDecoProperties()), () -> new DoubleHighBlockItem(LEAD_DOOR.get(), new Item.Properties()));
+    public static final DeferredBlock<LeadDoorBlock> LEAD_DOOR = BLOCKS.createBlock("lead_door",
+            () -> new LeadDoorBlock(LEAD_BLOCK_SET, leadDecoProperties()));
     public static final DeferredBlock<LeadTrapdoorBlock> LEAD_TRAPDOOR = BLOCKS.createBlock("lead_trapdoor",
             () -> new LeadTrapdoorBlock(LEAD_BLOCK_SET, leadDecoProperties()));
     public static final DeferredBlock<LeadBarsBlock> LEAD_BARS = BLOCKS.createBlock("lead_bars",

@@ -1,6 +1,7 @@
 package galena.oreganized.client;
 
 import com.mojang.math.Axis;
+import galena.oreganized.OConstants;
 import galena.oreganized.client.extensions.CustomArmorModelExtensions;
 import galena.oreganized.client.extensions.MoltenLeadClientExtensions;
 import galena.oreganized.client.model.ElectrumArmorModel;

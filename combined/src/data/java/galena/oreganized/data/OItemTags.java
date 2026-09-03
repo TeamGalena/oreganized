@@ -198,5 +198,7 @@ public class OItemTags extends ItemTagsProvider {
         tagDyed(OBlocks.WAXED_CONCRETE_POWDER);
 
         tag(OTags.Items.SLICER_TOOLS).add(Items.BRUSH);
+
+        tag(OTags.Items.PREVENTS_LEAD_CLOUD).add(OItems.SCRIBE.get());
     }
 }

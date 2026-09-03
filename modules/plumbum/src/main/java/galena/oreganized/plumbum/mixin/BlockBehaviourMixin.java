@@ -1,4 +1,4 @@
-package galena.oreganized.mixin;
+package galena.oreganized.plumbum.mixin;
 
 import galena.oreganized.plumbum.world.block.LeadOreBlock;
 import net.minecraft.core.BlockPos;

@@ -1,20 +1,16 @@
 package galena.oreganized.index;
 
+import galena.oreganized.OConstants;
 import galena.oreganized.content.entity.LeadBoltEntity;
 import galena.oreganized.content.entity.MinecartShrapnelBomb;
 import galena.oreganized.content.entity.ShrapnelBomb;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.entity.EntityAttributeModificationEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-@EventBusSubscriber
 public class OEntityTypes {
 
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(Registries.ENTITY_TYPE, OConstants.MOD_ID);
@@ -23,18 +19,6 @@ public class OEntityTypes {
     public static final DeferredHolder<EntityType<?>, EntityType<MinecartShrapnelBomb>> SHRAPNEL_BOMB_MINECART = ENTITIES.register("shrapnel_bomb_minecart", () -> EntityType.Builder.<MinecartShrapnelBomb>of(MinecartShrapnelBomb::new, MobCategory.MISC).sized(0.98F, 0.7F).clientTrackingRange(8).build("shrapnel_bomb_minecart"));
 
     public static final DeferredHolder<EntityType<?>, EntityType<LeadBoltEntity>> LEAD_BOLT = ENTITIES.register("lead_bolt", () -> EntityType.Builder.<LeadBoltEntity>of(LeadBoltEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(4).updateInterval(20).build("lead_bolt"));
-
-    @SubscribeEvent
-    public static void registerAttributes(EntityAttributeModificationEvent event) {
-        for (var entityType : event.getTypes()) {
-            if (event.has(entityType, Attributes.ATTACK_DAMAGE)) {
-                event.add(entityType, OAttributes.KINETIC_DAMAGE);
-            }
-            if (event.has(entityType, Attributes.ARMOR)) {
-                event.add(entityType, OAttributes.INVINCIBILITY_FRAMES);
-            }
-        }
-    }
 
     public static void register(IEventBus modBus) {
         ENTITIES.register(modBus);

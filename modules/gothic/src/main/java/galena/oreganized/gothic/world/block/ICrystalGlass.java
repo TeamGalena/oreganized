@@ -1,4 +1,4 @@
-package galena.oreganized.content.block;
+package galena.oreganized.gothic.world.block;
 
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.BeaconBeamBlock;

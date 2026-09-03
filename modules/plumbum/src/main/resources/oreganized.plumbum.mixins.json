@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "galena.oreganized.plumbum.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "compat.AirCurrentMixin",
+    "compat.BellowBlockTileMixin",
+    "AreaEffectCloudMixin",
+    "BlockBehaviourMixin",
+    "FoodDataMixin",
+    "MobEffectInstanceMixin",
+    "LivingEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
