@@ -3,6 +3,7 @@ package galena.oreganized.data.provider;
 import static net.neoforged.neoforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
 
 import com.teamabnormals.blueprint.core.data.client.BlueprintBlockStateProvider;
+import galena.oreganized.OConstants;
 import galena.oreganized.compat.ColorCompat;
 import galena.oreganized.gothic.world.block.CrystalGlassBlock;
 import galena.oreganized.gothic.world.block.CrystalGlassPaneBlock;

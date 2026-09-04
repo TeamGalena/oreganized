@@ -1,5 +1,6 @@
 package galena.oreganized.data;
 
+import galena.oreganized.OConstants;
 import galena.oreganized.index.OTags;
 import java.util.concurrent.CompletableFuture;
 import javax.annotation.Nullable;
@@ -10,17 +11,11 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biomes;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import org.jetbrains.annotations.NotNull;
 
 public class OBiomeTags extends BiomeTagsProvider {
 
     public OBiomeTags(PackOutput output, CompletableFuture<HolderLookup.Provider> future, @Nullable ExistingFileHelper helper) {
         super(output, future, OConstants.MOD_ID, helper);
-    }
-
-    @Override
-    public @NotNull String getName() {
-        return "Oreganized Biome Tags";
     }
 
     @Override

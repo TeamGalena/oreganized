@@ -1,5 +1,6 @@
 package galena.oreganized.data;
 
+import galena.oreganized.OConstants;
 import galena.oreganized.data.provider.OLangProvider;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OCriteriaTriggers;

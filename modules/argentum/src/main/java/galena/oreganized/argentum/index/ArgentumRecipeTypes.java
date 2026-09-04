@@ -6,8 +6,10 @@ import galena.oreganized.register.RecipeTypeRegistryHelper;
 import galena.oreganized.register.SimpleRegistryHelper;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
+@Mod(OConstants.MOD_ID)
 public class ArgentumRecipeTypes {
 
     private static final RecipeTypeRegistryHelper TYPES = OConstants.REGISTRY_HELPER.getRecipeTypeSubHelper();

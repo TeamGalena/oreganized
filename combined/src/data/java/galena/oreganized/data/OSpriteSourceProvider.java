@@ -1,6 +1,7 @@
 package galena.oreganized.data;
 
 import com.teamabnormals.blueprint.core.api.BlueprintTrims;
+import galena.oreganized.OConstants;
 import galena.oreganized.index.OTrimMaterials;
 import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup;

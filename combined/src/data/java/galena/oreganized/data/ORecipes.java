@@ -12,6 +12,7 @@ import com.simibubi.create.content.kinetics.mixer.CompactingRecipe;
 import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
 import galena.oreganized.ModCompat;
+import galena.oreganized.OConstants;
 import galena.oreganized.compat.ColorCompat;
 import galena.oreganized.data.provider.ORecipeProvider;
 import galena.oreganized.index.OBlocks;

@@ -1,5 +1,6 @@
 package galena.oreganized.data;
 
+import galena.oreganized.OConstants;
 import galena.oreganized.index.ODamageSources;
 import java.util.concurrent.CompletableFuture;
 import javax.annotation.Nullable;
@@ -10,17 +11,11 @@ import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageType;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import org.jetbrains.annotations.NotNull;
 
 public class ODamageTypeTags extends TagsProvider<DamageType> {
 
     public ODamageTypeTags(PackOutput output, CompletableFuture<HolderLookup.Provider> future, @Nullable ExistingFileHelper helper) {
         super(output, Registries.DAMAGE_TYPE, future, OConstants.MOD_ID, helper);
-    }
-
-    @Override
-    public @NotNull String getName() {
-        return "Oreganized DamageType Tags";
     }
 
     @Override

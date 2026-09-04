@@ -1,6 +1,6 @@
 package galena.oreganized.data;
 
-import galena.oreganized.Oreganized;
+import galena.oreganized.OConstants;
 import galena.oreganized.data.provider.OLangProvider;
 import galena.oreganized.index.*;
 import galena.oreganized.plumbum.client.tooltip.ClientThermometerTooltip;
@@ -170,16 +170,17 @@ public class OLang extends OLangProvider {
             This must be at the very bottom to avoid overwriting errors. These functions ignore objects
             that have already been translated above.
          */
-        for (Holder<? extends Block> blocks : Oreganized.REGISTRY_HELPER.getBlockSubHelper().getDeferredRegister().getEntries()) {
+        // TODO modular add common method
+        for (Holder<? extends Block> blocks : OConstants.REGISTRY_HELPER.getBlockSubHelper().getDeferredRegister().getEntries()) {
             tryBlock(blocks);
         }
-        for (Holder<? extends Item> items : Oreganized.REGISTRY_HELPER.getItemSubHelper().getDeferredRegister().getEntries()) {
+        for (Holder<? extends Item> items : OConstants.REGISTRY_HELPER.getItemSubHelper().getDeferredRegister().getEntries()) {
             if (!items.equals(OItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE)) tryItem(items);
         }
-        for (Holder<? extends Fluid> fluids : OFluids.FLUIDS.getEntries()) {
+        for (Holder<? extends Fluid> fluids : OConstants.REGISTRY_HELPER.getFluidSubHelper().getDeferredRegister().getEntries()) {
             tryFluid(fluids);
         }
-        for (Holder<? extends EntityType<?>> entities : OEntityTypes.ENTITIES.getEntries()) {
+        for (Holder<? extends EntityType<?>> entities : OConstants.REGISTRY_HELPER.getEntitySubHelper().getDeferredRegister().getEntries()) {
             tryEntity(entities);
         }
     }

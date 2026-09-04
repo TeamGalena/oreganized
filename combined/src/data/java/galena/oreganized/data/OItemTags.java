@@ -1,6 +1,7 @@
 package galena.oreganized.data;
 
 import galena.oreganized.ModCompat;
+import galena.oreganized.OConstants;
 import galena.oreganized.index.DyeColors;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OItems;
@@ -32,11 +33,6 @@ public class OItemTags extends ItemTagsProvider {
 
     public OItemTags(PackOutput output, CompletableFuture<HolderLookup.Provider> future, CompletableFuture<TagLookup<Block>> provider, @Nullable ExistingFileHelper helper) {
         super(output, future, provider, OConstants.MOD_ID, helper);
-    }
-
-    @Override
-    public String getName() {
-        return "Oreganized Item Tags";
     }
 
     private static TagKey<Item> dyedTag(DyeColor color) {

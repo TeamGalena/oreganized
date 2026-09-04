@@ -2,6 +2,7 @@ package galena.oreganized.data;
 
 import com.simibubi.create.AllTags;
 import galena.oreganized.ModCompat;
+import galena.oreganized.OConstants;
 import galena.oreganized.index.DyeColors;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OTags;
@@ -26,17 +27,11 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import org.jetbrains.annotations.NotNull;
 
 public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
 
     public OBlockTags(PackOutput output, CompletableFuture<HolderLookup.Provider> future, @Nullable ExistingFileHelper helper) {
         super(output, Registries.BLOCK, future, block -> block.builtInRegistryHolder().key(), OConstants.MOD_ID, helper);
-    }
-
-    @Override
-    public @NotNull String getName() {
-        return "Oreganized Block Tags";
     }
 
     private static TagKey<Block> dyedTag(DyeColor color) {

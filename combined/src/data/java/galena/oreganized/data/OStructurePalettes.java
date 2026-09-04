@@ -5,6 +5,7 @@ import com.teamabnormals.blueprint.common.world.modification.structure.Structure
 import com.teamabnormals.blueprint.common.world.modification.structure.StructureRepaletterEntry;
 import com.teamabnormals.blueprint.core.api.conditions.ConfigValueCondition;
 import com.teamabnormals.blueprint.core.registry.BlueprintDataPackRegistries;
+import galena.oreganized.OConstants;
 import galena.oreganized.compat.ColorCompat;
 import galena.oreganized.gothic.config.GothicConfigs;
 import galena.oreganized.index.OBlocks;

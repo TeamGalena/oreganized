@@ -1,5 +1,6 @@
 package galena.oreganized.data;
 
+import galena.oreganized.OConstants;
 import galena.oreganized.index.OTags;
 import java.util.concurrent.CompletableFuture;
 import javax.annotation.Nullable;
@@ -15,11 +16,6 @@ public class OEntityTags extends EntityTypeTagsProvider {
 
     public OEntityTags(PackOutput output, CompletableFuture<HolderLookup.Provider> future, @Nullable ExistingFileHelper help) {
         super(output, future, OConstants.MOD_ID, help);
-    }
-
-    @Override
-    public String getName() {
-        return "Oreganized Entity Type Tags";
     }
 
     @Override

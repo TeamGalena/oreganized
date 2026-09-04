@@ -1,5 +1,6 @@
 package galena.oreganized.data;
 
+import galena.oreganized.OConstants;
 import galena.oreganized.index.OItems;
 import galena.oreganized.world.AddItemLootModifier;
 

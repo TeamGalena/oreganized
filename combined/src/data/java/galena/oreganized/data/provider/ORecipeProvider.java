@@ -7,6 +7,7 @@ import com.simibubi.create.content.kinetics.deployer.ItemApplicationRecipe;
 import com.simibubi.create.content.kinetics.millstone.MillingRecipe;
 import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
 import galena.oreganized.ModCompat;
+import galena.oreganized.OConstants;
 import galena.oreganized.argentum.index.TarnishedBlocks;
 import galena.oreganized.argentum.world.recipe.ScribeRecipe;
 import galena.oreganized.index.OItems;

@@ -16,11 +16,6 @@ public class OItemModels extends OItemModelProvider {
     }
 
     @Override
-    public String getName() {
-        return OConstants.MOD_ID + " Item Models";
-    }
-
-    @Override
     protected void registerModels() {
         normalItem(OItems.MUSIC_DISC_STRUCTURE);
         normalItem(OItems.RAW_SILVER);

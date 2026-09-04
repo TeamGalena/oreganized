@@ -13,11 +13,6 @@ public class OBlockStates extends OBlockStateProvider {
     }
 
     @Override
-    public String getName() {
-        return OConstants.MOD_ID + " Block States";
-    }
-
-    @Override
     protected void registerStatesAndModels() {
         block(OBlocks.GLANCE);
         block(OBlocks.POLISHED_GLANCE);

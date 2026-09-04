@@ -3,6 +3,7 @@ package galena.oreganized.data.provider;
 import static galena.oreganized.ModCompat.SHIELD_EXPANSION_ID;
 
 import com.teamabnormals.blueprint.core.data.client.BlueprintItemModelProvider;
+import galena.oreganized.OConstants;
 import java.util.function.Supplier;
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.core.Holder;

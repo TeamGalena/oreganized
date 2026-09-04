@@ -59,6 +59,7 @@ modules.forEach {
 
     it.configure<NeoforgeExtension> {
         accessTransformer(project(":core"))
+        createDataSourceSet()
     }
 
     it.configure<NeoForgeExtension> {

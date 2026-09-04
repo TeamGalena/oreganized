@@ -1,13 +1,14 @@
 package galena.oreganized.data;
 
+import galena.oreganized.OConstants;
 import galena.oreganized.Oreganized;
 import galena.oreganized.data.provider.OBlockLootProvider;
-import galena.oreganized.glance.index.SpottedGlanceBlock;
+import galena.oreganized.glance.world.block.SpottedGlanceBlock;
 import galena.oreganized.index.OBlocks;
-import galena.oreganized.index.OEntityTypes;
 import galena.oreganized.index.OItems;
 import galena.oreganized.plumbum.world.block.IMeltableBlock;
 import galena.oreganized.plumbum.world.item.ThermometerItem;
+
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -15,6 +16,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
@@ -184,7 +186,7 @@ public class OLootTables extends LootTableProvider {
 
         @Override
         protected Stream<EntityType<?>> getKnownEntityTypes() {
-            return OEntityTypes.ENTITIES.getEntries().stream().map(Supplier::get);
+            return OConstants.REGISTRY_HELPER.getEntitySubHelper().getDeferredRegister().getEntries().stream().map(Supplier::get);
         }
     }
 
