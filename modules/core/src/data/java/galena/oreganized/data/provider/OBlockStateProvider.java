@@ -4,7 +4,7 @@ import static net.neoforged.neoforge.client.model.generators.ModelProvider.BLOCK
 
 import com.teamabnormals.blueprint.core.data.client.BlueprintBlockStateProvider;
 import galena.oreganized.OConstants;
-import galena.oreganized.compat.ColorCompat;
+import galena.oreganized.data.ColorCompat;
 import galena.oreganized.gothic.world.block.CrystalGlassBlock;
 import galena.oreganized.gothic.world.block.CrystalGlassPaneBlock;
 import galena.oreganized.gothic.world.block.GargoyleBlock;

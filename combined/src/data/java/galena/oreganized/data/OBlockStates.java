@@ -1,6 +1,5 @@
 package galena.oreganized.data;
 
-import galena.oreganized.compat.ColorCompat;
 import galena.oreganized.data.provider.OBlockStateProvider;
 import galena.oreganized.index.OBlocks;
 import net.minecraft.data.PackOutput;

@@ -37,6 +37,12 @@ subprojects {
                 includeGroup("dev.engine-room.flywheel")
             }
         }
+        maven {
+            url = uri("https://mvn.devos.one/snapshots")
+            content {
+                includeGroup("com.tterrag.registrate")
+            }
+        }
 
         nexus {
             content {

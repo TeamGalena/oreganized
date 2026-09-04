@@ -2,7 +2,7 @@ plugins {
     id("com.possible-triangle.neoforge")
 }
 
-val modules =
+val modModules =
     rootProject
         .file("modules")
         .listFiles { it.isDirectory }
@@ -21,7 +21,7 @@ neoforge {
 
     accessTransformer(project(":core"))
 
-    modules.forEach(::dependOn)
+    modModules.forEach(::dependOn)
 }
 
 base {
@@ -37,8 +37,6 @@ dependencies {
     // interfaceInjectionData(project(":electrum"))
 
     modApi(libs.blueprint)
-
-    modImplementation(libs.multikulti.datagen)
 
     // Compatibilities
     modImplementation(pack.modrinth.farmers.delight)
@@ -68,6 +66,8 @@ dependencies {
     modCompileOnly(libs.jei.common.api)
     modCompileOnly(libs.jei.neoforge.api)
     modRuntimeOnly(libs.jei.neoforge)
+
+    "dataImplementation"(libs.multikulti.datagen)
 }
 
 upload {

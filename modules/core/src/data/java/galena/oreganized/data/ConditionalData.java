@@ -3,7 +3,6 @@ package galena.oreganized.data;
 import com.possible_triangle.multikulti.datagen.conditions.Condition;
 import com.possible_triangle.multikulti.datagen.conditions.Conditional;
 import com.possible_triangle.multikulti.datagen.conditions.ModLoaded;
-import galena.oreganized.compat.ColorCompat;
 import java.util.List;
 import java.util.Optional;
 import net.minecraft.resources.ResourceLocation;

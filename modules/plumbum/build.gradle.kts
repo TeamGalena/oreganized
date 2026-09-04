@@ -6,5 +6,7 @@ dependencies {
     api(project(":core"))
 
     modCompileOnly(pack.modrinth.supplementaries)
-    modCompileOnly(libs.create)
+    modCompileOnly(libs.create) { isTransitive = false }
+
+    dataImplementation(project(":core", configuration = "dataElements"))
 }

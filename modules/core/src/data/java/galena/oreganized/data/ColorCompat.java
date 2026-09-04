@@ -1,4 +1,4 @@
-package galena.oreganized.compat;
+package galena.oreganized.data;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;

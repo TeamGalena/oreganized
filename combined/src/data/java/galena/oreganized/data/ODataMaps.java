@@ -3,7 +3,6 @@ package galena.oreganized.data;
 import galena.oreganized.argentum.index.ArgentumDataMapTypes;
 import galena.oreganized.argentum.index.TarnishedBlocks;
 import galena.oreganized.argentum.world.Tarnishable;
-import galena.oreganized.compat.ColorCompat;
 import galena.oreganized.index.OBlocks;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -52,7 +51,8 @@ public class ODataMaps extends DataMapProvider {
             waxables.add(unwaxed, new Waxable(waxed.get()), false, conditions);
         });
 
-        OCollections.tarnishedBlocks().forEach(this::registerTarnishable);
+        // TODO modular re-add
+        //  OCollections.tarnishedBlocks().forEach(this::registerTarnishable);
     }
 
     private void registerTarnishable(TarnishedBlocks<?> blocks) {

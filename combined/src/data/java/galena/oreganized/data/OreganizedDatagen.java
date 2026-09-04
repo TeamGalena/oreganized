@@ -1,10 +1,8 @@
 package galena.oreganized.data;
 
 import galena.oreganized.compat.ponder.PonderCompat;
-
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-
 import net.minecraft.DetectedVersion;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -33,7 +31,6 @@ public class OreganizedDatagen {
 
         var lang = new OLang(output);
 
-        generator.addProvider(server, new ORecipes(output, lookup));
         generator.addProvider(server, new OLootTables(output, lookup));
         OBlockTags blockTags = new OBlockTags(output, lookup, helper);
         generator.addProvider(server, blockTags);

@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_electrum_ingot": {
+    "has_netherite_scrap": {
       "conditions": {
         "items": [
           {
-            "items": "oreganized:electrum_ingot"
+            "items": "minecraft:netherite_scrap"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_electrum_ingot"
+      "has_netherite_scrap"
     ]
   ],
   "rewards": {
