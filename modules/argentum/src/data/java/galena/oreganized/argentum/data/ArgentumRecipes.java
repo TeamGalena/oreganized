@@ -9,7 +9,7 @@ import galena.oreganized.ModCompat;
 import galena.oreganized.OConstants;
 import galena.oreganized.argentum.index.ArgentumBlocks;
 import galena.oreganized.argentum.index.ArgentumItems;
-import galena.oreganized.data.provider.ODatagen;
+import galena.oreganized.data.ODatagen;
 import galena.oreganized.index.OTags;
 import java.util.List;
 import java.util.stream.Stream;

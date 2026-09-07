@@ -7,7 +7,7 @@ import static galena.oreganized.data.provider.ORecipeProvider.metalRecycling;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 
 import galena.oreganized.OConstants;
-import galena.oreganized.data.provider.ODatagen;
+import galena.oreganized.data.ODatagen;
 import galena.oreganized.engraved.index.EngravedItems;
 import galena.oreganized.index.OTags;
 import galena.oreganized.plumbum.index.PlumbumItems;

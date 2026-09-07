@@ -4,7 +4,7 @@ import static galena.oreganized.data.provider.OLangProvider.*;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import galena.oreganized.OConstants;
-import galena.oreganized.data.provider.ODatagen;
+import galena.oreganized.data.ODatagen;
 import galena.oreganized.index.OTags;
 import galena.oreganized.plumbum.client.tooltip.ClientThermometerTooltip;
 import galena.oreganized.plumbum.index.*;

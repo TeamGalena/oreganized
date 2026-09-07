@@ -9,7 +9,7 @@ import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ColorCompat;
-import galena.oreganized.data.provider.ODatagen;
+import galena.oreganized.data.ODatagen;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.index.OTags;
 import net.minecraft.data.recipes.RecipeCategory;

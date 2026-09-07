@@ -9,7 +9,7 @@ import com.simibubi.create.content.kinetics.mixer.CompactingRecipe;
 import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
 import galena.oreganized.OConstants;
-import galena.oreganized.data.provider.ODatagen;
+import galena.oreganized.data.ODatagen;
 import galena.oreganized.index.OTags;
 import galena.oreganized.plumbum.index.PlumbumBlocks;
 import galena.oreganized.plumbum.index.PlumbumFluids;

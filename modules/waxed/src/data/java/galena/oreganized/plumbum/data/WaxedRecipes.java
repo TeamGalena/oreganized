@@ -7,7 +7,7 @@ import static galena.oreganized.data.provider.ORecipeProvider.makeWaxed;
 import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ColorCompat;
-import galena.oreganized.data.provider.ODatagen;
+import galena.oreganized.data.ODatagen;
 import galena.oreganized.waxed.index.WaxedBlocks;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.world.level.block.Blocks;

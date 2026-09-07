@@ -17,7 +17,7 @@ import com.simibubi.create.content.kinetics.crusher.CrushingRecipe;
 import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;
 import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
 import galena.oreganized.OConstants;
-import galena.oreganized.data.provider.ODatagen;
+import galena.oreganized.data.ODatagen;
 import galena.oreganized.glance.index.GlanceBlocks;
 import galena.oreganized.index.OTags;
 import galena.oreganized.plumbum.index.PlumbumItems;

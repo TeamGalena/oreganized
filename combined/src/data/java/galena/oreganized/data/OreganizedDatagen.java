@@ -1,7 +1,6 @@
 package galena.oreganized.data;
 
 import galena.oreganized.compat.ponder.PonderCompat;
-import galena.oreganized.data.provider.ODatagen;
 
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -35,7 +34,6 @@ public class OreganizedDatagen {
 
         ODatagen.addLangProvider(OLang::generate);
 
-        generator.addProvider(server, new OLootTables(output, lookup));
         OBlockTags blockTags = new OBlockTags(output, lookup, helper);
         generator.addProvider(server, blockTags);
         generator.addProvider(server, new OItemTags(output, lookup, blockTags.contentsGetter(), helper));

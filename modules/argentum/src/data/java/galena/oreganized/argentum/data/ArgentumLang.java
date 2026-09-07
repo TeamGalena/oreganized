@@ -9,7 +9,7 @@ import galena.oreganized.argentum.index.ArgentumAttributes;
 import galena.oreganized.argentum.index.ArgentumBlocks;
 import galena.oreganized.argentum.index.ArgentumItems;
 import galena.oreganized.argentum.index.TarnishedBlocks;
-import galena.oreganized.data.provider.ODatagen;
+import galena.oreganized.data.ODatagen;
 import galena.oreganized.index.OTags;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.data.LanguageProvider;

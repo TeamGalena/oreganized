@@ -1,61 +1,53 @@
 package galena.oreganized.data.provider;
 
-import galena.oreganized.data.ConditionalData;
-import java.util.Set;
-import java.util.function.Supplier;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.loot.BlockLootSubProvider;
-import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.item.DyeColor;
+import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
+
+import net.minecraft.core.Holder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
-public abstract class OBlockLootProvider extends BlockLootSubProvider {
+public class OBlockLootProvider {
 
-    protected OBlockLootProvider(HolderLookup.Provider lookup) {
-        super(Set.of(), FeatureFlags.REGISTRY.allFlags(), lookup);
+    public static void dropSelf(RegistrateBlockLootTables provider, Holder<? extends Block> block) {
+        provider.dropSelf(block.value());
     }
 
-    public void dropSelf(Supplier<? extends Block> block) {
-        dropSelf(block.get());
+    public static void dropSlab(RegistrateBlockLootTables provider, Holder<? extends Block> slab) {
+        provider.add(slab.value(), provider.createSlabItemTable(slab.value()));
     }
 
-    public void slab(Supplier<? extends Block> slab) {
-        this.add(slab.get(), this::createSlabItemTable);
+    public static void dropOther(RegistrateBlockLootTables provider, Holder<? extends Block> brokenBlock, ItemLike droppedBlock) {
+        provider.dropOther(brokenBlock.value(), droppedBlock);
     }
 
-    public void dropOther(Supplier<? extends Block> brokenBlock, ItemLike droppedBlock) {
-        dropOther(brokenBlock.get(), droppedBlock);
+    public static void dropAsSilk(RegistrateBlockLootTables provider, Holder<? extends Block> block) {
+        provider.dropWhenSilkTouch(block.value());
     }
 
-    public void dropAsSilk(Supplier<? extends Block> block) {
-        dropWhenSilkTouch(block.get());
+    public static void dropWithSilk(RegistrateBlockLootTables provider, Holder<? extends Block> block, Holder<? extends ItemLike> drop) {
+        provider.add(block.value(), provider.createSingleItemTableWithSilkTouch(block.value(), drop.value()));
     }
 
-    public void dropWithSilk(Supplier<? extends Block> block, Supplier<? extends ItemLike> drop) {
-        add(block.get(), (result) -> createSingleItemTableWithSilkTouch(result, drop.get()));
+    public static void dropOre(RegistrateBlockLootTables provider, Holder<? extends Block> block, Holder<? extends Item> drop) {
+        provider.add(block.value(), provider.createOreDrop(block.value(), drop.value()));
     }
 
-    public void ore(Supplier<? extends Block> block, Supplier<? extends Item> drop) {
-        add(block.get(), (result) -> createOreDrop(result, drop.get()));
+    public static void dropOre(RegistrateBlockLootTables provider, Holder<? extends Block> block, Item drop) {
+        provider.add(block.value(), provider.createOreDrop(block.value(), drop));
     }
 
-    public void ore(Supplier<? extends Block> block, Item drop) {
-        add(block.get(), (result) -> createOreDrop(result, drop));
+    public static void dropCauldron(RegistrateBlockLootTables provider, Holder<? extends Block> block) {
+        dropOther(provider, block, Blocks.CAULDRON);
     }
 
-    public void cauldron(Supplier<? extends Block> block) {
-        dropOther(block, Blocks.CAULDRON);
+    public static void dropNothing(RegistrateBlockLootTables provider, Holder<? extends Block> block) {
+        dropOther(provider, block, Blocks.AIR);
     }
 
-    public void dropNothing(Supplier<? extends Block> block) {
-        dropOther(block, Blocks.AIR);
-    }
-
-    public void dyed(DyeColor color, Runnable block) {
-        ConditionalData.dyed(color, this, block);
+    public static void dropPottedPlant(RegistrateBlockLootTables provider, Holder<? extends Block> block) {
+        provider.dropPottedContents(block.value());
     }
 
 }

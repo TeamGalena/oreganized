@@ -2,7 +2,7 @@ package galena.oreganized.device.data;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import galena.oreganized.OConstants;
-import galena.oreganized.data.provider.ODatagen;
+import galena.oreganized.data.ODatagen;
 import galena.oreganized.device.index.DeviceItems;
 import net.neoforged.fml.common.Mod;
 
