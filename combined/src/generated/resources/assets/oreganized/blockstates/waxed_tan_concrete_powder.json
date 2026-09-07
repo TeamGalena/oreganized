@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "oreganized:block/tan_concrete_powder"
+      "model": "dye_depot:block/tan_concrete_powder"
     }
   }
 }

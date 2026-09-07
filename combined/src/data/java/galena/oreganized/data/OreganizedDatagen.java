@@ -50,8 +50,6 @@ public class OreganizedDatagen {
         generator.addProvider(server, new ODataMaps(output, lookupProvider));
         generator.addProvider(server, new OLootModifiers(output, lookupProvider));
 
-        generator.addProvider(client, new OBlockStates(output, helper));
-        generator.addProvider(client, new OItemModels(output, helper));
         generator.addProvider(client, new OSoundDefinitions(output, helper));
         generator.addProvider(client, new OSpriteSourceProvider(output, lookup, helper));
 

@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "oreganized:block/navy_concrete_powder"
+      "model": "dye_depot:block/navy_concrete_powder"
     }
   }
 }

@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "oreganized:block/aqua_concrete_powder"
+      "model": "dye_depot:block/aqua_concrete_powder"
     }
   }
 }

@@ -2,12 +2,16 @@ package galena.oreganized.data;
 
 import com.tterrag.registrate.AbstractRegistrate;
 import com.tterrag.registrate.providers.ProviderType;
+import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
+import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.providers.loot.RegistrateLootTableProvider.LootType;
 import galena.oreganized.OConstants;
+
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+
 import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceKey;
@@ -42,5 +46,13 @@ public class ODatagen {
         REGISTRATE.addDataGenerator(ProviderType.LOOT, provider -> {
             provider.addLootAction(set, consumer);
         });
+    }
+
+    public static void addBlockStateProvider(Consumer<RegistrateBlockstateProvider> consumer) {
+        REGISTRATE.addDataGenerator(ProviderType.BLOCKSTATE, consumer::accept);
+    }
+
+    public static void addItemModelProvider(Consumer<RegistrateItemModelProvider> consumer) {
+        REGISTRATE.addDataGenerator(ProviderType.ITEM_MODEL, consumer::accept);
     }
 }

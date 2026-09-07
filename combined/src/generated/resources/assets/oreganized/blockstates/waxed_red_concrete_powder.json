@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "oreganized:block/red_concrete_powder"
+      "model": "minecraft:block/red_concrete_powder"
     }
   }
 }

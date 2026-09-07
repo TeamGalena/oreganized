@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "oreganized:block/coral_concrete_powder"
+      "model": "dye_depot:block/coral_concrete_powder"
     }
   }
 }

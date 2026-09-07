@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "oreganized:block/amber_concrete_powder"
+      "model": "dye_depot:block/amber_concrete_powder"
     }
   }
 }

@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "oreganized:block/orange_concrete_powder"
+      "model": "minecraft:block/orange_concrete_powder"
     }
   }
 }

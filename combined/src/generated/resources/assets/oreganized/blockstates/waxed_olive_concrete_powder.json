@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "oreganized:block/olive_concrete_powder"
+      "model": "dye_depot:block/olive_concrete_powder"
     }
   }
 }
