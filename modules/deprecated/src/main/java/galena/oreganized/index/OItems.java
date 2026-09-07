@@ -27,6 +27,7 @@ public class OItems {
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static final DeferredItem<Item> THERMOMETER = PlumbumItems.THERMOMETER;
 
+    @Deprecated(forRemoval = true, since = "5.3.0")
     public static final DeferredItem<Item> MUSIC_DISC_STRUCTURE = PlumbumItems.MUSIC_DISC_STRUCTURE;
 
     @Deprecated(forRemoval = true, since = "5.3.0")

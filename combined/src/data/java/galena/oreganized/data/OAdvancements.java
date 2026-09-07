@@ -1,7 +1,6 @@
 package galena.oreganized.data;
 
 import galena.oreganized.OConstants;
-import galena.oreganized.data.provider.OLangProvider;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OCriteriaTriggers;
 import galena.oreganized.index.OEffects;
@@ -38,17 +37,12 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class OAdvancements extends AdvancementProvider {
 
-    public OAdvancements(PackOutput output, CompletableFuture<HolderLookup.Provider> future, ExistingFileHelper helper, OLangProvider lang) {
-        super(output, future, helper, List.of(new OreganizedAdvancements(lang)));
+    public OAdvancements(PackOutput output, CompletableFuture<HolderLookup.Provider> future, ExistingFileHelper helper) {
+        super(output, future, helper, List.of(new OreganizedAdvancements()));
     }
 
     static class OreganizedAdvancements implements AdvancementGenerator {
 
-        private final OLangProvider lang;
-
-        OreganizedAdvancements(OLangProvider lang) {
-            this.lang = lang;
-        }
 
         @Override
         public void generate(@Nullable HolderLookup.Provider provider, Consumer<AdvancementHolder> consumer, @Nullable ExistingFileHelper helper) {
@@ -185,8 +179,8 @@ public class OAdvancements extends AdvancementProvider {
 
         protected DisplayInfo info(ItemStack icon, String id, AdvancementType type, String title, String description) {
             var advancementId = OConstants.MOD_ID + "." + id;
-            lang.addAdvTitle(advancementId, title);
-            lang.addAdvDesc(advancementId, description);
+            // lang.addAdvTitle(advancementId, title);
+            // lang.addAdvDesc(advancementId, description);
             return new DisplayInfo(
                     icon,
                     Component.translatable("advancements.%s.title".formatted(advancementId)),

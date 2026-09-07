@@ -1,5 +1,7 @@
 dependencies {
     modApi(libs.blueprint)
+    modApi(libs.ponder)
+    modApi(libs.flywheel)
 
     modImplementation(pack.modrinth.farmers.delight)
 

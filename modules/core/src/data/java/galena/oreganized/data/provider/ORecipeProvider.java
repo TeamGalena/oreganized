@@ -30,7 +30,9 @@ import net.minecraft.world.level.block.SlabBlock;
 import net.neoforged.neoforge.common.Tags;
 import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
-public class ORecipeProvider {
+public final class ORecipeProvider  {
+
+
 
     public static ShapedRecipeBuilder makeSlab(Supplier<? extends Block> slabOut, Supplier<? extends Block> blockIn) {
         return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, slabOut.get(), 6)

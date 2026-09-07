@@ -94,7 +94,7 @@ public class ElectrumItems {
             () -> new SwordItem(ELECTRUM_TIER, new Item.Properties()));
 
     public static Stream<DeferredItem<? extends Item>> electrumTools() {
-        return Stream.of(ELECTRUM_SWORD, ELECTRUM_SHOVEL, ELECTRUM_PICKAXE, ELECTRUM_AXE, ELECTRUM_HOE);
+        return Stream.of(ELECTRUM_SWORD, ELECTRUM_SHOVEL, ELECTRUM_PICKAXE, ELECTRUM_AXE, ELECTRUM_HOE, ELECTRUM_KNIFE, ELECTRUM_MACHETE);
     }
 
 }

@@ -40,8 +40,6 @@ public class OItemModels extends OItemModelProvider {
         toolItem(OItems.BUSH_HAMMER);
         toolItem(OItems.SCRIBE);
         OItems.electrumTools().forEach(this::toolItem);
-        toolItem(OItems.ELECTRUM_KNIFE);
-        toolItem(OItems.ELECTRUM_MACHETE);
         shieldItem(OItems.ELECTRUM_SHIELD);
         OItems.silverTools().forEach(this::toolItem);
 

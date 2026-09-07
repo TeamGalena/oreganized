@@ -1,17 +1,12 @@
 package galena.oreganized.argentum.data;
 
-import com.tterrag.registrate.providers.ProviderType;
-import galena.oreganized.OConstants;
 import galena.oreganized.argentum.index.ArgentumBlocks;
-import galena.oreganized.argentum.index.TarnishedBlocks;
-import galena.oreganized.data.provider.ODatagen;
+
 import java.util.stream.Stream;
-import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
-public class ArgentumData {
+public class ArgentumSets {
 
-    public static Stream<TarnishedBlocks<?>> tarnishedBlocks() {
+    public static Stream<galena.oreganized.argentum.index.TarnishedBlocks<?>> tarnishedBlocks() {
         return Stream.of(
                 ArgentumBlocks.SILVER_BLOCKS,
                 ArgentumBlocks.SILVER_BULBS,
@@ -25,10 +20,6 @@ public class ArgentumData {
                 ArgentumBlocks.CUT_SILVER_SLABS,
                 ArgentumBlocks.CUT_SILVER_STAIRS
         );
-    }
-
-    public ArgentumData() {
-        ODatagen.REGISTRATE.addDataGenerator(ProviderType.RECIPE, ArgentumRecipes::generate);
     }
 
 }

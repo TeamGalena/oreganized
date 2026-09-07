@@ -7,24 +7,32 @@ import static galena.oreganized.data.provider.ORecipeProvider.crystalGlass;
 import static galena.oreganized.data.provider.ORecipeProvider.makePane;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 
-import com.tterrag.registrate.providers.RegistrateRecipeProvider;
+import galena.oreganized.OConstants;
 import galena.oreganized.data.ColorCompat;
+import galena.oreganized.data.provider.ODatagen;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.index.OTags;
 import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import net.neoforged.fml.common.Mod;
 
+@Mod(OConstants.MOD_ID)
 public class GothicRecipes {
 
-    static void generate(RegistrateRecipeProvider consumer) {
+    public GothicRecipes() {
+        ODatagen.addRecipeProvider(this::generate);
+    }
+
+    private void generate(RecipeOutput provider) {
         GothicBlocks.CRYSTAL_GLASS.forEach((color, crystalGlass) -> {
             var glass = ColorCompat.getColoredBlock("stained_glass", color);
-            dyed(color, crystalGlass(crystalGlass, glass)).save(consumer);
+            dyed(color, crystalGlass(crystalGlass, glass)).save(provider);
         });
 
         GothicBlocks.CRYSTAL_GLASS_PANES.forEach((color, pane) ->
-                dyed(color, makePane(pane, GothicBlocks.CRYSTAL_GLASS.get(color))).save(consumer)
+                dyed(color, makePane(pane, GothicBlocks.CRYSTAL_GLASS.get(color))).save(provider)
         );
 
         shaped(RecipeCategory.REDSTONE, GothicBlocks.GARGOYLE.get())
@@ -36,6 +44,6 @@ public class GothicRecipes {
                 .define('S', OTags.Items.INGOTS_SILVER)
                 .unlockedBy("has_pumpkin", has(Items.CARVED_PUMPKIN))
                 .unlockedBy("has_silver_ingot", has(OTags.Items.INGOTS_SILVER))
-                .save(consumer);
+                .save(provider);
     }
 }

@@ -155,10 +155,6 @@ public class OItemTags extends ItemTagsProvider {
 
         var kineticDamage = tag(OTags.Items.HAS_KINETIC_DAMAGE);
         OItems.electrumTools().forEach(it -> kineticDamage.add(it.get()));
-        kineticDamage.add(
-                OItems.ELECTRUM_KNIFE.get(),
-                OItems.ELECTRUM_MACHETE.get()
-        );
 
         tag(Tags.Items.MELEE_WEAPON_TOOLS)
                 .add(OItems.ELECTRUM_AXE.get())

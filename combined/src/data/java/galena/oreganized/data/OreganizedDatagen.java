@@ -1,8 +1,11 @@
 package galena.oreganized.data;
 
 import galena.oreganized.compat.ponder.PonderCompat;
+import galena.oreganized.data.provider.ODatagen;
+
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+
 import net.minecraft.DetectedVersion;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -10,6 +13,7 @@ import net.minecraft.data.metadata.PackMetadataGenerator;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
@@ -18,7 +22,7 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 @EventBusSubscriber
 public class OreganizedDatagen {
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.HIGH)
     public static void gatherData(GatherDataEvent event) {
         PonderCompat.register();
 
@@ -29,14 +33,14 @@ public class OreganizedDatagen {
         boolean client = event.includeClient();
         boolean server = event.includeServer();
 
-        var lang = new OLang(output);
+        ODatagen.addLangProvider(OLang::generate);
 
         generator.addProvider(server, new OLootTables(output, lookup));
         OBlockTags blockTags = new OBlockTags(output, lookup, helper);
         generator.addProvider(server, blockTags);
         generator.addProvider(server, new OItemTags(output, lookup, blockTags.contentsGetter(), helper));
         generator.addProvider(server, new OEntityTags(output, lookup, helper));
-        generator.addProvider(server, new OAdvancements(output, lookup, helper, lang));
+        generator.addProvider(server, new OAdvancements(output, lookup, helper));
         generator.addProvider(server, new OFluidTags(output, lookup, helper));
         generator.addProvider(server, new OEnchantmentTags(output, lookup, helper));
         DatapackBuiltinEntriesProvider datapackProvider = new ORegistries(output, lookup);
@@ -50,7 +54,6 @@ public class OreganizedDatagen {
 
         generator.addProvider(client, new OBlockStates(output, helper));
         generator.addProvider(client, new OItemModels(output, helper));
-        generator.addProvider(client, lang);
         generator.addProvider(client, new OSoundDefinitions(output, helper));
         generator.addProvider(client, new OSpriteSourceProvider(output, lookup, helper));
 
