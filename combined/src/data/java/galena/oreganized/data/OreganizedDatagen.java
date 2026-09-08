@@ -28,15 +28,16 @@ public class OreganizedDatagen {
         generator.addProvider(server, new OEntityTags(output, lookup, helper));
         generator.addProvider(server, new OFluidTags(output, lookup, helper));
         generator.addProvider(server, new OEnchantmentTags(output, lookup, helper));
+
         DatapackBuiltinEntriesProvider datapackProvider = new ORegistries(output, lookup);
         CompletableFuture<HolderLookup.Provider> lookupProvider = datapackProvider.getRegistryProvider();
         generator.addProvider(server, datapackProvider);
+
         generator.addProvider(server, new OBiomeTags(output, lookupProvider, helper));
         generator.addProvider(server, new ODamageTypeTags(output, lookupProvider, helper));
         generator.addProvider(server, new OPaintingVariantTags(output, lookupProvider, helper));
 
         generator.addProvider(server, new ODataMaps(output, lookupProvider));
-        generator.addProvider(server, new OLootModifiers(output, lookupProvider));
 
         generator.addProvider(client, new OSpriteSourceProvider(output, lookup, helper));
     }

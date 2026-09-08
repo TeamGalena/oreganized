@@ -9,11 +9,10 @@ import com.tterrag.registrate.providers.loot.RegistrateLootTableProvider.LootTyp
 import galena.oreganized.OConstants;
 import galena.oreganized.client.OResourcePacks;
 import galena.oreganized.compat.ponder.PonderCompat;
-
+import galena.oreganized.data.provider.RegistrateLootModifierProvider;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
-
 import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraft.DetectedVersion;
 import net.minecraft.data.PackOutput;
@@ -94,5 +93,9 @@ public class ODatagen {
 
     public static void addSoundDefinitionProvider(Consumer<RegistrateSoundsProvider> consumer) {
         REGISTRATE.addDataGenerator(ForgeRegistrateBuilders.getSOUNDS(), consumer::accept);
+    }
+
+    public static void addLootModifierProvider(Consumer<RegistrateLootModifierProvider> consumer) {
+        REGISTRATE.addDataGenerator(RegistrateLootModifierProvider.PROVIDER, consumer::accept);
     }
 }

@@ -1,7 +1,5 @@
 {
   "entries": [
-    "oreganized:electrum_upgrade_smithing_template",
-    "oreganized:lead_bolts_in_outpost",
     "oreganized:scribe_in_ancient_cities",
     "oreganized:silver_boots_in_chests",
     "oreganized:silver_leggings_in_chests",
@@ -11,7 +9,9 @@
     "oreganized:silver_shovel_in_chests",
     "oreganized:silver_pickaxe_in_chests",
     "oreganized:silver_axe_in_chests",
-    "oreganized:silver_hoe_in_chests"
+    "oreganized:silver_hoe_in_chests",
+    "oreganized:lead_bolts_in_outpost",
+    "oreganized:electrum_upgrade_smithing_template"
   ],
   "replace": false
 }
