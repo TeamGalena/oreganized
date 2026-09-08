@@ -303,7 +303,7 @@ public final class ORecipeProvider  {
     }
 
     public static void brushing(RecipeOutput output, ItemLike from, ItemLike to) {
-        Conditional.with(output, List.of(new ModLoaded(ModCompat.FARMERS_DELIGHT_ID)), () -> {
+        Conditional.with(output, List.of(new ModLoaded(ModCompat.FARMERS_DELIGHT)), () -> {
             CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(from), Ingredient.of(Items.BRUSH), to)
                     .save(output, RecipeBuilder.getDefaultRecipeId(from).withPrefix("brushing/"));
         });
@@ -312,7 +312,7 @@ public final class ORecipeProvider  {
     public static void scribeConversionAndCutting(RecipeOutput output, Block from, Block to) {
         var id = RecipeBuilder.getDefaultRecipeId(to);
         scribeConversion(from, to).save(output, id);
-        Conditional.with(output, List.of(new ModLoaded(ModCompat.FARMERS_DELIGHT_ID)), () -> {
+        Conditional.with(output, List.of(new ModLoaded(ModCompat.FARMERS_DELIGHT)), () -> {
             scribeCuttingBoard(from, to).save(output, id.withPrefix("cutting/"));
         });
     }
@@ -331,7 +331,7 @@ public final class ORecipeProvider  {
                 .output(0.05F, Items.GREEN_DYE)
                 .build(output);
 
-        Conditional.with(output, List.of(new ModLoaded(ModCompat.FARMERS_DELIGHT_ID)), () -> {
+        Conditional.with(output, List.of(new ModLoaded(ModCompat.FARMERS_DELIGHT)), () -> {
             CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(flower.get()), Ingredient.of(OTags.Items.TOOLS_KNIVES), primary, 2)
                     .save(output);
         });

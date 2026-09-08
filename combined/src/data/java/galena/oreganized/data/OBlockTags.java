@@ -187,7 +187,7 @@ public class OBlockTags extends IntrinsicHolderTagsProvider<Block> {
                 .add(Blocks.MAGMA_BLOCK)
                 .addTags(BlockTags.CAMPFIRES)
                 .addTags(BlockTags.FIRE)
-                .addOptionalTag(ResourceLocation.fromNamespaceAndPath(ModCompat.FARMERS_DELIGHT_ID, "tray_heat_sources"))
+                .addOptionalTag(ResourceLocation.fromNamespaceAndPath(ModCompat.FARMERS_DELIGHT, "tray_heat_sources"))
                 .addOptionalTag(ResourceLocation.fromNamespaceAndPath(ModCompat.CREATE, "passive_boiler_heaters"));
 
         tag(BlockTags.ICE)

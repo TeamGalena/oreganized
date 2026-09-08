@@ -1,11 +1,11 @@
 package galena.oreganized.index;
 
+import galena.oreganized.ModCompat;
 import java.util.Comparator;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Stream;
 import net.minecraft.world.item.DyeColor;
-import net.neoforged.fml.ModList;
 
 public class DyeColors {
 
@@ -31,7 +31,7 @@ public class DyeColors {
     }
 
     private static Stream<DyeColor> depotColors() {
-        if (!ModList.get().isLoaded("dye_depot")) return Stream.empty();
+        if (!ModCompat.DYE_DEPOT_LOADED) return Stream.empty();
         return Stream.of(
                         "amber",
                         "aqua",

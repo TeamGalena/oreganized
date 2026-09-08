@@ -76,10 +76,10 @@ public class ElectrumRecipes {
         smithingElectrum(() -> Items.DIAMOND_BOOTS, ElectrumItems.ELECTRUM_BOOTS).save(provider, OConstants.modLoc("electrum_boots"));
 
         // TODO modular add whenLoaded
-        Conditional.with(provider, List.of(new ModLoaded(ModCompat.FARMERS_DELIGHT_ID)), () ->
+        Conditional.with(provider, List.of(new ModLoaded(ModCompat.FARMERS_DELIGHT)), () ->
                 metalRecycling(provider, ElectrumItems.ELECTRUM_NUGGET, List.of(ElectrumItems.ELECTRUM_KNIFE), "_from_knife")
         );
-        Conditional.with(provider, List.of(new ModLoaded(ModCompat.NETHERS_DELIGHT_ID)), () ->
+        Conditional.with(provider, List.of(new ModLoaded(ModCompat.NETHERS_DELIGHT)), () ->
                 metalRecycling(provider, ElectrumItems.ELECTRUM_NUGGET, List.of(ElectrumItems.ELECTRUM_MACHETE), "_from_machete")
         );
 

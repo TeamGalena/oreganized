@@ -1,5 +1,6 @@
 package galena.oreganized.client;
 
+import galena.oreganized.ModCompat;
 import galena.oreganized.OConstants;
 import galena.oreganized.compat.ponder.PonderCompat;
 import galena.oreganized.device.client.DevicePropertyFunction;
@@ -25,7 +26,6 @@ import net.minecraft.world.item.component.ChargedProjectiles;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
@@ -44,7 +44,7 @@ public class OreganizedClient {
             OreganizedClient.registerItemProperties();
         });
 
-        if (ModList.get().isLoaded("ponder")) {
+        if (ModCompat.PONDER_LOADED) {
             PonderCompat.register();
         }
     }

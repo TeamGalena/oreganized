@@ -1,13 +1,12 @@
-package galena.oreganized.compat.ponder;
+package galena.oreganized.gothic.ponder;
 
-import galena.oreganized.index.OBlocks;
-import galena.oreganized.index.OItems;
-import galena.oreganized.index.OParticleTypes;
-
+import galena.oreganized.ModCompat;
+import galena.oreganized.argentum.index.ArgentumItems;
+import galena.oreganized.gothic.index.GothicBlocks;
+import galena.oreganized.gothic.index.GothicParticles;
 import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.UnaryOperator;
-
 import net.createmod.catnip.math.Pointing;
 import net.createmod.ponder.api.element.ElementLink;
 import net.createmod.ponder.api.element.EntityElement;
@@ -22,12 +21,19 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.ComparatorBlock;
 import net.minecraft.world.level.block.LeverBlock;
 import net.minecraft.world.level.block.RedStoneWireBlock;
 import net.minecraft.world.phys.Vec3;
 
 public class GargoyleScenes {
+
+    public static ItemStack gargoyleSnack() {
+        // TODO modular needs different item if modular?
+        return ArgentumItems.SILVER_INGOT.toStack();
+    }
+
     private static final List<UnaryOperator<BlockPos>> DUST_OFFSETS = List.of(
             BlockPos::north,
             BlockPos::east,
@@ -43,7 +49,7 @@ public class GargoyleScenes {
 
     static void registerScenes(PonderSceneRegistrationHelper<Holder<?>> registrar) {
         registrar
-                .forComponents(OBlocks.GARGOYLE)
+                .forComponents(GothicBlocks.GARGOYLE)
                 .addStoryBoard("gargoyle", GargoyleScenes::scareScene)
                 .addStoryBoard("gargoyle", GargoyleScenes::detectScene)
                 .addStoryBoard("gargoyle", GargoyleScenes::automateGargoyle);
@@ -114,7 +120,7 @@ public class GargoyleScenes {
 
         scene.overlay().showControls(util.vector().topOf(gargoylePos), Pointing.DOWN, 50)
                 .rightClick()
-                .withItem(OItems.SILVER_INGOT.toStack());
+                .withItem(gargoyleSnack());
         scene.idle(30);
 
         activateGargoyle(scene, gargoylePos);
@@ -130,7 +136,7 @@ public class GargoyleScenes {
     static void activateGargoyle(SceneBuilder scene, BlockPos gargoylePos) {
         scene.effects().emitParticles(
                 gargoylePos.getCenter(),
-                scene.effects().particleEmitterWithinBlockSpace(OParticleTypes.VENGEANCE.get(), new Vec3(0.1, 0.2, 0.1)),
+                scene.effects().particleEmitterWithinBlockSpace(GothicParticles.VENGEANCE.get(), new Vec3(0.1, 0.2, 0.1)),
                 1.5F, 10
         );
     }
@@ -145,7 +151,7 @@ public class GargoyleScenes {
         scene.showBasePlate();
         scene.world().showSection(util.select().position(gargoylePos), Direction.UP);
 
-        if (OreganizedPonderPlugin.CREATED_LOADED) {
+        if (ModCompat.CREATE_LOADED) {
             CreateCompatScenes.useArmOnGargoyle(scene, util, gargoylePos);
             scene.idle(20);
             scene.addKeyframe();

@@ -1,6 +1,6 @@
 package galena.oreganized.data.extensions;
 
-import static galena.oreganized.ModCompat.SHIELD_EXPANSION_ID;
+import static galena.oreganized.ModCompat.SHIELD_EXPANSION;
 import static net.minecraft.resources.ResourceLocation.withDefaultNamespace;
 import static net.neoforged.neoforge.client.model.generators.ModelProvider.ITEM_FOLDER;
 
@@ -36,12 +36,12 @@ public class OItemModelExtensions {
         var texture = itemTexture(item.getId());
         var name = item.getId().getPath();
 
-        var blockingModel = provider.withExistingParent(name + "_blocking", ResourceLocation.fromNamespaceAndPath(SHIELD_EXPANSION_ID, "item/netherite_shield_blocking"))
+        var blockingModel = provider.withExistingParent(name + "_blocking", ResourceLocation.fromNamespaceAndPath(SHIELD_EXPANSION, "item/netherite_shield_blocking"))
                 .guiLight(BlockModel.GuiLight.FRONT)
                 .texture("1", texture)
                 .texture("particle", texture);
 
-        return provider.withExistingParent(name, ResourceLocation.fromNamespaceAndPath(SHIELD_EXPANSION_ID, "item/netherite_shield"))
+        return provider.withExistingParent(name, ResourceLocation.fromNamespaceAndPath(SHIELD_EXPANSION, "item/netherite_shield"))
                 .guiLight(BlockModel.GuiLight.FRONT)
                 .texture("1", texture)
                 .texture("particle", texture)

@@ -1,8 +1,7 @@
 package galena.oreganized;
 
-import static galena.oreganized.ModCompat.FARMERS_DELIGHT_ID;
-import static galena.oreganized.ModCompat.NETHERS_DELIGHT_ID;
-import static galena.oreganized.ModCompat.SHIELD_EXPANSION_ID;
+import static galena.oreganized.ModCompat.FARMERS_DELIGHT;
+import static galena.oreganized.ModCompat.NETHERS_DELIGHT;
 
 import galena.oreganized.index.DyeColors;
 import galena.oreganized.index.OBlocks;
@@ -18,7 +17,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -28,8 +26,8 @@ import vectorwing.farmersdelight.common.registry.ModItems;
 @EventBusSubscriber
 public class OTabs {
 
-    private static final ResourceLocation FD_TAB = ResourceLocation.fromNamespaceAndPath(FARMERS_DELIGHT_ID, FARMERS_DELIGHT_ID);
-    private static final ResourceLocation ND_TAB = ResourceLocation.fromNamespaceAndPath(NETHERS_DELIGHT_ID, "main");
+    private static final ResourceLocation FD_TAB = ResourceLocation.fromNamespaceAndPath(FARMERS_DELIGHT, FARMERS_DELIGHT);
+    private static final ResourceLocation ND_TAB = ResourceLocation.fromNamespaceAndPath(NETHERS_DELIGHT, "main");
 
     @SubscribeEvent
     public static void buildCreativeModeTabContents(BuildCreativeModeTabContentsEvent event) {
@@ -174,15 +172,15 @@ public class OTabs {
             putAfter(event, OBlocks.PURPLE_DATURA.get(), OBlocks.WHITE_DATURA);
         }
 
-        if (ModList.get().isLoaded(FARMERS_DELIGHT_ID) && tab.location().equals(FD_TAB)) {
+        if (ModCompat.FARMERS_DELIGHT_LOADED && tab.location().equals(FD_TAB)) {
             putAfter(event, ModItems.NETHERITE_KNIFE.get(), OItems.ELECTRUM_KNIFE);
         }
-        if (ModList.get().isLoaded(SHIELD_EXPANSION_ID) && tab == CreativeModeTabs.COMBAT) {
+        if (ModCompat.SHIELD_EXPANSION_LOADED && tab == CreativeModeTabs.COMBAT) {
             putAfter(event, ItemsInit.NETHERITE_SHIELD.get(), OItems.ELECTRUM_SHIELD);
         }
 
         // TODO enable again after mod is ported to 1.21.1
-        // if (ModList.get().isLoaded(NETHERS_DELIGHT_ID) && (tab.location().equals(ND_TAB) || tab == CreativeModeTabs.TOOLS_AND_UTILITIES)) {
+        // if (ModCompat.NETHERS_DELIGHT_LOADED && (tab.location().equals(ND_TAB) || tab == CreativeModeTabs.TOOLS_AND_UTILITIES)) {
         //     putAfter(event, NDItems.NETHERITE_MACHETE.get(), OItems.ELECTRUM_MACHETE);
         // }
     }

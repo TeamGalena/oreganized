@@ -48,11 +48,11 @@ public class OTags {
         public static final TagKey<Item> STORAGE_BLOCKS_RAW_LEAD = commonTag("storage_blocks/raw_lead");
         public static final TagKey<Item> TOOLS_BUSH_HAMMER = commonTag("tools/bush_hammer");
 
-        public static final TagKey<Item> TOOLS_KNIVES = TagUtil.itemTag(ModCompat.FARMERS_DELIGHT_ID, "tools/knives");
+        public static final TagKey<Item> TOOLS_KNIVES = TagUtil.itemTag(ModCompat.FARMERS_DELIGHT, "tools/knives");
         public static final TagKey<Item> FORGE_TOOLS_KNIVES = commonTag("tools/knife");
         public static final TagKey<Item> SHIELDS = commonTag("shields");
-        public static final TagKey<Item> SHIELDS_SE = TagUtil.itemTag(ModCompat.SHIELD_EXPANSION_ID, "shields");
-        public static final TagKey<Item> MACHETES = TagUtil.itemTag(ModCompat.NETHERS_DELIGHT_ID, "tools/machete");
+        public static final TagKey<Item> SHIELDS_SE = TagUtil.itemTag(ModCompat.SHIELD_EXPANSION, "shields");
+        public static final TagKey<Item> MACHETES = TagUtil.itemTag(ModCompat.NETHERS_DELIGHT, "tools/machete");
 
         public static final TagKey<Item> HAS_KINETIC_DAMAGE = tag("has_kinetic_damage");
 

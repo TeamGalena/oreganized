@@ -1,7 +1,7 @@
-package galena.oreganized.compat.ponder;
+package galena.oreganized.plumbum.ponder;
 
-import galena.oreganized.index.OBlocks;
-import galena.oreganized.index.OItems;
+import galena.oreganized.plumbum.index.PlumbumBlocks;
+import galena.oreganized.plumbum.index.PlumbumItems;
 import galena.oreganized.plumbum.world.block.MoltenLeadCauldronBlock;
 import net.createmod.catnip.math.Pointing;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
@@ -18,7 +18,7 @@ public class CauldronScenes {
 
     static void registerScenes(PonderSceneRegistrationHelper<Holder<?>> registrar) {
         registrar
-                .forComponents(Items.CAULDRON.builtInRegistryHolder(), OItems.MOLTEN_LEAD_BUCKET)
+                .forComponents(Items.CAULDRON.builtInRegistryHolder(), PlumbumItems.MOLTEN_LEAD_BUCKET)
                 .addStoryBoard("cauldron_lead_melting", CauldronScenes::leadMelting);
     }
 
@@ -36,7 +36,7 @@ public class CauldronScenes {
 
         scene.overlay().showControls(util.vector().topOf(cauldronPos), Pointing.DOWN, 50)
                 .rightClick()
-                .withItem(OBlocks.LEAD_BLOCK.toStack());
+                .withItem(PlumbumBlocks.LEAD_BLOCK.toStack());
         setCauldronAge(scene, cauldronPos, 0);
 
         scene.overlay().showText(60)
@@ -75,7 +75,7 @@ public class CauldronScenes {
     private static void setCauldronAge(SceneBuilder scene, BlockPos cauldronPos, int age) {
         scene.world().setBlock(
                 cauldronPos,
-                OBlocks.MOLTEN_LEAD_CAULDRON.get().defaultBlockState().setValue(MoltenLeadCauldronBlock.AGE, age),
+                PlumbumBlocks.MOLTEN_LEAD_CAULDRON.get().defaultBlockState().setValue(MoltenLeadCauldronBlock.AGE, age),
                 false
         );
     }

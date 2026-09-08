@@ -10,7 +10,6 @@ import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SmithingTemplateItem;
 import net.minecraft.world.item.Tier;
-import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 public class ItemRegistryHelper extends ItemSubRegistryHelper {
@@ -20,7 +19,7 @@ public class ItemRegistryHelper extends ItemSubRegistryHelper {
     }
 
     public static Item createKnife(Tier tier, Item.Properties properties) {
-        if (ModList.get().isLoaded(ModCompat.FARMERS_DELIGHT_ID)) {
+        if (ModCompat.FARMERS_DELIGHT_LOADED) {
             return FarmersDelightCompat.KNIFE_FACTORY.apply(tier, properties);
         }
 

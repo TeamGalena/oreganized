@@ -8,23 +8,29 @@ import com.tterrag.registrate.providers.RegistrateLangProvider;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.providers.loot.RegistrateLootTableProvider.LootType;
 import galena.oreganized.OConstants;
-
+import galena.oreganized.compat.ponder.PonderCompat;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
-
 import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 @Mod(OConstants.MOD_ID)
+@EventBusSubscriber
 public class ODatagen {
 
     private static final AbstractRegistrate<?> REGISTRATE = ORegistrate.create(OConstants.MOD_ID);
 
-    public ODatagen() {
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public static void generatePonderLang(GatherDataEvent event) {
+        PonderCompat.register();
         PonderIndex.getLangAccess().provideLang(OConstants.MOD_ID, REGISTRATE::addRawLang);
     }
 
