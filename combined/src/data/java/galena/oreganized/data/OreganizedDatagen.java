@@ -1,11 +1,12 @@
 package galena.oreganized.data;
 
-import java.util.concurrent.CompletableFuture;
-import net.minecraft.core.HolderLookup;
+import com.teamabnormals.blueprint.core.registry.BlueprintDataPackRegistries;
+import galena.oreganized.index.ODamageSources;
+import galena.oreganized.index.ORecords;
+import net.minecraft.core.registries.Registries;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 @EventBusSubscriber
@@ -22,15 +23,15 @@ public class OreganizedDatagen {
 
         ODatagen.addLangProvider(OLang::generate);
 
-        DatapackBuiltinEntriesProvider datapackProvider = new ORegistries(output, lookup);
-        CompletableFuture<HolderLookup.Provider> lookupProvider = datapackProvider.getRegistryProvider();
-        generator.addProvider(server, datapackProvider);
+        generator.addProvider(server, new ODataMaps(output, lookup));
 
-        generator.addProvider(server, new OBiomeTags(output, lookupProvider, helper));
-        generator.addProvider(server, new ODamageTypeTags(output, lookupProvider, helper));
-        generator.addProvider(server, new OPaintingVariantTags(output, lookupProvider, helper));
-
-        generator.addProvider(server, new ODataMaps(output, lookupProvider));
+        ODatagen.addDataRegistryEntries(Registries.CONFIGURED_FEATURE, OFeatures.Configured::bootstrap);
+        ODatagen.addDataRegistryEntries(Registries.PLACED_FEATURE, OFeatures.Placed::bootstrap);
+        ODatagen.addDataRegistryEntries(Registries.DAMAGE_TYPE, ODamageSources::bootStrap);
+        ODatagen.addDataRegistryEntries(Registries.TRIM_MATERIAL, OTrimMaterials::bootstrap);
+        ODatagen.addDataRegistryEntries(Registries.PAINTING_VARIANT, OPaintingVariants::bootstrap);
+        ODatagen.addDataRegistryEntries(Registries.JUKEBOX_SONG, ORecords::bootstrap);
+        ODatagen.addDataRegistryEntries(BlueprintDataPackRegistries.STRUCTURE_REPALETTERS, OStructurePalettes::bootstrap);
 
         generator.addProvider(client, new OSpriteSourceProvider(output, lookup, helper));
     }

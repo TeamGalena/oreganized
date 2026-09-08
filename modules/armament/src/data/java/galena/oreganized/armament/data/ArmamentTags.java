@@ -10,7 +10,9 @@ import galena.oreganized.index.OTags;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.PaintingVariantTags;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.decoration.PaintingVariant;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
@@ -22,6 +24,7 @@ public class ArmamentTags {
         ODatagen.addItemTagProvider(this::items);
         ODatagen.addBlockTagProvider(this::blocks);
         ODatagen.addEntityTagProvider(this::entities);
+        ODatagen.addPaintingTagProvider(this::paintings);
     }
 
     private void items(RegistrateItemTagsProvider provider) {
@@ -50,6 +53,10 @@ public class ArmamentTags {
         provider.addTag(OTags.Entities.BOLT_RESISTANT)
                 .addOptional(ResourceLocation.fromNamespaceAndPath("alexsmobs", "mimicube"))
                 .addOptional(ResourceLocation.fromNamespaceAndPath("caverns_and_chasms", "mime"));
+    }
+
+    private void paintings(RegistrateTagsProvider.IntrinsicImpl<PaintingVariant> provider) {
+        provider.addTag(PaintingVariantTags.PLACEABLE).add(ArmamentPaintingVariants.VINDICATING_BAD);
     }
 
 }

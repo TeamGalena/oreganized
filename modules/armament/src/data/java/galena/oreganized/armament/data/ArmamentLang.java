@@ -1,7 +1,6 @@
 package galena.oreganized.armament.data;
 
-import static galena.oreganized.data.provider.OLangProvider.addDeath;
-import static galena.oreganized.data.provider.OLangProvider.addSubtitle;
+import static galena.oreganized.data.provider.OLangProvider.*;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import galena.oreganized.OConstants;
@@ -40,6 +39,8 @@ public class ArmamentLang {
         provider.addEntityType(ArmamentEntities.LEAD_BOLT::get);
         provider.addEntityType(ArmamentEntities.SHRAPNEL_BOMB::get);
         provider.addEntityType(ArmamentEntities.SHRAPNEL_BOMB_MINECART, "Minecart with Shrapnel Bomb");
+
+        addPainting(provider, ArmamentPaintingVariants.VINDICATING_BAD, "Vindicating Bad", "Xaidee");
     }
 
 }

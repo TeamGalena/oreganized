@@ -7,8 +7,10 @@ import galena.oreganized.data.ODatagen;
 import galena.oreganized.glance.index.GlanceBlocks;
 import galena.oreganized.index.OTags;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.Tags;
 
 @Mod(OConstants.MOD_ID)
 public class GlanceTags {
@@ -16,6 +18,7 @@ public class GlanceTags {
     public GlanceTags() {
         ODatagen.addItemTagProvider(this::items);
         ODatagen.addBlockTagProvider(this::blocks);
+        ODatagen.addBiomeTagProvider(this::biomes);
     }
 
     private void items(RegistrateItemTagsProvider provider) {
@@ -51,6 +54,12 @@ public class GlanceTags {
                 GlanceBlocks.SPOTTED_GLANCE.getKey(),
                 GlanceBlocks.WAXED_SPOTTED_GLANCE.getKey()
         );
+    }
+
+    private void biomes(RegistrateTagsProvider.Impl<Biome> provider) {
+        provider.addTag(OTags.Biomes.HAS_BOULDER)
+                .addOptionalTag(OTags.Biomes.RICH_IN_LEAD_ORE)
+                .addTag(Tags.Biomes.IS_PLAINS);
     }
 
 }

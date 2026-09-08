@@ -1,6 +1,5 @@
 package galena.oreganized.data;
 
-import static galena.oreganized.data.provider.OLangProvider.addPainting;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import galena.oreganized.index.*;
@@ -10,8 +9,6 @@ public class OLang {
     static void generate(RegistrateLangProvider provider) {
         provider.add("tooltip.oreganized.wip.title", "Work In Progress");
         provider.add("tooltip.oreganized.wip.description", "Usages for this item will be available in a future release");
-
-        addPainting(provider, OPaintingVariants.VINDICATING_BAD, "Vindicating Bad", "Xaidee");
 
         provider.add(OTags.Items.INGOTS_ELECTRUM, "Electrum Ingots");
         provider.add(OTags.Items.INGOTS_SILVER, "Silver Ingots");

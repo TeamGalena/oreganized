@@ -52,6 +52,8 @@ public class OStructurePalettes {
         );
     }
 
+    // TODO modular currently not usable with registrate
+    // https://github.com/tterrag1098/Registrate/issues/96
     public static void conditions(BiConsumer<ResourceKey<?>, ICondition> consumer) {
         consumer.accept(CLERIC_WINDOWS, new ConfigValueCondition(OConditionTypes.CONFIG.get(), GothicConfigs.COMMON.replaceClericWindows, "cleric_windows", Map.of(), false));
     }

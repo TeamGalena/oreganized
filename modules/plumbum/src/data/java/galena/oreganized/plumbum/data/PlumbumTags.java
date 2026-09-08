@@ -11,15 +11,21 @@ import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.index.OTags;
 import galena.oreganized.plumbum.index.PlumbumBlocks;
+import galena.oreganized.plumbum.index.PlumbumDamageTypes;
 import galena.oreganized.plumbum.index.PlumbumFluids;
 import galena.oreganized.plumbum.index.PlumbumItems;
 import java.util.stream.Stream;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluid;
@@ -36,6 +42,8 @@ public class PlumbumTags {
         ODatagen.addEntityTagProvider(this::entities);
         ODatagen.addFluidTagProvider(this::fluids);
         ODatagen.addEnchantmentTagProvider(this::enchantments);
+        ODatagen.addDamageTypeTagProvider(this::damageTypes);
+        ODatagen.addBiomeTagProvider(this::biomes);
     }
 
     private void items(RegistrateItemTagsProvider provider) {
@@ -161,5 +169,15 @@ public class PlumbumTags {
         provider.addTag(OTags.Enchantments.HEAT_IMMUNITY).add(Enchantments.FROST_WALKER);
     }
 
+    private void damageTypes(RegistrateTagsProvider.Impl<DamageType> provider) {
+        provider.addTag(DamageTypeTags.IS_FIRE).add(PlumbumDamageTypes.MOLTEN_LEAD);
+        provider.addTag(DamageTypeTags.NO_KNOCKBACK).add(PlumbumDamageTypes.MOLTEN_LEAD);
+    }
+
+    private void biomes(RegistrateTagsProvider.Impl<Biome> provider) {
+        provider.addTag(OTags.Biomes.RICH_IN_LEAD_ORE).addTag(BiomeTags.IS_SAVANNA);
+        provider.addTag(OTags.Biomes.HAS_DATURA).addTags(BiomeTags.IS_SAVANNA);
+        provider.addTag(OTags.Biomes.HAS_SPARSE_DATURA).add(Biomes.PLAINS);
+    }
 
 }

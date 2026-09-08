@@ -23,7 +23,9 @@ public class ORegistrate extends AbstractRegistrate<ORegistrate> {
                 .getModContainerById(modid)
                 .map(ModContainer::getEventBus)
                 .orElseThrow();
+
         registrate.registerEventListeners(modBus);
+
         return registrate;
     }
 
