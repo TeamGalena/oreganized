@@ -1,14 +1,25 @@
 package galena.oreganized.plumbum.index;
 
+import com.teamabnormals.blueprint.common.dispenser.FishBucketDispenseItemBehavior;
+import com.teamabnormals.blueprint.core.util.DataUtil;
 import galena.oreganized.OConstants;
 import galena.oreganized.plumbum.world.item.ThermometerItem;
 import galena.oreganized.register.ItemRegistryHelper;
+import net.minecraft.core.dispenser.ProjectileDispenseBehavior;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
+import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
+
+import java.util.stream.Stream;
 
 @Mod(OConstants.MOD_ID)
 public class PlumbumItems {
@@ -33,6 +44,9 @@ public class PlumbumItems {
     public static final DeferredItem<Item> MUSIC_DISC_STRUCTURE = ITEMS.createItem("music_disc_structure",
             () -> new Item(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).jukeboxPlayable(PlumbumSongs.STRUCTURE)));
 
-
+    @SubscribeEvent
+    private static void registerDispenserBehaviours(FMLCommonSetupEvent event) {
+        DispenserBlock.registerBehavior(MOLTEN_LEAD_BUCKET.get(), new FishBucketDispenseItemBehavior());
+    }
 
 }

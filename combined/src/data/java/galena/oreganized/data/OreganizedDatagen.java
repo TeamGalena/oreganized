@@ -3,6 +3,7 @@ package galena.oreganized.data;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
+import galena.oreganized.client.OResourcePacks;
 import net.minecraft.DetectedVersion;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -56,7 +57,7 @@ public class OreganizedDatagen {
         )));
 
         var createCompat = generator.getBuiltinDatapack(client, "create_compat");
-        var createCompatOutput = new PackOutput(output.getOutputFolder().resolve("resourcepacks/create_compat"));
+        var createCompatOutput = new PackOutput(output.getOutputFolder().resolve(OResourcePacks.CREATE_COMPAT));
         createCompat.addProvider($ -> new PackMetadataGenerator(createCompatOutput).add(PackMetadataSection.TYPE, new PackMetadataSection(
                 Component.literal("Textures for other mods to fit Oreganized's color palettes for its materials"),
                 DetectedVersion.BUILT_IN.getPackVersion(PackType.CLIENT_RESOURCES),
