@@ -19,11 +19,8 @@ public class OreganizedDatagen {
         var lookup = event.getLookupProvider();
         var helper = event.getExistingFileHelper();
         boolean client = event.includeClient();
-        boolean server = event.includeServer();
 
         ODatagen.addLangProvider(OLang::generate);
-
-        generator.addProvider(server, new ODataMaps(output, lookup));
 
         ODatagen.addDataRegistryEntries(Registries.CONFIGURED_FEATURE, OFeatures.Configured::bootstrap);
         ODatagen.addDataRegistryEntries(Registries.PLACED_FEATURE, OFeatures.Placed::bootstrap);

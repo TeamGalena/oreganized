@@ -42,6 +42,7 @@ import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.data.DataMapProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 @Mod(OConstants.MOD_ID)
@@ -162,6 +163,10 @@ public class ODatagen {
         REGISTRY_BOOTSTRAP.combine(registry, bootstrap).ifPresent(it ->
                 REGISTRATE.getDataGenInitializer().add(registry, it)
         );
+    }
+
+    public static void addDataMapProvider(Consumer<DataMapProvider> consumer) {
+        REGISTRATE.addDataGenerator(ProviderType.DATA_MAP, consumer::accept);
     }
 
 }
