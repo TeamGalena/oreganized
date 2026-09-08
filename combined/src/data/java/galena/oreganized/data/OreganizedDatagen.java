@@ -1,15 +1,7 @@
 package galena.oreganized.data;
 
-import galena.oreganized.client.OResourcePacks;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import net.minecraft.DetectedVersion;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.PackOutput;
-import net.minecraft.data.metadata.PackMetadataGenerator;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.packs.PackType;
-import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -42,25 +34,11 @@ public class OreganizedDatagen {
         generator.addProvider(server, new OBiomeTags(output, lookupProvider, helper));
         generator.addProvider(server, new ODamageTypeTags(output, lookupProvider, helper));
         generator.addProvider(server, new OPaintingVariantTags(output, lookupProvider, helper));
+
         generator.addProvider(server, new ODataMaps(output, lookupProvider));
         generator.addProvider(server, new OLootModifiers(output, lookupProvider));
 
-        generator.addProvider(client, new OSoundDefinitions(output, helper));
         generator.addProvider(client, new OSpriteSourceProvider(output, lookup, helper));
-
-        generator.addProvider(server, new PackMetadataGenerator(output).add(PackMetadataSection.TYPE, new PackMetadataSection(
-                Component.literal("Oreganized resources"),
-                DetectedVersion.BUILT_IN.getPackVersion(PackType.CLIENT_RESOURCES),
-                Optional.empty()
-        )));
-
-        var createCompat = generator.getBuiltinDatapack(client, "create_compat");
-        var createCompatOutput = new PackOutput(output.getOutputFolder().resolve(OResourcePacks.CREATE_COMPAT));
-        createCompat.addProvider($ -> new PackMetadataGenerator(createCompatOutput).add(PackMetadataSection.TYPE, new PackMetadataSection(
-                Component.literal("Textures for other mods to fit Oreganized's color palettes for its materials"),
-                DetectedVersion.BUILT_IN.getPackVersion(PackType.CLIENT_RESOURCES),
-                Optional.empty()
-        )));
     }
 
 }

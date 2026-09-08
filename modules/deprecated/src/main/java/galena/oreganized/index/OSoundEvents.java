@@ -9,6 +9,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class OSoundEvents {
 
+    @Deprecated(forRemoval = true, since = "5.3.0")
     public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DISC_STRUCTURE = PlumbumSounds.MUSIC_DISC_STRUCTURE;
 
     @Deprecated(forRemoval = true, since = "5.3.0")

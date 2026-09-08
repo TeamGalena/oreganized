@@ -12,6 +12,8 @@ dependencies {
     dataImplementation(libs.create) { isTransitive = false }
     dataElements(libs.multikulti.datagen)
     dataImplementation(libs.multikulti.datagen)
+    dataElements(libs.multikulti.registrate)
+    dataImplementation(libs.multikulti.registrate)
     dataElements(pack.modrinth.farmers.delight)
     dataImplementation(pack.modrinth.farmers.delight)
 }
