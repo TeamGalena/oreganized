@@ -34,7 +34,6 @@ public class OreganizedDatagen {
         generator.addProvider(server, blockTags);
         generator.addProvider(server, new OItemTags(output, lookup, blockTags.contentsGetter(), helper));
         generator.addProvider(server, new OEntityTags(output, lookup, helper));
-        generator.addProvider(server, new OAdvancements(output, lookup, helper));
         generator.addProvider(server, new OFluidTags(output, lookup, helper));
         generator.addProvider(server, new OEnchantmentTags(output, lookup, helper));
         DatapackBuiltinEntriesProvider datapackProvider = new ORegistries(output, lookup);

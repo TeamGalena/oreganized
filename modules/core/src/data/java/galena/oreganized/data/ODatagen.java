@@ -1,10 +1,7 @@
 package galena.oreganized.data;
 
 import com.tterrag.registrate.AbstractRegistrate;
-import com.tterrag.registrate.providers.ProviderType;
-import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
-import com.tterrag.registrate.providers.RegistrateItemModelProvider;
-import com.tterrag.registrate.providers.RegistrateLangProvider;
+import com.tterrag.registrate.providers.*;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.providers.loot.RegistrateLootTableProvider.LootType;
 import galena.oreganized.OConstants;
@@ -60,5 +57,9 @@ public class ODatagen {
 
     public static void addItemModelProvider(Consumer<RegistrateItemModelProvider> consumer) {
         REGISTRATE.addDataGenerator(ProviderType.ITEM_MODEL, consumer::accept);
+    }
+
+    public static void addAdvancementProvider(Consumer<RegistrateAdvancementProvider> consumer) {
+        REGISTRATE.addDataGenerator(ProviderType.ADVANCEMENT, consumer::accept);
     }
 }
