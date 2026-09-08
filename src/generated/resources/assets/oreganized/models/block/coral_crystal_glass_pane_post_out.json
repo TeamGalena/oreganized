@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/template_glass_pane_post",
-  "textures": {
-    "edge": "dye_depot:block/coral_stained_glass_pane_top",
-    "pane": "oreganized:block/coral_crystal_glass_out"
-  }
-}

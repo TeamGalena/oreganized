@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_glass_pane_noside",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "pane": "oreganized:block/light_blue_crystal_glass_in"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "values": [
+    {
+      "id": "#oreganized:rich_in_lead_ore",
+      "required": false
+    },
+    "#c:is_plains"
+  ]
+}

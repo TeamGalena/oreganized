@@ -1,0 +1,9 @@
+{
+  "values": [
+    "minecraft:magma_block",
+    "minecraft:lava",
+    "minecraft:lava_cauldron",
+    "oreganized:molten_lead",
+    "oreganized:molten_lead_cauldron"
+  ]
+}

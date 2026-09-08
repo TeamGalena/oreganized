@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "galena.oreganized.gothic.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "DispenserBlockMixin",
+    "MobMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

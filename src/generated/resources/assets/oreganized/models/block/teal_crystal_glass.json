@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "oreganized:block/teal_crystal_glass"
-  }
-}

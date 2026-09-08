@@ -1,0 +1,44 @@
+package galena.oreganized.index;
+
+import galena.oreganized.argentum.index.ArgentumParticles;
+import galena.oreganized.armament.index.ArmamentParticles;
+import galena.oreganized.electrum.index.ElectrumParticles;
+import galena.oreganized.gothic.index.GothicParticles;
+import galena.oreganized.plumbum.index.PlumbumParticles;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.neoforged.neoforge.registries.DeferredHolder;
+
+public class OParticleTypes {
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> DRIPPING_LEAD = PlumbumParticles.DRIPPING_LEAD;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> FALLING_LEAD = PlumbumParticles.FALLING_LEAD;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LANDING_LEAD = PlumbumParticles.LANDING_LEAD;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LEAD_CLOUD = PlumbumParticles.LEAD_CLOUD;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LEAD_BLOW = PlumbumParticles.LEAD_BLOW;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LEAD_SHRAPNEL = ArmamentParticles.LEAD_SHRAPNEL;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> VENGEANCE = GothicParticles.VENGEANCE;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> KINETIC_HIT = ElectrumParticles.KINETIC_HIT;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> TARNISH = ArgentumParticles.TARNISH;
+
+    @Deprecated(forRemoval = true, since = "5.3.0")
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> POLISH = ArgentumParticles.POLISH;
+
+}

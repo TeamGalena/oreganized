@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_top_right",
-  "textures": {
-    "bottom": "oreganized:block/goopy_lead_door_bottom_open",
-    "top": "oreganized:block/goopy_lead_door_top_open"
-  }
-}

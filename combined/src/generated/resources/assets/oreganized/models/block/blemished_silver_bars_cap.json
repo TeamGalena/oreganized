@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/iron_bars_cap",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bars": "oreganized:block/blemished_silver_bars",
+    "edge": "oreganized:block/blemished_silver_bars_edge",
+    "particle": "oreganized:block/blemished_silver_bars"
+  }
+}

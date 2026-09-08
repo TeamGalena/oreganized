@@ -1,0 +1,19 @@
+dependencies {
+    modApi(libs.blueprint)
+    modApi(libs.ponder)
+    modApi(libs.flywheel)
+
+    modImplementation(pack.modrinth.farmers.delight)
+
+    // TODO combine in dataApi?
+    dataElements(libs.registrate)
+    dataImplementation(libs.registrate)
+    dataElements(libs.create) { isTransitive = false }
+    dataImplementation(libs.create) { isTransitive = false }
+    dataElements(libs.multikulti.datagen)
+    dataImplementation(libs.multikulti.datagen)
+    dataElements(libs.multikulti.registrate)
+    dataImplementation(libs.multikulti.registrate)
+    dataElements(pack.modrinth.farmers.delight)
+    dataImplementation(pack.modrinth.farmers.delight)
+}
