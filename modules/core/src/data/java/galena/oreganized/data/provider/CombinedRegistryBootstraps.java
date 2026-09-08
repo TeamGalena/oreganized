@@ -20,7 +20,7 @@ public class CombinedRegistryBootstraps {
         combined.add(bootstrap);
 
         if (exists) return Optional.empty();
-        return Optional.of(bootstrap);
+        return Optional.of(combined);
     }
 
     private static class Combined<T> implements RegistryBootstrap<T> {

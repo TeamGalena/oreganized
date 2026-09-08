@@ -4,9 +4,35 @@
       "type": "blueprint:paletted_permutations",
       "palette_key": "minecraft:trims/color_palettes/trim_palette",
       "permutations": {
-        "oreganized_electrum": "oreganized:trims/color_palettes/electrum",
-        "oreganized_lead": "oreganized:trims/color_palettes/lead",
         "oreganized_silver": "oreganized:trims/color_palettes/silver"
+      },
+      "sources": [
+        {
+          "type": "minecraft:directory",
+          "prefix": "trims/models/armor/",
+          "source": "trims/models/armor"
+        }
+      ]
+    },
+    {
+      "type": "blueprint:paletted_permutations",
+      "palette_key": "minecraft:trims/color_palettes/trim_palette",
+      "permutations": {
+        "oreganized_electrum": "oreganized:trims/color_palettes/electrum"
+      },
+      "sources": [
+        {
+          "type": "minecraft:directory",
+          "prefix": "trims/models/armor/",
+          "source": "trims/models/armor"
+        }
+      ]
+    },
+    {
+      "type": "blueprint:paletted_permutations",
+      "palette_key": "minecraft:trims/color_palettes/trim_palette",
+      "permutations": {
+        "oreganized_lead": "oreganized:trims/color_palettes/lead"
       },
       "sources": [
         {

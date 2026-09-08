@@ -12,11 +12,10 @@ import galena.oreganized.compat.ponder.PonderCompat;
 import galena.oreganized.data.extensions.OTagExtensions;
 import galena.oreganized.data.provider.CombinedRegistryBootstraps;
 import galena.oreganized.data.provider.RegistrateLootModifierProvider;
-
+import galena.oreganized.data.provider.RegistrateSpriteSourceProvider;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
-
 import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraft.DetectedVersion;
 import net.minecraft.core.Registry;
@@ -122,6 +121,10 @@ public class ODatagen {
 
     public static void addLootModifierProvider(Consumer<RegistrateLootModifierProvider> consumer) {
         REGISTRATE.addDataGenerator(RegistrateLootModifierProvider.PROVIDER, consumer::accept);
+    }
+
+    public static void addSpriteSourceProvider(Consumer<RegistrateSpriteSourceProvider> consumer) {
+        REGISTRATE.addDataGenerator(RegistrateSpriteSourceProvider.PROVIDER, consumer::accept);
     }
 
     public static void addBlockTagProvider(Consumer<RegistrateTagsProvider.IntrinsicImpl<Block>> consumer) {
