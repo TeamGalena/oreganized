@@ -31,6 +31,9 @@ base {
 dependencies {
     modInclude(libs.galena.hats)
 
+    modIncludeCompileOnly(libs.ponder)
+    modIncludeCompileOnly(libs.flywheel)
+
     // TODO modular try again
     // interfaceInjectionData(project(":core"))
     // interfaceInjectionData(project(":plumbum"))
@@ -50,8 +53,6 @@ dependencies {
         isTransitive = false
     }
     modImplementation(pack.modrinth.supplementaries)
-    modIncludeCompileOnly(libs.ponder)
-    modIncludeCompileOnly(libs.flywheel)
 
     // For dev testing
     // runtimeOnly(pack.modrinth.scannable)
@@ -63,14 +64,14 @@ dependencies {
     modRuntimeOnly(pack.modrinth.no.mans.land)
     modRuntimeOnly(pack.modrinth.freecam)
 
-    modCompileOnly(libs.jei.common.api)
-    modCompileOnly(libs.jei.neoforge.api)
     modRuntimeOnly(libs.jei.neoforge)
-
-    "dataImplementation"(libs.multikulti.datagen)
 }
 
 upload {
+    maven {
+        name = "${mod.id.get()}-${mod.minecraftVersion.get()}"
+    }
+
     modrinth {
         dependencies {
             required("blueprint")
