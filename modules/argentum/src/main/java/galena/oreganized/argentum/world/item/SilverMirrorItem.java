@@ -15,7 +15,7 @@ import net.minecraft.world.phys.AABB;
 public class SilverMirrorItem extends Item {
 
     private static final float RANGE = 24.0F;
-    public static final int TEXTURED_FRAMES = 8;
+    public static final int FRAMES = 8;
 
     public SilverMirrorItem(Item.Properties properties) {
         super(properties);
@@ -25,7 +25,7 @@ public class SilverMirrorItem extends Item {
     public void inventoryTick(ItemStack stack, Level world, Entity entity, int i, boolean idk) {
         if (!(entity instanceof Player player)) return;
         BlockPos pos = player.getOnPos();
-        int dist = getUndeadDistance(world, pos, player, TEXTURED_FRAMES);
+        int dist = getUndeadDistance(world, pos, player, FRAMES);
 
         stack.set(ArgentumDataComponents.MIRROR_LEVEL, dist);
     }

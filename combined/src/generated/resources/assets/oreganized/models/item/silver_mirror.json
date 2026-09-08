@@ -1,0 +1,53 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "oreganized:item/silver_mirror_0",
+      "predicate": {
+        "oreganized:mirror_level": 0.0
+      }
+    },
+    {
+      "model": "oreganized:item/silver_mirror_1",
+      "predicate": {
+        "oreganized:mirror_level": 1.0
+      }
+    },
+    {
+      "model": "oreganized:item/silver_mirror_2",
+      "predicate": {
+        "oreganized:mirror_level": 2.0
+      }
+    },
+    {
+      "model": "oreganized:item/silver_mirror_3",
+      "predicate": {
+        "oreganized:mirror_level": 3.0
+      }
+    },
+    {
+      "model": "oreganized:item/silver_mirror_4",
+      "predicate": {
+        "oreganized:mirror_level": 4.0
+      }
+    },
+    {
+      "model": "oreganized:item/silver_mirror_5",
+      "predicate": {
+        "oreganized:mirror_level": 5.0
+      }
+    },
+    {
+      "model": "oreganized:item/silver_mirror_6",
+      "predicate": {
+        "oreganized:mirror_level": 6.0
+      }
+    },
+    {
+      "model": "oreganized:item/silver_mirror_7",
+      "predicate": {
+        "oreganized:mirror_level": 7.0
+      }
+    }
+  ]
+}

@@ -31,6 +31,7 @@ import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.decoration.PaintingVariant;
+import net.minecraft.world.item.armortrim.TrimMaterial;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
@@ -56,8 +57,12 @@ public class ODatagen {
     private static final ProviderType<RegistrateTagsProvider.Impl<DamageType>> DAMAGE_TYPE_TAGS =
             ProviderType.registerDynamicTag("tags/damage_type", "damage_type", Registries.DAMAGE_TYPE);
 
+    private static final ProviderType<RegistrateTagsProvider.Impl<TrimMaterial>> TRIM_MATERIAL_TAGS =
+            ProviderType.registerDynamicTag("tags/trim_materials", "trim_material", Registries.TRIM_MATERIAL);
+
     static {
         REGISTRATE.getDataGenInitializer().addDependency(DAMAGE_TYPE_TAGS, ProviderType.DYNAMIC);
+        REGISTRATE.getDataGenInitializer().addDependency(TRIM_MATERIAL_TAGS, ProviderType.DYNAMIC);
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
@@ -158,6 +163,10 @@ public class ODatagen {
 
     public static void addDamageTypeTagProvider(Consumer<RegistrateTagsProvider.Impl<DamageType>> consumer) {
         REGISTRATE.addDataGenerator(DAMAGE_TYPE_TAGS, consumer::accept);
+    }
+
+    public static void addTrimMaterialTagProvider(Consumer<RegistrateTagsProvider.Impl<TrimMaterial>> consumer) {
+        REGISTRATE.addDataGenerator(TRIM_MATERIAL_TAGS, consumer::accept);
     }
 
     private static final CombinedRegistryBootstraps REGISTRY_BOOTSTRAP = new CombinedRegistryBootstraps();
