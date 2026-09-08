@@ -1,15 +1,19 @@
 package galena.oreganized.data.extensions;
 
 import java.util.Map;
+
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.armortrim.TrimMaterial;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 public class ORegistryBootstrapExtensions {
 
@@ -22,6 +26,11 @@ public class ORegistryBootstrapExtensions {
                 overrides,
                 Component.translatable(Util.makeDescriptionId("trim_material", location)).withStyle(style))
         );
+    }
+
+    public static Holder<ConfiguredFeature<?, ?>> getConfigured(BootstrapContext<?> context, ResourceLocation id) {
+        var configured = context.lookup(Registries.CONFIGURED_FEATURE);
+        return configured.getOrThrow(ResourceKey.create(Registries.CONFIGURED_FEATURE, id));
     }
 
 }

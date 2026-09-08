@@ -1,4 +1,4 @@
-package galena.oreganized.data;
+package galena.oreganized.device.data;
 
 import com.teamabnormals.blueprint.common.world.modification.structure.SimpleStructureRepaletter;
 import com.teamabnormals.blueprint.common.world.modification.structure.StructureRepaletter;
@@ -6,14 +6,17 @@ import com.teamabnormals.blueprint.common.world.modification.structure.Structure
 import com.teamabnormals.blueprint.core.api.conditions.ConfigValueCondition;
 import com.teamabnormals.blueprint.core.registry.BlueprintDataPackRegistries;
 import galena.oreganized.OConstants;
+import galena.oreganized.data.ColorCompat;
+import galena.oreganized.data.ODatagen;
 import galena.oreganized.gothic.config.GothicConfigs;
-import galena.oreganized.index.OBlocks;
+import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.index.OConditionTypes;
 
 import java.util.Comparator;
 import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Predicate;
+
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -21,9 +24,15 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.StructureTags;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.conditions.ICondition;
 
-public class OStructurePalettes {
+@Mod(OConstants.MOD_ID)
+public class GothicStructurePalettes {
+
+    public GothicStructurePalettes() {
+        ODatagen.addDataRegistryEntries(BlueprintDataPackRegistries.STRUCTURE_REPALETTERS, this::bootstrap);
+    }
 
     private static final ResourceKey<StructureRepaletterEntry> CLERIC_WINDOWS = ResourceKey.create(BlueprintDataPackRegistries.STRUCTURE_REPALETTERS, OConstants.modLoc("replace_cleric_windows"));
 
@@ -39,22 +48,22 @@ public class OStructurePalettes {
                 ).toArray(StructureRepaletter[]::new);
     }
 
-    public static void bootstrap(BootstrapContext<StructureRepaletterEntry> context) {
+    // TODO modular currently not usable with registrate
+    // https://github.com/tterrag1098/Registrate/issues/96
+    public static void conditions(BiConsumer<ResourceKey<?>, ICondition> consumer) {
+        consumer.accept(CLERIC_WINDOWS, new ConfigValueCondition(OConditionTypes.CONFIG.get(), GothicConfigs.COMMON.replaceClericWindows, "cleric_windows", Map.of(), false));
+    }
+
+    private void bootstrap(BootstrapContext<StructureRepaletterEntry> context) {
         var structures = context.lookup(Registries.STRUCTURE);
         var villages = structures.getOrThrow(StructureTags.VILLAGE);
 
         context.register(
                 CLERIC_WINDOWS,
                 new StructureRepaletterEntry.Builder()
-                        .repaletters(replaceColored(OBlocks.CRYSTAL_GLASS, "stained_glass", it -> !ColorCompat.isModded(it)))
-                        .repaletters(replaceColored(OBlocks.CRYSTAL_GLASS_PANES, "stained_glass_pane", it -> !ColorCompat.isModded(it)))
+                        .repaletters(replaceColored(GothicBlocks.CRYSTAL_GLASS, "stained_glass", it -> !ColorCompat.isModded(it)))
+                        .repaletters(replaceColored(GothicBlocks.CRYSTAL_GLASS_PANES, "stained_glass_pane", it -> !ColorCompat.isModded(it)))
                         .select(villages)
         );
-    }
-
-    // TODO modular currently not usable with registrate
-    // https://github.com/tterrag1098/Registrate/issues/96
-    public static void conditions(BiConsumer<ResourceKey<?>, ICondition> consumer) {
-        consumer.accept(CLERIC_WINDOWS, new ConfigValueCondition(OConditionTypes.CONFIG.get(), GothicConfigs.COMMON.replaceClericWindows, "cleric_windows", Map.of(), false));
     }
 }
