@@ -1,12 +1,18 @@
 package galena.oreganized.data;
 
-
 import com.tterrag.registrate.providers.RegistrateLangProvider;
-import galena.oreganized.index.*;
+import galena.oreganized.OConstants;
+import galena.oreganized.index.OTags;
+import net.neoforged.fml.common.Mod;
 
-public class OLang {
+@Mod(OConstants.MOD_ID)
+public class CoreLang {
 
-    static void generate(RegistrateLangProvider provider) {
+    public CoreLang() {
+        ODatagen.addLangProvider(this::generate);
+    }
+
+    private void generate(RegistrateLangProvider provider) {
         provider.add("tooltip.oreganized.wip.title", "Work In Progress");
         provider.add("tooltip.oreganized.wip.description", "Usages for this item will be available in a future release");
 
@@ -42,26 +48,6 @@ public class OLang {
 
         provider.add(OTags.Enchantments.HEAT_IMMUNITY, "Heat Protective Footwear");
         provider.add(OTags.Enchantments.PREVENTS_LEAD_CLOUD, "Prevents Lead Clouds");
-
-        /*
-            Automatically create translations for blocks and items based on their registry name.
-
-            This must be at the very bottom to avoid overwriting errors. These functions ignore objects
-            that have already been translated above.
-        // TODO modular add common method
-        for (Holder<? extends Block> blocks : OConstants.REGISTRY_HELPER.getBlockSubHelper().getDeferredRegister().getEntries()) {
-            tryBlock(blocks);
-        }
-        for (Holder<? extends Item> items : OConstants.REGISTRY_HELPER.getItemSubHelper().getDeferredRegister().getEntries()) {
-            if (!items.equals(OItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE)) tryItem(items);
-        }
-        for (Holder<? extends Fluid> fluids : OConstants.REGISTRY_HELPER.getFluidSubHelper().getDeferredRegister().getEntries()) {
-            tryFluid(fluids);
-        }
-        for (Holder<? extends EntityType<?>> entities : OConstants.REGISTRY_HELPER.getEntitySubHelper().getDeferredRegister().getEntries()) {
-            tryEntity(entities);
-        }
-         */
     }
 
 }

@@ -20,8 +20,6 @@ public class OreganizedDatagen {
         var helper = event.getExistingFileHelper();
         boolean client = event.includeClient();
 
-        ODatagen.addLangProvider(OLang::generate);
-
         ODatagen.addDataRegistryEntries(Registries.CONFIGURED_FEATURE, OFeatures.Configured::bootstrap);
         ODatagen.addDataRegistryEntries(Registries.PLACED_FEATURE, OFeatures.Placed::bootstrap);
         ODatagen.addDataRegistryEntries(Registries.DAMAGE_TYPE, ODamageSources::bootStrap);
