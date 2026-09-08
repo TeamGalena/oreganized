@@ -45,7 +45,7 @@ public class SpeedometerItem extends Item {
     }
 
     @SubscribeEvent
-    public static void renderHighlight(AdditionalHighlightEvent event) {
+    private static void renderHighlight(AdditionalHighlightEvent event) {
         if (event.getStack().is(ElectrumItems.SPEEDOMETER.value()) && event.getPlayer().getRootVehicle() instanceof IMotionHolder motionHolder) {
             long time = event.getLevel().getGameTime();
             double speed = motionHolder.oreganised$getMotion();

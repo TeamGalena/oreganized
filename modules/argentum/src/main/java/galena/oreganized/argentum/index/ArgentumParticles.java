@@ -24,7 +24,7 @@ public class ArgentumParticles {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> POLISH = PARTICLES.createSimple("polish");
 
     @SubscribeEvent
-    public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
+    private static void registerParticleFactories(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(TARNISH.get(), TarnishParticle.Provider::new);
         event.registerSpriteSet(POLISH.get(), PolishParticle.Provider::new);
     }

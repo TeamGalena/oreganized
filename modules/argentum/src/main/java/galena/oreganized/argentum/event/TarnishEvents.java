@@ -11,7 +11,7 @@ import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 public class TarnishEvents {
 
     @SubscribeEvent
-    public static void onEntityDie(LivingDeathEvent event) {
+    private static void onEntityDie(LivingDeathEvent event) {
         var entity = event.getEntity();
 
         if (entity.getType().is(EntityTypeTags.UNDEAD)) {

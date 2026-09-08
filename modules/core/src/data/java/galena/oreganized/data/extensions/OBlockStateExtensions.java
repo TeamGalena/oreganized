@@ -13,6 +13,9 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 
 public class OBlockStateExtensions {
 
+    public static final ResourceLocation CUTOUT = withDefaultNamespace("cutout");
+    public static final ResourceLocation TRANSLUCENT = withDefaultNamespace("translucent");
+
     public static void cubeAll(BlockStateProvider provider, DeferredBlock<? extends Block> block) {
         var model = provider.cubeAll(block.value());
         provider.simpleBlockWithItem(block.value(), model);
@@ -88,20 +91,21 @@ public class OBlockStateExtensions {
         var name = block.getId().getPath();
         var edgeTexture = texture.withSuffix("_edge");
 
-        var post = ironBarsBlock(provider, name, "post", texture).texture("bars", edgeTexture);
-        var postEnds = ironBarsBlock(provider, name, "post_ends", texture).texture("edge", edgeTexture);
-        var side = ironBarsBlock(provider, name, "side", texture).texture("bars", texture).texture("edge", edgeTexture);
-        var sideAlt = ironBarsBlock(provider, name, "side_alt", texture).texture("bars", texture).texture("edge", edgeTexture);
-        var cap = ironBarsBlock(provider, name, "cap", texture).texture("bars", texture).texture("edge", edgeTexture);
-        var capAlt = ironBarsBlock(provider, name, "cap_alt", texture).texture("bars", texture).texture("edge", edgeTexture);
+        var post = ironBarsModel(provider, name, "post", texture).texture("bars", edgeTexture);
+        var postEnds = ironBarsModel(provider, name, "post_ends", texture).texture("edge", edgeTexture);
+        var side = ironBarsModel(provider, name, "side", texture).texture("bars", texture).texture("edge", edgeTexture);
+        var sideAlt = ironBarsModel(provider, name, "side_alt", texture).texture("bars", texture).texture("edge", edgeTexture);
+        var cap = ironBarsModel(provider, name, "cap", texture).texture("bars", texture).texture("edge", edgeTexture);
+        var capAlt = ironBarsModel(provider, name, "cap_alt", texture).texture("bars", texture).texture("edge", edgeTexture);
 
         pane(provider, block.value(), post, postEnds, side, sideAlt, cap, capAlt);
         generatedItem(provider, block, BLOCK_FOLDER);
     }
 
-    private static BlockModelBuilder ironBarsBlock(BlockStateProvider provider, String name, String suffix, ResourceLocation texture) {
+    public static BlockModelBuilder ironBarsModel(BlockStateProvider provider, String name, String suffix, ResourceLocation texture) {
         return provider.models()
                 .withExistingParent(name + "_" + suffix, withDefaultNamespace("block/iron_bars_" + suffix))
+                .renderType(CUTOUT)
                 .texture("particle", texture);
     }
 
@@ -113,12 +117,13 @@ public class OBlockStateExtensions {
     public static void crossWithPot(BlockStateProvider provider, DeferredBlock<? extends Block> cross, DeferredBlock<? extends FlowerPotBlock> potted) {
         var texture = provider.blockTexture(cross.value());
         crossBlock(provider, cross);
-        provider.simpleBlock(potted.value(), provider.models().singleTexture(potted.getId().getPath(), withDefaultNamespace("block/flower_pot_cross"), "plant", texture));
+        var pottedModel = provider.models().singleTexture(potted.getId().getPath(), withDefaultNamespace("block/flower_pot_cross"), "plant", texture).renderType(CUTOUT);
+        provider.simpleBlock(potted.value(), pottedModel);
     }
 
     public static void crossBlock(BlockStateProvider provider, DeferredBlock<? extends Block> cross) {
         var texture = provider.blockTexture(cross.value());
-        provider.simpleBlock(cross.value(), provider.models().cross(cross.getId().getPath(), texture));
+        provider.simpleBlock(cross.value(), provider.models().cross(cross.getId().getPath(), texture).renderType(CUTOUT));
         generatedItem(provider, cross, BLOCK_FOLDER);
     }
 

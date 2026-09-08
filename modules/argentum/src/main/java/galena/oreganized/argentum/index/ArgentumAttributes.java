@@ -17,7 +17,7 @@ public class ArgentumAttributes {
     public static final DeferredHolder<Attribute, Attribute> INVINCIBILITY_FRAMES = ATTRIBUTES.createRanged("invincibility_frames", 1.0, 0.0, 60);
 
     @SubscribeEvent
-    public static void registerAttributes(EntityAttributeModificationEvent event) {
+    private static void registerAttributes(EntityAttributeModificationEvent event) {
         for (var entityType : event.getTypes()) {
             if (event.has(entityType, Attributes.ARMOR)) {
                 event.add(entityType, ArgentumAttributes.INVINCIBILITY_FRAMES);

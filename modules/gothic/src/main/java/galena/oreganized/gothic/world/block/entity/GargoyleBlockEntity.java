@@ -41,7 +41,7 @@ public class GargoyleBlockEntity extends BlockEntity {
     private static final String GROWL_COOLDOWN_TAG = OConstants.MOD_ID + ":gargoyle_use_cooldown";
 
     @SubscribeEvent
-    public static void tickPlayer(final PlayerTickEvent.Post event) {
+    private static void tickPlayer(final PlayerTickEvent.Post event) {
         var data = event.getEntity().getPersistentData();
         if (data.contains(GROWL_COOLDOWN_TAG, 99)) {
             var cooldown = data.getInt(GROWL_COOLDOWN_TAG);

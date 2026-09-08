@@ -1,4 +1,4 @@
-package galena.oreganized.compat.create;
+package galena.oreganized.plumbum.world;
 
 import com.simibubi.create.content.equipment.armor.BacktankUtil;
 import com.simibubi.create.content.equipment.armor.DivingHelmetItem;

@@ -20,7 +20,7 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 public class OreganizedDatagen {
 
     @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void gatherData(GatherDataEvent event) {
+    private static void gatherData(GatherDataEvent event) {
         var generator = event.getGenerator();
         var output = generator.getPackOutput();
         var lookup = event.getLookupProvider();

@@ -3,9 +3,6 @@ package galena.oreganized;
 import com.teamabnormals.blueprint.common.dispenser.FishBucketDispenseItemBehavior;
 import com.teamabnormals.blueprint.core.util.DataUtil;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
-import galena.oreganized.api.LeadProtections;
-import galena.oreganized.compat.create.CreateCompat;
-import galena.oreganized.debug.ODebugCommands;
 import galena.oreganized.index.*;
 import galena.oreganized.plumbum.config.PlumbumConfigs;
 import galena.oreganized.plumbum.world.block.LeadOreBlock;
@@ -15,9 +12,7 @@ import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.core.dispenser.ProjectileDispenseBehavior;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.FireBlock;
@@ -25,11 +20,8 @@ import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.fluids.FluidInteractionRegistry;
 
 @Mod(OConstants.MOD_ID)
@@ -39,30 +31,7 @@ public class Oreganized {
     public static final RegistryHelper REGISTRY_HELPER = OConstants.REGISTRY_HELPER;
 
     public Oreganized(IEventBus modBus, ModContainer container) {
-        final IEventBus forgeBus = NeoForge.EVENT_BUS;
-
         modBus.addListener(this::setup);
-        forgeBus.addListener(this::registerPotionMixes);
-
-        OConditionTypes.register(modBus);
-
-        var createLoaded = ModList.get().getModContainerById(ModCompat.CREATE)
-                .filter(it -> it.getModInfo().getVersion().getMajorVersion() >= 6)
-                .isPresent();
-
-        if (createLoaded) {
-            CreateCompat.register(modBus);
-        }
-
-        LeadProtections.register(entity -> entity.getItemBySlot(EquipmentSlot.HEAD).is(OTags.Items.PROTECTIVE_HELMET));
-        LeadProtections.register(entity -> {
-            for (var slot : entity.getArmorSlots()) {
-                if (!slot.is(OTags.Items.PROTECTIVE_ARMOR_PART)) return false;
-            }
-            return true;
-        });
-
-        forgeBus.addListener(ODebugCommands::register);
     }
 
     private void setup(FMLCommonSetupEvent event) {
@@ -118,11 +87,6 @@ public class Oreganized {
                 }, 1);
             });
         });
-    }
-
-    private void registerPotionMixes(RegisterBrewingRecipesEvent event) {
-        event.getBuilder().addMix(Potions.WATER, OItems.LEAD_INGOT.get(), OPotions.STUNNING);
-        event.getBuilder().addMix(OPotions.STUNNING, Items.REDSTONE, OPotions.LONG_STUNNING);
     }
 
 }

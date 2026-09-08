@@ -18,7 +18,7 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 public final class ElectrumArmorModel {
 
     @SubscribeEvent
-    public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
+    private static void registerClientExtensions(RegisterClientExtensionsEvent event) {
         event.registerItem(new CustomArmorModelExtensions(ModdedArmorModel::new, ElectrumArmorModel::createBodyLayer), ElectrumItems.electrumArmor().toArray(Holder[]::new));
     }
 

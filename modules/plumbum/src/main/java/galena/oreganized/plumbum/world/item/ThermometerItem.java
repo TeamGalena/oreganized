@@ -219,7 +219,7 @@ public class ThermometerItem extends Item {
     }
 
     @SubscribeEvent
-    public static void onHitAir(PlayerInteractEvent.LeftClickEmpty event) {
+    private static void onHitAir(PlayerInteractEvent.LeftClickEmpty event) {
         var stack = event.getItemStack();
         if (!stack.is(PlumbumItems.THERMOMETER.get())) return;
         setLocked(event.getEntity(), stack, false);
@@ -230,7 +230,7 @@ public class ThermometerItem extends Item {
     }
 
     @SubscribeEvent
-    public static void tickPlayer(final PlayerTickEvent.Post event) {
+    private static void tickPlayer(final PlayerTickEvent.Post event) {
         if (event.getEntity().level().getGameTime() % 20L != 0) return;
 
         var stack = event.getEntity().getItemInHand(InteractionHand.MAIN_HAND);
@@ -242,7 +242,7 @@ public class ThermometerItem extends Item {
     }
 
     @SubscribeEvent
-    public static void renderHighlight(AdditionalHighlightEvent event) {
+    private static void renderHighlight(AdditionalHighlightEvent event) {
         if (event.getStack().is(PlumbumItems.THERMOMETER.value())) {
             var heatLevel = ThermometerItem.getHeatLevel(event.getStack());
             var tooltip = Component.translatable(ClientThermometerTooltip.getDescriptionId(heatLevel))

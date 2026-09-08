@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/iron_bars_side_alt",
+  "render_type": "minecraft:cutout",
   "textures": {
     "bars": "oreganized:block/blemished_silver_bars",
     "edge": "oreganized:block/blemished_silver_bars_edge",

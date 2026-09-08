@@ -36,7 +36,11 @@ public class ArgentumBlockStates {
         ArgentumBlocks.SILVER_DOORS.all().forEach(it -> door(provider, it));
         ArgentumBlocks.SILVER_TRAPDOORS.all().forEach(it -> trapDoor(provider, it));
 
-        cubeAll(provider, ArgentumBlocks.GROOVED_ICE);
+        provider.simpleBlockWithItem(
+                ArgentumBlocks.GROOVED_ICE.value(),
+                provider.models().cubeAll(ArgentumBlocks.GROOVED_ICE.getId().getPath(), blockTexture(ArgentumBlocks.GROOVED_ICE.getId()))
+                        .renderType(TRANSLUCENT)
+        );
         cubeAll(provider, ArgentumBlocks.GROOVED_PACKED_ICE);
         cubeAll(provider, ArgentumBlocks.GROOVED_BLUE_ICE);
     }

@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/iron_bars_post",
+  "render_type": "minecraft:cutout",
   "textures": {
     "bars": "oreganized:block/blemished_silver_bars_edge",
     "particle": "oreganized:block/blemished_silver_bars"

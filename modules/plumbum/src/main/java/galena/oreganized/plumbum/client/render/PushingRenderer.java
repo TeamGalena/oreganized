@@ -15,7 +15,7 @@ import net.neoforged.neoforge.client.event.RenderHandEvent;
 public class PushingRenderer {
 
     @SubscribeEvent
-    public static void renderHand(RenderHandEvent event) {
+    private static void renderHand(RenderHandEvent event) {
         var player = Minecraft.getInstance().player;
 
         if (!PushableBlockEntity.isPushing(player)) return;

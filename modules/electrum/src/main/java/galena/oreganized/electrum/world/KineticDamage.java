@@ -57,7 +57,7 @@ public class KineticDamage {
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
-    public static void onItemAttributes(ItemAttributeModifierEvent event) {
+    private static void onItemAttributes(ItemAttributeModifierEvent event) {
         var stack = event.getItemStack();
 
         if (stack.is(OTags.Items.HAS_KINETIC_DAMAGE)) {

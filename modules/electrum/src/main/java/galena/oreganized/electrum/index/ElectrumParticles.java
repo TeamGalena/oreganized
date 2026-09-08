@@ -21,7 +21,7 @@ public class ElectrumParticles {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> KINETIC_HIT = PARTICLES.createSimple("kinetic_hit");
 
     @SubscribeEvent
-    public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
+    private static void registerParticleFactories(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(KINETIC_HIT.get(), KineticHitParticle.Provider::new);
     }
 

@@ -28,7 +28,7 @@ public class TarnishBlockManager {
     private static final Set<Block> PRISTINE = new HashSet<>();
 
     @SubscribeEvent
-    public static void reload(DataMapsUpdatedEvent event) {
+    private static void reload(DataMapsUpdatedEvent event) {
         event.ifRegistry(Registries.BLOCK, registry -> {
             OConstants.LOGGER.debug("reloading tarnishables");
 

@@ -29,7 +29,7 @@ public class ODatagen {
     private static final AbstractRegistrate<?> REGISTRATE = ORegistrate.create(OConstants.MOD_ID);
 
     @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void generatePonderLang(GatherDataEvent event) {
+    private static void generatePonderLang(GatherDataEvent event) {
         PonderCompat.register();
         PonderIndex.getLangAccess().provideLang(OConstants.MOD_ID, REGISTRATE::addRawLang);
     }

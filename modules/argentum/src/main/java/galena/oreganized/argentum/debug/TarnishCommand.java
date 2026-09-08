@@ -1,4 +1,4 @@
-package galena.oreganized.debug;
+package galena.oreganized.argentum.debug;
 
 import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
@@ -12,17 +12,17 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.commands.arguments.coordinates.BlockPosArgument;
 
-public class PolishCommand {
+public class TarnishCommand {
 
     public static LiteralArgumentBuilder<CommandSourceStack> create() {
-        return literal("polish")
+        return literal("tarnish")
                 .then(literal("block")
                         .then(argument("pos", BlockPosArgument.blockPos())
-                                .executes(PolishCommand::executeOnBlock)
+                                .executes(TarnishCommand::executeOnBlock)
                         )
                 ).then(literal("entity")
                         .then(argument("selector", EntityArgument.entities())
-                                .executes(PolishCommand::executeOnEntity)
+                                .executes(TarnishCommand::executeOnEntity)
                         )
                 );
     }
@@ -31,7 +31,7 @@ public class PolishCommand {
         var pos = BlockPosArgument.getBlockPos(context, "pos");
         var level = context.getSource().getLevel();
 
-        var success = TarnishBlockManager.tryPolishing(pos, level);
+        var success = TarnishBlockManager.tryTarnishing(pos, level);
 
         return success ? 1 : 0;
     }
@@ -40,7 +40,7 @@ public class PolishCommand {
         var entities = EntityArgument.getEntities(context, "selector");
 
         var successes = entities.stream()
-                .filter(TarnishEntityManager::tryPolishing)
+                .filter(TarnishEntityManager::tryTarnish)
                 .count();
 
         return Math.toIntExact(successes);

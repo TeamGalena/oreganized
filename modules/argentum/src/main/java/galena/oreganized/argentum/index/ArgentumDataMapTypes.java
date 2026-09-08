@@ -19,7 +19,7 @@ public class ArgentumDataMapTypes {
     ).build();
 
     @SubscribeEvent
-    public static void registerDataMapTypes(RegisterDataMapTypesEvent event) {
+    private static void registerDataMapTypes(RegisterDataMapTypesEvent event) {
         event.register(TARNISHABLES);
     }
 

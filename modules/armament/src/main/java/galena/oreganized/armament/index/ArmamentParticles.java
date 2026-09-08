@@ -21,7 +21,7 @@ public class ArmamentParticles {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LEAD_SHRAPNEL = PARTICLES.createSimple("lead_shrapnel");
 
     @SubscribeEvent
-    public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
+    private static void registerParticleFactories(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(LEAD_SHRAPNEL.get(), LeadShrapnelParticle.Provider::new);
     }
 

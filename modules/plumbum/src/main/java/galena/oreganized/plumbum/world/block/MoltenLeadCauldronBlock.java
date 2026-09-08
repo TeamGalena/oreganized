@@ -174,7 +174,7 @@ public class MoltenLeadCauldronBlock extends AbstractCauldronBlock implements Ca
     }
 
     @SubscribeEvent
-    public static void blockItemInteractions(final PlayerInteractEvent.RightClickBlock event) {
+    private static void blockItemInteractions(final PlayerInteractEvent.RightClickBlock event) {
         var level = event.getLevel();
         var pos = event.getPos();
         var state = level.getBlockState(pos);

@@ -18,7 +18,7 @@ public class BushHammerItem extends DiggerItem {
     }
 
     @SubscribeEvent
-    public static void addTooltips(ItemTooltipEvent event) {
+    private static void addTooltips(ItemTooltipEvent event) {
         if (event.getItemStack().is(EngravedItems.BUSH_HAMMER.get())) {
             var tooltip = event.getToolTip();
             var wipTitle = Component.translatable("tooltip.oreganized.wip.title");

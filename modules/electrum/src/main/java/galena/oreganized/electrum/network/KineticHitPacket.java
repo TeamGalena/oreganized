@@ -24,7 +24,7 @@ public record KineticHitPacket(int target, float factor) implements CustomPacket
     );
 
     @SubscribeEvent
-    public static void register(RegisterPayloadHandlersEvent event) {
+    private static void register(RegisterPayloadHandlersEvent event) {
         var registrar = event.registrar(OConstants.PROTOCOL_VERSION);
         registrar.playToClient(KineticHitPacket.TYPE.type(), KineticHitPacket.TYPE.codec(), KineticHitPacket::handle);
     }

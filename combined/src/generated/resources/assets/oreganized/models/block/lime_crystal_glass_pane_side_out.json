@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/template_glass_pane_side",
+  "render_type": "minecraft:translucent",
   "textures": {
     "edge": "minecraft:block/lime_stained_glass_pane_top",
     "pane": "oreganized:block/lime_crystal_glass_out"

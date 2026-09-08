@@ -32,7 +32,7 @@ public class StunningOverlay implements LayeredDraw.Layer {
     }
 
     @SubscribeEvent
-    public static void registerGuiOverlays(RegisterGuiLayersEvent event) {
+    private static void registerGuiOverlays(RegisterGuiLayersEvent event) {
         event.registerAbove(VanillaGuiLayers.EFFECTS, OConstants.modLoc("stunning"), new StunningOverlay());
     }
 

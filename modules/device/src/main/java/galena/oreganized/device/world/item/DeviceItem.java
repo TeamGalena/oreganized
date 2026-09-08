@@ -61,7 +61,7 @@ public class DeviceItem extends Item {
     }
 
     @SubscribeEvent
-    public static void onHitAir(PlayerInteractEvent.LeftClickEmpty event) {
+    private static void onHitAir(PlayerInteractEvent.LeftClickEmpty event) {
         var stack = event.getItemStack();
         if (!stack.is(DeviceItems.UNKNOWN_DEVICE.get())) return;
         event.getEntity().playSound(SoundEvents.AMETHYST_BLOCK_RESONATE, 1F, 1.5F);
@@ -69,7 +69,7 @@ public class DeviceItem extends Item {
     }
 
     @SubscribeEvent
-    public static void renderHighlight(AdditionalHighlightEvent event) {
+    private static void renderHighlight(AdditionalHighlightEvent event) {
         DeviceItem.getValue(event.getStack()).ifPresent(value -> {
             var tooltip = Component.literal(String.format("%s", value))
                     .withStyle(style -> style.withColor(DeviceItem.TOOLTIP_COLOR));

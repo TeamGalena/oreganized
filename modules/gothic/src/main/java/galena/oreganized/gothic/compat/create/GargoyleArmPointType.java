@@ -1,11 +1,11 @@
-package galena.oreganized.compat.create;
+package galena.oreganized.gothic.compat.create;
 
 import com.simibubi.create.content.kinetics.mechanicalArm.AllArmInteractionPointTypes;
 import com.simibubi.create.content.kinetics.mechanicalArm.ArmBlockEntity;
 import com.simibubi.create.content.kinetics.mechanicalArm.ArmInteractionPoint;
 import com.simibubi.create.content.kinetics.mechanicalArm.ArmInteractionPointType;
+import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.gothic.world.block.entity.GargoyleBlockEntity;
-import galena.oreganized.index.OBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -20,7 +20,7 @@ public class GargoyleArmPointType extends ArmInteractionPointType {
 
     @Override
     public boolean canCreatePoint(Level level, BlockPos pos, BlockState state) {
-        return state.is(OBlocks.GARGOYLE.get());
+        return state.is(GothicBlocks.GARGOYLE.get());
     }
 
     @Override

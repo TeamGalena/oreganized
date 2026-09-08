@@ -16,7 +16,7 @@ import net.neoforged.neoforge.client.event.RegisterClientTooltipComponentFactori
 public class ClientThermometerTooltip implements ClientTooltipComponent {
 
     @SubscribeEvent
-    public static void registerClientTooltips(RegisterClientTooltipComponentFactoriesEvent event) {
+    private static void registerClientTooltips(RegisterClientTooltipComponentFactoriesEvent event) {
         event.register(ThermometerTooltip.class, ClientThermometerTooltip::new);
     }
 

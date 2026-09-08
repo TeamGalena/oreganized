@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/iron_bars_post_ends",
+  "render_type": "minecraft:cutout",
   "textures": {
     "bars": "oreganized:block/lead_bars",
     "edge": "oreganized:block/lead_bars",

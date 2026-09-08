@@ -18,7 +18,7 @@ public class ElectrumAttributes {
 
 
     @SubscribeEvent
-    public static void registerAttributes(EntityAttributeModificationEvent event) {
+    private static void registerAttributes(EntityAttributeModificationEvent event) {
         for (var entityType : event.getTypes()) {
             if (event.has(entityType, Attributes.ATTACK_DAMAGE)) {
                 event.add(entityType, ElectrumAttributes.KINETIC_DAMAGE);

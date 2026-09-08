@@ -125,7 +125,7 @@ public class ScribeItem extends Item {
     }
 
     @SubscribeEvent
-    public static void onBlockBreak(final BlockDropsEvent event) {
+    private static void onBlockBreak(final BlockDropsEvent event) {
         var stack = event.getTool();
 
         if (stack.getItem() instanceof ScribeItem scribe && scribe.dropsLikeSilktouch(stack, event.getState())) {

@@ -1,7 +1,6 @@
 package galena.oreganized.plumbum.data;
 
 import static galena.oreganized.data.extensions.OBlockStateExtensions.*;
-import static net.minecraft.resources.ResourceLocation.withDefaultNamespace;
 import static net.neoforged.neoforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
 import static net.neoforged.neoforge.client.model.generators.ModelProvider.ITEM_FOLDER;
 
@@ -171,10 +170,10 @@ public class PlumbumBlockStates {
             var bottom = goopyness < 2 ? texture.withSuffix("_bottom" + textureSuffix) : RED_HOT;
             var top = goopyness < 2 ? texture.withSuffix("_top" + textureSuffix) : RED_HOT;
 
-            var bottomLeft = provider.models().doorBottomLeft(name + "_bottom_left" + textureSuffix, bottom, top);
-            var bottomRight = provider.models().doorBottomRight(name + "_bottom_right" + textureSuffix, bottom, top);
-            var topLeft = provider.models().doorTopLeft(name + "_top_left" + textureSuffix, bottom, top);
-            var topRight = provider.models().doorTopRight(name + "_top_right" + textureSuffix, bottom, top);
+            var bottomLeft = provider.models().doorBottomLeft(name + "_bottom_left" + textureSuffix, bottom, top).renderType(CUTOUT);
+            var bottomRight = provider.models().doorBottomRight(name + "_bottom_right" + textureSuffix, bottom, top).renderType(CUTOUT);
+            var topLeft = provider.models().doorTopLeft(name + "_top_left" + textureSuffix, bottom, top).renderType(CUTOUT);
+            var topRight = provider.models().doorTopRight(name + "_top_right" + textureSuffix, bottom, top).renderType(CUTOUT);
 
             int yRot = (int) state.getValue(DoorBlock.FACING).toYRot() + 90;
             if (open) {
@@ -219,17 +218,15 @@ public class PlumbumBlockStates {
             var name = key.getPath();
             var texture = blockTexture(key);
 
-            Function<String, ModelFile> createModel = suffix -> provider.models()
-                    .withExistingParent(name + suffix, blockTexture(withDefaultNamespace("iron_bars" + suffix)))
+            Function<String, ModelFile> createModel = suffix -> ironBarsModel(provider, name, suffix, texture)
                     .texture("bars", texture)
-                    .texture("edge", texture)
-                    .texture("particle", texture);
+                    .texture("edge", texture);
 
-            builder.part().modelFile(createModel.apply("_post_ends")).addModel()
+            builder.part().modelFile(createModel.apply("post_ends")).addModel()
                     .condition(property, goopyness);
 
             builder.part()
-                    .modelFile(createModel.apply("_post")).addModel()
+                    .modelFile(createModel.apply("post")).addModel()
                     .condition(property, goopyness)
                     .condition(IronBarsBlock.NORTH, false)
                     .condition(IronBarsBlock.EAST, false)
@@ -248,7 +245,7 @@ public class PlumbumBlockStates {
                 };
 
                 builder.part()
-                        .modelFile(createModel.apply("_cap" + suffix)).rotationY(yRotation).addModel()
+                        .modelFile(createModel.apply("cap" + suffix)).rotationY(yRotation).addModel()
                         .condition(property, goopyness)
                         .condition(CrossCollisionBlock.NORTH, direction == Direction.NORTH)
                         .condition(CrossCollisionBlock.EAST, direction == Direction.EAST)
@@ -256,7 +253,7 @@ public class PlumbumBlockStates {
                         .condition(CrossCollisionBlock.WEST, direction == Direction.WEST);
 
                 builder.part()
-                        .modelFile(createModel.apply("_side" + suffix)).rotationY(yRotation).addModel()
+                        .modelFile(createModel.apply("side" + suffix)).rotationY(yRotation).addModel()
                         .condition(property, goopyness)
                         .condition(PipeBlock.PROPERTY_BY_DIRECTION.get(direction), true);
             });

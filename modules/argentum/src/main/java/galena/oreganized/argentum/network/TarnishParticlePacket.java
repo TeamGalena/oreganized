@@ -27,7 +27,7 @@ public record TarnishParticlePacket(BlockPos pos, Boolean tarnished) implements 
     );
 
     @SubscribeEvent
-    public static void register(RegisterPayloadHandlersEvent event) {
+    private static void register(RegisterPayloadHandlersEvent event) {
         var registrar = event.registrar(OConstants.PROTOCOL_VERSION);
         registrar.playToClient(TarnishParticlePacket.TYPE.type(), TarnishParticlePacket.TYPE.codec(), TarnishParticlePacket::handle);
     }

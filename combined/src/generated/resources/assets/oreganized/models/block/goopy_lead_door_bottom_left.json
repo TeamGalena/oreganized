@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/door_bottom_left",
+  "render_type": "minecraft:cutout",
   "textures": {
     "bottom": "oreganized:block/goopy_lead_door_bottom",
     "top": "oreganized:block/goopy_lead_door_top"

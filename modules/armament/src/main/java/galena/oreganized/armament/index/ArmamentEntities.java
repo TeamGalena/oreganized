@@ -45,7 +45,7 @@ public class ArmamentEntities {
     );
 
     @SubscribeEvent
-    public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+    private static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(SHRAPNEL_BOMB.value(), ShrapnelBombRender::new);
         event.registerEntityRenderer(SHRAPNEL_BOMB_MINECART.get(), ShrapnelBombMinecartRender::new);
         event.registerEntityRenderer(LEAD_BOLT.get(), LeadBoltRender::new);

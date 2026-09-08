@@ -49,7 +49,7 @@ public class LeadOreBlock {
     }
 
     @SubscribeEvent
-    public static void onBreak(BlockEvent.BreakEvent event) {
+    private static void onBreak(BlockEvent.BreakEvent event) {
         var state = event.getState();
         var pos = event.getPos();
 

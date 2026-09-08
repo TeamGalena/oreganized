@@ -30,7 +30,7 @@ public class OTabs {
     private static final ResourceLocation ND_TAB = ResourceLocation.fromNamespaceAndPath(NETHERS_DELIGHT, "main");
 
     @SubscribeEvent
-    public static void buildCreativeModeTabContents(BuildCreativeModeTabContentsEvent event) {
+    private static void buildCreativeModeTabContents(BuildCreativeModeTabContentsEvent event) {
         ResourceKey<CreativeModeTab> tab = event.getTabKey();
 
         if (tab == CreativeModeTabs.NATURAL_BLOCKS || tab == CreativeModeTabs.BUILDING_BLOCKS) {

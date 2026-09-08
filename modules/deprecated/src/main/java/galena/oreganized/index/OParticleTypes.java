@@ -7,13 +7,8 @@ import galena.oreganized.gothic.index.GothicParticles;
 import galena.oreganized.plumbum.index.PlumbumParticles;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-@EventBusSubscriber(Dist.CLIENT)
 public class OParticleTypes {
 
     @Deprecated(forRemoval = true, since = "5.3.0")
@@ -45,10 +40,5 @@ public class OParticleTypes {
 
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> POLISH = ArgentumParticles.POLISH;
-
-    @SubscribeEvent
-    public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
-    }
-
 
 }

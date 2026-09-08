@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/template_glass_pane_post",
+  "render_type": "minecraft:translucent",
   "textures": {
     "edge": "minecraft:block/pink_stained_glass_pane_top",
     "pane": "oreganized:block/pink_crystal_glass_rot"

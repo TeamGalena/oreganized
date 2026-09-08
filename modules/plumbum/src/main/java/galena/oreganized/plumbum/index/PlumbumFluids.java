@@ -45,7 +45,7 @@ public class PlumbumFluids {
             .tickRate(30);
 
     @SubscribeEvent
-    public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
+    private static void registerClientExtensions(RegisterClientExtensionsEvent event) {
         event.registerFluidType(new MoltenLeadClientExtensions(), MOLTEN_LEAD_TYPE);
     }
 

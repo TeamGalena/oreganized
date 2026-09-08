@@ -34,7 +34,7 @@ public class PlumbumHeartTypes {
     }
 
     @SubscribeEvent
-    public static void modifyHeartType(PlayerHeartTypeEvent event) {
+    private static void modifyHeartType(PlayerHeartTypeEvent event) {
         if (event.getEntity().hasEffect(PlumbumEffects.STUNNING)) {
             if (event.getOriginalType() == Gui.HeartType.NORMAL) event.setType(STUNNED.getValue());
             if (event.getOriginalType() == Gui.HeartType.POISIONED) event.setType(STUNNED_POISONED.getValue());

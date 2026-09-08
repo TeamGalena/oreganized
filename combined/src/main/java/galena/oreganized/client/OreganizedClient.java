@@ -6,7 +6,6 @@ import galena.oreganized.compat.ponder.PonderCompat;
 import galena.oreganized.device.client.DevicePropertyFunction;
 import galena.oreganized.electrum.accessor.IMotionHolder;
 import galena.oreganized.electrum.world.item.SpeedometerItem;
-import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.ODataComponents;
 import galena.oreganized.index.OItems;
 import galena.oreganized.plumbum.world.item.ThermometerItem;
@@ -38,9 +37,8 @@ public class OreganizedClient {
     }
 
     @SubscribeEvent
-    public static void setup(FMLClientSetupEvent event) {
+    private static void setup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
-            OreganizedClient.registerBlockRenderers();
             OreganizedClient.registerItemProperties();
         });
 
@@ -50,7 +48,7 @@ public class OreganizedClient {
     }
 
     @SubscribeEvent
-    public static void addResourcePacks(AddPackFindersEvent event) {
+    private static void addResourcePacks(AddPackFindersEvent event) {
         event.addPackFinders(
                 OConstants.modLoc("resourcepacks/create_compat"),
                 PackType.CLIENT_RESOURCES,
@@ -86,27 +84,6 @@ public class OreganizedClient {
         );
 
         ItemProperties.register(OItems.UNKNOWN_DEVICE.get(), ODataComponents.DEVICE_VALUE.getId(), new DevicePropertyFunction());
-    }
-
-    private static void registerBlockRenderers() {
-        RenderType cutout = RenderType.cutout();
-        RenderType translucent = RenderType.translucent();
-
-        OBlocks.SILVER_DOORS.all().forEach(deferredBlock -> render(deferredBlock, cutout));
-        OBlocks.SILVER_TRAPDOORS.all().forEach(deferredBlock -> render(deferredBlock, cutout));
-        render(OBlocks.LEAD_DOOR, cutout);
-        render(OBlocks.LEAD_TRAPDOOR, cutout);
-        render(OBlocks.LEAD_BARS, cutout);
-        render(OBlocks.GARGOYLE, cutout);
-        render(OBlocks.WHITE_DATURA, cutout);
-        render(OBlocks.PURPLE_DATURA, cutout);
-        render(OBlocks.POTTED_WHITE_DATURA, cutout);
-        render(OBlocks.POTTED_PURPLE_DATURA, cutout);
-        OBlocks.CRYSTAL_GLASS.forEach((c, b) -> render(b, translucent));
-        OBlocks.CRYSTAL_GLASS_PANES.forEach((c, b) -> render(b, translucent));
-        OBlocks.SILVER_BARS.all().forEach((b) -> render(b, translucent));
-
-        render(OBlocks.GROOVED_ICE, translucent);
     }
 
 }

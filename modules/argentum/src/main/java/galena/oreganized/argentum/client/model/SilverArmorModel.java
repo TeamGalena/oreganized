@@ -18,7 +18,7 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 public class SilverArmorModel {
 
     @SubscribeEvent
-    public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
+    private static void registerClientExtensions(RegisterClientExtensionsEvent event) {
         event.registerItem(new CustomArmorModelExtensions(ModdedArmorModel::new, SilverArmorModel::createBodyLayer), ArgentumItems.silverArmor().toArray(Holder[]::new));
     }
 

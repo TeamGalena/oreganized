@@ -13,7 +13,7 @@ import net.neoforged.neoforge.client.event.RegisterClientTooltipComponentFactori
 public class ClientDeviceTooltip implements ClientTooltipComponent {
 
     @SubscribeEvent
-    public static void registerClientTooltips(RegisterClientTooltipComponentFactoriesEvent event) {
+    private static void registerClientTooltips(RegisterClientTooltipComponentFactoriesEvent event) {
         event.register(DeviceTooltip.class, ClientDeviceTooltip::new);
     }
 

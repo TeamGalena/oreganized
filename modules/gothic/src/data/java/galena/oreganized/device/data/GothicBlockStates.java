@@ -76,16 +76,17 @@ public class GothicBlockStates {
         var name = block.getId().getPath();
         var texture = provider.blockTexture(block.value());
 
-        provider.getVariantBuilder(block.value()).partialState().with(CrystalGlassBlock.TYPE, CrystalGlassBlock.NORMAL).modelForState()
-                .modelFile(provider.cubeAll(block.value())).addModel().partialState().with(CrystalGlassBlock.TYPE, CrystalGlassBlock.ROTATED)
-                .modelForState().modelFile(provider.models().cubeAll(name + "_rot",
-                        texture.withSuffix("_rot"))).addModel()
-                .partialState().with(CrystalGlassBlock.TYPE, CrystalGlassBlock.INNER)
-                .modelForState().modelFile(provider.models().cubeAll(name + "_in",
-                        texture.withSuffix("_in"))).addModel()
-                .partialState().with(CrystalGlassBlock.TYPE, CrystalGlassBlock.OUTER)
-                .modelForState().modelFile(provider.models().cubeAll(name + "_out",
-                        texture.withSuffix("_out"))).addModel();
+        provider.getVariantBuilder(block.value()).forAllStatesExcept(state -> {
+            var type =  state.getValue(CrystalGlassBlock.TYPE);
+            var suffix = crystalGlassSuffix(type);
+
+            var model = provider.models().cubeAll(name + suffix, texture.withSuffix(suffix))
+                    .renderType(TRANSLUCENT);
+
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .build();
+        });
 
         blockItem(provider, block);
     }
@@ -97,20 +98,41 @@ public class GothicBlockStates {
         var texture = provider.blockTexture(fullBlock.value());
 
         for (int i = 0; i < 4; i++) {
-            int finalI = i;
+            int type = i;
             PipeBlock.PROPERTY_BY_DIRECTION.entrySet().forEach(e -> {
                 Direction dir = e.getKey();
                 if (dir.getAxis().isHorizontal()) {
                     boolean alt = dir == Direction.SOUTH;
-                    var suffix = crystalGlassSuffix(finalI);
+                    var suffix = crystalGlassSuffix(type);
                     var topTexture = blockTexture(fromNamespaceAndPath(ColorCompat.getNamespace(color), color.getSerializedName() + "_stained_glass_pane_top"));
-                    builder.part().modelFile(provider.models().panePost(paneName + "_post" + suffix, texture.withSuffix(suffix), topTexture)).addModel().condition(CrystalGlassPaneBlock.TYPE, finalI).end()
-                            .part().modelFile(alt || dir == Direction.WEST ? provider.models().paneSideAlt(paneName + "_side_alt" + suffix, texture.withSuffix(suffix), topTexture) :
-                                    provider.models().paneSide(paneName + "_side" + suffix, texture.withSuffix(suffix), topTexture)).rotationY(dir.getAxis() == Direction.Axis.X ? 90 : 0).addModel()
-                            .condition(e.getValue(), true).condition(CrystalGlassPaneBlock.TYPE, finalI).end()
-                            .part().modelFile(alt || dir == Direction.EAST ? provider.models().paneNoSideAlt(paneName + "_noside_alt" + suffix, texture.withSuffix(suffix)) :
-                                    provider.models().paneNoSide(paneName + "_noside" + suffix, texture.withSuffix(suffix))).rotationY(dir == Direction.WEST ? 270 : dir == Direction.SOUTH ? 90 : 0).addModel()
-                            .condition(e.getValue(), false).condition(CrystalGlassPaneBlock.TYPE, finalI);
+
+                    var post = provider.models().panePost(paneName + "_post" + suffix, texture.withSuffix(suffix), topTexture).renderType(TRANSLUCENT);
+                    var side = provider.models().paneSide(paneName + "_side" + suffix, texture.withSuffix(suffix), topTexture).renderType(TRANSLUCENT);
+                    var sideAlt = provider.models().paneSideAlt(paneName + "_side_alt" + suffix, texture.withSuffix(suffix), topTexture).renderType(TRANSLUCENT);
+                    var nosideAlt = provider.models().paneNoSideAlt(paneName + "_noside_alt" + suffix, texture.withSuffix(suffix)).renderType(TRANSLUCENT);
+                    var noside = provider.models().paneNoSide(paneName + "_noside" + suffix, texture.withSuffix(suffix)).renderType(TRANSLUCENT);
+
+                    builder.
+                            part()
+                            .modelFile(post)
+                            .addModel()
+                            .condition(CrystalGlassPaneBlock.TYPE, type)
+                            .end()
+
+                            .part()
+                            .modelFile(alt || dir == Direction.WEST ? sideAlt : side)
+                            .rotationY(dir.getAxis() == Direction.Axis.X ? 90 : 0)
+                            .addModel()
+                            .condition(e.getValue(), true)
+                            .condition(CrystalGlassPaneBlock.TYPE, type)
+                            .end()
+
+                            .part().modelFile(alt || dir == Direction.EAST ? nosideAlt : noside)
+                            .rotationY(dir == Direction.WEST ? 270 : dir == Direction.SOUTH ? 90 : 0)
+                            .addModel()
+                            .condition(e.getValue(), false)
+                            .condition(CrystalGlassPaneBlock.TYPE, type)
+                            .end();
                 }
             });
         }

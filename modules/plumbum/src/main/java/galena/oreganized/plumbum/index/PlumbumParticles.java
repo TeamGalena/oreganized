@@ -31,7 +31,7 @@ public class PlumbumParticles {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LEAD_BLOW = PARTICLES.createSimple("lead_blow");
 
     @SubscribeEvent
-    public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
+    private static void registerParticleFactories(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(DRIPPING_LEAD.get(), LeadFluidParticle.HangProvider::new);
         event.registerSpriteSet(FALLING_LEAD.get(), LeadFluidParticle.FallProvider::new);
         event.registerSpriteSet(LANDING_LEAD.get(), LeadFluidParticle.LandProvider::new);
