@@ -9,6 +9,7 @@ import com.tterrag.registrate.providers.loot.RegistrateLootTableProvider.LootTyp
 import galena.oreganized.OConstants;
 import galena.oreganized.client.OResourcePacks;
 import galena.oreganized.compat.ponder.PonderCompat;
+import galena.oreganized.data.extensions.OTagExtensions;
 import galena.oreganized.data.provider.RegistrateLootModifierProvider;
 import java.util.Optional;
 import java.util.function.BiConsumer;
@@ -22,6 +23,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.neoforged.bus.api.EventPriority;
@@ -97,5 +102,26 @@ public class ODatagen {
 
     public static void addLootModifierProvider(Consumer<RegistrateLootModifierProvider> consumer) {
         REGISTRATE.addDataGenerator(RegistrateLootModifierProvider.PROVIDER, consumer::accept);
+    }
+
+    public static void addBlockTagProvider(Consumer<RegistrateTagsProvider.IntrinsicImpl<Block>> consumer) {
+        REGISTRATE.addDataGenerator(ProviderType.BLOCK_TAGS, consumer::accept);
+    }
+
+    public static void addItemTagProvider(Consumer<RegistrateItemTagsProvider> consumer) {
+        REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, consumer::accept);
+        REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, OTagExtensions::copyBlockTags);
+    }
+
+    public static void addFluidTagProvider(Consumer<RegistrateTagsProvider.IntrinsicImpl<Fluid>> consumer) {
+        REGISTRATE.addDataGenerator(ProviderType.FLUID_TAGS, consumer::accept);
+    }
+
+    public static void addEntityTagProvider(Consumer<RegistrateTagsProvider.IntrinsicImpl<EntityType<?>>> consumer) {
+        REGISTRATE.addDataGenerator(ProviderType.ENTITY_TAGS, consumer::accept);
+    }
+
+    public static void addEnchantmentTagProvider(Consumer<RegistrateTagsProvider.Impl<Enchantment>> consumer) {
+        REGISTRATE.addDataGenerator(ProviderType.ENCHANTMENT_TAGS, consumer::accept);
     }
 }

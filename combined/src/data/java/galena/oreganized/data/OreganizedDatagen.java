@@ -22,13 +22,6 @@ public class OreganizedDatagen {
 
         ODatagen.addLangProvider(OLang::generate);
 
-        OBlockTags blockTags = new OBlockTags(output, lookup, helper);
-        generator.addProvider(server, blockTags);
-        generator.addProvider(server, new OItemTags(output, lookup, blockTags.contentsGetter(), helper));
-        generator.addProvider(server, new OEntityTags(output, lookup, helper));
-        generator.addProvider(server, new OFluidTags(output, lookup, helper));
-        generator.addProvider(server, new OEnchantmentTags(output, lookup, helper));
-
         DatapackBuiltinEntriesProvider datapackProvider = new ORegistries(output, lookup);
         CompletableFuture<HolderLookup.Provider> lookupProvider = datapackProvider.getRegistryProvider();
         generator.addProvider(server, datapackProvider);
