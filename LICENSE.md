@@ -1,9 +1,9 @@
 <!---
 <meta>
    <source>@pssbletrngle/github-meta-generator</source>
-   <version>1.0.120</version>
-   <timestamp>2026-08-11T16:32:47.548Z</timestamp>
-   <hash>b5e943bce0cdfa7e</hash>
+   <version>1.0.122</version>
+   <timestamp>2026-09-08T19:59:51.368Z</timestamp>
+   <hash>2a806efc4931e513</hash>
 </meta>
 -->
 
@@ -17,7 +17,15 @@ Copyright (c) 2026 TeamGalena
 
 This license applies to any files under the following directories:
 
-- ./src/main/resources/assets/
+- ./combined/src/main/resources/assets/
+- ./modules/argentum/src/main/resources/assets/
+- ./modules/armament/src/main/resources/assets/
+- ./modules/device/src/main/resources/assets/
+- ./modules/electrum/src/main/resources/assets/
+- ./modules/engraved/src/main/resources/assets/
+- ./modules/glance/src/main/resources/assets/
+- ./modules/gothic/src/main/resources/assets/
+- ./modules/plumbum/src/main/resources/assets/
 
 ---
 
