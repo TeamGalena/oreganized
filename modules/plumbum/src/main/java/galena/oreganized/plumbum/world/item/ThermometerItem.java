@@ -1,8 +1,9 @@
 package galena.oreganized.plumbum.world.item;
 
 import galena.oreganized.OConstants;
-import galena.oreganized.accessor.GuiAccessor;
+import galena.oreganized.client.render.AdditionalHighlightEvent;
 import galena.oreganized.index.OTags;
+import galena.oreganized.plumbum.client.tooltip.ClientThermometerTooltip;
 import galena.oreganized.plumbum.client.tooltip.ThermometerTooltip;
 import galena.oreganized.plumbum.index.PlumbumCriterionTriggers;
 import galena.oreganized.plumbum.index.PlumbumDataComponents;
@@ -11,10 +12,10 @@ import galena.oreganized.plumbum.world.block.IMeltableBlock;
 
 import java.util.Optional;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -201,13 +202,7 @@ public class ThermometerItem extends Item {
     public static void setHeatLevel(ItemStack stack, @Nullable Level level, int heatLevel) {
         if (getHeatLevel(stack) == heatLevel) return;
         stack.set(PlumbumDataComponents.HEAT_LEVEL, heatLevel);
-        if (level != null && level.isClientSide()) {
-
-            // TODO modules use interface data
-            if (Minecraft.getInstance().gui instanceof GuiAccessor accessor) {
-                accessor.oreganized$setToolHighlightTimer(60);
-            }
-        }
+        AdditionalHighlightEvent.resetHighlightTimer(level);
     }
 
     public static boolean isLocked(ItemStack stack) {
@@ -243,6 +238,17 @@ public class ThermometerItem extends Item {
         if (stack.getItem() instanceof ThermometerItem && !ThermometerItem.isLocked(stack)) {
             var heatLevel = ThermometerItem.ambientMeasurement(event.getEntity());
             ThermometerItem.setHeatLevel(stack, event.getEntity().level(), heatLevel);
+        }
+    }
+
+    @SubscribeEvent
+    public static void renderHighlight(AdditionalHighlightEvent event) {
+        if (event.getStack().is(PlumbumItems.THERMOMETER.value())) {
+            var heatLevel = ThermometerItem.getHeatLevel(event.getStack());
+            var tooltip = Component.translatable(ClientThermometerTooltip.getDescriptionId(heatLevel))
+                    .withStyle(style -> style.withColor(ClientThermometerTooltip.getColor(heatLevel)));
+
+            event.drawCentered(tooltip);
         }
     }
 

@@ -1,13 +1,13 @@
 package galena.oreganized.device.world.item;
 
-import galena.oreganized.accessor.GuiAccessor;
+import galena.oreganized.client.render.AdditionalHighlightEvent;
 import galena.oreganized.device.client.DeviceTooltip;
 import galena.oreganized.device.index.DeviceDataComponents;
 import galena.oreganized.device.index.DeviceItems;
 
 import java.util.Optional;
 
-import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -49,11 +49,7 @@ public class DeviceItem extends Item {
         if (getValue(stack).isPresent()) return super.use(level, player, hand);
         generateValue(stack, player.getRandom());
         player.playSound(SoundEvents.LODESTONE_COMPASS_LOCK, 1F, 1.5F);
-        if (level.isClientSide()) {
-            if (Minecraft.getInstance().gui instanceof GuiAccessor accessor) {
-                accessor.oreganized$setToolHighlightTimer(60);
-            }
-        }
+        AdditionalHighlightEvent.resetHighlightTimer(level);
         return InteractionResultHolder.success(stack);
     }
 
@@ -70,6 +66,15 @@ public class DeviceItem extends Item {
         if (!stack.is(DeviceItems.UNKNOWN_DEVICE.get())) return;
         event.getEntity().playSound(SoundEvents.AMETHYST_BLOCK_RESONATE, 1F, 1.5F);
         clearValue(stack);
+    }
+
+    @SubscribeEvent
+    public static void renderHighlight(AdditionalHighlightEvent event) {
+        DeviceItem.getValue(event.getStack()).ifPresent(value -> {
+            var tooltip = Component.literal(String.format("%s", value))
+                    .withStyle(style -> style.withColor(DeviceItem.TOOLTIP_COLOR));
+            event.drawCentered(tooltip);
+        });
     }
 
 }

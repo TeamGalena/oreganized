@@ -69,7 +69,7 @@ ordering = "AFTER"
 side = "BOTH"
 
 [[mixins]]
-config = "${mod_id}.mixins.json"
+config = "${mod_id}.core.mixins.json"
 [[mixins]]
 config = "${mod_id}.plumbum.mixins.json"
 [[mixins]]

@@ -68,6 +68,8 @@ public class OTags {
 
         public static final TagKey<Item> SLICER_TOOLS = TagUtil.itemTag("sliceanddice", "allowed_tools");
 
+        public static final TagKey<Item> HIDES_HAT_LAYER = tag("hides/hat_layer");
+
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(OConstants.modLoc(name));
         }

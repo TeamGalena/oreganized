@@ -2,6 +2,7 @@ package galena.oreganized.data;
 
 import galena.oreganized.ModCompat;
 import galena.oreganized.OConstants;
+import galena.oreganized.argentum.index.ArgentumItems;
 import galena.oreganized.index.DyeColors;
 import galena.oreganized.index.OBlocks;
 import galena.oreganized.index.OItems;
@@ -192,5 +193,7 @@ public class OItemTags extends ItemTagsProvider {
         tag(OTags.Items.SLICER_TOOLS).add(Items.BRUSH);
 
         tag(OTags.Items.PREVENTS_LEAD_CLOUD).add(OItems.SCRIBE.get());
+
+        tag(OTags.Items.HIDES_HAT_LAYER).add(ArgentumItems.SILVER_HELMET.value());
     }
 }
