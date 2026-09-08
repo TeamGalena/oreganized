@@ -25,4 +25,8 @@ public record TarnishedBlocks<T extends Block>(DeferredBlock<T> base, DeferredBl
         return new DeferredBlock[]{base, blemished, tarnished};
     }
 
+    public Stream<DeferredBlock<T>> stream() {
+        return Stream.of(base, blemished, tarnished);
+    }
+
 }

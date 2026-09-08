@@ -2,14 +2,13 @@ package galena.oreganized.armament.index;
 
 import com.teamabnormals.blueprint.core.util.DataUtil;
 import galena.oreganized.OConstants;
+import java.util.stream.Stream;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-
-import java.util.stream.Stream;
 
 @EventBusSubscriber
 public class ArmamentStructures {

@@ -4,7 +4,7 @@ import com.teamabnormals.blueprint.core.registry.BlueprintDataPackRegistries;
 import galena.oreganized.OConstants;
 import galena.oreganized.index.ODamageSources;
 import galena.oreganized.index.ORecords;
-import galena.oreganized.index.OTrimMaterials;
+
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import net.minecraft.core.HolderLookup;

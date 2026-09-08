@@ -1,9 +1,8 @@
 package galena.oreganized.data;
 
+import galena.oreganized.client.OResourcePacks;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-
-import galena.oreganized.client.OResourcePacks;
 import net.minecraft.DetectedVersion;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;

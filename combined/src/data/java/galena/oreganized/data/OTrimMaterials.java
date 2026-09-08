@@ -1,6 +1,7 @@
-package galena.oreganized.index;
+package galena.oreganized.data;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.index.OItems;
 import java.util.Map;
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
