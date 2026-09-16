@@ -25,7 +25,7 @@ public class ArgentumItemModels {
         toolItem(provider, ArgentumItems.SCRIBE);
 
         ArgentumItems.silverArmor().forEach(it -> trimmableArmorItem(provider, it));
-        ArgentumItems.silverTools().forEach(it -> toolItem(provider, it));
+        ArgentumSets.silverTools().forEach(it -> toolItem(provider, it));
 
         leveledDevice(provider, ArgentumItems.SILVER_MIRROR, SilverMirrorItem.FRAMES, ArgentumDataComponents.MIRROR_LEVEL.getId());
     }

@@ -84,7 +84,7 @@ public class ArgentumLoot {
                 )
         );
 
-        Stream.concat(ArgentumItems.silverArmor(), ArgentumItems.silverTools()).forEach(item ->
+        Stream.concat(ArgentumItems.silverArmor(), ArgentumSets.silverTools()).forEach(item ->
                 provider.add(
                         item.getId().getPath() + "_in_chests",
                         new AddItemLootModifier(

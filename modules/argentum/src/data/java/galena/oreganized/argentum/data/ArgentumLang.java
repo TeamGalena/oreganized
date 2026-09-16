@@ -26,7 +26,7 @@ public class ArgentumLang {
         provider.addItem(ArgentumItems.SILVER_NUGGET::get);
         provider.addItem(ArgentumItems.RAW_SILVER::get);
         ArgentumItems.silverArmor().forEach(it -> provider.addItem(it::get));
-        ArgentumItems.silverTools().forEach(it -> provider.addItem(it::get));
+        ArgentumSets.silverTools().forEach(it -> provider.addItem(it::get));
         provider.addItem(ArgentumItems.SILVER_MIRROR::get);
         provider.addItem(ArgentumItems.SCRIBE::get);
 

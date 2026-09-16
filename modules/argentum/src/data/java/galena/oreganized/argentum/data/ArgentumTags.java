@@ -65,7 +65,7 @@ public class ArgentumTags {
         provider.addTag(ItemTags.HOES).add(ArgentumItems.SILVER_HOE.getKey());
 
         var noAnvilCost = provider.addTag(OTags.Items.NO_ANVIL_ENCHANT_COST);
-        ArgentumItems.silverTools().forEach(it -> noAnvilCost.add(it.getKey()));
+        ArgentumSets.silverTools().forEach(it -> noAnvilCost.add(it.getKey()));
 
         provider.addTag(OTags.Items.PREVENTS_LEAD_CLOUD).add(ArgentumItems.SCRIBE.getKey());
 

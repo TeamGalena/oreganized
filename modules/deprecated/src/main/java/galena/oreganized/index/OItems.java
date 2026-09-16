@@ -82,7 +82,7 @@ public class OItems {
 
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static Stream<DeferredItem<? extends Item>> silverTools() {
-        return ArgentumItems.silverTools();
+        return Stream.of(SILVER_SWORD, SILVER_SHOVEL, SILVER_PICKAXE, SILVER_AXE, SILVER_HOE);
     }
 
     @Deprecated(forRemoval = true, since = "5.3.0")
@@ -139,7 +139,7 @@ public class OItems {
 
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static Stream<DeferredItem<? extends Item>> electrumTools() {
-        return ElectrumItems.electrumTools();
+        return Stream.of(ELECTRUM_SWORD, ELECTRUM_SHOVEL, ELECTRUM_PICKAXE, ELECTRUM_AXE, ELECTRUM_HOE);
     }
 
     @Deprecated(forRemoval = true, since = "5.3.0")

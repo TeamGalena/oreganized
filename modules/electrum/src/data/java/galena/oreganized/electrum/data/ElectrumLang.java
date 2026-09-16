@@ -22,7 +22,7 @@ public class ElectrumLang {
         provider.addItem(ElectrumItems.ELECTRUM_INGOT::get);
         provider.addItem(ElectrumItems.ELECTRUM_NUGGET::get);
         ElectrumItems.electrumArmor().forEach(it -> provider.addItem(it::get));
-        ElectrumItems.electrumTools().forEach(it -> provider.addItem(it::get));
+        ElectrumSets.electrumTools().forEach(it -> provider.addItem(it::get));
         provider.addItem(ElectrumItems.ELECTRUM_SHIELD::get);
 
         provider.addBlock(ElectrumBlocks.ELECTRUM_BLOCK, "Block of Electrum");

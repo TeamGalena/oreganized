@@ -82,13 +82,8 @@ public class ArgentumItems {
     public static final DeferredItem<Item> SILVER_HOE = ITEMS.createItem("silver_hoe",
             () -> new HoeItem(SILVER_TIER, new Item.Properties().attributes(DiggerItem.createAttributes(SILVER_TIER, -2.0F, -1.0F))));
 
-    // TODO modular move to data source set instead
     public static Stream<DeferredItem<ArmorItem>> silverArmor() {
         return Stream.of(SILVER_BOOTS, SILVER_LEGGINGS, SILVER_CHESTPLATE, SILVER_HELMET);
-    }
-
-    public static Stream<DeferredItem<? extends Item>> silverTools() {
-        return Stream.of(SILVER_SWORD, SILVER_SHOVEL, SILVER_PICKAXE, SILVER_AXE, SILVER_HOE);
     }
 
 

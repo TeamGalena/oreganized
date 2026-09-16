@@ -24,7 +24,7 @@ public class ElectrumItemModels {
         normalItem(provider, ElectrumItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE);
 
         ElectrumItems.electrumArmor().forEach(it -> trimmableArmorItem(provider, it));
-        ElectrumItems.electrumTools().forEach(it -> toolItem(provider, it));
+        ElectrumSets.electrumTools().forEach(it -> toolItem(provider, it));
         shieldItem(provider, ElectrumItems.ELECTRUM_SHIELD);
 
         leveledDevice(provider, ElectrumItems.SPEEDOMETER, 16, SpeedometerItem.PROPERTY_KEY);

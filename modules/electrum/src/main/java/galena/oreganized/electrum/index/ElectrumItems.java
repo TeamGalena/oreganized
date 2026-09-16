@@ -68,7 +68,6 @@ public class ElectrumItems {
     public static final DeferredItem<ArmorItem> ELECTRUM_BOOTS = ITEMS.createItem("electrum_boots",
             () -> ModdedArmorItem.create(ELECTRUM_MATERIAL, ArmorItem.Type.BOOTS, 33, ElectrumItems::electrumArmorAttributes));
 
-    // TODO modules deprecate too and move to data?
     public static Stream<DeferredItem<ArmorItem>> electrumArmor() {
         return Stream.of(ELECTRUM_BOOTS, ELECTRUM_LEGGINGS, ELECTRUM_CHESTPLATE, ELECTRUM_HELMET);
     }
@@ -92,9 +91,5 @@ public class ElectrumItems {
             () -> new ShieldItem(new Item.Properties().durability(363)));
     public static final DeferredItem<Item> ELECTRUM_MACHETE = ITEMS.createItem("electrum_machete",
             () -> new SwordItem(ELECTRUM_TIER, new Item.Properties()));
-
-    public static Stream<DeferredItem<? extends Item>> electrumTools() {
-        return Stream.of(ELECTRUM_SWORD, ELECTRUM_SHOVEL, ELECTRUM_PICKAXE, ELECTRUM_AXE, ELECTRUM_HOE, ELECTRUM_KNIFE, ELECTRUM_MACHETE);
-    }
 
 }

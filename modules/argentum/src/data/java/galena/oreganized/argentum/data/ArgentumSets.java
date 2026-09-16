@@ -1,8 +1,10 @@
 package galena.oreganized.argentum.data;
 
 import galena.oreganized.argentum.index.ArgentumBlocks;
-
+import galena.oreganized.argentum.index.ArgentumItems;
 import java.util.stream.Stream;
+import net.minecraft.world.item.Item;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 public class ArgentumSets {
 
@@ -19,6 +21,16 @@ public class ArgentumSets {
                 ArgentumBlocks.CUT_SILVERS,
                 ArgentumBlocks.CUT_SILVER_SLABS,
                 ArgentumBlocks.CUT_SILVER_STAIRS
+        );
+    }
+
+    public static Stream<DeferredItem<? extends Item>> silverTools() {
+        return Stream.of(
+                ArgentumItems.SILVER_SWORD,
+                ArgentumItems.SILVER_SHOVEL,
+                ArgentumItems.SILVER_PICKAXE,
+                ArgentumItems.SILVER_AXE,
+                ArgentumItems.SILVER_HOE
         );
     }
 

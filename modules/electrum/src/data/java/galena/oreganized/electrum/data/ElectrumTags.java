@@ -48,7 +48,7 @@ public class ElectrumTags {
         provider.addTag(OTags.Items.MACHETES).add(ElectrumItems.ELECTRUM_MACHETE.getKey());
 
         var kineticDamage = provider.addTag(OTags.Items.HAS_KINETIC_DAMAGE);
-        ElectrumItems.electrumTools().forEach(it -> kineticDamage.add(it.getKey()));
+        ElectrumSets.electrumTools().forEach(it -> kineticDamage.add(it.getKey()));
 
         provider.addTag(Tags.Items.MELEE_WEAPON_TOOLS)
                 .add(ElectrumItems.ELECTRUM_AXE.getKey())
