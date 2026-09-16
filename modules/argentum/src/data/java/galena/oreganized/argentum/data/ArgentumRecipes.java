@@ -8,20 +8,29 @@ import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 import galena.oreganized.ModCompat;
 import galena.oreganized.OConstants;
 import galena.oreganized.argentum.index.ArgentumBlocks;
+import galena.oreganized.argentum.index.ArgentumItemAbilities;
 import galena.oreganized.argentum.index.ArgentumItems;
+import galena.oreganized.argentum.index.TarnishedBlocks;
+import galena.oreganized.argentum.world.recipe.ScribeRecipe;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.index.OTags;
 import java.util.List;
 import java.util.stream.Stream;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
+import vectorwing.farmersdelight.common.crafting.ingredient.ItemAbilityIngredient;
+import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
 @Mod(OConstants.MOD_ID)
 public class ArgentumRecipes {
@@ -140,4 +149,43 @@ public class ArgentumRecipes {
 
         ArgentumSets.tarnishedBlocks().forEach(it -> brushing(provider, it));
     }
+
+    public static CuttingBoardRecipeBuilder scribeCuttingBoard(ItemLike from, ItemLike to) {
+        var ingredient = new ItemAbilityIngredient(ArgentumItemAbilities.SCRIBE);
+        return CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(from), ingredient.toVanilla(), to);
+    }
+
+    public static void scribeConversionAndCutting(RecipeOutput output, Block from, Block to) {
+        var id = RecipeBuilder.getDefaultRecipeId(to);
+        scribeConversion(from, to).save(output, id);
+        whenLoaded(output, ModCompat.FARMERS_DELIGHT, () -> {
+            scribeCuttingBoard(from, to).save(output, id.withPrefix("cutting/"));
+        });
+    }
+
+    public static ScribeRecipe.Builder scribeConversion(Block from, Block to) {
+        return new ScribeRecipe.Builder()
+                .from(from)
+                .result(to);
+    }
+
+    public static ScribeRecipe.Builder scribeHarvesting(TagKey<Block> from, Block to) {
+        return new ScribeRecipe.Builder()
+                .from(from)
+                .result(to)
+                .dropResources();
+    }
+
+    public static void brushing(RecipeOutput output, TarnishedBlocks<?> blocks) {
+        brushing(output, blocks.tarnished(), blocks.blemished());
+        brushing(output, blocks.blemished(), blocks.base());
+    }
+
+    public static void brushing(RecipeOutput output, ItemLike from, ItemLike to) {
+        whenLoaded(output, ModCompat.FARMERS_DELIGHT, () -> {
+            CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(from), Ingredient.of(Items.BRUSH), to)
+                    .save(output, RecipeBuilder.getDefaultRecipeId(from).withPrefix("brushing/"));
+        });
+    }
+
 }

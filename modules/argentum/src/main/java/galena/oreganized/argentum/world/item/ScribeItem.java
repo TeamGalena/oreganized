@@ -5,6 +5,8 @@ import static galena.oreganized.index.OTags.Blocks.SILKTOUCH_WITH_SCRIBE;
 import static galena.oreganized.index.OTags.Blocks.SILKTOUCH_WITH_SCRIBE_BLACKLIST;
 
 import galena.oreganized.argentum.config.ArgentumConfigs;
+import galena.oreganized.argentum.index.ArgentumDataMapTypes;
+import galena.oreganized.argentum.index.ArgentumItemAbilities;
 import galena.oreganized.argentum.index.ArgentumRecipeTypes;
 import galena.oreganized.argentum.world.recipe.BlockRecipeInput;
 import net.minecraft.core.BlockPos;
@@ -26,6 +28,7 @@ import net.minecraft.world.level.block.state.pattern.BlockInWorld;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.event.level.BlockDropsEvent;
 
 @EventBusSubscriber
@@ -100,13 +103,18 @@ public class ScribeItem extends Item {
     }
 
     @Override
+    public boolean canPerformAction(ItemStack stack, ItemAbility ability) {
+        return ability == ArgentumItemAbilities.SCRIBE;
+    }
+
+    @Override
     public InteractionResult useOn(UseOnContext context) {
         var state = context.getLevel().getBlockState(context.getClickedPos());
 
-        // TODO modular move to attachment or something similar
-        // if (state.hasProperty(ICrystalGlass.TYPE)) {
-        //     return replaceBlock(context, state.cycle(ICrystalGlass.TYPE), true);
-        // }
+        var permutation = state.getBlockHolder().getData(ArgentumDataMapTypes.SCRIBE_PERMUTATIONS);
+        if (permutation != null) {
+             return replaceBlock(context, permutation.apply(state), true);
+        }
 
         var input = new BlockRecipeInput(new BlockInWorld(context.getLevel(), context.getClickedPos(), false));
         var recipe = context.getLevel().getRecipeManager().getRecipeFor(ArgentumRecipeTypes.SCRIBE_RECIPE.get(), input, context.getLevel())

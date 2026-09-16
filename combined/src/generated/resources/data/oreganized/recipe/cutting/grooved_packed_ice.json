@@ -20,6 +20,7 @@
     }
   ],
   "tool": {
-    "item": "oreganized:scribe"
+    "type": "farmersdelight:item_ability",
+    "action": "oreganized:scribe"
   }
 }

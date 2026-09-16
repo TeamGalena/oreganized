@@ -10,9 +10,6 @@ import com.simibubi.create.content.kinetics.millstone.MillingRecipe;
 import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
 import galena.oreganized.ModCompat;
 import galena.oreganized.OConstants;
-import galena.oreganized.argentum.index.TarnishedBlocks;
-import galena.oreganized.argentum.world.recipe.ScribeRecipe;
-import galena.oreganized.index.OItems;
 import galena.oreganized.index.OTags;
 import java.util.Collection;
 import java.util.List;
@@ -31,7 +28,6 @@ import net.neoforged.neoforge.common.Tags;
 import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
 public final class ORecipeProvider {
-
 
     public static ShapedRecipeBuilder makeSlab(Supplier<? extends Block> slabOut, Supplier<? extends Block> blockIn) {
         return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, slabOut.get(), 6)
@@ -277,43 +273,6 @@ public final class ORecipeProvider {
                 new ItemApplicationRecipe.Builder<>(factory, OConstants.modLoc(id)),
                 ModCompat.CREATE
         );
-    }
-
-    public static ScribeRecipe.Builder scribeConversion(Block from, Block to) {
-        return new ScribeRecipe.Builder()
-                .from(from)
-                .result(to);
-    }
-
-    public static ScribeRecipe.Builder scribeHarvesting(TagKey<Block> from, Block to) {
-        return new ScribeRecipe.Builder()
-                .from(from)
-                .result(to)
-                .dropResources();
-    }
-
-    public static CuttingBoardRecipeBuilder scribeCuttingBoard(ItemLike from, ItemLike to) {
-        return CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(from), Ingredient.of(OItems.SCRIBE.asItem()), to);
-    }
-
-    public static void brushing(RecipeOutput output, TarnishedBlocks<?> blocks) {
-        brushing(output, blocks.tarnished(), blocks.blemished());
-        brushing(output, blocks.blemished(), blocks.base());
-    }
-
-    public static void brushing(RecipeOutput output, ItemLike from, ItemLike to) {
-        whenLoaded(output, ModCompat.FARMERS_DELIGHT, () -> {
-            CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(from), Ingredient.of(Items.BRUSH), to)
-                    .save(output, RecipeBuilder.getDefaultRecipeId(from).withPrefix("brushing/"));
-        });
-    }
-
-    public static void scribeConversionAndCutting(RecipeOutput output, Block from, Block to) {
-        var id = RecipeBuilder.getDefaultRecipeId(to);
-        scribeConversion(from, to).save(output, id);
-        whenLoaded(output, ModCompat.FARMERS_DELIGHT, () -> {
-            scribeCuttingBoard(from, to).save(output, id.withPrefix("cutting/"));
-        });
     }
 
     public static void flowerDye(Supplier<? extends ItemLike> flower, ItemLike primary, RecipeOutput output) {

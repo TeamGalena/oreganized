@@ -1,6 +1,7 @@
 package galena.oreganized.argentum.index;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.argentum.world.ScribePermutation;
 import galena.oreganized.argentum.world.Tarnishable;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.Block;
@@ -18,9 +19,16 @@ public class ArgentumDataMapTypes {
             Tarnishable.CODEC
     ).build();
 
+    public static final DataMapType<Block, ScribePermutation> SCRIBE_PERMUTATIONS = DataMapType.builder(
+            OConstants.modLoc("scribe_permutations"),
+            Registries.BLOCK,
+            ScribePermutation.CODEC
+    ).build();
+
     @SubscribeEvent
     private static void registerDataMapTypes(RegisterDataMapTypesEvent event) {
         event.register(TARNISHABLES);
+        event.register(SCRIBE_PERMUTATIONS);
     }
 
 }

@@ -15,8 +15,8 @@ public class ArgentumDataMaps {
     }
 
     private void generate(DataMapProvider provider) {
+        var tarnishables = provider.builder(ArgentumDataMapTypes.TARNISHABLES);
         ArgentumSets.tarnishedBlocks().forEach(blocks -> {
-            var tarnishables = provider.builder(ArgentumDataMapTypes.TARNISHABLES);
             tarnishables.add(blocks.base(), new Tarnishable(blocks.blemished().get()), false);
             tarnishables.add(blocks.blemished(), new Tarnishable(blocks.tarnished().get()), false);
         });
