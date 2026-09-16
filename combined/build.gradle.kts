@@ -34,11 +34,6 @@ dependencies {
     modIncludeCompileOnly(libs.ponder)
     modIncludeCompileOnly(libs.flywheel)
 
-    // TODO modular try again
-    // interfaceInjectionData(project(":core"))
-    // interfaceInjectionData(project(":plumbum"))
-    // interfaceInjectionData(project(":electrum"))
-
     modApi(libs.blueprint)
 
     // Compatibilities

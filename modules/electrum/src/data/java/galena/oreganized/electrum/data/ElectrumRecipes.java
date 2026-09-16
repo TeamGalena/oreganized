@@ -6,8 +6,6 @@ import static galena.oreganized.data.provider.ORecipeProvider.*;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 import static net.minecraft.data.recipes.ShapelessRecipeBuilder.shapeless;
 
-import com.possible_triangle.multikulti.datagen.conditions.Conditional;
-import com.possible_triangle.multikulti.datagen.conditions.ModLoaded;
 import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
 import galena.oreganized.ModCompat;
@@ -75,11 +73,10 @@ public class ElectrumRecipes {
         smithingElectrum(() -> Items.DIAMOND_LEGGINGS, ElectrumItems.ELECTRUM_LEGGINGS).save(provider, OConstants.modLoc("electrum_leggings"));
         smithingElectrum(() -> Items.DIAMOND_BOOTS, ElectrumItems.ELECTRUM_BOOTS).save(provider, OConstants.modLoc("electrum_boots"));
 
-        // TODO modular add whenLoaded
-        Conditional.with(provider, List.of(new ModLoaded(ModCompat.FARMERS_DELIGHT)), () ->
+        whenLoaded(provider, ModCompat.FARMERS_DELIGHT, () ->
                 metalRecycling(provider, ElectrumItems.ELECTRUM_NUGGET, List.of(ElectrumItems.ELECTRUM_KNIFE), "_from_knife")
         );
-        Conditional.with(provider, List.of(new ModLoaded(ModCompat.NETHERS_DELIGHT)), () ->
+        whenLoaded(provider, ModCompat.NETHERS_DELIGHT, () ->
                 metalRecycling(provider, ElectrumItems.ELECTRUM_NUGGET, List.of(ElectrumItems.ELECTRUM_MACHETE), "_from_machete")
         );
 

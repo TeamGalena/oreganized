@@ -14,8 +14,6 @@ public class AdditionalHighlightEvent extends Event implements ComponentRenderer
 
     public static void resetHighlightTimer(LevelReader level) {
         if (level != null && level.isClientSide()) {
-
-            // TODO modules use interface data
             if (Minecraft.getInstance().gui instanceof GuiAccessor accessor) {
                 accessor.oreganized$setToolHighlightTimer(60);
             }
