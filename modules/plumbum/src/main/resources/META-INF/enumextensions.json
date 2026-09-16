@@ -5,7 +5,7 @@
       "name": "OREGANIZED_STUNNED",
       "constructor": "(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)V",
       "parameters": {
-        "class": "galena/oreganized/index/OHeartTypes",
+        "class": "galena/oreganized/plumbum/index/PlumbumHeartTypes",
         "field": "STUNNED"
       }
     },
@@ -14,7 +14,7 @@
       "name": "OREGANIZED_STUNNED_POISONED",
       "constructor": "(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)V",
       "parameters": {
-        "class": "galena/oreganized/index/OHeartTypes",
+        "class": "galena/oreganized/plumbum/index/PlumbumHeartTypes",
         "field": "STUNNED_POISONED"
       }
     }

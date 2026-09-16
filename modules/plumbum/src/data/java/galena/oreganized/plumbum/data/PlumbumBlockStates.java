@@ -8,7 +8,7 @@ import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.plumbum.index.PlumbumBlocks;
 import galena.oreganized.plumbum.world.block.IMeltableBlock;
-import galena.oreganized.plumbum.world.block.MoltenLeadCauldronBlock;
+import galena.oreganized.plumbum.world.block.MeltingLeadCauldronBlock;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiFunction;
@@ -52,23 +52,25 @@ public class PlumbumBlockStates {
         sturdyLever(provider, PlumbumBlocks.STURDY_LEVER);
         sturdyButton(provider, PlumbumBlocks.STURDY_BUTTON);
 
+        meltingCauldron(provider, PlumbumBlocks.MELTING_LEAD_CAULDRON, PlumbumBlocks.LEAD_BLOCK);
         moltenCauldron(provider, PlumbumBlocks.MOLTEN_LEAD_CAULDRON, PlumbumBlocks.LEAD_BLOCK);
 
         crossWithPot(provider, PlumbumBlocks.PURPLE_DATURA, PlumbumBlocks.POTTED_PURPLE_DATURA);
         crossWithPot(provider, PlumbumBlocks.WHITE_DATURA, PlumbumBlocks.POTTED_WHITE_DATURA);
     }
 
-    public static void moltenCauldron(BlockStateProvider provider, DeferredBlock<? extends Block> cauldron, DeferredBlock<? extends Block> content) {
+    public static void meltingCauldron(BlockStateProvider provider, DeferredBlock<? extends Block> cauldron, DeferredBlock<? extends Block> content) {
         provider.getVariantBuilder(cauldron.get()).forAllStates(state -> {
-            int age = state.getValue(MoltenLeadCauldronBlock.AGE);
-            var prefix = age == 0
-                    ? ""
-                    : age == 3
-                    ? "molten_"
-                    : "melting_";
+            int age = state.getValue(MeltingLeadCauldronBlock.AGE);
+            var prefix = age == 0 ? "" : "melting_";
             var texture = blockTexture(content.getId().withPrefix(prefix));
             return ConfiguredModel.builder().modelFile(cauldronModel(provider, cauldron, texture, age)).build();
         });
+    }
+
+    public static void moltenCauldron(BlockStateProvider provider, DeferredBlock<? extends Block> cauldron, DeferredBlock<? extends Block> content) {
+        var texture = blockTexture(content.getId().withPrefix("molten_"));
+        provider.simpleBlock(cauldron.value(), cauldronModel(provider, cauldron.getId().getPath(), texture));
     }
 
     private static final ResourceLocation RED_HOT = blockTexture(OConstants.modLoc("red_hot_lead"));
@@ -130,7 +132,7 @@ public class PlumbumBlockStates {
             int goopyness = block.get().getGoopyness(state);
             var key = block.getId().withPrefix(prefixes.get(goopyness));
             var name = key.getPath();
-            var texture = goopyness < 2 ?blockTexture(key) : RED_HOT;
+            var texture = goopyness < 2 ? blockTexture(key) : RED_HOT;
 
             var bottom = provider.models().trapdoorOrientableBottom(name + "_bottom", texture);
             var top = provider.models().trapdoorOrientableTop(name + "_top", texture);

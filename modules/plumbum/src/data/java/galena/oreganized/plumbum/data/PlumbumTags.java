@@ -91,7 +91,9 @@ public class PlumbumTags {
         provider.addTag(Tags.Blocks.ORES_IN_GROUND_STONE).add(PlumbumBlocks.LEAD_ORE.getKey());
         provider.addTag(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE).add(PlumbumBlocks.DEEPSLATE_LEAD_ORE.getKey());
 
-        provider.addTag(BlockTags.CAULDRONS).add(PlumbumBlocks.MOLTEN_LEAD_CAULDRON.getKey());
+        provider.addTag(BlockTags.CAULDRONS)
+                .add(PlumbumBlocks.MOLTEN_LEAD_CAULDRON.getKey())
+                .add(PlumbumBlocks.MELTING_LEAD_CAULDRON.getKey());
         provider.addTag(BlockTags.DOORS).add(PlumbumBlocks.LEAD_DOOR.getKey());
         provider.addTag(BlockTags.TRAPDOORS).add(PlumbumBlocks.LEAD_TRAPDOOR.getKey());
         provider.addTag(BlockTags.BUTTONS).add(PlumbumBlocks.STURDY_BUTTON.getKey());

@@ -3,11 +3,10 @@ package galena.oreganized.plumbum.world.block;
 import galena.oreganized.index.OTags;
 import galena.oreganized.plumbum.config.PlumbumConfigs;
 import galena.oreganized.plumbum.index.PlumbumBlocks;
+import galena.oreganized.plumbum.index.PlumbumDamageTypes;
 import galena.oreganized.plumbum.index.PlumbumItems;
 import java.util.Optional;
 import java.util.function.Supplier;
-import javax.annotation.ParametersAreNonnullByDefault;
-import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -38,8 +37,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-@ParametersAreNonnullByDefault
-@MethodsReturnNonnullByDefault
 public class MoltenLeadBlock extends LiquidBlock {
 
     public static final VoxelShape STABLE_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
@@ -134,19 +131,18 @@ public class MoltenLeadBlock extends LiquidBlock {
     }
 
     @Override
-    public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         if (entity.getY() < pos.getY() + STABLE_SHAPE.max(Direction.Axis.Y)) {
             if (!(entity instanceof LivingEntity) || entity.getBlockStateOn().is(this)) {
                 entity.makeStuckInBlock(state, new Vec3(0.9F, 1.0D, 0.9F));
             }
 
-            entity.setRemainingFireTicks(10 * 20);
-            if (!world.isClientSide) entity.setSharedFlagOnFire(true);
+            entity.hurt(level.damageSources().source(PlumbumDamageTypes.MOLTEN_LEAD), 1F);
         }
     }
 
     @Override
-    public void fallOn(Level world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+    public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
         if (fallDistance >= 4.0D && entity instanceof LivingEntity living) {
             LivingEntity.Fallsounds fallSound = living.getFallSounds();
             SoundEvent sound = fallDistance < 7.0D ? fallSound.small() : fallSound.big();

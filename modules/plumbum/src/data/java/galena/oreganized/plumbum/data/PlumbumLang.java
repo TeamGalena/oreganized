@@ -38,6 +38,7 @@ public class PlumbumLang {
         provider.addBlock(PlumbumBlocks.STURDY_BUTTON::get);
         provider.addBlock(PlumbumBlocks.STURDY_LEVER::get);
         provider.addBlock(PlumbumBlocks.MOLTEN_LEAD_CAULDRON::get);
+        provider.addBlock(PlumbumBlocks.MELTING_LEAD_CAULDRON::get);
 
         provider.add(ClientThermometerTooltip.getDescriptionId(0), "Freezing");
         provider.add(ClientThermometerTooltip.getDescriptionId(1), "Cold");

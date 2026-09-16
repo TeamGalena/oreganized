@@ -3,8 +3,8 @@ package galena.oreganized.plumbum.world;
 import static net.minecraft.core.cauldron.CauldronInteraction.emptyBucket;
 import static net.minecraft.world.level.block.Block.popResource;
 
+import galena.oreganized.OConstants;
 import galena.oreganized.plumbum.index.PlumbumBlocks;
-import galena.oreganized.plumbum.world.block.MoltenLeadCauldronBlock;
 import java.util.function.Predicate;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.sounds.SoundEvent;
@@ -19,13 +19,16 @@ import net.minecraft.world.level.gameevent.GameEvent;
 
 public class MeltingCauldronInteractions {
 
+    public static final CauldronInteraction.InteractionMap LEAD = CauldronInteraction.newInteractionMap(OConstants.MOD_ID + ":lead");
+    public static final CauldronInteraction.InteractionMap MOLTEN_LEAD = CauldronInteraction.newInteractionMap(OConstants.MOD_ID + ":molten_lead");
+
     public static CauldronInteraction placeLeadBlock() {
-        return placeBlock(SoundEvents.METAL_PLACE, PlumbumBlocks.MOLTEN_LEAD_CAULDRON.get().defaultBlockState().setValue(MoltenLeadCauldronBlock.AGE, 0));
+        return placeBlock(SoundEvents.METAL_PLACE, PlumbumBlocks.MELTING_LEAD_CAULDRON.get().defaultBlockState());
     }
 
     public static CauldronInteraction fillMoltenLead() {
         return (state, world, pos, player, hand, stack) ->
-                emptyBucket(world, pos, player, hand, stack, PlumbumBlocks.MOLTEN_LEAD_CAULDRON.get().defaultBlockState().setValue(MoltenLeadCauldronBlock.AGE, 3), SoundEvents.BUCKET_EMPTY_LAVA);
+                emptyBucket(world, pos, player, hand, stack, PlumbumBlocks.MOLTEN_LEAD_CAULDRON.get().defaultBlockState(), SoundEvents.BUCKET_EMPTY_LAVA);
     }
 
     public static CauldronInteraction placeBlock(SoundEvent sound, BlockState filledCauldron) {
@@ -62,11 +65,8 @@ public class MeltingCauldronInteractions {
         };
     }
 
-    public static CauldronInteraction convertItem(ItemStack result, Predicate<BlockState> stateCondition) {
+    public static CauldronInteraction convertItem(ItemStack result) {
         return (state, level, pos, player, hand, stack) -> {
-            if (!stateCondition.test(state))
-                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-
             var newDisc = result.copy();
 
             player.swing(hand);

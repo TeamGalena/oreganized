@@ -5,7 +5,7 @@ import galena.oreganized.plumbum.client.extensions.MoltenLeadClientExtensions;
 import galena.oreganized.plumbum.config.PlumbumConfigs;
 import galena.oreganized.plumbum.world.MeltingCauldronInteractions;
 import galena.oreganized.plumbum.world.block.LeadOreBlock;
-import galena.oreganized.plumbum.world.block.MoltenLeadCauldronBlock;
+import galena.oreganized.plumbum.world.block.MeltingLeadCauldronBlock;
 import galena.oreganized.plumbum.world.fluid.MoltenLeadFluid;
 import galena.oreganized.register.SimpleRegistryHelper;
 import net.minecraft.core.cauldron.CauldronInteraction;
@@ -78,32 +78,26 @@ public class PlumbumFluids {
 
     @SubscribeEvent
     private static void registerCauldronInteractions(FMLCommonSetupEvent event) {
-        var EMPTY = CauldronInteraction.EMPTY.map();
-        var WATER = CauldronInteraction.WATER.map();
-        var LAVA = CauldronInteraction.LAVA.map();
-        var POWDER_SNOW = CauldronInteraction.POWDER_SNOW.map();
-        var LEAD = MoltenLeadCauldronBlock.INTERACTION_MAP.map();
-
-        EMPTY.put(PlumbumItems.MOLTEN_LEAD_BUCKET.get(), MeltingCauldronInteractions.fillMoltenLead());
-        WATER.put(PlumbumItems.MOLTEN_LEAD_BUCKET.get(), MeltingCauldronInteractions.fillMoltenLead());
-        LAVA.put(PlumbumItems.MOLTEN_LEAD_BUCKET.get(), MeltingCauldronInteractions.fillMoltenLead());
-        POWDER_SNOW.put(PlumbumItems.MOLTEN_LEAD_BUCKET.get(), MeltingCauldronInteractions.fillMoltenLead());
-        LEAD.put(PlumbumItems.MOLTEN_LEAD_BUCKET.get(), MeltingCauldronInteractions.fillMoltenLead());
+        CauldronInteraction.EMPTY.map().put(PlumbumItems.MOLTEN_LEAD_BUCKET.get(), MeltingCauldronInteractions.fillMoltenLead());
+        CauldronInteraction.WATER.map().put(PlumbumItems.MOLTEN_LEAD_BUCKET.get(), MeltingCauldronInteractions.fillMoltenLead());
+        CauldronInteraction.LAVA.map().put(PlumbumItems.MOLTEN_LEAD_BUCKET.get(), MeltingCauldronInteractions.fillMoltenLead());
+        CauldronInteraction.POWDER_SNOW.map().put(PlumbumItems.MOLTEN_LEAD_BUCKET.get(), MeltingCauldronInteractions.fillMoltenLead());
+        MeltingCauldronInteractions.LEAD.map().put(PlumbumItems.MOLTEN_LEAD_BUCKET.get(), MeltingCauldronInteractions.fillMoltenLead());
 
         if (PlumbumConfigs.COMMON.cauldronLeadMelting.get()) {
-            EMPTY.put(PlumbumBlocks.LEAD_BLOCK.get().asItem(), MeltingCauldronInteractions.placeLeadBlock());
-            WATER.put(PlumbumBlocks.LEAD_BLOCK.get().asItem(), MeltingCauldronInteractions.placeLeadBlock());
-            LAVA.put(PlumbumBlocks.LEAD_BLOCK.get().asItem(), MeltingCauldronInteractions.placeLeadBlock());
-            POWDER_SNOW.put(PlumbumBlocks.LEAD_BLOCK.get().asItem(), MeltingCauldronInteractions.placeLeadBlock());
+            CauldronInteraction.EMPTY.map().put(PlumbumBlocks.LEAD_BLOCK.get().asItem(), MeltingCauldronInteractions.placeLeadBlock());
+            CauldronInteraction.WATER.map().put(PlumbumBlocks.LEAD_BLOCK.get().asItem(), MeltingCauldronInteractions.placeLeadBlock());
+            CauldronInteraction.LAVA.map().put(PlumbumBlocks.LEAD_BLOCK.get().asItem(), MeltingCauldronInteractions.placeLeadBlock());
+            CauldronInteraction.POWDER_SNOW.map().put(PlumbumBlocks.LEAD_BLOCK.get().asItem(), MeltingCauldronInteractions.placeLeadBlock());
         }
 
-        LEAD.put(Items.AIR, MeltingCauldronInteractions.dropResource(PlumbumBlocks.LEAD_BLOCK.toStack(), state -> state.getValue(MoltenLeadCauldronBlock.AGE) == 0, SoundEvents.ITEM_FRAME_REMOVE_ITEM));
-        LEAD.put(Items.BUCKET, (state, world, pos, player, hand, stack) ->
-                CauldronInteraction.fillBucket(state, world, pos, player, hand, stack, PlumbumItems.MOLTEN_LEAD_BUCKET.toStack(), blockState -> state.getValue(MoltenLeadCauldronBlock.AGE).equals(3), SoundEvents.BUCKET_FILL_LAVA)
+        MeltingCauldronInteractions.LEAD.map().put(Items.AIR, MeltingCauldronInteractions.dropResource(PlumbumBlocks.LEAD_BLOCK.toStack(), state -> state.getValue(MeltingLeadCauldronBlock.AGE) == 0, SoundEvents.ITEM_FRAME_REMOVE_ITEM));
+        MeltingCauldronInteractions.MOLTEN_LEAD.map().put(Items.BUCKET, (state, world, pos, player, hand, stack) ->
+                CauldronInteraction.fillBucket(state, world, pos, player, hand, stack, PlumbumItems.MOLTEN_LEAD_BUCKET.toStack(), $ -> true, SoundEvents.BUCKET_FILL_LAVA)
         );
-        LEAD.put(Items.MUSIC_DISC_11, MeltingCauldronInteractions.convertItem(PlumbumItems.MUSIC_DISC_STRUCTURE.toStack(), it -> it.getValue(MoltenLeadCauldronBlock.AGE) == 3));
+        MeltingCauldronInteractions.MOLTEN_LEAD.map().put(Items.MUSIC_DISC_11, MeltingCauldronInteractions.convertItem(PlumbumItems.MUSIC_DISC_STRUCTURE.toStack()));
 
-        CauldronInteraction.addDefaultInteractions(LEAD);
+        CauldronInteraction.addDefaultInteractions(MeltingCauldronInteractions.LEAD.map());
     }
 
 }

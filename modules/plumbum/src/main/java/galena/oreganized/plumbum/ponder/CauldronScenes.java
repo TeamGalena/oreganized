@@ -2,7 +2,7 @@ package galena.oreganized.plumbum.ponder;
 
 import galena.oreganized.plumbum.index.PlumbumBlocks;
 import galena.oreganized.plumbum.index.PlumbumItems;
-import galena.oreganized.plumbum.world.block.MoltenLeadCauldronBlock;
+import galena.oreganized.plumbum.world.block.MeltingLeadCauldronBlock;
 import net.createmod.catnip.math.Pointing;
 import net.createmod.ponder.api.registration.PonderSceneRegistrationHelper;
 import net.createmod.ponder.api.scene.SceneBuilder;
@@ -73,11 +73,10 @@ public class CauldronScenes {
     }
 
     private static void setCauldronAge(SceneBuilder scene, BlockPos cauldronPos, int age) {
-        scene.world().setBlock(
-                cauldronPos,
-                PlumbumBlocks.MOLTEN_LEAD_CAULDRON.get().defaultBlockState().setValue(MoltenLeadCauldronBlock.AGE, age),
-                false
-        );
+        var state = age > MeltingLeadCauldronBlock.MAX_AGE
+                ? PlumbumBlocks.MOLTEN_LEAD_CAULDRON.get().defaultBlockState()
+                : PlumbumBlocks.MELTING_LEAD_CAULDRON.get().defaultBlockState().setValue(MeltingLeadCauldronBlock.AGE, age);
+        scene.world().setBlock(cauldronPos, state, false);
     }
 
 }

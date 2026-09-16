@@ -133,6 +133,10 @@ public class OBlockStateExtensions {
 
     public static ModelFile cauldronModel(BlockStateProvider provider, DeferredBlock<? extends Block> block, ResourceLocation texture, int age) {
         var name = block.getId().getPath() + "_" + age;
+        return cauldronModel(provider, name, texture);
+    }
+
+    public static ModelFile cauldronModel(BlockStateProvider provider, String name, ResourceLocation texture) {
         return provider.models().withExistingParent(name, BLOCK_FOLDER + "/template_cauldron_full")
                 .texture("content", texture);
     }

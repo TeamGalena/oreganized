@@ -6,7 +6,7 @@ import galena.oreganized.register.BlockRegistryHelper;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.material.MapColor;
@@ -25,8 +25,8 @@ public class PlumbumBlocks {
             MapColor.TERRACOTTA_PINK
     };
 
-    private static BlockBehaviour.Properties leadProperties() {
-        return BlockBehaviour.Properties.of()
+    private static Properties leadProperties() {
+        return Properties.of()
                 .strength(5.0F, 6.0F)
                 .requiresCorrectToolForDrops()
                 .sound(SoundType.METAL)
@@ -44,17 +44,17 @@ public class PlumbumBlocks {
         return LEAD_MAP_COLORS[goopyness];
     }
 
-    private static BlockBehaviour.Properties leadDecoProperties() {
+    private static Properties leadDecoProperties() {
         return leadProperties().noOcclusion().isValidSpawn(Blocks::never);
     }
 
     public static final DeferredBlock<Block> LEAD_ORE = BLOCKS.createBlock("lead_ore",
-            () -> new DropExperienceBlock(ConstantInt.of(0), BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_ORE).strength(3.0F, 3.0F)));
+            () -> new DropExperienceBlock(ConstantInt.of(0), Properties.ofFullCopy(Blocks.GOLD_ORE).strength(3.0F, 3.0F)));
     public static final DeferredBlock<Block> DEEPSLATE_LEAD_ORE = BLOCKS.createBlock("deepslate_lead_ore",
-            () -> new DropExperienceBlock(ConstantInt.of(0), BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_GOLD_ORE)));
+            () -> new DropExperienceBlock(ConstantInt.of(0), Properties.ofFullCopy(Blocks.DEEPSLATE_GOLD_ORE)));
 
     public static final DeferredBlock<Block> RAW_LEAD_BLOCK = BLOCKS.createBlock("raw_lead_block",
-            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK).mapColor(LEAD_MAP_COLORS[0])));
+            () -> new Block(Properties.ofFullCopy(Blocks.RAW_IRON_BLOCK).mapColor(LEAD_MAP_COLORS[0])));
     public static final DeferredBlock<MeltableBlock> LEAD_BLOCK = BLOCKS.createBlock("lead_block",
             () -> new MeltableBlock(leadProperties()));
     public static final DeferredBlock<MeltableBlock> LEAD_BRICKS = BLOCKS.createBlock("lead_bricks",
@@ -90,18 +90,23 @@ public class PlumbumBlocks {
             () -> new SturdyButtonBlock(LEAD_BLOCK_SET, leadProperties().noCollission().pushReaction(PushReaction.DESTROY)));
 
     public static final DeferredBlock<LiquidBlock> MOLTEN_LEAD = BLOCKS.createBlockNoItem("molten_lead",
-            () -> new MoltenLeadBlock(PlumbumFluids.MOLTEN_LEAD, BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA).mapColor(MapColor.COLOR_PURPLE)));
+            () -> new MoltenLeadBlock(PlumbumFluids.MOLTEN_LEAD, Properties.ofFullCopy(Blocks.LAVA).mapColor(MapColor.COLOR_PURPLE)));
 
+    private static Properties cauldronProperties() {
+        return Properties.ofFullCopy(Blocks.LAVA_CAULDRON).randomTicks();
+    }
+    public static final DeferredBlock<Block> MELTING_LEAD_CAULDRON = BLOCKS.createBlockNoItem("lead_cauldron",
+            () -> new MeltingLeadCauldronBlock(cauldronProperties().lightLevel(MeltingLeadCauldronBlock.moltenStageEmission())));
     public static final DeferredBlock<Block> MOLTEN_LEAD_CAULDRON = BLOCKS.createBlockNoItem("molten_lead_cauldron",
-            () -> new MoltenLeadCauldronBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA_CAULDRON).randomTicks()));
+            () -> new MoltenLeadCauldronBlock(cauldronProperties().lightLevel($ -> 4)));
 
     public static final DeferredBlock<Block> WHITE_DATURA = BLOCKS.createBlock("datura",
-            () -> new FlowerBlock(PlumbumEffects.STUNNING, 21, BlockBehaviour.Properties.ofFullCopy(Blocks.OXEYE_DAISY)));
+            () -> new FlowerBlock(PlumbumEffects.STUNNING, 21, Properties.ofFullCopy(Blocks.OXEYE_DAISY)));
     public static final DeferredBlock<Block> PURPLE_DATURA = BLOCKS.createBlock("purple_datura",
-            () -> new FlowerBlock(PlumbumEffects.STUNNING, 21, BlockBehaviour.Properties.ofFullCopy(Blocks.ALLIUM)));
+            () -> new FlowerBlock(PlumbumEffects.STUNNING, 21, Properties.ofFullCopy(Blocks.ALLIUM)));
     public static final DeferredBlock<FlowerPotBlock> POTTED_WHITE_DATURA = BLOCKS.createBlockNoItem("potted_datura",
-            () -> new FlowerPotBlock(WHITE_DATURA.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_OXEYE_DAISY)));
+            () -> new FlowerPotBlock(WHITE_DATURA.get(), Properties.ofFullCopy(Blocks.POTTED_OXEYE_DAISY)));
     public static final DeferredBlock<FlowerPotBlock> POTTED_PURPLE_DATURA = BLOCKS.createBlockNoItem("potted_purple_datura",
-            () -> new FlowerPotBlock(PURPLE_DATURA.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.POTTED_ALLIUM)));
+            () -> new FlowerPotBlock(PURPLE_DATURA.get(), Properties.ofFullCopy(Blocks.POTTED_ALLIUM)));
 
 }

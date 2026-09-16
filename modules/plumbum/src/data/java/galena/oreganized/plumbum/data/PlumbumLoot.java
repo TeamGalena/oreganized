@@ -36,6 +36,8 @@ public class PlumbumLoot {
 
     private void blocks(RegistrateBlockLootTables provider) {
         dropCauldron(provider, PlumbumBlocks.MOLTEN_LEAD_CAULDRON);
+        // TODO modular drop lead block too
+        dropCauldron(provider, PlumbumBlocks.MELTING_LEAD_CAULDRON);
 
         dropOre(provider, PlumbumBlocks.LEAD_ORE, PlumbumItems.RAW_LEAD);
         dropOre(provider, PlumbumBlocks.DEEPSLATE_LEAD_ORE, PlumbumItems.RAW_LEAD);
