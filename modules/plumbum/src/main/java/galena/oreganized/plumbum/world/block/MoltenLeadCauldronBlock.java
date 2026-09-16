@@ -5,25 +5,15 @@ import galena.oreganized.OConstants;
 import galena.oreganized.index.OTags;
 import galena.oreganized.plumbum.config.PlumbumConfigs;
 import galena.oreganized.plumbum.index.PlumbumBlocks;
-import galena.oreganized.plumbum.index.PlumbumItems;
-
-import java.util.function.Predicate;
+import galena.oreganized.plumbum.index.PlumbumFluids;
 import java.util.function.ToIntFunction;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
@@ -31,25 +21,22 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.AbstractCauldronBlock;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
-import org.jetbrains.annotations.NotNull;
+import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.fluids.RegisterCauldronFluidContentEvent;
 
 @EventBusSubscriber
-// TODO modules make not extend interaction?
-public class MoltenLeadCauldronBlock extends AbstractCauldronBlock implements CauldronInteraction {
+public class MoltenLeadCauldronBlock extends AbstractCauldronBlock {
 
     private static final MapCodec<MoltenLeadCauldronBlock> CODEC = simpleCodec(MoltenLeadCauldronBlock::new);
 
@@ -58,25 +45,13 @@ public class MoltenLeadCauldronBlock extends AbstractCauldronBlock implements Ca
         return CODEC;
     }
 
-    public static final InteractionMap INTERACTION_MAP = CauldronInteraction.newInteractionMap(OConstants.MOD_ID + ":lead");
+    public static final CauldronInteraction.InteractionMap INTERACTION_MAP = CauldronInteraction.newInteractionMap(OConstants.MOD_ID + ":lead");
 
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
 
-    public static final CauldronInteraction FILL_MOLTEN_LEAD = (state, world, pos, player, hand, stack) ->
-            CauldronInteraction.emptyBucket(world, pos, player, hand, stack, PlumbumBlocks.MOLTEN_LEAD_CAULDRON.get().defaultBlockState().setValue(AGE, 3), SoundEvents.BUCKET_EMPTY_LAVA);
-
-    public static final CauldronInteraction EMPTY_MOLTEN_LEAD = (state, world, pos, player, hand, stack) ->
-            CauldronInteraction.fillBucket(state, world, pos, player, hand, stack, new ItemStack(PlumbumItems.MOLTEN_LEAD_BUCKET.get()), blockState -> state.getValue(AGE).equals(3), SoundEvents.BUCKET_FILL_LAVA);
-
-    public static final CauldronInteraction FILL_LEAD_BLOCK = (state, world, pos, player, hand, stack) ->
-            placeBlock(world, pos, player, hand, stack, PlumbumBlocks.MOLTEN_LEAD_CAULDRON.get().defaultBlockState().setValue(AGE, 0), SoundEvents.METAL_PLACE);
-
-    public static final CauldronInteraction EMPTY_LEAD_BLOCK = (state, world, pos, player, hand, stack) ->
-            dropResource(state, world, pos, player, hand, stack, new ItemStack(PlumbumBlocks.LEAD_BLOCK.get()), blockState -> state.getValue(AGE).equals(0), SoundEvents.ITEM_FRAME_REMOVE_ITEM);
-
     public MoltenLeadCauldronBlock(BlockBehaviour.Properties properties) {
         super(properties.lightLevel(moltenStageEmission()), INTERACTION_MAP);
-        registerDefaultState(this.getStateDefinition().any().setValue(AGE, 0));
+        registerDefaultState(getStateDefinition().any().setValue(AGE, 0));
     }
 
     @Override
@@ -137,70 +112,9 @@ public class MoltenLeadCauldronBlock extends AbstractCauldronBlock implements Ca
         }
     }
 
-    @Override
-    public @NotNull ItemInteractionResult interact(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, ItemStack stack) {
-        ItemStack itemstack = player.getItemInHand(hand);
-        CauldronInteraction cauldroninteraction = INTERACTION_MAP.map().get(itemstack.getItem());
-        return cauldroninteraction.interact(state, world, pos, player, hand, itemstack);
-    }
-
-    static ItemInteractionResult placeBlock(Level world, BlockPos pos, Player player, InteractionHand hand, ItemStack stack, BlockState state, SoundEvent sound) {
-        if (!world.isClientSide) {
-            Item item = stack.getItem();
-            player.awardStat(Stats.FILL_CAULDRON);
-            player.awardStat(Stats.ITEM_USED.get(item));
-            if (!player.getAbilities().instabuild) stack.shrink(1);
-            world.setBlockAndUpdate(pos, state);
-            world.playSound(null, pos, sound, SoundSource.BLOCKS, 1.0F, 1.0F);
-            world.gameEvent(null, GameEvent.BLOCK_PLACE, pos);
-        }
-
-        return ItemInteractionResult.sidedSuccess(world.isClientSide);
-    }
-
-    static ItemInteractionResult dropResource(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, ItemStack usedStack, ItemStack droppedStack, Predicate<BlockState> stateCondition, SoundEvent sound) {
-        if (!stateCondition.test(state))
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-        if (!world.isClientSide) {
-            Item item = usedStack.getItem();
-            player.awardStat(Stats.USE_CAULDRON);
-            player.awardStat(Stats.ITEM_USED.get(item));
-            popResource(world, pos, droppedStack);
-            world.setBlockAndUpdate(pos, Blocks.CAULDRON.defaultBlockState());
-            world.playSound(null, pos, sound, SoundSource.BLOCKS, 1.0F, 1.0F);
-        }
-
-        return ItemInteractionResult.sidedSuccess(world.isClientSide);
-    }
-
     @SubscribeEvent
-    private static void blockItemInteractions(final PlayerInteractEvent.RightClickBlock event) {
-        var level = event.getLevel();
-        var pos = event.getPos();
-        var state = level.getBlockState(pos);
-        var itemStack = event.getItemStack();
-        var player = event.getEntity();
-        var hand = event.getHand();
-
-        if (itemStack.is(Items.MUSIC_DISC_11) && state.is(PlumbumBlocks.MOLTEN_LEAD_CAULDRON.get())) {
-            if (!state.getValue(MoltenLeadCauldronBlock.AGE).equals(3)) return;
-            var newDisc = new ItemStack(PlumbumItems.MUSIC_DISC_STRUCTURE.get());
-
-            player.swing(hand);
-            if (!player.isCreative()) itemStack.shrink(1);
-            level.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundSource.BLOCKS, 1.0F, 1.0F);
-            if (!level.isClientSide()) player.awardStat(Stats.ITEM_USED.get(itemStack.getItem()));
-
-            if (itemStack.isEmpty()) {
-                player.setItemInHand(hand, newDisc);
-                return;
-            }
-
-            if (!player.getInventory().add(newDisc)) {
-                player.drop(newDisc, false);
-            }
-
-            level.setBlockAndUpdate(pos, Blocks.CAULDRON.defaultBlockState());
-        }
+    private static void registerContent(RegisterCauldronFluidContentEvent event) {
+        event.register(PlumbumBlocks.MOLTEN_LEAD_CAULDRON.value(), PlumbumFluids.MOLTEN_LEAD.value(), FluidType.BUCKET_VOLUME, null);
     }
+
 }

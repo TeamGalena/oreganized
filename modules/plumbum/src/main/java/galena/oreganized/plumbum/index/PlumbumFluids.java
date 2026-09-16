@@ -3,6 +3,7 @@ package galena.oreganized.plumbum.index;
 import galena.oreganized.OConstants;
 import galena.oreganized.plumbum.client.extensions.MoltenLeadClientExtensions;
 import galena.oreganized.plumbum.config.PlumbumConfigs;
+import galena.oreganized.plumbum.world.MeltingCauldronInteractions;
 import galena.oreganized.plumbum.world.block.LeadOreBlock;
 import galena.oreganized.plumbum.world.block.MoltenLeadCauldronBlock;
 import galena.oreganized.plumbum.world.fluid.MoltenLeadFluid;
@@ -83,21 +84,24 @@ public class PlumbumFluids {
         var POWDER_SNOW = CauldronInteraction.POWDER_SNOW.map();
         var LEAD = MoltenLeadCauldronBlock.INTERACTION_MAP.map();
 
-        EMPTY.put(PlumbumItems.MOLTEN_LEAD_BUCKET.get(), MoltenLeadCauldronBlock.FILL_MOLTEN_LEAD);
-        WATER.put(PlumbumItems.MOLTEN_LEAD_BUCKET.get(), MoltenLeadCauldronBlock.FILL_MOLTEN_LEAD);
-        LAVA.put(PlumbumItems.MOLTEN_LEAD_BUCKET.get(), MoltenLeadCauldronBlock.FILL_MOLTEN_LEAD);
-        POWDER_SNOW.put(PlumbumItems.MOLTEN_LEAD_BUCKET.get(), MoltenLeadCauldronBlock.FILL_MOLTEN_LEAD);
-        LEAD.put(PlumbumItems.MOLTEN_LEAD_BUCKET.get(), MoltenLeadCauldronBlock.FILL_MOLTEN_LEAD);
+        EMPTY.put(PlumbumItems.MOLTEN_LEAD_BUCKET.get(), MeltingCauldronInteractions.fillMoltenLead());
+        WATER.put(PlumbumItems.MOLTEN_LEAD_BUCKET.get(), MeltingCauldronInteractions.fillMoltenLead());
+        LAVA.put(PlumbumItems.MOLTEN_LEAD_BUCKET.get(), MeltingCauldronInteractions.fillMoltenLead());
+        POWDER_SNOW.put(PlumbumItems.MOLTEN_LEAD_BUCKET.get(), MeltingCauldronInteractions.fillMoltenLead());
+        LEAD.put(PlumbumItems.MOLTEN_LEAD_BUCKET.get(), MeltingCauldronInteractions.fillMoltenLead());
 
         if (PlumbumConfigs.COMMON.cauldronLeadMelting.get()) {
-            EMPTY.put(PlumbumBlocks.LEAD_BLOCK.get().asItem(), MoltenLeadCauldronBlock.FILL_LEAD_BLOCK);
-            WATER.put(PlumbumBlocks.LEAD_BLOCK.get().asItem(), MoltenLeadCauldronBlock.FILL_LEAD_BLOCK);
-            LAVA.put(PlumbumBlocks.LEAD_BLOCK.get().asItem(), MoltenLeadCauldronBlock.FILL_LEAD_BLOCK);
-            POWDER_SNOW.put(PlumbumBlocks.LEAD_BLOCK.get().asItem(), MoltenLeadCauldronBlock.FILL_LEAD_BLOCK);
+            EMPTY.put(PlumbumBlocks.LEAD_BLOCK.get().asItem(), MeltingCauldronInteractions.placeLeadBlock());
+            WATER.put(PlumbumBlocks.LEAD_BLOCK.get().asItem(), MeltingCauldronInteractions.placeLeadBlock());
+            LAVA.put(PlumbumBlocks.LEAD_BLOCK.get().asItem(), MeltingCauldronInteractions.placeLeadBlock());
+            POWDER_SNOW.put(PlumbumBlocks.LEAD_BLOCK.get().asItem(), MeltingCauldronInteractions.placeLeadBlock());
         }
 
-        LEAD.put(Items.AIR, MoltenLeadCauldronBlock.EMPTY_LEAD_BLOCK);
-        LEAD.put(Items.BUCKET, MoltenLeadCauldronBlock.EMPTY_MOLTEN_LEAD);
+        LEAD.put(Items.AIR, MeltingCauldronInteractions.dropResource(PlumbumBlocks.LEAD_BLOCK.toStack(), state -> state.getValue(MoltenLeadCauldronBlock.AGE) == 0, SoundEvents.ITEM_FRAME_REMOVE_ITEM));
+        LEAD.put(Items.BUCKET, (state, world, pos, player, hand, stack) ->
+                CauldronInteraction.fillBucket(state, world, pos, player, hand, stack, PlumbumItems.MOLTEN_LEAD_BUCKET.toStack(), blockState -> state.getValue(MoltenLeadCauldronBlock.AGE).equals(3), SoundEvents.BUCKET_FILL_LAVA)
+        );
+        LEAD.put(Items.MUSIC_DISC_11, MeltingCauldronInteractions.convertItem(PlumbumItems.MUSIC_DISC_STRUCTURE.toStack(), it -> it.getValue(MoltenLeadCauldronBlock.AGE) == 3));
 
         CauldronInteraction.addDefaultInteractions(LEAD);
     }
