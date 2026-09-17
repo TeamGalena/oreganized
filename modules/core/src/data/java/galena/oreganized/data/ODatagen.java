@@ -11,11 +11,14 @@ import galena.oreganized.client.OResourcePacks;
 import galena.oreganized.compat.ponder.PonderCompat;
 import galena.oreganized.data.extensions.OTagExtensions;
 import galena.oreganized.data.provider.CombinedRegistryBootstraps;
+import galena.oreganized.data.provider.ODataPacks;
 import galena.oreganized.data.provider.RegistrateLootModifierProvider;
 import galena.oreganized.data.provider.RegistrateSpriteSourceProvider;
+
 import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+
 import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraft.DetectedVersion;
 import net.minecraft.core.Registry;
@@ -42,6 +45,7 @@ import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.data.DataMapProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
@@ -60,9 +64,11 @@ public class ODatagen {
     private static final ProviderType<RegistrateTagsProvider.Impl<TrimMaterial>> TRIM_MATERIAL_TAGS =
             ProviderType.registerDynamicTag("tags/trim_materials", "trim_material", Registries.TRIM_MATERIAL);
 
+    public static final ProviderType<ODataPacks> DYNAMIC = ProviderType.registerServerData("dynamic_with_conditions", ODataPacks::new);
+
     static {
-        REGISTRATE.getDataGenInitializer().addDependency(DAMAGE_TYPE_TAGS, ProviderType.DYNAMIC);
-        REGISTRATE.getDataGenInitializer().addDependency(TRIM_MATERIAL_TAGS, ProviderType.DYNAMIC);
+        REGISTRATE.getDataGenInitializer().addDependency(DAMAGE_TYPE_TAGS, DYNAMIC);
+        REGISTRATE.getDataGenInitializer().addDependency(TRIM_MATERIAL_TAGS, DYNAMIC);
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
@@ -171,10 +177,16 @@ public class ODatagen {
 
     private static final CombinedRegistryBootstraps REGISTRY_BOOTSTRAP = new CombinedRegistryBootstraps();
 
-    public static <T> void addDataRegistryEntries(ResourceKey<Registry<T>> registry, RegistrySetBuilder.RegistryBootstrap<T> bootstrap) {
+    public static <T> void addDataRegistryEntries(ResourceKey<Registry<T>> registry, RegistrySetBuilder.RegistryBootstrap<T> bootstrap, Consumer<BiConsumer<ResourceKey<?>, ICondition>> conditions) {
         REGISTRY_BOOTSTRAP.combine(registry, bootstrap).ifPresent(it ->
                 REGISTRATE.getDataGenInitializer().add(registry, it)
         );
+        REGISTRATE.addDataGenerator(DYNAMIC, conditions::accept);
+    }
+
+    public static <T> void addDataRegistryEntries(ResourceKey<Registry<T>> registry, RegistrySetBuilder.RegistryBootstrap<T> bootstrap) {
+        addDataRegistryEntries(registry, bootstrap, $ -> {
+        });
     }
 
     public static void addDataMapProvider(Consumer<DataMapProvider> consumer) {

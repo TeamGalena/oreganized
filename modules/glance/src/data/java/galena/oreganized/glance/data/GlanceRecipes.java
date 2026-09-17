@@ -3,7 +3,6 @@ package galena.oreganized.glance.data;
 
 import static com.tterrag.registrate.providers.RegistrateRecipeProvider.has;
 import static galena.oreganized.data.provider.ORecipeProvider.*;
-import static galena.oreganized.data.provider.ORecipeProvider.application;
 import static galena.oreganized.data.provider.ORecipeProvider.makeChiseledStonecutting;
 import static galena.oreganized.data.provider.ORecipeProvider.makeStairsStonecutting;
 import static galena.oreganized.data.provider.ORecipeProvider.makeWallStonecutting;
@@ -14,7 +13,6 @@ import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.fluids.transfer.FillingRecipe;
 import com.simibubi.create.content.kinetics.crusher.CrushingRecipe;
-import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;
 import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
@@ -24,7 +22,6 @@ import galena.oreganized.plumbum.index.PlumbumItems;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Blocks;
 import net.neoforged.fml.common.Mod;
 
 @Mod(OConstants.MOD_ID)
@@ -62,14 +59,7 @@ public class GlanceRecipes {
         stonecutting(GlanceBlocks.POLISHED_GLANCE, GlanceBlocks.GLANCE_BRICK_SLAB.get(), 2).save(provider, OConstants.modLoc("stonecutting/glance_brick_slab_from_polished"));
         stonecutting(GlanceBlocks.POLISHED_GLANCE, GlanceBlocks.GLANCE_BRICK_WALL.get()).save(provider, OConstants.modLoc("stonecutting/glance_brick_wall_from_polished"));
 
-        makeWaxed(GlanceBlocks.WAXED_SPOTTED_GLANCE, GlanceBlocks.SPOTTED_GLANCE).save(provider);
-        // TODO modular should be covered by above?
-        application(DeployerApplicationRecipe::new, "glance")
-                .output(GlanceBlocks.WAXED_SPOTTED_GLANCE)
-                .require(GlanceBlocks.SPOTTED_GLANCE)
-                .require(Blocks.HONEYCOMB_BLOCK)
-                .toolNotConsumed()
-                .build(provider);
+        makeWaxed(provider, GlanceBlocks.WAXED_SPOTTED_GLANCE, GlanceBlocks.SPOTTED_GLANCE);
 
         shaped(RecipeCategory.BUILDING_BLOCKS, GlanceBlocks.SPOTTED_GLANCE.get())
                 .pattern(" X ")

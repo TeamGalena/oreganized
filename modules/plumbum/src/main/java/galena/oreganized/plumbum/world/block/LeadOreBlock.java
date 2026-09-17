@@ -81,7 +81,6 @@ public class LeadOreBlock {
         var vec = Vec3.atCenterOf(pos);
         var cloud = new AreaEffectCloud(level, vec.x, vec.y, vec.z);
 
-        // TODO modular why do the interface injections not work here?
         if(cloud instanceof PreventableEffectCloud preventable) {
             preventable.oreganized$setPreventable(true);
         }

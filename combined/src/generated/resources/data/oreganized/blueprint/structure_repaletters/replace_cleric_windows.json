@@ -1,4 +1,10 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "oreganized:config",
+      "value": "cleric_windows"
+    }
+  ],
   "repaletter": [
     {
       "type": "blueprint:simple",

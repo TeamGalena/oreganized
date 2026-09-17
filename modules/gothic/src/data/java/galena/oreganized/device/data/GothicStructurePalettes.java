@@ -31,7 +31,7 @@ import net.neoforged.neoforge.common.conditions.ICondition;
 public class GothicStructurePalettes {
 
     public GothicStructurePalettes() {
-        ODatagen.addDataRegistryEntries(BlueprintDataPackRegistries.STRUCTURE_REPALETTERS, this::bootstrap);
+        ODatagen.addDataRegistryEntries(BlueprintDataPackRegistries.STRUCTURE_REPALETTERS, this::bootstrap, this::conditions);
     }
 
     private static final ResourceKey<StructureRepaletterEntry> CLERIC_WINDOWS = ResourceKey.create(BlueprintDataPackRegistries.STRUCTURE_REPALETTERS, OConstants.modLoc("replace_cleric_windows"));
@@ -48,9 +48,7 @@ public class GothicStructurePalettes {
                 ).toArray(StructureRepaletter[]::new);
     }
 
-    // TODO modular currently not usable with registrate
-    // https://github.com/tterrag1098/Registrate/issues/96
-    public static void conditions(BiConsumer<ResourceKey<?>, ICondition> consumer) {
+    private void conditions(BiConsumer<ResourceKey<?>, ICondition> consumer) {
         consumer.accept(CLERIC_WINDOWS, new ConfigValueCondition(OConditionTypes.CONFIG.get(), GothicConfigs.COMMON.replaceClericWindows, "cleric_windows", Map.of(), false));
     }
 

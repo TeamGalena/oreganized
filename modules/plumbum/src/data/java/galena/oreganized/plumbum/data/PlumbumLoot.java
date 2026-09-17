@@ -9,10 +9,15 @@ import galena.oreganized.data.ODatagen;
 import galena.oreganized.plumbum.index.PlumbumBlocks;
 import galena.oreganized.plumbum.index.PlumbumItems;
 import galena.oreganized.plumbum.world.block.IMeltableBlock;
+import galena.oreganized.plumbum.world.block.MeltingLeadCauldronBlock;
 import galena.oreganized.plumbum.world.item.ThermometerItem;
 import java.util.function.BiConsumer;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -36,8 +41,7 @@ public class PlumbumLoot {
 
     private void blocks(RegistrateBlockLootTables provider) {
         dropCauldron(provider, PlumbumBlocks.MOLTEN_LEAD_CAULDRON);
-        // TODO modular drop lead block too
-        dropCauldron(provider, PlumbumBlocks.MELTING_LEAD_CAULDRON);
+        meltingCauldron(provider, PlumbumBlocks.MELTING_LEAD_CAULDRON, PlumbumBlocks.LEAD_BLOCK);
 
         dropOre(provider, PlumbumBlocks.LEAD_ORE, PlumbumItems.RAW_LEAD);
         dropOre(provider, PlumbumBlocks.DEEPSLATE_LEAD_ORE, PlumbumItems.RAW_LEAD);
@@ -77,6 +81,24 @@ public class PlumbumLoot {
         dropSelf(provider, PlumbumBlocks.PURPLE_DATURA);
         dropPottedPlant(provider, PlumbumBlocks.POTTED_PURPLE_DATURA);
         dropPottedPlant(provider, PlumbumBlocks.POTTED_WHITE_DATURA);
+    }
+
+    private static void meltingCauldron(RegistrateBlockLootTables provider, Holder<? extends Block> cauldron, Holder<? extends ItemLike> content) {
+        provider.add(cauldron.value(), LootTable.lootTable().withPool(
+                provider.applyExplosionCondition(
+                        cauldron.value(),
+                        LootPool.lootPool()
+                                .add(LootItem.lootTableItem(Blocks.CAULDRON))
+                )
+        ).withPool(
+                LootPool.lootPool()
+                        .add(LootItem.lootTableItem(content.value()))
+                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(cauldron.value())
+                                .setProperties(StatePropertiesPredicate.Builder.properties()
+                                        .hasProperty(MeltingLeadCauldronBlock.AGE, 0)
+                                )
+                        )
+        ));
     }
 
     private void gameplay(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> consumer) {

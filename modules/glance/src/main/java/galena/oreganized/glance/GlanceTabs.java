@@ -33,7 +33,6 @@ public class GlanceTabs {
             );
         });
 
-        // TODO modular apparently these were also in the building blocks tab?
         builder.add(CreativeModeTabs.NATURAL_BLOCKS, tab -> {
             tab.putBefore(Blocks.DEEPSLATE, GlanceBlocks.GLANCE, GlanceBlocks.SPOTTED_GLANCE);
         });

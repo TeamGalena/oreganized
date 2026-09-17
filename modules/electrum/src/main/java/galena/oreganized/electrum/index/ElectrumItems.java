@@ -59,14 +59,10 @@ public class ElectrumItems {
         }
     }
 
-    public static final DeferredItem<ArmorItem> ELECTRUM_HELMET = ITEMS.createItem("electrum_helmet",
-            () -> ModdedArmorItem.create(ELECTRUM_MATERIAL, ArmorItem.Type.HELMET, 33, ElectrumItems::electrumArmorAttributes));
-    public static final DeferredItem<ArmorItem> ELECTRUM_CHESTPLATE = ITEMS.createItem("electrum_chestplate",
-            () -> ModdedArmorItem.create(ELECTRUM_MATERIAL, ArmorItem.Type.CHESTPLATE, 33, ElectrumItems::electrumArmorAttributes));
-    public static final DeferredItem<ArmorItem> ELECTRUM_LEGGINGS = ITEMS.createItem("electrum_leggings",
-            () -> ModdedArmorItem.create(ELECTRUM_MATERIAL, ArmorItem.Type.LEGGINGS, 33, ElectrumItems::electrumArmorAttributes));
-    public static final DeferredItem<ArmorItem> ELECTRUM_BOOTS = ITEMS.createItem("electrum_boots",
-            () -> ModdedArmorItem.create(ELECTRUM_MATERIAL, ArmorItem.Type.BOOTS, 33, ElectrumItems::electrumArmorAttributes));
+    public static final DeferredItem<ArmorItem> ELECTRUM_HELMET = ITEMS.createArmor("electrum_helmet", ELECTRUM_MATERIAL, ArmorItem.Type.HELMET, 33, ElectrumItems::electrumArmorAttributes);
+    public static final DeferredItem<ArmorItem> ELECTRUM_CHESTPLATE = ITEMS.createArmor("electrum_chestplate", ELECTRUM_MATERIAL, ArmorItem.Type.CHESTPLATE, 33, ElectrumItems::electrumArmorAttributes);
+    public static final DeferredItem<ArmorItem> ELECTRUM_LEGGINGS = ITEMS.createArmor("electrum_leggings", ELECTRUM_MATERIAL, ArmorItem.Type.LEGGINGS, 33, ElectrumItems::electrumArmorAttributes);
+    public static final DeferredItem<ArmorItem> ELECTRUM_BOOTS = ITEMS.createArmor("electrum_boots", ELECTRUM_MATERIAL, ArmorItem.Type.BOOTS, 33, ElectrumItems::electrumArmorAttributes);
 
     public static Stream<DeferredItem<ArmorItem>> electrumArmor() {
         return Stream.of(ELECTRUM_BOOTS, ELECTRUM_LEGGINGS, ELECTRUM_CHESTPLATE, ELECTRUM_HELMET);

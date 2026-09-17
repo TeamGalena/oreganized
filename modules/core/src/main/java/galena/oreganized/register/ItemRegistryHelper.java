@@ -4,12 +4,12 @@ import com.teamabnormals.blueprint.core.util.registry.ItemSubRegistryHelper;
 import com.teamabnormals.blueprint.core.util.registry.RegistryHelper;
 import galena.oreganized.ModCompat;
 import galena.oreganized.compat.FarmersDelightCompat;
+import galena.oreganized.world.item.ModdedArmorItem;
 import galena.oreganized.world.item.ModdedSmithingTemplateItem;
+import java.util.function.Consumer;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.DiggerItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SmithingTemplateItem;
-import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.*;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 public class ItemRegistryHelper extends ItemSubRegistryHelper {
@@ -35,6 +35,14 @@ public class ItemRegistryHelper extends ItemSubRegistryHelper {
         return createItem(name, () -> ModdedSmithingTemplateItem.create(
                 ResourceLocation.fromNamespaceAndPath(parent.getModId(), type)
         ));
+    }
+
+    public static ArmorItem createArmor(Holder<ArmorMaterial> material, ArmorItem.Type slot, int durabilityFactor, Consumer<ModdedArmorItem.ArmorAttributeBuilder> attributes) {
+        return new ModdedArmorItem(material, slot, new Item.Properties().durability(slot.getDurability(durabilityFactor)), attributes);
+    }
+
+    public DeferredItem<ArmorItem> createArmor(String name, Holder<ArmorMaterial> material, ArmorItem.Type slot, int durabilityFactor, Consumer<ModdedArmorItem.ArmorAttributeBuilder> attributes) {
+        return createItem(name, () -> createArmor(material, slot, durabilityFactor, attributes));
     }
 
 }

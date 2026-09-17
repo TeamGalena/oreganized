@@ -7,9 +7,11 @@ import galena.oreganized.index.OTags;
 import galena.oreganized.register.ItemRegistryHelper;
 import galena.oreganized.register.SimpleRegistryHelper;
 import galena.oreganized.world.item.ModdedArmorItem;
+
 import java.util.EnumMap;
 import java.util.List;
 import java.util.stream.Stream;
+
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvents;
@@ -60,14 +62,10 @@ public class ArgentumItems {
         builder.add(ArgentumAttributes.INVINCIBILITY_FRAMES, 0.2, AttributeModifier.Operation.ADD_VALUE);
     }
 
-    public static final DeferredItem<ArmorItem> SILVER_HELMET = ITEMS.createItem("silver_helmet",
-            () -> ModdedArmorItem.create(SILVER_MATERIAL, ArmorItem.Type.HELMET, 14, ArgentumItems::silverArmorAttributes));
-    public static final DeferredItem<ArmorItem> SILVER_CHESTPLATE = ITEMS.createItem("silver_chestplate",
-            () -> ModdedArmorItem.create(SILVER_MATERIAL, ArmorItem.Type.CHESTPLATE, 14, ArgentumItems::silverArmorAttributes));
-    public static final DeferredItem<ArmorItem> SILVER_LEGGINGS = ITEMS.createItem("silver_leggings",
-            () -> ModdedArmorItem.create(SILVER_MATERIAL, ArmorItem.Type.LEGGINGS, 14, ArgentumItems::silverArmorAttributes));
-    public static final DeferredItem<ArmorItem> SILVER_BOOTS = ITEMS.createItem("silver_boots",
-            () -> ModdedArmorItem.create(SILVER_MATERIAL, ArmorItem.Type.BOOTS, 14, ArgentumItems::silverArmorAttributes));
+    public static final DeferredItem<ArmorItem> SILVER_HELMET = ITEMS.createArmor("silver_helmet", SILVER_MATERIAL, ArmorItem.Type.HELMET, 14, ArgentumItems::silverArmorAttributes);
+    public static final DeferredItem<ArmorItem> SILVER_CHESTPLATE = ITEMS.createArmor("silver_chestplate", SILVER_MATERIAL, ArmorItem.Type.CHESTPLATE, 14, ArgentumItems::silverArmorAttributes);
+    public static final DeferredItem<ArmorItem> SILVER_LEGGINGS = ITEMS.createArmor("silver_leggings", SILVER_MATERIAL, ArmorItem.Type.LEGGINGS, 14, ArgentumItems::silverArmorAttributes);
+    public static final DeferredItem<ArmorItem> SILVER_BOOTS = ITEMS.createArmor("silver_boots", SILVER_MATERIAL, ArmorItem.Type.BOOTS, 14, ArgentumItems::silverArmorAttributes);
 
     public static final Tier SILVER_TIER = new SimpleTier(OTags.Blocks.INCORRECT_FOR_SILVER_TOOL, 191, 5F, 2.0F, 13, () -> Ingredient.of(OTags.Items.INGOTS_SILVER));
 

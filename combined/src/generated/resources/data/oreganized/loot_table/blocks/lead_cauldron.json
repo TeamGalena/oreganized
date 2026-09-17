@@ -15,6 +15,25 @@
         }
       ],
       "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "oreganized:lead_cauldron",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "0"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "oreganized:lead_block"
+        }
+      ],
+      "rolls": 1.0
     }
   ],
   "random_sequence": "oreganized:blocks/lead_cauldron"

@@ -5,6 +5,7 @@ import static com.tterrag.registrate.providers.RegistrateRecipeProvider.*;
 import com.possible_triangle.multikulti.datagen.conditions.Conditional;
 import com.possible_triangle.multikulti.datagen.conditions.Inverted;
 import com.possible_triangle.multikulti.datagen.conditions.ModLoaded;
+import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe;
 import com.simibubi.create.content.kinetics.deployer.ItemApplicationRecipe;
 import com.simibubi.create.content.kinetics.millstone.MillingRecipe;
 import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
@@ -23,8 +24,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SlabBlock;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
 public final class ORecipeProvider {
@@ -224,16 +227,24 @@ public final class ORecipeProvider {
                 .unlockedBy(getHasName(input.get()), has(input.get()));
     }
 
-    public static ShapelessRecipeBuilder makeWaxed(Supplier<? extends Block> blockOut, Block blockIn) {
-        return ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, blockOut.get())
-                .requires(blockIn)
+    public static void makeWaxed(RecipeOutput output, DeferredBlock<? extends Block> waxed, Block unwaxed) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, waxed.value())
+                .requires(unwaxed)
                 .requires(Items.HONEYCOMB)
-                .unlockedBy(getHasName(blockIn), has(blockIn))
-                .unlockedBy("has_honeycomb", has(Items.HONEYCOMB));
+                .unlockedBy(getHasName(unwaxed), has(unwaxed))
+                .unlockedBy("has_honeycomb", has(Items.HONEYCOMB))
+                .save(output);
+
+        application(DeployerApplicationRecipe::new, waxed.getId().getPath())
+                .output(waxed.value())
+                .require(unwaxed)
+                .require(Blocks.HONEYCOMB_BLOCK)
+                .toolNotConsumed()
+                .build(output);
     }
 
-    public static ShapelessRecipeBuilder makeWaxed(Supplier<? extends Block> blockOut, Supplier<? extends Block> blockIn) {
-        return makeWaxed(blockOut, blockIn.get());
+    public static void makeWaxed(RecipeOutput output, DeferredBlock<? extends Block> blockOut, Supplier<? extends Block> blockIn) {
+        makeWaxed(output, blockOut, blockIn.get());
     }
 
     public static void makeSlabStonecutting(Supplier<? extends Block> blockOut, Supplier<? extends Block> blockIn, RecipeOutput output) {

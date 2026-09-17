@@ -26,7 +26,6 @@ public class ArmamentItemModels {
         crossbowOverwrite(provider, "crossbow_lead_bolt");
     }
 
-    // TODO modular do using blueprint
     public ItemModelBuilder crossbowOverwrite(RegistrateItemModelProvider provider, String name) {
         return provider.withExistingParent(name, "item/crossbow")
                 .texture("layer0", itemTexture(OConstants.modLoc(name)));
