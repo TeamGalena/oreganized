@@ -78,7 +78,7 @@ public class GlanceRecipes {
                 .unlockedBy("has_lead_ingot", has(OTags.Items.INGOTS_LEAD))
                 .save(provider);
 
-        // TODO will need to be conditional in the future
+        // TODO modular will need to be conditional in the future
         processing(CrushingRecipe::new, "glance")
                 .output(0.8F, AllItems.CRUSHED_LEAD, 1)
                 .output(0.8F, PlumbumItems.LEAD_NUGGET.get())
@@ -86,7 +86,7 @@ public class GlanceRecipes {
                 .duration(250)
                 .build(provider);
 
-        // TODO will need to be conditional in the future
+        // TODO modular will need to be conditional in the future
         processing(CrushingRecipe::new, "glance_recycling")
                 .output(0.8F, AllItems.CRUSHED_LEAD, 1)
                 .output(0.8F, PlumbumItems.LEAD_NUGGET.get())

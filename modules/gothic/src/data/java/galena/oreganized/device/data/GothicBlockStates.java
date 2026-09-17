@@ -56,20 +56,12 @@ public class GothicBlockStates {
     }
 
     private static String crystalGlassSuffix(int index) {
-        switch (index) {
-            case CrystalGlassPaneBlock.ROTATED -> {
-                return "_rot";
-            }
-            case CrystalGlassPaneBlock.INNER -> {
-                return "_in";
-            }
-            case CrystalGlassPaneBlock.OUTER -> {
-                return "_out";
-            }
-            default -> {
-                return "";
-            }
-        }
+        return switch (index) {
+            case CrystalGlassPaneBlock.ROTATED -> "_rot";
+            case CrystalGlassPaneBlock.INNER -> "_in";
+            case CrystalGlassPaneBlock.OUTER -> "_out";
+            default -> "";
+        };
     }
 
     public static void crystalGlassBlock(BlockStateProvider provider, DeferredBlock<? extends Block> block) {
@@ -77,7 +69,7 @@ public class GothicBlockStates {
         var texture = provider.blockTexture(block.value());
 
         provider.getVariantBuilder(block.value()).forAllStatesExcept(state -> {
-            var type =  state.getValue(CrystalGlassBlock.TYPE);
+            var type = state.getValue(CrystalGlassBlock.TYPE);
             var suffix = crystalGlassSuffix(type);
 
             var model = provider.models().cubeAll(name + suffix, texture.withSuffix(suffix))
@@ -137,7 +129,8 @@ public class GothicBlockStates {
             });
         }
 
-        generatedItem(provider.itemModels(), pane.getId(), fullBlock.getId(), BLOCK_FOLDER);
+        generatedItem(provider.itemModels(), pane.getId(), fullBlock.getId(), BLOCK_FOLDER)
+                .renderType(TRANSLUCENT);
     }
 
 }
