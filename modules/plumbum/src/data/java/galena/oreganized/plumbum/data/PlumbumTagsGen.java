@@ -1,7 +1,7 @@
 package galena.oreganized.plumbum.data;
 
 
-import static galena.oreganized.index.OTags.Fluids.MOLTEN_LEAD;
+import static com.teamabnormals.blueprint.core.util.TagUtil.blockTag;
 
 import com.simibubi.create.AllTags;
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
@@ -9,11 +9,8 @@ import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import galena.oreganized.ModCompat;
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
-import galena.oreganized.index.OTags;
-import galena.oreganized.plumbum.index.PlumbumBlocks;
-import galena.oreganized.plumbum.index.PlumbumDamageTypes;
-import galena.oreganized.plumbum.index.PlumbumFluids;
-import galena.oreganized.plumbum.index.PlumbumItems;
+import galena.oreganized.index.CoreTags;
+import galena.oreganized.plumbum.index.*;
 import java.util.stream.Stream;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
@@ -22,6 +19,7 @@ import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.biome.Biome;
@@ -34,9 +32,9 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 @Mod(OConstants.MOD_ID)
-public class PlumbumTags {
+public class PlumbumTagsGen {
 
-    public PlumbumTags() {
+    public PlumbumTagsGen() {
         ODatagen.addItemTagProvider(this::items);
         ODatagen.addBlockTagProvider(this::blocks);
         ODatagen.addEntityTagProvider(this::entities);
@@ -47,21 +45,23 @@ public class PlumbumTags {
     }
 
     private void items(RegistrateItemTagsProvider provider) {
-        provider.addTag(OTags.Items.RAW_MATERIALS_LEAD).add(PlumbumItems.RAW_LEAD.getKey());
-        provider.addTag(OTags.Items.INGOTS_LEAD).add(PlumbumItems.LEAD_INGOT.getKey());
-        provider.addTag(OTags.Items.NUGGETS_LEAD).add(PlumbumItems.LEAD_NUGGET.getKey());
+        provider.addTag(CoreTags.Items.RAW_MATERIALS_LEAD).add(PlumbumItems.RAW_LEAD.getKey());
+        provider.addTag(CoreTags.Items.INGOTS_LEAD).add(PlumbumItems.LEAD_INGOT.getKey());
+        provider.addTag(CoreTags.Items.NUGGETS_LEAD).add(PlumbumItems.LEAD_NUGGET.getKey());
 
         provider.addTag(Tags.Items.MUSIC_DISCS).add(PlumbumItems.MUSIC_DISC_STRUCTURE.getKey());
         provider.addTag(Tags.Items.BUCKETS).add(PlumbumItems.MOLTEN_LEAD_BUCKET.getKey());
 
-        provider.copy(OTags.Blocks.ORES_LEAD, OTags.Items.ORES_LEAD);
-        provider.copy(OTags.Blocks.STORAGE_BLOCKS_LEAD, OTags.Items.STORAGE_BLOCKS_LEAD);
-        provider.copy(OTags.Blocks.STORAGE_BLOCKS_RAW_LEAD, OTags.Items.STORAGE_BLOCKS_RAW_LEAD);
+        provider.copy(CoreTags.Blocks.ORES_LEAD, CoreTags.Items.ORES_LEAD);
+        provider.copy(CoreTags.Blocks.STORAGE_BLOCKS_LEAD, CoreTags.Items.STORAGE_BLOCKS_LEAD);
+        provider.copy(CoreTags.Blocks.STORAGE_BLOCKS_RAW_LEAD, CoreTags.Items.STORAGE_BLOCKS_RAW_LEAD);
 
         provider.addTag(ItemTags.TRIM_MATERIALS).add(PlumbumItems.LEAD_INGOT.getKey());
 
-        var protectiveArmorParts = provider.addTag(OTags.Items.PROTECTIVE_ARMOR_PART);
-        var protectiveHelmets = provider.addTag(OTags.Items.PROTECTIVE_HELMET);
+        provider.addTag(PlumbumTags.Items.LIGHTER_THAN_LEAD).add(Items.IRON_BOOTS);
+
+        var protectiveArmorParts = provider.addTag(PlumbumTags.Items.PROTECTIVE_ARMOR_PART);
+        var protectiveHelmets = provider.addTag(PlumbumTags.Items.PROTECTIVE_HELMET);
 
         protectiveArmorParts
                 .addOptional(ResourceLocation.fromNamespaceAndPath("thermal", "hazmat_helmet"))
@@ -84,9 +84,9 @@ public class PlumbumTags {
     }
 
     private void blocks(RegistrateTagsProvider.IntrinsicImpl<Block> provider) {
-        provider.addTag(OTags.Blocks.ORES_LEAD).add(PlumbumBlocks.LEAD_ORE.getKey(), PlumbumBlocks.DEEPSLATE_LEAD_ORE.getKey());
-        provider.addTag(OTags.Blocks.STORAGE_BLOCKS_LEAD).add(PlumbumBlocks.LEAD_BLOCK.getKey());
-        provider.addTag(OTags.Blocks.STORAGE_BLOCKS_RAW_LEAD).add(PlumbumBlocks.RAW_LEAD_BLOCK.getKey());
+        provider.addTag(CoreTags.Blocks.ORES_LEAD).add(PlumbumBlocks.LEAD_ORE.getKey(), PlumbumBlocks.DEEPSLATE_LEAD_ORE.getKey());
+        provider.addTag(CoreTags.Blocks.STORAGE_BLOCKS_LEAD).add(PlumbumBlocks.LEAD_BLOCK.getKey());
+        provider.addTag(CoreTags.Blocks.STORAGE_BLOCKS_RAW_LEAD).add(PlumbumBlocks.RAW_LEAD_BLOCK.getKey());
 
         provider.addTag(Tags.Blocks.ORES_IN_GROUND_STONE).add(PlumbumBlocks.LEAD_ORE.getKey());
         provider.addTag(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE).add(PlumbumBlocks.DEEPSLATE_LEAD_ORE.getKey());
@@ -121,7 +121,7 @@ public class PlumbumTags {
 
         provider.addTag(BlockTags.MINEABLE_WITH_PICKAXE).add(PlumbumBlocks.MOLTEN_LEAD_CAULDRON.getKey());
 
-        provider.addTag(OTags.Blocks.MELTS_LEAD)
+        provider.addTag(PlumbumTags.Blocks.MELTS_LEAD)
                 .add(Blocks.LAVA)
                 .add(Blocks.MAGMA_BLOCK)
                 .addTags(BlockTags.CAMPFIRES)
@@ -129,29 +129,29 @@ public class PlumbumTags {
                 .addOptionalTag(ResourceLocation.fromNamespaceAndPath(ModCompat.FARMERS_DELIGHT, "tray_heat_sources"))
                 .addOptionalTag(ResourceLocation.fromNamespaceAndPath(ModCompat.CREATE, "passive_boiler_heaters"));
 
-        provider.addTag(OTags.Blocks.CREATES_LEAD_CLOUD)
-                .addTags(OTags.Blocks.ORES_LEAD)
-                .addTags(OTags.Blocks.STORAGE_BLOCKS_RAW_LEAD);
+        provider.addTag(PlumbumTags.Blocks.CREATES_LEAD_CLOUD)
+                .addTags(CoreTags.Blocks.ORES_LEAD)
+                .addTags(CoreTags.Blocks.STORAGE_BLOCKS_RAW_LEAD);
 
-        provider.addTag(OTags.Blocks.BLOWS_LEAD_CLOUD)
-                .addTags(OTags.Blocks.CREATES_LEAD_CLOUD);
+        provider.addTag(PlumbumTags.Blocks.BLOWS_LEAD_CLOUD)
+                .addTags(PlumbumTags.Blocks.CREATES_LEAD_CLOUD);
 
-        provider.addTag(OTags.Blocks.PREVENTS_LEAD_CLOUD)
+        provider.addTag(PlumbumTags.Blocks.PREVENTS_LEAD_CLOUD)
                 .add(Blocks.WATER)
                 .addOptional(ResourceLocation.fromNamespaceAndPath("spelunkery", "spring_water"));
 
-        provider.addTag(OTags.Blocks.FIRE_HEAT_LEVEL)
+        provider.addTag(PlumbumTags.Blocks.FIRE_HEAT_LEVEL)
                 .addTags(BlockTags.FIRE)
                 .addTags(BlockTags.CAMPFIRES);
 
-        provider.addTag(OTags.Blocks.LAVA_HEAT_LEVEL)
+        provider.addTag(PlumbumTags.Blocks.LAVA_HEAT_LEVEL)
                 .add(Blocks.MAGMA_BLOCK)
                 .add(Blocks.LAVA)
                 .add(Blocks.LAVA_CAULDRON)
                 .add(PlumbumBlocks.MOLTEN_LEAD.getKey())
                 .add(PlumbumBlocks.MOLTEN_LEAD_CAULDRON.getKey());
 
-        provider.addTag(OTags.Blocks.CARRY_ON_BLACKLIST)
+        provider.addTag(blockTag("carryon", "block_blacklist"))
                 .add(PlumbumBlocks.LEAD_DOOR.getKey())
                 .add(PlumbumBlocks.LEAD_TRAPDOOR.getKey());
 
@@ -159,16 +159,16 @@ public class PlumbumTags {
     }
 
     private void entities(RegistrateTagsProvider.IntrinsicImpl<EntityType<?>> provider) {
-        provider.addTag(OTags.Entities.LIGHTER_THAN_LEAD).add(EntityType.IRON_GOLEM);
+        provider.addTag(PlumbumTags.Entities.LIGHTER_THAN_LEAD).add(EntityType.IRON_GOLEM);
     }
 
     private void fluids(RegistrateTagsProvider.IntrinsicImpl<Fluid> provider) {
-        provider.addTag(MOLTEN_LEAD).add(PlumbumFluids.MOLTEN_LEAD.getKey());
+        provider.addTag(PlumbumTags.Fluids.MOLTEN_LEAD).add(PlumbumFluids.MOLTEN_LEAD.getKey());
     }
 
     private void enchantments(RegistrateTagsProvider.Impl<Enchantment> provider) {
-        provider.addTag(OTags.Enchantments.PREVENTS_LEAD_CLOUD).add(Enchantments.SILK_TOUCH);
-        provider.addTag(OTags.Enchantments.HEAT_IMMUNITY).add(Enchantments.FROST_WALKER);
+        provider.addTag(PlumbumTags.Enchantments.PREVENTS_LEAD_CLOUD).add(Enchantments.SILK_TOUCH);
+        provider.addTag(PlumbumTags.Enchantments.HEAT_IMMUNITY).add(Enchantments.FROST_WALKER);
     }
 
     private void damageTypes(RegistrateTagsProvider.Impl<DamageType> provider) {
@@ -177,9 +177,9 @@ public class PlumbumTags {
     }
 
     private void biomes(RegistrateTagsProvider.Impl<Biome> provider) {
-        provider.addTag(OTags.Biomes.RICH_IN_LEAD_ORE).addTag(BiomeTags.IS_SAVANNA);
-        provider.addTag(OTags.Biomes.HAS_DATURA).addTags(BiomeTags.IS_SAVANNA);
-        provider.addTag(OTags.Biomes.HAS_SPARSE_DATURA).add(Biomes.PLAINS);
+        provider.addTag(PlumbumTags.Biomes.RICH_IN_LEAD_ORE).addTag(BiomeTags.IS_SAVANNA);
+        provider.addTag(PlumbumTags.Biomes.HAS_DATURA).addTags(BiomeTags.IS_SAVANNA);
+        provider.addTag(PlumbumTags.Biomes.HAS_SPARSE_DATURA).add(Biomes.PLAINS);
     }
 
 }

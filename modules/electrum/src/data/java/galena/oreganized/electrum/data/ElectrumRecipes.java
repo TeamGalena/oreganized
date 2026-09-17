@@ -13,7 +13,7 @@ import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.electrum.index.ElectrumBlocks;
 import galena.oreganized.electrum.index.ElectrumItems;
-import galena.oreganized.index.OTags;
+import galena.oreganized.index.CoreTags;
 import java.util.List;
 import java.util.function.Supplier;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -43,7 +43,7 @@ public class ElectrumRecipes {
         shaped(RecipeCategory.TOOLS, ElectrumItems.SPEEDOMETER.get())
                 .pattern(" O ")
                 .pattern(" X ")
-                .define('X', OTags.Items.INGOTS_ELECTRUM)
+                .define('X', CoreTags.Items.INGOTS_ELECTRUM)
                 .define('O', Items.COMPASS)
                 .unlockedBy("has_electrum_ingot", has(ElectrumItems.ELECTRUM_INGOT.get()))
                 .save(provider);
@@ -82,29 +82,29 @@ public class ElectrumRecipes {
 
         unlessLoaded(
                 shapeless(RecipeCategory.MISC, ElectrumItems.ELECTRUM_INGOT.get())
-                        .requires(OTags.Items.INGOTS_SILVER)
-                        .requires(OTags.Items.INGOTS_SILVER)
-                        .requires(OTags.Items.INGOTS_SILVER)
-                        .requires(OTags.Items.INGOTS_SILVER)
-                        .requires(OTags.Items.INGOTS_SILVER)
-                        .requires(OTags.Items.INGOTS_GOLD)
-                        .requires(OTags.Items.INGOTS_GOLD)
-                        .requires(OTags.Items.INGOTS_GOLD)
-                        .unlockedBy("has_gold", has(OTags.Items.INGOTS_GOLD))
-                        .unlockedBy("has_silver", has(OTags.Items.INGOTS_SILVER)),
+                        .requires(CoreTags.Items.INGOTS_SILVER)
+                        .requires(CoreTags.Items.INGOTS_SILVER)
+                        .requires(CoreTags.Items.INGOTS_SILVER)
+                        .requires(CoreTags.Items.INGOTS_SILVER)
+                        .requires(CoreTags.Items.INGOTS_SILVER)
+                        .requires(Tags.Items.INGOTS_GOLD)
+                        .requires(Tags.Items.INGOTS_GOLD)
+                        .requires(Tags.Items.INGOTS_GOLD)
+                        .unlockedBy("has_gold", has(Tags.Items.INGOTS_GOLD))
+                        .unlockedBy("has_silver", has(CoreTags.Items.INGOTS_SILVER)),
                 ModCompat.CREATE
         ).save(provider);
 
         processing(MixingRecipe::new, "electrum_ingot")
                 .output(ElectrumItems.ELECTRUM_INGOT.get())
-                .require(OTags.Items.INGOTS_SILVER)
-                .require(OTags.Items.INGOTS_SILVER)
-                .require(OTags.Items.INGOTS_SILVER)
-                .require(OTags.Items.INGOTS_SILVER)
-                .require(OTags.Items.INGOTS_SILVER)
-                .require(OTags.Items.INGOTS_GOLD)
-                .require(OTags.Items.INGOTS_GOLD)
-                .require(OTags.Items.INGOTS_GOLD)
+                .require(CoreTags.Items.INGOTS_SILVER)
+                .require(CoreTags.Items.INGOTS_SILVER)
+                .require(CoreTags.Items.INGOTS_SILVER)
+                .require(CoreTags.Items.INGOTS_SILVER)
+                .require(CoreTags.Items.INGOTS_SILVER)
+                .require(Tags.Items.INGOTS_GOLD)
+                .require(Tags.Items.INGOTS_GOLD)
+                .require(Tags.Items.INGOTS_GOLD)
                 .requiresHeat(HeatCondition.HEATED)
                 .build(provider);
     }

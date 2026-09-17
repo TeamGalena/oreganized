@@ -1,11 +1,15 @@
 package galena.oreganized.data.extensions;
 
+import static com.teamabnormals.blueprint.core.util.TagUtil.itemTag;
+
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
+import galena.oreganized.ModCompat;
 import galena.oreganized.index.DyeColors;
 import java.util.Map;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
@@ -71,6 +75,20 @@ public class OTagExtensions {
             provider.addTag(dyedTag(registry.key())).addOptional(id);
             provider.addTag(dyedTag(registry.key(), entry.getKey())).addOptional(id);
         });
+    }
+
+    public static void tagKnife(RegistrateItemTagsProvider provider, Holder<Item> item) {
+        provider.addTag(itemTag("c", "tools/knife")).add(item.getKey());
+        provider.addTag(itemTag(ModCompat.FARMERS_DELIGHT, "tools/knives")).add(item.getKey());
+    }
+
+    public static void tagShield(RegistrateItemTagsProvider provider, Holder<Item> item) {
+        provider.addTag(Tags.Items.TOOLS_SHIELD).add(item.getKey());
+        provider.addTag(itemTag(ModCompat.SHIELD_EXPANSION, "shields")).add(item.getKey());
+    }
+
+    public static void tagMachete(RegistrateItemTagsProvider provider, Holder<Item> item) {
+        provider.addTag(itemTag(ModCompat.NETHERS_DELIGHT, "tools/machete")).add(item.getKey());
     }
 
 }

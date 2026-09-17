@@ -1,5 +1,6 @@
 package galena.oreganized.argentum.data;
 
+import static com.teamabnormals.blueprint.core.util.TagUtil.itemTag;
 import static net.minecraft.resources.ResourceLocation.fromNamespaceAndPath;
 
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
@@ -8,8 +9,10 @@ import galena.oreganized.ModCompat;
 import galena.oreganized.OConstants;
 import galena.oreganized.argentum.index.ArgentumBlocks;
 import galena.oreganized.argentum.index.ArgentumItems;
+import galena.oreganized.argentum.index.ArgentumTags;
 import galena.oreganized.data.ODatagen;
-import galena.oreganized.index.OTags;
+import galena.oreganized.index.CoreTags;
+import galena.oreganized.plumbum.index.PlumbumTags;
 import java.util.function.Function;
 import java.util.stream.Stream;
 import net.minecraft.core.Holder;
@@ -26,31 +29,35 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 @Mod(OConstants.MOD_ID)
-public class ArgentumTags {
+public class ArgentumTagsGen {
 
-    public ArgentumTags() {
+    public ArgentumTagsGen() {
         ODatagen.addItemTagProvider(this::items);
         ODatagen.addBlockTagProvider(this::blocks);
         ODatagen.addEntityTagProvider(this::entities);
     }
 
     private void items(RegistrateItemTagsProvider provider) {
-        provider.addTag(OTags.Items.RAW_MATERIALS_SILVER).add(ArgentumItems.RAW_SILVER.getKey());
-        provider.addTag(OTags.Items.INGOTS_SILVER).add(ArgentumItems.SILVER_INGOT.getKey());
-        provider.addTag(OTags.Items.NUGGETS_SILVER).add(ArgentumItems.SILVER_NUGGET.getKey());
+        provider.addTag(CoreTags.Items.RAW_MATERIALS_SILVER).add(ArgentumItems.RAW_SILVER.getKey());
+        provider.addTag(CoreTags.Items.INGOTS_SILVER).add(ArgentumItems.SILVER_INGOT.getKey());
+        provider.addTag(CoreTags.Items.NUGGETS_SILVER).add(ArgentumItems.SILVER_NUGGET.getKey());
 
         provider.addTag(ItemTags.PIGLIN_LOVED).add(ArgentumItems.SILVER_MIRROR.getKey());
 
         provider.addTag(ItemTags.BEACON_PAYMENT_ITEMS).add(ArgentumItems.SILVER_INGOT.getKey());
+
+        provider.addTag(ArgentumTags.Items.ENCHANTED_BOOK_LIKE)
+                .add(Items.ENCHANTED_BOOK)
+                .addOptional(ResourceLocation.fromNamespaceAndPath(ModCompat.QUARK, "ancient_tome"));
 
         provider.addTag(ItemTags.HEAD_ARMOR).add(ArgentumItems.SILVER_HELMET.getKey());
         provider.addTag(ItemTags.CHEST_ARMOR).add(ArgentumItems.SILVER_CHESTPLATE.getKey());
         provider.addTag(ItemTags.LEG_ARMOR).add(ArgentumItems.SILVER_LEGGINGS.getKey());
         provider.addTag(ItemTags.FOOT_ARMOR).add(ArgentumItems.SILVER_BOOTS.getKey());
 
-        provider.copy(OTags.Blocks.ORES_SILVER, OTags.Items.ORES_SILVER);
-        provider.copy(OTags.Blocks.STORAGE_BLOCKS_SILVER, OTags.Items.STORAGE_BLOCKS_SILVER);
-        provider.copy(OTags.Blocks.STORAGE_BLOCKS_RAW_SILVER, OTags.Items.STORAGE_BLOCKS_RAW_SILVER);
+        provider.copy(CoreTags.Blocks.ORES_SILVER, CoreTags.Items.ORES_SILVER);
+        provider.copy(CoreTags.Blocks.STORAGE_BLOCKS_SILVER, CoreTags.Items.STORAGE_BLOCKS_SILVER);
+        provider.copy(CoreTags.Blocks.STORAGE_BLOCKS_RAW_SILVER, CoreTags.Items.STORAGE_BLOCKS_RAW_SILVER);
 
         provider.addTag(ItemTags.TRIM_MATERIALS).add(ArgentumItems.SILVER_INGOT.getKey());
 
@@ -64,20 +71,20 @@ public class ArgentumTags {
         provider.addTag(ItemTags.SHOVELS).add(ArgentumItems.SILVER_SHOVEL.getKey());
         provider.addTag(ItemTags.HOES).add(ArgentumItems.SILVER_HOE.getKey());
 
-        var noAnvilCost = provider.addTag(OTags.Items.NO_ANVIL_ENCHANT_COST);
+        var noAnvilCost = provider.addTag(ArgentumTags.Items.NO_ANVIL_ENCHANT_COST);
         ArgentumSets.silverTools().forEach(it -> noAnvilCost.add(it.getKey()));
 
-        provider.addTag(OTags.Items.PREVENTS_LEAD_CLOUD).add(ArgentumItems.SCRIBE.getKey());
+        provider.addTag(PlumbumTags.Items.PREVENTS_LEAD_CLOUD).add(ArgentumItems.SCRIBE.getKey());
 
-        provider.addTag(OTags.Items.HIDES_HAT_LAYER).add(ArgentumItems.SILVER_HELMET.value());
+        provider.addTag(CoreTags.Items.HIDES_HAT_LAYER).add(ArgentumItems.SILVER_HELMET.value());
 
-        provider.addTag(OTags.Items.SLICER_TOOLS).add(Items.BRUSH);
+        provider.addTag(itemTag("sliceanddice", "allowed_tools")).add(Items.BRUSH);
     }
 
     private void blocks(RegistrateTagsProvider.IntrinsicImpl<Block> provider) {
-        provider.addTag(OTags.Blocks.ORES_SILVER).add(ArgentumBlocks.SILVER_ORE.getKey(), ArgentumBlocks.DEEPSLATE_SILVER_ORE.getKey());
-        provider.addTag(OTags.Blocks.STORAGE_BLOCKS_SILVER).add(ArgentumBlocks.SILVER_BLOCKS.base().getKey());
-        provider.addTag(OTags.Blocks.STORAGE_BLOCKS_RAW_SILVER).add(ArgentumBlocks.RAW_SILVER_BLOCK.getKey());
+        provider.addTag(CoreTags.Blocks.ORES_SILVER).add(ArgentumBlocks.SILVER_ORE.getKey(), ArgentumBlocks.DEEPSLATE_SILVER_ORE.getKey());
+        provider.addTag(CoreTags.Blocks.STORAGE_BLOCKS_SILVER).add(ArgentumBlocks.SILVER_BLOCKS.base().getKey());
+        provider.addTag(CoreTags.Blocks.STORAGE_BLOCKS_RAW_SILVER).add(ArgentumBlocks.RAW_SILVER_BLOCK.getKey());
 
         provider.addTag(Tags.Blocks.ORES_IN_GROUND_STONE).add(ArgentumBlocks.SILVER_ORE.getKey());
         provider.addTag(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE).add(ArgentumBlocks.DEEPSLATE_SILVER_ORE.getKey());
@@ -104,7 +111,7 @@ public class ArgentumTags {
             provider.addTag(BlockTags.MINEABLE_WITH_PICKAXE).add(block);
         });
 
-        provider.addTag(BlockTags.BEACON_BASE_BLOCKS).addTag(OTags.Blocks.STORAGE_BLOCKS_SILVER);
+        provider.addTag(BlockTags.BEACON_BASE_BLOCKS).add(ArgentumBlocks.SILVER_BLOCKS.base().getKey());
 
         ArgentumBlocks.CUT_SILVER_STAIRS.all().forEach(it -> provider.addTag(BlockTags.STAIRS).add(it.getKey()));
         ArgentumBlocks.CUT_SILVER_SLABS.all().forEach(it -> provider.addTag(BlockTags.SLABS).add(it.getKey()));
@@ -123,24 +130,12 @@ public class ArgentumTags {
                 .add(ArgentumBlocks.GROOVED_PACKED_ICE.getKey())
                 .add(ArgentumBlocks.GROOVED_BLUE_ICE.getKey());
 
-        provider.addTag(OTags.Blocks.AMETHYST_CLUSTERS)
-                .add(Blocks.AMETHYST_CLUSTER)
-                .add(Blocks.LARGE_AMETHYST_BUD)
-                .add(Blocks.MEDIUM_AMETHYST_BUD)
-                .add(Blocks.SMALL_AMETHYST_BUD);
-
-        provider.addTag(OTags.Blocks.QUARTZITE_CLUSTERS)
-                .addOptional(fromNamespaceAndPath(ModCompat.NO_MANS_LAND, "quartzite_cluster"))
-                .addOptional(fromNamespaceAndPath(ModCompat.NO_MANS_LAND, "large_quartzite_bud"))
-                .addOptional(fromNamespaceAndPath(ModCompat.NO_MANS_LAND, "medium_quartzite_bud"))
-                .addOptional(fromNamespaceAndPath(ModCompat.NO_MANS_LAND, "small_quartzite_bud"));
-
-        var scribeMineable = provider.addTag(OTags.Blocks.MINEABLE_WITH_SCRIBE)
+        var scribeMineable = provider.addTag(ArgentumTags.Blocks.MINEABLE_WITH_SCRIBE)
                 .addTags(Tags.Blocks.GLASS_BLOCKS)
                 .addTags(Tags.Blocks.GLASS_PANES)
                 .addTags(Tags.Blocks.OBSIDIANS)
-                .addTags(OTags.Blocks.AMETHYST_CLUSTERS)
-                .addTags(OTags.Blocks.QUARTZITE_CLUSTERS)
+                .addTags(CoreTags.Blocks.AMETHYST_CLUSTERS)
+                .addTags(CoreTags.Blocks.QUARTZITE_CLUSTERS)
                 .addTags(BlockTags.ICE)
                 .addTags(BlockTags.CRYSTAL_SOUND_BLOCKS)
                 .add(Blocks.AMETHYST_BLOCK);
@@ -178,7 +173,7 @@ public class ArgentumTags {
                 .addOptional(ResourceLocation.fromNamespaceAndPath("ae2", "damaged_budding_quartz"))
                 .addOptional(ResourceLocation.fromNamespaceAndPath("ae2", "chipped_budding_quartz"));
 
-        provider.addTag(OTags.Blocks.SILKTOUCH_WITH_SCRIBE_BLACKLIST)
+        provider.addTag(ArgentumTags.Blocks.SILKTOUCH_WITH_SCRIBE_BLACKLIST)
                 .add(ArgentumBlocks.GROOVED_ICE.getKey())
                 .add(ArgentumBlocks.GROOVED_PACKED_ICE.getKey())
                 .add(ArgentumBlocks.GROOVED_BLUE_ICE.getKey());
@@ -187,15 +182,15 @@ public class ArgentumTags {
                 .add(ArgentumBlocks.GROOVED_ICE.getKey())
                 .add(ArgentumBlocks.GROOVED_PACKED_ICE.getKey());
 
-        provider.addTag(OTags.Blocks.SILKTOUCH_WITH_SCRIBE)
-                .addTags(OTags.Blocks.MINEABLE_WITH_SCRIBE)
+        provider.addTag(ArgentumTags.Blocks.SILKTOUCH_WITH_SCRIBE)
+                .addTags(ArgentumTags.Blocks.MINEABLE_WITH_SCRIBE)
                 .addTags(BlockTags.MINEABLE_WITH_PICKAXE);
 
-        provider.addTag(OTags.Blocks.INCORRECT_FOR_SILVER_TOOL).addTag(BlockTags.INCORRECT_FOR_STONE_TOOL);
+        provider.addTag(ArgentumTags.Blocks.INCORRECT_FOR_SILVER_TOOL).addTag(BlockTags.INCORRECT_FOR_STONE_TOOL);
     }
 
     private void entities(RegistrateTagsProvider.IntrinsicImpl<EntityType<?>> provider) {
-        provider.addTag(OTags.Entities.TARNISHABLE).addTags(EntityTypeTags.UNDEAD);
+        provider.addTag(ArgentumTags.Entities.TARNISHABLE).addTags(EntityTypeTags.UNDEAD);
     }
 
 }

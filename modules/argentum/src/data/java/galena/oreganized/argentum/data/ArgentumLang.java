@@ -5,12 +5,8 @@ import static galena.oreganized.data.provider.OLangProvider.addSubtitle;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import galena.oreganized.OConstants;
-import galena.oreganized.argentum.index.ArgentumAttributes;
-import galena.oreganized.argentum.index.ArgentumBlocks;
-import galena.oreganized.argentum.index.ArgentumItems;
-import galena.oreganized.argentum.index.TarnishedBlocks;
+import galena.oreganized.argentum.index.*;
 import galena.oreganized.data.ODatagen;
-import galena.oreganized.index.OTags;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
@@ -57,15 +53,15 @@ public class ArgentumLang {
 
         addAttribute(provider, ArgentumAttributes.INVINCIBILITY_FRAMES, "Invincibility");
 
-        provider.add(OTags.Items.ENCHANTED_BOOK_LIKE, "Enchanted Books");
-        provider.add(OTags.Items.NO_ANVIL_ENCHANT_COST, "Free Anvil Enchantables");
+        provider.add(ArgentumTags.Items.ENCHANTED_BOOK_LIKE, "Enchanted Books");
+        provider.add(ArgentumTags.Items.NO_ANVIL_ENCHANT_COST, "Free Anvil Enchantables");
 
-        provider.add(OTags.Blocks.INCORRECT_FOR_SILVER_TOOL, "Incorrect for Silver Tools");
-        provider.add(OTags.Blocks.MINEABLE_WITH_SCRIBE, "Mineable with Scribe");
-        provider.add(OTags.Blocks.SILKTOUCH_WITH_SCRIBE, "Silktouch-able with Scibe");
-        provider.add(OTags.Blocks.SILKTOUCH_WITH_SCRIBE_BLACKLIST, "Not Silktouch-able with Scibe");
+        provider.add(ArgentumTags.Blocks.INCORRECT_FOR_SILVER_TOOL, "Incorrect for Silver Tools");
+        provider.add(ArgentumTags.Blocks.MINEABLE_WITH_SCRIBE, "Mineable with Scribe");
+        provider.add(ArgentumTags.Blocks.SILKTOUCH_WITH_SCRIBE, "Silktouch-able with Scibe");
+        provider.add(ArgentumTags.Blocks.SILKTOUCH_WITH_SCRIBE_BLACKLIST, "Not Silktouch-able with Scibe");
 
-        provider.add(OTags.Entities.TARNISHABLE, "Can Tarnish");
+        provider.add(ArgentumTags.Entities.TARNISHABLE, "Can Tarnish");
     }
 
     private void addTarnished(LanguageProvider provider, TarnishedBlocks<?> blocks, String pristine) {

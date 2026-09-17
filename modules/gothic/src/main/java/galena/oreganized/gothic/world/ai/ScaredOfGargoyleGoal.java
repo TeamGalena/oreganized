@@ -1,6 +1,6 @@
 package galena.oreganized.gothic.world.ai;
 
-import galena.oreganized.index.OTags;
+import galena.oreganized.gothic.index.GothicTags;
 import java.util.EnumSet;
 import javax.annotation.Nullable;
 import net.minecraft.nbt.NbtUtils;
@@ -21,7 +21,7 @@ public class ScaredOfGargoyleGoal extends Goal {
     private final PathfinderMob mob;
 
     public static void addGoal(Entity entity) {
-        if (entity instanceof PathfinderMob mob && mob.getType().is(OTags.Entities.SCARED_OF_GARGOYLE)) {
+        if (entity instanceof PathfinderMob mob && mob.getType().is(GothicTags.Entities.SCARED_OF_GARGOYLE)) {
             mob.goalSelector.addGoal(1, new ScaredOfGargoyleGoal(mob));
         }
     }

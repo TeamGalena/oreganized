@@ -2,12 +2,12 @@ package galena.oreganized.plumbum.world.item;
 
 import galena.oreganized.OConstants;
 import galena.oreganized.client.render.AdditionalHighlightEvent;
-import galena.oreganized.index.OTags;
 import galena.oreganized.plumbum.client.tooltip.ClientThermometerTooltip;
 import galena.oreganized.plumbum.client.tooltip.ThermometerTooltip;
 import galena.oreganized.plumbum.index.PlumbumCriterionTriggers;
 import galena.oreganized.plumbum.index.PlumbumDataComponents;
 import galena.oreganized.plumbum.index.PlumbumItems;
+import galena.oreganized.plumbum.index.PlumbumTags;
 import galena.oreganized.plumbum.world.block.IMeltableBlock;
 
 import java.util.Optional;
@@ -69,8 +69,8 @@ public class ThermometerItem extends Item {
     }
 
     private static int heatLevel(BlockState state, LevelAccessor level, BlockPos pos) {
-        if (state.is(OTags.Blocks.LAVA_HEAT_LEVEL)) return 8;
-        if (state.is(OTags.Blocks.FIRE_HEAT_LEVEL)) return 7;
+        if (state.is(PlumbumTags.Blocks.LAVA_HEAT_LEVEL)) return 8;
+        if (state.is(PlumbumTags.Blocks.FIRE_HEAT_LEVEL)) return 7;
         if (state.getLightEmission(level, pos) > 2) return 4;
         if (state.getBlock() instanceof IMeltableBlock block) {
             var goopyness = block.getGoopyness(state);
@@ -84,8 +84,8 @@ public class ThermometerItem extends Item {
         var level = player.level();
         var pos = player.blockPosition();
 
-        if (player.getBlockStateOn().is(OTags.Blocks.LAVA_HEAT_LEVEL)) return 8;
-        if (player.getBlockStateOn().is(OTags.Blocks.FIRE_HEAT_LEVEL)) return 7;
+        if (player.getBlockStateOn().is(PlumbumTags.Blocks.LAVA_HEAT_LEVEL)) return 8;
+        if (player.getBlockStateOn().is(PlumbumTags.Blocks.FIRE_HEAT_LEVEL)) return 7;
         if (player.isOnFire()) return 5;
         if (player.isFreezing()) return 0;
 
@@ -99,7 +99,7 @@ public class ThermometerItem extends Item {
     public static int activeMeasurement(Level level, BlockPos pos) {
         var box = new AABB(pos).inflate(AMBIENT_RANGE);
         var lavaDistance = BlockPos.betweenClosedStream(box)
-                .filter(it -> level.getBlockState(it).is(OTags.Blocks.LAVA_HEAT_LEVEL))
+                .filter(it -> level.getBlockState(it).is(PlumbumTags.Blocks.LAVA_HEAT_LEVEL))
                 .mapToInt(it -> it.distManhattan(pos))
                 .min()
                 .orElse(Integer.MAX_VALUE);

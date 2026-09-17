@@ -1,10 +1,10 @@
 package galena.oreganized.plumbum.world.block;
 
-import galena.oreganized.index.OTags;
 import galena.oreganized.plumbum.config.PlumbumConfigs;
 import galena.oreganized.plumbum.index.PlumbumBlocks;
 import galena.oreganized.plumbum.index.PlumbumDamageTypes;
 import galena.oreganized.plumbum.index.PlumbumItems;
+import galena.oreganized.plumbum.index.PlumbumTags;
 import java.util.Optional;
 import java.util.function.Supplier;
 import net.minecraft.core.BlockPos;
@@ -151,10 +151,10 @@ public class MoltenLeadBlock extends LiquidBlock {
     }
 
     public static boolean isEntityLighterThanLead(Entity entity) {
-        if (entity.getType().is(OTags.Entities.LIGHTER_THAN_LEAD)) {
+        if (entity.getType().is(PlumbumTags.Entities.LIGHTER_THAN_LEAD)) {
             return true;
         } else {
-            return entity instanceof LivingEntity living && living.getItemBySlot(EquipmentSlot.FEET).is(OTags.Items.LIGHTER_THAN_LEAD);
+            return entity instanceof LivingEntity living && living.getItemBySlot(EquipmentSlot.FEET).is(PlumbumTags.Items.LIGHTER_THAN_LEAD);
         }
     }
 

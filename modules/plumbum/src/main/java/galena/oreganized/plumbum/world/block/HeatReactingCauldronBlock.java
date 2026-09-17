@@ -1,7 +1,7 @@
 package galena.oreganized.plumbum.world.block;
 
-import galena.oreganized.index.OTags;
 import galena.oreganized.plumbum.config.PlumbumConfigs;
+import galena.oreganized.plumbum.index.PlumbumTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.server.level.ServerLevel;
@@ -41,7 +41,7 @@ public abstract class HeatReactingCauldronBlock extends AbstractCauldronBlock {
     private boolean isHot(ServerLevel level, BlockPos pos) {
         if (level.dimensionType().ultraWarm()) return true;
         var below = level.getBlockState(pos.below());
-        return below.is(OTags.Blocks.MELTS_LEAD);
+        return below.is(PlumbumTags.Blocks.MELTS_LEAD);
     }
 
     abstract void heatUp(BlockState state, ServerLevel level, BlockPos pos, RandomSource random);

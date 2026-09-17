@@ -4,4 +4,5 @@ dependencies {
     modCompileOnly(libs.create) { isTransitive = false }
 
     dataImplementation(project(":core", configuration = "dataElements"))
+    dataImplementation(project(":plumbum"))
 }

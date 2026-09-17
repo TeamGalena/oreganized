@@ -5,7 +5,8 @@ import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.glance.index.GlanceBlocks;
-import galena.oreganized.index.OTags;
+import galena.oreganized.glance.index.GlanceTags;
+import galena.oreganized.plumbum.index.PlumbumTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
@@ -13,20 +14,20 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
 
 @Mod(OConstants.MOD_ID)
-public class GlanceTags {
+public class GlanceTagsGen {
 
-    public GlanceTags() {
+    public GlanceTagsGen() {
         ODatagen.addItemTagProvider(this::items);
         ODatagen.addBlockTagProvider(this::blocks);
         ODatagen.addBiomeTagProvider(this::biomes);
     }
 
     private void items(RegistrateItemTagsProvider provider) {
-        provider.copy(OTags.Blocks.STONE_TYPES_GLANCE, OTags.Items.STONE_TYPES_GLANCE);
+        provider.copy(GlanceTags.Blocks.STONE_TYPES_GLANCE, GlanceTags.Items.STONE_TYPES_GLANCE);
     }
 
     private void blocks(RegistrateTagsProvider.IntrinsicImpl<Block> provider) {
-        provider.addTag(OTags.Blocks.STONE_TYPES_GLANCE).add(
+        provider.addTag(GlanceTags.Blocks.STONE_TYPES_GLANCE).add(
                 GlanceBlocks.POLISHED_GLANCE.getKey(),
                 GlanceBlocks.GLANCE_BRICKS.getKey(),
                 GlanceBlocks.CHISELED_GLANCE.getKey(),
@@ -57,8 +58,8 @@ public class GlanceTags {
     }
 
     private void biomes(RegistrateTagsProvider.Impl<Biome> provider) {
-        provider.addTag(OTags.Biomes.HAS_BOULDER)
-                .addOptionalTag(OTags.Biomes.RICH_IN_LEAD_ORE)
+        provider.addTag(GlanceTags.Biomes.HAS_BOULDER)
+                .addOptionalTag(PlumbumTags.Biomes.RICH_IN_LEAD_ORE)
                 .addTag(Tags.Biomes.IS_PLAINS);
     }
 

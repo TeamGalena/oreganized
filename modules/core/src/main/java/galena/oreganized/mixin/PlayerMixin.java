@@ -1,6 +1,6 @@
 package galena.oreganized.mixin;
 
-import galena.oreganized.index.OTags;
+import galena.oreganized.index.CoreTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.PlayerModelPart;
@@ -20,7 +20,7 @@ public class PlayerMixin {
         var self = (Player) (Object) this;
 
         var helmet = self.getItemBySlot(EquipmentSlot.HEAD);
-        if (helmet.is(OTags.Items.HIDES_HAT_LAYER)) {
+        if (helmet.is(CoreTags.Items.HIDES_HAT_LAYER)) {
             cir.setReturnValue(false);
         }
     }

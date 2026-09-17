@@ -1,7 +1,7 @@
 package galena.oreganized.engraved.world.item;
 
 import galena.oreganized.engraved.index.EngravedItems;
-import galena.oreganized.index.OTags;
+import galena.oreganized.engraved.index.EngravedTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
@@ -14,7 +14,7 @@ import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 public class BushHammerItem extends DiggerItem {
 
     public BushHammerItem(Tier tier, Item.Properties properties) {
-        super(tier, OTags.Blocks.MINEABLE_WITH_BUSH_HAMMER, properties);
+        super(tier, EngravedTags.Blocks.MINEABLE_WITH_BUSH_HAMMER, properties);
     }
 
     @SubscribeEvent

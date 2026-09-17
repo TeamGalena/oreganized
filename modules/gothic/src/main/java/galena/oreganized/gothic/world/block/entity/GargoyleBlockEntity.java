@@ -4,9 +4,9 @@ import galena.oreganized.OConstants;
 import galena.oreganized.gothic.index.GothicBlockEntities;
 import galena.oreganized.gothic.index.GothicCriterionTriggers;
 import galena.oreganized.gothic.index.GothicSounds;
+import galena.oreganized.gothic.index.GothicTags;
 import galena.oreganized.gothic.world.ai.ScaredOfGargoyleGoal;
 import galena.oreganized.gothic.world.block.GargoyleBlock;
-import galena.oreganized.index.OTags;
 import java.util.Collection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -74,7 +74,7 @@ public class GargoyleBlockEntity extends BlockEntity {
 
     private static Collection<Mob> getTargets(Level level, BlockPos pos) {
         var box = new AABB(pos).inflate(10.0);
-        return level.getEntitiesOfClass(Mob.class, box, it -> it.getType().is(OTags.Entities.SCARED_OF_GARGOYLE));
+        return level.getEntitiesOfClass(Mob.class, box, it -> it.getType().is(GothicTags.Entities.SCARED_OF_GARGOYLE));
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, GargoyleBlockEntity be) {
@@ -159,7 +159,7 @@ public class GargoyleBlockEntity extends BlockEntity {
     }
 
     public ItemInteractionResult interact(Level level, BlockPos pos, @Nullable Player player, ItemStack stack, boolean simulate) {
-        if (!stack.is(OTags.Items.GARGOYLE_SNACK)) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        if (!stack.is(GothicTags.Items.GARGOYLE_SNACK)) return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         if (player != null && player.getPersistentData().getInt(GROWL_COOLDOWN_TAG) > 0) return ItemInteractionResult.FAIL;
         if (growlCooldown > 0) return ItemInteractionResult.FAIL;
 

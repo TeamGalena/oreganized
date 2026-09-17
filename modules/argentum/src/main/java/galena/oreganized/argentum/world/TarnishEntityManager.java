@@ -2,8 +2,8 @@ package galena.oreganized.argentum.world;
 
 import galena.oreganized.argentum.index.ArgentumAttachmentTypes;
 import galena.oreganized.argentum.index.ArgentumSounds;
+import galena.oreganized.argentum.index.ArgentumTags;
 import galena.oreganized.argentum.network.TarnishParticlePacket;
-import galena.oreganized.index.OTags;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
@@ -12,7 +12,7 @@ import net.neoforged.neoforge.network.PacketDistributor;
 public class TarnishEntityManager {
 
     public static boolean canTarnish(Entity entity) {
-        return entity.getType().is(OTags.Entities.TARNISHABLE) && !entity.getData(ArgentumAttachmentTypes.TARNISHED);
+        return entity.getType().is(ArgentumTags.Entities.TARNISHABLE) && !entity.getData(ArgentumAttachmentTypes.TARNISHED);
     }
 
     public static boolean canPolish(Entity entity) {

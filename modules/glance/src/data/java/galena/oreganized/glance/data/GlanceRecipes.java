@@ -17,8 +17,10 @@ import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.glance.index.GlanceBlocks;
-import galena.oreganized.index.OTags;
+import galena.oreganized.glance.index.GlanceTags;
+import galena.oreganized.index.CoreTags;
 import galena.oreganized.plumbum.index.PlumbumItems;
+import galena.oreganized.plumbum.index.PlumbumTags;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.world.item.Items;
@@ -65,7 +67,7 @@ public class GlanceRecipes {
                 .pattern(" X ")
                 .pattern("XOX")
                 .pattern(" X ")
-                .define('X', OTags.Items.NUGGETS_LEAD)
+                .define('X', CoreTags.Items.NUGGETS_LEAD)
                 .define('O', GlanceBlocks.GLANCE.get())
                 .unlockedBy("has_glance", has(GlanceBlocks.GLANCE.get()))
                 .save(provider);
@@ -73,9 +75,9 @@ public class GlanceRecipes {
         shaped(RecipeCategory.BUILDING_BLOCKS, GlanceBlocks.GLANCE.get(), 2)
                 .pattern("AB")
                 .pattern("BA")
-                .define('A', OTags.Items.NUGGETS_LEAD)
+                .define('A', CoreTags.Items.NUGGETS_LEAD)
                 .define('B', Items.DIORITE)
-                .unlockedBy("has_lead_ingot", has(OTags.Items.INGOTS_LEAD))
+                .unlockedBy("has_lead_ingot", has(CoreTags.Items.INGOTS_LEAD))
                 .save(provider);
 
         // TODO modular will need to be conditional in the future
@@ -90,20 +92,22 @@ public class GlanceRecipes {
         processing(CrushingRecipe::new, "glance_recycling")
                 .output(0.8F, AllItems.CRUSHED_LEAD, 1)
                 .output(0.8F, PlumbumItems.LEAD_NUGGET.get())
-                .require(OTags.Items.STONE_TYPES_GLANCE)
+                .require(GlanceTags.Items.STONE_TYPES_GLANCE)
                 .duration(250)
                 .build(provider);
 
+        // TODO modular will need to be conditional in the future
         processing(FillingRecipe::new, "spotted_glance")
                 .output(GlanceBlocks.SPOTTED_GLANCE.get())
                 .require(GlanceBlocks.GLANCE.get())
-                .require(OTags.Fluids.MOLTEN_LEAD, 250)
+                .require(PlumbumTags.Fluids.MOLTEN_LEAD, 250)
                 .build(provider);
 
+        // TODO modular will need to be conditional in the future
         processing(MixingRecipe::new, "glance")
                 .output(GlanceBlocks.GLANCE.get())
                 .require(Items.DIORITE)
-                .require(OTags.Items.NUGGETS_LEAD)
+                .require(CoreTags.Items.NUGGETS_LEAD)
                 .build(provider);
     }
 }

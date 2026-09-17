@@ -3,7 +3,6 @@ package galena.oreganized.device.data;
 
 import static com.tterrag.registrate.providers.RegistrateRecipeProvider.has;
 import static galena.oreganized.data.ConditionalData.dyed;
-import static galena.oreganized.data.provider.ORecipeProvider.crystalGlass;
 import static galena.oreganized.data.provider.ORecipeProvider.makePane;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 
@@ -11,12 +10,16 @@ import galena.oreganized.OConstants;
 import galena.oreganized.data.ColorCompat;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.gothic.index.GothicBlocks;
-import galena.oreganized.index.OTags;
+import galena.oreganized.index.CoreTags;
+import java.util.function.Supplier;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.Tags;
 
 @Mod(OConstants.MOD_ID)
 public class GothicRecipes {
@@ -41,9 +44,20 @@ public class GothicRecipes {
                 .pattern("###")
                 .define('#', ItemTags.STONE_CRAFTING_MATERIALS)
                 .define('P', Items.CARVED_PUMPKIN)
-                .define('S', OTags.Items.INGOTS_SILVER)
+                .define('S', CoreTags.Items.INGOTS_SILVER)
                 .unlockedBy("has_pumpkin", has(Items.CARVED_PUMPKIN))
-                .unlockedBy("has_silver_ingot", has(OTags.Items.INGOTS_SILVER))
+                .unlockedBy("has_silver_ingot", has(CoreTags.Items.INGOTS_SILVER))
                 .save(provider);
+    }
+
+    public static ShapedRecipeBuilder crystalGlass(Supplier<? extends Block> blockOut, Block blockIn) {
+        return ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, blockOut.get(), 8)
+                .pattern("AAA")
+                .pattern("ABA")
+                .pattern("AAA")
+                .define('A', blockIn)
+                .define('B', CoreTags.Items.INGOTS_LEAD)
+                .unlockedBy("has_lead_ingot", has(CoreTags.Items.INGOTS_LEAD))
+                .unlockedBy("has_any_glass", has(Tags.Items.GLASS_BLOCKS));
     }
 }

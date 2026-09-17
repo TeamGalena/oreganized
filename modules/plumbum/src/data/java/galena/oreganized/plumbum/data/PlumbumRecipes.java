@@ -10,10 +10,11 @@ import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
-import galena.oreganized.index.OTags;
+import galena.oreganized.index.CoreTags;
 import galena.oreganized.plumbum.index.PlumbumBlocks;
 import galena.oreganized.plumbum.index.PlumbumFluids;
 import galena.oreganized.plumbum.index.PlumbumItems;
+import galena.oreganized.plumbum.index.PlumbumTags;
 import java.util.List;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -52,7 +53,7 @@ public class PlumbumRecipes {
                 .pattern(" X ")
                 .pattern("XOX")
                 .pattern(" X ")
-                .define('X', OTags.Items.INGOTS_LEAD)
+                .define('X', CoreTags.Items.INGOTS_LEAD)
                 .define('O', Items.REDSTONE)
                 .unlockedBy("has_lead_ingot", has(PlumbumItems.LEAD_INGOT.get()))
                 .save(provider);
@@ -69,10 +70,10 @@ public class PlumbumRecipes {
 
         shapeless(RecipeCategory.BREWING, Items.POISONOUS_POTATO, 1)
                 .requires(Items.POTATO)
-                .requires(OTags.Items.NUGGETS_LEAD)
-                .requires(OTags.Items.NUGGETS_LEAD)
-                .requires(OTags.Items.NUGGETS_LEAD)
-                .unlockedBy("has_lead", has(OTags.Items.NUGGETS_LEAD))
+                .requires(CoreTags.Items.NUGGETS_LEAD)
+                .requires(CoreTags.Items.NUGGETS_LEAD)
+                .requires(CoreTags.Items.NUGGETS_LEAD)
+                .unlockedBy("has_lead", has(CoreTags.Items.NUGGETS_LEAD))
                 .unlockedBy("has_potato", has(Items.POTATO))
                 .save(provider, OConstants.modLoc("poisonous_potato_from_lead"));
 
@@ -80,55 +81,55 @@ public class PlumbumRecipes {
                 .pattern(" I ")
                 .pattern("IGI")
                 .pattern(" B ")
-                .define('I', OTags.Items.INGOTS_LEAD)
+                .define('I', CoreTags.Items.INGOTS_LEAD)
                 .define('G', Items.GLOW_INK_SAC)
                 .define('B', PlumbumItems.MOLTEN_LEAD_BUCKET.get())
-                .unlockedBy("has_lead", has(OTags.Items.INGOTS_LEAD))
+                .unlockedBy("has_lead", has(CoreTags.Items.INGOTS_LEAD))
                 .save(provider);
 
         shaped(RecipeCategory.REDSTONE, PlumbumBlocks.LEAD_DOOR.get())
                 .pattern("##")
                 .pattern("##")
                 .pattern("##")
-                .define('#', Ingredient.of(OTags.Items.INGOTS_LEAD))
-                .unlockedBy("has_lead", has(OTags.Items.INGOTS_LEAD))
+                .define('#', Ingredient.of(CoreTags.Items.INGOTS_LEAD))
+                .unlockedBy("has_lead", has(CoreTags.Items.INGOTS_LEAD))
                 .save(provider);
 
         shaped(RecipeCategory.REDSTONE, PlumbumBlocks.LEAD_TRAPDOOR.get())
-                .define('#', OTags.Items.INGOTS_LEAD)
+                .define('#', CoreTags.Items.INGOTS_LEAD)
                 .pattern("##")
                 .pattern("##")
-                .unlockedBy("has_lead", has(OTags.Items.INGOTS_LEAD))
+                .unlockedBy("has_lead", has(CoreTags.Items.INGOTS_LEAD))
                 .save(provider);
 
-        makeBars(PlumbumBlocks.LEAD_BARS, OTags.Items.INGOTS_LEAD).save(provider);
+        makeBars(PlumbumBlocks.LEAD_BARS, CoreTags.Items.INGOTS_LEAD).save(provider);
 
         shaped(RecipeCategory.REDSTONE, PlumbumBlocks.STURDY_LEVER.get())
                 .define('#', Items.LEVER)
-                .define('X', OTags.Items.INGOTS_LEAD)
+                .define('X', CoreTags.Items.INGOTS_LEAD)
                 .pattern("X")
                 .pattern("#")
-                .unlockedBy("has_lead", has(OTags.Items.INGOTS_LEAD))
+                .unlockedBy("has_lead", has(CoreTags.Items.INGOTS_LEAD))
                 .save(provider);
 
         shaped(RecipeCategory.REDSTONE, PlumbumBlocks.STURDY_BUTTON.get())
                 .define('#', ItemTags.STONE_BUTTONS)
-                .define('X', OTags.Items.INGOTS_LEAD)
+                .define('X', CoreTags.Items.INGOTS_LEAD)
                 .pattern("X")
                 .pattern("#")
-                .unlockedBy("has_lead", has(OTags.Items.INGOTS_LEAD))
+                .unlockedBy("has_lead", has(CoreTags.Items.INGOTS_LEAD))
                 .save(provider);
 
         processing(CompactingRecipe::new, "molten_lead")
                 .output(PlumbumBlocks.LEAD_BLOCK.get())
-                .require(OTags.Fluids.MOLTEN_LEAD, 1000)
+                .require(PlumbumTags.Fluids.MOLTEN_LEAD, 1000)
                 .build(provider);
 
         processing(MixingRecipe::new, "molten_lead")
                 .output(PlumbumFluids.MOLTEN_LEAD.get(), 1000)
                 .require(new CompoundIngredient(List.of(
-                        Ingredient.of(OTags.Items.STORAGE_BLOCKS_LEAD),
-                        Ingredient.of(OTags.Items.STORAGE_BLOCKS_RAW_LEAD)
+                        Ingredient.of(CoreTags.Items.STORAGE_BLOCKS_LEAD),
+                        Ingredient.of(CoreTags.Items.STORAGE_BLOCKS_RAW_LEAD)
                 )))
                 .requiresHeat(HeatCondition.HEATED)
                 .build(provider);

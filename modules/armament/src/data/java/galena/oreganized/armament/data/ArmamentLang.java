@@ -7,8 +7,8 @@ import galena.oreganized.OConstants;
 import galena.oreganized.armament.index.ArmamentBlocks;
 import galena.oreganized.armament.index.ArmamentEntities;
 import galena.oreganized.armament.index.ArmamentItems;
+import galena.oreganized.armament.index.ArmamentTags;
 import galena.oreganized.data.ODatagen;
-import galena.oreganized.index.OTags;
 import net.neoforged.fml.common.Mod;
 
 @Mod(OConstants.MOD_ID)
@@ -33,8 +33,8 @@ public class ArmamentLang {
         addDeath(provider, "lead_bolt", "%1$s was shot by %2$s");
         addDeath(provider, "lead_bolt.item", "%1$s was shot by %2$s using %3$s");
 
-        provider.add(OTags.Entities.BOLT_RESISTANT, "Bolt Resistant");
-        provider.add(OTags.Entities.BOLT_SUSCEPTIBLE, "Bolt Susceptible");
+        provider.add(ArmamentTags.Entities.BOLT_RESISTANT, "Bolt Resistant");
+        provider.add(ArmamentTags.Entities.BOLT_SUSCEPTIBLE, "Bolt Susceptible");
 
         provider.addEntityType(ArmamentEntities.LEAD_BOLT::get);
         provider.addEntityType(ArmamentEntities.SHRAPNEL_BOMB::get);

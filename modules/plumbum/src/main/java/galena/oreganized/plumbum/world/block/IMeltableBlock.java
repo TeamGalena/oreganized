@@ -1,6 +1,6 @@
 package galena.oreganized.plumbum.world.block;
 
-import galena.oreganized.index.OTags;
+import galena.oreganized.plumbum.index.PlumbumTags;
 import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
@@ -52,7 +52,7 @@ public interface IMeltableBlock {
     }
 
     default int getInducedGoopyness(BlockGetter world, BlockState state, BlockPos pos, BlockState selfState, BlockPos selfPos) {
-        if (state.is(OTags.Blocks.MELTS_LEAD)) return 2;
+        if (state.is(PlumbumTags.Blocks.MELTS_LEAD)) return 2;
         if (state.getBlock() instanceof IMeltableBlock meltable && meltable.getGoopyness(state) == 2) return 1;
         if (state.getLightEmission(world, pos) >= 15) return 1;
         return 0;
@@ -94,7 +94,7 @@ public interface IMeltableBlock {
 
     default void hurt(BlockState state, Level world, Entity entity) {
         if (getGoopyness(state) < 2) return;
-        if (!entity.isSteppingCarefully() && entity instanceof LivingEntity le && !EnchantmentHelper.hasTag(le.getItemBySlot(EquipmentSlot.FEET), OTags.Enchantments.HEAT_IMMUNITY)) {
+        if (!entity.isSteppingCarefully() && entity instanceof LivingEntity le && !EnchantmentHelper.hasTag(le.getItemBySlot(EquipmentSlot.FEET), PlumbumTags.Enchantments.HEAT_IMMUNITY)) {
             entity.hurt(world.damageSources().hotFloor(), 1.0F);
         }
     }

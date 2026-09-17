@@ -3,7 +3,7 @@ package galena.oreganized.argentum.index;
 import galena.oreganized.OConstants;
 import galena.oreganized.argentum.world.item.ScribeItem;
 import galena.oreganized.argentum.world.item.SilverMirrorItem;
-import galena.oreganized.index.OTags;
+import galena.oreganized.index.CoreTags;
 import galena.oreganized.register.ItemRegistryHelper;
 import galena.oreganized.register.SimpleRegistryHelper;
 import galena.oreganized.world.item.ModdedArmorItem;
@@ -51,7 +51,7 @@ public class ArgentumItems {
                     }),
                     10,
                     SoundEvents.ARMOR_EQUIP_GOLD,
-                    () -> Ingredient.of(OTags.Items.INGOTS_SILVER),
+                    () -> Ingredient.of(CoreTags.Items.INGOTS_SILVER),
                     List.of(new ArmorMaterial.Layer(id)),
                     0.0F,
                     0.0F
@@ -67,7 +67,7 @@ public class ArgentumItems {
     public static final DeferredItem<ArmorItem> SILVER_LEGGINGS = ITEMS.createArmor("silver_leggings", SILVER_MATERIAL, ArmorItem.Type.LEGGINGS, 14, ArgentumItems::silverArmorAttributes);
     public static final DeferredItem<ArmorItem> SILVER_BOOTS = ITEMS.createArmor("silver_boots", SILVER_MATERIAL, ArmorItem.Type.BOOTS, 14, ArgentumItems::silverArmorAttributes);
 
-    public static final Tier SILVER_TIER = new SimpleTier(OTags.Blocks.INCORRECT_FOR_SILVER_TOOL, 191, 5F, 2.0F, 13, () -> Ingredient.of(OTags.Items.INGOTS_SILVER));
+    public static final Tier SILVER_TIER = new SimpleTier(ArgentumTags.Blocks.INCORRECT_FOR_SILVER_TOOL, 191, 5F, 2.0F, 13, () -> Ingredient.of(CoreTags.Items.INGOTS_SILVER));
 
     public static final DeferredItem<Item> SILVER_SWORD = ITEMS.createItem("silver_sword",
             () -> new SwordItem(SILVER_TIER, new Item.Properties().attributes(SwordItem.createAttributes(SILVER_TIER, 3, -2.4F))));

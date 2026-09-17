@@ -13,7 +13,7 @@ import galena.oreganized.argentum.index.ArgentumItems;
 import galena.oreganized.argentum.index.TarnishedBlocks;
 import galena.oreganized.argentum.world.recipe.ScribeRecipe;
 import galena.oreganized.data.ODatagen;
-import galena.oreganized.index.OTags;
+import galena.oreganized.index.CoreTags;
 import java.util.List;
 import java.util.stream.Stream;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -49,11 +49,11 @@ public class ArgentumRecipes {
 
         shaped(RecipeCategory.TOOLS, ArgentumItems.SCRIBE.get())
                 .define('A', Items.AMETHYST_SHARD)
-                .define('S', OTags.Items.INGOTS_SILVER)
+                .define('S', CoreTags.Items.INGOTS_SILVER)
                 .pattern("A")
                 .pattern("S")
                 .pattern("S")
-                .unlockedBy("has_silver", has(OTags.Items.INGOTS_SILVER))
+                .unlockedBy("has_silver", has(CoreTags.Items.INGOTS_SILVER))
                 .unlockedBy("has_amethyst", has(Items.AMETHYST_SHARD))
                 .save(provider);
 
@@ -73,17 +73,17 @@ public class ArgentumRecipes {
                 .pattern("ABA")
                 .pattern(" A ")
                 .define('A', Tags.Items.INGOTS_GOLD)
-                .define('B', OTags.Items.INGOTS_SILVER)
+                .define('B', CoreTags.Items.INGOTS_SILVER)
                 .unlockedBy("has_gold_ingot", has(Tags.Items.INGOTS_GOLD))
-                .unlockedBy("has_silver_ingot", has(OTags.Items.INGOTS_SILVER))
+                .unlockedBy("has_silver_ingot", has(CoreTags.Items.INGOTS_SILVER))
                 .save(provider);
 
         scribeConversionAndCutting(provider, Blocks.ICE, ArgentumBlocks.GROOVED_ICE.get());
         scribeConversionAndCutting(provider, Blocks.PACKED_ICE, ArgentumBlocks.GROOVED_PACKED_ICE.get());
         scribeConversionAndCutting(provider, Blocks.BLUE_ICE, ArgentumBlocks.GROOVED_BLUE_ICE.get());
 
-        scribeHarvesting(OTags.Blocks.AMETHYST_CLUSTERS, Blocks.SMALL_AMETHYST_BUD).save(provider);
-        scribeHarvesting(OTags.Blocks.QUARTZITE_CLUSTERS, BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath(ModCompat.NO_MANS_LAND, "small_quartzite_bud")))
+        scribeHarvesting(CoreTags.Blocks.AMETHYST_CLUSTERS, Blocks.SMALL_AMETHYST_BUD).save(provider);
+        scribeHarvesting(CoreTags.Blocks.QUARTZITE_CLUSTERS, BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath(ModCompat.NO_MANS_LAND, "small_quartzite_bud")))
                 .when(ModCompat.NO_MANS_LAND)
                 .save(provider);
 
@@ -119,7 +119,7 @@ public class ArgentumRecipes {
                     .save(provider);
         });
 
-        makeBars(ArgentumBlocks.SILVER_BARS.base(), OTags.Items.INGOTS_SILVER).save(provider);
+        makeBars(ArgentumBlocks.SILVER_BARS.base(), CoreTags.Items.INGOTS_SILVER).save(provider);
 
         shaped(RecipeCategory.BUILDING_BLOCKS, ArgentumBlocks.SILVER_BULBS.base())
                 .pattern(" C ")
@@ -133,18 +133,18 @@ public class ArgentumRecipes {
                 .save(provider);
 
         shaped(RecipeCategory.REDSTONE, ArgentumBlocks.SILVER_DOORS.base())
-                .define('#', Ingredient.of(OTags.Items.INGOTS_SILVER))
+                .define('#', Ingredient.of(CoreTags.Items.INGOTS_SILVER))
                 .pattern("##")
                 .pattern("##")
                 .pattern("##")
-                .unlockedBy("has_silver", has(OTags.Items.INGOTS_SILVER))
+                .unlockedBy("has_silver", has(CoreTags.Items.INGOTS_SILVER))
                 .save(provider);
 
         shaped(RecipeCategory.REDSTONE, ArgentumBlocks.SILVER_TRAPDOORS.base())
-                .define('#', OTags.Items.INGOTS_SILVER)
+                .define('#', CoreTags.Items.INGOTS_SILVER)
                 .pattern("##")
                 .pattern("##")
-                .unlockedBy("has_silver", has(OTags.Items.INGOTS_SILVER))
+                .unlockedBy("has_silver", has(CoreTags.Items.INGOTS_SILVER))
                 .save(provider);
 
         ArgentumSets.tarnishedBlocks().forEach(it -> brushing(provider, it));

@@ -1,7 +1,7 @@
 package galena.oreganized.gothic.mixin;
 
+import galena.oreganized.gothic.index.GothicTags;
 import galena.oreganized.gothic.world.block.GargoyleBlock;
-import galena.oreganized.index.OTags;
 import net.minecraft.core.dispenser.DispenseItemBehavior;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -20,7 +20,7 @@ public class DispenserBlockMixin {
             cancellable = true
     )
     private void injectGargoyleBehaviour(Level level, ItemStack stack, CallbackInfoReturnable<DispenseItemBehavior> cir) {
-        if (stack.is(OTags.Items.GARGOYLE_SNACK)) cir.setReturnValue(GargoyleBlock.DISPENSE_ITEM_BEHAVIOR);
+        if (stack.is(GothicTags.Items.GARGOYLE_SNACK)) cir.setReturnValue(GargoyleBlock.DISPENSE_ITEM_BEHAVIOR);
     }
 
 }

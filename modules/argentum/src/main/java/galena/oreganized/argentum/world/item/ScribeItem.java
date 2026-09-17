@@ -1,13 +1,10 @@
 package galena.oreganized.argentum.world.item;
 
-import static galena.oreganized.index.OTags.Blocks.MINEABLE_WITH_SCRIBE;
-import static galena.oreganized.index.OTags.Blocks.SILKTOUCH_WITH_SCRIBE;
-import static galena.oreganized.index.OTags.Blocks.SILKTOUCH_WITH_SCRIBE_BLACKLIST;
-
 import galena.oreganized.argentum.config.ArgentumConfigs;
 import galena.oreganized.argentum.index.ArgentumDataMapTypes;
 import galena.oreganized.argentum.index.ArgentumItemAbilities;
 import galena.oreganized.argentum.index.ArgentumRecipeTypes;
+import galena.oreganized.argentum.index.ArgentumTags;
 import galena.oreganized.argentum.world.recipe.BlockRecipeInput;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -48,7 +45,7 @@ public class ScribeItem extends Item {
 
     @Override
     public float getDestroySpeed(ItemStack stack, BlockState state) {
-        if (state.is(MINEABLE_WITH_SCRIBE)) return 32F;
+        if (state.is(ArgentumTags.Blocks.MINEABLE_WITH_SCRIBE)) return 32F;
         else if (isCorrectToolForDrops(stack, state)) return 0.3F;
         return super.getDestroySpeed(stack, state);
     }
@@ -58,15 +55,15 @@ public class ScribeItem extends Item {
     }
 
     private boolean shouldNotSilktouch(ItemStack stack, BlockState state) {
-        return state.is(SILKTOUCH_WITH_SCRIBE_BLACKLIST);
+        return state.is(ArgentumTags.Blocks.SILKTOUCH_WITH_SCRIBE_BLACKLIST);
     }
 
     @Override
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
         if (ArgentumConfigs.COMMON.scribeSilkTouchStone.get()) {
-            return state.is(SILKTOUCH_WITH_SCRIBE);
+            return state.is(ArgentumTags.Blocks.SILKTOUCH_WITH_SCRIBE);
         } else {
-            return state.is(MINEABLE_WITH_SCRIBE);
+            return state.is(ArgentumTags.Blocks.MINEABLE_WITH_SCRIBE);
         }
     }
 

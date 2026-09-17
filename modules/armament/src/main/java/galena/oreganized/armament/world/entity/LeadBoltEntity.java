@@ -3,7 +3,7 @@ package galena.oreganized.armament.world.entity;
 import galena.oreganized.armament.index.ArmamentCriterionTriggers;
 import galena.oreganized.armament.index.ArmamentItems;
 import galena.oreganized.armament.index.ArmamentSounds;
-import galena.oreganized.index.OTags;
+import galena.oreganized.armament.index.ArmamentTags;
 
 import java.util.stream.Stream;
 
@@ -33,7 +33,7 @@ import org.jetbrains.annotations.Nullable;
 public class LeadBoltEntity extends AbstractArrow {
 
     private static boolean canShootOff(ItemStack stack, LivingEntity entity) {
-        if (entity.getType().is(OTags.Entities.BOLT_RESISTANT)) return false;
+        if (entity.getType().is(ArmamentTags.Entities.BOLT_RESISTANT)) return false;
         if (stack.isEmpty()) return false;
         if (EnchantmentHelper.has(stack, EnchantmentEffectComponents.PREVENT_ARMOR_CHANGE)) return false;
         return true;
@@ -116,7 +116,7 @@ public class LeadBoltEntity extends AbstractArrow {
         var baseDamage = 3.0;
         setBaseDamage(baseDamage);
 
-        if (result.getEntity().getType().is(OTags.Entities.BOLT_SUSCEPTIBLE)) {
+        if (result.getEntity().getType().is(ArmamentTags.Entities.BOLT_SUSCEPTIBLE)) {
             setBaseDamage(baseDamage * 3);
         }
 

@@ -11,7 +11,6 @@ import com.simibubi.create.content.kinetics.millstone.MillingRecipe;
 import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
 import galena.oreganized.ModCompat;
 import galena.oreganized.OConstants;
-import galena.oreganized.index.OTags;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Supplier;
@@ -26,8 +25,9 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SlabBlock;
-import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import vectorwing.farmersdelight.common.crafting.ingredient.ItemAbilityIngredient;
 import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
 public final class ORecipeProvider {
@@ -113,17 +113,6 @@ public final class ORecipeProvider {
         return ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, itemOut, 9)
                 .requires(itemIn)
                 .unlockedBy("has_" + getItemName(itemIn), has(itemIn));
-    }
-
-    public static ShapedRecipeBuilder crystalGlass(Supplier<? extends Block> blockOut, Block blockIn) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, blockOut.get(), 8)
-                .pattern("AAA")
-                .pattern("ABA")
-                .pattern("AAA")
-                .define('A', blockIn)
-                .define('B', OTags.Items.INGOTS_LEAD)
-                .unlockedBy("has_lead_ingot", has(OTags.Items.INGOTS_LEAD))
-                .unlockedBy("has_any_glass", has(Tags.Items.GLASS_BLOCKS));
     }
 
     public static void ore(Holder<? extends ItemLike> result, List<ItemLike> ingredients, float xp, RecipeOutput output) {
@@ -301,7 +290,8 @@ public final class ORecipeProvider {
                 .build(output);
 
         whenLoaded(output, ModCompat.FARMERS_DELIGHT, () -> {
-            CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(flower.get()), Ingredient.of(OTags.Items.TOOLS_KNIVES), primary, 2)
+            var knifeIngredient = new ItemAbilityIngredient(ItemAbility.get("knife_dig")).toVanilla();
+            CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(flower.get()), knifeIngredient, primary, 2)
                     .save(output);
         });
     }

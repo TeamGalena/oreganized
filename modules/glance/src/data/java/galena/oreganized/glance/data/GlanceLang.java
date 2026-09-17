@@ -4,7 +4,7 @@ import com.tterrag.registrate.providers.RegistrateLangProvider;
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.glance.index.GlanceBlocks;
-import galena.oreganized.index.OTags;
+import galena.oreganized.glance.index.GlanceTags;
 import net.neoforged.fml.common.Mod;
 
 @Mod(OConstants.MOD_ID)
@@ -34,8 +34,8 @@ public class GlanceLang {
         provider.addBlock(GlanceBlocks.SPOTTED_GLANCE::get);
         provider.addBlock(GlanceBlocks.WAXED_SPOTTED_GLANCE::get);
 
-        provider.add(OTags.Items.STONE_TYPES_GLANCE, "Processed Glance");
-        provider.add(OTags.Blocks.STONE_TYPES_GLANCE, "Processed Glance");
+        provider.add(GlanceTags.Items.STONE_TYPES_GLANCE, "Processed Glance");
+        provider.add(GlanceTags.Blocks.STONE_TYPES_GLANCE, "Processed Glance");
     }
 
 }

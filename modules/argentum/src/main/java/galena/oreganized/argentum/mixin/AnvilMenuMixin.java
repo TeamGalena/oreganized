@@ -5,7 +5,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.Share;
 import com.llamalad7.mixinextras.sugar.ref.LocalBooleanRef;
-import galena.oreganized.index.OTags;
+import galena.oreganized.argentum.index.ArgentumTags;
 import net.minecraft.world.inventory.AnvilMenu;
 import net.minecraft.world.inventory.DataSlot;
 import net.minecraft.world.item.ItemStack;
@@ -22,7 +22,7 @@ public class AnvilMenuMixin {
             at = @At(value = "INVOKE", target = "Ljava/lang/Math;max(II)I", ordinal = 1)
     )
     public int modifyEnchantmentCost(int a, int b, Operation<Integer> original, @Local(ordinal = 1) ItemStack subject, @Local(ordinal = 2) ItemStack book, @Share("no_enchant_cost") LocalBooleanRef flag) {
-        if (subject.is(OTags.Items.NO_ANVIL_ENCHANT_COST) && book.is(OTags.Items.ENCHANTED_BOOK_LIKE)) {
+        if (subject.is(ArgentumTags.Items.NO_ANVIL_ENCHANT_COST) && book.is(ArgentumTags.Items.ENCHANTED_BOOK_LIKE)) {
             flag.set(true);
             return 0;
         }

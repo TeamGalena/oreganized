@@ -8,7 +8,7 @@ import galena.oreganized.data.ODatagen;
 import galena.oreganized.electrum.index.ElectrumAttributes;
 import galena.oreganized.electrum.index.ElectrumBlocks;
 import galena.oreganized.electrum.index.ElectrumItems;
-import galena.oreganized.index.OTags;
+import galena.oreganized.electrum.index.ElectrumTags;
 import net.neoforged.fml.common.Mod;
 
 @Mod(OConstants.MOD_ID)
@@ -38,9 +38,9 @@ public class ElectrumLang {
         provider.add("item.oreganized.smithing_template.electrum_upgrade.additions_slot_description", "Add Electrum Ingot");
 
         addAttribute(provider, ElectrumAttributes.KINETIC_DAMAGE, "Kinetic Damage");
-        provider.add(OTags.Items.HAS_KINETIC_DAMAGE, "Has Kinetic Damage");
+        provider.add(ElectrumTags.Items.HAS_KINETIC_DAMAGE, "Has Kinetic Damage");
 
-        provider.add(OTags.Blocks.INCORRECT_FOR_ELECTRUM_TOOL, "Incorrect for Electrum Tools");
+        provider.add(ElectrumTags.Blocks.INCORRECT_FOR_ELECTRUM_TOOL, "Incorrect for Electrum Tools");
     }
 
 }

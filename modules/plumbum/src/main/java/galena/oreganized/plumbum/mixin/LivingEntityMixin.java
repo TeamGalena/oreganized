@@ -2,7 +2,7 @@ package galena.oreganized.plumbum.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.sugar.Local;
-import galena.oreganized.index.OTags;
+import galena.oreganized.plumbum.index.PlumbumTags;
 import galena.oreganized.plumbum.world.block.MoltenLeadBlock;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.material.FluidState;
@@ -19,7 +19,7 @@ public abstract class LivingEntityMixin {
     private boolean canStandOnLead(boolean original, @Local FluidState fluid) {
         var self = (LivingEntity) (Object) this;
         if (original) return original;
-        if (!fluid.is(OTags.Fluids.MOLTEN_LEAD)) return original;
+        if (!fluid.is(PlumbumTags.Fluids.MOLTEN_LEAD)) return original;
         return MoltenLeadBlock.isEntityLighterThanLead(self);
     }
 

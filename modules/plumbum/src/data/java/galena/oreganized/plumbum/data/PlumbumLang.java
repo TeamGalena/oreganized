@@ -5,7 +5,6 @@ import static galena.oreganized.data.provider.OLangProvider.*;
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
-import galena.oreganized.index.OTags;
 import galena.oreganized.plumbum.client.tooltip.ClientThermometerTooltip;
 import galena.oreganized.plumbum.index.*;
 import net.neoforged.fml.common.Mod;
@@ -69,18 +68,25 @@ public class PlumbumLang {
 
         addDeath(provider, "molten_lead", "%1$s refused to let go of the searing hot metal");
 
-        provider.add(OTags.Items.LIGHTER_THAN_LEAD, "Floats on Lead");
-        provider.add(OTags.Items.PROTECTIVE_ARMOR_PART, "Lead Protecting Armor");
-        provider.add(OTags.Items.PROTECTIVE_HELMET, "Lead Protecting Helmets");
+        provider.add(PlumbumTags.Items.LIGHTER_THAN_LEAD, "Floats on Lead");
+        provider.add(PlumbumTags.Items.PROTECTIVE_ARMOR_PART, "Lead Protecting Armor");
+        provider.add(PlumbumTags.Items.PROTECTIVE_HELMET, "Lead Protecting Helmets");
 
-        provider.add(OTags.Blocks.BLOWS_LEAD_CLOUD, "Lead Cloud Source");
-        provider.add(OTags.Blocks.FIRE_HEAT_LEVEL, "Lower Heat Level");
-        provider.add(OTags.Blocks.LAVA_HEAT_LEVEL, "Higher Heat Level");
-        provider.add(OTags.Blocks.MELTS_LEAD, "Melts Lead Blocks");
+        provider.add(PlumbumTags.Blocks.BLOWS_LEAD_CLOUD, "Lead Cloud Source");
+        provider.add(PlumbumTags.Blocks.FIRE_HEAT_LEVEL, "Lower Heat Level");
+        provider.add(PlumbumTags.Blocks.LAVA_HEAT_LEVEL, "Higher Heat Level");
+        provider.add(PlumbumTags.Blocks.MELTS_LEAD, "Melts Lead Blocks");
 
-        provider.add(OTags.Entities.LIGHTER_THAN_LEAD, "Floats on Lead");
+        provider.add(PlumbumTags.Entities.LIGHTER_THAN_LEAD, "Floats on Lead");
 
-        provider.add(OTags.Fluids.MOLTEN_LEAD, "Molten Lead");
+        provider.add(PlumbumTags.Fluids.MOLTEN_LEAD, "Molten Lead");
+
+        provider.add(PlumbumTags.Blocks.PREVENTS_LEAD_CLOUD, "Prevents Lead Clouds");
+
+        provider.add(PlumbumTags.Enchantments.HEAT_IMMUNITY, "Heat Protective Footwear");
+        provider.add(PlumbumTags.Enchantments.PREVENTS_LEAD_CLOUD, "Prevents Lead Clouds");
+
+        provider.add(PlumbumTags.Blocks.INCORRECT_FOR_LEAD_TOOL, "Incorrect for Lead Tools");
     }
 
 }

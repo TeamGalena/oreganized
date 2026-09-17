@@ -4,8 +4,8 @@ import galena.oreganized.OConstants;
 import galena.oreganized.electrum.accessor.IMotionHolder;
 import galena.oreganized.electrum.index.ElectrumAttributes;
 import galena.oreganized.electrum.index.ElectrumParticles;
+import galena.oreganized.electrum.index.ElectrumTags;
 import galena.oreganized.electrum.network.KineticHitPacket;
-import galena.oreganized.index.OTags;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -60,7 +60,7 @@ public class KineticDamage {
     private static void onItemAttributes(ItemAttributeModifierEvent event) {
         var stack = event.getItemStack();
 
-        if (stack.is(OTags.Items.HAS_KINETIC_DAMAGE)) {
+        if (stack.is(ElectrumTags.Items.HAS_KINETIC_DAMAGE)) {
             var damage = event.getModifiers().stream()
                     .filter(it -> it.matches(Attributes.ATTACK_DAMAGE, Item.BASE_ATTACK_DAMAGE_ID))
                     .map(it -> it.modifier().amount())

@@ -1,15 +1,13 @@
 package galena.oreganized.plumbum.world.block;
 
 import galena.oreganized.api.LeadProtections;
-import galena.oreganized.index.OTags;
 import galena.oreganized.plumbum.accessor.PreventableEffectCloud;
 import galena.oreganized.plumbum.config.PlumbumConfigs;
 import galena.oreganized.plumbum.index.PlumbumCriterionTriggers;
 import galena.oreganized.plumbum.index.PlumbumEffects;
 import galena.oreganized.plumbum.index.PlumbumParticles;
-
+import galena.oreganized.plumbum.index.PlumbumTags;
 import java.util.stream.Stream;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -65,13 +63,13 @@ public class LeadOreBlock {
 
     private static boolean shouldSpawnCloud(BlockState state, LevelAccessor level, BlockPos pos, ItemStack stack) {
         if (!PlumbumConfigs.COMMON.leadDustCloud.get()) return false;
-        if (stack.is(OTags.Items.PREVENTS_LEAD_CLOUD) || EnchantmentHelper.hasTag(stack, OTags.Enchantments.PREVENTS_LEAD_CLOUD))
+        if (stack.is(PlumbumTags.Items.PREVENTS_LEAD_CLOUD) || EnchantmentHelper.hasTag(stack, PlumbumTags.Enchantments.PREVENTS_LEAD_CLOUD))
             return false;
-        if (!state.is(OTags.Blocks.CREATES_LEAD_CLOUD)) return false;
+        if (!state.is(PlumbumTags.Blocks.CREATES_LEAD_CLOUD)) return false;
 
         for (var direction : Direction.values()) {
             var adjacentState = level.getBlockState(pos.relative(direction));
-            if (adjacentState.is(OTags.Blocks.PREVENTS_LEAD_CLOUD)) return false;
+            if (adjacentState.is(PlumbumTags.Blocks.PREVENTS_LEAD_CLOUD)) return false;
         }
 
         return true;
@@ -104,7 +102,7 @@ public class LeadOreBlock {
             var frontPos = pos.relative(facing, distance);
             var frontState = level.getBlockState(frontPos);
 
-            if (frontState.is(OTags.Blocks.BLOWS_LEAD_CLOUD)) {
+            if (frontState.is(PlumbumTags.Blocks.BLOWS_LEAD_CLOUD)) {
                 var vec = Vec3.atCenterOf(frontPos);
                 level.addParticle(PlumbumParticles.LEAD_BLOW.get(),
                         vec.x, vec.y, vec.z,
