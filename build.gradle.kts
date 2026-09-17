@@ -1,3 +1,4 @@
+import com.possible_triangle.gradle.modifyReleaseMetadata
 import com.possible_triangle.gradle.neoforge.NeoforgeExtension
 import net.neoforged.moddevgradle.dsl.NeoForgeExtension
 
@@ -74,6 +75,10 @@ modules.forEach {
 
     it.upload.forEach {
         file.unset()
+    }
+
+    it.modifyReleaseMetadata {
+        exclude = true
     }
 }
 
