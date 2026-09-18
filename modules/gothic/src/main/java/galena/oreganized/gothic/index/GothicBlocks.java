@@ -1,15 +1,15 @@
 package galena.oreganized.gothic.index;
 
 import galena.oreganized.OConstants;
-import galena.oreganized.gothic.world.block.CrystalGlassBlock;
-import galena.oreganized.gothic.world.block.CrystalGlassPaneBlock;
-import galena.oreganized.gothic.world.block.GargoyleBlock;
+import galena.oreganized.gothic.world.block.*;
 import galena.oreganized.register.BlockRegistryHelper;
+
 import java.util.Map;
+
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.material.MapColor;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
@@ -27,5 +27,40 @@ public class GothicBlocks {
     public static final Map<DyeColor, DeferredBlock<Block>> CRYSTAL_GLASS_PANES = BLOCKS.createColored("crystal_glass_pane", dye ->
             new CrystalGlassPaneBlock(dye, Properties.ofFullCopy(Blocks.RED_STAINED_GLASS_PANE).mapColor(dye)));
 
+    private static final MapColor DARK_GRIMSTONE_COLOR = MapColor.COLOR_BLACK;
+    private static final MapColor PALE_GRIMSTONE_COLOR = MapColor.TERRACOTTA_WHITE;
+
+    public static final DeferredBlock<Block> GRIMSTONE_BRICKS = BLOCKS.createBlock("grimstone_bricks", () ->
+            new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS).mapColor(DARK_GRIMSTONE_COLOR)));
+
+    public static final DeferredBlock<Block> POLISHED_GRIMSTONE = BLOCKS.createBlock("polished_grimstone", () ->
+            new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS).mapColor(DARK_GRIMSTONE_COLOR)));
+
+    public static final DeferredBlock<RotatedPillarBlock> GRIMSTONE_PILLAR = BLOCKS.createBlock("grimstone_pillar", () ->
+            new RotatedPillarBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS).mapColor(DARK_GRIMSTONE_COLOR)));
+
+    public static final DeferredBlock<Block> CHISELED_GRIMSTONE = BLOCKS.createBlock("chiseled_grimstone", () ->
+            new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS).mapColor(DARK_GRIMSTONE_COLOR)));
+
+    public static final DeferredBlock<SlabBlock> GRIMSTONE_SLAB = BLOCKS.createBlock("grimstone_slab", () ->
+            new SlabBlock(Properties.ofFullCopy(Blocks.STONE_SLAB).mapColor(DARK_GRIMSTONE_COLOR)));
+
+    public static final DeferredBlock<Block> DARK_GRIMSTONE_SPYRE_BLOCK = BLOCKS.createBlock("dark_grimstone_spyre_block", () ->
+            new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS).mapColor(DARK_GRIMSTONE_COLOR)));
+
+    public static final DeferredBlock<Block> PALE_GRIMSTONE_SPYRE_BLOCK = BLOCKS.createBlock("pale_grimstone_spyre_block", () ->
+            new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS).mapColor(PALE_GRIMSTONE_COLOR)));
+
+    public static final DeferredBlock<SpyreBlock> DARK_GRIMSTONE_SPYRE = BLOCKS.createBlock("dark_grimstone_spyre", () ->
+            new SpyreBlock(Properties.ofFullCopy(Blocks.DRIPSTONE_BLOCK).mapColor(DARK_GRIMSTONE_COLOR)));
+
+    public static final DeferredBlock<SpyreBlock> PALE_GRIMSTONE_SPYRE = BLOCKS.createBlock("pale_grimstone_spyre", () ->
+            new SpyreBlock(Properties.ofFullCopy(Blocks.DRIPSTONE_BLOCK).mapColor(PALE_GRIMSTONE_COLOR)));
+
+    public static final DeferredBlock<SpyreFenceBlock> DARK_GRIMSTONE_SPYRE_FENCE = BLOCKS.createBlock("dark_grimstone_spyre_fence", () ->
+            new SpyreFenceBlock(Properties.ofFullCopy(Blocks.IRON_BARS).mapColor(DARK_GRIMSTONE_COLOR)));
+
+    public static final DeferredBlock<SpyreFenceBlock> PALE_GRIMSTONE_SPYRE_FENCE = BLOCKS.createBlock("pale_grimstone_spyre_fence", () ->
+            new SpyreFenceBlock(Properties.ofFullCopy(Blocks.IRON_BARS).mapColor(PALE_GRIMSTONE_COLOR)));
 
 }

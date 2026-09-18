@@ -34,6 +34,8 @@ public class OTagExtensions {
         provider.copy(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE, Tags.Items.ORES_IN_GROUND_DEEPSLATE);
 
         provider.copy(BlockTags.WALLS, ItemTags.WALLS);
+        provider.copy(BlockTags.FENCES, ItemTags.FENCES);
+
         provider.copy(BlockTags.STAIRS, ItemTags.STAIRS);
         provider.copy(BlockTags.SLABS, ItemTags.SLABS);
 

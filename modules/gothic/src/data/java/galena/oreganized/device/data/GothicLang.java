@@ -17,9 +17,21 @@ public class GothicLang {
     }
 
     private void generate(RegistrateLangProvider provider) {
-        provider.addBlock(GothicBlocks.GARGOYLE::get);
-        GothicBlocks.CRYSTAL_GLASS.values().forEach(it -> provider.addBlock(it::get));
-        GothicBlocks.CRYSTAL_GLASS_PANES.values().forEach(it -> provider.addBlock(it::get));
+        provider.addBlock(GothicBlocks.GARGOYLE::value);
+        GothicBlocks.CRYSTAL_GLASS.values().forEach(it -> provider.addBlock(it::value));
+        GothicBlocks.CRYSTAL_GLASS_PANES.values().forEach(it -> provider.addBlock(it::value));
+
+        provider.addBlock(GothicBlocks.GRIMSTONE_BRICKS::value);
+        provider.addBlock(GothicBlocks.POLISHED_GRIMSTONE::value);
+        provider.addBlock(GothicBlocks.GRIMSTONE_PILLAR::value);
+        provider.addBlock(GothicBlocks.CHISELED_GRIMSTONE::value);
+        provider.addBlock(GothicBlocks.GRIMSTONE_SLAB::value);
+        provider.addBlock(GothicBlocks.PALE_GRIMSTONE_SPYRE::value);
+        provider.addBlock(GothicBlocks.DARK_GRIMSTONE_SPYRE::value);
+        provider.addBlock(GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK::value);
+        provider.addBlock(GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK::value);
+        provider.addBlock(GothicBlocks.DARK_GRIMSTONE_SPYRE_FENCE::value);
+        provider.addBlock(GothicBlocks.PALE_GRIMSTONE_SPYRE_FENCE::value);
 
         addSubtitle(provider, "block", "gargoyle.growl", "Gargoyle growls");
 

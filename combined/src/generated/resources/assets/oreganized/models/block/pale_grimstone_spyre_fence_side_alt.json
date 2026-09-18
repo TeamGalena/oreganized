@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/iron_bars_side_alt",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bars": "oreganized:block/pale_grimstone_spyre_fence",
+    "edge": "oreganized:block/pale_grimstone_spyre_fence_edge",
+    "particle": "oreganized:block/pale_grimstone_spyre_fence"
+  }
+}

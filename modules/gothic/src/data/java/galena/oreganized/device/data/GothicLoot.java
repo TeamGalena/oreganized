@@ -2,8 +2,7 @@ package galena.oreganized.device.data;
 
 
 import static galena.oreganized.data.ConditionalData.dyed;
-import static galena.oreganized.data.extensions.OBlockLootExtensions.dropAsSilk;
-import static galena.oreganized.data.extensions.OBlockLootExtensions.dropSelf;
+import static galena.oreganized.data.extensions.OBlockLootExtensions.*;
 
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import galena.oreganized.OConstants;
@@ -23,6 +22,18 @@ public class GothicLoot {
 
         GothicBlocks.CRYSTAL_GLASS.forEach((c, b) -> dyed(c, provider, () -> dropAsSilk(provider, b)));
         GothicBlocks.CRYSTAL_GLASS_PANES.forEach((c, b) -> dyed(c, provider, () -> dropAsSilk(provider, b)));
+
+        dropSelf(provider, GothicBlocks.GRIMSTONE_BRICKS);
+        dropSelf(provider, GothicBlocks.POLISHED_GRIMSTONE);
+        dropSelf(provider, GothicBlocks.GRIMSTONE_PILLAR);
+        dropSelf(provider, GothicBlocks.CHISELED_GRIMSTONE);
+        dropSlab(provider, GothicBlocks.GRIMSTONE_SLAB);
+        dropSelf(provider, GothicBlocks.DARK_GRIMSTONE_SPYRE);
+        dropSelf(provider, GothicBlocks.PALE_GRIMSTONE_SPYRE);
+        dropSelf(provider, GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK);
+        dropSelf(provider, GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK);
+        dropSelf(provider, GothicBlocks.DARK_GRIMSTONE_SPYRE_FENCE);
+        dropSelf(provider, GothicBlocks.PALE_GRIMSTONE_SPYRE_FENCE);
     }
 
 }

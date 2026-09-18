@@ -1,0 +1,50 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "oreganized:block/dark_grimstone_spyre_fence_cross"
+      },
+      "when": {
+        "east": "false",
+        "north": "false",
+        "south": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/dark_grimstone_spyre_fence_part",
+        "y": 90
+      },
+      "when": {
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/dark_grimstone_spyre_fence_part",
+        "y": 270
+      },
+      "when": {
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/dark_grimstone_spyre_fence_part",
+        "y": 180
+      },
+      "when": {
+        "east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/dark_grimstone_spyre_fence_part"
+      },
+      "when": {
+        "west": "true"
+      }
+    }
+  ]
+}

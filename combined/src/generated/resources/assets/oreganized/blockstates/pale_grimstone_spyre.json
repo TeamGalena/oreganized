@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "thickness=base": {
+      "model": "oreganized:block/pale_grimstone_spyre_base"
+    },
+    "thickness=frustum": {
+      "model": "oreganized:block/pale_grimstone_spyre_frustum"
+    },
+    "thickness=middle": {
+      "model": "oreganized:block/pale_grimstone_spyre_middle"
+    },
+    "thickness=tip": {
+      "model": "oreganized:block/pale_grimstone_spyre_tip"
+    }
+  }
+}

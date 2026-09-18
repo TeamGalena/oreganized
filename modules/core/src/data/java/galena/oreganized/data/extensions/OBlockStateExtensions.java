@@ -1,5 +1,6 @@
 package galena.oreganized.data.extensions;
 
+import static galena.oreganized.data.extensions.OItemModelExtensions.generatedItem;
 import static net.minecraft.resources.ResourceLocation.withDefaultNamespace;
 import static net.neoforged.neoforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
 import static net.neoforged.neoforge.client.model.generators.ModelProvider.ITEM_FOLDER;
@@ -112,6 +113,14 @@ public class OBlockStateExtensions {
     public static void pillar(BlockStateProvider provider, DeferredBlock<? extends RotatedPillarBlock> block) {
         provider.logBlock(block.value());
         blockItem(provider, block);
+    }
+
+    public static void pillarTopBottom(BlockStateProvider provider, DeferredBlock<? extends RotatedPillarBlock> block) {
+        // var name = block.getId().getPath();
+        // var vertical = provider.models().cubeColumn(name, side, end);
+        // var horizontal = provider.models().cubeColumnHorizontal(name, side, end);
+        // provider.axisBlock(block.value(), vertical, horizontal);
+        // blockItem(provider, block);
     }
 
     public static void crossWithPot(BlockStateProvider provider, DeferredBlock<? extends Block> cross, DeferredBlock<? extends FlowerPotBlock> potted) {

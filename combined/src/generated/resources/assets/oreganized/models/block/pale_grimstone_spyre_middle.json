@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/pointed_dripstone",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "cross": "oreganized:block/pale_grimstone_spyre_3"
+  }
+}
