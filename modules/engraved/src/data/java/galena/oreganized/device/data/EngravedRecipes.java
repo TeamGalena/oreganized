@@ -3,7 +3,7 @@ package galena.oreganized.device.data;
 
 
 import static com.tterrag.registrate.providers.RegistrateRecipeProvider.has;
-import static galena.oreganized.data.provider.ORecipeProvider.metalRecycling;
+import static galena.oreganized.data.extensions.ORecipeExtensions.metalRecycling;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 
 import galena.oreganized.OConstants;

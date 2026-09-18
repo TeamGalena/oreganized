@@ -1,7 +1,7 @@
 package galena.oreganized.plumbum.data;
 
 
-import static galena.oreganized.data.provider.OBlockLootProvider.*;
+import static galena.oreganized.data.extensions.OBlockLootExtensions.*;
 
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import galena.oreganized.OConstants;

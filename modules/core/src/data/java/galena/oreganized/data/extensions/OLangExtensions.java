@@ -1,10 +1,9 @@
-package galena.oreganized.data.provider;
+package galena.oreganized.data.extensions;
 
 
 import static com.tterrag.registrate.providers.RegistrateLangProvider.toEnglishName;
 import static net.minecraft.Util.makeDescriptionId;
 
-import java.util.*;
 import java.util.function.Supplier;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -16,7 +15,7 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
-public class OLangProvider {
+public class OLangExtensions {
 
     public static void addPotion(LanguageProvider provider, Supplier<? extends Potion> potion, String name) {
         provider.add("item.minecraft.potion.effect." + BuiltInRegistries.POTION.getKey(potion.get()).getPath(), "Potion of " + name);

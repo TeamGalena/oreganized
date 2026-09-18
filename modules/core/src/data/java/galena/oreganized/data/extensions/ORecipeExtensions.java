@@ -1,4 +1,4 @@
-package galena.oreganized.data.provider;
+package galena.oreganized.data.extensions;
 
 import static com.tterrag.registrate.providers.RegistrateRecipeProvider.*;
 
@@ -30,7 +30,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import vectorwing.farmersdelight.common.crafting.ingredient.ItemAbilityIngredient;
 import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
-public final class ORecipeProvider {
+public final class ORecipeExtensions {
 
     public static ShapedRecipeBuilder makeSlab(Supplier<? extends Block> slabOut, Supplier<? extends Block> blockIn) {
         return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, slabOut.get(), 6)

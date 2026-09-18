@@ -1,7 +1,7 @@
 package galena.oreganized.plumbum.data;
 
 import static com.tterrag.registrate.providers.RegistrateRecipeProvider.has;
-import static galena.oreganized.data.provider.ORecipeProvider.*;
+import static galena.oreganized.data.extensions.ORecipeExtensions.*;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 import static net.minecraft.data.recipes.ShapelessRecipeBuilder.shapeless;
 

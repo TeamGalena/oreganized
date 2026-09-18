@@ -1,8 +1,8 @@
 package galena.oreganized.argentum.data;
 
 
-import static galena.oreganized.data.provider.OBlockLootProvider.dropOre;
-import static galena.oreganized.data.provider.OBlockLootProvider.dropSelf;
+import static galena.oreganized.data.extensions.OBlockLootExtensions.dropOre;
+import static galena.oreganized.data.extensions.OBlockLootExtensions.dropSelf;
 
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import galena.oreganized.OConstants;

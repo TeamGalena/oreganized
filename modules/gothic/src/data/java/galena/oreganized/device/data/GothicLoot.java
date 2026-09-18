@@ -2,8 +2,8 @@ package galena.oreganized.device.data;
 
 
 import static galena.oreganized.data.ConditionalData.dyed;
-import static galena.oreganized.data.provider.OBlockLootProvider.dropAsSilk;
-import static galena.oreganized.data.provider.OBlockLootProvider.dropSelf;
+import static galena.oreganized.data.extensions.OBlockLootExtensions.dropAsSilk;
+import static galena.oreganized.data.extensions.OBlockLootExtensions.dropSelf;
 
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import galena.oreganized.OConstants;

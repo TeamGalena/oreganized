@@ -1,6 +1,6 @@
 package galena.oreganized.electrum.data;
 
-import static galena.oreganized.data.provider.OLangProvider.addAttribute;
+import static galena.oreganized.data.extensions.OLangExtensions.addAttribute;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import galena.oreganized.OConstants;

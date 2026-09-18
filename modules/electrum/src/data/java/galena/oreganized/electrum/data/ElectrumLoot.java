@@ -1,7 +1,7 @@
 package galena.oreganized.electrum.data;
 
 
-import static galena.oreganized.data.provider.OBlockLootProvider.dropSelf;
+import static galena.oreganized.data.extensions.OBlockLootExtensions.dropSelf;
 
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import galena.oreganized.OConstants;

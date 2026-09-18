@@ -3,7 +3,7 @@ package galena.oreganized.device.data;
 
 import static com.tterrag.registrate.providers.RegistrateRecipeProvider.has;
 import static galena.oreganized.data.ConditionalData.dyed;
-import static galena.oreganized.data.provider.ORecipeProvider.makePane;
+import static galena.oreganized.data.extensions.ORecipeExtensions.makePane;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 
 import galena.oreganized.OConstants;

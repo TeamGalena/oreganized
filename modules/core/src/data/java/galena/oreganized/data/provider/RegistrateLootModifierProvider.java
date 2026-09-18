@@ -9,7 +9,7 @@ import net.minecraft.data.PackOutput;
 import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
 
-public class RegistrateLootModifierProvider extends GlobalLootModifierProvider implements RegistrateProvider {
+public final class RegistrateLootModifierProvider extends GlobalLootModifierProvider implements RegistrateProvider {
 
     public static final ProviderType<RegistrateLootModifierProvider> PROVIDER = ProviderType.registerServerData("loot_modifier", RegistrateLootModifierProvider::new);
 

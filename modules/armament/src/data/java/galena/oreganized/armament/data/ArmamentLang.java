@@ -1,6 +1,6 @@
 package galena.oreganized.armament.data;
 
-import static galena.oreganized.data.provider.OLangProvider.*;
+import static galena.oreganized.data.extensions.OLangExtensions.*;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import galena.oreganized.OConstants;

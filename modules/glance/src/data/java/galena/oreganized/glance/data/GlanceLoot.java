@@ -1,8 +1,8 @@
 package galena.oreganized.glance.data;
 
 
-import static galena.oreganized.data.provider.OBlockLootProvider.dropSelf;
-import static galena.oreganized.data.provider.OBlockLootProvider.dropSlab;
+import static galena.oreganized.data.extensions.OBlockLootExtensions.dropSelf;
+import static galena.oreganized.data.extensions.OBlockLootExtensions.dropSlab;
 
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import galena.oreganized.OConstants;

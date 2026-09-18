@@ -64,15 +64,10 @@ public class ODatagen {
     private static final ProviderType<RegistrateTagsProvider.Impl<TrimMaterial>> TRIM_MATERIAL_TAGS =
             ProviderType.registerDynamicTag("tags/trim_materials", "trim_material", Registries.TRIM_MATERIAL);
 
-    // currently needed because of https://github.com/tterrag1098/Registrate/issues/96
-    // re-running data can lead to ProviderType.DYNAMIC & this DYNAMIC to run in the wrong order, run again until working
-    // please god I hope Registrate somehow adds a better solution for this
-    public static final ProviderType<ODataPacks> DYNAMIC = ProviderType.registerServerData("conditional_dynamic", ODataPacks::new);
-
     static {
-        REGISTRATE.getDataGenInitializer().addDependency(ProviderType.DYNAMIC, DYNAMIC);
-        REGISTRATE.getDataGenInitializer().addDependency(DAMAGE_TYPE_TAGS, DYNAMIC);
-        REGISTRATE.getDataGenInitializer().addDependency(TRIM_MATERIAL_TAGS, DYNAMIC);
+        REGISTRATE.getDataGenInitializer().addDependency(ProviderType.DYNAMIC, ODataPacks.PROVIDER);
+        REGISTRATE.getDataGenInitializer().addDependency(DAMAGE_TYPE_TAGS, ODataPacks.PROVIDER);
+        REGISTRATE.getDataGenInitializer().addDependency(TRIM_MATERIAL_TAGS, ODataPacks.PROVIDER);
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
@@ -185,7 +180,7 @@ public class ODatagen {
         REGISTRY_BOOTSTRAP.combine(registry, bootstrap).ifPresent(it ->
                 REGISTRATE.getDataGenInitializer().add(registry, it)
         );
-        REGISTRATE.addDataGenerator(DYNAMIC, conditions::accept);
+        REGISTRATE.addDataGenerator(ODataPacks.PROVIDER, conditions::accept);
     }
 
     public static <T> void addDataRegistryEntries(ResourceKey<Registry<T>> registry, RegistrySetBuilder.RegistryBootstrap<T> bootstrap) {

@@ -2,12 +2,12 @@ package galena.oreganized.glance.data;
 
 
 import static com.tterrag.registrate.providers.RegistrateRecipeProvider.has;
-import static galena.oreganized.data.provider.ORecipeProvider.*;
-import static galena.oreganized.data.provider.ORecipeProvider.makeChiseledStonecutting;
-import static galena.oreganized.data.provider.ORecipeProvider.makeStairsStonecutting;
-import static galena.oreganized.data.provider.ORecipeProvider.makeWallStonecutting;
-import static galena.oreganized.data.provider.ORecipeProvider.makeWaxed;
-import static galena.oreganized.data.provider.ORecipeProvider.stonecutting;
+import static galena.oreganized.data.extensions.ORecipeExtensions.*;
+import static galena.oreganized.data.extensions.ORecipeExtensions.makeChiseledStonecutting;
+import static galena.oreganized.data.extensions.ORecipeExtensions.makeStairsStonecutting;
+import static galena.oreganized.data.extensions.ORecipeExtensions.makeWallStonecutting;
+import static galena.oreganized.data.extensions.ORecipeExtensions.makeWaxed;
+import static galena.oreganized.data.extensions.ORecipeExtensions.stonecutting;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 
 import com.simibubi.create.AllItems;

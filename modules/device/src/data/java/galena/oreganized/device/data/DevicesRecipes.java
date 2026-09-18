@@ -2,7 +2,7 @@ package galena.oreganized.device.data;
 
 
 import static com.tterrag.registrate.providers.RegistrateRecipeProvider.has;
-import static galena.oreganized.data.provider.ORecipeProvider.*;
+import static galena.oreganized.data.extensions.ORecipeExtensions.*;
 
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;

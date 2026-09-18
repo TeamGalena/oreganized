@@ -1,7 +1,7 @@
 package galena.oreganized.plumbum.data;
 
 import static galena.oreganized.data.ConditionalData.dyed;
-import static galena.oreganized.data.provider.ORecipeProvider.makeWaxed;
+import static galena.oreganized.data.extensions.ORecipeExtensions.makeWaxed;
 
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ColorCompat;

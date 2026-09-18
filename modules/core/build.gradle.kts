@@ -5,15 +5,9 @@ dependencies {
 
     modImplementation(pack.modrinth.farmers.delight)
 
-    // TODO combine in dataApi?
-    dataElements(libs.registrate)
-    dataImplementation(libs.registrate)
-    dataElements(libs.create) { isTransitive = false }
-    dataImplementation(libs.create) { isTransitive = false }
-    dataElements(libs.multikulti.datagen)
-    dataImplementation(libs.multikulti.datagen)
-    dataElements(libs.multikulti.registrate)
-    dataImplementation(libs.multikulti.registrate)
-    dataElements(pack.modrinth.farmers.delight)
-    dataImplementation(pack.modrinth.farmers.delight)
+    dataApi(libs.registrate)
+    dataApi(libs.create) { isTransitive = false }
+    dataApi(libs.multikulti.datagen)
+    dataApi(libs.multikulti.registrate)
+    dataApi(pack.modrinth.farmers.delight)
 }

@@ -1,4 +1,4 @@
-package galena.oreganized.data.provider;
+package galena.oreganized.data.extensions;
 
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 
@@ -8,7 +8,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
-public class OBlockLootProvider {
+public class OBlockLootExtensions {
 
     public static void dropSelf(RegistrateBlockLootTables provider, Holder<? extends Block> block) {
         provider.dropSelf(block.value());

@@ -8,7 +8,7 @@ import net.minecraft.resources.ResourceKey;
 import org.jetbrains.annotations.ApiStatus;
 
 @ApiStatus.Internal
-public class CombinedRegistryBootstraps {
+public final class CombinedRegistryBootstraps {
 
     private final Map<ResourceKey<Registry<?>>, Combined<?>> entries = new HashMap<>();
 

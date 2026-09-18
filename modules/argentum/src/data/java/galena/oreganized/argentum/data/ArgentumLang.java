@@ -1,7 +1,7 @@
 package galena.oreganized.argentum.data;
 
-import static galena.oreganized.data.provider.OLangProvider.addAttribute;
-import static galena.oreganized.data.provider.OLangProvider.addSubtitle;
+import static galena.oreganized.data.extensions.OLangExtensions.addAttribute;
+import static galena.oreganized.data.extensions.OLangExtensions.addSubtitle;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import galena.oreganized.OConstants;

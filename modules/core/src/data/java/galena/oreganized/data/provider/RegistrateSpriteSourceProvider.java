@@ -12,7 +12,7 @@ import net.neoforged.fml.LogicalSide;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.common.data.SpriteSourceProvider;
 
-public class RegistrateSpriteSourceProvider extends SpriteSourceProvider implements RegistrateProvider {
+public final class RegistrateSpriteSourceProvider extends SpriteSourceProvider implements RegistrateProvider {
 
     public static final ResourceLocation BLOCKS_ATLAS = SpriteSourceProvider.BLOCKS_ATLAS;
 
