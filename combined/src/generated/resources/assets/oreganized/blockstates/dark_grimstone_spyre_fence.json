@@ -14,15 +14,6 @@
     {
       "apply": {
         "model": "oreganized:block/dark_grimstone_spyre_fence_part",
-        "y": 90
-      },
-      "when": {
-        "north": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/dark_grimstone_spyre_fence_part",
         "y": 270
       },
       "when": {
@@ -44,6 +35,15 @@
       },
       "when": {
         "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/dark_grimstone_spyre_fence_part",
+        "y": 90
+      },
+      "when": {
+        "north": "true"
       }
     }
   ]

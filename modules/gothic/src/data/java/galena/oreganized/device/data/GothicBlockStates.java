@@ -37,11 +37,16 @@ public class GothicBlockStates {
         GothicBlocks.CRYSTAL_GLASS.forEach((color, block) -> crystalGlassBlock(provider, block));
         GothicBlocks.CRYSTAL_GLASS_PANES.forEach((color, block) -> crystalGlassPaneBlock(provider, color, block, GothicBlocks.CRYSTAL_GLASS.get(color)));
 
-        cubeAll(provider, GothicBlocks.GRIMSTONE_BRICKS);
-        cubeAll(provider, GothicBlocks.POLISHED_GRIMSTONE);
-        pillar(provider, GothicBlocks.GRIMSTONE_PILLAR);
-        cubeBottomTopBlock(provider, GothicBlocks.CHISELED_GRIMSTONE);
-        slab(provider, GothicBlocks.POLISHED_GRIMSTONE, GothicBlocks.GRIMSTONE_SLAB);
+        cubeAll(provider, GothicBlocks.DARK_GRIMSTONE_BRICKS);
+        cubeAll(provider, GothicBlocks.PALE_GRIMSTONE_BRICKS);
+        cubeAll(provider, GothicBlocks.POLISHED_DARK_GRIMSTONE);
+        cubeAll(provider, GothicBlocks.POLISHED_PALE_GRIMSTONE);
+        pillar(provider, GothicBlocks.DARK_GRIMSTONE_PILLAR);
+        pillar(provider, GothicBlocks.PALE_GRIMSTONE_PILLAR);
+        cubeColumn(provider, GothicBlocks.CHISELED_DARK_GRIMSTONE);
+        cubeColumn(provider, GothicBlocks.CHISELED_PALE_GRIMSTONE);
+        slab(provider, GothicBlocks.POLISHED_DARK_GRIMSTONE, GothicBlocks.DARK_GRIMSTONE_SLAB);
+        slab(provider, GothicBlocks.POLISHED_PALE_GRIMSTONE, GothicBlocks.PALE_GRIMSTONE_SLAB);
         cubeAll(provider, GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK);
         cubeAll(provider, GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK);
         spyre(provider, GothicBlocks.DARK_GRIMSTONE_SPYRE);

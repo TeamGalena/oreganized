@@ -115,12 +115,9 @@ public class OBlockStateExtensions {
         blockItem(provider, block);
     }
 
-    public static void pillarTopBottom(BlockStateProvider provider, DeferredBlock<? extends RotatedPillarBlock> block) {
-        // var name = block.getId().getPath();
-        // var vertical = provider.models().cubeColumn(name, side, end);
-        // var horizontal = provider.models().cubeColumnHorizontal(name, side, end);
-        // provider.axisBlock(block.value(), vertical, horizontal);
-        // blockItem(provider, block);
+    public static void cubeColumn(BlockStateProvider provider, DeferredBlock<? extends Block> block) {
+        var texture = provider.blockTexture(block.value());
+        cubeBottomTopBlock(provider, block, texture.withSuffix("_side"), texture.withSuffix("_top"), texture.withSuffix("_top"));
     }
 
     public static void crossWithPot(BlockStateProvider provider, DeferredBlock<? extends Block> cross, DeferredBlock<? extends FlowerPotBlock> potted) {

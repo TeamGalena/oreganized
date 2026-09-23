@@ -23,11 +23,16 @@ public class GothicLoot {
         GothicBlocks.CRYSTAL_GLASS.forEach((c, b) -> dyed(c, provider, () -> dropAsSilk(provider, b)));
         GothicBlocks.CRYSTAL_GLASS_PANES.forEach((c, b) -> dyed(c, provider, () -> dropAsSilk(provider, b)));
 
-        dropSelf(provider, GothicBlocks.GRIMSTONE_BRICKS);
-        dropSelf(provider, GothicBlocks.POLISHED_GRIMSTONE);
-        dropSelf(provider, GothicBlocks.GRIMSTONE_PILLAR);
-        dropSelf(provider, GothicBlocks.CHISELED_GRIMSTONE);
-        dropSlab(provider, GothicBlocks.GRIMSTONE_SLAB);
+        dropSelf(provider, GothicBlocks.DARK_GRIMSTONE_BRICKS);
+        dropSelf(provider, GothicBlocks.PALE_GRIMSTONE_BRICKS);
+        dropSelf(provider, GothicBlocks.POLISHED_DARK_GRIMSTONE);
+        dropSelf(provider, GothicBlocks.POLISHED_PALE_GRIMSTONE);
+        dropSelf(provider, GothicBlocks.DARK_GRIMSTONE_PILLAR);
+        dropSelf(provider, GothicBlocks.PALE_GRIMSTONE_PILLAR);
+        dropSelf(provider, GothicBlocks.CHISELED_DARK_GRIMSTONE);
+        dropSelf(provider, GothicBlocks.CHISELED_PALE_GRIMSTONE);
+        dropSlab(provider, GothicBlocks.DARK_GRIMSTONE_SLAB);
+        dropSlab(provider, GothicBlocks.PALE_GRIMSTONE_SLAB);
         dropSelf(provider, GothicBlocks.DARK_GRIMSTONE_SPYRE);
         dropSelf(provider, GothicBlocks.PALE_GRIMSTONE_SPYRE);
         dropSelf(provider, GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK);

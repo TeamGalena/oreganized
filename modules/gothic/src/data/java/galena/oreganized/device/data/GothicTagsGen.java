@@ -41,11 +41,16 @@ public class GothicTagsGen {
 
         provider.addTag(BlockTags.MINEABLE_WITH_PICKAXE).add(
                 GothicBlocks.GARGOYLE.getKey(),
-                GothicBlocks.GRIMSTONE_BRICKS.getKey(),
-                GothicBlocks.POLISHED_GRIMSTONE.getKey(),
-                GothicBlocks.GRIMSTONE_PILLAR.getKey(),
-                GothicBlocks.CHISELED_GRIMSTONE.getKey(),
-                GothicBlocks.GRIMSTONE_SLAB.getKey(),
+                GothicBlocks.DARK_GRIMSTONE_BRICKS.getKey(),
+                GothicBlocks.PALE_GRIMSTONE_BRICKS.getKey(),
+                GothicBlocks.POLISHED_DARK_GRIMSTONE.getKey(),
+                GothicBlocks.POLISHED_PALE_GRIMSTONE.getKey(),
+                GothicBlocks.DARK_GRIMSTONE_PILLAR.getKey(),
+                GothicBlocks.PALE_GRIMSTONE_PILLAR.getKey(),
+                GothicBlocks.CHISELED_DARK_GRIMSTONE.getKey(),
+                GothicBlocks.CHISELED_PALE_GRIMSTONE.getKey(),
+                GothicBlocks.DARK_GRIMSTONE_SLAB.getKey(),
+                GothicBlocks.PALE_GRIMSTONE_SLAB.getKey(),
                 GothicBlocks.DARK_GRIMSTONE_SPYRE.getKey(),
                 GothicBlocks.PALE_GRIMSTONE_SPYRE.getKey(),
                 GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK.getKey(),
@@ -63,7 +68,7 @@ public class GothicTagsGen {
                 GothicBlocks.PALE_GRIMSTONE_SPYRE_FENCE.getKey()
         );
 
-        provider.addTag(BlockTags.SLABS).add(GothicBlocks.GRIMSTONE_SLAB.getKey());
+        provider.addTag(BlockTags.SLABS).add(GothicBlocks.DARK_GRIMSTONE_SLAB.getKey());
     }
 
     private void entities(RegistrateTagsProvider.IntrinsicImpl<EntityType<?>> provider) {

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "oreganized:block/chiseled_grimstone_bottom",
-    "side": "oreganized:block/chiseled_grimstone_side",
-    "top": "oreganized:block/chiseled_grimstone_top"
-  }
-}

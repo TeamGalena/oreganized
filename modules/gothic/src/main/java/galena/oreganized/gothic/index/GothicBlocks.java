@@ -30,20 +30,35 @@ public class GothicBlocks {
     private static final MapColor DARK_GRIMSTONE_COLOR = MapColor.COLOR_BLACK;
     private static final MapColor PALE_GRIMSTONE_COLOR = MapColor.TERRACOTTA_WHITE;
 
-    public static final DeferredBlock<Block> GRIMSTONE_BRICKS = BLOCKS.createBlock("grimstone_bricks", () ->
+    public static final DeferredBlock<Block> DARK_GRIMSTONE_BRICKS = BLOCKS.createBlock("dark_grimstone_bricks", () ->
             new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS).mapColor(DARK_GRIMSTONE_COLOR)));
 
-    public static final DeferredBlock<Block> POLISHED_GRIMSTONE = BLOCKS.createBlock("polished_grimstone", () ->
+    public static final DeferredBlock<Block> PALE_GRIMSTONE_BRICKS = BLOCKS.createBlock("pale_grimstone_bricks", () ->
+            new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS).mapColor(PALE_GRIMSTONE_COLOR)));
+
+    public static final DeferredBlock<Block> POLISHED_DARK_GRIMSTONE = BLOCKS.createBlock("polished_dark_grimstone", () ->
             new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS).mapColor(DARK_GRIMSTONE_COLOR)));
 
-    public static final DeferredBlock<RotatedPillarBlock> GRIMSTONE_PILLAR = BLOCKS.createBlock("grimstone_pillar", () ->
+    public static final DeferredBlock<Block> POLISHED_PALE_GRIMSTONE = BLOCKS.createBlock("polished_pale_grimstone", () ->
+            new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS).mapColor(PALE_GRIMSTONE_COLOR)));
+
+    public static final DeferredBlock<RotatedPillarBlock> DARK_GRIMSTONE_PILLAR = BLOCKS.createBlock("dark_grimstone_pillar", () ->
             new RotatedPillarBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS).mapColor(DARK_GRIMSTONE_COLOR)));
 
-    public static final DeferredBlock<Block> CHISELED_GRIMSTONE = BLOCKS.createBlock("chiseled_grimstone", () ->
+    public static final DeferredBlock<RotatedPillarBlock> PALE_GRIMSTONE_PILLAR = BLOCKS.createBlock("pale_grimstone_pillar", () ->
+            new RotatedPillarBlock(Properties.ofFullCopy(Blocks.STONE_BRICKS).mapColor(PALE_GRIMSTONE_COLOR)));
+
+    public static final DeferredBlock<Block> CHISELED_DARK_GRIMSTONE = BLOCKS.createBlock("chiseled_dark_grimstone", () ->
             new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS).mapColor(DARK_GRIMSTONE_COLOR)));
 
-    public static final DeferredBlock<SlabBlock> GRIMSTONE_SLAB = BLOCKS.createBlock("grimstone_slab", () ->
+    public static final DeferredBlock<Block> CHISELED_PALE_GRIMSTONE = BLOCKS.createBlock("chiseled_pale_grimstone", () ->
+            new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS).mapColor(PALE_GRIMSTONE_COLOR)));
+
+    public static final DeferredBlock<SlabBlock> DARK_GRIMSTONE_SLAB = BLOCKS.createBlock("dark_grimstone_slab", () ->
             new SlabBlock(Properties.ofFullCopy(Blocks.STONE_SLAB).mapColor(DARK_GRIMSTONE_COLOR)));
+
+    public static final DeferredBlock<SlabBlock> PALE_GRIMSTONE_SLAB = BLOCKS.createBlock("pale_grimstone_slab", () ->
+            new SlabBlock(Properties.ofFullCopy(Blocks.STONE_SLAB).mapColor(PALE_GRIMSTONE_COLOR)));
 
     public static final DeferredBlock<Block> DARK_GRIMSTONE_SPYRE_BLOCK = BLOCKS.createBlock("dark_grimstone_spyre_block", () ->
             new Block(Properties.ofFullCopy(Blocks.STONE_BRICKS).mapColor(DARK_GRIMSTONE_COLOR)));

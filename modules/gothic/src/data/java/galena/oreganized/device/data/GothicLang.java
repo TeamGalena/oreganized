@@ -21,11 +21,16 @@ public class GothicLang {
         GothicBlocks.CRYSTAL_GLASS.values().forEach(it -> provider.addBlock(it::value));
         GothicBlocks.CRYSTAL_GLASS_PANES.values().forEach(it -> provider.addBlock(it::value));
 
-        provider.addBlock(GothicBlocks.GRIMSTONE_BRICKS::value);
-        provider.addBlock(GothicBlocks.POLISHED_GRIMSTONE::value);
-        provider.addBlock(GothicBlocks.GRIMSTONE_PILLAR::value);
-        provider.addBlock(GothicBlocks.CHISELED_GRIMSTONE::value);
-        provider.addBlock(GothicBlocks.GRIMSTONE_SLAB::value);
+        provider.addBlock(GothicBlocks.DARK_GRIMSTONE_BRICKS::value);
+        provider.addBlock(GothicBlocks.PALE_GRIMSTONE_BRICKS::value);
+        provider.addBlock(GothicBlocks.POLISHED_DARK_GRIMSTONE::value);
+        provider.addBlock(GothicBlocks.POLISHED_PALE_GRIMSTONE::value);
+        provider.addBlock(GothicBlocks.DARK_GRIMSTONE_PILLAR::value);
+        provider.addBlock(GothicBlocks.PALE_GRIMSTONE_PILLAR::value);
+        provider.addBlock(GothicBlocks.CHISELED_DARK_GRIMSTONE::value);
+        provider.addBlock(GothicBlocks.CHISELED_PALE_GRIMSTONE::value);
+        provider.addBlock(GothicBlocks.DARK_GRIMSTONE_SLAB::value);
+        provider.addBlock(GothicBlocks.PALE_GRIMSTONE_SLAB::value);
         provider.addBlock(GothicBlocks.PALE_GRIMSTONE_SPYRE::value);
         provider.addBlock(GothicBlocks.DARK_GRIMSTONE_SPYRE::value);
         provider.addBlock(GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK::value);

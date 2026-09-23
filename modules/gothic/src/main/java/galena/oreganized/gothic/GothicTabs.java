@@ -44,16 +44,21 @@ public class GothicTabs {
 
         builder.add(CreativeModeTabs.BUILDING_BLOCKS, tab -> {
             tab.putAfter(Blocks.IRON_BARS, GothicBlocks.DARK_GRIMSTONE_SPYRE_FENCE, GothicBlocks.PALE_GRIMSTONE_SPYRE_FENCE);
-            tab.putAfter(Blocks.STONE_BRICK_SLAB, GothicBlocks.GRIMSTONE_SLAB);
+            tab.putAfter(Blocks.STONE_BRICK_SLAB, GothicBlocks.DARK_GRIMSTONE_SLAB, GothicBlocks.PALE_GRIMSTONE_SLAB);
             tab.putAfter(
                     Blocks.STONE_BRICKS,
-                    GothicBlocks.GRIMSTONE_BRICKS,
-                    GothicBlocks.POLISHED_GRIMSTONE,
-                    GothicBlocks.GRIMSTONE_PILLAR,
-                    GothicBlocks.CHISELED_GRIMSTONE,
+                    GothicBlocks.DARK_GRIMSTONE_BRICKS,
+                    GothicBlocks.POLISHED_DARK_GRIMSTONE,
+                    GothicBlocks.DARK_GRIMSTONE_PILLAR,
+                    GothicBlocks.CHISELED_DARK_GRIMSTONE,
                     GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK,
-                    GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK,
                     GothicBlocks.DARK_GRIMSTONE_SPYRE,
+
+                    GothicBlocks.PALE_GRIMSTONE_BRICKS,
+                    GothicBlocks.POLISHED_PALE_GRIMSTONE,
+                    GothicBlocks.PALE_GRIMSTONE_PILLAR,
+                    GothicBlocks.CHISELED_PALE_GRIMSTONE,
+                    GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK,
                     GothicBlocks.PALE_GRIMSTONE_SPYRE
             );
         });
