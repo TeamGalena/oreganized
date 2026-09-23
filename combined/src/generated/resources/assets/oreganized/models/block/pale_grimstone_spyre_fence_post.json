@@ -2,7 +2,6 @@
   "parent": "minecraft:block/iron_bars_post",
   "render_type": "minecraft:cutout",
   "textures": {
-    "bars": "oreganized:block/pale_grimstone_spyre_fence_edge",
     "particle": "oreganized:block/pale_grimstone_spyre_fence"
   }
 }

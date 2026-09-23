@@ -1,0 +1,7 @@
+{
+  "parent": "oreganized:block/template/spyre_fence/side_bottom",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "texture": "oreganized:block/pale_grimstone_spyre_fence_edge"
+  }
+}

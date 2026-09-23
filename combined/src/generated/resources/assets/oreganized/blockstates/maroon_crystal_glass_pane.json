@@ -10,25 +10,6 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/maroon_crystal_glass_pane_side_alt",
-        "y": 90
-      },
-      "when": {
-        "type": "0",
-        "east": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/maroon_crystal_glass_pane_noside_alt"
-      },
-      "when": {
-        "type": "0",
-        "east": "false"
-      }
-    },
-    {
-      "apply": {
         "model": "oreganized:block/maroon_crystal_glass_pane_side"
       },
       "when": {
@@ -66,6 +47,25 @@
     },
     {
       "apply": {
+        "model": "oreganized:block/maroon_crystal_glass_pane_side_alt",
+        "y": 90
+      },
+      "when": {
+        "type": "0",
+        "east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/maroon_crystal_glass_pane_noside_alt"
+      },
+      "when": {
+        "type": "0",
+        "east": "false"
+      }
+    },
+    {
+      "apply": {
         "model": "oreganized:block/maroon_crystal_glass_pane_side",
         "y": 90
       },
@@ -90,25 +90,6 @@
       },
       "when": {
         "type": "1"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/maroon_crystal_glass_pane_side_alt_rot",
-        "y": 90
-      },
-      "when": {
-        "type": "1",
-        "east": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/maroon_crystal_glass_pane_noside_alt_rot"
-      },
-      "when": {
-        "type": "1",
-        "east": "false"
       }
     },
     {
@@ -150,6 +131,25 @@
     },
     {
       "apply": {
+        "model": "oreganized:block/maroon_crystal_glass_pane_side_alt_rot",
+        "y": 90
+      },
+      "when": {
+        "type": "1",
+        "east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/maroon_crystal_glass_pane_noside_alt_rot"
+      },
+      "when": {
+        "type": "1",
+        "east": "false"
+      }
+    },
+    {
+      "apply": {
         "model": "oreganized:block/maroon_crystal_glass_pane_side_rot",
         "y": 90
       },
@@ -174,25 +174,6 @@
       },
       "when": {
         "type": "2"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/maroon_crystal_glass_pane_side_alt_in",
-        "y": 90
-      },
-      "when": {
-        "type": "2",
-        "east": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/maroon_crystal_glass_pane_noside_alt_in"
-      },
-      "when": {
-        "type": "2",
-        "east": "false"
       }
     },
     {
@@ -234,6 +215,25 @@
     },
     {
       "apply": {
+        "model": "oreganized:block/maroon_crystal_glass_pane_side_alt_in",
+        "y": 90
+      },
+      "when": {
+        "type": "2",
+        "east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/maroon_crystal_glass_pane_noside_alt_in"
+      },
+      "when": {
+        "type": "2",
+        "east": "false"
+      }
+    },
+    {
+      "apply": {
         "model": "oreganized:block/maroon_crystal_glass_pane_side_in",
         "y": 90
       },
@@ -258,25 +258,6 @@
       },
       "when": {
         "type": "3"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/maroon_crystal_glass_pane_side_alt_out",
-        "y": 90
-      },
-      "when": {
-        "type": "3",
-        "east": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/maroon_crystal_glass_pane_noside_alt_out"
-      },
-      "when": {
-        "type": "3",
-        "east": "false"
       }
     },
     {
@@ -314,6 +295,25 @@
       "when": {
         "type": "3",
         "south": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/maroon_crystal_glass_pane_side_alt_out",
+        "y": 90
+      },
+      "when": {
+        "type": "3",
+        "east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/maroon_crystal_glass_pane_noside_alt_out"
+      },
+      "when": {
+        "type": "3",
+        "east": "false"
       }
     },
     {

@@ -63,7 +63,7 @@ public class OBlockStateExtensions {
     /**
      * copied from {@link com.teamabnormals.blueprint.core.data.client.BlueprintBlockStateProvider}
      */
-    private static void pane(BlockStateProvider provider, Block block, ModelFile post, ModelFile postEnds, ModelFile side, ModelFile sideAlt, ModelFile cap, ModelFile capAlt) {
+    public static void pane(BlockStateProvider provider, Block block, ModelFile post, ModelFile postEnds, ModelFile side, ModelFile sideAlt, ModelFile cap, ModelFile capAlt) {
         MultiPartBlockStateBuilder builder = provider.getMultipartBuilder(block).part().modelFile(postEnds).addModel().end();
         builder.part().modelFile(post).addModel().condition(BlockStateProperties.NORTH, false).condition(BlockStateProperties.WEST, false).condition(BlockStateProperties.SOUTH, false).condition(BlockStateProperties.EAST, false).end();
 

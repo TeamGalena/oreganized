@@ -1,8 +1,9 @@
 package galena.oreganized.device.data;
 
 import static galena.oreganized.data.extensions.OBlockStateExtensions.*;
-import static galena.oreganized.data.extensions.OItemModelExtensions.generatedItem;
+import static galena.oreganized.data.extensions.OItemModelExtensions.*;
 import static net.minecraft.resources.ResourceLocation.fromNamespaceAndPath;
+import static net.minecraft.resources.ResourceLocation.withDefaultNamespace;
 import static net.neoforged.neoforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
 import static net.neoforged.neoforge.client.model.generators.ModelProvider.ITEM_FOLDER;
 
@@ -15,11 +16,14 @@ import galena.oreganized.gothic.world.block.CrystalGlassPaneBlock;
 import galena.oreganized.gothic.world.block.GargoyleBlock;
 import galena.oreganized.gothic.world.block.SpyreBlock;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CrossCollisionBlock;
+import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -51,8 +55,8 @@ public class GothicBlockStates {
         cubeAll(provider, GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK);
         spyre(provider, GothicBlocks.DARK_GRIMSTONE_SPYRE);
         spyre(provider, GothicBlocks.PALE_GRIMSTONE_SPYRE);
-        bars(provider, GothicBlocks.DARK_GRIMSTONE_SPYRE_FENCE);
-        bars(provider, GothicBlocks.PALE_GRIMSTONE_SPYRE_FENCE);
+        spyreFence(provider, GothicBlocks.DARK_GRIMSTONE_SPYRE_FENCE, false, true);
+        spyreFence(provider, GothicBlocks.PALE_GRIMSTONE_SPYRE_FENCE, true, false);
     }
 
     private static void gargoyleBlock(BlockStateProvider provider, DeferredBlock<? extends Block> block) {
@@ -70,7 +74,7 @@ public class GothicBlockStates {
                     .build();
         });
 
-        generatedItem(provider.itemModels(), block.getId(), block.getId(), ITEM_FOLDER);
+        generatedItem(provider, block, ITEM_FOLDER);
     }
 
     private static String crystalGlassSuffix(int index) {
@@ -173,6 +177,106 @@ public class GothicBlockStates {
         generatedItem(provider.itemModels(), block.getId(), block.getId().withSuffix(suffix(Direction.UP, SpyreBlock.Thickness.TIP)), BLOCK_FOLDER);
     }
 
+    public static void spyreFence(BlockStateProvider provider, DeferredBlock<? extends IronBarsBlock> block, boolean withTop, boolean connects) {
+        var texture = provider.blockTexture(block.value());
+        var name = block.getId().getPath();
+        var edgeTexture = texture.withSuffix("_edge");
+
+        var post = ironBarsModel(provider, name, "post", texture);
+        var postEndBottom = spyreFenceModel(provider, name, "post_end_bottom").texture("texture", edgeTexture);
+        var sideBottom = spyreFenceModel(provider, name, "side_bottom").texture("texture", edgeTexture);
+        var sideAltBottom = spyreFenceModel(provider, name, "side_alt_bottom").texture("texture", edgeTexture);
+        var cap = spyreFenceModel(provider, name, "cap").texture("texture", texture);
+        var capAlt = spyreFenceModel(provider, name, "cap_alt").texture("texture", texture);
+
+        var builder = provider.getMultipartBuilder(block.value());
+
+        if (withTop) {
+            var postEndTop = spyreFenceModel(provider, name, "post_end_top").texture("texture", edgeTexture);
+
+            builder.part()
+                    .modelFile(postEndTop)
+                    .addModel()
+                    .condition(BlockStateProperties.UP, false);
+        }
+
+        builder.part()
+                .modelFile(postEndBottom)
+                .addModel()
+                .condition(BlockStateProperties.DOWN, false);
+
+        CrossCollisionBlock.PROPERTY_BY_DIRECTION.forEach((dir, property) -> {
+            var alt = dir == Direction.SOUTH || dir == Direction.EAST;
+            var yRot = dir.getAxis() == Direction.Axis.X ? 270 : 0;
+
+            var side = spyreFenceModel(provider, name, "side").texture("texture", texture);
+            var sideAlt = spyreFenceModel(provider, name, "side_alt").texture("texture", texture);
+
+            var sideBuilder = builder
+                    .part()
+                    .modelFile(alt ? sideAlt : side)
+                    .rotationY(yRot)
+                    .addModel()
+                    .condition(property, true);
+
+            if (connects) {
+                sideBuilder.condition(BlockStateProperties.UP, false);
+
+                var connectingTexture = texture.withSuffix("_connected");
+                var connectedSide = spyreFenceModel(provider, name + "_connected", "side").texture("texture", connectingTexture);
+                var connectedSideAlt = spyreFenceModel(provider, name + "_connected", "side_alt").texture("texture", connectingTexture);
+
+                builder
+                        .part()
+                        .modelFile(alt ? connectedSideAlt : connectedSide)
+                        .rotationY(yRot)
+                        .addModel()
+                        .condition(BlockStateProperties.UP, true)
+                        .condition(property, true);
+            }
+
+            builder
+                    .part()
+                    .modelFile(alt ? sideAltBottom : sideBottom)
+                    .rotationY(yRot)
+                    .addModel()
+                    .condition(property, true)
+                    .condition(BlockStateProperties.DOWN, false)
+                    .end();
+
+
+            var capBuilder = builder
+                    .part().modelFile(alt ? capAlt : cap)
+                    .rotationY(yRot)
+                    .addModel();
+
+            CrossCollisionBlock.PROPERTY_BY_DIRECTION.forEach((otherDir, otherProp) -> {
+                capBuilder.condition(otherProp, otherDir == dir);
+            });
+
+            if (withTop) {
+                var sideAltTop = spyreFenceModel(provider, name, "side_alt_top").texture("texture", edgeTexture);
+                var sideTop = spyreFenceModel(provider, name, "side_top").texture("texture", edgeTexture);
+
+                builder.part()
+                        .modelFile(alt ? sideAltTop : sideTop)
+                        .rotationY(yRot)
+                        .addModel()
+                        .condition(property, true)
+                        .condition(BlockStateProperties.UP, false);
+            }
+        });
+
+        generatedItem(provider, block, BLOCK_FOLDER);
+    }
+
+    public static BlockModelBuilder spyreFenceModel(BlockStateProvider provider, String name, String type) {
+        return provider.models()
+                .withExistingParent(name + "_" + type, OConstants.modLoc("block/template/spyre_fence/" + type))
+                .renderType(CUTOUT);
+    }
+
+    /*
     public static void spyreFence(BlockStateProvider provider, DeferredBlock<? extends Block> block, boolean rim) {
         var name = block.getId().getPath();
         var builder = provider.getMultipartBuilder(block.value());
@@ -220,5 +324,6 @@ public class GothicBlockStates {
 
         generatedItem(provider.itemModels(), block.getId(), block.getId(), BLOCK_FOLDER);
     }
+    */
 
 }

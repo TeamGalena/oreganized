@@ -1,5 +1,4 @@
 {
-  "render_type": "minecraft:cutout",
   "ambientocclusion": false,
   "textures": {
     "particle": "#texture"
@@ -7,21 +6,30 @@
   "elements": [
     {
       "from": [
-        0,
+        8,
         0,
         8
       ],
       "to": [
         8,
         16,
-        8
+        16
       ],
       "faces": {
         "north": {
           "uv": [
-            8,
             0,
-            16,
+            0,
+            0,
+            0
+          ],
+          "texture": "#texture"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            8,
             16
           ],
           "texture": "#texture"
@@ -30,39 +38,34 @@
           "uv": [
             0,
             0,
+            0,
+            0
+          ],
+          "texture": "#texture"
+        },
+        "west": {
+          "uv": [
             8,
+            0,
+            0,
             16
           ],
           "texture": "#texture"
-        }
-      }
-    },
-    {
-      "from": [
-        0,
-        0.001,
-        7
-      ],
-      "to": [
-        8,
-        0.001,
-        9
-      ],
-      "faces": {
+        },
         "up": {
           "uv": [
-            8,
             0,
-            16,
-            2
+            0,
+            0,
+            0
           ],
           "texture": "#texture"
         },
         "down": {
           "uv": [
-            8,
-            2,
-            16,
+            0,
+            0,
+            0,
             0
           ],
           "texture": "#texture"
@@ -71,33 +74,25 @@
     },
     {
       "from": [
+        7,
         0,
-        15.999,
-        7
+        16
       ],
       "to": [
-        8,
-        15.999,
-        9
+        9,
+        16,
+        16
       ],
       "faces": {
-        "up": {
+        "south": {
           "uv": [
+            7,
             0,
-            0,
-            8,
-            2
+            9,
+            16
           ],
-          "texture": "#texture"
-        },
-        "down": {
-          "uv": [
-            0,
-            2,
-            8,
-            0
-          ],
-          "texture": "#texture"
+          "texture": "#texture",
+          "cullface": "south"
         }
       }
     }
