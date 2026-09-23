@@ -10,25 +10,6 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/yellow_crystal_glass_pane_side_alt"
-      },
-      "when": {
-        "type": "0",
-        "south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/yellow_crystal_glass_pane_noside_alt",
-        "y": 90
-      },
-      "when": {
-        "type": "0",
-        "south": "false"
-      }
-    },
-    {
-      "apply": {
         "model": "oreganized:block/yellow_crystal_glass_pane_side_alt",
         "y": 90
       },
@@ -44,6 +25,43 @@
       "when": {
         "type": "0",
         "east": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/yellow_crystal_glass_pane_side"
+      },
+      "when": {
+        "type": "0",
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/yellow_crystal_glass_pane_noside"
+      },
+      "when": {
+        "type": "0",
+        "north": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/yellow_crystal_glass_pane_side_alt"
+      },
+      "when": {
+        "type": "0",
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/yellow_crystal_glass_pane_noside_alt",
+        "y": 90
+      },
+      "when": {
+        "type": "0",
+        "south": "false"
       }
     },
     {
@@ -68,47 +86,10 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/yellow_crystal_glass_pane_side"
-      },
-      "when": {
-        "type": "0",
-        "north": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/yellow_crystal_glass_pane_noside"
-      },
-      "when": {
-        "type": "0",
-        "north": "false"
-      }
-    },
-    {
-      "apply": {
         "model": "oreganized:block/yellow_crystal_glass_pane_post_rot"
       },
       "when": {
         "type": "1"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/yellow_crystal_glass_pane_side_alt_rot"
-      },
-      "when": {
-        "type": "1",
-        "south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/yellow_crystal_glass_pane_noside_alt_rot",
-        "y": 90
-      },
-      "when": {
-        "type": "1",
-        "south": "false"
       }
     },
     {
@@ -128,6 +109,43 @@
       "when": {
         "type": "1",
         "east": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/yellow_crystal_glass_pane_side_rot"
+      },
+      "when": {
+        "type": "1",
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/yellow_crystal_glass_pane_noside_rot"
+      },
+      "when": {
+        "type": "1",
+        "north": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/yellow_crystal_glass_pane_side_alt_rot"
+      },
+      "when": {
+        "type": "1",
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/yellow_crystal_glass_pane_noside_alt_rot",
+        "y": 90
+      },
+      "when": {
+        "type": "1",
+        "south": "false"
       }
     },
     {
@@ -152,47 +170,10 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/yellow_crystal_glass_pane_side_rot"
-      },
-      "when": {
-        "type": "1",
-        "north": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/yellow_crystal_glass_pane_noside_rot"
-      },
-      "when": {
-        "type": "1",
-        "north": "false"
-      }
-    },
-    {
-      "apply": {
         "model": "oreganized:block/yellow_crystal_glass_pane_post_in"
       },
       "when": {
         "type": "2"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/yellow_crystal_glass_pane_side_alt_in"
-      },
-      "when": {
-        "type": "2",
-        "south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/yellow_crystal_glass_pane_noside_alt_in",
-        "y": 90
-      },
-      "when": {
-        "type": "2",
-        "south": "false"
       }
     },
     {
@@ -212,6 +193,43 @@
       "when": {
         "type": "2",
         "east": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/yellow_crystal_glass_pane_side_in"
+      },
+      "when": {
+        "type": "2",
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/yellow_crystal_glass_pane_noside_in"
+      },
+      "when": {
+        "type": "2",
+        "north": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/yellow_crystal_glass_pane_side_alt_in"
+      },
+      "when": {
+        "type": "2",
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/yellow_crystal_glass_pane_noside_alt_in",
+        "y": 90
+      },
+      "when": {
+        "type": "2",
+        "south": "false"
       }
     },
     {
@@ -236,47 +254,10 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/yellow_crystal_glass_pane_side_in"
-      },
-      "when": {
-        "type": "2",
-        "north": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/yellow_crystal_glass_pane_noside_in"
-      },
-      "when": {
-        "type": "2",
-        "north": "false"
-      }
-    },
-    {
-      "apply": {
         "model": "oreganized:block/yellow_crystal_glass_pane_post_out"
       },
       "when": {
         "type": "3"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/yellow_crystal_glass_pane_side_alt_out"
-      },
-      "when": {
-        "type": "3",
-        "south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/yellow_crystal_glass_pane_noside_alt_out",
-        "y": 90
-      },
-      "when": {
-        "type": "3",
-        "south": "false"
       }
     },
     {
@@ -300,6 +281,43 @@
     },
     {
       "apply": {
+        "model": "oreganized:block/yellow_crystal_glass_pane_side_out"
+      },
+      "when": {
+        "type": "3",
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/yellow_crystal_glass_pane_noside_out"
+      },
+      "when": {
+        "type": "3",
+        "north": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/yellow_crystal_glass_pane_side_alt_out"
+      },
+      "when": {
+        "type": "3",
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/yellow_crystal_glass_pane_noside_alt_out",
+        "y": 90
+      },
+      "when": {
+        "type": "3",
+        "south": "false"
+      }
+    },
+    {
+      "apply": {
         "model": "oreganized:block/yellow_crystal_glass_pane_side_out",
         "y": 90
       },
@@ -316,24 +334,6 @@
       "when": {
         "type": "3",
         "west": "false"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/yellow_crystal_glass_pane_side_out"
-      },
-      "when": {
-        "type": "3",
-        "north": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/yellow_crystal_glass_pane_noside_out"
-      },
-      "when": {
-        "type": "3",
-        "north": "false"
       }
     }
   ]

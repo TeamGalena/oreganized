@@ -1,16 +1,40 @@
 {
   "variants": {
-    "thickness=base": {
-      "model": "oreganized:block/dark_grimstone_spyre_base"
+    "thickness=base,vertical_direction=down": {
+      "model": "oreganized:block/dark_grimstone_spyre_down_base"
     },
-    "thickness=frustum": {
-      "model": "oreganized:block/dark_grimstone_spyre_frustum"
+    "thickness=base,vertical_direction=up": {
+      "model": "oreganized:block/dark_grimstone_spyre_up_base"
     },
-    "thickness=middle": {
-      "model": "oreganized:block/dark_grimstone_spyre_middle"
+    "thickness=extension,vertical_direction=down": {
+      "model": "oreganized:block/dark_grimstone_spyre_down_extension"
     },
-    "thickness=tip": {
-      "model": "oreganized:block/dark_grimstone_spyre_tip"
+    "thickness=extension,vertical_direction=up": {
+      "model": "oreganized:block/dark_grimstone_spyre_up_extension"
+    },
+    "thickness=frustum,vertical_direction=down": {
+      "model": "oreganized:block/dark_grimstone_spyre_down_frustum"
+    },
+    "thickness=frustum,vertical_direction=up": {
+      "model": "oreganized:block/dark_grimstone_spyre_up_frustum"
+    },
+    "thickness=middle,vertical_direction=down": {
+      "model": "oreganized:block/dark_grimstone_spyre_down_middle"
+    },
+    "thickness=middle,vertical_direction=up": {
+      "model": "oreganized:block/dark_grimstone_spyre_up_middle"
+    },
+    "thickness=tip,vertical_direction=down": {
+      "model": "oreganized:block/dark_grimstone_spyre_down_tip"
+    },
+    "thickness=tip,vertical_direction=up": {
+      "model": "oreganized:block/dark_grimstone_spyre_up_tip"
+    },
+    "thickness=tip_merge,vertical_direction=down": {
+      "model": "oreganized:block/dark_grimstone_spyre_down_tip_merge"
+    },
+    "thickness=tip_merge,vertical_direction=up": {
+      "model": "oreganized:block/dark_grimstone_spyre_up_tip_merge"
     }
   }
 }

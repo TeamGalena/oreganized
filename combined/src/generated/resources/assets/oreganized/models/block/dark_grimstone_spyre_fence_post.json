@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/iron_bars_post",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bars": "oreganized:block/dark_grimstone_spyre_fence_edge",
+    "particle": "oreganized:block/dark_grimstone_spyre_fence"
+  }
+}

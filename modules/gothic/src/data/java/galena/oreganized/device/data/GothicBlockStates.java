@@ -51,7 +51,7 @@ public class GothicBlockStates {
         cubeAll(provider, GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK);
         spyre(provider, GothicBlocks.DARK_GRIMSTONE_SPYRE);
         spyre(provider, GothicBlocks.PALE_GRIMSTONE_SPYRE);
-        spyreFence(provider, GothicBlocks.DARK_GRIMSTONE_SPYRE_FENCE, false);
+        bars(provider, GothicBlocks.DARK_GRIMSTONE_SPYRE_FENCE);
         bars(provider, GothicBlocks.PALE_GRIMSTONE_SPYRE_FENCE);
     }
 
@@ -149,13 +149,8 @@ public class GothicBlockStates {
                 .renderType(TRANSLUCENT);
     }
 
-    private static String suffix(SpyreBlock.Thickness thickness) {
-        return switch (thickness) {
-            case BASE -> "_1";
-            case FRUSTUM -> "_2";
-            case MIDDLE -> "_3";
-            case TIP -> "_4";
-        };
+    private static String suffix(Direction facing, SpyreBlock.Thickness thickness) {
+        return "_" + facing.getSerializedName() + "_" + thickness.getSerializedName();
     }
 
     public static void spyre(BlockStateProvider provider, DeferredBlock<? extends SpyreBlock> block) {
@@ -163,9 +158,10 @@ public class GothicBlockStates {
 
         provider.getVariantBuilder(block.value()).forAllStatesExcept(state -> {
             var thickness = state.getValue(SpyreBlock.THICKNESS);
+            var facing = state.getValue(BlockStateProperties.VERTICAL_DIRECTION);
 
-            var texture = provider.blockTexture(block.value()).withSuffix(suffix(thickness));
-            var model = provider.models().withExistingParent(name + "_" + thickness.getSerializedName(), "block/pointed_dripstone")
+            var texture = provider.blockTexture(block.value()).withSuffix(suffix(facing, thickness));
+            var model = provider.models().withExistingParent(name + suffix(facing, thickness), "block/pointed_dripstone")
                     .renderType(CUTOUT)
                     .texture("cross", texture);
 
@@ -174,7 +170,7 @@ public class GothicBlockStates {
                     .build();
         }, BlockStateProperties.WATERLOGGED);
 
-        generatedItem(provider.itemModels(), block.getId(), block.getId().withSuffix(suffix(SpyreBlock.Thickness.TIP)), BLOCK_FOLDER);
+        generatedItem(provider.itemModels(), block.getId(), block.getId().withSuffix(suffix(Direction.UP, SpyreBlock.Thickness.TIP)), BLOCK_FOLDER);
     }
 
     public static void spyreFence(BlockStateProvider provider, DeferredBlock<? extends Block> block, boolean rim) {

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "oreganized:block/dark_grimstone_spyre_4"
+    "layer0": "oreganized:block/dark_grimstone_spyre_up_tip"
   }
 }

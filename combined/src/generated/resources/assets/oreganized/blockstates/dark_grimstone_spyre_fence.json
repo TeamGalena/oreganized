@@ -2,7 +2,12 @@
   "multipart": [
     {
       "apply": {
-        "model": "oreganized:block/dark_grimstone_spyre_fence_cross"
+        "model": "oreganized:block/dark_grimstone_spyre_fence_post_ends"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/dark_grimstone_spyre_fence_post"
       },
       "when": {
         "east": "false",
@@ -13,8 +18,61 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/dark_grimstone_spyre_fence_part",
-        "y": 270
+        "model": "oreganized:block/dark_grimstone_spyre_fence_cap"
+      },
+      "when": {
+        "east": "false",
+        "north": "true",
+        "south": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/dark_grimstone_spyre_fence_cap",
+        "y": 90
+      },
+      "when": {
+        "east": "true",
+        "north": "false",
+        "south": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/dark_grimstone_spyre_fence_cap_alt"
+      },
+      "when": {
+        "east": "false",
+        "north": "false",
+        "south": "true",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/dark_grimstone_spyre_fence_cap_alt",
+        "y": 90
+      },
+      "when": {
+        "east": "false",
+        "north": "false",
+        "south": "false",
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/dark_grimstone_spyre_fence_side"
+      },
+      "when": {
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/dark_grimstone_spyre_fence_side_alt"
       },
       "when": {
         "south": "true"
@@ -22,16 +80,8 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/dark_grimstone_spyre_fence_part",
-        "y": 180
-      },
-      "when": {
-        "east": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/dark_grimstone_spyre_fence_part"
+        "model": "oreganized:block/dark_grimstone_spyre_fence_side_alt",
+        "y": 90
       },
       "when": {
         "west": "true"
@@ -39,11 +89,11 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/dark_grimstone_spyre_fence_part",
+        "model": "oreganized:block/dark_grimstone_spyre_fence_side",
         "y": 90
       },
       "when": {
-        "north": "true"
+        "east": "true"
       }
     }
   ]
