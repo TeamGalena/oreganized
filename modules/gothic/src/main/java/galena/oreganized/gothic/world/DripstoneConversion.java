@@ -5,6 +5,7 @@ import galena.oreganized.argentum.network.TarnishParticlePacket;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.gothic.index.GothicTags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -16,22 +17,50 @@ import net.neoforged.neoforge.network.PacketDistributor;
 // TODO might convert into a recipe type or data map in the future
 public class DripstoneConversion {
 
+    /**
+     * in order for the spyres to not break immediately, they need to be placed in the correct order.
+     * It starts top to bottom, until it reaches a connection point where the stalactite meets a stalagmite.
+     * If it encounters one, it will stop and continues at the bottom until that connection point.
+     * ____________________________
+     *   1 ▊   1  ▊   1 ▼
+     *   2 ▊   2  ▊
+     *   3 ▼    3 ▼
+     *   6 ▲
+     *   5 ▊
+     *   4 ▊
+     */
     private static void convert(ServerLevel level, BlockPos pos, Block spyre) {
         var mutable = pos.mutable();
+        Integer connection = null;
         while (true) {
             var from = level.getBlockState(mutable);
             if (!from.is(Blocks.POINTED_DRIPSTONE)) break;
 
-            OConstants.LOGGER.info("direction {}", from.getValue(BlockStateProperties.VERTICAL_DIRECTION).getSerializedName());
-            level.setBlock(mutable, spyre.withPropertiesOf(from), 27);
+            var facing = from.getValue(BlockStateProperties.VERTICAL_DIRECTION);
+            if (facing == Direction.UP && connection == null) {
+                connection = mutable.getY() + 1;
+            }
+
             mutable.setY(mutable.getY() - 1);
         }
 
         var bottom = mutable.getY() + 1;
-        for (int y = pos.getY(); y >= bottom; y--) {
+        var lastPointingDown = connection == null ? bottom : connection;
+
+        for (int y = pos.getY(); y >= lastPointingDown; y--) {
             mutable.setY(y);
+            var from = level.getBlockState(mutable);
+            level.setBlock(mutable, spyre.withPropertiesOf(from), 2);
             PacketDistributor.sendToPlayersInDimension(level, new TarnishParticlePacket(mutable.immutable(), true));
-            level.updateNeighborsAt(mutable, spyre);
+        }
+
+        if (connection != null) {
+            for (int y = bottom; y < connection; y++) {
+                mutable.setY(y);
+                var from = level.getBlockState(mutable);
+                level.setBlock(mutable, spyre.withPropertiesOf(from), 2);
+                PacketDistributor.sendToPlayersInDimension(level, new TarnishParticlePacket(mutable.immutable(), true));
+            }
         }
     }
 
