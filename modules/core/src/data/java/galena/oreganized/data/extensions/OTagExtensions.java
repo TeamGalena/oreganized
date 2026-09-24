@@ -2,13 +2,13 @@ package galena.oreganized.data.extensions;
 
 import static com.teamabnormals.blueprint.core.util.TagUtil.itemTag;
 
+import com.mojang.datafixers.util.Pair;
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import galena.oreganized.ModCompat;
-import galena.oreganized.index.DyeColors;
-import java.util.Map;
+import galena.oreganized.index.sets.DyedBlockSet;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -19,7 +19,6 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 
@@ -46,17 +45,15 @@ public class OTagExtensions {
         provider.copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
     }
 
-    public static void tagDyed(RegistrateItemTagsProvider provider, Map<DyeColor, ? extends ItemLike> values, TagKey<Item>... keys) {
+    public static void tagDyed(RegistrateItemTagsProvider provider, DyedBlockSet<?> values, TagKey<Item>... keys) {
         var intrinsic = (RegistrateTagsProvider.IntrinsicImpl<Item>) provider;
-        Map<DyeColor, Supplier<Item>> mapped = values.entrySet().stream().collect(Collectors.toMap(
-                it -> it.getKey(),
-                it -> () -> it.getValue().asItem())
-        );
+        Stream<Pair<DyeColor, Supplier<Item>>> mapped = values.entries()
+                .map(it -> Pair.of(it.getKey(), () -> it.getValue().asItem()));
         tagDyed(intrinsic, BuiltInRegistries.ITEM, mapped, keys);
     }
 
-    public static void tagDyed(RegistrateTagsProvider.IntrinsicImpl<Block> provider, Map<DyeColor, ? extends Supplier<? extends Block>> values, TagKey<Block>... keys) {
-        tagDyed(provider, BuiltInRegistries.BLOCK, values, keys);
+    public static void tagDyed(RegistrateTagsProvider.IntrinsicImpl<Block> provider, DyedBlockSet<?> values, TagKey<Block>... keys) {
+        tagDyed(provider, BuiltInRegistries.BLOCK, values.entries().map(it -> Pair.of(it.getKey(), it.getValue())), keys);
     }
 
     private static <T> TagKey<T> dyedTag(ResourceKey<? extends Registry<T>> registry, DyeColor color) {
@@ -67,15 +64,15 @@ public class OTagExtensions {
         return TagKey.create(registry, ResourceLocation.fromNamespaceAndPath("c", "dyed"));
     }
 
-    private static <T> void tagDyed(RegistrateTagsProvider.IntrinsicImpl<T> provider, Registry<T> registry, Map<DyeColor, ? extends Supplier<? extends T>> values, TagKey<T>... keys) {
-        values.entrySet().stream().sorted(Map.Entry.comparingByKey(DyeColors.comparator())).forEach(entry -> {
-            var item = entry.getValue().get();
+    private static <T> void tagDyed(RegistrateTagsProvider.IntrinsicImpl<T> provider, Registry<T> registry, Stream<? extends Pair<DyeColor, ? extends Supplier<? extends T>>> values, TagKey<T>... keys) {
+        values.forEach(entry -> {
+            var item = entry.getSecond().get();
             var id = registry.getKey(item);
             for (var key : keys) {
                 provider.addTag(key).addOptional(id);
             }
             provider.addTag(dyedTag(registry.key())).addOptional(id);
-            provider.addTag(dyedTag(registry.key(), entry.getKey())).addOptional(id);
+            provider.addTag(dyedTag(registry.key(), entry.getFirst())).addOptional(id);
         });
     }
 

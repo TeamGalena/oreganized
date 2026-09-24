@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.RedstoneLampBlock;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
-import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 @Mod(OConstants.MOD_ID)
 public class ArgentumBlockStates {
@@ -45,7 +45,7 @@ public class ArgentumBlockStates {
         cubeAll(provider, ArgentumBlocks.GROOVED_BLUE_ICE);
     }
 
-    private static void lamp(BlockStateProvider provider, DeferredBlock<? extends Block> block) {
+    private static void lamp(BlockStateProvider provider, DeferredHolder<Block, ? extends Block> block) {
         var name = block.getId().getPath();
         provider.getVariantBuilder(block.value()).forAllStates(state -> {
             boolean lit = state.getValue(RedstoneLampBlock.LIT);

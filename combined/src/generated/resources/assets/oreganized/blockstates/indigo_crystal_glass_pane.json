@@ -10,64 +10,6 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_side_alt"
-      },
-      "when": {
-        "type": "0",
-        "south": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_noside_alt",
-        "y": 90
-      },
-      "when": {
-        "type": "0",
-        "south": "false"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_side_alt",
-        "y": 90
-      },
-      "when": {
-        "type": "0",
-        "east": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_noside_alt"
-      },
-      "when": {
-        "type": "0",
-        "east": "false"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_side",
-        "y": 90
-      },
-      "when": {
-        "type": "0",
-        "west": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_noside",
-        "y": 270
-      },
-      "when": {
-        "type": "0",
-        "west": "false"
-      }
-    },
-    {
-      "apply": {
         "model": "oreganized:block/indigo_crystal_glass_pane_side"
       },
       "when": {
@@ -86,68 +28,68 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_post_rot"
+        "model": "oreganized:block/indigo_crystal_glass_pane_side_alt"
       },
       "when": {
-        "type": "1"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_side_alt_rot"
-      },
-      "when": {
-        "type": "1",
+        "type": "0",
         "south": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_noside_alt_rot",
-        "y": 90
+        "model": "oreganized:block/indigo_crystal_glass_pane_noside_alt"
       },
       "when": {
-        "type": "1",
+        "type": "0",
         "south": "false"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_side_alt_rot",
-        "y": 90
+        "model": "oreganized:block/indigo_crystal_glass_pane_side_alt",
+        "y": 270
       },
       "when": {
-        "type": "1",
+        "type": "0",
         "east": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_noside_alt_rot"
+        "model": "oreganized:block/indigo_crystal_glass_pane_noside_alt",
+        "y": 270
       },
       "when": {
-        "type": "1",
+        "type": "0",
         "east": "false"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_side_rot",
-        "y": 90
+        "model": "oreganized:block/indigo_crystal_glass_pane_side",
+        "y": 270
       },
       "when": {
-        "type": "1",
+        "type": "0",
         "west": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_noside_rot",
+        "model": "oreganized:block/indigo_crystal_glass_pane_noside",
         "y": 270
       },
       "when": {
-        "type": "1",
+        "type": "0",
         "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/indigo_crystal_glass_pane_post_rot"
+      },
+      "when": {
+        "type": "1"
       }
     },
     {
@@ -170,68 +112,68 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_post_in"
+        "model": "oreganized:block/indigo_crystal_glass_pane_side_alt_rot"
       },
       "when": {
-        "type": "2"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_side_alt_in"
-      },
-      "when": {
-        "type": "2",
+        "type": "1",
         "south": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_noside_alt_in",
-        "y": 90
+        "model": "oreganized:block/indigo_crystal_glass_pane_noside_alt_rot"
       },
       "when": {
-        "type": "2",
+        "type": "1",
         "south": "false"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_side_alt_in",
-        "y": 90
+        "model": "oreganized:block/indigo_crystal_glass_pane_side_alt_rot",
+        "y": 270
       },
       "when": {
-        "type": "2",
+        "type": "1",
         "east": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_noside_alt_in"
+        "model": "oreganized:block/indigo_crystal_glass_pane_noside_alt_rot",
+        "y": 270
       },
       "when": {
-        "type": "2",
+        "type": "1",
         "east": "false"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_side_in",
-        "y": 90
+        "model": "oreganized:block/indigo_crystal_glass_pane_side_rot",
+        "y": 270
       },
       "when": {
-        "type": "2",
+        "type": "1",
         "west": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_noside_in",
+        "model": "oreganized:block/indigo_crystal_glass_pane_noside_rot",
         "y": 270
       },
       "when": {
-        "type": "2",
+        "type": "1",
         "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/indigo_crystal_glass_pane_post_in"
+      },
+      "when": {
+        "type": "2"
       }
     },
     {
@@ -254,68 +196,68 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_post_out"
+        "model": "oreganized:block/indigo_crystal_glass_pane_side_alt_in"
       },
       "when": {
-        "type": "3"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_side_alt_out"
-      },
-      "when": {
-        "type": "3",
+        "type": "2",
         "south": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_noside_alt_out",
-        "y": 90
+        "model": "oreganized:block/indigo_crystal_glass_pane_noside_alt_in"
       },
       "when": {
-        "type": "3",
+        "type": "2",
         "south": "false"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_side_alt_out",
-        "y": 90
+        "model": "oreganized:block/indigo_crystal_glass_pane_side_alt_in",
+        "y": 270
       },
       "when": {
-        "type": "3",
+        "type": "2",
         "east": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_noside_alt_out"
+        "model": "oreganized:block/indigo_crystal_glass_pane_noside_alt_in",
+        "y": 270
       },
       "when": {
-        "type": "3",
+        "type": "2",
         "east": "false"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_side_out",
-        "y": 90
+        "model": "oreganized:block/indigo_crystal_glass_pane_side_in",
+        "y": 270
       },
       "when": {
-        "type": "3",
+        "type": "2",
         "west": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/indigo_crystal_glass_pane_noside_out",
+        "model": "oreganized:block/indigo_crystal_glass_pane_noside_in",
         "y": 270
       },
       "when": {
-        "type": "3",
+        "type": "2",
         "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/indigo_crystal_glass_pane_post_out"
+      },
+      "when": {
+        "type": "3"
       }
     },
     {
@@ -334,6 +276,64 @@
       "when": {
         "type": "3",
         "north": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/indigo_crystal_glass_pane_side_alt_out"
+      },
+      "when": {
+        "type": "3",
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/indigo_crystal_glass_pane_noside_alt_out"
+      },
+      "when": {
+        "type": "3",
+        "south": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/indigo_crystal_glass_pane_side_alt_out",
+        "y": 270
+      },
+      "when": {
+        "type": "3",
+        "east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/indigo_crystal_glass_pane_noside_alt_out",
+        "y": 270
+      },
+      "when": {
+        "type": "3",
+        "east": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/indigo_crystal_glass_pane_side_out",
+        "y": 270
+      },
+      "when": {
+        "type": "3",
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/indigo_crystal_glass_pane_noside_out",
+        "y": 270
+      },
+      "when": {
+        "type": "3",
+        "west": "false"
       }
     }
   ]

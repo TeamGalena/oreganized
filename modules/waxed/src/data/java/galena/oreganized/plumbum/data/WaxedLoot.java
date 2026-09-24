@@ -18,7 +18,7 @@ public class WaxedLoot {
     }
 
     private void generate(RegistrateBlockLootTables provider) {
-        WaxedBlocks.WAXED_CONCRETE_POWDER.forEach((c, b) -> dyed(c, provider, () -> dropSelf(provider, b)));
+        WaxedBlocks.WAXED_CONCRETE_POWDER.map().forEach((c, b) -> dyed(c, provider, () -> dropSelf(provider, b)));
     }
 
 }

@@ -35,6 +35,8 @@ public final class CreativeModeTabBuilder {
             var reference = new ItemStack(after);
             suppliers
                     .map(ItemStack::new)
+                    .toList()
+                    .reversed()
                     .forEach(it -> event.insertAfter(reference, it, TabVisibility.PARENT_AND_SEARCH_TABS));
         }
 

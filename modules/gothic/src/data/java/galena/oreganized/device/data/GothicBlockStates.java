@@ -21,7 +21,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
-import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 @Mod(OConstants.MOD_ID)
 public class GothicBlockStates {
@@ -33,8 +33,8 @@ public class GothicBlockStates {
     private void generate(BlockStateProvider provider) {
         gargoyleBlock(provider, GothicBlocks.GARGOYLE);
 
-        GothicBlocks.CRYSTAL_GLASS.forEach((color, block) -> crystalGlassBlock(provider, block));
-        GothicBlocks.CRYSTAL_GLASS_PANES.forEach((color, block) -> crystalGlassPaneBlock(provider, color, block, GothicBlocks.CRYSTAL_GLASS.get(color)));
+        GothicBlocks.CRYSTAL_GLASS.stream().forEach(it -> crystalGlassBlock(provider, it));
+        GothicBlocks.CRYSTAL_GLASS_PANES.entries().forEach(it -> crystalGlassPaneBlock(provider, it.getKey(), it.getValue(), GothicBlocks.CRYSTAL_GLASS.get(it.getKey())));
 
         stoneSet(provider, GothicBlocks.DARK_GRIMSTONE_BRICKS);
         stoneSet(provider, GothicBlocks.PALE_GRIMSTONE_BRICKS);
@@ -52,7 +52,7 @@ public class GothicBlockStates {
         spyreFence(provider, GothicBlocks.PALE_GRIMSTONE_SPYRE_FENCE, false, "thick");
     }
 
-    private static void gargoyleBlock(BlockStateProvider provider, DeferredBlock<? extends Block> block) {
+    private static void gargoyleBlock(BlockStateProvider provider, DeferredHolder<Block, ? extends Block> block) {
         var texture = provider.blockTexture(block.value());
         var floorModel = provider.models().getExistingFile(texture);
         var wallModel = provider.models().getExistingFile(texture.withSuffix("_side"));
@@ -79,7 +79,7 @@ public class GothicBlockStates {
         };
     }
 
-    public static void crystalGlassBlock(BlockStateProvider provider, DeferredBlock<? extends Block> block) {
+    public static void crystalGlassBlock(BlockStateProvider provider, DeferredHolder<Block, ? extends Block> block) {
         var name = block.getId().getPath();
         var texture = provider.blockTexture(block.value());
 
@@ -98,7 +98,7 @@ public class GothicBlockStates {
         blockItem(provider, block);
     }
 
-    public static void crystalGlassPaneBlock(BlockStateProvider provider, DyeColor color, DeferredBlock<? extends Block> pane, DeferredBlock<? extends Block> fullBlock) {
+    public static void crystalGlassPaneBlock(BlockStateProvider provider, DyeColor color, DeferredHolder<Block, ? extends Block> pane, DeferredHolder<Block, ? extends Block> fullBlock) {
         var name = pane.getId().getPath();
         var builder = provider.getMultipartBuilder(pane.value());
         var texture = provider.blockTexture(fullBlock.value());
@@ -123,18 +123,19 @@ public class GothicBlockStates {
 
             CrossCollisionBlock.PROPERTY_BY_DIRECTION.forEach((dir, property) -> {
                 var alt = dir == Direction.SOUTH || dir == Direction.EAST;
+                var yRot = dir.getAxis() == Direction.Axis.X ? 270 : 0;
 
                 builder
                         .part()
                         .modelFile(alt ? sideAlt : side)
-                        .rotationY(dir.getAxis() == Direction.Axis.X ? 90 : 0)
+                        .rotationY(yRot)
                         .addModel()
                         .condition(property, true)
                         .condition(CrystalGlassPaneBlock.TYPE, type)
                         .end()
 
                         .part().modelFile(alt ? nosideAlt : noside)
-                        .rotationY(dir == Direction.WEST ? 270 : dir == Direction.SOUTH ? 90 : 0)
+                        .rotationY(yRot)
                         .addModel()
                         .condition(property, false)
                         .condition(CrystalGlassPaneBlock.TYPE, type)
@@ -150,7 +151,7 @@ public class GothicBlockStates {
         return "_" + facing.getSerializedName() + "_" + thickness.getSerializedName();
     }
 
-    public static void spyre(BlockStateProvider provider, DeferredBlock<? extends SpyreBlock> block) {
+    public static void spyre(BlockStateProvider provider, DeferredHolder<Block, ? extends SpyreBlock> block) {
         var name = block.getId().getPath();
 
         provider.getVariantBuilder(block.value()).forAllStatesExcept(state -> {
@@ -170,7 +171,7 @@ public class GothicBlockStates {
         generatedItem(provider.itemModels(), block.getId(), block.getId().withSuffix(suffix(Direction.UP, SpyreBlock.Thickness.TIP)), BLOCK_FOLDER);
     }
 
-    public static void spyreFence(BlockStateProvider provider, DeferredBlock<? extends IronBarsBlock> block, boolean connects, String type) {
+    public static void spyreFence(BlockStateProvider provider, DeferredHolder<Block, ? extends IronBarsBlock> block, boolean connects, String type) {
         var texture = provider.blockTexture(block.value());
         var name = block.getId().getPath();
         var edgeTexture = texture.withSuffix("_edge");
@@ -270,55 +271,5 @@ public class GothicBlockStates {
                 .withExistingParent(name + "_" + type, OConstants.modLoc("block/template/spyre_fence/" + type))
                 .renderType(CUTOUT);
     }
-
-    /*
-    public static void spyreFence(BlockStateProvider provider, DeferredBlock<? extends Block> block, boolean rim) {
-        var name = block.getId().getPath();
-        var builder = provider.getMultipartBuilder(block.value());
-        var texture = provider.blockTexture(block.value());
-
-        var crossModel = provider.models().withExistingParent(name + "_cross", blockTexture(OConstants.modLoc("spyre_fence_cross")))
-                .texture("texture", texture);
-        var cross = builder.part()
-                .modelFile(crossModel)
-                .addModel();
-
-        var typeSuffix = rim ? "_rimmed" : "";
-        var partModel = provider.models().withExistingParent(name + "_part", blockTexture(OConstants.modLoc("spyre_fence_part").withSuffix(typeSuffix)))
-                .texture("texture", texture);
-
-        CrossCollisionBlock.PROPERTY_BY_DIRECTION.forEach((dir, property) -> {
-            var alt = dir == Direction.SOUTH || dir == Direction.EAST;
-            cross.condition(property, false);
-            var rotation = (int) dir.getCounterClockWise().toYRot();
-
-            if (rim) {
-                var rimModel = provider.models().withExistingParent(name + "_rim", blockTexture(OConstants.modLoc("spyre_fence_rim")))
-                        .texture("texture", texture);
-
-                var capBuidler = builder.
-                        part()
-                        .modelFile(rimModel)
-                        .rotationY(rotation)
-                        .addModel()
-                        .condition(property, true);
-
-                CrossCollisionBlock.PROPERTY_BY_DIRECTION.forEach((otherDir, otherProperty) -> {
-                    if (otherDir != dir) capBuidler.condition(otherProperty, false);
-                });
-            }
-
-            builder.
-                    part()
-                    .modelFile(partModel)
-                    .rotationY(rotation)
-                    .addModel()
-                    .condition(property, true)
-                    .end();
-        });
-
-        generatedItem(provider.itemModels(), block.getId(), block.getId(), BLOCK_FOLDER);
-    }
-    */
 
 }

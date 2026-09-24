@@ -9,7 +9,9 @@ import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.plumbum.index.PlumbumBlocks;
 import galena.oreganized.plumbum.world.block.*;
 import galena.oreganized.waxed.index.WaxedBlocks;
+
 import java.util.Map;
+
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
@@ -159,10 +161,10 @@ public class OBlocks {
     public static final DeferredBlock<Block> GARGOYLE = GothicBlocks.GARGOYLE;
 
     @Deprecated(forRemoval = true, since = "5.3.0")
-    public static final Map<DyeColor, DeferredBlock<Block>> CRYSTAL_GLASS = GothicBlocks.CRYSTAL_GLASS;
+    public static final Map<DyeColor, DeferredBlock<Block>> CRYSTAL_GLASS = GothicBlocks.CRYSTAL_GLASS.map();
 
     @Deprecated(forRemoval = true, since = "5.3.0")
-    public static final Map<DyeColor, DeferredBlock<Block>> CRYSTAL_GLASS_PANES = GothicBlocks.CRYSTAL_GLASS_PANES;
+    public static final Map<DyeColor, DeferredBlock<Block>> CRYSTAL_GLASS_PANES = GothicBlocks.CRYSTAL_GLASS_PANES.map();
 
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static final DeferredBlock<Block> LEAD_BOLT_CRATE = ArmamentBlocks.LEAD_BOLT_CRATE;
@@ -183,7 +185,7 @@ public class OBlocks {
     public static final DeferredBlock<FlowerPotBlock> POTTED_PURPLE_DATURA = PlumbumBlocks.POTTED_PURPLE_DATURA;
 
     @Deprecated(forRemoval = true, since = "5.3.0")
-    public static final Map<DyeColor, DeferredBlock<Block>> WAXED_CONCRETE_POWDER = WaxedBlocks.WAXED_CONCRETE_POWDER;
+    public static final Map<DyeColor, DeferredBlock<Block>> WAXED_CONCRETE_POWDER = WaxedBlocks.WAXED_CONCRETE_POWDER.map();
 
     @Deprecated(forRemoval = true, since = "5.3.0")
     public static final DeferredBlock<Block> GROOVED_ICE = ArgentumBlocks.GROOVED_ICE;

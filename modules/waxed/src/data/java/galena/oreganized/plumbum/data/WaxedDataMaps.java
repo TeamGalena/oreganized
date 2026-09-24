@@ -23,7 +23,7 @@ public class WaxedDataMaps {
     private void generate(DataMapProvider provider) {
         var waxables = provider.builder(NeoForgeDataMaps.WAXABLES);
 
-        WaxedBlocks.WAXED_CONCRETE_POWDER.forEach((color, waxed) -> {
+        WaxedBlocks.WAXED_CONCRETE_POWDER.map().forEach((color, waxed) -> {
             var unwaxed = ColorCompat.createBlockKey("concrete_powder", color);
             var conditions = Optional.of(unwaxed.location().getNamespace())
                     .filter(it -> !it.equals(ResourceLocation.DEFAULT_NAMESPACE))

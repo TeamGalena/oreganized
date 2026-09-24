@@ -19,8 +19,8 @@ public class GothicLang {
 
     private void generate(RegistrateLangProvider provider) {
         autoTranslate(provider, GothicBlocks.GARGOYLE);
-        autoTranslate(provider, GothicBlocks.CRYSTAL_GLASS.values().stream());
-        autoTranslate(provider, GothicBlocks.CRYSTAL_GLASS_PANES.values().stream());
+        autoTranslate(provider, GothicBlocks.CRYSTAL_GLASS.stream());
+        autoTranslate(provider, GothicBlocks.CRYSTAL_GLASS_PANES.stream());
 
         autoTranslate(provider, GothicBlocks.DARK_GRIMSTONE_BRICKS);
         autoTranslate(provider, GothicBlocks.PALE_GRIMSTONE_BRICKS);

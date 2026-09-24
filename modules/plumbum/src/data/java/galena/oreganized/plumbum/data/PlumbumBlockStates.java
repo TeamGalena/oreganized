@@ -24,7 +24,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
-import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 @Mod(OConstants.MOD_ID)
 public class PlumbumBlockStates {
@@ -59,7 +59,7 @@ public class PlumbumBlockStates {
         crossWithPot(provider, PlumbumBlocks.WHITE_DATURA, PlumbumBlocks.POTTED_WHITE_DATURA);
     }
 
-    public static void meltingCauldron(BlockStateProvider provider, DeferredBlock<? extends Block> cauldron, DeferredBlock<? extends Block> content) {
+    public static void meltingCauldron(BlockStateProvider provider, DeferredHolder<Block, ? extends Block> cauldron, DeferredHolder<Block, ? extends Block> content) {
         provider.getVariantBuilder(cauldron.get()).forAllStates(state -> {
             int age = state.getValue(MeltingLeadCauldronBlock.AGE);
             var prefix = age == 0 ? "" : "melting_";
@@ -68,7 +68,7 @@ public class PlumbumBlockStates {
         });
     }
 
-    public static void moltenCauldron(BlockStateProvider provider, DeferredBlock<? extends Block> cauldron, DeferredBlock<? extends Block> content) {
+    public static void moltenCauldron(BlockStateProvider provider, DeferredHolder<Block, ? extends Block> cauldron, DeferredHolder<Block, ? extends Block> content) {
         var texture = blockTexture(content.getId().withPrefix("molten_"));
         provider.simpleBlock(cauldron.value(), cauldronModel(provider, cauldron.getId().getPath(), texture));
     }
@@ -79,11 +79,11 @@ public class PlumbumBlockStates {
         return provider.models().getExistingFile(RED_HOT);
     }
 
-    public static <T extends Block & IMeltableBlock> void meltable(BlockStateProvider provider, DeferredBlock<T> block, BiFunction<String, ResourceLocation, ModelFile> modelBuilder) {
+    public static <T extends Block & IMeltableBlock> void meltable(BlockStateProvider provider, DeferredHolder<Block, T> block, BiFunction<String, ResourceLocation, ModelFile> modelBuilder) {
         meltable(provider, block, modelBuilder, (s, it) -> it);
     }
 
-    public static <T extends Block & IMeltableBlock> void meltable(BlockStateProvider provider, DeferredBlock<T> block, BiFunction<String, ResourceLocation, ModelFile> modelBuilder, BiFunction<BlockState, ConfiguredModel.Builder<?>, ConfiguredModel.Builder<?>> modelModifier) {
+    public static <T extends Block & IMeltableBlock> void meltable(BlockStateProvider provider, DeferredHolder<Block, T> block, BiFunction<String, ResourceLocation, ModelFile> modelBuilder, BiFunction<BlockState, ConfiguredModel.Builder<?>, ConfiguredModel.Builder<?>> modelModifier) {
         var prefixes = List.of("", "goopy_", "red_hot_");
         provider.getVariantBuilder(block.get()).forAllStates(state -> {
             int goopyness = block.get().getGoopyness(state);
@@ -98,7 +98,7 @@ public class PlumbumBlockStates {
         blockItem(provider, block);
     }
 
-    public static <T extends Block & IMeltableBlock> void meltableLamp(BlockStateProvider provider, DeferredBlock<T> block) {
+    public static <T extends Block & IMeltableBlock> void meltableLamp(BlockStateProvider provider, DeferredHolder<Block, T> block) {
         var prefixes = List.of("", "dimmer_", "goopy_", "red_hot_");
         provider.getVariantBuilder(block.get()).forAllStates(state -> {
             int goopyness = state.getValue(galena.oreganized.plumbum.world.block.LeadBulbBlock.GOOPYNESS_4);
@@ -112,7 +112,7 @@ public class PlumbumBlockStates {
         blockItem(provider, block);
     }
 
-    public static <T extends RotatedPillarBlock & IMeltableBlock> void meltablePillar(BlockStateProvider provider, DeferredBlock<T> block) {
+    public static <T extends RotatedPillarBlock & IMeltableBlock> void meltablePillar(BlockStateProvider provider, DeferredHolder<Block, T> block) {
         meltable(
                 provider,
                 block,
@@ -125,7 +125,7 @@ public class PlumbumBlockStates {
         );
     }
 
-    public static <T extends TrapDoorBlock & IMeltableBlock> void meltableTrapdoor(BlockStateProvider provider, DeferredBlock<T> block) {
+    public static <T extends TrapDoorBlock & IMeltableBlock> void meltableTrapdoor(BlockStateProvider provider, DeferredHolder<Block, T> block) {
         var prefixes = List.of("", "goopy_", "red_hot_");
 
         provider.getVariantBuilder(block.get()).forAllStatesExcept(state -> {
@@ -155,7 +155,7 @@ public class PlumbumBlockStates {
         provider.itemModels().trapdoorOrientableBottom(block.getId().getPath(), provider.blockTexture(block.value()));
     }
 
-    public static <T extends DoorBlock & IMeltableBlock> void meltableDoor(BlockStateProvider provider, DeferredBlock<T> block) {
+    public static <T extends DoorBlock & IMeltableBlock> void meltableDoor(BlockStateProvider provider, DeferredHolder<Block, T> block) {
         var prefixes = List.of("", "goopy_", "red_hot_");
 
         provider.getVariantBuilder(block.get()).forAllStatesExcept(state -> {
@@ -209,7 +209,7 @@ public class PlumbumBlockStates {
         generatedItem(provider, block, ITEM_FOLDER);
     }
 
-    public static <T extends IronBarsBlock & IMeltableBlock> void meltableBars(BlockStateProvider provider, DeferredBlock<T> block) {
+    public static <T extends IronBarsBlock & IMeltableBlock> void meltableBars(BlockStateProvider provider, DeferredHolder<Block, T> block) {
         var prefixes = List.of("", "goopy_", "red_hot_");
 
         var builder = provider.getMultipartBuilder(block.get());
@@ -264,7 +264,7 @@ public class PlumbumBlockStates {
         generatedItem(provider, block, BLOCK_FOLDER);
     }
 
-    public static <T extends LeverBlock & IMeltableBlock> void sturdyLever(BlockStateProvider provider, DeferredBlock<T> block) {
+    public static <T extends LeverBlock & IMeltableBlock> void sturdyLever(BlockStateProvider provider, DeferredHolder<Block, T> block) {
         var prefixes = List.of("", "goopy_", "red_hot_");
 
         provider.getVariantBuilder(block.get()).forAllStates(state -> {
@@ -302,7 +302,7 @@ public class PlumbumBlockStates {
         generatedItem(provider, block, ITEM_FOLDER);
     }
 
-    public static <T extends ButtonBlock & IMeltableBlock> void sturdyButton(BlockStateProvider provider, DeferredBlock<T> block) {
+    public static <T extends ButtonBlock & IMeltableBlock> void sturdyButton(BlockStateProvider provider, DeferredHolder<Block, T> block) {
         var prefixes = List.of("", "goopy_", "red_hot_");
 
         provider.getVariantBuilder(block.get()).forAllStates(state -> {

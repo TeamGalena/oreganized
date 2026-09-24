@@ -18,7 +18,7 @@ public class WaxedRecipes {
     }
 
     private void generate(RecipeOutput provider) {
-        WaxedBlocks.WAXED_CONCRETE_POWDER.forEach((color, waxed) -> {
+        WaxedBlocks.WAXED_CONCRETE_POWDER.map().forEach((color, waxed) -> {
             var unwaxed = ColorCompat.getColoredBlock("concrete_powder", color);
             dyed(color, provider, () -> makeWaxed(provider, waxed, unwaxed));
         });

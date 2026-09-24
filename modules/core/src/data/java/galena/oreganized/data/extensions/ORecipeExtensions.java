@@ -26,7 +26,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SlabBlock;
 import net.neoforged.neoforge.common.ItemAbility;
-import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import vectorwing.farmersdelight.common.crafting.ingredient.ItemAbilityIngredient;
 import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
@@ -216,7 +216,7 @@ public final class ORecipeExtensions {
                 .unlockedBy(getHasName(input.get()), has(input.get()));
     }
 
-    public static void makeWaxed(RecipeOutput output, DeferredBlock<? extends Block> waxed, Block unwaxed) {
+    public static void makeWaxed(RecipeOutput output, DeferredHolder<Block, ? extends Block> waxed, Block unwaxed) {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, waxed.value())
                 .requires(unwaxed)
                 .requires(Items.HONEYCOMB)
@@ -232,7 +232,7 @@ public final class ORecipeExtensions {
                 .build(output);
     }
 
-    public static void makeWaxed(RecipeOutput output, DeferredBlock<? extends Block> blockOut, Supplier<? extends Block> blockIn) {
+    public static void makeWaxed(RecipeOutput output, DeferredHolder<Block, ? extends Block> blockOut, Supplier<? extends Block> blockIn) {
         makeWaxed(output, blockOut, blockIn.get());
     }
 

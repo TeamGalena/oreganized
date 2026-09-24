@@ -29,12 +29,12 @@ public class GothicRecipes {
     }
 
     private void generate(RecipeOutput provider) {
-        GothicBlocks.CRYSTAL_GLASS.forEach((color, crystalGlass) -> {
+        GothicBlocks.CRYSTAL_GLASS.map().forEach((color, crystalGlass) -> {
             var glass = ColorCompat.getColoredBlock("stained_glass", color);
             dyed(color, crystalGlass(crystalGlass, glass)).save(provider);
         });
 
-        GothicBlocks.CRYSTAL_GLASS_PANES.forEach((color, pane) ->
+        GothicBlocks.CRYSTAL_GLASS_PANES.map().forEach((color, pane) ->
                 dyed(color, makePane(pane, GothicBlocks.CRYSTAL_GLASS.get(color))).save(provider)
         );
 

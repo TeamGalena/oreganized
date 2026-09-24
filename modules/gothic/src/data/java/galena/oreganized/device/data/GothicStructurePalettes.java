@@ -11,19 +11,15 @@ import galena.oreganized.data.ODatagen;
 import galena.oreganized.gothic.config.GothicConfigs;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.index.OConditionTypes;
-
-import java.util.Comparator;
+import galena.oreganized.index.sets.DyedBlockSet;
 import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Predicate;
-
-import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.StructureTags;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.level.block.Block;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.conditions.ICondition;
 
@@ -36,10 +32,9 @@ public class GothicStructurePalettes {
 
     private static final ResourceKey<StructureRepaletterEntry> CLERIC_WINDOWS = ResourceKey.create(BlueprintDataPackRegistries.STRUCTURE_REPALETTERS, OConstants.modLoc("replace_cleric_windows"));
 
-    private static StructureRepaletter[] replaceColored(Map<DyeColor, ? extends Holder<Block>> to, String from, Predicate<DyeColor> filter) {
-        return to.entrySet().stream()
+    private static StructureRepaletter[] replaceColored(DyedBlockSet<?> to, String from, Predicate<DyeColor> filter) {
+        return to.entries()
                 .filter(it -> filter.test(it.getKey()))
-                .sorted(Comparator.comparing(it -> it.getKey().getId()))
                 .map(entry ->
                         new SimpleStructureRepaletter(
                                 ColorCompat.getColoredBlock(from, entry.getKey()),

@@ -2,12 +2,10 @@ package galena.oreganized.gothic.index;
 
 import galena.oreganized.OConstants;
 import galena.oreganized.gothic.world.block.*;
+import galena.oreganized.index.sets.DyedBlockSet;
 import galena.oreganized.index.sets.StoneSet;
 import galena.oreganized.register.BlockRegistryHelper;
 
-import java.util.Map;
-
-import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.material.MapColor;
@@ -22,10 +20,9 @@ public class GothicBlocks {
     public static final DeferredBlock<Block> GARGOYLE = BLOCKS.createBlock("gargoyle",
             () -> new GargoyleBlock(Properties.ofFullCopy(Blocks.STONE).noOcclusion()));
 
-
-    public static final Map<DyeColor, DeferredBlock<Block>> CRYSTAL_GLASS = BLOCKS.createColored("crystal_glass", dye ->
+    public static final DyedBlockSet<Block> CRYSTAL_GLASS = BLOCKS.createColored("crystal_glass", dye ->
             new CrystalGlassBlock(dye, Properties.ofFullCopy(Blocks.RED_STAINED_GLASS).mapColor(dye)));
-    public static final Map<DyeColor, DeferredBlock<Block>> CRYSTAL_GLASS_PANES = BLOCKS.createColored("crystal_glass_pane", dye ->
+    public static final DyedBlockSet<Block> CRYSTAL_GLASS_PANES = BLOCKS.createColored("crystal_glass_pane", dye ->
             new CrystalGlassPaneBlock(dye, Properties.ofFullCopy(Blocks.RED_STAINED_GLASS_PANE).mapColor(dye)));
 
     private static final MapColor DARK_GRIMSTONE_COLOR = MapColor.COLOR_BLACK;

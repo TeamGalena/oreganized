@@ -11,31 +11,31 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.client.model.generators.*;
-import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class OBlockStateExtensions {
 
     public static final ResourceLocation CUTOUT = withDefaultNamespace("cutout");
     public static final ResourceLocation TRANSLUCENT = withDefaultNamespace("translucent");
 
-    public static void cubeAll(BlockStateProvider provider, DeferredBlock<? extends Block> block) {
+    public static void cubeAll(BlockStateProvider provider, DeferredHolder<Block, ? extends Block> block) {
         var model = provider.cubeAll(block.value());
         provider.simpleBlockWithItem(block.value(), model);
     }
 
-    public static void slab(BlockStateProvider provider, DeferredBlock<? extends Block> block, DeferredBlock<? extends SlabBlock> slab) {
+    public static void slab(BlockStateProvider provider, DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends SlabBlock> slab) {
         var texture = provider.blockTexture(block.value());
         provider.slabBlock(slab.value(), texture, texture);
         blockItem(provider, slab);
     }
 
-    public static void stairs(BlockStateProvider provider, DeferredBlock<? extends Block> block, DeferredBlock<? extends StairBlock> stairs) {
+    public static void stairs(BlockStateProvider provider, DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends StairBlock> stairs) {
         var texture = provider.blockTexture(block.value());
         provider.stairsBlock(stairs.value(), texture);
         blockItem(provider, stairs);
     }
 
-    public static void wall(BlockStateProvider provider, DeferredBlock<? extends Block> block, DeferredBlock<? extends WallBlock> wall) {
+    public static void wall(BlockStateProvider provider, DeferredHolder<Block, ? extends Block> block, DeferredHolder<Block, ? extends WallBlock> wall) {
         var texture = provider.blockTexture(block.value());
         provider.wallBlock(wall.value(), texture);
         provider.itemModels()
@@ -43,19 +43,19 @@ public class OBlockStateExtensions {
                 .parent(provider.models().wallInventory(wall.getId().getPath() + "_inventory", texture));
     }
 
-    public static void waxed(BlockStateProvider provider, DeferredBlock<? extends Block> block, Block origin) {
+    public static void waxed(BlockStateProvider provider, DeferredHolder<Block, ? extends Block> block, Block origin) {
         var parent = provider.blockTexture(origin);
         var model = provider.models().getExistingFile(parent);
         provider.simpleBlockWithItem(block.value(), model);
     }
 
-    public static void trapDoor(BlockStateProvider provider, DeferredBlock<? extends TrapDoorBlock> block) {
+    public static void trapDoor(BlockStateProvider provider, DeferredHolder<Block, ? extends TrapDoorBlock> block) {
         var texture = provider.blockTexture(block.value());
         provider.trapdoorBlock(block.value(), texture, true);
         provider.simpleBlockItem(block.value(), provider.models().getExistingFile(texture.withSuffix("_bottom")));
     }
 
-    public static void door(BlockStateProvider provider, DeferredBlock<? extends DoorBlock> block) {
+    public static void door(BlockStateProvider provider, DeferredHolder<Block, ? extends DoorBlock> block) {
         var texture = provider.blockTexture(block.value());
         provider.doorBlock(block.value(), texture.withSuffix("_bottom"), texture.withSuffix("_top"));
         generatedItem(provider, block, ITEM_FOLDER);
@@ -88,7 +88,7 @@ public class OBlockStateExtensions {
     /**
      * copied from {@link com.teamabnormals.blueprint.core.data.client.BlueprintBlockStateProvider}
      */
-    public static void bars(BlockStateProvider provider, DeferredBlock<? extends IronBarsBlock> block) {
+    public static void bars(BlockStateProvider provider, DeferredHolder<Block, ? extends IronBarsBlock> block) {
         var texture = provider.blockTexture(block.value());
         var name = block.getId().getPath();
         var edgeTexture = texture.withSuffix("_edge");
@@ -111,34 +111,34 @@ public class OBlockStateExtensions {
                 .texture("particle", texture);
     }
 
-    public static void pillar(BlockStateProvider provider, DeferredBlock<? extends RotatedPillarBlock> block) {
+    public static void pillar(BlockStateProvider provider, DeferredHolder<Block, ? extends RotatedPillarBlock> block) {
         provider.logBlock(block.value());
         blockItem(provider, block);
     }
 
-    public static void cubeColumn(BlockStateProvider provider, DeferredBlock<? extends Block> block) {
+    public static void cubeColumn(BlockStateProvider provider, DeferredHolder<Block, ? extends Block> block) {
         var texture = provider.blockTexture(block.value());
         cubeBottomTopBlock(provider, block, texture.withSuffix("_side"), texture.withSuffix("_top"), texture.withSuffix("_top"));
     }
 
-    public static void crossWithPot(BlockStateProvider provider, DeferredBlock<? extends Block> cross, DeferredBlock<? extends FlowerPotBlock> potted) {
+    public static void crossWithPot(BlockStateProvider provider, DeferredHolder<Block, ? extends Block> cross, DeferredHolder<Block, ? extends FlowerPotBlock> potted) {
         var texture = provider.blockTexture(cross.value());
         crossBlock(provider, cross);
         var pottedModel = provider.models().singleTexture(potted.getId().getPath(), withDefaultNamespace("block/flower_pot_cross"), "plant", texture).renderType(CUTOUT);
         provider.simpleBlock(potted.value(), pottedModel);
     }
 
-    public static void crossBlock(BlockStateProvider provider, DeferredBlock<? extends Block> cross) {
+    public static void crossBlock(BlockStateProvider provider, DeferredHolder<Block, ? extends Block> cross) {
         var texture = provider.blockTexture(cross.value());
         provider.simpleBlock(cross.value(), provider.models().cross(cross.getId().getPath(), texture).renderType(CUTOUT));
         generatedItem(provider, cross, BLOCK_FOLDER);
     }
 
-    public static ItemModelBuilder generatedItem(BlockStateProvider provider, DeferredBlock<? extends Block> block, String type) {
+    public static ItemModelBuilder generatedItem(BlockStateProvider provider, DeferredHolder<Block, ? extends Block> block, String type) {
         return OItemModelExtensions.generatedItem(provider.itemModels(), block.getId(), block.getId(), type);
     }
 
-    public static ModelFile cauldronModel(BlockStateProvider provider, DeferredBlock<? extends Block> block, ResourceLocation texture, int age) {
+    public static ModelFile cauldronModel(BlockStateProvider provider, DeferredHolder<Block, ? extends Block> block, ResourceLocation texture, int age) {
         var name = block.getId().getPath() + "_" + age;
         return cauldronModel(provider, name, texture);
     }
@@ -148,21 +148,21 @@ public class OBlockStateExtensions {
                 .texture("content", texture);
     }
 
-    public static void cubeBottomTopBlock(BlockStateProvider provider, DeferredBlock<? extends Block> block) {
+    public static void cubeBottomTopBlock(BlockStateProvider provider, DeferredHolder<Block, ? extends Block> block) {
         var texture = provider.blockTexture(block.value());
         cubeBottomTopBlock(provider, block, texture.withSuffix("_side"), texture.withSuffix("_bottom"), texture.withSuffix("_top"));
     }
 
-    public static void cubeBottomTopBlock(BlockStateProvider provider, DeferredBlock<? extends Block> block, ResourceLocation sideTexture, ResourceLocation bottomTexture, ResourceLocation topTexture) {
+    public static void cubeBottomTopBlock(BlockStateProvider provider, DeferredHolder<Block, ? extends Block> block, ResourceLocation sideTexture, ResourceLocation bottomTexture, ResourceLocation topTexture) {
         provider.simpleBlock(block.value(), provider.models().cubeBottomTop(block.getId().getPath(), sideTexture, bottomTexture, topTexture));
         blockItem(provider, block);
     }
 
-    public static void blockItem(BlockStateProvider provider, DeferredBlock<? extends Block> block) {
+    public static void blockItem(BlockStateProvider provider, DeferredHolder<Block, ? extends Block> block) {
         blockItem(provider, block, provider.blockTexture(block.value()));
     }
 
-    public static void blockItem(BlockStateProvider provider, DeferredBlock<? extends Block> block, ResourceLocation model) {
+    public static void blockItem(BlockStateProvider provider, DeferredHolder<Block, ? extends Block> block, ResourceLocation model) {
         var existing = provider.models().getExistingFile(model);
         provider.simpleBlockItem(block.value(), existing);
     }

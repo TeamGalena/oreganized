@@ -16,7 +16,7 @@ public class WaxedLang {
     }
 
     private void generate(RegistrateLangProvider provider) {
-        autoTranslate(provider, WaxedBlocks.WAXED_CONCRETE_POWDER.values().stream());
+        autoTranslate(provider, WaxedBlocks.WAXED_CONCRETE_POWDER.stream());
     }
 
 }

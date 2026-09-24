@@ -2,10 +2,8 @@ package galena.oreganized.gothic;
 
 import galena.oreganized.CreativeModeTabBuilder;
 import galena.oreganized.gothic.index.GothicBlocks;
-import galena.oreganized.index.DyeColors;
 
 import java.util.List;
-import java.util.Map;
 
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
@@ -21,21 +19,8 @@ public class GothicTabs {
         var builder = new CreativeModeTabBuilder(event);
 
         builder.add(CreativeModeTabs.COLORED_BLOCKS, tab -> {
-            tab.putAfter(
-                    Blocks.GLASS_PANE,
-                    GothicBlocks.CRYSTAL_GLASS.entrySet()
-                            .stream()
-                            .sorted(Map.Entry.comparingByKey(DyeColors.comparator()))
-                            .map(Map.Entry::getValue)
-            );
-
-            tab.putAfter(
-                    Blocks.SHULKER_BOX,
-                    GothicBlocks.CRYSTAL_GLASS_PANES.entrySet()
-                            .stream()
-                            .sorted(Map.Entry.comparingByKey(DyeColors.comparator()))
-                            .map(Map.Entry::getValue)
-            );
+            tab.putAfter(Blocks.GLASS_PANE, GothicBlocks.CRYSTAL_GLASS.stream());
+            tab.putAfter(Blocks.SHULKER_BOX, GothicBlocks.CRYSTAL_GLASS_PANES.stream());
         });
 
         builder.add(List.of(CreativeModeTabs.REDSTONE_BLOCKS, CreativeModeTabs.FUNCTIONAL_BLOCKS), tab -> {

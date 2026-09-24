@@ -20,8 +20,8 @@ public class GothicLoot {
     private void generate(RegistrateBlockLootTables provider) {
         dropSelf(provider, GothicBlocks.GARGOYLE);
 
-        GothicBlocks.CRYSTAL_GLASS.forEach((c, b) -> dyed(c, provider, () -> dropAsSilk(provider, b)));
-        GothicBlocks.CRYSTAL_GLASS_PANES.forEach((c, b) -> dyed(c, provider, () -> dropAsSilk(provider, b)));
+        GothicBlocks.CRYSTAL_GLASS.map().forEach((c, b) -> dyed(c, provider, () -> dropAsSilk(provider, b)));
+        GothicBlocks.CRYSTAL_GLASS_PANES.map().forEach((c, b) -> dyed(c, provider, () -> dropAsSilk(provider, b)));
 
         dropStoneSet(provider, GothicBlocks.DARK_GRIMSTONE_BRICKS);
         dropStoneSet(provider, GothicBlocks.PALE_GRIMSTONE_BRICKS);

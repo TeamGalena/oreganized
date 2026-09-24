@@ -26,7 +26,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.registries.DeferredBlock;
 
 @Mod(OConstants.MOD_ID)
 public class ArgentumTagsGen {
@@ -89,7 +88,7 @@ public class ArgentumTagsGen {
         provider.addTag(Tags.Blocks.ORES_IN_GROUND_STONE).add(ArgentumBlocks.SILVER_ORE.getKey());
         provider.addTag(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE).add(ArgentumBlocks.DEEPSLATE_SILVER_ORE.getKey());
 
-        Stream<DeferredBlock<?>> silverBlocks = Stream.of(
+        Stream<Holder<Block>> silverBlocks = Stream.of(
                 Stream.of(
                         ArgentumBlocks.SILVER_ORE,
                         ArgentumBlocks.DEEPSLATE_SILVER_ORE,

@@ -1,68 +1,61 @@
 package galena.oreganized.index;
 
 import galena.oreganized.ModCompat;
-import java.util.Comparator;
-import java.util.Objects;
-import java.util.function.Function;
+
+import java.util.function.Consumer;
 import java.util.stream.Stream;
+
 import net.minecraft.world.item.DyeColor;
 
 public class DyeColors {
 
-    private static Stream<DyeColor> vanillaColors() {
-        return Stream.of(
-                DyeColor.WHITE,
-                DyeColor.LIGHT_GRAY,
-                DyeColor.GRAY,
-                DyeColor.BLACK,
-                DyeColor.BROWN,
-                DyeColor.RED,
-                DyeColor.ORANGE,
-                DyeColor.YELLOW,
-                DyeColor.LIME,
-                DyeColor.GREEN,
-                DyeColor.CYAN,
-                DyeColor.LIGHT_BLUE,
-                DyeColor.BLUE,
-                DyeColor.PURPLE,
-                DyeColor.MAGENTA,
-                DyeColor.PINK
-        );
-    }
-
-    private static Stream<DyeColor> depotColors() {
-        if (!ModCompat.DYE_DEPOT_LOADED) return Stream.empty();
-        return Stream.of(
-                        "amber",
-                        "aqua",
-                        "beige",
-                        "coral",
-                        "forest",
-                        "ginger",
-                        "indigo",
-                        "maroon",
-                        "mint",
-                        "navy",
-                        "olive",
-                        "rose",
-                        "slate",
-                        "tan",
-                        "teal",
-                        "verdant"
-                )
-                .map(it -> DyeColor.byName(it, null))
-                .filter(Objects::nonNull);
-    }
-
+    /**
+     * these are sorted the way they appear in the creative mode tabs
+     * this sorting is persisted all the way through the IDyedSets.stream() method
+     */
     public static Stream<DyeColor> supported() {
-        return Stream.of(
-                vanillaColors(),
-                depotColors()
-        ).flatMap(Function.identity());
+        var builder = Stream.<DyeColor>builder();
+
+        builder.add(DyeColor.WHITE);
+        builder.add(DyeColor.LIGHT_GRAY);
+        builder.add(DyeColor.GRAY);
+        builder.add(DyeColor.BLACK);
+        builder.add(DyeColor.BROWN);
+        addDepotDye(builder, "maroon");
+        addDepotDye(builder, "rose");
+        builder.add(DyeColor.RED);
+        addDepotDye(builder, "coral");
+        addDepotDye(builder, "ginger");
+        builder.add(DyeColor.ORANGE);
+        addDepotDye(builder, "tan");
+        addDepotDye(builder, "beige");
+        builder.add(DyeColor.YELLOW);
+        addDepotDye(builder, "amber");
+        addDepotDye(builder, "olive");
+        builder.add(DyeColor.LIME);
+        addDepotDye(builder, "forest");
+        builder.add(DyeColor.GREEN);
+        addDepotDye(builder, "verdant");
+        addDepotDye(builder, "teal");
+        builder.add(DyeColor.CYAN);
+        addDepotDye(builder, "mint");
+        addDepotDye(builder, "aqua");
+        builder.add(DyeColor.LIGHT_BLUE);
+        builder.add(DyeColor.BLUE);
+        addDepotDye(builder, "slate");
+        addDepotDye(builder, "navy");
+        addDepotDye(builder, "indigo");
+        builder.add(DyeColor.PURPLE);
+        builder.add(DyeColor.MAGENTA);
+        builder.add(DyeColor.PINK);
+
+        return builder.build();
     }
 
-    public static Comparator<DyeColor> comparator() {
-        return Comparator.comparing(DyeColor::getId);
+    private static void addDepotDye(Consumer<DyeColor> builder, String name) {
+        if (ModCompat.DYE_DEPOT_LOADED) {
+            builder.accept(DyeColor.byName(name, null));
+        }
     }
 
 }

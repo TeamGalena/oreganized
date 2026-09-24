@@ -5,7 +5,7 @@ import static com.tterrag.registrate.providers.RegistrateLangProvider.toEnglishN
 import static net.minecraft.Util.makeDescriptionId;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
-import galena.oreganized.index.sets.IBlockSet;
+import galena.oreganized.index.sets.IHolderSet;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 import net.minecraft.Util;
@@ -84,7 +84,7 @@ public class OLangExtensions {
         stream.forEach(it -> autoTranslate(provider, it));
     }
 
-    public static void autoTranslate(RegistrateLangProvider provider, IBlockSet set) {
+    public static void autoTranslate(RegistrateLangProvider provider, IHolderSet<?, ?, ?> set) {
         autoTranslate(provider, set.stream());
     }
 

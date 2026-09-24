@@ -17,7 +17,7 @@ public class WaxedBlockStates {
     }
 
     private void generate(BlockStateProvider provider) {
-        WaxedBlocks.WAXED_CONCRETE_POWDER.forEach((color, block) -> {
+        WaxedBlocks.WAXED_CONCRETE_POWDER.map().forEach((color, block) -> {
             var unwaxed = ColorCompat.getColoredBlock("concrete_powder", color);
             waxed(provider, block, unwaxed);
         });
