@@ -1,5 +1,7 @@
 package galena.oreganized.device.data;
 
+import static galena.oreganized.data.extensions.OLangExtensions.autoTranslate;
+
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
@@ -15,7 +17,7 @@ public class EngravedLang {
     }
 
     private void generate(RegistrateLangProvider provider) {
-        provider.addItem(EngravedItems.BUSH_HAMMER::get);
+        autoTranslate(provider, EngravedItems.BUSH_HAMMER);
 
         provider.add(EngravedTags.Items.TOOLS_BUSH_HAMMER, "Bush Hammers");
         provider.add(EngravedTags.Blocks.MINEABLE_WITH_BUSH_HAMMER, "Mineable with Bush Hammer");

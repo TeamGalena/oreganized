@@ -1,5 +1,7 @@
 package galena.oreganized.device.data;
 
+import static galena.oreganized.data.extensions.OLangExtensions.autoTranslate;
+
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
@@ -14,8 +16,8 @@ public class DevicesLang {
     }
 
     private void generate(RegistrateLangProvider provider) {
-        provider.addItem(DeviceItems.UNKNOWN_DEVICE::get);
-        provider.addItem(DeviceItems.NETHERITE_NUGGET::get);
+        autoTranslate(provider, DeviceItems.UNKNOWN_DEVICE);
+        autoTranslate(provider, DeviceItems.NETHERITE_NUGGET);
     }
 
 }

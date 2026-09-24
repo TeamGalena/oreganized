@@ -1,6 +1,7 @@
 package galena.oreganized.device.data;
 
 import static galena.oreganized.data.extensions.OLangExtensions.addSubtitle;
+import static galena.oreganized.data.extensions.OLangExtensions.autoTranslate;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import galena.oreganized.OConstants;
@@ -17,26 +18,24 @@ public class GothicLang {
     }
 
     private void generate(RegistrateLangProvider provider) {
-        provider.addBlock(GothicBlocks.GARGOYLE::value);
-        GothicBlocks.CRYSTAL_GLASS.values().forEach(it -> provider.addBlock(it::value));
-        GothicBlocks.CRYSTAL_GLASS_PANES.values().forEach(it -> provider.addBlock(it::value));
+        autoTranslate(provider, GothicBlocks.GARGOYLE);
+        autoTranslate(provider, GothicBlocks.CRYSTAL_GLASS.values().stream());
+        autoTranslate(provider, GothicBlocks.CRYSTAL_GLASS_PANES.values().stream());
 
-        provider.addBlock(GothicBlocks.DARK_GRIMSTONE_BRICKS::value);
-        provider.addBlock(GothicBlocks.PALE_GRIMSTONE_BRICKS::value);
-        provider.addBlock(GothicBlocks.POLISHED_DARK_GRIMSTONE::value);
-        provider.addBlock(GothicBlocks.POLISHED_PALE_GRIMSTONE::value);
-        provider.addBlock(GothicBlocks.DARK_GRIMSTONE_PILLAR::value);
-        provider.addBlock(GothicBlocks.PALE_GRIMSTONE_PILLAR::value);
-        provider.addBlock(GothicBlocks.CHISELED_DARK_GRIMSTONE::value);
-        provider.addBlock(GothicBlocks.CHISELED_PALE_GRIMSTONE::value);
-        provider.addBlock(GothicBlocks.DARK_GRIMSTONE_SLAB::value);
-        provider.addBlock(GothicBlocks.PALE_GRIMSTONE_SLAB::value);
-        provider.addBlock(GothicBlocks.PALE_GRIMSTONE_SPYRE::value);
-        provider.addBlock(GothicBlocks.DARK_GRIMSTONE_SPYRE::value);
-        provider.addBlock(GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK::value);
-        provider.addBlock(GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK::value);
-        provider.addBlock(GothicBlocks.DARK_GRIMSTONE_SPYRE_FENCE::value);
-        provider.addBlock(GothicBlocks.PALE_GRIMSTONE_SPYRE_FENCE::value);
+        autoTranslate(provider, GothicBlocks.DARK_GRIMSTONE_BRICKS);
+        autoTranslate(provider, GothicBlocks.PALE_GRIMSTONE_BRICKS);
+        autoTranslate(provider, GothicBlocks.POLISHED_DARK_GRIMSTONE);
+        autoTranslate(provider, GothicBlocks.POLISHED_PALE_GRIMSTONE);
+        autoTranslate(provider, GothicBlocks.DARK_GRIMSTONE_PILLAR);
+        autoTranslate(provider, GothicBlocks.PALE_GRIMSTONE_PILLAR);
+        autoTranslate(provider, GothicBlocks.CHISELED_DARK_GRIMSTONE);
+        autoTranslate(provider, GothicBlocks.CHISELED_PALE_GRIMSTONE);
+        autoTranslate(provider, GothicBlocks.PALE_GRIMSTONE_SPYRE);
+        autoTranslate(provider, GothicBlocks.DARK_GRIMSTONE_SPYRE);
+        autoTranslate(provider, GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK);
+        autoTranslate(provider, GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK);
+        autoTranslate(provider, GothicBlocks.DARK_GRIMSTONE_SPYRE_FENCE);
+        autoTranslate(provider, GothicBlocks.PALE_GRIMSTONE_SPYRE_FENCE);
 
         addSubtitle(provider, "block", "gargoyle.growl", "Gargoyle growls");
 

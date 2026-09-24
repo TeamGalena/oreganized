@@ -1,5 +1,7 @@
 package galena.oreganized.plumbum.data;
 
+import static galena.oreganized.data.extensions.OLangExtensions.autoTranslate;
+
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
@@ -14,7 +16,7 @@ public class WaxedLang {
     }
 
     private void generate(RegistrateLangProvider provider) {
-        WaxedBlocks.WAXED_CONCRETE_POWDER.values().forEach(it -> provider.addBlock(it::get));
+        autoTranslate(provider, WaxedBlocks.WAXED_CONCRETE_POWDER.values().stream());
     }
 
 }

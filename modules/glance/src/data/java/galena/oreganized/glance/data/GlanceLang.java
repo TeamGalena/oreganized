@@ -1,5 +1,7 @@
 package galena.oreganized.glance.data;
 
+import static galena.oreganized.data.extensions.OLangExtensions.autoTranslate;
+
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
@@ -15,24 +17,24 @@ public class GlanceLang {
     }
 
     private void generate(RegistrateLangProvider provider) {
-        provider.addBlock(GlanceBlocks.GLANCE::get);
-        provider.addBlock(GlanceBlocks.GLANCE_SLAB::get);
-        provider.addBlock(GlanceBlocks.GLANCE_STAIRS::get);
-        provider.addBlock(GlanceBlocks.GLANCE_WALL::get);
+        autoTranslate(provider, GlanceBlocks.GLANCE);
+        autoTranslate(provider, GlanceBlocks.GLANCE_SLAB);
+        autoTranslate(provider, GlanceBlocks.GLANCE_STAIRS);
+        autoTranslate(provider, GlanceBlocks.GLANCE_WALL);
 
-        provider.addBlock(GlanceBlocks.POLISHED_GLANCE::get);
-        provider.addBlock(GlanceBlocks.POLISHED_GLANCE_SLAB::get);
-        provider.addBlock(GlanceBlocks.POLISHED_GLANCE_STAIRS::get);
+        autoTranslate(provider, GlanceBlocks.POLISHED_GLANCE);
+        autoTranslate(provider, GlanceBlocks.POLISHED_GLANCE_SLAB);
+        autoTranslate(provider, GlanceBlocks.POLISHED_GLANCE_STAIRS);
 
-        provider.addBlock(GlanceBlocks.CHISELED_GLANCE::get);
+        autoTranslate(provider, GlanceBlocks.CHISELED_GLANCE);
 
-        provider.addBlock(GlanceBlocks.GLANCE_BRICKS::get);
-        provider.addBlock(GlanceBlocks.GLANCE_BRICK_SLAB::get);
-        provider.addBlock(GlanceBlocks.GLANCE_BRICK_STAIRS::get);
-        provider.addBlock(GlanceBlocks.GLANCE_BRICK_WALL::get);
+        autoTranslate(provider, GlanceBlocks.GLANCE_BRICKS);
+        autoTranslate(provider, GlanceBlocks.GLANCE_BRICK_SLAB);
+        autoTranslate(provider, GlanceBlocks.GLANCE_BRICK_STAIRS);
+        autoTranslate(provider, GlanceBlocks.GLANCE_BRICK_WALL);
 
-        provider.addBlock(GlanceBlocks.SPOTTED_GLANCE::get);
-        provider.addBlock(GlanceBlocks.WAXED_SPOTTED_GLANCE::get);
+        autoTranslate(provider, GlanceBlocks.SPOTTED_GLANCE);
+        autoTranslate(provider, GlanceBlocks.WAXED_SPOTTED_GLANCE);
 
         provider.add(GlanceTags.Items.STONE_TYPES_GLANCE, "Processed Glance");
         provider.add(GlanceTags.Blocks.STONE_TYPES_GLANCE, "Processed Glance");

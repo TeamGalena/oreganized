@@ -5,6 +5,7 @@ import static net.minecraft.resources.ResourceLocation.withDefaultNamespace;
 import static net.neoforged.neoforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
 import static net.neoforged.neoforge.client.model.generators.ModelProvider.ITEM_FOLDER;
 
+import galena.oreganized.index.sets.StoneSet;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
@@ -168,6 +169,13 @@ public class OBlockStateExtensions {
 
     public static ResourceLocation blockTexture(ResourceLocation id) {
         return id.withPrefix(BLOCK_FOLDER + "/");
+    }
+
+    public static void stoneSet(BlockStateProvider provider, StoneSet<?, ?, ?, ?> block) {
+        cubeAll(provider, block.block());
+        stairs(provider, block.block(), block.stairs());
+        slab(provider, block.block(), block.slab());
+        wall(provider, block.block(), block.wall());
     }
 
 }

@@ -4,7 +4,11 @@ package galena.oreganized.data.extensions;
 import static com.tterrag.registrate.providers.RegistrateLangProvider.toEnglishName;
 import static net.minecraft.Util.makeDescriptionId;
 
+import com.tterrag.registrate.providers.RegistrateLangProvider;
+import galena.oreganized.index.sets.IBlockSet;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
+import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
@@ -67,6 +71,21 @@ public class OLangExtensions {
 
     public static void addFluid(LanguageProvider provider, Holder<Fluid> fluid) {
         addFluid(provider, fluid, toEnglishName(fluid.getKey().location().getPath()));
+    }
+
+    public static void autoTranslate(RegistrateLangProvider provider, Holder<?> holder) {
+        var key = holder.getKey();
+        var id = key.location();
+        var registry = key.registryKey();
+        provider.add(Util.makeDescriptionId(registry.location().getPath(), id), provider.toEnglishName(id.getPath()));
+    }
+
+    public static void autoTranslate(RegistrateLangProvider provider, Stream<? extends Holder<?>> stream) {
+        stream.forEach(it -> autoTranslate(provider, it));
+    }
+
+    public static void autoTranslate(RegistrateLangProvider provider, IBlockSet set) {
+        autoTranslate(provider, set.stream());
     }
 
 }

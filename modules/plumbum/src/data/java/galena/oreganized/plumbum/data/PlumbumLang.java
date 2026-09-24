@@ -17,27 +17,27 @@ public class PlumbumLang {
     }
 
     private void generate(RegistrateLangProvider provider) {
-        provider.addItem(PlumbumItems.LEAD_INGOT::get);
-        provider.addItem(PlumbumItems.LEAD_NUGGET::get);
-        provider.addItem(PlumbumItems.RAW_LEAD::get);
-        provider.addItem(PlumbumItems.THERMOMETER::get);
-        provider.addItem(PlumbumItems.MOLTEN_LEAD_BUCKET::get);
+        autoTranslate(provider, PlumbumItems.LEAD_INGOT);
+        autoTranslate(provider, PlumbumItems.LEAD_NUGGET);
+        autoTranslate(provider, PlumbumItems.RAW_LEAD);
+        autoTranslate(provider, PlumbumItems.THERMOMETER);
+        autoTranslate(provider, PlumbumItems.MOLTEN_LEAD_BUCKET);
 
-        provider.addBlock(PlumbumBlocks.LEAD_ORE::get);
-        provider.addBlock(PlumbumBlocks.DEEPSLATE_LEAD_ORE::get);
+        autoTranslate(provider, PlumbumBlocks.LEAD_ORE);
+        autoTranslate(provider, PlumbumBlocks.DEEPSLATE_LEAD_ORE);
         provider.addBlock(PlumbumBlocks.RAW_LEAD_BLOCK, "Block of Raw Lead");
         provider.addBlock(PlumbumBlocks.LEAD_BLOCK, "Block of Lead");
-        provider.addBlock(PlumbumBlocks.LEAD_BRICKS::get);
-        provider.addBlock(PlumbumBlocks.LEAD_PILLAR::get);
-        provider.addBlock(PlumbumBlocks.LEAD_BULB::get);
-        provider.addBlock(PlumbumBlocks.CUT_LEAD::get);
-        provider.addBlock(PlumbumBlocks.LEAD_BARS::get);
-        provider.addBlock(PlumbumBlocks.LEAD_DOOR::get);
-        provider.addBlock(PlumbumBlocks.LEAD_TRAPDOOR::get);
-        provider.addBlock(PlumbumBlocks.STURDY_BUTTON::get);
-        provider.addBlock(PlumbumBlocks.STURDY_LEVER::get);
-        provider.addBlock(PlumbumBlocks.MOLTEN_LEAD_CAULDRON::get);
-        provider.addBlock(PlumbumBlocks.MELTING_LEAD_CAULDRON::get);
+        autoTranslate(provider, PlumbumBlocks.LEAD_BRICKS);
+        autoTranslate(provider, PlumbumBlocks.LEAD_PILLAR);
+        autoTranslate(provider, PlumbumBlocks.LEAD_BULB);
+        autoTranslate(provider, PlumbumBlocks.CUT_LEAD);
+        autoTranslate(provider, PlumbumBlocks.LEAD_BARS);
+        autoTranslate(provider, PlumbumBlocks.LEAD_DOOR);
+        autoTranslate(provider, PlumbumBlocks.LEAD_TRAPDOOR);
+        autoTranslate(provider, PlumbumBlocks.STURDY_BUTTON);
+        autoTranslate(provider, PlumbumBlocks.STURDY_LEVER);
+        autoTranslate(provider, PlumbumBlocks.MOLTEN_LEAD_CAULDRON);
+        autoTranslate(provider, PlumbumBlocks.MELTING_LEAD_CAULDRON);
 
         provider.add(ClientThermometerTooltip.getDescriptionId(0), "Freezing");
         provider.add(ClientThermometerTooltip.getDescriptionId(1), "Cold");
@@ -54,7 +54,7 @@ public class PlumbumLang {
         provider.addBlock(PlumbumBlocks.POTTED_PURPLE_DATURA, "Potted Purple Datura");
         provider.addBlock(PlumbumBlocks.POTTED_WHITE_DATURA, "Potted White Datura");
 
-        provider.addBlock(PlumbumBlocks.MOLTEN_LEAD::get);
+        autoTranslate(provider, PlumbumBlocks.MOLTEN_LEAD);
         addFluid(provider, PlumbumFluids.MOLTEN_LEAD);
 
         addDisc(provider, PlumbumItems.MUSIC_DISC_STRUCTURE, "Firch", "structure");

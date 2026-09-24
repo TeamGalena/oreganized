@@ -2,66 +2,36 @@
   "multipart": [
     {
       "apply": {
-        "model": "oreganized:block/dark_grimstone_spyre_fence_post_end_bottom"
-      },
-      "when": {
-        "down": "false"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/dark_grimstone_spyre_fence_side"
-      },
-      "when": {
-        "north": "true",
-        "up": "false"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/dark_grimstone_spyre_fence_connected_side"
-      },
-      "when": {
-        "north": "true",
-        "up": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/dark_grimstone_spyre_fence_side_bottom"
-      },
-      "when": {
-        "down": "false",
-        "north": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/dark_grimstone_spyre_fence_cap"
+        "model": "oreganized:block/dark_grimstone_spyre_fence_post_thin"
       },
       "when": {
         "east": "false",
-        "north": "true",
+        "north": "false",
         "south": "false",
         "west": "false"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/dark_grimstone_spyre_fence_side_alt"
-      },
-      "when": {
-        "south": "true",
-        "up": "false"
+        "model": "oreganized:block/dark_grimstone_spyre_fence_post_end_bottom"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/dark_grimstone_spyre_fence_connected_side_alt"
+        "model": "oreganized:block/dark_grimstone_spyre_fence_side_alt_thin"
       },
       "when": {
-        "south": "true",
-        "up": "true"
+        "connected": "false",
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/dark_grimstone_spyre_fence_connected_side_alt_thin"
+      },
+      "when": {
+        "connected": "true",
+        "south": "true"
       }
     },
     {
@@ -69,13 +39,12 @@
         "model": "oreganized:block/dark_grimstone_spyre_fence_side_alt_bottom"
       },
       "when": {
-        "down": "false",
         "south": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/dark_grimstone_spyre_fence_cap_alt"
+        "model": "oreganized:block/dark_grimstone_spyre_fence_cap_alt_thin"
       },
       "when": {
         "east": "false",
@@ -86,22 +55,22 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/dark_grimstone_spyre_fence_side_alt",
+        "model": "oreganized:block/dark_grimstone_spyre_fence_side_alt_thin",
         "y": 270
       },
       "when": {
-        "east": "true",
-        "up": "false"
+        "connected": "false",
+        "east": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/dark_grimstone_spyre_fence_connected_side_alt",
+        "model": "oreganized:block/dark_grimstone_spyre_fence_connected_side_alt_thin",
         "y": 270
       },
       "when": {
-        "east": "true",
-        "up": "true"
+        "connected": "true",
+        "east": "true"
       }
     },
     {
@@ -110,13 +79,12 @@
         "y": 270
       },
       "when": {
-        "down": "false",
         "east": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/dark_grimstone_spyre_fence_cap_alt",
+        "model": "oreganized:block/dark_grimstone_spyre_fence_cap_alt_thin",
         "y": 270
       },
       "when": {
@@ -128,21 +96,21 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/dark_grimstone_spyre_fence_side",
+        "model": "oreganized:block/dark_grimstone_spyre_fence_side_thin",
         "y": 270
       },
       "when": {
-        "up": "false",
+        "connected": "false",
         "west": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/dark_grimstone_spyre_fence_connected_side",
+        "model": "oreganized:block/dark_grimstone_spyre_fence_connected_side_thin",
         "y": 270
       },
       "when": {
-        "up": "true",
+        "connected": "true",
         "west": "true"
       }
     },
@@ -152,13 +120,12 @@
         "y": 270
       },
       "when": {
-        "down": "false",
         "west": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/dark_grimstone_spyre_fence_cap",
+        "model": "oreganized:block/dark_grimstone_spyre_fence_cap_thin",
         "y": 270
       },
       "when": {
@@ -166,6 +133,43 @@
         "north": "false",
         "south": "false",
         "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/dark_grimstone_spyre_fence_side_thin"
+      },
+      "when": {
+        "connected": "false",
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/dark_grimstone_spyre_fence_connected_side_thin"
+      },
+      "when": {
+        "connected": "true",
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/dark_grimstone_spyre_fence_side_bottom"
+      },
+      "when": {
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/dark_grimstone_spyre_fence_cap_thin"
+      },
+      "when": {
+        "east": "false",
+        "north": "true",
+        "south": "false",
+        "west": "false"
       }
     }
   ]

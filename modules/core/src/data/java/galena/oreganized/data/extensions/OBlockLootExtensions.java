@@ -2,6 +2,7 @@ package galena.oreganized.data.extensions;
 
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 
+import galena.oreganized.index.sets.StoneSet;
 import net.minecraft.core.Holder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
@@ -48,6 +49,13 @@ public class OBlockLootExtensions {
 
     public static void dropPottedPlant(RegistrateBlockLootTables provider, Holder<? extends Block> block) {
         provider.dropPottedContents(block.value());
+    }
+
+    public static void dropStoneSet(RegistrateBlockLootTables provider, StoneSet<?, ?, ?, ?> set) {
+        dropSelf(provider, set.block());
+        dropSlab(provider, set.slab());
+        dropSelf(provider, set.stairs());
+        dropSelf(provider, set.wall());
     }
 
 }

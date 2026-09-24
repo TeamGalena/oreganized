@@ -1,6 +1,7 @@
 package galena.oreganized.electrum.data;
 
 import static galena.oreganized.data.extensions.OLangExtensions.addAttribute;
+import static galena.oreganized.data.extensions.OLangExtensions.autoTranslate;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import galena.oreganized.OConstants;
@@ -19,11 +20,11 @@ public class ElectrumLang {
     }
 
     private void generate(RegistrateLangProvider provider) {
-        provider.addItem(ElectrumItems.ELECTRUM_INGOT::get);
-        provider.addItem(ElectrumItems.ELECTRUM_NUGGET::get);
-        ElectrumItems.electrumArmor().forEach(it -> provider.addItem(it::get));
-        ElectrumSets.electrumTools().forEach(it -> provider.addItem(it::get));
-        provider.addItem(ElectrumItems.ELECTRUM_SHIELD::get);
+        autoTranslate(provider, ElectrumItems.ELECTRUM_INGOT);
+        autoTranslate(provider, ElectrumItems.ELECTRUM_NUGGET);
+        autoTranslate(provider, ElectrumItems.electrumArmor());
+        autoTranslate(provider, ElectrumSets.electrumTools());
+        autoTranslate(provider, ElectrumItems.ELECTRUM_SHIELD);
 
         provider.addBlock(ElectrumBlocks.ELECTRUM_BLOCK, "Block of Electrum");
 

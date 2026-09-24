@@ -20,9 +20,9 @@ public class ArmamentLang {
 
     private void generate(RegistrateLangProvider provider) {
         provider.addItem(ArmamentItems.SHRAPNEL_BOMB_MINECART, "Minecart with Shrapnel Bomb");
-        provider.addItem(ArmamentItems.LEAD_BOLT::get);
+        autoTranslate(provider, ArmamentItems.LEAD_BOLT);
 
-        provider.addBlock(ArmamentBlocks.SHRAPNEL_BOMB::get);
+        autoTranslate(provider, ArmamentBlocks.SHRAPNEL_BOMB);
         provider.addBlock(ArmamentBlocks.LEAD_BOLT_CRATE, "Crate of Lead Bolts");
 
         provider.addItem(ArmamentItems.FLINT_AND_PEWTER, "Flint and Pewter");
