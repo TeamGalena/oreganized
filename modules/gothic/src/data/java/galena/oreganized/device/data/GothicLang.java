@@ -45,8 +45,12 @@ public class GothicLang {
 
         provider.add(GothicTags.Blocks.CRYSTAL_GLASS, "Crystal Glass");
         provider.add(GothicTags.Blocks.CRYSTAL_GLASS_PANES, "Crystal Glass Panes");
+        provider.add(GothicTags.Blocks.DARK_SPYRE_CATALYST, "Converts Dripstone to Dark Spyres");
+        provider.add(GothicTags.Blocks.PALE_SPYRE_CATALYST, "Converts Dripstone to Pale Spyres");
 
         provider.add(GothicTags.Entities.SCARED_OF_GARGOYLE, "Scared of Gargoyles");
+
+        provider.add(GothicTags.Fluids.SPYRE_CONVERSION_FLUID, "Converts Dripstone to Spyres");
     }
 
 }

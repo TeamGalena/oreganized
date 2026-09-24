@@ -4,6 +4,7 @@ package galena.oreganized.device.data;
 import static com.tterrag.registrate.providers.RegistrateRecipeProvider.has;
 import static galena.oreganized.data.ConditionalData.dyed;
 import static galena.oreganized.data.extensions.ORecipeExtensions.makePane;
+import static galena.oreganized.data.extensions.ORecipeExtensions.stoneSet;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 
 import galena.oreganized.OConstants;
@@ -48,6 +49,11 @@ public class GothicRecipes {
                 .unlockedBy("has_pumpkin", has(Items.CARVED_PUMPKIN))
                 .unlockedBy("has_silver_ingot", has(CoreTags.Items.INGOTS_SILVER))
                 .save(provider);
+
+        stoneSet(provider, GothicBlocks.DARK_GRIMSTONE_BRICKS);
+        stoneSet(provider, GothicBlocks.PALE_GRIMSTONE_BRICKS);
+        stoneSet(provider, GothicBlocks.POLISHED_DARK_GRIMSTONE);
+        stoneSet(provider, GothicBlocks.POLISHED_PALE_GRIMSTONE);
     }
 
     public static ShapedRecipeBuilder crystalGlass(Supplier<? extends Block> blockOut, Block blockIn) {

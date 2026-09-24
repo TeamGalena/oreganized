@@ -5,6 +5,7 @@ import static galena.oreganized.data.extensions.OTagExtensions.tagDyed;
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import galena.oreganized.OConstants;
+import galena.oreganized.argentum.data.ArgentumSets;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.gothic.index.GothicTags;
@@ -14,6 +15,8 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
 
@@ -24,6 +27,7 @@ public class GothicTagsGen {
         ODatagen.addItemTagProvider(this::items);
         ODatagen.addBlockTagProvider(this::blocks);
         ODatagen.addEntityTagProvider(this::entities);
+        ODatagen.addFluidTagProvider(this::fluids);
     }
 
     private void items(RegistrateItemTagsProvider provider) {
@@ -75,10 +79,21 @@ public class GothicTagsGen {
             provider.addTag(BlockTags.STAIRS).add(set.stairs().getKey());
             provider.addTag(BlockTags.WALLS).add(set.wall().getKey());
         });
+
+        // TODO modular needs condition
+        ArgentumSets.tarnishedBlocks().forEach(set -> {
+            provider.addTag(GothicTags.Blocks.PALE_SPYRE_CATALYST).add(set.base().getKey());
+            provider.addTag(GothicTags.Blocks.DARK_SPYRE_CATALYST).add(set.blemished().getKey());
+            provider.addTag(GothicTags.Blocks.DARK_SPYRE_CATALYST).add(set.tarnished().getKey());
+        });
     }
 
     private void entities(RegistrateTagsProvider.IntrinsicImpl<EntityType<?>> provider) {
         provider.addTag(GothicTags.Entities.SCARED_OF_GARGOYLE).addTags(EntityTypeTags.UNDEAD);
+    }
+
+    private void fluids(RegistrateTagsProvider.IntrinsicImpl<Fluid> provider) {
+        provider.addTag(GothicTags.Fluids.SPYRE_CONVERSION_FLUID).add(Fluids.WATER);
     }
 
 }

@@ -94,15 +94,15 @@ public class ArgentumTagsGen {
                         ArgentumBlocks.DEEPSLATE_SILVER_ORE,
                         ArgentumBlocks.RAW_SILVER_BLOCK
                 ),
-                ArgentumBlocks.SILVER_BLOCKS.all(),
-                ArgentumBlocks.SILVER_BARS.all(),
-                ArgentumBlocks.SILVER_BULBS.all(),
-                ArgentumBlocks.SILVER_PILLARS.all(),
-                ArgentumBlocks.CHISELED_SILVER.all(),
-                ArgentumBlocks.CUT_SILVER_SLABS.all(),
-                ArgentumBlocks.CUT_SILVER_STAIRS.all(),
-                ArgentumBlocks.SILVER_DOORS.all(),
-                ArgentumBlocks.SILVER_TRAPDOORS.all()
+                ArgentumBlocks.SILVER_BLOCKS.stream(),
+                ArgentumBlocks.SILVER_BARS.stream(),
+                ArgentumBlocks.SILVER_BULBS.stream(),
+                ArgentumBlocks.SILVER_PILLARS.stream(),
+                ArgentumBlocks.CHISELED_SILVER.stream(),
+                ArgentumBlocks.CUT_SILVER_SLABS.stream(),
+                ArgentumBlocks.CUT_SILVER_STAIRS.stream(),
+                ArgentumBlocks.SILVER_DOORS.stream(),
+                ArgentumBlocks.SILVER_TRAPDOORS.stream()
         ).flatMap(Function.identity());
 
         silverBlocks.map(Holder::value).forEach(block -> {
@@ -112,12 +112,12 @@ public class ArgentumTagsGen {
 
         provider.addTag(BlockTags.BEACON_BASE_BLOCKS).add(ArgentumBlocks.SILVER_BLOCKS.base().getKey());
 
-        ArgentumBlocks.CUT_SILVER_STAIRS.all().forEach(it -> provider.addTag(BlockTags.STAIRS).add(it.getKey()));
-        ArgentumBlocks.CUT_SILVER_SLABS.all().forEach(it -> provider.addTag(BlockTags.SLABS).add(it.getKey()));
+        ArgentumBlocks.CUT_SILVER_STAIRS.stream().forEach(it -> provider.addTag(BlockTags.STAIRS).add(it.getKey()));
+        ArgentumBlocks.CUT_SILVER_SLABS.stream().forEach(it -> provider.addTag(BlockTags.SLABS).add(it.getKey()));
 
-        ArgentumBlocks.SILVER_DOORS.all().forEach(it -> provider.addTag(BlockTags.MOB_INTERACTABLE_DOORS).add(it.getKey()));
-        ArgentumBlocks.SILVER_DOORS.all().forEach(it -> provider.addTag(BlockTags.DOORS).add(it.getKey()));
-        ArgentumBlocks.SILVER_TRAPDOORS.all().forEach(it -> provider.addTag(BlockTags.TRAPDOORS).add(it.getKey()));
+        ArgentumBlocks.SILVER_DOORS.stream().forEach(it -> provider.addTag(BlockTags.MOB_INTERACTABLE_DOORS).add(it.getKey()));
+        ArgentumBlocks.SILVER_DOORS.stream().forEach(it -> provider.addTag(BlockTags.DOORS).add(it.getKey()));
+        ArgentumBlocks.SILVER_TRAPDOORS.stream().forEach(it -> provider.addTag(BlockTags.TRAPDOORS).add(it.getKey()));
 
         provider.addTag(BlockTags.ICE)
                 .add(ArgentumBlocks.GROOVED_ICE.getKey())

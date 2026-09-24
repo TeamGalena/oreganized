@@ -24,17 +24,17 @@ public class ArgentumBlockStates {
         cubeAll(provider, ArgentumBlocks.DEEPSLATE_SILVER_ORE);
         cubeAll(provider, ArgentumBlocks.RAW_SILVER_BLOCK);
 
-        ArgentumBlocks.SILVER_BULBS.all().forEach(it -> lamp(provider, it));
-        ArgentumBlocks.CUT_SILVERS.all().forEach(it -> cubeAll(provider, it));
-        ArgentumBlocks.SILVER_LATTICES.all().forEach(it -> cubeAll(provider, it));
-        ArgentumBlocks.SILVER_BLOCKS.all().forEach(it -> cubeAll(provider, it));
-        ArgentumBlocks.SILVER_BARS.all().forEach(it -> bars(provider, it));
-        ArgentumBlocks.SILVER_PILLARS.all().forEach(it -> pillar(provider, it));
-        ArgentumBlocks.CHISELED_SILVER.all().forEach(it -> cubeAll(provider, it));
+        ArgentumBlocks.SILVER_BULBS.stream().forEach(it -> lamp(provider, it));
+        ArgentumBlocks.CUT_SILVERS.stream().forEach(it -> cubeAll(provider, it));
+        ArgentumBlocks.SILVER_LATTICES.stream().forEach(it -> cubeAll(provider, it));
+        ArgentumBlocks.SILVER_BLOCKS.stream().forEach(it -> cubeAll(provider, it));
+        ArgentumBlocks.SILVER_BARS.stream().forEach(it -> bars(provider, it));
+        ArgentumBlocks.SILVER_PILLARS.stream().forEach(it -> pillar(provider, it));
+        ArgentumBlocks.CHISELED_SILVER.stream().forEach(it -> cubeAll(provider, it));
         ArgentumBlocks.CUT_SILVER_SLABS.indexed().forEach(it -> slab(provider, ArgentumBlocks.CUT_SILVERS.get(it.getSecond()), it.getFirst()));
         ArgentumBlocks.CUT_SILVER_STAIRS.indexed().forEach(it -> stairs(provider, ArgentumBlocks.CUT_SILVERS.get(it.getSecond()), it.getFirst()));
-        ArgentumBlocks.SILVER_DOORS.all().forEach(it -> door(provider, it));
-        ArgentumBlocks.SILVER_TRAPDOORS.all().forEach(it -> trapDoor(provider, it));
+        ArgentumBlocks.SILVER_DOORS.stream().forEach(it -> door(provider, it));
+        ArgentumBlocks.SILVER_TRAPDOORS.stream().forEach(it -> trapDoor(provider, it));
 
         provider.simpleBlockWithItem(
                 ArgentumBlocks.GROOVED_ICE.value(),

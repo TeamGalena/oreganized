@@ -11,6 +11,7 @@ import com.simibubi.create.content.kinetics.millstone.MillingRecipe;
 import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
 import galena.oreganized.ModCompat;
 import galena.oreganized.OConstants;
+import galena.oreganized.index.sets.StoneSet;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Supplier;
@@ -296,6 +297,12 @@ public final class ORecipeExtensions {
         });
     }
 
+    public static void stoneSet(RecipeOutput output, StoneSet<?, ?, ?, ?> set) {
+        makeSlabStonecutting(set.slab(), set.block(), output);
+        makeStairsStonecutting(set.stairs(), set.block(), output);
+        makeWallStonecutting(set.wall(), set.block(), output);
+    }
+
     public static <T> T unlessLoaded(T value, String... modIds) {
         return Conditional.with(value, new Inverted(new ModLoaded(modIds, true)));
     }
@@ -307,4 +314,5 @@ public final class ORecipeExtensions {
     public static void whenLoaded(RecipeOutput value, String modId, Runnable runnable) {
         Conditional.with(value, List.of(new ModLoaded(modId)), runnable);
     }
+
 }

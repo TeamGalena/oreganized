@@ -23,37 +23,41 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/pale_grimstone_spyre_fence_side_thick"
+        "model": "oreganized:block/pale_grimstone_spyre_fence_side_thick",
+        "y": 270
       },
       "when": {
-        "north": "true"
+        "west": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/pale_grimstone_spyre_fence_side_bottom"
+        "model": "oreganized:block/pale_grimstone_spyre_fence_side_bottom",
+        "y": 270
       },
       "when": {
-        "north": "true"
+        "west": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/pale_grimstone_spyre_fence_cap_thick"
+        "model": "oreganized:block/pale_grimstone_spyre_fence_cap_thick",
+        "y": 270
       },
       "when": {
         "east": "false",
-        "north": "true",
+        "north": "false",
         "south": "false",
-        "west": "false"
+        "west": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/pale_grimstone_spyre_fence_side_top"
+        "model": "oreganized:block/pale_grimstone_spyre_fence_side_top",
+        "y": 270
       },
       "when": {
-        "north": "true"
+        "west": "true"
       }
     },
     {
@@ -93,6 +97,41 @@
     },
     {
       "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_side_thick"
+      },
+      "when": {
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_side_bottom"
+      },
+      "when": {
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_cap_thick"
+      },
+      "when": {
+        "east": "false",
+        "north": "true",
+        "south": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_side_top"
+      },
+      "when": {
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
         "model": "oreganized:block/pale_grimstone_spyre_fence_side_alt_thick",
         "y": 270
       },
@@ -128,45 +167,6 @@
       },
       "when": {
         "east": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/pale_grimstone_spyre_fence_side_thick",
-        "y": 270
-      },
-      "when": {
-        "west": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/pale_grimstone_spyre_fence_side_bottom",
-        "y": 270
-      },
-      "when": {
-        "west": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/pale_grimstone_spyre_fence_cap_thick",
-        "y": 270
-      },
-      "when": {
-        "east": "false",
-        "north": "false",
-        "south": "false",
-        "west": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "oreganized:block/pale_grimstone_spyre_fence_side_top",
-        "y": 270
-      },
-      "when": {
-        "west": "true"
       }
     }
   ]

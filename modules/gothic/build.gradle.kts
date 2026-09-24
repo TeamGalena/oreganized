@@ -4,5 +4,6 @@ dependencies {
     api(project(":argentum"))
     modImplementation(libs.create) { isTransitive = false }
 
-    dataImplementation(project(":core", configuration = "dataElements"))
+    dataApi(project(":argentum", configuration = "dataElements"))
+    dataApi(project(":core", configuration = "dataElements"))
 }

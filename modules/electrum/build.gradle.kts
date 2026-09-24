@@ -3,5 +3,5 @@ dependencies {
     modImplementation(pack.modrinth.shield.expansion)
     modImplementation(pack.modrinth.farmers.delight)
 
-    dataImplementation(project(":core", configuration = "dataElements"))
+    dataApi(project(":core", configuration = "dataElements"))
 }

@@ -1,6 +1,6 @@
 dependencies {
     api(project(":core"))
 
-    dataImplementation(project(":plumbum"))
-    dataImplementation(project(":core", configuration = "dataElements"))
+    dataApi(project(":plumbum"))
+    dataApi(project(":core", configuration = "dataElements"))
 }
