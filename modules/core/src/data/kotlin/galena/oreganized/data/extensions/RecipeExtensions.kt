@@ -6,9 +6,14 @@ package galena.oreganized.data.extensions
 import com.simibubi.create.content.kinetics.millstone.MillingRecipe
 import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe
 import com.tterrag.registrate.providers.RegistrateRecipeProvider
+import com.tterrag.registrate.providers.RegistrateRecipeProvider.getHasName
+import com.tterrag.registrate.providers.RegistrateRecipeProvider.getItemName
+import com.tterrag.registrate.providers.RegistrateRecipeProvider.has
 import galena.oreganized.ModCompat
 import galena.oreganized.OConstants
 import net.minecraft.data.recipes.*
+import net.minecraft.data.recipes.ShapedRecipeBuilder.shaped
+import net.minecraft.data.recipes.ShapelessRecipeBuilder.shapeless
 import net.minecraft.tags.TagKey
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.Items
@@ -30,45 +35,41 @@ fun slab(
     to: Supplier<out Block>,
     from: Supplier<out Block>,
 ): ShapedRecipeBuilder =
-    ShapedRecipeBuilder
-        .shaped(RecipeCategory.BUILDING_BLOCKS, to.get(), 6)
+    shaped(RecipeCategory.BUILDING_BLOCKS, to.get(), 6)
         .pattern("AAA")
         .define('A', from.get())
-        .unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), RegistrateRecipeProvider.has(from.get()))
+        .unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), has(from.get()))
 
 fun stairs(
     to: Supplier<out Block>,
     from: Supplier<out Block>,
 ): ShapedRecipeBuilder =
-    ShapedRecipeBuilder
-        .shaped(RecipeCategory.BUILDING_BLOCKS, to.get(), 4)
+    shaped(RecipeCategory.BUILDING_BLOCKS, to.get(), 4)
         .pattern("A  ")
         .pattern("AA ")
         .pattern("AAA")
         .define('A', from.get())
-        .unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), RegistrateRecipeProvider.has(from.get()))
+        .unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), has(from.get()))
 
 fun wall(
     to: Supplier<out Block>,
     from: Supplier<out Block>,
 ): ShapedRecipeBuilder =
-    ShapedRecipeBuilder
-        .shaped(RecipeCategory.BUILDING_BLOCKS, to.get(), 6)
+    shaped(RecipeCategory.BUILDING_BLOCKS, to.get(), 6)
         .pattern("AAA")
         .pattern("AAA")
         .define('A', from.get())
-        .unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), RegistrateRecipeProvider.has(from.get()))
+        .unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), has(from.get()))
 
 fun pane(
     to: Supplier<out Block>,
     from: Supplier<out Block>,
 ): ShapedRecipeBuilder =
-    ShapedRecipeBuilder
-        .shaped(RecipeCategory.BUILDING_BLOCKS, to.get(), 16)
+    shaped(RecipeCategory.BUILDING_BLOCKS, to.get(), 16)
         .pattern("AAA")
         .pattern("AAA")
         .define('A', from.get())
-        .unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), RegistrateRecipeProvider.has(from.get()))
+        .unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), has(from.get()))
 
 fun RecipeOutput.makePane(
     to: Supplier<out Block>,
@@ -81,12 +82,11 @@ fun bars(
     to: Supplier<out Block>,
     from: TagKey<Item>,
 ): ShapedRecipeBuilder =
-    ShapedRecipeBuilder
-        .shaped(RecipeCategory.REDSTONE, to.get(), 16)
+    shaped(RecipeCategory.REDSTONE, to.get(), 16)
         .define('#', from)
         .pattern("###")
         .pattern("###")
-        .unlockedBy("has_lead", RegistrateRecipeProvider.has(from))
+        .unlockedBy("has_lead", has(from))
 
 fun RecipeOutput.makeBars(
     to: Supplier<out Block>,
@@ -101,66 +101,60 @@ fun quadTransform(
     from: Supplier<out Block>,
     amount: Int = 4,
 ): ShapedRecipeBuilder =
-    ShapedRecipeBuilder
-        .shaped(RecipeCategory.BUILDING_BLOCKS, to.get(), amount)
+    shaped(RecipeCategory.BUILDING_BLOCKS, to.get(), amount)
         .pattern("AA")
         .pattern("AA")
         .define('A', from.get())
-        .unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), RegistrateRecipeProvider.has(from.get()))
+        .unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), has(from.get()))
 
 fun chiseled(
     to: Supplier<out Block>,
     from: Supplier<out SlabBlock>,
 ): ShapedRecipeBuilder =
-    ShapedRecipeBuilder
-        .shaped(RecipeCategory.BUILDING_BLOCKS, to.get())
+    shaped(RecipeCategory.BUILDING_BLOCKS, to.get())
         .pattern("A")
         .pattern("A")
         .define('A', from.get())
-        .unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), RegistrateRecipeProvider.has(from.get()))
+        .unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), has(from.get()))
 
 fun pillar(
     to: Supplier<out Block>,
     from: Supplier<out Block>,
 ): ShapedRecipeBuilder =
-    ShapedRecipeBuilder
-        .shaped(RecipeCategory.BUILDING_BLOCKS, to.get(), 2)
+    shaped(RecipeCategory.BUILDING_BLOCKS, to.get(), 2)
         .pattern("A")
         .pattern("A")
         .define('A', from.get())
-        .unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), RegistrateRecipeProvider.has(from.get()))
+        .unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), has(from.get()))
 
 fun compact(
-    from: Item,
-    to: Item,
+    to: Supplier<out ItemLike>,
+    from: Supplier<out ItemLike>,
 ): ShapedRecipeBuilder =
-    ShapedRecipeBuilder
-        .shaped(RecipeCategory.BUILDING_BLOCKS, from)
+    shaped(RecipeCategory.BUILDING_BLOCKS, to.get())
         .pattern("AAA")
         .pattern("AAA")
         .pattern("AAA")
-        .define('A', to)
-        .unlockedBy("has_" + RegistrateRecipeProvider.getItemName(to), RegistrateRecipeProvider.has(to))
+        .define('A', from.get())
+        .unlockedBy(getHasName(from.get()), has(from.get()))
 
 fun unCompact(
-    from: Item,
-    to: Item,
+    to: Supplier<out ItemLike>,
+    from: Supplier<out ItemLike>,
 ): ShapelessRecipeBuilder =
-    ShapelessRecipeBuilder
-        .shapeless(RecipeCategory.BUILDING_BLOCKS, from, 9)
-        .requires(to)
-        .unlockedBy("has_" + RegistrateRecipeProvider.getItemName(to), RegistrateRecipeProvider.has(to))
+    shapeless(RecipeCategory.BUILDING_BLOCKS, to.get(), 9)
+        .requires(from.get())
+        .unlockedBy(getHasName(from.get()), has(from.get()))
 
 fun RecipeOutput.makeFlowerDye(
     flower: Supplier<out ItemLike>,
     primary: ItemLike,
 ) {
-    val name = RegistrateRecipeProvider.getItemName(flower.get())
+    val name = getItemName(flower.get())
 
-    ShapelessRecipeBuilder
-        .shapeless(RecipeCategory.MISC, primary)
+    shapeless(RecipeCategory.MISC, primary)
         .requires(flower.get())
-        .unlockedBy(RegistrateRecipeProvider.getHasName(flower.get()), RegistrateRecipeProvider.has(flower.get()))
+        .unlockedBy(RegistrateRecipeProvider.getHasName(flower.get()), has(flower.get()))
         .save(this, OConstants.modLoc("dye_from_" + name))
 
     processing(StandardProcessingRecipe.Factory(::MillingRecipe), name)

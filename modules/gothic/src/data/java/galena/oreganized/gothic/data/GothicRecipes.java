@@ -73,8 +73,8 @@ public class GothicRecipes {
 
         makeQuadTransformStonecutting(output, GothicBlocks.DARK_GRIMSTONE_BRICKS.block(), GothicBlocks.POLISHED_DARK_GRIMSTONE.block());
         makeQuadTransformStonecutting(output, GothicBlocks.PALE_GRIMSTONE_BRICKS.block(), GothicBlocks.POLISHED_PALE_GRIMSTONE.block());
-        makeStoneCutting(output, GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK, GothicBlocks.DARK_GRIMSTONE_BRICKS.block());
-        makeStoneCutting(output, GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK, GothicBlocks.PALE_GRIMSTONE_BRICKS.block());
+        makeStoneCutting(output, GothicBlocks.DARK_GRIMSTONE_BRICKS.block(), GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK);
+        makeStoneCutting(output, GothicBlocks.PALE_GRIMSTONE_BRICKS.block(), GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK);
 
         makeChiseledStonecutting(output, GothicBlocks.CHISELED_DARK_GRIMSTONE, GothicBlocks.POLISHED_DARK_GRIMSTONE.block(), GothicBlocks.POLISHED_DARK_GRIMSTONE.slab());
         makeChiseledStonecutting(output, GothicBlocks.CHISELED_PALE_GRIMSTONE, GothicBlocks.POLISHED_PALE_GRIMSTONE.block(), GothicBlocks.POLISHED_PALE_GRIMSTONE.slab());

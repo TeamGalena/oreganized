@@ -38,7 +38,7 @@ public class GlanceRecipes {
         makeStoneSetRecipes(output, GlanceBlocks.GLANCE_BRICKS);
         makeStoneSetRecipes(output, GlanceBlocks.POLISHED_GLANCE);
 
-        makeStoneCutting(output, GlanceBlocks.GLANCE.block(), GlanceBlocks.GLANCE_BRICKS.block());
+        makeStoneCutting(output, GlanceBlocks.GLANCE_BRICKS.block(), GlanceBlocks.GLANCE.block());
         makeStoneSetRecipes(output, GlanceBlocks.GLANCE_BRICKS, GlanceBlocks.POLISHED_GLANCE.block());
         makeStoneSetRecipes(output, GlanceBlocks.POLISHED_GLANCE, GlanceBlocks.GLANCE.block());
         makeStoneSetRecipes(output, GlanceBlocks.GLANCE_BRICKS, GlanceBlocks.GLANCE.block());

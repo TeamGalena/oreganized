@@ -43,11 +43,11 @@ public class ArgentumRecipes {
         makeOreSmelting(
                 output,
                 ArgentumItems.SILVER_INGOT,
-                List.of(ArgentumBlocks.SILVER_ORE.get(), ArgentumBlocks.DEEPSLATE_SILVER_ORE.get(), ArgentumItems.RAW_SILVER.get()),
+                List.of(ArgentumBlocks.SILVER_ORE, ArgentumBlocks.DEEPSLATE_SILVER_ORE, ArgentumItems.RAW_SILVER),
                 1.0F
         );
 
-        shaped(RecipeCategory.TOOLS, ArgentumItems.SCRIBE.get())
+        shaped(RecipeCategory.TOOLS, ArgentumItems.SCRIBE)
                 .define('A', Items.AMETHYST_SHARD)
                 .define('S', CoreTags.Items.INGOTS_SILVER)
                 .pattern("A")
@@ -57,18 +57,18 @@ public class ArgentumRecipes {
                 .unlockedBy("has_amethyst", has(Items.AMETHYST_SHARD))
                 .save(output);
 
-        compact(ArgentumBlocks.RAW_SILVER_BLOCK.get().asItem(), ArgentumItems.RAW_SILVER.get()).save(output);
-        unCompact(ArgentumItems.RAW_SILVER.get(), ArgentumBlocks.RAW_SILVER_BLOCK.get().asItem()).save(output, OConstants.modLoc("raw_silver_from_block"));
+        compact(ArgentumBlocks.RAW_SILVER_BLOCK, ArgentumItems.RAW_SILVER).save(output);
+        unCompact(ArgentumItems.RAW_SILVER, ArgentumBlocks.RAW_SILVER_BLOCK).save(output, OConstants.modLoc("raw_silver_from_block"));
 
-        compact(ArgentumBlocks.SILVER_BLOCKS.base().get().asItem(), ArgentumItems.SILVER_INGOT.get()).save(output);
-        unCompact(ArgentumItems.SILVER_INGOT.get(), ArgentumBlocks.SILVER_BLOCKS.base().get().asItem()).save(output, OConstants.modLoc("silver_ingot_from_block"));
+        compact(ArgentumBlocks.SILVER_BLOCKS.base(), ArgentumItems.SILVER_INGOT).save(output);
+        unCompact(ArgentumItems.SILVER_INGOT, ArgentumBlocks.SILVER_BLOCKS.base()).save(output, OConstants.modLoc("silver_ingot_from_block"));
 
-        compact(ArgentumItems.SILVER_INGOT.get(), ArgentumItems.SILVER_NUGGET.get()).save(output, OConstants.modLoc("silver_ingot_from_nuggets"));
-        unCompact(ArgentumItems.SILVER_NUGGET.get(), ArgentumItems.SILVER_INGOT.get()).save(output);
+        compact(ArgentumItems.SILVER_INGOT, ArgentumItems.SILVER_NUGGET).save(output, OConstants.modLoc("silver_ingot_from_nuggets"));
+        unCompact(ArgentumItems.SILVER_NUGGET, ArgentumItems.SILVER_INGOT).save(output);
 
-        makeMetalRecycling(output, ArgentumItems.SILVER_NUGGET.get(), Stream.concat(ArgentumItems.silverArmor(), ArgentumSets.silverTools()).toList());
+        makeMetalRecycling(output, ArgentumItems.SILVER_NUGGET, Stream.concat(ArgentumItems.silverArmor(), ArgentumSets.silverTools()).toList());
 
-        shaped(RecipeCategory.TOOLS, ArgentumItems.SILVER_MIRROR.get())
+        shaped(RecipeCategory.TOOLS, ArgentumItems.SILVER_MIRROR)
                 .pattern("ABA")
                 .pattern("ABA")
                 .pattern(" A ")
@@ -78,9 +78,9 @@ public class ArgentumRecipes {
                 .unlockedBy("has_silver_ingot", has(CoreTags.Items.INGOTS_SILVER))
                 .save(output);
 
-        scribeConversionAndCutting(output, Blocks.ICE, ArgentumBlocks.GROOVED_ICE.get());
-        scribeConversionAndCutting(output, Blocks.PACKED_ICE, ArgentumBlocks.GROOVED_PACKED_ICE.get());
-        scribeConversionAndCutting(output, Blocks.BLUE_ICE, ArgentumBlocks.GROOVED_BLUE_ICE.get());
+        scribeConversionAndCutting(output, Blocks.ICE, ArgentumBlocks.GROOVED_ICE.value());
+        scribeConversionAndCutting(output, Blocks.PACKED_ICE, ArgentumBlocks.GROOVED_PACKED_ICE.value());
+        scribeConversionAndCutting(output, Blocks.BLUE_ICE, ArgentumBlocks.GROOVED_BLUE_ICE.value());
 
         scribeHarvesting(CoreTags.Blocks.AMETHYST_CLUSTERS, Blocks.SMALL_AMETHYST_BUD).save(output);
         scribeHarvesting(CoreTags.Blocks.QUARTZITE_CLUSTERS, BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath(ModCompat.NO_MANS_LAND, "small_quartzite_bud")))
@@ -108,7 +108,7 @@ public class ArgentumRecipes {
             makeChiseledStonecutting(output, chiseled, silverBlock, slab);
 
             var lattice = ArgentumBlocks.SILVER_LATTICES.get(index);
-            makeStoneCutting(output, silverBlock, lattice);
+            makeStoneCutting(output, lattice, silverBlock);
             shaped(RecipeCategory.BUILDING_BLOCKS, lattice, 4)
                     .pattern(" # ")
                     .pattern("# #")

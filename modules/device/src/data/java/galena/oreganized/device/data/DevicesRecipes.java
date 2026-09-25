@@ -21,10 +21,10 @@ public class DevicesRecipes {
     }
 
     private void generate(RecipeOutput output) {
-        compact(Items.NETHERITE_INGOT, DeviceItems.NETHERITE_NUGGET.get()).save(output, OConstants.modLoc("netherite_ingot_from_nuggets"));
-        unCompact(DeviceItems.NETHERITE_NUGGET.get(), Items.NETHERITE_INGOT).save(output);
+        compact(() -> Items.NETHERITE_INGOT, DeviceItems.NETHERITE_NUGGET).save(output, OConstants.modLoc("netherite_ingot_from_nuggets"));
+        unCompact(DeviceItems.NETHERITE_NUGGET, () -> Items.NETHERITE_INGOT).save(output);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DeviceItems.UNKNOWN_DEVICE.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DeviceItems.UNKNOWN_DEVICE)
                 .pattern(" O ")
                 .pattern("OXO")
                 .pattern(" O ")

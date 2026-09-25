@@ -35,34 +35,34 @@ public class PlumbumRecipes {
         makeOreSmelting(
                 output,
                 PlumbumItems.LEAD_INGOT,
-                List.of(PlumbumBlocks.LEAD_ORE.get(), PlumbumBlocks.DEEPSLATE_LEAD_ORE.get(), PlumbumItems.RAW_LEAD.get()),
+                List.of(PlumbumBlocks.LEAD_ORE, PlumbumBlocks.DEEPSLATE_LEAD_ORE, PlumbumItems.RAW_LEAD),
                 0.7F
         );
 
-        compact(PlumbumBlocks.RAW_LEAD_BLOCK.get().asItem(), PlumbumItems.RAW_LEAD.get()).save(output);
-        unCompact(PlumbumItems.RAW_LEAD.get(), PlumbumBlocks.RAW_LEAD_BLOCK.get().asItem()).save(output, OConstants.modLoc("raw_lead_from_block"));
+        compact(PlumbumBlocks.RAW_LEAD_BLOCK, PlumbumItems.RAW_LEAD).save(output);
+        unCompact(PlumbumItems.RAW_LEAD, PlumbumBlocks.RAW_LEAD_BLOCK).save(output, OConstants.modLoc("raw_lead_from_block"));
 
-        compact(PlumbumBlocks.LEAD_BLOCK.get().asItem(), PlumbumItems.LEAD_INGOT.get()).save(output);
-        unCompact(PlumbumItems.LEAD_INGOT.get(), PlumbumBlocks.LEAD_BLOCK.get().asItem()).save(output, OConstants.modLoc("lead_ingot_from_block"));
+        compact(PlumbumBlocks.LEAD_BLOCK, PlumbumItems.LEAD_INGOT).save(output);
+        unCompact(PlumbumItems.LEAD_INGOT, PlumbumBlocks.LEAD_BLOCK).save(output, OConstants.modLoc("lead_ingot_from_block"));
 
-        compact(PlumbumItems.LEAD_INGOT.get(), PlumbumItems.LEAD_NUGGET.get()).save(output, OConstants.modLoc("lead_ingot_from_nuggets"));
-        unCompact(PlumbumItems.LEAD_NUGGET.get(), PlumbumItems.LEAD_INGOT.get()).save(output);
+        compact(PlumbumItems.LEAD_INGOT, PlumbumItems.LEAD_NUGGET).save(output, OConstants.modLoc("lead_ingot_from_nuggets"));
+        unCompact(PlumbumItems.LEAD_NUGGET, PlumbumItems.LEAD_INGOT).save(output);
 
-        shaped(RecipeCategory.TOOLS, PlumbumItems.THERMOMETER.get())
+        shaped(RecipeCategory.TOOLS, PlumbumItems.THERMOMETER)
                 .pattern(" X ")
                 .pattern("XOX")
                 .pattern(" X ")
                 .define('X', CoreTags.Items.INGOTS_LEAD)
                 .define('O', Items.REDSTONE)
-                .unlockedBy("has_lead_ingot", has(PlumbumItems.LEAD_INGOT.get()))
+                .unlockedBy("has_lead_ingot", has(PlumbumItems.LEAD_INGOT))
                 .save(output);
 
         makeQuadTransformStonecutting(output, PlumbumBlocks.CUT_LEAD, PlumbumBlocks.LEAD_BLOCK, 8);
         makeQuadTransformStonecutting(output, PlumbumBlocks.LEAD_BRICKS, PlumbumBlocks.CUT_LEAD);
         makePillarStonecutting(output, PlumbumBlocks.LEAD_PILLAR, PlumbumBlocks.CUT_LEAD);
 
-        makeStoneCutting(output, PlumbumBlocks.LEAD_BLOCK, PlumbumBlocks.LEAD_BRICKS.get(), 4);
-        makeStoneCutting(output, PlumbumBlocks.LEAD_BLOCK, PlumbumBlocks.LEAD_PILLAR.get(), 4);
+        makeStoneCutting(output, PlumbumBlocks.LEAD_BRICKS, PlumbumBlocks.LEAD_BLOCK, 4);
+        makeStoneCutting(output, PlumbumBlocks.LEAD_PILLAR, PlumbumBlocks.LEAD_BLOCK, 4);
 
         shapeless(RecipeCategory.BREWING, Items.POISONOUS_POTATO, 1)
                 .requires(Items.POTATO)
@@ -73,17 +73,17 @@ public class PlumbumRecipes {
                 .unlockedBy("has_potato", has(Items.POTATO))
                 .save(output, OConstants.modLoc("poisonous_potato_from_lead"));
 
-        shaped(RecipeCategory.BUILDING_BLOCKS, PlumbumBlocks.LEAD_BULB.get(), 1)
+        shaped(RecipeCategory.BUILDING_BLOCKS, PlumbumBlocks.LEAD_BULB, 1)
                 .pattern(" I ")
                 .pattern("IGI")
                 .pattern(" B ")
                 .define('I', CoreTags.Items.INGOTS_LEAD)
                 .define('G', Items.GLOW_INK_SAC)
-                .define('B', PlumbumItems.MOLTEN_LEAD_BUCKET.get())
+                .define('B', PlumbumItems.MOLTEN_LEAD_BUCKET)
                 .unlockedBy("has_lead", has(CoreTags.Items.INGOTS_LEAD))
                 .save(output);
 
-        shaped(RecipeCategory.REDSTONE, PlumbumBlocks.LEAD_DOOR.get())
+        shaped(RecipeCategory.REDSTONE, PlumbumBlocks.LEAD_DOOR)
                 .pattern("##")
                 .pattern("##")
                 .pattern("##")
@@ -91,7 +91,7 @@ public class PlumbumRecipes {
                 .unlockedBy("has_lead", has(CoreTags.Items.INGOTS_LEAD))
                 .save(output);
 
-        shaped(RecipeCategory.REDSTONE, PlumbumBlocks.LEAD_TRAPDOOR.get())
+        shaped(RecipeCategory.REDSTONE, PlumbumBlocks.LEAD_TRAPDOOR)
                 .define('#', CoreTags.Items.INGOTS_LEAD)
                 .pattern("##")
                 .pattern("##")
@@ -100,7 +100,7 @@ public class PlumbumRecipes {
 
         makeBars(output, PlumbumBlocks.LEAD_BARS, CoreTags.Items.INGOTS_LEAD);
 
-        shaped(RecipeCategory.REDSTONE, PlumbumBlocks.STURDY_LEVER.get())
+        shaped(RecipeCategory.REDSTONE, PlumbumBlocks.STURDY_LEVER)
                 .define('#', Items.LEVER)
                 .define('X', CoreTags.Items.INGOTS_LEAD)
                 .pattern("X")
@@ -108,7 +108,7 @@ public class PlumbumRecipes {
                 .unlockedBy("has_lead", has(CoreTags.Items.INGOTS_LEAD))
                 .save(output);
 
-        shaped(RecipeCategory.REDSTONE, PlumbumBlocks.STURDY_BUTTON.get())
+        shaped(RecipeCategory.REDSTONE, PlumbumBlocks.STURDY_BUTTON)
                 .define('#', ItemTags.STONE_BUTTONS)
                 .define('X', CoreTags.Items.INGOTS_LEAD)
                 .pattern("X")
@@ -117,12 +117,12 @@ public class PlumbumRecipes {
                 .save(output);
 
         processing(CompactingRecipe::new, "molten_lead")
-                .output(PlumbumBlocks.LEAD_BLOCK.get())
+                .output(PlumbumBlocks.LEAD_BLOCK)
                 .require(PlumbumTags.Fluids.MOLTEN_LEAD, 1000)
                 .build(output);
 
         processing(MixingRecipe::new, "molten_lead")
-                .output(PlumbumFluids.MOLTEN_LEAD.get(), 1000)
+                .output(PlumbumFluids.MOLTEN_LEAD.value(), 1000)
                 .require(new CompoundIngredient(List.of(
                         Ingredient.of(CoreTags.Items.STORAGE_BLOCKS_LEAD),
                         Ingredient.of(CoreTags.Items.STORAGE_BLOCKS_RAW_LEAD)

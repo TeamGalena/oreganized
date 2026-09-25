@@ -4,13 +4,15 @@
 package galena.oreganized.data.extensions
 
 import com.tterrag.registrate.providers.RegistrateRecipeProvider
+import com.tterrag.registrate.providers.RegistrateRecipeProvider.getHasName
+import com.tterrag.registrate.providers.RegistrateRecipeProvider.getItemName
+import com.tterrag.registrate.providers.RegistrateRecipeProvider.has
 import galena.oreganized.OConstants
 import galena.oreganized.index.sets.StoneSet
 import net.minecraft.data.recipes.RecipeCategory
 import net.minecraft.data.recipes.RecipeOutput
 import net.minecraft.data.recipes.SingleItemRecipeBuilder
 import net.minecraft.world.item.crafting.Ingredient
-import net.minecraft.world.level.ItemLike
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.SlabBlock
 import java.util.function.Supplier
@@ -18,31 +20,28 @@ import kotlin.math.max
 
 @JvmOverloads
 fun stonecutting(
+    to: Supplier<out Block>,
     from: Supplier<out Block>,
-    to: ItemLike,
     resultAmount: Int = 1,
 ): SingleItemRecipeBuilder =
     SingleItemRecipeBuilder
         .stonecutting(
             Ingredient.of(from.get()),
             RecipeCategory.BUILDING_BLOCKS,
-            to,
+            to.get(),
             resultAmount,
-        ).unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), RegistrateRecipeProvider.has(from.get()))
+        ).unlockedBy(getHasName(from.get()), has(from.get()))
 
 @JvmOverloads
 fun RecipeOutput.makeStoneCutting(
+    to: Supplier<out Block>,
     from: Supplier<out Block>,
-    to: ItemLike,
     resultAmount: Int = 1,
 ) {
-    stonecutting(from, to, resultAmount).save(
+    stonecutting(to, from, resultAmount).save(
         this,
         OConstants.modLoc(
-            "stonecutting/" + RegistrateRecipeProvider.getItemName(to) + "_from_" +
-                RegistrateRecipeProvider.getItemName(
-                    from.get(),
-                ),
+            "stonecutting/${getItemName(to.get())}_from_${getItemName(from.get())}",
         ),
     )
 }
@@ -52,7 +51,7 @@ fun RecipeOutput.makeSlabStonecutting(
     from: Supplier<out Block>,
 ) {
     slab(to, from).save(this)
-    makeStoneCutting(from, to.get(), 2)
+    makeStoneCutting(to, from, 2)
 }
 
 fun RecipeOutput.makeStairsStonecutting(
@@ -60,7 +59,7 @@ fun RecipeOutput.makeStairsStonecutting(
     from: Supplier<out Block>,
 ) {
     stairs(to, from).save(this)
-    makeStoneCutting(from, to.get())
+    makeStoneCutting(to, from)
 }
 
 fun RecipeOutput.makeWallStonecutting(
@@ -68,7 +67,7 @@ fun RecipeOutput.makeWallStonecutting(
     from: Supplier<out Block>,
 ) {
     wall(to, from).save(this)
-    makeStoneCutting(from, to.get())
+    makeStoneCutting(to, from)
 }
 
 fun RecipeOutput.makeChiseledStonecutting(
@@ -77,7 +76,7 @@ fun RecipeOutput.makeChiseledStonecutting(
     fromSlab: Supplier<out SlabBlock>,
 ) {
     chiseled(to, fromSlab).save(this)
-    makeStoneCutting(fromBase, to.get())
+    makeStoneCutting(to, fromBase)
 }
 
 fun RecipeOutput.makePillarStonecutting(
@@ -86,7 +85,7 @@ fun RecipeOutput.makePillarStonecutting(
     fromBlock: Supplier<out Block>,
 ) {
     pillar(to, fromBlock).save(this)
-    makeStoneCutting(fromBase, to.get())
+    makeStoneCutting(to, fromBase)
 }
 
 fun RecipeOutput.makePillarStonecutting(
@@ -101,7 +100,7 @@ fun RecipeOutput.makePolishedStonecutting(
     from: Supplier<out Block>,
 ) {
     RegistrateRecipeProvider.polished(this, RecipeCategory.BUILDING_BLOCKS, to.get(), from.get())
-    makeStoneCutting(from, to.get())
+    makeStoneCutting(to, from)
 }
 
 fun RecipeOutput.makeStoneSetRecipes(set: StoneSet<*, *, *, *>) {
@@ -114,9 +113,9 @@ fun RecipeOutput.makeStoneSetRecipes(
     set: StoneSet<*, *, *, *>,
     from: Supplier<out Block>,
 ) {
-    makeStoneCutting(from, set.slab, 2)
-    makeStoneCutting(from, set.stairs)
-    makeStoneCutting(from, set.wall)
+    makeStoneCutting(set.slab, from, 2)
+    makeStoneCutting(set.stairs, from)
+    makeStoneCutting(set.wall, from)
 }
 
 @JvmOverloads
@@ -126,5 +125,5 @@ fun RecipeOutput.makeQuadTransformStonecutting(
     amount: Int = 4,
 ) {
     quadTransform(to, from, amount).save(this)
-    makeStoneCutting(from, to.get(), max(1, amount / 4))
+    makeStoneCutting(to, from, max(1, amount / 4))
 }

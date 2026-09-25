@@ -48,8 +48,8 @@ public class ArmamentRecipes {
                 .unlockedBy("has_lead", has(CoreTags.Items.INGOTS_LEAD))
                 .save(output);
 
-        compact(ArmamentBlocks.LEAD_BOLT_CRATE.get().asItem(), ArmamentItems.LEAD_BOLT.get()).save(output);
-        unCompact(ArmamentItems.LEAD_BOLT.get(), ArmamentBlocks.LEAD_BOLT_CRATE.get().asItem()).save(output, OConstants.modLoc("lead_bolt_from_crate"));
+        compact(ArmamentBlocks.LEAD_BOLT_CRATE, ArmamentItems.LEAD_BOLT).save(output);
+        unCompact(ArmamentItems.LEAD_BOLT, ArmamentBlocks.LEAD_BOLT_CRATE).save(output, OConstants.modLoc("lead_bolt_from_crate"));
     }
 
 }

@@ -36,28 +36,28 @@ public class ElectrumRecipes {
     }
 
     private void generate(RecipeOutput output) {
-        compact(ElectrumBlocks.ELECTRUM_BLOCK.get().asItem(), ElectrumItems.ELECTRUM_INGOT.get()).save(output);
-        unCompact(ElectrumItems.ELECTRUM_INGOT.get(), ElectrumBlocks.ELECTRUM_BLOCK.get().asItem()).save(output, OConstants.modLoc("electrum_ingot_from_block"));
+        compact(ElectrumBlocks.ELECTRUM_BLOCK, ElectrumItems.ELECTRUM_INGOT).save(output);
+        unCompact(ElectrumItems.ELECTRUM_INGOT, ElectrumBlocks.ELECTRUM_BLOCK).save(output, OConstants.modLoc("electrum_ingot_from_block"));
 
-        compact(ElectrumItems.ELECTRUM_INGOT.get(), ElectrumItems.ELECTRUM_NUGGET.get()).save(output, OConstants.modLoc("electrum_ingot_from_nuggets"));
-        unCompact(ElectrumItems.ELECTRUM_NUGGET.get(), ElectrumItems.ELECTRUM_INGOT.get()).save(output);
+        compact(ElectrumItems.ELECTRUM_INGOT, ElectrumItems.ELECTRUM_NUGGET).save(output, OConstants.modLoc("electrum_ingot_from_nuggets"));
+        unCompact(ElectrumItems.ELECTRUM_NUGGET, ElectrumItems.ELECTRUM_INGOT).save(output);
 
-        shaped(RecipeCategory.TOOLS, ElectrumItems.SPEEDOMETER.get())
+        shaped(RecipeCategory.TOOLS, ElectrumItems.SPEEDOMETER)
                 .pattern(" O ")
                 .pattern(" X ")
                 .define('X', CoreTags.Items.INGOTS_ELECTRUM)
                 .define('O', Items.COMPASS)
-                .unlockedBy("has_electrum_ingot", has(ElectrumItems.ELECTRUM_INGOT.get()))
+                .unlockedBy("has_electrum_ingot", has(ElectrumItems.ELECTRUM_INGOT))
                 .save(output);
 
-        shaped(RecipeCategory.MISC, ElectrumItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE.get(), 2)
+        shaped(RecipeCategory.MISC, ElectrumItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE, 2)
                 .pattern("ABA")
                 .pattern("ACA")
                 .pattern("AAA")
                 .define('A', Tags.Items.GEMS_DIAMOND)
-                .define('B', ElectrumItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE.get())
+                .define('B', ElectrumItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE)
                 .define('C', Items.STONE)
-                .unlockedBy("has_template", has(ElectrumItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE.get()))
+                .unlockedBy("has_template", has(ElectrumItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE))
                 .save(output);
 
         smithingElectrum(() -> Items.DIAMOND_SWORD, ElectrumItems.ELECTRUM_SWORD).save(output, OConstants.modLoc("electrum_sword"));
@@ -83,7 +83,7 @@ public class ElectrumRecipes {
         );
 
         unlessLoaded(
-                shapeless(RecipeCategory.MISC, ElectrumItems.ELECTRUM_INGOT.get())
+                shapeless(RecipeCategory.MISC, ElectrumItems.ELECTRUM_INGOT)
                         .requires(CoreTags.Items.INGOTS_SILVER)
                         .requires(CoreTags.Items.INGOTS_SILVER)
                         .requires(CoreTags.Items.INGOTS_SILVER)
@@ -98,7 +98,7 @@ public class ElectrumRecipes {
         ).save(output);
 
         processing(MixingRecipe::new, "electrum_ingot")
-                .output(ElectrumItems.ELECTRUM_INGOT.get())
+                .output(ElectrumItems.ELECTRUM_INGOT)
                 .require(CoreTags.Items.INGOTS_SILVER)
                 .require(CoreTags.Items.INGOTS_SILVER)
                 .require(CoreTags.Items.INGOTS_SILVER)
