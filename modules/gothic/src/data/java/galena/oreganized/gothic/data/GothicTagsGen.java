@@ -1,6 +1,7 @@
 package galena.oreganized.gothic.data;
 
 import static galena.oreganized.data.extensions.OTagExtensions.tagDyed;
+import static galena.oreganized.data.extensions.OTagExtensions.tagStoneSet;
 
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
@@ -10,7 +11,6 @@ import galena.oreganized.data.ODatagen;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.gothic.index.GothicTags;
 import galena.oreganized.index.CoreTags;
-import java.util.stream.Stream;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.entity.EntityType;
@@ -74,11 +74,10 @@ public class GothicTagsGen {
                 GothicBlocks.PALE_GRIMSTONE_SPYRE_FENCE.getKey()
         );
 
-        Stream.of(GothicBlocks.DARK_GRIMSTONE_BRICKS, GothicBlocks.PALE_GRIMSTONE_BRICKS, GothicBlocks.POLISHED_DARK_GRIMSTONE, GothicBlocks.POLISHED_PALE_GRIMSTONE).forEach(set -> {
-            provider.addTag(BlockTags.SLABS).add(set.slab().getKey());
-            provider.addTag(BlockTags.STAIRS).add(set.stairs().getKey());
-            provider.addTag(BlockTags.WALLS).add(set.wall().getKey());
-        });
+        tagStoneSet(provider, GothicBlocks.DARK_GRIMSTONE_BRICKS);
+        tagStoneSet(provider, GothicBlocks.PALE_GRIMSTONE_BRICKS);
+        tagStoneSet(provider, GothicBlocks.POLISHED_DARK_GRIMSTONE);
+        tagStoneSet(provider, GothicBlocks.POLISHED_PALE_GRIMSTONE);
 
         // TODO modular needs condition
         ArgentumSets.tarnishedBlocks().forEach(set -> {

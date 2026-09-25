@@ -28,9 +28,9 @@ public class GlanceLoot {
     }
 
     private void blocks(RegistrateBlockLootTables provider) {
-        dropStoneSet(provider, GlanceBlocks.GLANCE_SET);
-        dropStoneSet(provider, GlanceBlocks.POLISHED_GLANCE_SET);
-        dropStoneSet(provider, GlanceBlocks.GLANCE_BRICKS_SET);
+        dropStoneSet(provider, GlanceBlocks.GLANCE);
+        dropStoneSet(provider, GlanceBlocks.POLISHED_GLANCE);
+        dropStoneSet(provider, GlanceBlocks.GLANCE_BRICKS);
         dropSelf(provider, GlanceBlocks.CHISELED_GLANCE);
         dropSelf(provider, GlanceBlocks.SPOTTED_GLANCE);
         dropSelf(provider, GlanceBlocks.WAXED_SPOTTED_GLANCE);

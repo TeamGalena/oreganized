@@ -110,6 +110,15 @@ fun RecipeOutput.makeStoneSetRecipes(set: StoneSet<*, *, *, *>) {
     makeWallStonecutting(set.wall, set.block)
 }
 
+fun RecipeOutput.makeStoneSetRecipes(
+    set: StoneSet<*, *, *, *>,
+    from: Supplier<out Block>,
+) {
+    makeStoneCutting(from, set.slab, 2)
+    makeStoneCutting(from, set.stairs)
+    makeStoneCutting(from, set.wall)
+}
+
 @JvmOverloads
 fun RecipeOutput.makeQuadTransformStonecutting(
     to: Supplier<out Block>,

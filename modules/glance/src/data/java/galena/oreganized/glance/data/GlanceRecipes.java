@@ -4,8 +4,6 @@ package galena.oreganized.glance.data;
 import static com.tterrag.registrate.providers.RegistrateRecipeProvider.has;
 import static galena.oreganized.data.extensions.ORecipeExtensions.*;
 import static galena.oreganized.data.extensions.ORecipeExtensions.makeChiseledStonecutting;
-import static galena.oreganized.data.extensions.ORecipeExtensions.makeStairsStonecutting;
-import static galena.oreganized.data.extensions.ORecipeExtensions.makeWallStonecutting;
 import static galena.oreganized.data.extensions.ORecipeExtensions.makeWaxed;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 
@@ -33,45 +31,32 @@ public class GlanceRecipes {
     }
 
     private void generate(RecipeOutput output) {
-        quadTransform(GlanceBlocks.POLISHED_GLANCE, GlanceBlocks.GLANCE).save(output);
-        quadTransform(GlanceBlocks.GLANCE_BRICKS, GlanceBlocks.POLISHED_GLANCE).save(output);
+        makeQuadTransformStonecutting(output, GlanceBlocks.POLISHED_GLANCE.block(), GlanceBlocks.GLANCE.block());
+        makeQuadTransformStonecutting(output, GlanceBlocks.GLANCE_BRICKS.block(), GlanceBlocks.POLISHED_GLANCE.block());
 
-        makeSlabStonecutting(output, GlanceBlocks.GLANCE_SLAB, GlanceBlocks.GLANCE);
-        makeSlabStonecutting(output, GlanceBlocks.GLANCE_BRICK_SLAB, GlanceBlocks.GLANCE_BRICKS);
-        makeSlabStonecutting(output, GlanceBlocks.POLISHED_GLANCE_SLAB, GlanceBlocks.POLISHED_GLANCE);
+        makeStoneSetRecipes(output, GlanceBlocks.GLANCE);
+        makeStoneSetRecipes(output, GlanceBlocks.GLANCE_BRICKS);
+        makeStoneSetRecipes(output, GlanceBlocks.POLISHED_GLANCE);
 
-        makeStairsStonecutting(output, GlanceBlocks.GLANCE_STAIRS, GlanceBlocks.GLANCE);
-        makeStairsStonecutting(output, GlanceBlocks.GLANCE_BRICK_STAIRS, GlanceBlocks.GLANCE_BRICKS);
-        makeStairsStonecutting(output, GlanceBlocks.POLISHED_GLANCE_STAIRS, GlanceBlocks.POLISHED_GLANCE);
+        makeStoneCutting(output, GlanceBlocks.GLANCE.block(), GlanceBlocks.GLANCE_BRICKS.block());
+        makeStoneSetRecipes(output, GlanceBlocks.GLANCE_BRICKS, GlanceBlocks.POLISHED_GLANCE.block());
+        makeStoneSetRecipes(output, GlanceBlocks.POLISHED_GLANCE, GlanceBlocks.GLANCE.block());
+        makeStoneSetRecipes(output, GlanceBlocks.GLANCE_BRICKS, GlanceBlocks.GLANCE.block());
 
-        makeWallStonecutting(output, GlanceBlocks.GLANCE_WALL, GlanceBlocks.GLANCE);
-        makeWallStonecutting(output, GlanceBlocks.GLANCE_BRICK_WALL, GlanceBlocks.GLANCE_BRICKS);
-
-        makeChiseledStonecutting(output, GlanceBlocks.CHISELED_GLANCE, GlanceBlocks.GLANCE, GlanceBlocks.GLANCE_SLAB);
-
-        makeStoneCutting(output, GlanceBlocks.GLANCE, GlanceBlocks.POLISHED_GLANCE.get());
-        makeStoneCutting(output, GlanceBlocks.GLANCE, GlanceBlocks.GLANCE_BRICKS.get());
-        makeStoneCutting(output, GlanceBlocks.GLANCE, GlanceBlocks.GLANCE_BRICK_STAIRS.get());
-        makeStoneCutting(output, GlanceBlocks.GLANCE, GlanceBlocks.GLANCE_BRICK_SLAB.get(), 2);
-        makeStoneCutting(output, GlanceBlocks.GLANCE, GlanceBlocks.GLANCE_BRICK_WALL.get());
-
-        makeStoneCutting(output, GlanceBlocks.POLISHED_GLANCE, GlanceBlocks.GLANCE_BRICKS.get());
-        makeStoneCutting(output, GlanceBlocks.POLISHED_GLANCE, GlanceBlocks.GLANCE_BRICK_STAIRS.get());
-        makeStoneCutting(output, GlanceBlocks.POLISHED_GLANCE, GlanceBlocks.GLANCE_BRICK_SLAB.get(), 2);
-        makeStoneCutting(output, GlanceBlocks.POLISHED_GLANCE, GlanceBlocks.GLANCE_BRICK_WALL.get());
+        makeChiseledStonecutting(output, GlanceBlocks.CHISELED_GLANCE, GlanceBlocks.GLANCE.block(), GlanceBlocks.GLANCE.slab());
 
         makeWaxed(output, GlanceBlocks.WAXED_SPOTTED_GLANCE, GlanceBlocks.SPOTTED_GLANCE);
 
-        shaped(RecipeCategory.BUILDING_BLOCKS, GlanceBlocks.SPOTTED_GLANCE.get())
+        shaped(RecipeCategory.BUILDING_BLOCKS, GlanceBlocks.SPOTTED_GLANCE)
                 .pattern(" X ")
                 .pattern("XOX")
                 .pattern(" X ")
                 .define('X', CoreTags.Items.NUGGETS_LEAD)
-                .define('O', GlanceBlocks.GLANCE.get())
-                .unlockedBy("has_glance", has(GlanceBlocks.GLANCE.get()))
+                .define('O', GlanceBlocks.GLANCE.block())
+                .unlockedBy("has_glance", has(GlanceBlocks.GLANCE.block()))
                 .save(output);
 
-        shaped(RecipeCategory.BUILDING_BLOCKS, GlanceBlocks.GLANCE.get(), 2)
+        shaped(RecipeCategory.BUILDING_BLOCKS, GlanceBlocks.GLANCE.block(), 2)
                 .pattern("AB")
                 .pattern("BA")
                 .define('A', CoreTags.Items.NUGGETS_LEAD)
@@ -82,29 +67,29 @@ public class GlanceRecipes {
         // TODO modular will need to be conditional in the future
         processing(CrushingRecipe::new, "glance")
                 .output(0.8F, AllItems.CRUSHED_LEAD, 1)
-                .output(0.8F, PlumbumItems.LEAD_NUGGET.get())
-                .require(GlanceBlocks.GLANCE.get())
+                .output(0.8F, PlumbumItems.LEAD_NUGGET)
+                .require(GlanceBlocks.GLANCE.block())
                 .duration(250)
                 .build(output);
 
         // TODO modular will need to be conditional in the future
         processing(CrushingRecipe::new, "glance_recycling")
                 .output(0.8F, AllItems.CRUSHED_LEAD, 1)
-                .output(0.8F, PlumbumItems.LEAD_NUGGET.get())
+                .output(0.8F, PlumbumItems.LEAD_NUGGET)
                 .require(GlanceTags.Items.STONE_TYPES_GLANCE)
                 .duration(250)
                 .build(output);
 
         // TODO modular will need to be conditional in the future
         processing(FillingRecipe::new, "spotted_glance")
-                .output(GlanceBlocks.SPOTTED_GLANCE.get())
-                .require(GlanceBlocks.GLANCE.get())
+                .output(GlanceBlocks.SPOTTED_GLANCE)
+                .require(GlanceBlocks.GLANCE.block())
                 .require(PlumbumTags.Fluids.MOLTEN_LEAD, 250)
                 .build(output);
 
         // TODO modular will need to be conditional in the future
         processing(MixingRecipe::new, "glance")
-                .output(GlanceBlocks.GLANCE.get())
+                .output(GlanceBlocks.GLANCE.block())
                 .require(Items.DIORITE)
                 .require(CoreTags.Items.NUGGETS_LEAD)
                 .build(output);

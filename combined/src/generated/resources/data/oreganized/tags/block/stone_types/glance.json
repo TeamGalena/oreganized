@@ -1,9 +1,17 @@
 {
   "values": [
-    "oreganized:polished_glance",
-    "oreganized:glance_bricks",
     "oreganized:chiseled_glance",
+    "oreganized:glance",
+    "oreganized:glance_stairs",
+    "oreganized:glance_slab",
+    "oreganized:glance_wall",
+    "oreganized:glance_bricks",
     "oreganized:glance_brick_stairs",
-    "oreganized:glance_brick_wall"
+    "oreganized:glance_brick_slab",
+    "oreganized:glance_brick_wall",
+    "oreganized:polished_glance",
+    "oreganized:polished_glance_stairs",
+    "oreganized:polished_glance_slab",
+    "oreganized:polished_glance_wall"
   ]
 }

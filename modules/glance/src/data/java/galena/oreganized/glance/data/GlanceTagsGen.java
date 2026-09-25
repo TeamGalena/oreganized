@@ -1,5 +1,7 @@
 package galena.oreganized.glance.data;
 
+import static galena.oreganized.data.extensions.OTagExtensions.tagStoneSet;
+
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import galena.oreganized.OConstants;
@@ -27,33 +29,22 @@ public class GlanceTagsGen {
     }
 
     private void blocks(RegistrateTagsProvider.IntrinsicImpl<Block> provider) {
-        provider.addTag(GlanceTags.Blocks.STONE_TYPES_GLANCE).add(
-                GlanceBlocks.POLISHED_GLANCE.getKey(),
-                GlanceBlocks.GLANCE_BRICKS.getKey(),
-                GlanceBlocks.CHISELED_GLANCE.getKey(),
-                GlanceBlocks.GLANCE_BRICK_STAIRS.getKey(),
-                GlanceBlocks.GLANCE_BRICK_WALL.getKey()
-        );
+        var glanceBlocks = provider.addTag(GlanceTags.Blocks.STONE_TYPES_GLANCE);
 
-        provider.addTag(BlockTags.WALLS).add(GlanceBlocks.GLANCE_WALL.getKey(), GlanceBlocks.GLANCE_BRICK_WALL.getKey());
-        provider.addTag(BlockTags.STAIRS).add(GlanceBlocks.GLANCE_STAIRS.getKey(), GlanceBlocks.POLISHED_GLANCE_STAIRS.getKey(), GlanceBlocks.GLANCE_BRICK_STAIRS.getKey());
-        provider.addTag(BlockTags.SLABS).add(GlanceBlocks.GLANCE_SLAB.getKey(), GlanceBlocks.POLISHED_GLANCE_SLAB.getKey(), GlanceBlocks.GLANCE_BRICK_SLAB.getKey());
+        glanceBlocks.add(GlanceBlocks.CHISELED_GLANCE.getKey());
+        GlanceBlocks.GLANCE.keys().forEach(glanceBlocks::add);
+        GlanceBlocks.GLANCE_BRICKS.keys().forEach(glanceBlocks::add);
+        GlanceBlocks.POLISHED_GLANCE.keys().forEach(glanceBlocks::add);
+
+        tagStoneSet(provider, GlanceBlocks.GLANCE);
+        tagStoneSet(provider, GlanceBlocks.GLANCE_BRICKS);
+        tagStoneSet(provider, GlanceBlocks.POLISHED_GLANCE);
 
         provider.addTag(BlockTags.MINEABLE_WITH_PICKAXE).add(
-                GlanceBlocks.GLANCE.getKey(),
-                GlanceBlocks.GLANCE_STAIRS.getKey(),
-                GlanceBlocks.GLANCE_SLAB.getKey(),
-                GlanceBlocks.POLISHED_GLANCE.getKey(),
-                GlanceBlocks.POLISHED_GLANCE_STAIRS.getKey(),
-                GlanceBlocks.POLISHED_GLANCE_SLAB.getKey(),
-                GlanceBlocks.GLANCE_WALL.getKey(),
-                GlanceBlocks.GLANCE_BRICKS.getKey(),
-                GlanceBlocks.GLANCE_BRICK_STAIRS.getKey(),
-                GlanceBlocks.GLANCE_BRICK_SLAB.getKey(),
-                GlanceBlocks.GLANCE_BRICK_WALL.getKey(),
-                GlanceBlocks.CHISELED_GLANCE.getKey(),
                 GlanceBlocks.SPOTTED_GLANCE.getKey(),
                 GlanceBlocks.WAXED_SPOTTED_GLANCE.getKey()
+        ).addTag(
+                GlanceTags.Blocks.STONE_TYPES_GLANCE
         );
     }
 

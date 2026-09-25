@@ -8,6 +8,7 @@ import com.tterrag.registrate.providers.RegistrateItemTagsProvider
 import com.tterrag.registrate.providers.RegistrateTagsProvider.IntrinsicImpl
 import galena.oreganized.ModCompat
 import galena.oreganized.index.sets.DyedBlockSet
+import galena.oreganized.index.sets.StoneSet
 import net.minecraft.core.Holder
 import net.minecraft.core.Registry
 import net.minecraft.core.registries.BuiltInRegistries
@@ -108,4 +109,10 @@ fun RegistrateItemTagsProvider.tagShield(item: Holder<Item>) {
 
 fun RegistrateItemTagsProvider.tagMachete(item: Holder<Item>) {
     addTag(TagUtil.itemTag(ModCompat.NETHERS_DELIGHT, "tools/machete")).add(item.key!!)
+}
+
+fun IntrinsicImpl<Block>.tagStoneSet(set: StoneSet<*, *, *, *>) {
+    addTag(BlockTags.SLABS).add(set.slab.getKey()!!)
+    addTag(BlockTags.STAIRS).add(set.stairs.getKey()!!)
+    addTag(BlockTags.WALLS).add(set.wall.getKey()!!)
 }

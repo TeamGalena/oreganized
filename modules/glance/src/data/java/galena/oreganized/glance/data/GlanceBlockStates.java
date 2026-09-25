@@ -16,9 +16,9 @@ public class GlanceBlockStates {
     }
 
     private void generate(RegistrateBlockstateProvider provider) {
-        stoneSet(provider, GlanceBlocks.GLANCE_SET);
-        stoneSet(provider, GlanceBlocks.GLANCE_BRICKS_SET);
-        stoneSet(provider, GlanceBlocks.POLISHED_GLANCE_SET);
+        stoneSet(provider, GlanceBlocks.GLANCE);
+        stoneSet(provider, GlanceBlocks.GLANCE_BRICKS);
+        stoneSet(provider, GlanceBlocks.POLISHED_GLANCE);
         cubeAll(provider, GlanceBlocks.CHISELED_GLANCE);
         cubeAll(provider, GlanceBlocks.SPOTTED_GLANCE);
         waxed(provider, GlanceBlocks.WAXED_SPOTTED_GLANCE, GlanceBlocks.SPOTTED_GLANCE.value());

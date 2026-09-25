@@ -18,20 +18,10 @@ public class GlanceLang {
 
     private void generate(RegistrateLangProvider provider) {
         autoTranslate(provider, GlanceBlocks.GLANCE);
-        autoTranslate(provider, GlanceBlocks.GLANCE_SLAB);
-        autoTranslate(provider, GlanceBlocks.GLANCE_STAIRS);
-        autoTranslate(provider, GlanceBlocks.GLANCE_WALL);
-
+        autoTranslate(provider, GlanceBlocks.GLANCE_BRICKS);
         autoTranslate(provider, GlanceBlocks.POLISHED_GLANCE);
-        autoTranslate(provider, GlanceBlocks.POLISHED_GLANCE_SLAB);
-        autoTranslate(provider, GlanceBlocks.POLISHED_GLANCE_STAIRS);
 
         autoTranslate(provider, GlanceBlocks.CHISELED_GLANCE);
-
-        autoTranslate(provider, GlanceBlocks.GLANCE_BRICKS);
-        autoTranslate(provider, GlanceBlocks.GLANCE_BRICK_SLAB);
-        autoTranslate(provider, GlanceBlocks.GLANCE_BRICK_STAIRS);
-        autoTranslate(provider, GlanceBlocks.GLANCE_BRICK_WALL);
 
         autoTranslate(provider, GlanceBlocks.SPOTTED_GLANCE);
         autoTranslate(provider, GlanceBlocks.WAXED_SPOTTED_GLANCE);
