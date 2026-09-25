@@ -3,6 +3,7 @@ package galena.oreganized.argentum.data;
 import static com.teamabnormals.blueprint.core.util.TagUtil.itemTag;
 import static net.minecraft.resources.ResourceLocation.fromNamespaceAndPath;
 
+import com.simibubi.create.AllTags;
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import galena.oreganized.ModCompat;
@@ -24,6 +25,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluid;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
 
@@ -34,6 +36,7 @@ public class ArgentumTagsGen {
         ODatagen.addItemTagProvider(this::items);
         ODatagen.addBlockTagProvider(this::blocks);
         ODatagen.addEntityTagProvider(this::entities);
+        ODatagen.addFluidTagProvider(this::fluids);
     }
 
     private void items(RegistrateItemTagsProvider provider) {
@@ -186,10 +189,22 @@ public class ArgentumTagsGen {
                 .addTags(BlockTags.MINEABLE_WITH_PICKAXE);
 
         provider.addTag(ArgentumTags.Blocks.INCORRECT_FOR_SILVER_TOOL).addTag(BlockTags.INCORRECT_FOR_STONE_TOOL);
+
+        provider.addTag(ArgentumTags.Blocks.FAN_PROCESSING_CATALYST_TARNISHING)
+                .add(Blocks.SPAWNER)
+                .add(Blocks.TRIAL_SPAWNER);
+
+        provider.addTag(AllTags.AllBlockTags.FAN_TRANSPARENT.tag)
+                .addTag(ArgentumTags.Blocks.FAN_PROCESSING_CATALYST_TARNISHING);
     }
 
     private void entities(RegistrateTagsProvider.IntrinsicImpl<EntityType<?>> provider) {
+        provider.addTag(ArgentumTags.Entities.TARNISHES).addTags(EntityTypeTags.UNDEAD);
         provider.addTag(ArgentumTags.Entities.TARNISHABLE).addTags(EntityTypeTags.UNDEAD);
+    }
+
+    private void fluids(RegistrateTagsProvider.IntrinsicImpl<Fluid> provider) {
+        provider.addTag(ArgentumTags.Fluids.FAN_PROCESSING_CATALYST_TARNISHING);
     }
 
 }

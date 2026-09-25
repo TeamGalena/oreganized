@@ -3,6 +3,9 @@ dependencies {
     modApi(libs.ponder)
     modApi(libs.flywheel)
 
+    modApi(libs.jei.common.api)
+    modApi(libs.jei.neoforge.api)
+
     modImplementation(pack.modrinth.farmers.delight)
 
     dataApi(libs.registrate)

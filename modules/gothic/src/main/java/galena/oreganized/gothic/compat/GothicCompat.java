@@ -1,4 +1,4 @@
-package galena.oreganized.gothic.compat.gothic;
+package galena.oreganized.gothic.compat;
 
 import galena.oreganized.ModCompat;
 import galena.oreganized.OConstants;

@@ -1,6 +1,8 @@
 package galena.oreganized.glance.data;
 
 
+import static galena.oreganized.data.extensions.OBlockLootExtensions.*;
+
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
@@ -16,8 +18,6 @@ import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.neoforged.fml.common.Mod;
-
-import static galena.oreganized.data.extensions.OBlockLootExtensions.*;
 
 @Mod(OConstants.MOD_ID)
 public class GlanceLoot {

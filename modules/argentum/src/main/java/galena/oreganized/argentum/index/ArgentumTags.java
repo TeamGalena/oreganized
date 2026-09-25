@@ -6,6 +6,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Fluid;
 
 public class ArgentumTags {
 
@@ -24,12 +25,21 @@ public class ArgentumTags {
         public static final TagKey<Block> SILKTOUCH_WITH_SCRIBE_BLACKLIST = HELPER.modTag("no_silktouch_using_scribe");
 
         public static final TagKey<Block> INCORRECT_FOR_SILVER_TOOL = HELPER.modTag("incorrect_for_silver_tool");
+
+        public static final TagKey<Block> FAN_PROCESSING_CATALYST_TARNISHING = HELPER.modTag("fan_processing_catalysts/tarnishing");
     }
 
     public static final class Entities {
         private static final TagHelper<EntityType<?>> HELPER = new TagHelper<>(Registries.ENTITY_TYPE);
 
+        public static final TagKey<EntityType<?>> TARNISHES = HELPER.modTag("tarnishes");
         public static final TagKey<EntityType<?>> TARNISHABLE = HELPER.modTag("tarnishable");
+    }
+
+    public static final class Fluids {
+        private static final TagHelper<Fluid> HELPER = new TagHelper<>(Registries.FLUID);
+
+        public static final TagKey<Fluid> FAN_PROCESSING_CATALYST_TARNISHING = HELPER.modTag("fan_processing_catalysts/tarnishing");
     }
 
 }

@@ -4,6 +4,7 @@ import static galena.oreganized.data.extensions.OLangExtensions.*;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import galena.oreganized.OConstants;
+import galena.oreganized.argentum.compat.jei.CreateCompat;
 import galena.oreganized.argentum.index.*;
 import galena.oreganized.data.ODatagen;
 import net.neoforged.fml.common.Mod;
@@ -61,6 +62,8 @@ public class ArgentumLang {
         provider.add(ArgentumTags.Blocks.SILKTOUCH_WITH_SCRIBE_BLACKLIST, "Not Silktouch-able with Scibe");
 
         provider.add(ArgentumTags.Entities.TARNISHABLE, "Can Tarnish");
+
+        provider.add(CreateCompat.FAN_PROCESSING_LANG_KEY, "Bulk Tarnishing");
     }
 
     private void addTarnished(LanguageProvider provider, TarnishedBlocks<?> blocks, String pristine) {

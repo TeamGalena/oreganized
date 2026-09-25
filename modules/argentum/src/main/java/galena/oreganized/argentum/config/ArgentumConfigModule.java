@@ -21,6 +21,7 @@ public class ArgentumConfigModule implements ConfigModule {
         public final ModConfigSpec.ConfigValue<Integer> tarnishRadius;
         public final ModConfigSpec.ConfigValue<Double> tarnishChance;
         public final ModConfigSpec.ConfigValue<Integer> tarnishChecksPerMob;
+        public final ModConfigSpec.ConfigValue<Integer> maximumTarnishesPerMob;
 
         private Common(ModConfigSpec.Builder builder) {
             scribeSilkTouchStone = builder.comment("The scribe is able to silk-touch pickaxe-related blocks")
@@ -31,7 +32,9 @@ public class ArgentumConfigModule implements ConfigModule {
             tarnishChance = builder.comment("The chance per block check for tarnishing to occur (1.0 = 100%, 0.0 = 0%). Note that this only applies to the first tarnish stage. other nextStage are this /2")
                     .defineInRange("tarnishChance", 0.5D, 0.0D, 1.0D);
             tarnishChecksPerMob = builder.comment("The number of blocks around an undead mob to check every times a mob dies")
-                    .defineInRange("tarnishChecksPerMob", 40, 1, 100);
+                    .defineInRange("tarnishChecksPerMob", 20, 1, 100);
+            maximumTarnishesPerMob = builder.comment("The maximum number of blocks to be tarnished per death/spawn event")
+                    .defineInRange("maximumTarnishesPerMob", 10, 1, 100);
         }
     }
 
