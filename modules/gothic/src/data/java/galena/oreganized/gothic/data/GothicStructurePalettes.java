@@ -1,12 +1,13 @@
 package galena.oreganized.gothic.data;
 
+import static galena.oreganized.data.extensions.OColorExtensions.*;
+
 import com.teamabnormals.blueprint.common.world.modification.structure.SimpleStructureRepaletter;
 import com.teamabnormals.blueprint.common.world.modification.structure.StructureRepaletter;
 import com.teamabnormals.blueprint.common.world.modification.structure.StructureRepaletterEntry;
 import com.teamabnormals.blueprint.core.api.conditions.ConfigValueCondition;
 import com.teamabnormals.blueprint.core.registry.BlueprintDataPackRegistries;
 import galena.oreganized.OConstants;
-import galena.oreganized.data.ColorCompat;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.gothic.config.GothicConfigs;
 import galena.oreganized.gothic.index.GothicBlocks;
@@ -37,7 +38,7 @@ public class GothicStructurePalettes {
                 .filter(it -> filter.test(it.getKey()))
                 .map(entry ->
                         new SimpleStructureRepaletter(
-                                ColorCompat.getColoredBlock(from, entry.getKey()),
+                                getColoredBlock(entry.getKey(), from),
                                 entry.getValue().value()
                         )
                 ).toArray(StructureRepaletter[]::new);
@@ -54,8 +55,8 @@ public class GothicStructurePalettes {
         context.register(
                 CLERIC_WINDOWS,
                 new StructureRepaletterEntry.Builder()
-                        .repaletters(replaceColored(GothicBlocks.CRYSTAL_GLASS, "stained_glass", it -> !ColorCompat.isModded(it)))
-                        .repaletters(replaceColored(GothicBlocks.CRYSTAL_GLASS_PANES, "stained_glass_pane", it -> !ColorCompat.isModded(it)))
+                        .repaletters(replaceColored(GothicBlocks.CRYSTAL_GLASS, "stained_glass", it -> !isModded(it)))
+                        .repaletters(replaceColored(GothicBlocks.CRYSTAL_GLASS_PANES, "stained_glass_pane", it -> !isModded(it)))
                         .select(villages)
         );
     }

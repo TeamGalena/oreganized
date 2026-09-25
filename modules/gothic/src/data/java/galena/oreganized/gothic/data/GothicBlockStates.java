@@ -1,13 +1,13 @@
 package galena.oreganized.gothic.data;
 
 import static galena.oreganized.data.extensions.OBlockStateExtensions.*;
+import static galena.oreganized.data.extensions.OColorExtensions.*;
 import static galena.oreganized.data.extensions.OItemModelExtensions.*;
 import static net.minecraft.resources.ResourceLocation.fromNamespaceAndPath;
 import static net.neoforged.neoforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
 import static net.neoforged.neoforge.client.model.generators.ModelProvider.ITEM_FOLDER;
 
 import galena.oreganized.OConstants;
-import galena.oreganized.data.ColorCompat;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.gothic.world.block.*;
@@ -105,7 +105,7 @@ public class GothicBlockStates {
         for (int i = 0; i < 4; i++) {
             int type = i;
             var suffix = crystalGlassSuffix(type);
-            var topTexture = blockTexture(fromNamespaceAndPath(ColorCompat.getNamespace(color), color.getSerializedName() + "_stained_glass_pane_top"));
+            var topTexture = blockTexture(fromNamespaceAndPath(getNamespace(color), color.getSerializedName() + "_stained_glass_pane_top"));
 
             var post = provider.models().panePost(name + "_post" + suffix, texture.withSuffix(suffix), topTexture).renderType(TRANSLUCENT);
             var side = provider.models().paneSide(name + "_side" + suffix, texture.withSuffix(suffix), topTexture).renderType(TRANSLUCENT);

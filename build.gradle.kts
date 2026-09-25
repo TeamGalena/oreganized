@@ -2,11 +2,14 @@ import com.possible_triangle.gradle.modifyReleaseMetadata
 import com.possible_triangle.gradle.neoforge.NeoforgeExtension
 import net.neoforged.moddevgradle.dsl.NeoForgeExtension
 
+
 plugins {
     id("com.possible-triangle.core")
     id("com.possible-triangle.neoforge-api") apply false
     id("com.possible-triangle.neoforge") apply false
 }
+
+withKotlin()
 
 subprojects {
     apply(plugin = "com.possible-triangle.core")

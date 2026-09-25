@@ -3,18 +3,16 @@ package galena.oreganized.gothic.data;
 
 import static com.tterrag.registrate.providers.RegistrateRecipeProvider.getHasName;
 import static com.tterrag.registrate.providers.RegistrateRecipeProvider.has;
-import static galena.oreganized.data.ConditionalData.dyed;
+import static galena.oreganized.data.extensions.OColorExtensions.*;
+import static galena.oreganized.data.extensions.OConditionExtensions.dyed;
 import static galena.oreganized.data.extensions.ORecipeExtensions.*;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 
 import galena.oreganized.OConstants;
-import galena.oreganized.data.ColorCompat;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.index.CoreTags;
-
 import java.util.function.Supplier;
-
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -34,7 +32,7 @@ public class GothicRecipes {
 
     private void generate(RecipeOutput output) {
         GothicBlocks.CRYSTAL_GLASS.map().forEach((color, crystalGlass) -> {
-            var glass = ColorCompat.getColoredBlock("stained_glass", color);
+            var glass = getColoredBlock(color, "stained_glass");
             dyed(color, output, () -> makeCrystalGlass(output, crystalGlass, glass));
         });
 

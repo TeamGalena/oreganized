@@ -2,6 +2,8 @@ package galena.oreganized.electrum.data;
 
 
 import static com.tterrag.registrate.providers.RegistrateRecipeProvider.has;
+import static galena.oreganized.data.extensions.OConditionExtensions.unlessLoaded;
+import static galena.oreganized.data.extensions.OConditionExtensions.whenLoaded;
 import static galena.oreganized.data.extensions.ORecipeExtensions.*;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 import static net.minecraft.data.recipes.ShapelessRecipeBuilder.shapeless;

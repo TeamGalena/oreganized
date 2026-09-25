@@ -7,7 +7,6 @@ import static galena.oreganized.data.extensions.ORecipeExtensions.makeChiseledSt
 import static galena.oreganized.data.extensions.ORecipeExtensions.makeStairsStonecutting;
 import static galena.oreganized.data.extensions.ORecipeExtensions.makeWallStonecutting;
 import static galena.oreganized.data.extensions.ORecipeExtensions.makeWaxed;
-import static galena.oreganized.data.extensions.ORecipeExtensions.stonecutting;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 
 import com.simibubi.create.AllItems;

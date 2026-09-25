@@ -1,8 +1,8 @@
 package galena.oreganized.plumbum.data;
 
 
-import static galena.oreganized.data.ConditionalData.dyed;
 import static galena.oreganized.data.extensions.OBlockLootExtensions.dropSelf;
+import static galena.oreganized.data.extensions.OConditionExtensions.dyed;
 
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import galena.oreganized.OConstants;

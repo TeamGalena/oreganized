@@ -1,9 +1,9 @@
 package galena.oreganized.plumbum.data;
 
 import static galena.oreganized.data.extensions.OBlockStateExtensions.waxed;
+import static galena.oreganized.data.extensions.OColorExtensions.*;
 
 import galena.oreganized.OConstants;
-import galena.oreganized.data.ColorCompat;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.waxed.index.WaxedBlocks;
 import net.neoforged.fml.common.Mod;
@@ -18,7 +18,7 @@ public class WaxedBlockStates {
 
     private void generate(BlockStateProvider provider) {
         WaxedBlocks.WAXED_CONCRETE_POWDER.map().forEach((color, block) -> {
-            var unwaxed = ColorCompat.getColoredBlock("concrete_powder", color);
+            var unwaxed = getColoredBlock(color, "concrete_powder");
             waxed(provider, block, unwaxed);
         });
 
