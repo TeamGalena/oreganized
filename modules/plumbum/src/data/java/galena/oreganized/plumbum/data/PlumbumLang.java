@@ -55,7 +55,7 @@ public class PlumbumLang {
         provider.addBlock(PlumbumBlocks.POTTED_WHITE_DATURA, "Potted White Datura");
 
         autoTranslate(provider, PlumbumBlocks.MOLTEN_LEAD);
-        addFluid(provider, PlumbumFluids.MOLTEN_LEAD);
+        autoTranslate(provider, PlumbumFluids.MOLTEN_LEAD);
 
         addDisc(provider, PlumbumItems.MUSIC_DISC_STRUCTURE, "Firch", "structure");
 
