@@ -55,9 +55,15 @@ public class GothicRecipes {
         makeStoneSetRecipes(output, GothicBlocks.PALE_GRIMSTONE_BRICKS);
         makeStoneSetRecipes(output, GothicBlocks.POLISHED_DARK_GRIMSTONE);
         makeStoneSetRecipes(output, GothicBlocks.POLISHED_PALE_GRIMSTONE);
+        makeStoneSetRecipes(output, GothicBlocks.DARK_GRIMSTONE_BRICKS, GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK);
+        makeStoneSetRecipes(output, GothicBlocks.PALE_GRIMSTONE_BRICKS, GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK);
+        makeStoneSetRecipes(output, GothicBlocks.DARK_GRIMSTONE_BRICKS, GothicBlocks.POLISHED_DARK_GRIMSTONE.block());
+        makeStoneSetRecipes(output, GothicBlocks.PALE_GRIMSTONE_BRICKS, GothicBlocks.POLISHED_PALE_GRIMSTONE.block());
+        makeStoneSetRecipes(output, GothicBlocks.POLISHED_DARK_GRIMSTONE, GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK);
+        makeStoneSetRecipes(output, GothicBlocks.POLISHED_PALE_GRIMSTONE, GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK);
 
-        makeSpyreCompacting(output, GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK, GothicBlocks.DARK_GRIMSTONE_SPYRE);
-        makeSpyreCompacting(output, GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK, GothicBlocks.PALE_GRIMSTONE_SPYRE);
+        makeSpyreCompacting(output, GothicBlocks.DARK_GRIMSTONE_SPYRE, GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK);
+        makeSpyreCompacting(output, GothicBlocks.PALE_GRIMSTONE_SPYRE, GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK);
 
         makeQuadTransformStonecutting(output, GothicBlocks.POLISHED_DARK_GRIMSTONE.block(), GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK);
         makeQuadTransformStonecutting(output, GothicBlocks.POLISHED_PALE_GRIMSTONE.block(), GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK);
@@ -67,8 +73,8 @@ public class GothicRecipes {
 
         makeQuadTransformStonecutting(output, GothicBlocks.DARK_GRIMSTONE_BRICKS.block(), GothicBlocks.POLISHED_DARK_GRIMSTONE.block());
         makeQuadTransformStonecutting(output, GothicBlocks.PALE_GRIMSTONE_BRICKS.block(), GothicBlocks.POLISHED_PALE_GRIMSTONE.block());
-        makeStoneCutting(output, GothicBlocks.DARK_GRIMSTONE_BRICKS.block(), GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK);
-        makeStoneCutting(output, GothicBlocks.PALE_GRIMSTONE_BRICKS.block(), GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK);
+        makeStoneCutting(output, GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK, GothicBlocks.DARK_GRIMSTONE_BRICKS.block());
+        makeStoneCutting(output, GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK, GothicBlocks.PALE_GRIMSTONE_BRICKS.block());
 
         makeChiseledStonecutting(output, GothicBlocks.CHISELED_DARK_GRIMSTONE, GothicBlocks.POLISHED_DARK_GRIMSTONE.block(), GothicBlocks.POLISHED_DARK_GRIMSTONE.slab());
         makeChiseledStonecutting(output, GothicBlocks.CHISELED_PALE_GRIMSTONE, GothicBlocks.POLISHED_PALE_GRIMSTONE.block(), GothicBlocks.POLISHED_PALE_GRIMSTONE.slab());
@@ -78,7 +84,14 @@ public class GothicRecipes {
         shaped(RecipeCategory.BUILDING_BLOCKS, to.value())
                 .pattern("AA")
                 .pattern("AA")
-                .define('A', GothicBlocks.DARK_GRIMSTONE_SPYRE)
+                .define('A', from.value())
+                .unlockedBy(getHasName(from.value()), has(from.value()))
+                .save(output);
+
+        shaped(RecipeCategory.BUILDING_BLOCKS, from.value(), 4)
+                .pattern("A")
+                .pattern("A")
+                .define('A', to.value())
                 .unlockedBy(getHasName(from.value()), has(from.value()))
                 .save(output);
     }

@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_pale_grimstone_bricks": {
+    "has_pale_grimstone_spyre_block": {
       "conditions": {
         "items": [
           {
-            "items": "oreganized:pale_grimstone_bricks"
+            "items": "oreganized:pale_grimstone_spyre_block"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "oreganized:stonecutting/pale_grimstone_spyre_block_from_pale_grimstone_bricks"
+        "recipe": "oreganized:stonecutting/polished_pale_grimstone_stairs_from_pale_grimstone_spyre_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_pale_grimstone_bricks"
+      "has_pale_grimstone_spyre_block"
     ]
   ],
   "rewards": {
     "recipes": [
-      "oreganized:stonecutting/pale_grimstone_spyre_block_from_pale_grimstone_bricks"
+      "oreganized:stonecutting/polished_pale_grimstone_stairs_from_pale_grimstone_spyre_block"
     ]
   }
 }

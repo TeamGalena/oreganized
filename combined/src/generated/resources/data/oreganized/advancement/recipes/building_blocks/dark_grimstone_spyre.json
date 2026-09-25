@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_dark_grimstone_spyre_block": {
+    "has_dark_grimstone_spyre": {
       "conditions": {
         "items": [
           {
-            "items": "oreganized:dark_grimstone_spyre_block"
+            "items": "oreganized:dark_grimstone_spyre"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_dark_grimstone_spyre_block"
+      "has_dark_grimstone_spyre"
     ]
   ],
   "rewards": {

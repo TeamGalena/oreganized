@@ -3,15 +3,15 @@
   "category": "building",
   "key": {
     "A": {
-      "item": "oreganized:dark_grimstone_spyre"
+      "item": "oreganized:pale_grimstone_spyre_block"
     }
   },
   "pattern": [
-    "AA",
-    "AA"
+    "A",
+    "A"
   ],
   "result": {
-    "count": 1,
+    "count": 4,
     "id": "oreganized:pale_grimstone_spyre"
   }
 }

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "oreganized:dark_grimstone_spyre_block"
+  },
+  "result": {
+    "count": 1,
+    "id": "oreganized:polished_dark_grimstone_stairs"
+  }
+}

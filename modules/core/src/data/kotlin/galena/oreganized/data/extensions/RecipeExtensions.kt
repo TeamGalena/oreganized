@@ -110,14 +110,14 @@ fun quadTransform(
 
 fun chiseled(
     to: Supplier<out Block>,
-    slabIn: Supplier<out SlabBlock>,
+    from: Supplier<out SlabBlock>,
 ): ShapedRecipeBuilder =
     ShapedRecipeBuilder
         .shaped(RecipeCategory.BUILDING_BLOCKS, to.get())
         .pattern("A")
         .pattern("A")
-        .define('A', slabIn.get())
-        .unlockedBy(RegistrateRecipeProvider.getHasName(slabIn.get()), RegistrateRecipeProvider.has(slabIn.get()))
+        .define('A', from.get())
+        .unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), RegistrateRecipeProvider.has(from.get()))
 
 fun pillar(
     to: Supplier<out Block>,
