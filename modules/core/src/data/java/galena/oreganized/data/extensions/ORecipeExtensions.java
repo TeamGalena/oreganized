@@ -12,9 +12,11 @@ import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
 import galena.oreganized.ModCompat;
 import galena.oreganized.OConstants;
 import galena.oreganized.index.sets.StoneSet;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Supplier;
+
 import net.minecraft.core.Holder;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.TagKey;
@@ -31,101 +33,122 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import vectorwing.farmersdelight.common.crafting.ingredient.ItemAbilityIngredient;
 import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
+/**
+ * method prefixed with `make` should accept the `RecipeOutput` as their first argument and actually save the recipes
+ * all other methods should not do any of the two and instead return the recipe builder.
+ */
 public final class ORecipeExtensions {
 
-    public static ShapedRecipeBuilder makeSlab(Supplier<? extends Block> slabOut, Supplier<? extends Block> blockIn) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, slabOut.get(), 6)
+    public static ShapedRecipeBuilder slab(Supplier<? extends Block> to, Supplier<? extends Block> from) {
+        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, to.get(), 6)
                 .pattern("AAA")
-                .define('A', blockIn.get())
-                .unlockedBy(getHasName(blockIn.get()), has(blockIn.get()));
+                .define('A', from.get())
+                .unlockedBy(getHasName(from.get()), has(from.get()));
     }
 
-    public static ShapedRecipeBuilder makeStairs(Supplier<? extends Block> stairsOut, Supplier<? extends Block> blockIn) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, stairsOut.get(), 4)
+    public static ShapedRecipeBuilder stairs(Supplier<? extends Block> to, Supplier<? extends Block> from) {
+        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, to.get(), 4)
                 .pattern("A  ")
                 .pattern("AA ")
                 .pattern("AAA")
-                .define('A', blockIn.get())
-                .unlockedBy(getHasName(blockIn.get()), has(blockIn.get()));
+                .define('A', from.get())
+                .unlockedBy(getHasName(from.get()), has(from.get()));
     }
 
-    public static ShapedRecipeBuilder makeWall(Supplier<? extends Block> wallOut, Supplier<? extends Block> blockIn) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, wallOut.get(), 6)
+    public static ShapedRecipeBuilder wall(Supplier<? extends Block> to, Supplier<? extends Block> from) {
+        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, to.get(), 6)
                 .pattern("AAA")
                 .pattern("AAA")
-                .define('A', blockIn.get())
-                .unlockedBy(getHasName(blockIn.get()), has(blockIn.get()));
+                .define('A', from.get())
+                .unlockedBy(getHasName(from.get()), has(from.get()));
     }
 
-    public static ShapedRecipeBuilder makePane(Supplier<? extends Block> barsOut, Supplier<? extends Block> blockIn) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, barsOut.get(), 16)
+    public static ShapedRecipeBuilder pane(Supplier<? extends Block> to, Supplier<? extends Block> from) {
+        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, to.get(), 16)
                 .pattern("AAA")
                 .pattern("AAA")
-                .define('A', blockIn.get())
-                .unlockedBy(getHasName(blockIn.get()), has(blockIn.get()));
+                .define('A', from.get())
+                .unlockedBy(getHasName(from.get()), has(from.get()));
     }
 
-    public static ShapedRecipeBuilder makeBars(Supplier<? extends Block> barsOut, TagKey<Item> itemIn) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, barsOut.get(), 16)
-                .define('#', itemIn)
+    public static void makePane(RecipeOutput output, Supplier<? extends Block> to, Supplier<? extends Block> from) {
+        pane(to, from).save(output);
+    }
+
+    public static ShapedRecipeBuilder bars(Supplier<? extends Block> to, TagKey<Item> from) {
+        return ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, to.get(), 16)
+                .define('#', from)
                 .pattern("###")
                 .pattern("###")
-                .unlockedBy("has_lead", has(itemIn));
+                .unlockedBy("has_lead", has(from));
     }
 
-    public static ShapedRecipeBuilder quadTransform(Supplier<? extends Block> blockOut, Supplier<? extends Block> blockIn) {
-        return quadTransform(blockOut, blockIn, 4);
+    public static void makeBars(RecipeOutput output, Supplier<? extends Block> to, TagKey<Item> from) {
+        bars(to, from).save(output);
     }
 
-    public static ShapedRecipeBuilder quadTransform(Supplier<? extends Block> blockOut, Supplier<? extends Block> blockIn, int amount) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, blockOut.get(), amount)
+    public static ShapedRecipeBuilder quadTransform(Supplier<? extends Block> to, Supplier<? extends Block> from) {
+        return quadTransform(to, from, 4);
+    }
+
+    public static ShapedRecipeBuilder quadTransform(Supplier<? extends Block> to, Supplier<? extends Block> from, int amount) {
+        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, to.get(), amount)
                 .pattern("AA")
                 .pattern("AA")
-                .define('A', blockIn.get())
-                .unlockedBy(getHasName(blockIn.get()), has(blockIn.get()));
+                .define('A', from.get())
+                .unlockedBy(getHasName(from.get()), has(from.get()));
     }
 
-    public static ShapedRecipeBuilder makeChiseled(Supplier<? extends Block> blockOut, Supplier<? extends SlabBlock> slabIn) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, blockOut.get())
+    public static void makeQuadTransformStonecutting(RecipeOutput output, Supplier<? extends Block> to, Supplier<? extends Block> from) {
+        makeQuadTransformStonecutting(output, to, from, 4);
+    }
+
+    public static void makeQuadTransformStonecutting(RecipeOutput output, Supplier<? extends Block> to, Supplier<? extends Block> from, int amount) {
+        quadTransform(to, from, amount).save(output);
+        makeStoneCutting(output, from, to.get(), Math.max(1, amount / 4));
+    }
+
+    public static ShapedRecipeBuilder chiseled(Supplier<? extends Block> to, Supplier<? extends SlabBlock> slabIn) {
+        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, to.get())
                 .pattern("A")
                 .pattern("A")
                 .define('A', slabIn.get())
                 .unlockedBy(getHasName(slabIn.get()), has(slabIn.get()));
     }
 
-    public static ShapedRecipeBuilder makePillar(Supplier<? extends Block> blockOut, Supplier<? extends Block> blockIn) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, blockOut.get(), 2)
+    public static ShapedRecipeBuilder pillar(Supplier<? extends Block> to, Supplier<? extends Block> from) {
+        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, to.get(), 2)
                 .pattern("A")
                 .pattern("A")
-                .define('A', blockIn.get())
-                .unlockedBy(getHasName(blockIn.get()), has(blockIn.get()));
+                .define('A', from.get())
+                .unlockedBy(getHasName(from.get()), has(from.get()));
     }
 
-    public static ShapedRecipeBuilder compact(Item itemOut, Item itemIn) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, itemOut)
+    public static ShapedRecipeBuilder compact(Item from, Item to) {
+        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, from)
                 .pattern("AAA")
                 .pattern("AAA")
                 .pattern("AAA")
-                .define('A', itemIn)
-                .unlockedBy("has_" + getItemName(itemIn), has(itemIn));
+                .define('A', to)
+                .unlockedBy("has_" + getItemName(to), has(to));
     }
 
-    public static ShapelessRecipeBuilder unCompact(Item itemOut, Item itemIn) {
-        return ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, itemOut, 9)
-                .requires(itemIn)
-                .unlockedBy("has_" + getItemName(itemIn), has(itemIn));
+    public static ShapelessRecipeBuilder unCompact(Item from, Item to) {
+        return ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, from, 9)
+                .requires(to)
+                .unlockedBy("has_" + getItemName(to), has(to));
     }
 
-    public static void ore(Holder<? extends ItemLike> result, List<ItemLike> ingredients, float xp, RecipeOutput output) {
-        oreSmeltingRecipe(result.value(), ingredients, xp, result.getRegisteredName(), output);
-        oreBlastingRecipe(result.value(), ingredients, xp, result.getRegisteredName(), output);
+    public static void makeOreSmelting(RecipeOutput output, Holder<? extends ItemLike> result, List<ItemLike> ingredients, float xp) {
+        makeOreSmeltingRecipe(output, result.value(), ingredients, xp, result.getRegisteredName());
+        makeOreBlastingRecipe(output, result.value(), ingredients, xp, result.getRegisteredName());
     }
 
     public static SimpleCookingRecipeBuilder smeltingRecipe(ItemLike result, ItemLike ingredient, float exp) {
         return smeltingRecipe(result, ingredient, exp, 1);
     }
 
-    private static void oreSmeltingRecipe(ItemLike result, List<ItemLike> ingredients, float xp, String group, RecipeOutput output) {
+    private static void makeOreSmeltingRecipe(RecipeOutput output, ItemLike result, List<ItemLike> ingredients, float xp, String group) {
         for (ItemLike ingredient : ingredients) {
             smeltingRecipe(result, ingredient, xp, 1).group(group).save(output, OConstants.modLoc("smelt_" + getItemName(ingredient.asItem())));
         }
@@ -149,7 +172,7 @@ public final class ORecipeExtensions {
         return blastingRecipe(result, ingredient, exp, 1);
     }
 
-    private static void oreBlastingRecipe(ItemLike result, List<ItemLike> ingredients, float xp, String group, RecipeOutput output) {
+    private static void makeOreBlastingRecipe(RecipeOutput output, ItemLike result, List<ItemLike> ingredients, float xp, String group) {
         for (ItemLike ingredient : ingredients) {
             blastingRecipe(result, ingredient, xp, 1).group(group).save(output, OConstants.modLoc("blast_" + getItemName(ingredient)));
         }
@@ -182,14 +205,14 @@ public final class ORecipeExtensions {
         return builder;
     }
 
-    public static void metalRecycling(RecipeOutput output, ItemLike nugget, Collection<? extends Holder<? extends ItemLike>> items, String suffix) {
+    public static void makeMetalRecycling(RecipeOutput output, ItemLike nugget, Collection<? extends Holder<? extends ItemLike>> items, String suffix) {
         var name = getItemName(nugget);
         blastingRecycling(nugget, items).save(output, OConstants.modLoc(name + "_from_blasting").withSuffix(suffix));
         smeltingRecycling(nugget, items).save(output, OConstants.modLoc(name + "_from_smelting").withSuffix(suffix));
     }
 
-    public static void metalRecycling(RecipeOutput output, ItemLike nugget, Collection<? extends Holder<? extends ItemLike>> items) {
-        metalRecycling(output, nugget, items, "");
+    public static void makeMetalRecycling(RecipeOutput output, ItemLike nugget, Collection<? extends Holder<? extends ItemLike>> items) {
+        makeMetalRecycling(output, nugget, items, "");
     }
 
     public static SimpleCookingRecipeBuilder blastingRecipeTag(ItemLike result, TagKey<Item> ingredient, float exp, int count) {
@@ -207,14 +230,21 @@ public final class ORecipeExtensions {
                 .unlocks("has_" + upgradeItem.location().getPath(), has(upgradeItem));
     }
 
-    public static SingleItemRecipeBuilder stonecutting(Supplier<? extends Block> input, ItemLike result) {
-        return SingleItemRecipeBuilder.stonecutting(Ingredient.of(input.get()), RecipeCategory.BUILDING_BLOCKS, result)
-                .unlockedBy(getHasName(input.get()), has(input.get()));
+    public static SingleItemRecipeBuilder stonecutting(Supplier<? extends Block> from, ItemLike to) {
+        return stonecutting(from, to, 1);
     }
 
-    public static SingleItemRecipeBuilder stonecutting(Supplier<? extends Block> input, ItemLike result, int resultAmount) {
-        return SingleItemRecipeBuilder.stonecutting(Ingredient.of(input.get()), RecipeCategory.BUILDING_BLOCKS, result, resultAmount)
-                .unlockedBy(getHasName(input.get()), has(input.get()));
+    public static SingleItemRecipeBuilder stonecutting(Supplier<? extends Block> from, ItemLike to, int resultAmount) {
+        return SingleItemRecipeBuilder.stonecutting(Ingredient.of(from.get()), RecipeCategory.BUILDING_BLOCKS, to, resultAmount)
+                .unlockedBy(getHasName(from.get()), has(from.get()));
+    }
+
+    public static void makeStoneCutting(RecipeOutput output, Supplier<? extends Block> from, ItemLike to, int resultAmount) {
+        stonecutting(from, to, resultAmount).save(output, OConstants.modLoc("stonecutting/" + getItemName(to) + "_from_" + getItemName(from.get())));
+    }
+
+    public static void makeStoneCutting(RecipeOutput output, Supplier<? extends Block> from, ItemLike to) {
+        makeStoneCutting(output, from, to, 1);
     }
 
     public static void makeWaxed(RecipeOutput output, DeferredHolder<Block, ? extends Block> waxed, Block unwaxed) {
@@ -233,33 +263,42 @@ public final class ORecipeExtensions {
                 .build(output);
     }
 
-    public static void makeWaxed(RecipeOutput output, DeferredHolder<Block, ? extends Block> blockOut, Supplier<? extends Block> blockIn) {
-        makeWaxed(output, blockOut, blockIn.get());
+    public static void makeWaxed(RecipeOutput output, DeferredHolder<Block, ? extends Block> to, Supplier<? extends Block> from) {
+        makeWaxed(output, to, from.get());
     }
 
-    public static void makeSlabStonecutting(Supplier<? extends Block> blockOut, Supplier<? extends Block> blockIn, RecipeOutput output) {
-        makeSlab(blockOut, blockIn).save(output);
-        stonecutting(blockIn, blockOut.get(), 2).save(output, OConstants.modLoc("stonecutting/" + getItemName(blockOut.get())));
+    public static void makeSlabStonecutting(RecipeOutput output, Supplier<? extends Block> to, Supplier<? extends Block> from) {
+        slab(to, from).save(output);
+        makeStoneCutting(output, from, to.get(), 2);
     }
 
-    public static void makeStairsStonecutting(Supplier<? extends Block> blockOut, Supplier<? extends Block> blockIn, RecipeOutput output) {
-        makeStairs(blockOut, blockIn).save(output);
-        stonecutting(blockIn, blockOut.get()).save(output, OConstants.modLoc("stonecutting/" + getItemName(blockOut.get())));
+    public static void makeStairsStonecutting(RecipeOutput output, Supplier<? extends Block> to, Supplier<? extends Block> from) {
+        stairs(to, from).save(output);
+        makeStoneCutting(output, from, to.get());
     }
 
-    public static void makeWallStonecutting(Supplier<? extends Block> blockOut, Supplier<? extends Block> blockIn, RecipeOutput output) {
-        makeWall(blockOut, blockIn).save(output);
-        stonecutting(blockIn, blockOut.get()).save(output, OConstants.modLoc("stonecutting/" + getItemName(blockOut.get())));
+    public static void makeWallStonecutting(RecipeOutput output, Supplier<? extends Block> to, Supplier<? extends Block> from) {
+        wall(to, from).save(output);
+        makeStoneCutting(output, from, to.get());
     }
 
-    public static void makeChiseledStonecutting(Supplier<? extends Block> blockOut, Supplier<? extends Block> blockIn, Supplier<? extends SlabBlock> slabIn, RecipeOutput output) {
-        makeChiseled(blockOut, slabIn).save(output);
-        stonecutting(blockIn, blockOut.get()).save(output, OConstants.modLoc("stonecutting/" + getItemName(blockOut.get())));
+    public static void makeChiseledStonecutting(RecipeOutput output, Supplier<? extends Block> to, Supplier<? extends Block> fromBase, Supplier<? extends SlabBlock> fromSlab) {
+        chiseled(to, fromSlab).save(output);
+        makeStoneCutting(output, fromBase, to.get());
     }
 
-    public static void makePolishedStonecutting(Supplier<? extends Block> blockOut, Supplier<? extends Block> blockIn, RecipeOutput output) {
-        polished(output, RecipeCategory.BUILDING_BLOCKS, blockOut.get(), blockIn.get());
-        stonecutting(blockIn, blockOut.get()).save(output, OConstants.modLoc("stonecutting/" + getItemName(blockOut.get())));
+    public static void makePillarStonecutting(RecipeOutput output, Supplier<? extends Block> to, Supplier<? extends Block> fromBase, Supplier<? extends Block> fromBlock) {
+        pillar(to, fromBlock).save(output);
+        makeStoneCutting(output, fromBase, to.get());
+    }
+
+    public static void makePillarStonecutting(RecipeOutput output, Supplier<? extends Block> to, Supplier<? extends Block> fromBlock) {
+        makePillarStonecutting(output, to, fromBlock, fromBlock);
+    }
+
+    public static void makePolishedStonecutting(RecipeOutput output, Supplier<? extends Block> to, Supplier<? extends Block> from) {
+        polished(output, RecipeCategory.BUILDING_BLOCKS, to.get(), from.get());
+        makeStoneCutting(output, from, to.get());
     }
 
     public static <R extends StandardProcessingRecipe<?>> StandardProcessingRecipe.Builder<R> processing(StandardProcessingRecipe.Factory<R> factory, String id) {
@@ -276,7 +315,7 @@ public final class ORecipeExtensions {
         );
     }
 
-    public static void flowerDye(Supplier<? extends ItemLike> flower, ItemLike primary, RecipeOutput output) {
+    public static void makeFlowerDye(RecipeOutput output, Supplier<? extends ItemLike> flower, ItemLike primary) {
         var name = getItemName(flower.get());
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, primary)
@@ -297,10 +336,10 @@ public final class ORecipeExtensions {
         });
     }
 
-    public static void stoneSet(RecipeOutput output, StoneSet<?, ?, ?, ?> set) {
-        makeSlabStonecutting(set.slab(), set.block(), output);
-        makeStairsStonecutting(set.stairs(), set.block(), output);
-        makeWallStonecutting(set.wall(), set.block(), output);
+    public static void makeStoneSetRecipes(RecipeOutput output, StoneSet<?, ?, ?, ?> set) {
+        makeSlabStonecutting(output, set.slab(), set.block());
+        makeStairsStonecutting(output, set.stairs(), set.block());
+        makeWallStonecutting(output, set.wall(), set.block());
     }
 
     public static <T> T unlessLoaded(T value, String... modIds) {

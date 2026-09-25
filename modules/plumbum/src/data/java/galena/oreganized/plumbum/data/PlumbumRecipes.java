@@ -18,7 +18,6 @@ import galena.oreganized.plumbum.index.PlumbumTags;
 import java.util.List;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -32,41 +31,38 @@ public class PlumbumRecipes {
         ODatagen.addRecipeProvider(this::generate);
     }
 
-    private void generate(RecipeOutput provider) {
-        ore(
+    private void generate(RecipeOutput output) {
+        makeOreSmelting(
+                output,
                 PlumbumItems.LEAD_INGOT,
                 List.of(PlumbumBlocks.LEAD_ORE.get(), PlumbumBlocks.DEEPSLATE_LEAD_ORE.get(), PlumbumItems.RAW_LEAD.get()),
-                0.7F,
-                provider
+                0.7F
         );
 
-        compact(PlumbumBlocks.RAW_LEAD_BLOCK.get().asItem(), PlumbumItems.RAW_LEAD.get()).save(provider);
-        unCompact(PlumbumItems.RAW_LEAD.get(), PlumbumBlocks.RAW_LEAD_BLOCK.get().asItem()).save(provider, OConstants.modLoc("raw_lead_from_block"));
+        compact(PlumbumBlocks.RAW_LEAD_BLOCK.get().asItem(), PlumbumItems.RAW_LEAD.get()).save(output);
+        unCompact(PlumbumItems.RAW_LEAD.get(), PlumbumBlocks.RAW_LEAD_BLOCK.get().asItem()).save(output, OConstants.modLoc("raw_lead_from_block"));
 
-        compact(PlumbumBlocks.LEAD_BLOCK.get().asItem(), PlumbumItems.LEAD_INGOT.get()).save(provider);
-        unCompact(PlumbumItems.LEAD_INGOT.get(), PlumbumBlocks.LEAD_BLOCK.get().asItem()).save(provider, OConstants.modLoc("lead_ingot_from_block"));
+        compact(PlumbumBlocks.LEAD_BLOCK.get().asItem(), PlumbumItems.LEAD_INGOT.get()).save(output);
+        unCompact(PlumbumItems.LEAD_INGOT.get(), PlumbumBlocks.LEAD_BLOCK.get().asItem()).save(output, OConstants.modLoc("lead_ingot_from_block"));
 
-        compact(PlumbumItems.LEAD_INGOT.get(), PlumbumItems.LEAD_NUGGET.get()).save(provider, OConstants.modLoc("lead_ingot_from_nuggets"));
-        unCompact(PlumbumItems.LEAD_NUGGET.get(), PlumbumItems.LEAD_INGOT.get()).save(provider);
+        compact(PlumbumItems.LEAD_INGOT.get(), PlumbumItems.LEAD_NUGGET.get()).save(output, OConstants.modLoc("lead_ingot_from_nuggets"));
+        unCompact(PlumbumItems.LEAD_NUGGET.get(), PlumbumItems.LEAD_INGOT.get()).save(output);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, PlumbumItems.THERMOMETER.get())
+        shaped(RecipeCategory.TOOLS, PlumbumItems.THERMOMETER.get())
                 .pattern(" X ")
                 .pattern("XOX")
                 .pattern(" X ")
                 .define('X', CoreTags.Items.INGOTS_LEAD)
                 .define('O', Items.REDSTONE)
                 .unlockedBy("has_lead_ingot", has(PlumbumItems.LEAD_INGOT.get()))
-                .save(provider);
+                .save(output);
 
-        quadTransform(PlumbumBlocks.CUT_LEAD, PlumbumBlocks.LEAD_BLOCK, 8).save(provider);
-        quadTransform(PlumbumBlocks.LEAD_BRICKS, PlumbumBlocks.CUT_LEAD).save(provider);
-        makePillar(PlumbumBlocks.LEAD_PILLAR, PlumbumBlocks.CUT_LEAD).save(provider);
+        makeQuadTransformStonecutting(output, PlumbumBlocks.CUT_LEAD, PlumbumBlocks.LEAD_BLOCK, 8);
+        makeQuadTransformStonecutting(output, PlumbumBlocks.LEAD_BRICKS, PlumbumBlocks.CUT_LEAD);
+        makePillarStonecutting(output, PlumbumBlocks.LEAD_PILLAR, PlumbumBlocks.CUT_LEAD);
 
-        stonecutting(PlumbumBlocks.LEAD_BLOCK, PlumbumBlocks.CUT_LEAD.get(), 2).save(provider, OConstants.modLoc("stonecutting/cut_lead"));
-        stonecutting(PlumbumBlocks.LEAD_BLOCK, PlumbumBlocks.LEAD_BRICKS.get(), 4).save(provider, OConstants.modLoc("stonecutting/lead_bricks"));
-        stonecutting(PlumbumBlocks.CUT_LEAD, PlumbumBlocks.LEAD_BRICKS.get()).save(provider, OConstants.modLoc("stonecutting/lead_bricks_from_cut_lead"));
-        stonecutting(PlumbumBlocks.LEAD_BLOCK, PlumbumBlocks.LEAD_PILLAR.get(), 4).save(provider, OConstants.modLoc("stonecutting/lead_pillar"));
-        stonecutting(PlumbumBlocks.CUT_LEAD, PlumbumBlocks.LEAD_PILLAR.get()).save(provider, OConstants.modLoc("stonecutting/lead_pillar_from_cut_lad"));
+        makeStoneCutting(output, PlumbumBlocks.LEAD_BLOCK, PlumbumBlocks.LEAD_BRICKS.get(), 4);
+        makeStoneCutting(output, PlumbumBlocks.LEAD_BLOCK, PlumbumBlocks.LEAD_PILLAR.get(), 4);
 
         shapeless(RecipeCategory.BREWING, Items.POISONOUS_POTATO, 1)
                 .requires(Items.POTATO)
@@ -75,7 +71,7 @@ public class PlumbumRecipes {
                 .requires(CoreTags.Items.NUGGETS_LEAD)
                 .unlockedBy("has_lead", has(CoreTags.Items.NUGGETS_LEAD))
                 .unlockedBy("has_potato", has(Items.POTATO))
-                .save(provider, OConstants.modLoc("poisonous_potato_from_lead"));
+                .save(output, OConstants.modLoc("poisonous_potato_from_lead"));
 
         shaped(RecipeCategory.BUILDING_BLOCKS, PlumbumBlocks.LEAD_BULB.get(), 1)
                 .pattern(" I ")
@@ -85,7 +81,7 @@ public class PlumbumRecipes {
                 .define('G', Items.GLOW_INK_SAC)
                 .define('B', PlumbumItems.MOLTEN_LEAD_BUCKET.get())
                 .unlockedBy("has_lead", has(CoreTags.Items.INGOTS_LEAD))
-                .save(provider);
+                .save(output);
 
         shaped(RecipeCategory.REDSTONE, PlumbumBlocks.LEAD_DOOR.get())
                 .pattern("##")
@@ -93,16 +89,16 @@ public class PlumbumRecipes {
                 .pattern("##")
                 .define('#', Ingredient.of(CoreTags.Items.INGOTS_LEAD))
                 .unlockedBy("has_lead", has(CoreTags.Items.INGOTS_LEAD))
-                .save(provider);
+                .save(output);
 
         shaped(RecipeCategory.REDSTONE, PlumbumBlocks.LEAD_TRAPDOOR.get())
                 .define('#', CoreTags.Items.INGOTS_LEAD)
                 .pattern("##")
                 .pattern("##")
                 .unlockedBy("has_lead", has(CoreTags.Items.INGOTS_LEAD))
-                .save(provider);
+                .save(output);
 
-        makeBars(PlumbumBlocks.LEAD_BARS, CoreTags.Items.INGOTS_LEAD).save(provider);
+        makeBars(output, PlumbumBlocks.LEAD_BARS, CoreTags.Items.INGOTS_LEAD);
 
         shaped(RecipeCategory.REDSTONE, PlumbumBlocks.STURDY_LEVER.get())
                 .define('#', Items.LEVER)
@@ -110,7 +106,7 @@ public class PlumbumRecipes {
                 .pattern("X")
                 .pattern("#")
                 .unlockedBy("has_lead", has(CoreTags.Items.INGOTS_LEAD))
-                .save(provider);
+                .save(output);
 
         shaped(RecipeCategory.REDSTONE, PlumbumBlocks.STURDY_BUTTON.get())
                 .define('#', ItemTags.STONE_BUTTONS)
@@ -118,12 +114,12 @@ public class PlumbumRecipes {
                 .pattern("X")
                 .pattern("#")
                 .unlockedBy("has_lead", has(CoreTags.Items.INGOTS_LEAD))
-                .save(provider);
+                .save(output);
 
         processing(CompactingRecipe::new, "molten_lead")
                 .output(PlumbumBlocks.LEAD_BLOCK.get())
                 .require(PlumbumTags.Fluids.MOLTEN_LEAD, 1000)
-                .build(provider);
+                .build(output);
 
         processing(MixingRecipe::new, "molten_lead")
                 .output(PlumbumFluids.MOLTEN_LEAD.get(), 1000)
@@ -132,10 +128,10 @@ public class PlumbumRecipes {
                         Ingredient.of(CoreTags.Items.STORAGE_BLOCKS_RAW_LEAD)
                 )))
                 .requiresHeat(HeatCondition.HEATED)
-                .build(provider);
+                .build(output);
 
-        flowerDye(PlumbumBlocks.WHITE_DATURA, Items.WHITE_DYE, provider);
-        flowerDye(PlumbumBlocks.PURPLE_DATURA, Items.PURPLE_DYE, provider);
+        makeFlowerDye(output, PlumbumBlocks.WHITE_DATURA, Items.WHITE_DYE);
+        makeFlowerDye(output, PlumbumBlocks.PURPLE_DATURA, Items.PURPLE_DYE);
     }
 
 }

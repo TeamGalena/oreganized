@@ -17,10 +17,10 @@ public class WaxedRecipes {
         ODatagen.addRecipeProvider(this::generate);
     }
 
-    private void generate(RecipeOutput provider) {
+    private void generate(RecipeOutput output) {
         WaxedBlocks.WAXED_CONCRETE_POWDER.map().forEach((color, waxed) -> {
             var unwaxed = ColorCompat.getColoredBlock("concrete_powder", color);
-            dyed(color, provider, () -> makeWaxed(provider, waxed, unwaxed));
+            dyed(color, output, () -> makeWaxed(output, waxed, unwaxed));
         });
     }
 

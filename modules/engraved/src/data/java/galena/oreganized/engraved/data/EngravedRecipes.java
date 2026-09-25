@@ -3,7 +3,7 @@ package galena.oreganized.gothic.data;
 
 
 import static com.tterrag.registrate.providers.RegistrateRecipeProvider.has;
-import static galena.oreganized.data.extensions.ORecipeExtensions.metalRecycling;
+import static galena.oreganized.data.extensions.ORecipeExtensions.makeMetalRecycling;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 
 import galena.oreganized.OConstants;
@@ -24,7 +24,7 @@ public class EngravedRecipes {
         ODatagen.addRecipeProvider(this::generate);
     }
 
-    private void generate(RecipeOutput provider) {
+    private void generate(RecipeOutput output) {
         shaped(RecipeCategory.TOOLS, EngravedItems.BUSH_HAMMER.get())
                 .pattern("AA")
                 .pattern("B ")
@@ -32,8 +32,8 @@ public class EngravedRecipes {
                 .define('B', Tags.Items.RODS_WOODEN)
                 .unlockedBy("has_lead_ingot", has(CoreTags.Items.INGOTS_LEAD))
                 .unlockedBy("has_stick", has(Tags.Items.RODS_WOODEN))
-                .save(provider);
+                .save(output);
 
-        metalRecycling(provider, PlumbumItems.LEAD_NUGGET.get(), List.of(EngravedItems.BUSH_HAMMER));
+        makeMetalRecycling(output, PlumbumItems.LEAD_NUGGET.get(), List.of(EngravedItems.BUSH_HAMMER));
     }
 }

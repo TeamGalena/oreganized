@@ -12,7 +12,9 @@ import galena.oreganized.data.ColorCompat;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.index.CoreTags;
+
 import java.util.function.Supplier;
+
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -30,14 +32,14 @@ public class GothicRecipes {
         ODatagen.addRecipeProvider(this::generate);
     }
 
-    private void generate(RecipeOutput provider) {
+    private void generate(RecipeOutput output) {
         GothicBlocks.CRYSTAL_GLASS.map().forEach((color, crystalGlass) -> {
             var glass = ColorCompat.getColoredBlock("stained_glass", color);
-            dyed(color, crystalGlass(crystalGlass, glass)).save(provider);
+            dyed(color, output, () -> makeCrystalGlass(output, crystalGlass, glass));
         });
 
         GothicBlocks.CRYSTAL_GLASS_PANES.map().forEach((color, pane) ->
-                dyed(color, makePane(pane, GothicBlocks.CRYSTAL_GLASS.get(color))).save(provider)
+                dyed(color, output, () -> makePane(output, pane, GothicBlocks.CRYSTAL_GLASS.get(color)))
         );
 
         shaped(RecipeCategory.REDSTONE, GothicBlocks.GARGOYLE.get())
@@ -49,30 +51,32 @@ public class GothicRecipes {
                 .define('S', CoreTags.Items.INGOTS_SILVER)
                 .unlockedBy("has_pumpkin", has(Items.CARVED_PUMPKIN))
                 .unlockedBy("has_silver_ingot", has(CoreTags.Items.INGOTS_SILVER))
-                .save(provider);
+                .save(output);
 
-        stoneSet(provider, GothicBlocks.DARK_GRIMSTONE_BRICKS);
-        stoneSet(provider, GothicBlocks.PALE_GRIMSTONE_BRICKS);
-        stoneSet(provider, GothicBlocks.POLISHED_DARK_GRIMSTONE);
-        stoneSet(provider, GothicBlocks.POLISHED_PALE_GRIMSTONE);
+        makeStoneSetRecipes(output, GothicBlocks.DARK_GRIMSTONE_BRICKS);
+        makeStoneSetRecipes(output, GothicBlocks.PALE_GRIMSTONE_BRICKS);
+        makeStoneSetRecipes(output, GothicBlocks.POLISHED_DARK_GRIMSTONE);
+        makeStoneSetRecipes(output, GothicBlocks.POLISHED_PALE_GRIMSTONE);
 
-        spyreCompacting(provider, GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK, GothicBlocks.DARK_GRIMSTONE_SPYRE);
-        spyreCompacting(provider, GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK, GothicBlocks.PALE_GRIMSTONE_SPYRE);
+        makeSpyreCompacting(output, GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK, GothicBlocks.DARK_GRIMSTONE_SPYRE);
+        makeSpyreCompacting(output, GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK, GothicBlocks.PALE_GRIMSTONE_SPYRE);
 
-        quadTransform(GothicBlocks.POLISHED_DARK_GRIMSTONE.block(), GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK).save(provider);
-        quadTransform(GothicBlocks.POLISHED_PALE_GRIMSTONE.block(), GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK).save(provider);
+        makeQuadTransformStonecutting(output, GothicBlocks.POLISHED_DARK_GRIMSTONE.block(), GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK);
+        makeQuadTransformStonecutting(output, GothicBlocks.POLISHED_PALE_GRIMSTONE.block(), GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK);
 
-        makePillar(GothicBlocks.DARK_GRIMSTONE_PILLAR, GothicBlocks.POLISHED_DARK_GRIMSTONE.block()).save(provider);
-        makePillar(GothicBlocks.PALE_GRIMSTONE_PILLAR, GothicBlocks.POLISHED_PALE_GRIMSTONE.block()).save(provider);
+        makePillarStonecutting(output, GothicBlocks.DARK_GRIMSTONE_PILLAR, GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK, GothicBlocks.POLISHED_DARK_GRIMSTONE.block());
+        makePillarStonecutting(output, GothicBlocks.PALE_GRIMSTONE_PILLAR, GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK, GothicBlocks.POLISHED_PALE_GRIMSTONE.block());
 
-        quadTransform(GothicBlocks.DARK_GRIMSTONE_BRICKS.block(), GothicBlocks.POLISHED_DARK_GRIMSTONE.block()).save(provider);
-        quadTransform(GothicBlocks.PALE_GRIMSTONE_BRICKS.block(), GothicBlocks.POLISHED_PALE_GRIMSTONE.block()).save(provider);
+        makeQuadTransformStonecutting(output, GothicBlocks.DARK_GRIMSTONE_BRICKS.block(), GothicBlocks.POLISHED_DARK_GRIMSTONE.block());
+        makeQuadTransformStonecutting(output, GothicBlocks.PALE_GRIMSTONE_BRICKS.block(), GothicBlocks.POLISHED_PALE_GRIMSTONE.block());
+        makeStoneCutting(output, GothicBlocks.DARK_GRIMSTONE_BRICKS.block(), GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK);
+        makeStoneCutting(output, GothicBlocks.PALE_GRIMSTONE_BRICKS.block(), GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK);
 
-        makeChiseledStonecutting(GothicBlocks.CHISELED_DARK_GRIMSTONE, GothicBlocks.POLISHED_DARK_GRIMSTONE.block(), GothicBlocks.POLISHED_DARK_GRIMSTONE.slab(), provider);
-        makeChiseledStonecutting(GothicBlocks.CHISELED_PALE_GRIMSTONE, GothicBlocks.POLISHED_PALE_GRIMSTONE.block(), GothicBlocks.POLISHED_PALE_GRIMSTONE.slab(), provider);
+        makeChiseledStonecutting(output, GothicBlocks.CHISELED_DARK_GRIMSTONE, GothicBlocks.POLISHED_DARK_GRIMSTONE.block(), GothicBlocks.POLISHED_DARK_GRIMSTONE.slab());
+        makeChiseledStonecutting(output, GothicBlocks.CHISELED_PALE_GRIMSTONE, GothicBlocks.POLISHED_PALE_GRIMSTONE.block(), GothicBlocks.POLISHED_PALE_GRIMSTONE.slab());
     }
 
-    private static void spyreCompacting(RecipeOutput output, DeferredHolder<Block, ?> from, DeferredHolder<Block, ?> to) {
+    private static void makeSpyreCompacting(RecipeOutput output, DeferredHolder<Block, ?> from, DeferredHolder<Block, ?> to) {
         shaped(RecipeCategory.BUILDING_BLOCKS, to.value())
                 .pattern("AA")
                 .pattern("AA")
@@ -81,12 +85,16 @@ public class GothicRecipes {
                 .save(output);
     }
 
-    public static ShapedRecipeBuilder crystalGlass(Supplier<? extends Block> blockOut, Block blockIn) {
-        return ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, blockOut.get(), 8)
+    public static void makeCrystalGlass(RecipeOutput output, Supplier<? extends Block> to, Block from) {
+        crystalGlass(to, from).save(output);
+    }
+
+    public static ShapedRecipeBuilder crystalGlass(Supplier<? extends Block> to, Block from) {
+        return ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, to.get(), 8)
                 .pattern("AAA")
                 .pattern("ABA")
                 .pattern("AAA")
-                .define('A', blockIn)
+                .define('A', from)
                 .define('B', CoreTags.Items.INGOTS_LEAD)
                 .unlockedBy("has_lead_ingot", has(CoreTags.Items.INGOTS_LEAD))
                 .unlockedBy("has_any_glass", has(Tags.Items.GLASS_BLOCKS));

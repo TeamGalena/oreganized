@@ -33,12 +33,12 @@ public class ElectrumRecipes {
         ODatagen.addRecipeProvider(this::generate);
     }
 
-    private void generate(RecipeOutput provider) {
-        compact(ElectrumBlocks.ELECTRUM_BLOCK.get().asItem(), ElectrumItems.ELECTRUM_INGOT.get()).save(provider);
-        unCompact(ElectrumItems.ELECTRUM_INGOT.get(), ElectrumBlocks.ELECTRUM_BLOCK.get().asItem()).save(provider, OConstants.modLoc("electrum_ingot_from_block"));
+    private void generate(RecipeOutput output) {
+        compact(ElectrumBlocks.ELECTRUM_BLOCK.get().asItem(), ElectrumItems.ELECTRUM_INGOT.get()).save(output);
+        unCompact(ElectrumItems.ELECTRUM_INGOT.get(), ElectrumBlocks.ELECTRUM_BLOCK.get().asItem()).save(output, OConstants.modLoc("electrum_ingot_from_block"));
 
-        compact(ElectrumItems.ELECTRUM_INGOT.get(), ElectrumItems.ELECTRUM_NUGGET.get()).save(provider, OConstants.modLoc("electrum_ingot_from_nuggets"));
-        unCompact(ElectrumItems.ELECTRUM_NUGGET.get(), ElectrumItems.ELECTRUM_INGOT.get()).save(provider);
+        compact(ElectrumItems.ELECTRUM_INGOT.get(), ElectrumItems.ELECTRUM_NUGGET.get()).save(output, OConstants.modLoc("electrum_ingot_from_nuggets"));
+        unCompact(ElectrumItems.ELECTRUM_NUGGET.get(), ElectrumItems.ELECTRUM_INGOT.get()).save(output);
 
         shaped(RecipeCategory.TOOLS, ElectrumItems.SPEEDOMETER.get())
                 .pattern(" O ")
@@ -46,7 +46,7 @@ public class ElectrumRecipes {
                 .define('X', CoreTags.Items.INGOTS_ELECTRUM)
                 .define('O', Items.COMPASS)
                 .unlockedBy("has_electrum_ingot", has(ElectrumItems.ELECTRUM_INGOT.get()))
-                .save(provider);
+                .save(output);
 
         shaped(RecipeCategory.MISC, ElectrumItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE.get(), 2)
                 .pattern("ABA")
@@ -56,28 +56,28 @@ public class ElectrumRecipes {
                 .define('B', ElectrumItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE.get())
                 .define('C', Items.STONE)
                 .unlockedBy("has_template", has(ElectrumItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE.get()))
-                .save(provider);
+                .save(output);
 
-        smithingElectrum(() -> Items.DIAMOND_SWORD, ElectrumItems.ELECTRUM_SWORD).save(provider, OConstants.modLoc("electrum_sword"));
-        smithingElectrum(() -> Items.DIAMOND_SHOVEL, ElectrumItems.ELECTRUM_SHOVEL).save(provider, OConstants.modLoc("electrum_shovel"));
-        smithingElectrum(() -> Items.DIAMOND_PICKAXE, ElectrumItems.ELECTRUM_PICKAXE).save(provider, OConstants.modLoc("electrum_pickaxe"));
-        smithingElectrum(() -> Items.DIAMOND_AXE, ElectrumItems.ELECTRUM_AXE).save(provider, OConstants.modLoc("electrum_axe"));
-        smithingElectrum(() -> Items.DIAMOND_HOE, ElectrumItems.ELECTRUM_HOE).save(provider, OConstants.modLoc("electrum_hoe"));
+        smithingElectrum(() -> Items.DIAMOND_SWORD, ElectrumItems.ELECTRUM_SWORD).save(output, OConstants.modLoc("electrum_sword"));
+        smithingElectrum(() -> Items.DIAMOND_SHOVEL, ElectrumItems.ELECTRUM_SHOVEL).save(output, OConstants.modLoc("electrum_shovel"));
+        smithingElectrum(() -> Items.DIAMOND_PICKAXE, ElectrumItems.ELECTRUM_PICKAXE).save(output, OConstants.modLoc("electrum_pickaxe"));
+        smithingElectrum(() -> Items.DIAMOND_AXE, ElectrumItems.ELECTRUM_AXE).save(output, OConstants.modLoc("electrum_axe"));
+        smithingElectrum(() -> Items.DIAMOND_HOE, ElectrumItems.ELECTRUM_HOE).save(output, OConstants.modLoc("electrum_hoe"));
 
-        whenLoaded(smithingElectrum(ModItems.DIAMOND_KNIFE, ElectrumItems.ELECTRUM_KNIFE), "farmersdelight").save(provider, OConstants.modLoc("electrum_knife"));
-        whenLoaded(smithingElectrum(ItemsInit.DIAMOND_SHIELD, ElectrumItems.ELECTRUM_SHIELD), "shieldexp").save(provider, OConstants.modLoc("electrum_shield"));
+        whenLoaded(smithingElectrum(ModItems.DIAMOND_KNIFE, ElectrumItems.ELECTRUM_KNIFE), "farmersdelight").save(output, OConstants.modLoc("electrum_knife"));
+        whenLoaded(smithingElectrum(ItemsInit.DIAMOND_SHIELD, ElectrumItems.ELECTRUM_SHIELD), "shieldexp").save(output, OConstants.modLoc("electrum_shield"));
         // TODO re-add when ported to 1.21.1
         // whenLoaded(smithingElectrum(NDItems.DIAMOND_MACHETE, ElectrumItems.ELECTRUM_MACHETE), "nethersdelight").save(consumer, OConstants.modLoc("electrum_machete"));
-        smithingElectrum(() -> Items.DIAMOND_HELMET, ElectrumItems.ELECTRUM_HELMET).save(provider, OConstants.modLoc("electrum_helmet"));
-        smithingElectrum(() -> Items.DIAMOND_CHESTPLATE, ElectrumItems.ELECTRUM_CHESTPLATE).save(provider, OConstants.modLoc("electrum_chestplate"));
-        smithingElectrum(() -> Items.DIAMOND_LEGGINGS, ElectrumItems.ELECTRUM_LEGGINGS).save(provider, OConstants.modLoc("electrum_leggings"));
-        smithingElectrum(() -> Items.DIAMOND_BOOTS, ElectrumItems.ELECTRUM_BOOTS).save(provider, OConstants.modLoc("electrum_boots"));
+        smithingElectrum(() -> Items.DIAMOND_HELMET, ElectrumItems.ELECTRUM_HELMET).save(output, OConstants.modLoc("electrum_helmet"));
+        smithingElectrum(() -> Items.DIAMOND_CHESTPLATE, ElectrumItems.ELECTRUM_CHESTPLATE).save(output, OConstants.modLoc("electrum_chestplate"));
+        smithingElectrum(() -> Items.DIAMOND_LEGGINGS, ElectrumItems.ELECTRUM_LEGGINGS).save(output, OConstants.modLoc("electrum_leggings"));
+        smithingElectrum(() -> Items.DIAMOND_BOOTS, ElectrumItems.ELECTRUM_BOOTS).save(output, OConstants.modLoc("electrum_boots"));
 
-        whenLoaded(provider, ModCompat.FARMERS_DELIGHT, () ->
-                metalRecycling(provider, ElectrumItems.ELECTRUM_NUGGET, List.of(ElectrumItems.ELECTRUM_KNIFE), "_from_knife")
+        whenLoaded(output, ModCompat.FARMERS_DELIGHT, () ->
+                makeMetalRecycling(output, ElectrumItems.ELECTRUM_NUGGET, List.of(ElectrumItems.ELECTRUM_KNIFE), "_from_knife")
         );
-        whenLoaded(provider, ModCompat.NETHERS_DELIGHT, () ->
-                metalRecycling(provider, ElectrumItems.ELECTRUM_NUGGET, List.of(ElectrumItems.ELECTRUM_MACHETE), "_from_machete")
+        whenLoaded(output, ModCompat.NETHERS_DELIGHT, () ->
+                makeMetalRecycling(output, ElectrumItems.ELECTRUM_NUGGET, List.of(ElectrumItems.ELECTRUM_MACHETE), "_from_machete")
         );
 
         unlessLoaded(
@@ -93,7 +93,7 @@ public class ElectrumRecipes {
                         .unlockedBy("has_gold", has(Tags.Items.INGOTS_GOLD))
                         .unlockedBy("has_silver", has(CoreTags.Items.INGOTS_SILVER)),
                 ModCompat.CREATE
-        ).save(provider);
+        ).save(output);
 
         processing(MixingRecipe::new, "electrum_ingot")
                 .output(ElectrumItems.ELECTRUM_INGOT.get())
@@ -106,7 +106,7 @@ public class ElectrumRecipes {
                 .require(Tags.Items.INGOTS_GOLD)
                 .require(Tags.Items.INGOTS_GOLD)
                 .requiresHeat(HeatCondition.HEATED)
-                .build(provider);
+                .build(output);
     }
 
     public static SmithingTransformRecipeBuilder smithingElectrum(Supplier<? extends Item> input, Supplier<? extends Item> result) {

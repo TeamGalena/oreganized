@@ -39,12 +39,12 @@ public class ArgentumRecipes {
         ODatagen.addRecipeProvider(this::generate);
     }
 
-    private void generate(RecipeOutput provider) {
-        ore(
+    private void generate(RecipeOutput output) {
+        makeOreSmelting(
+                output,
                 ArgentumItems.SILVER_INGOT,
                 List.of(ArgentumBlocks.SILVER_ORE.get(), ArgentumBlocks.DEEPSLATE_SILVER_ORE.get(), ArgentumItems.RAW_SILVER.get()),
-                1.0F,
-                provider
+                1.0F
         );
 
         shaped(RecipeCategory.TOOLS, ArgentumItems.SCRIBE.get())
@@ -55,18 +55,18 @@ public class ArgentumRecipes {
                 .pattern("S")
                 .unlockedBy("has_silver", has(CoreTags.Items.INGOTS_SILVER))
                 .unlockedBy("has_amethyst", has(Items.AMETHYST_SHARD))
-                .save(provider);
+                .save(output);
 
-        compact(ArgentumBlocks.RAW_SILVER_BLOCK.get().asItem(), ArgentumItems.RAW_SILVER.get()).save(provider);
-        unCompact(ArgentumItems.RAW_SILVER.get(), ArgentumBlocks.RAW_SILVER_BLOCK.get().asItem()).save(provider, OConstants.modLoc("raw_silver_from_block"));
+        compact(ArgentumBlocks.RAW_SILVER_BLOCK.get().asItem(), ArgentumItems.RAW_SILVER.get()).save(output);
+        unCompact(ArgentumItems.RAW_SILVER.get(), ArgentumBlocks.RAW_SILVER_BLOCK.get().asItem()).save(output, OConstants.modLoc("raw_silver_from_block"));
 
-        compact(ArgentumBlocks.SILVER_BLOCKS.base().get().asItem(), ArgentumItems.SILVER_INGOT.get()).save(provider);
-        unCompact(ArgentumItems.SILVER_INGOT.get(), ArgentumBlocks.SILVER_BLOCKS.base().get().asItem()).save(provider, OConstants.modLoc("silver_ingot_from_block"));
+        compact(ArgentumBlocks.SILVER_BLOCKS.base().get().asItem(), ArgentumItems.SILVER_INGOT.get()).save(output);
+        unCompact(ArgentumItems.SILVER_INGOT.get(), ArgentumBlocks.SILVER_BLOCKS.base().get().asItem()).save(output, OConstants.modLoc("silver_ingot_from_block"));
 
-        compact(ArgentumItems.SILVER_INGOT.get(), ArgentumItems.SILVER_NUGGET.get()).save(provider, OConstants.modLoc("silver_ingot_from_nuggets"));
-        unCompact(ArgentumItems.SILVER_NUGGET.get(), ArgentumItems.SILVER_INGOT.get()).save(provider);
+        compact(ArgentumItems.SILVER_INGOT.get(), ArgentumItems.SILVER_NUGGET.get()).save(output, OConstants.modLoc("silver_ingot_from_nuggets"));
+        unCompact(ArgentumItems.SILVER_NUGGET.get(), ArgentumItems.SILVER_INGOT.get()).save(output);
 
-        metalRecycling(provider, ArgentumItems.SILVER_NUGGET.get(), Stream.concat(ArgentumItems.silverArmor(), ArgentumSets.silverTools()).toList());
+        makeMetalRecycling(output, ArgentumItems.SILVER_NUGGET.get(), Stream.concat(ArgentumItems.silverArmor(), ArgentumSets.silverTools()).toList());
 
         shaped(RecipeCategory.TOOLS, ArgentumItems.SILVER_MIRROR.get())
                 .pattern("ABA")
@@ -76,16 +76,16 @@ public class ArgentumRecipes {
                 .define('B', CoreTags.Items.INGOTS_SILVER)
                 .unlockedBy("has_gold_ingot", has(Tags.Items.INGOTS_GOLD))
                 .unlockedBy("has_silver_ingot", has(CoreTags.Items.INGOTS_SILVER))
-                .save(provider);
+                .save(output);
 
-        scribeConversionAndCutting(provider, Blocks.ICE, ArgentumBlocks.GROOVED_ICE.get());
-        scribeConversionAndCutting(provider, Blocks.PACKED_ICE, ArgentumBlocks.GROOVED_PACKED_ICE.get());
-        scribeConversionAndCutting(provider, Blocks.BLUE_ICE, ArgentumBlocks.GROOVED_BLUE_ICE.get());
+        scribeConversionAndCutting(output, Blocks.ICE, ArgentumBlocks.GROOVED_ICE.get());
+        scribeConversionAndCutting(output, Blocks.PACKED_ICE, ArgentumBlocks.GROOVED_PACKED_ICE.get());
+        scribeConversionAndCutting(output, Blocks.BLUE_ICE, ArgentumBlocks.GROOVED_BLUE_ICE.get());
 
-        scribeHarvesting(CoreTags.Blocks.AMETHYST_CLUSTERS, Blocks.SMALL_AMETHYST_BUD).save(provider);
+        scribeHarvesting(CoreTags.Blocks.AMETHYST_CLUSTERS, Blocks.SMALL_AMETHYST_BUD).save(output);
         scribeHarvesting(CoreTags.Blocks.QUARTZITE_CLUSTERS, BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath(ModCompat.NO_MANS_LAND, "small_quartzite_bud")))
                 .when(ModCompat.NO_MANS_LAND)
-                .save(provider);
+                .save(output);
 
 
         ArgentumBlocks.CUT_SILVERS.indexed().forEach(pair -> {
@@ -93,33 +93,32 @@ public class ArgentumRecipes {
             var cutSilver = pair.getFirst();
 
             var silverBlock = ArgentumBlocks.SILVER_BLOCKS.get(index);
-            makePolishedStonecutting(cutSilver, silverBlock, provider);
+            makePolishedStonecutting(output, cutSilver, silverBlock);
 
             var slab = ArgentumBlocks.CUT_SILVER_SLABS.get(index);
-            makeSlabStonecutting(slab, cutSilver, provider);
+            makeSlabStonecutting(output, slab, cutSilver);
 
             var stairs = ArgentumBlocks.CUT_SILVER_STAIRS.get(index);
-            makeStairsStonecutting(stairs, cutSilver, provider);
+            makeStairsStonecutting(output, stairs, cutSilver);
 
             var pillar = ArgentumBlocks.SILVER_PILLARS.get(index);
-            stonecutting(silverBlock, pillar).save(provider, OConstants.modLoc("stonecutting/" + getItemName(pillar)));
-            makePillar(pillar, silverBlock).save(provider);
+            makePillarStonecutting(output, pillar, silverBlock);
 
             var chiseled = ArgentumBlocks.CHISELED_SILVER.get(index);
-            makeChiseledStonecutting(chiseled, silverBlock, slab, provider);
+            makeChiseledStonecutting(output, chiseled, silverBlock, slab);
 
             var lattice = ArgentumBlocks.SILVER_LATTICES.get(index);
-            stonecutting(silverBlock, lattice).save(provider, OConstants.modLoc("stonecutting/" + getItemName(lattice)));
+            makeStoneCutting(output, silverBlock, lattice);
             shaped(RecipeCategory.BUILDING_BLOCKS, lattice, 4)
                     .pattern(" # ")
                     .pattern("# #")
                     .pattern(" # ")
                     .define('#', cutSilver)
                     .unlockedBy("has_cut_silver", has(cutSilver))
-                    .save(provider);
+                    .save(output);
         });
 
-        makeBars(ArgentumBlocks.SILVER_BARS.base(), CoreTags.Items.INGOTS_SILVER).save(provider);
+        makeBars(output, ArgentumBlocks.SILVER_BARS.base(), CoreTags.Items.INGOTS_SILVER);
 
         shaped(RecipeCategory.BUILDING_BLOCKS, ArgentumBlocks.SILVER_BULBS.base())
                 .pattern(" C ")
@@ -130,7 +129,7 @@ public class ArgentumRecipes {
                 .define('R', Items.REDSTONE)
                 .unlockedBy("has_cut_silver", has(ArgentumBlocks.CUT_SILVERS.base()))
                 .unlockedBy("has_breeze_rod", has(Items.BREEZE_ROD))
-                .save(provider);
+                .save(output);
 
         shaped(RecipeCategory.REDSTONE, ArgentumBlocks.SILVER_DOORS.base())
                 .define('#', Ingredient.of(CoreTags.Items.INGOTS_SILVER))
@@ -138,16 +137,16 @@ public class ArgentumRecipes {
                 .pattern("##")
                 .pattern("##")
                 .unlockedBy("has_silver", has(CoreTags.Items.INGOTS_SILVER))
-                .save(provider);
+                .save(output);
 
         shaped(RecipeCategory.REDSTONE, ArgentumBlocks.SILVER_TRAPDOORS.base())
                 .define('#', CoreTags.Items.INGOTS_SILVER)
                 .pattern("##")
                 .pattern("##")
                 .unlockedBy("has_silver", has(CoreTags.Items.INGOTS_SILVER))
-                .save(provider);
+                .save(output);
 
-        ArgentumSets.tarnishedBlocks().forEach(it -> brushing(provider, it));
+        ArgentumSets.tarnishedBlocks().forEach(it -> brushing(output, it));
     }
 
     public static CuttingBoardRecipeBuilder scribeCuttingBoard(ItemLike from, ItemLike to) {
