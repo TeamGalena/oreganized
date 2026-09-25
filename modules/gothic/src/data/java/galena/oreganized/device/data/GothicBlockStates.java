@@ -121,7 +121,7 @@ public class GothicBlockStates {
                     .condition(CrystalGlassPaneBlock.TYPE, type)
                     .end();
 
-            CrossCollisionBlock.PROPERTY_BY_DIRECTION.forEach((dir, property) -> {
+            horizontalDirections((dir, property) -> {
                 var alt = dir == Direction.SOUTH || dir == Direction.EAST;
                 var yRot = dir.getAxis() == Direction.Axis.X ? 270 : 0;
 
@@ -201,7 +201,7 @@ public class GothicBlockStates {
                 .modelFile(postEndBottom)
                 .addModel();
 
-        CrossCollisionBlock.PROPERTY_BY_DIRECTION.forEach((dir, property) -> {
+        horizontalDirections((dir, property) -> {
             var alt = dir == Direction.SOUTH || dir == Direction.EAST;
             var yRot = dir.getAxis() == Direction.Axis.X ? 270 : 0;
 
@@ -247,7 +247,7 @@ public class GothicBlockStates {
                     .rotationY(yRot)
                     .addModel();
 
-            CrossCollisionBlock.PROPERTY_BY_DIRECTION.forEach((otherDir, otherProp) -> {
+            horizontalDirections((otherDir, otherProp) -> {
                 capBuilder.condition(otherProp, otherDir == dir);
             });
 

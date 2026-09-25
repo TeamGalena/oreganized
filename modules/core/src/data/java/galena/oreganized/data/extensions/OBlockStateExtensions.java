@@ -6,10 +6,14 @@ import static net.neoforged.neoforge.client.model.generators.ModelProvider.BLOCK
 import static net.neoforged.neoforge.client.model.generators.ModelProvider.ITEM_FOLDER;
 
 import galena.oreganized.index.sets.StoneSet;
+import java.util.Comparator;
+import java.util.Map;
+import java.util.function.BiConsumer;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.neoforged.neoforge.client.model.generators.*;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
@@ -176,6 +180,12 @@ public class OBlockStateExtensions {
         stairs(provider, block.block(), block.stairs());
         slab(provider, block.block(), block.slab());
         wall(provider, block.block(), block.wall());
+    }
+
+    public static void horizontalDirections(BiConsumer<Direction, Property<Boolean>> consumer) {
+        CrossCollisionBlock.PROPERTY_BY_DIRECTION.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey(Comparator.comparing(Direction::ordinal)))
+                .forEach(entry -> consumer.accept(entry.getKey(), entry.getValue()));
     }
 
 }

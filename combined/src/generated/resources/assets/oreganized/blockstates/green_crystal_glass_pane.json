@@ -10,22 +10,20 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/green_crystal_glass_pane_side",
-        "y": 270
+        "model": "oreganized:block/green_crystal_glass_pane_side"
       },
       "when": {
         "type": "0",
-        "west": "true"
+        "north": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/green_crystal_glass_pane_noside",
-        "y": 270
+        "model": "oreganized:block/green_crystal_glass_pane_noside"
       },
       "when": {
         "type": "0",
-        "west": "false"
+        "north": "false"
       }
     },
     {
@@ -48,20 +46,22 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/green_crystal_glass_pane_side"
+        "model": "oreganized:block/green_crystal_glass_pane_side",
+        "y": 270
       },
       "when": {
         "type": "0",
-        "north": "true"
+        "west": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/green_crystal_glass_pane_noside"
+        "model": "oreganized:block/green_crystal_glass_pane_noside",
+        "y": 270
       },
       "when": {
         "type": "0",
-        "north": "false"
+        "west": "false"
       }
     },
     {
@@ -94,22 +94,20 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/green_crystal_glass_pane_side_rot",
-        "y": 270
+        "model": "oreganized:block/green_crystal_glass_pane_side_rot"
       },
       "when": {
         "type": "1",
-        "west": "true"
+        "north": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/green_crystal_glass_pane_noside_rot",
-        "y": 270
+        "model": "oreganized:block/green_crystal_glass_pane_noside_rot"
       },
       "when": {
         "type": "1",
-        "west": "false"
+        "north": "false"
       }
     },
     {
@@ -132,20 +130,22 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/green_crystal_glass_pane_side_rot"
+        "model": "oreganized:block/green_crystal_glass_pane_side_rot",
+        "y": 270
       },
       "when": {
         "type": "1",
-        "north": "true"
+        "west": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/green_crystal_glass_pane_noside_rot"
+        "model": "oreganized:block/green_crystal_glass_pane_noside_rot",
+        "y": 270
       },
       "when": {
         "type": "1",
-        "north": "false"
+        "west": "false"
       }
     },
     {
@@ -178,22 +178,20 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/green_crystal_glass_pane_side_in",
-        "y": 270
+        "model": "oreganized:block/green_crystal_glass_pane_side_in"
       },
       "when": {
         "type": "2",
-        "west": "true"
+        "north": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/green_crystal_glass_pane_noside_in",
-        "y": 270
+        "model": "oreganized:block/green_crystal_glass_pane_noside_in"
       },
       "when": {
         "type": "2",
-        "west": "false"
+        "north": "false"
       }
     },
     {
@@ -216,20 +214,22 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/green_crystal_glass_pane_side_in"
+        "model": "oreganized:block/green_crystal_glass_pane_side_in",
+        "y": 270
       },
       "when": {
         "type": "2",
-        "north": "true"
+        "west": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/green_crystal_glass_pane_noside_in"
+        "model": "oreganized:block/green_crystal_glass_pane_noside_in",
+        "y": 270
       },
       "when": {
         "type": "2",
-        "north": "false"
+        "west": "false"
       }
     },
     {
@@ -262,22 +262,20 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/green_crystal_glass_pane_side_out",
-        "y": 270
+        "model": "oreganized:block/green_crystal_glass_pane_side_out"
       },
       "when": {
         "type": "3",
-        "west": "true"
+        "north": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/green_crystal_glass_pane_noside_out",
-        "y": 270
+        "model": "oreganized:block/green_crystal_glass_pane_noside_out"
       },
       "when": {
         "type": "3",
-        "west": "false"
+        "north": "false"
       }
     },
     {
@@ -300,20 +298,22 @@
     },
     {
       "apply": {
-        "model": "oreganized:block/green_crystal_glass_pane_side_out"
+        "model": "oreganized:block/green_crystal_glass_pane_side_out",
+        "y": 270
       },
       "when": {
         "type": "3",
-        "north": "true"
+        "west": "true"
       }
     },
     {
       "apply": {
-        "model": "oreganized:block/green_crystal_glass_pane_noside_out"
+        "model": "oreganized:block/green_crystal_glass_pane_noside_out",
+        "y": 270
       },
       "when": {
         "type": "3",
-        "north": "false"
+        "west": "false"
       }
     },
     {
