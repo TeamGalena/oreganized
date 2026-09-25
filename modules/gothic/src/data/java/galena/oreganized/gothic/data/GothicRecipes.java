@@ -1,4 +1,4 @@
-package galena.oreganized.device.data;
+package galena.oreganized.gothic.data;
 
 
 import static com.tterrag.registrate.providers.RegistrateRecipeProvider.getHasName;
@@ -12,9 +12,7 @@ import galena.oreganized.data.ColorCompat;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.index.CoreTags;
-
 import java.util.function.Supplier;
-
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -24,7 +22,6 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import org.jetbrains.annotations.NotNull;
 
 @Mod(OConstants.MOD_ID)
 public class GothicRecipes {

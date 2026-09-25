@@ -1,4 +1,4 @@
-package galena.oreganized.device.data;
+package galena.oreganized.gothic.data;
 
 
 import static galena.oreganized.data.ConditionalData.dyed;

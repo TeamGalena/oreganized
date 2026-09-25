@@ -1,4 +1,4 @@
-package galena.oreganized.device.data;
+package galena.oreganized.gothic.data;
 
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;

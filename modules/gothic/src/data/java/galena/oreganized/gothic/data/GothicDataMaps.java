@@ -1,4 +1,4 @@
-package galena.oreganized.device.data;
+package galena.oreganized.gothic.data;
 
 import galena.oreganized.OConstants;
 import galena.oreganized.argentum.index.ArgentumDataMapTypes;

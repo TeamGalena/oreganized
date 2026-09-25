@@ -1,4 +1,4 @@
-package galena.oreganized.device.data;
+package galena.oreganized.gothic.data;
 
 import static net.neoforged.neoforge.common.data.SoundDefinition.Sound.sound;
 import static net.neoforged.neoforge.common.data.SoundDefinition.definition;

@@ -1,4 +1,4 @@
-package galena.oreganized.device.data;
+package galena.oreganized.gothic.data;
 
 import static galena.oreganized.data.extensions.OBlockStateExtensions.*;
 import static galena.oreganized.data.extensions.OItemModelExtensions.*;
@@ -14,7 +14,6 @@ import galena.oreganized.gothic.world.block.*;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.CrossCollisionBlock;
 import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.fml.common.Mod;

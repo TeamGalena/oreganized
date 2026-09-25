@@ -1,6 +1,5 @@
 package galena.oreganized.gothic.world;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.argentum.network.TarnishParticlePacket;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.gothic.index.GothicTags;
