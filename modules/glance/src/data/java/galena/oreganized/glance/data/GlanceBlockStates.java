@@ -16,18 +16,10 @@ public class GlanceBlockStates {
     }
 
     private void generate(RegistrateBlockstateProvider provider) {
-        cubeAll(provider, GlanceBlocks.GLANCE);
-        cubeAll(provider, GlanceBlocks.POLISHED_GLANCE);
-        cubeAll(provider, GlanceBlocks.GLANCE_BRICKS);
+        stoneSet(provider, GlanceBlocks.GLANCE_SET);
+        stoneSet(provider, GlanceBlocks.GLANCE_BRICKS_SET);
+        stoneSet(provider, GlanceBlocks.POLISHED_GLANCE_SET);
         cubeAll(provider, GlanceBlocks.CHISELED_GLANCE);
-        slab(provider, GlanceBlocks.GLANCE, GlanceBlocks.GLANCE_SLAB);
-        slab(provider, GlanceBlocks.POLISHED_GLANCE, GlanceBlocks.POLISHED_GLANCE_SLAB);
-        slab(provider, GlanceBlocks.GLANCE_BRICKS, GlanceBlocks.GLANCE_BRICK_SLAB);
-        stairs(provider, GlanceBlocks.GLANCE, GlanceBlocks.GLANCE_STAIRS);
-        stairs(provider, GlanceBlocks.POLISHED_GLANCE, GlanceBlocks.POLISHED_GLANCE_STAIRS);
-        stairs(provider, GlanceBlocks.GLANCE_BRICKS, GlanceBlocks.GLANCE_BRICK_STAIRS);
-        wall(provider, GlanceBlocks.GLANCE, GlanceBlocks.GLANCE_WALL);
-        wall(provider, GlanceBlocks.GLANCE_BRICKS, GlanceBlocks.GLANCE_BRICK_WALL);
         cubeAll(provider, GlanceBlocks.SPOTTED_GLANCE);
         waxed(provider, GlanceBlocks.WAXED_SPOTTED_GLANCE, GlanceBlocks.SPOTTED_GLANCE.value());
     }

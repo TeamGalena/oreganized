@@ -9,9 +9,11 @@ import net.minecraft.world.level.block.WallBlock;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 public record StoneSet<TBlock extends Block, TStairs extends StairBlock, TSlab extends SlabBlock, TWall extends WallBlock>(
-        DeferredBlock<? extends TBlock> block, DeferredBlock<? extends TStairs> stairs,
-        DeferredBlock<? extends TSlab> slab,
-        DeferredBlock<? extends TWall> wall) implements IHolderSet<Block, Block, DeferredBlock<? extends Block>> {
+        DeferredBlock<TBlock> block,
+        DeferredBlock<TStairs> stairs,
+        DeferredBlock<TSlab> slab,
+        DeferredBlock<TWall> wall
+) implements IHolderSet<Block, Block, DeferredBlock<? extends Block>> {
 
     @Override
     public Stream<DeferredBlock<? extends Block>> stream() {

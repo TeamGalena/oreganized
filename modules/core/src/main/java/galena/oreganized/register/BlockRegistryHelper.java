@@ -41,12 +41,13 @@ public class BlockRegistryHelper extends BlockSubRegistryHelper {
             Function<TBlock, TSlab> slabSupplier,
             Function<TBlock, TWall> wallSupplier
     ) {
+        var withoutPlural = removePlural(name);
         var block = createBlock(name, blockSupplier);
         return new StoneSet<>(
                 block,
-                createBlock(name + "_stairs", () -> stairsSupplier.apply(block.value())),
-                createBlock(name + "_slab", () -> slabSupplier.apply(block.value())),
-                createBlock(name + "_wall", () -> wallSupplier.apply(block.value()))
+                createBlock(withoutPlural + "_stairs", () -> stairsSupplier.apply(block.value())),
+                createBlock(withoutPlural + "_slab", () -> slabSupplier.apply(block.value())),
+                createBlock(withoutPlural + "_wall", () -> wallSupplier.apply(block.value()))
         );
     }
 
@@ -61,6 +62,11 @@ public class BlockRegistryHelper extends BlockSubRegistryHelper {
                 $ -> new SlabBlock(properties.get()),
                 $ -> new WallBlock(properties.get())
         );
+    }
+
+    private static String removePlural(String name) {
+        if (name.endsWith("bricks")) return name.substring(0, name.length() - 1);
+        return name;
     }
 
 }
