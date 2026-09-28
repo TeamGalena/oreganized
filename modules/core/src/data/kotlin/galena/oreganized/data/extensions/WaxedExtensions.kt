@@ -5,7 +5,6 @@ package galena.oreganized.data.extensions
 
 import com.simibubi.create.content.kinetics.deployer.DeployerApplicationRecipe
 import com.simibubi.create.content.kinetics.deployer.ItemApplicationRecipe
-import com.tterrag.registrate.providers.RegistrateRecipeProvider
 import net.minecraft.data.recipes.RecipeCategory
 import net.minecraft.data.recipes.RecipeOutput
 import net.minecraft.data.recipes.ShapelessRecipeBuilder
@@ -21,10 +20,8 @@ fun RecipeOutput.makeWaxed(
 ) {
     ShapelessRecipeBuilder
         .shapeless(RecipeCategory.DECORATIONS, waxed.value())
-        .requires(unwaxed)
-        .requires(Items.HONEYCOMB)
-        .unlockedBy(RegistrateRecipeProvider.getHasName(unwaxed), RegistrateRecipeProvider.has(unwaxed))
-        .unlockedBy("has_honeycomb", RegistrateRecipeProvider.has(Items.HONEYCOMB))
+        .requiresUnlocking(unwaxed)
+        .requiresUnlocking(Items.HONEYCOMB)
         .save(this)
 
     application(

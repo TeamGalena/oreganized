@@ -29,6 +29,7 @@ import java.util.function.Supplier
 /**
  * method prefixed with `make` should accept the `RecipeOutput` as their receiver and actually save the recipes
  * all other methods should not do any of the two and instead return the recipe builder.
+ * the order of arguments should be first the recipe result, then the ingredients
  */
 
 fun slab(

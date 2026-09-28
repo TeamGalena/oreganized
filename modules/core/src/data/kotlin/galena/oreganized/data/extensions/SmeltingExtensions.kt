@@ -49,7 +49,7 @@ fun smeltingRecipe(
             result,
             exp,
             200,
-        ).unlockedBy(RegistrateRecipeProvider.getHasName(ingredient), RegistrateRecipeProvider.has(ingredient))
+        ).unlockedBy(ingredient)
 
 private fun RecipeOutput.makeOreBlasting(
     result: ItemLike,
@@ -78,7 +78,7 @@ fun blastingRecipe(
             result,
             exp,
             100,
-        ).unlockedBy(RegistrateRecipeProvider.getHasName(ingredient), RegistrateRecipeProvider.has(ingredient))
+        ).unlockedBy(ingredient)
 
 fun blastingRecycling(
     nugget: ItemLike,
@@ -94,7 +94,7 @@ fun blastingRecycling(
         )
     for (holder in items) {
         val item: ItemLike = holder.value()
-        builder.unlockedBy(RegistrateRecipeProvider.getHasName(item), RegistrateRecipeProvider.has(item))
+        builder.unlockedBy(item)
     }
     return builder
 }
@@ -113,7 +113,7 @@ fun smeltingRecycling(
         )
     for (holder in items) {
         val item: ItemLike = holder.value()
-        builder.unlockedBy(RegistrateRecipeProvider.getHasName(item), RegistrateRecipeProvider.has(item))
+        builder.unlockedBy(item)
     }
     return builder
 }

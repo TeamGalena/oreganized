@@ -4,9 +4,7 @@
 package galena.oreganized.data.extensions
 
 import com.tterrag.registrate.providers.RegistrateRecipeProvider
-import com.tterrag.registrate.providers.RegistrateRecipeProvider.getHasName
 import com.tterrag.registrate.providers.RegistrateRecipeProvider.getItemName
-import com.tterrag.registrate.providers.RegistrateRecipeProvider.has
 import galena.oreganized.OConstants
 import galena.oreganized.index.sets.StoneSet
 import net.minecraft.data.recipes.RecipeCategory
@@ -30,7 +28,7 @@ fun stonecutting(
             RecipeCategory.BUILDING_BLOCKS,
             to.get(),
             resultAmount,
-        ).unlockedBy(getHasName(from.get()), has(from.get()))
+        ).unlockedBy(from.get())
 
 @JvmOverloads
 fun RecipeOutput.makeStoneCutting(
