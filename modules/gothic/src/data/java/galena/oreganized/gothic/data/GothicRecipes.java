@@ -78,6 +78,11 @@ public class GothicRecipes {
 
         makeChiseledStonecutting(output, GothicBlocks.CHISELED_DARK_GRIMSTONE, GothicBlocks.POLISHED_DARK_GRIMSTONE.block(), GothicBlocks.POLISHED_DARK_GRIMSTONE.slab());
         makeChiseledStonecutting(output, GothicBlocks.CHISELED_PALE_GRIMSTONE, GothicBlocks.POLISHED_PALE_GRIMSTONE.block(), GothicBlocks.POLISHED_PALE_GRIMSTONE.slab());
+
+        makeWallStonecutting(output, GothicBlocks.DARK_GRIMSTONE_SPYRE_FENCE, GothicBlocks.DARK_GRIMSTONE_SPYRE);
+        makeWallStonecutting(output, GothicBlocks.PALE_GRIMSTONE_SPYRE_FENCE, GothicBlocks.PALE_GRIMSTONE_SPYRE);
+        makeStoneCutting(output, GothicBlocks.DARK_GRIMSTONE_SPYRE_FENCE, GothicBlocks.DARK_GRIMSTONE_SPYRE_BLOCK, 4);
+        makeStoneCutting(output, GothicBlocks.PALE_GRIMSTONE_SPYRE_FENCE, GothicBlocks.PALE_GRIMSTONE_SPYRE_BLOCK, 4);
     }
 
     private static void makeSpyreCompacting(RecipeOutput output, DeferredHolder<Block, ?> from, DeferredHolder<Block, ?> to) {
