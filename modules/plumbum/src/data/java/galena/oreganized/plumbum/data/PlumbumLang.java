@@ -61,6 +61,7 @@ public class PlumbumLang {
 
         provider.addEffect(PlumbumEffects.STUNNING, "Brain Damage");
         addPotion(provider, PlumbumPotions.STUNNING, "Brain Damage");
+        addPotion(provider, PlumbumPotions.LONG_STUNNING, "Brain Damage");
 
         provider.add("trim_material.oreganized.lead", "Lead material");
 
