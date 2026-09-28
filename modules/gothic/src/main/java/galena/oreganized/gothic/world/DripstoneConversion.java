@@ -1,11 +1,13 @@
 package galena.oreganized.gothic.world;
 
+import galena.oreganized.argentum.index.ArgentumSounds;
 import galena.oreganized.argentum.network.TarnishParticlePacket;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.gothic.index.GothicTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -61,6 +63,8 @@ public class DripstoneConversion {
                 PacketDistributor.sendToPlayersInDimension(level, new TarnishParticlePacket(mutable.immutable(), true));
             }
         }
+
+        level.playSound(null, pos, ArgentumSounds.TARNISH.get(), SoundSource.BLOCKS);
     }
 
     public static boolean tryConvertDripstone(ServerLevel level, BlockPos pos, Fluid fluid, BlockState catalyst) {

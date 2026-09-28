@@ -21,7 +21,7 @@ public class PointedDripstoneBlockMixin {
     )
     public void convertToSpyre(BlockState state, ServerLevel level, BlockPos pos, RandomSource random, CallbackInfo ci) {
         if (!PointedDripstoneBlock.isStalactiteStartPos(state, level, pos)) return;
-        if(random.nextFloat() > 0.05F) return;
+        if(random.nextFloat() > 0.1F) return;
 
         var fluid = PointedDripstoneBlock.getFluidAboveStalactite(level, pos, state);
         if (fluid.isEmpty()) return;
