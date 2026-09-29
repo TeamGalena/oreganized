@@ -6,7 +6,8 @@ dependencies {
     modApi(libs.jei.common.api)
     modApi(libs.jei.neoforge.api)
 
-    modImplementation(pack.modrinth.farmers.delight)
+    modCompileOnlyApi(pack.modrinth.farmers.delight)
+    modCompileOnlyApi(pack.modrinth.no.mans.land)
 
     dataApi(libs.registrate)
     dataApi(libs.create) { isTransitive = false }
