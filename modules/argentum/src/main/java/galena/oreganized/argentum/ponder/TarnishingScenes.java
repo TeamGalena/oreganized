@@ -45,12 +45,12 @@ public class TarnishingScenes {
 
     static void registerScenes(PonderSceneRegistrationHelper<Holder<?>> helper) {
         helper
-                .forComponents(spawnersAndBlocks().toList())
-                .addStoryBoard("tarnishing_shape", TarnishingScenes::tarnishingShape);
-
-        helper
                 .forComponents(Stream.concat(spawnersAndBlocks(), brushes()).toList())
                 .addStoryBoard("tarnishing", TarnishingScenes::tarnishing);
+
+        helper
+                .forComponents(spawnersAndBlocks().toList())
+                .addStoryBoard("tarnishing_shape", TarnishingScenes::tarnishingShape);
     }
 
     private static void tarnishing(SceneBuilder scene, SceneBuildingUtil util) {
@@ -113,7 +113,8 @@ public class TarnishingScenes {
         scene.idle(20);
         polish(scene, polished);
 
-        scene.idle(30);
+        scene.idle(5);
+        scene.markAsFinished();
     }
 
     private static void tarnishingShape(SceneBuilder scene, SceneBuildingUtil util) {
@@ -145,10 +146,12 @@ public class TarnishingScenes {
 
         scene.overlay().showOutline(PonderPalette.OUTPUT, outer, outer, 6000);
         scene.overlay().showText(80)
-                .text("Within this broader shapes, blocks have a smaller chance to tarnish")
+                .text("Within this broader shape, blocks have a smaller chance to tarnish")
                 .pointAt(inner.getCenter())
                 .attachKeyFrame();
-        scene.idleSeconds(5);
+
+        scene.idle(5);
+        scene.markAsFinished();
     }
 
     private static void tarnish(SceneBuilder scene, Selection selection) {
