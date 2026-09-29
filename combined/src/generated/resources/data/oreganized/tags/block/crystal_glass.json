@@ -5,27 +5,7 @@
       "required": false
     },
     {
-      "id": "oreganized:orange_crystal_glass",
-      "required": false
-    },
-    {
-      "id": "oreganized:magenta_crystal_glass",
-      "required": false
-    },
-    {
-      "id": "oreganized:light_blue_crystal_glass",
-      "required": false
-    },
-    {
-      "id": "oreganized:yellow_crystal_glass",
-      "required": false
-    },
-    {
-      "id": "oreganized:lime_crystal_glass",
-      "required": false
-    },
-    {
-      "id": "oreganized:pink_crystal_glass",
+      "id": "oreganized:light_gray_crystal_glass",
       "required": false
     },
     {
@@ -33,35 +13,11 @@
       "required": false
     },
     {
-      "id": "oreganized:light_gray_crystal_glass",
-      "required": false
-    },
-    {
-      "id": "oreganized:cyan_crystal_glass",
-      "required": false
-    },
-    {
-      "id": "oreganized:purple_crystal_glass",
-      "required": false
-    },
-    {
-      "id": "oreganized:blue_crystal_glass",
+      "id": "oreganized:black_crystal_glass",
       "required": false
     },
     {
       "id": "oreganized:brown_crystal_glass",
-      "required": false
-    },
-    {
-      "id": "oreganized:green_crystal_glass",
-      "required": false
-    },
-    {
-      "id": "oreganized:red_crystal_glass",
-      "required": false
-    },
-    {
-      "id": "oreganized:black_crystal_glass",
       "required": false
     },
     {
@@ -73,27 +29,23 @@
       "required": false
     },
     {
+      "id": "oreganized:red_crystal_glass",
+      "required": false
+    },
+    {
       "id": "oreganized:coral_crystal_glass",
       "required": false
     },
     {
-      "id": "oreganized:indigo_crystal_glass",
+      "id": "oreganized:ginger_crystal_glass",
       "required": false
     },
     {
-      "id": "oreganized:navy_crystal_glass",
+      "id": "oreganized:orange_crystal_glass",
       "required": false
     },
     {
-      "id": "oreganized:slate_crystal_glass",
-      "required": false
-    },
-    {
-      "id": "oreganized:olive_crystal_glass",
-      "required": false
-    },
-    {
-      "id": "oreganized:amber_crystal_glass",
+      "id": "oreganized:tan_crystal_glass",
       "required": false
     },
     {
@@ -101,7 +53,39 @@
       "required": false
     },
     {
+      "id": "oreganized:yellow_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:amber_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:olive_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:lime_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:forest_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:green_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:verdant_crystal_glass",
+      "required": false
+    },
+    {
       "id": "oreganized:teal_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:cyan_crystal_glass",
       "required": false
     },
     {
@@ -113,19 +97,35 @@
       "required": false
     },
     {
-      "id": "oreganized:verdant_crystal_glass",
+      "id": "oreganized:light_blue_crystal_glass",
       "required": false
     },
     {
-      "id": "oreganized:forest_crystal_glass",
+      "id": "oreganized:blue_crystal_glass",
       "required": false
     },
     {
-      "id": "oreganized:ginger_crystal_glass",
+      "id": "oreganized:slate_crystal_glass",
       "required": false
     },
     {
-      "id": "oreganized:tan_crystal_glass",
+      "id": "oreganized:navy_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:indigo_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:purple_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:magenta_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:pink_crystal_glass",
       "required": false
     }
   ]

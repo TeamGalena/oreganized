@@ -6,6 +6,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Fluid;
 
 public class GothicTags {
 
@@ -23,12 +24,21 @@ public class GothicTags {
 
         public static final TagKey<Block> CRYSTAL_GLASS = HELPER.modTag("crystal_glass");
         public static final TagKey<Block> CRYSTAL_GLASS_PANES = HELPER.modTag("crystal_glass_panes");
+
+        public static final TagKey<Block> DARK_SPYRE_CATALYST = HELPER.modTag("dark_spyre_catalyst");
+        public static final TagKey<Block> PALE_SPYRE_CATALYST = HELPER.modTag("pale_spyre_catalyst");
     }
 
     public static final class Entities {
         private static final TagHelper<EntityType<?>> HELPER = new TagHelper<>(Registries.ENTITY_TYPE);
 
         public static final TagKey<EntityType<?>> SCARED_OF_GARGOYLE = HELPER.modTag("scared_of_gargoyle");
+    }
+
+    public static final class Fluids {
+        private static final TagHelper<Fluid> HELPER = new TagHelper<>(Registries.FLUID);
+
+        public static final TagKey<Fluid> SPYRE_CONVERSION_FLUID = HELPER.modTag("spyre_conversion_fluid");
     }
 
 }

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_pale_grimstone_spyre": {
+      "conditions": {
+        "items": [
+          {
+            "items": "oreganized:pale_grimstone_spyre"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "oreganized:stonecutting/pale_grimstone_spyre_fence_from_pale_grimstone_spyre"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_pale_grimstone_spyre"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "oreganized:stonecutting/pale_grimstone_spyre_fence_from_pale_grimstone_spyre"
+    ]
+  }
+}

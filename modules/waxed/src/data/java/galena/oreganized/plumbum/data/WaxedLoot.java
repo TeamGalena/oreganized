@@ -1,8 +1,8 @@
 package galena.oreganized.plumbum.data;
 
 
-import static galena.oreganized.data.ConditionalData.dyed;
 import static galena.oreganized.data.extensions.OBlockLootExtensions.dropSelf;
+import static galena.oreganized.data.extensions.OConditionExtensions.dyed;
 
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import galena.oreganized.OConstants;
@@ -18,7 +18,7 @@ public class WaxedLoot {
     }
 
     private void generate(RegistrateBlockLootTables provider) {
-        WaxedBlocks.WAXED_CONCRETE_POWDER.forEach((c, b) -> dyed(c, provider, () -> dropSelf(provider, b)));
+        WaxedBlocks.WAXED_CONCRETE_POWDER.map().forEach((c, b) -> dyed(c, provider, () -> dropSelf(provider, b)));
     }
 
 }

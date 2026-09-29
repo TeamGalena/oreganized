@@ -1,5 +1,7 @@
 package galena.oreganized.gothic.ponder;
 
+import static galena.oreganized.ponder.OPonderExtensions.killEntity;
+
 import galena.oreganized.ModCompat;
 import galena.oreganized.argentum.index.ArgentumItems;
 import galena.oreganized.gothic.index.GothicBlocks;
@@ -17,9 +19,7 @@ import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.ComparatorBlock;
@@ -176,12 +176,7 @@ public class GargoyleScenes {
     }
 
     private static void scareMonster(SceneBuilder scene, ElementLink<EntityElement> link, BlockPos pos) {
-        scene.world().modifyEntity(link, Entity::discard);
-        scene.effects().emitParticles(
-                pos.above().getCenter(),
-                scene.effects().particleEmitterWithinBlockSpace(ParticleTypes.LARGE_SMOKE, Vec3.ZERO),
-                1.5F, 10
-        );
+        killEntity(scene, pos.above().getCenter(), link);
         scene.idle(10);
     }
 

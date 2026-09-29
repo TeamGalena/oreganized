@@ -3,7 +3,11 @@ dependencies {
     modApi(libs.ponder)
     modApi(libs.flywheel)
 
-    modImplementation(pack.modrinth.farmers.delight)
+    modApi(libs.jei.common.api)
+    modApi(libs.jei.neoforge.api)
+
+    modCompileOnlyApi(pack.modrinth.farmers.delight)
+    modCompileOnlyApi(pack.modrinth.no.mans.land)
 
     dataApi(libs.registrate)
     dataApi(libs.create) { isTransitive = false }

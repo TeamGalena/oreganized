@@ -1,0 +1,40 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "particle": "#texture"
+  },
+  "elements": [
+    {
+      "from": [
+        7,
+        15.999,
+        0
+      ],
+      "to": [
+        9,
+        15.999,
+        7
+      ],
+      "faces": {
+        "up": {
+          "uv": [
+            7,
+            0,
+            9,
+            7
+          ],
+          "texture": "#texture"
+        },
+        "down": {
+          "uv": [
+            9,
+            0,
+            7,
+            7
+          ],
+          "texture": "#texture"
+        }
+      }
+    }
+  ]
+}

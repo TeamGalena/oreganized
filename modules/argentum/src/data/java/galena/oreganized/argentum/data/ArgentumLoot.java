@@ -49,17 +49,17 @@ public class ArgentumLoot {
         dropGrooved(provider, ArgentumBlocks.GROOVED_BLUE_ICE, Blocks.BLUE_ICE);
         dropGrooved(provider, ArgentumBlocks.GROOVED_PACKED_ICE, Blocks.PACKED_ICE);
 
-        ArgentumBlocks.CUT_SILVERS.all().forEach(it -> dropSelf(provider, it));
-        ArgentumBlocks.SILVER_LATTICES.all().forEach(it -> dropSelf(provider, it));
-        ArgentumBlocks.SILVER_BLOCKS.all().forEach(it -> dropSelf(provider, it));
-        ArgentumBlocks.SILVER_BULBS.all().forEach(it -> dropSelf(provider, it));
-        ArgentumBlocks.SILVER_BARS.all().forEach(it -> dropSelf(provider, it));
-        ArgentumBlocks.SILVER_PILLARS.all().forEach(it -> dropSelf(provider, it));
-        ArgentumBlocks.CHISELED_SILVER.all().forEach(it -> dropSelf(provider, it));
-        ArgentumBlocks.CUT_SILVER_STAIRS.all().forEach(it -> dropSelf(provider, it));
-        ArgentumBlocks.CUT_SILVER_SLABS.all().forEach(it -> dropSelf(provider, it));
+        ArgentumBlocks.CUT_SILVERS.stream().forEach(it -> dropSelf(provider, it));
+        ArgentumBlocks.SILVER_LATTICES.stream().forEach(it -> dropSelf(provider, it));
+        ArgentumBlocks.SILVER_BLOCKS.stream().forEach(it -> dropSelf(provider, it));
+        ArgentumBlocks.SILVER_BULBS.stream().forEach(it -> dropSelf(provider, it));
+        ArgentumBlocks.SILVER_BARS.stream().forEach(it -> dropSelf(provider, it));
+        ArgentumBlocks.SILVER_PILLARS.stream().forEach(it -> dropSelf(provider, it));
+        ArgentumBlocks.CHISELED_SILVER.stream().forEach(it -> dropSelf(provider, it));
+        ArgentumBlocks.CUT_SILVER_STAIRS.stream().forEach(it -> dropSelf(provider, it));
+        ArgentumBlocks.CUT_SILVER_SLABS.stream().forEach(it -> dropSelf(provider, it));
 
-        ArgentumBlocks.SILVER_DOORS.all().forEach(holder -> {
+        ArgentumBlocks.SILVER_DOORS.stream().forEach(holder -> {
             var isLowerHalf = LootItemBlockStatePropertyCondition.hasBlockStateProperties(holder.get())
                     .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DoorBlock.HALF, DoubleBlockHalf.LOWER));
             var itemEntry = LootItem.lootTableItem(holder.get()).when(isLowerHalf);
@@ -68,7 +68,7 @@ public class ArgentumLoot {
             provider.add(holder.get(), LootTable.lootTable().withPool(provider.applyExplosionCondition(holder.get(), pool)));
         });
 
-        ArgentumBlocks.SILVER_TRAPDOORS.all().forEach(it -> dropSelf(provider, it));
+        ArgentumBlocks.SILVER_TRAPDOORS.stream().forEach(it -> dropSelf(provider, it));
     }
 
     private void modifiers(RegistrateLootModifierProvider provider) {

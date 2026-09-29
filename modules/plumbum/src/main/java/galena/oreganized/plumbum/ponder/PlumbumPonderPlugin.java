@@ -10,6 +10,7 @@ public class PlumbumPonderPlugin implements OPonderPlugin {
     @Override
     public void registerScenes(PonderSceneRegistrationHelper<Holder<?>> helper) {
         CauldronScenes.registerScenes(helper);
+        GoopynessScenes.registerScenes(helper);
 
         if (ModCompat.CREATE_LOADED) {
             CreateCompatScenes.registerScenes(helper);

@@ -34,7 +34,7 @@ public class SpottedGlanceBlock extends Block {
 
         dropLeadNuggets(world, pos);
 
-        return GlanceBlocks.GLANCE.get().defaultBlockState();
+        return GlanceBlocks.GLANCE.block().value().defaultBlockState();
     }
 
     private void dropLeadNuggets(LevelAccessor level, BlockPos pos) {

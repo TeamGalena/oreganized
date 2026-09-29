@@ -20,17 +20,17 @@ public class DevicesRecipes {
         ODatagen.addRecipeProvider(this::generate);
     }
 
-    private void generate(RecipeOutput provider) {
-        compact(Items.NETHERITE_INGOT, DeviceItems.NETHERITE_NUGGET.get()).save(provider, OConstants.modLoc("netherite_ingot_from_nuggets"));
-        unCompact(DeviceItems.NETHERITE_NUGGET.get(), Items.NETHERITE_INGOT).save(provider);
+    private void generate(RecipeOutput output) {
+        compact(() -> Items.NETHERITE_INGOT, DeviceItems.NETHERITE_NUGGET).save(output, OConstants.modLoc("netherite_ingot_from_nuggets"));
+        unCompact(DeviceItems.NETHERITE_NUGGET, () -> Items.NETHERITE_INGOT).save(output);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DeviceItems.UNKNOWN_DEVICE.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DeviceItems.UNKNOWN_DEVICE)
                 .pattern(" O ")
                 .pattern("OXO")
                 .pattern(" O ")
                 .define('X', Items.REDSTONE)
                 .define('O', Items.NETHERITE_SCRAP)
                 .unlockedBy("has_netherite_scrap", has(Items.NETHERITE_SCRAP))
-                .save(provider);
+                .save(output);
     }
 }

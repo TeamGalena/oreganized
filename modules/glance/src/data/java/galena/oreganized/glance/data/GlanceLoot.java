@@ -1,8 +1,7 @@
 package galena.oreganized.glance.data;
 
 
-import static galena.oreganized.data.extensions.OBlockLootExtensions.dropSelf;
-import static galena.oreganized.data.extensions.OBlockLootExtensions.dropSlab;
+import static galena.oreganized.data.extensions.OBlockLootExtensions.*;
 
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import galena.oreganized.OConstants;
@@ -29,18 +28,10 @@ public class GlanceLoot {
     }
 
     private void blocks(RegistrateBlockLootTables provider) {
-        dropSelf(provider, GlanceBlocks.GLANCE);
-        dropSelf(provider, GlanceBlocks.POLISHED_GLANCE);
-        dropSelf(provider, GlanceBlocks.GLANCE_BRICKS);
+        dropStoneSet(provider, GlanceBlocks.GLANCE);
+        dropStoneSet(provider, GlanceBlocks.POLISHED_GLANCE);
+        dropStoneSet(provider, GlanceBlocks.GLANCE_BRICKS);
         dropSelf(provider, GlanceBlocks.CHISELED_GLANCE);
-        dropSlab(provider, GlanceBlocks.GLANCE_SLAB);
-        dropSlab(provider, GlanceBlocks.POLISHED_GLANCE_SLAB);
-        dropSlab(provider, GlanceBlocks.GLANCE_BRICK_SLAB);
-        dropSelf(provider, GlanceBlocks.GLANCE_STAIRS);
-        dropSelf(provider, GlanceBlocks.POLISHED_GLANCE_STAIRS);
-        dropSelf(provider, GlanceBlocks.GLANCE_BRICK_STAIRS);
-        dropSelf(provider, GlanceBlocks.GLANCE_WALL);
-        dropSelf(provider, GlanceBlocks.GLANCE_BRICK_WALL);
         dropSelf(provider, GlanceBlocks.SPOTTED_GLANCE);
         dropSelf(provider, GlanceBlocks.WAXED_SPOTTED_GLANCE);
     }

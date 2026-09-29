@@ -1,7 +1,15 @@
 package galena.oreganized;
 
+import com.farcr.nomansland.common.registry.NMLParticleTypes;
+import java.util.function.Supplier;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 
+@EventBusSubscriber
 public class ModCompat {
 
     public static final String SHIELD_EXPANSION = "shieldexp";
@@ -17,9 +25,27 @@ public class ModCompat {
     public static final boolean FARMERS_DELIGHT_LOADED = isLoaded(FARMERS_DELIGHT);
     public static final boolean NETHERS_DELIGHT_LOADED = isLoaded(NETHERS_DELIGHT);
     public static final boolean SHIELD_EXPANSION_LOADED = isLoaded(SHIELD_EXPANSION);
+    public static final boolean NO_MANS_LAND_LOADED = isLoaded(NO_MANS_LAND);
 
     public static boolean isLoaded(String id) {
         return ModList.get().isLoaded(id);
+    }
+
+    private static Supplier<? extends ParticleOptions> spawnerFlameParticle = () -> ParticleTypes.FLAME;
+
+    public static ParticleOptions createSpawnerFlame() {
+        return spawnerFlameParticle.get();
+    }
+
+    @SubscribeEvent
+    private static void setup(FMLCommonSetupEvent event) {
+        if (NO_MANS_LAND_LOADED) {
+            noMansLandCompat();
+        }
+    }
+
+    private static void noMansLandCompat() {
+        spawnerFlameParticle = NMLParticleTypes.MALEVOLENT_FLAME;
     }
 
 }

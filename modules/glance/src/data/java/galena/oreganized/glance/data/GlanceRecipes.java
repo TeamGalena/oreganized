@@ -4,10 +4,7 @@ package galena.oreganized.glance.data;
 import static com.tterrag.registrate.providers.RegistrateRecipeProvider.has;
 import static galena.oreganized.data.extensions.ORecipeExtensions.*;
 import static galena.oreganized.data.extensions.ORecipeExtensions.makeChiseledStonecutting;
-import static galena.oreganized.data.extensions.ORecipeExtensions.makeStairsStonecutting;
-import static galena.oreganized.data.extensions.ORecipeExtensions.makeWallStonecutting;
 import static galena.oreganized.data.extensions.ORecipeExtensions.makeWaxed;
-import static galena.oreganized.data.extensions.ORecipeExtensions.stonecutting;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 
 import com.simibubi.create.AllItems;
@@ -33,81 +30,68 @@ public class GlanceRecipes {
         ODatagen.addRecipeProvider(this::generate);
     }
 
-    private void generate(RecipeOutput provider) {
-        quadTransform(GlanceBlocks.POLISHED_GLANCE, GlanceBlocks.GLANCE).save(provider);
-        quadTransform(GlanceBlocks.GLANCE_BRICKS, GlanceBlocks.POLISHED_GLANCE).save(provider);
+    private void generate(RecipeOutput output) {
+        makeQuadTransformStonecutting(output, GlanceBlocks.POLISHED_GLANCE.block(), GlanceBlocks.GLANCE.block());
+        makeQuadTransformStonecutting(output, GlanceBlocks.GLANCE_BRICKS.block(), GlanceBlocks.POLISHED_GLANCE.block());
 
-        makeSlabStonecutting(GlanceBlocks.GLANCE_SLAB, GlanceBlocks.GLANCE, provider);
-        makeSlabStonecutting(GlanceBlocks.GLANCE_BRICK_SLAB, GlanceBlocks.GLANCE_BRICKS, provider);
-        makeSlabStonecutting(GlanceBlocks.POLISHED_GLANCE_SLAB, GlanceBlocks.POLISHED_GLANCE, provider);
+        makeStoneSetRecipes(output, GlanceBlocks.GLANCE);
+        makeStoneSetRecipes(output, GlanceBlocks.GLANCE_BRICKS);
+        makeStoneSetRecipes(output, GlanceBlocks.POLISHED_GLANCE);
 
-        makeStairsStonecutting(GlanceBlocks.GLANCE_STAIRS, GlanceBlocks.GLANCE, provider);
-        makeStairsStonecutting(GlanceBlocks.GLANCE_BRICK_STAIRS, GlanceBlocks.GLANCE_BRICKS, provider);
-        makeStairsStonecutting(GlanceBlocks.POLISHED_GLANCE_STAIRS, GlanceBlocks.POLISHED_GLANCE, provider);
+        makeStoneCutting(output, GlanceBlocks.GLANCE_BRICKS.block(), GlanceBlocks.GLANCE.block());
+        makeStoneSetRecipes(output, GlanceBlocks.GLANCE_BRICKS, GlanceBlocks.POLISHED_GLANCE.block());
+        makeStoneSetRecipes(output, GlanceBlocks.POLISHED_GLANCE, GlanceBlocks.GLANCE.block());
+        makeStoneSetRecipes(output, GlanceBlocks.GLANCE_BRICKS, GlanceBlocks.GLANCE.block());
 
-        makeWallStonecutting(GlanceBlocks.GLANCE_WALL, GlanceBlocks.GLANCE, provider);
-        makeWallStonecutting(GlanceBlocks.GLANCE_BRICK_WALL, GlanceBlocks.GLANCE_BRICKS, provider);
+        makeChiseledStonecutting(output, GlanceBlocks.CHISELED_GLANCE, GlanceBlocks.GLANCE.block(), GlanceBlocks.GLANCE.slab());
 
-        makeChiseledStonecutting(GlanceBlocks.CHISELED_GLANCE, GlanceBlocks.GLANCE, GlanceBlocks.GLANCE_SLAB, provider);
+        makeWaxed(output, GlanceBlocks.WAXED_SPOTTED_GLANCE, GlanceBlocks.SPOTTED_GLANCE);
 
-        stonecutting(GlanceBlocks.GLANCE, GlanceBlocks.POLISHED_GLANCE.get()).save(provider, OConstants.modLoc("stonecutting/polished_glance"));
-        stonecutting(GlanceBlocks.GLANCE, GlanceBlocks.GLANCE_BRICKS.get()).save(provider, OConstants.modLoc("stonecutting/glance_bricks_from_glance"));
-        stonecutting(GlanceBlocks.GLANCE, GlanceBlocks.GLANCE_BRICK_STAIRS.get()).save(provider, OConstants.modLoc("stonecutting/glance_brick_stairs_from_glance"));
-        stonecutting(GlanceBlocks.GLANCE, GlanceBlocks.GLANCE_BRICK_SLAB.get(), 2).save(provider, OConstants.modLoc("stonecutting/glance_brick_slab_from_glance"));
-        stonecutting(GlanceBlocks.GLANCE, GlanceBlocks.GLANCE_BRICK_WALL.get()).save(provider, OConstants.modLoc("stonecutting/glance_brick_wall_from_glance"));
-
-        stonecutting(GlanceBlocks.POLISHED_GLANCE, GlanceBlocks.GLANCE_BRICKS.get()).save(provider, OConstants.modLoc("stonecutting/glance_bricks_from_polished"));
-        stonecutting(GlanceBlocks.POLISHED_GLANCE, GlanceBlocks.GLANCE_BRICK_STAIRS.get()).save(provider, OConstants.modLoc("stonecutting/glance_brick_stairs_from_polished"));
-        stonecutting(GlanceBlocks.POLISHED_GLANCE, GlanceBlocks.GLANCE_BRICK_SLAB.get(), 2).save(provider, OConstants.modLoc("stonecutting/glance_brick_slab_from_polished"));
-        stonecutting(GlanceBlocks.POLISHED_GLANCE, GlanceBlocks.GLANCE_BRICK_WALL.get()).save(provider, OConstants.modLoc("stonecutting/glance_brick_wall_from_polished"));
-
-        makeWaxed(provider, GlanceBlocks.WAXED_SPOTTED_GLANCE, GlanceBlocks.SPOTTED_GLANCE);
-
-        shaped(RecipeCategory.BUILDING_BLOCKS, GlanceBlocks.SPOTTED_GLANCE.get())
+        shaped(RecipeCategory.BUILDING_BLOCKS, GlanceBlocks.SPOTTED_GLANCE)
                 .pattern(" X ")
                 .pattern("XOX")
                 .pattern(" X ")
                 .define('X', CoreTags.Items.NUGGETS_LEAD)
-                .define('O', GlanceBlocks.GLANCE.get())
-                .unlockedBy("has_glance", has(GlanceBlocks.GLANCE.get()))
-                .save(provider);
+                .define('O', GlanceBlocks.GLANCE.block())
+                .unlockedBy("has_glance", has(GlanceBlocks.GLANCE.block()))
+                .save(output);
 
-        shaped(RecipeCategory.BUILDING_BLOCKS, GlanceBlocks.GLANCE.get(), 2)
+        shaped(RecipeCategory.BUILDING_BLOCKS, GlanceBlocks.GLANCE.block(), 2)
                 .pattern("AB")
                 .pattern("BA")
                 .define('A', CoreTags.Items.NUGGETS_LEAD)
                 .define('B', Items.DIORITE)
                 .unlockedBy("has_lead_ingot", has(CoreTags.Items.INGOTS_LEAD))
-                .save(provider);
+                .save(output);
 
         // TODO modular will need to be conditional in the future
         processing(CrushingRecipe::new, "glance")
                 .output(0.8F, AllItems.CRUSHED_LEAD, 1)
-                .output(0.8F, PlumbumItems.LEAD_NUGGET.get())
-                .require(GlanceBlocks.GLANCE.get())
+                .output(0.8F, PlumbumItems.LEAD_NUGGET)
+                .require(GlanceBlocks.GLANCE.block())
                 .duration(250)
-                .build(provider);
+                .build(output);
 
         // TODO modular will need to be conditional in the future
         processing(CrushingRecipe::new, "glance_recycling")
                 .output(0.8F, AllItems.CRUSHED_LEAD, 1)
-                .output(0.8F, PlumbumItems.LEAD_NUGGET.get())
+                .output(0.8F, PlumbumItems.LEAD_NUGGET)
                 .require(GlanceTags.Items.STONE_TYPES_GLANCE)
                 .duration(250)
-                .build(provider);
+                .build(output);
 
         // TODO modular will need to be conditional in the future
         processing(FillingRecipe::new, "spotted_glance")
-                .output(GlanceBlocks.SPOTTED_GLANCE.get())
-                .require(GlanceBlocks.GLANCE.get())
+                .output(GlanceBlocks.SPOTTED_GLANCE)
+                .require(GlanceBlocks.GLANCE.block())
                 .require(PlumbumTags.Fluids.MOLTEN_LEAD, 250)
-                .build(provider);
+                .build(output);
 
         // TODO modular will need to be conditional in the future
         processing(MixingRecipe::new, "glance")
-                .output(GlanceBlocks.GLANCE.get())
+                .output(GlanceBlocks.GLANCE.block())
                 .require(Items.DIORITE)
                 .require(CoreTags.Items.NUGGETS_LEAD)
-                .build(provider);
+                .build(output);
     }
 }

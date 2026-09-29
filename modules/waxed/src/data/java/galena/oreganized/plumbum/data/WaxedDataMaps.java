@@ -1,7 +1,8 @@
 package galena.oreganized.plumbum.data;
 
+import static galena.oreganized.data.extensions.OColorExtensions.*;
+
 import galena.oreganized.OConstants;
-import galena.oreganized.data.ColorCompat;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.waxed.index.WaxedBlocks;
 import java.util.Optional;
@@ -23,8 +24,8 @@ public class WaxedDataMaps {
     private void generate(DataMapProvider provider) {
         var waxables = provider.builder(NeoForgeDataMaps.WAXABLES);
 
-        WaxedBlocks.WAXED_CONCRETE_POWDER.forEach((color, waxed) -> {
-            var unwaxed = ColorCompat.createBlockKey("concrete_powder", color);
+        WaxedBlocks.WAXED_CONCRETE_POWDER.map().forEach((color, waxed) -> {
+            var unwaxed = createBlockKey(color, "concrete_powder");
             var conditions = Optional.of(unwaxed.location().getNamespace())
                     .filter(it -> !it.equals(ResourceLocation.DEFAULT_NAMESPACE))
                     .map(ModLoadedCondition::new)

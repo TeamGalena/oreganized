@@ -8,5 +8,5 @@ dependencies {
     modCompileOnly(pack.modrinth.supplementaries)
     modCompileOnly(libs.create) { isTransitive = false }
 
-    dataImplementation(project(":core", configuration = "dataElements"))
+    dataApi(project(":core", configuration = "dataElements"))
 }

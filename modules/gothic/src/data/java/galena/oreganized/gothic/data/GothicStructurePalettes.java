@@ -1,0 +1,63 @@
+package galena.oreganized.gothic.data;
+
+import static galena.oreganized.data.extensions.OColorExtensions.*;
+
+import com.teamabnormals.blueprint.common.world.modification.structure.SimpleStructureRepaletter;
+import com.teamabnormals.blueprint.common.world.modification.structure.StructureRepaletter;
+import com.teamabnormals.blueprint.common.world.modification.structure.StructureRepaletterEntry;
+import com.teamabnormals.blueprint.core.api.conditions.ConfigValueCondition;
+import com.teamabnormals.blueprint.core.registry.BlueprintDataPackRegistries;
+import galena.oreganized.OConstants;
+import galena.oreganized.data.ODatagen;
+import galena.oreganized.gothic.config.GothicConfigs;
+import galena.oreganized.gothic.index.GothicBlocks;
+import galena.oreganized.index.OConditionTypes;
+import galena.oreganized.index.sets.DyedBlockSet;
+import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Predicate;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.StructureTags;
+import net.minecraft.world.item.DyeColor;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.conditions.ICondition;
+
+@Mod(OConstants.MOD_ID)
+public class GothicStructurePalettes {
+
+    public GothicStructurePalettes() {
+        ODatagen.addDataRegistryEntries(BlueprintDataPackRegistries.STRUCTURE_REPALETTERS, this::bootstrap, this::conditions);
+    }
+
+    private static final ResourceKey<StructureRepaletterEntry> CLERIC_WINDOWS = ResourceKey.create(BlueprintDataPackRegistries.STRUCTURE_REPALETTERS, OConstants.modLoc("replace_cleric_windows"));
+
+    private static StructureRepaletter[] replaceColored(DyedBlockSet<?> to, String from, Predicate<DyeColor> filter) {
+        return to.entries()
+                .filter(it -> filter.test(it.getKey()))
+                .map(entry ->
+                        new SimpleStructureRepaletter(
+                                getColoredBlock(entry.getKey(), from),
+                                entry.getValue().value()
+                        )
+                ).toArray(StructureRepaletter[]::new);
+    }
+
+    private void conditions(BiConsumer<ResourceKey<?>, ICondition> consumer) {
+        consumer.accept(CLERIC_WINDOWS, new ConfigValueCondition(OConditionTypes.CONFIG.get(), GothicConfigs.COMMON.replaceClericWindows, "cleric_windows", Map.of(), false));
+    }
+
+    private void bootstrap(BootstrapContext<StructureRepaletterEntry> context) {
+        var structures = context.lookup(Registries.STRUCTURE);
+        var villages = structures.getOrThrow(StructureTags.VILLAGE);
+
+        context.register(
+                CLERIC_WINDOWS,
+                new StructureRepaletterEntry.Builder()
+                        .repaletters(replaceColored(GothicBlocks.CRYSTAL_GLASS, "stained_glass", it -> !isModded(it)))
+                        .repaletters(replaceColored(GothicBlocks.CRYSTAL_GLASS_PANES, "stained_glass_pane", it -> !isModded(it)))
+                        .select(villages)
+        );
+    }
+}

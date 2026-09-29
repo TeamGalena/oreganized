@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/iron_bars_post",
+  "ambientocclusion": false,
+  "textures": {
+    "particle": "#texture",
+    "bars": "#texture"
+  }
+}
