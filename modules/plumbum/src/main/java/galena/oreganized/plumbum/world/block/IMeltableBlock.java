@@ -1,7 +1,9 @@
 package galena.oreganized.plumbum.world.block;
 
 import galena.oreganized.plumbum.index.PlumbumTags;
+
 import java.util.List;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -52,7 +54,7 @@ public interface IMeltableBlock {
     }
 
     default int getInducedGoopyness(BlockGetter world, BlockState state, BlockPos pos, BlockState selfState, BlockPos selfPos) {
-        if (state.is(PlumbumTags.Blocks.MELTS_LEAD)) return 2;
+        if (HeatSources.meltsLead(state)) return 2;
         if (state.getBlock() instanceof IMeltableBlock meltable && meltable.getGoopyness(state) == 2) return 1;
         if (state.getLightEmission(world, pos) >= 15) return 1;
         return 0;
