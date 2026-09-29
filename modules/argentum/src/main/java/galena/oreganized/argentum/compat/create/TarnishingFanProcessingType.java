@@ -1,13 +1,16 @@
 package galena.oreganized.argentum.compat.create;
 
 
+import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
 import com.simibubi.create.content.kinetics.fan.processing.FanProcessingType;
 import galena.oreganized.argentum.compat.ItemTarnishing;
 import galena.oreganized.argentum.index.ArgentumParticles;
 import galena.oreganized.argentum.index.ArgentumTags;
 import galena.oreganized.argentum.world.Tarnishable;
+
 import java.util.List;
+
 import net.createmod.catnip.math.VecHelper;
 import net.createmod.catnip.theme.Color;
 import net.minecraft.core.BlockPos;
@@ -60,7 +63,7 @@ public class TarnishingFanProcessingType implements FanProcessingType {
                 .map(Tarnishable::nextStage)
                 .map(Block::asItem)
                 .map(Item::getDefaultInstance)
-                .map(List::of)
+                .map(Lists::newArrayList)
                 .orElse(null);
     }
 
