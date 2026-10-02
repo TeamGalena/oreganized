@@ -1,0 +1,175 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "predicates": {
+              "minecraft:enchantments": [
+                {
+                  "enchantments": "minecraft:silk_touch",
+                  "levels": {
+                    "min": 1
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "oreganized:antiques_pile"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:inverted",
+          "term": {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "predicates": {
+                "minecraft:enchantments": [
+                  {
+                    "enchantments": "minecraft:silk_touch",
+                    "levels": {
+                      "min": 1
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:brewing_stand"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "oreganized:silver_bars"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "oreganized:silver_nugget"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "oreganized:scribe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "oreganized:silver_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "oreganized:silver_shovel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "oreganized:silver_pickaxe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "oreganized:silver_axe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "oreganized:silver_hoe"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "oreganized:silver_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "oreganized:silver_leggings"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "oreganized:silver_chestplate"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "oreganized:silver_helmet"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:shears"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "oreganized:flint_and_pewter"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bucket"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:spyglass"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:flint_and_steel"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:lantern"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "oreganized:speedometer"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:gold_nugget"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "oreganized:silver_mirror"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:clock"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "oreganized:silver_door"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:compass"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:tripwire_hook"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "oreganized:electrum_nugget"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "oreganized:lead_bolt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "oreganized:thermometer"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "oreganized:blocks/antiques_pile"
+}

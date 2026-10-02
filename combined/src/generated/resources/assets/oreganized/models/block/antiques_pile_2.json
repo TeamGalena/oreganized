@@ -1,0 +1,8 @@
+{
+  "parent": "oreganized:block/template/antiques_pile_2",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "oreganized:block/antiques_pile_particle",
+    "texture": "oreganized:block/antiques_pile"
+  }
+}

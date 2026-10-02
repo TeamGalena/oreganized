@@ -1,0 +1,81 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "oreganized:block/antiques_pile_1",
+        "y": 180
+      },
+      {
+        "model": "oreganized:block/antiques_pile_1"
+      },
+      {
+        "model": "oreganized:block/antiques_pile_1",
+        "y": 90
+      },
+      {
+        "model": "oreganized:block/antiques_pile_1",
+        "y": 270
+      },
+      {
+        "model": "oreganized:block/antiques_pile_2",
+        "y": 180
+      },
+      {
+        "model": "oreganized:block/antiques_pile_2"
+      },
+      {
+        "model": "oreganized:block/antiques_pile_2",
+        "y": 90
+      },
+      {
+        "model": "oreganized:block/antiques_pile_2",
+        "y": 270
+      },
+      {
+        "model": "oreganized:block/antiques_pile_3",
+        "y": 180
+      },
+      {
+        "model": "oreganized:block/antiques_pile_3"
+      },
+      {
+        "model": "oreganized:block/antiques_pile_3",
+        "y": 90
+      },
+      {
+        "model": "oreganized:block/antiques_pile_3",
+        "y": 270
+      },
+      {
+        "model": "oreganized:block/antiques_pile_4",
+        "y": 180
+      },
+      {
+        "model": "oreganized:block/antiques_pile_4"
+      },
+      {
+        "model": "oreganized:block/antiques_pile_4",
+        "y": 90
+      },
+      {
+        "model": "oreganized:block/antiques_pile_4",
+        "y": 270
+      },
+      {
+        "model": "oreganized:block/antiques_pile_5",
+        "y": 180
+      },
+      {
+        "model": "oreganized:block/antiques_pile_5"
+      },
+      {
+        "model": "oreganized:block/antiques_pile_5",
+        "y": 90
+      },
+      {
+        "model": "oreganized:block/antiques_pile_5",
+        "y": 270
+      }
+    ]
+  }
+}
