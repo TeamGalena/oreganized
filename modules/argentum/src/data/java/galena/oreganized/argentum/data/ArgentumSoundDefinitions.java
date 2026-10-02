@@ -1,6 +1,7 @@
 package galena.oreganized.argentum.data;
 
-import static net.neoforged.neoforge.common.data.SoundDefinition.Sound.sound;
+import static galena.oreganized.data.extensions.OSoundExtensions.blockSoundType;
+import static galena.oreganized.data.extensions.OSoundExtensions.withVariants;
 import static net.neoforged.neoforge.common.data.SoundDefinition.definition;
 
 import com.possible_triangle.multikulti.registrate.provider.RegistrateSoundsProvider;
@@ -8,7 +9,6 @@ import galena.oreganized.OConstants;
 import galena.oreganized.argentum.index.ArgentumSounds;
 import galena.oreganized.data.ODatagen;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.common.data.SoundDefinition.SoundType;
 
 @Mod(OConstants.MOD_ID)
 public class ArgentumSoundDefinitions {
@@ -18,28 +18,22 @@ public class ArgentumSoundDefinitions {
     }
 
     private void generate(RegistrateSoundsProvider provider) {
-        provider.add(ArgentumSounds.TARNISH.value(), definition().with(
-                sound(OConstants.modLoc("block/tarnish_1"), SoundType.SOUND),
-                sound(OConstants.modLoc("block/tarnish_2"), SoundType.SOUND),
-                sound(OConstants.modLoc("block/tarnish_3"), SoundType.SOUND),
-                sound(OConstants.modLoc("block/tarnish_4"), SoundType.SOUND),
-                sound(OConstants.modLoc("block/tarnish_5"), SoundType.SOUND)
-        ).subtitle("subtitles.block.tarnish"));
+        provider.add(ArgentumSounds.TARNISH.value(), withVariants(
+                definition().subtitle("subtitles.block.tarnish"),
+                OConstants.modLoc("block/tarnish"), 5)
+        );
 
-        provider.add(ArgentumSounds.POLISH.value(), definition().with(
-                sound(OConstants.modLoc("block/polish_1"), SoundType.SOUND),
-                sound(OConstants.modLoc("block/polish_2"), SoundType.SOUND),
-                sound(OConstants.modLoc("block/polish_3"), SoundType.SOUND),
-                sound(OConstants.modLoc("block/polish_4"), SoundType.SOUND)
-        ).subtitle("subtitles.block.polish"));
+        provider.add(ArgentumSounds.POLISH.value(), withVariants(
+                definition().subtitle("subtitles.block.polish"),
+                OConstants.modLoc("block/polish"), 4)
+        );
 
-        provider.add(ArgentumSounds.POLISH_FINISH.value(), definition().with(
-                sound(OConstants.modLoc("block/polish_finish_1"), SoundType.SOUND),
-                sound(OConstants.modLoc("block/polish_finish_2"), SoundType.SOUND),
-                sound(OConstants.modLoc("block/polish_finish_3"), SoundType.SOUND),
-                sound(OConstants.modLoc("block/polish_finish_4"), SoundType.SOUND),
-                sound(OConstants.modLoc("block/polish_finish_5"), SoundType.SOUND)
-        ));
+        provider.add(ArgentumSounds.POLISH_FINISH.value(), withVariants(
+                definition(),
+                OConstants.modLoc("block/polish_finish"), 5)
+        );
+
+        blockSoundType(provider, ArgentumSounds.SILVER, OConstants.modLoc("silver"), 4,4);
     }
 
 }

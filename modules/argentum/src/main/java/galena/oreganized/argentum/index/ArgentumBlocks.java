@@ -32,7 +32,7 @@ public class ArgentumBlocks {
         return BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)
                 .strength(5.0F, 6.0F)
                 .requiresCorrectToolForDrops()
-                .sound(SoundType.METAL);
+                .sound(ArgentumSounds.SILVER);
     }
 
     public static final TarnishedBlocks<Block> SILVER_BLOCKS = registerTarnished("silver_block", $ -> new Block(silverProperties()));

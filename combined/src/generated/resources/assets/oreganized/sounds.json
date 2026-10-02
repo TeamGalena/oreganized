@@ -25,6 +25,51 @@
       "oreganized:block/polish_finish_5"
     ]
   },
+  "block.silver.break": {
+    "sounds": [
+      "oreganized:block/silver_dig_1",
+      "oreganized:block/silver_dig_2",
+      "oreganized:block/silver_dig_3",
+      "oreganized:block/silver_dig_4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.silver.fall": {
+    "sounds": [
+      "oreganized:block/silver_step_1",
+      "oreganized:block/silver_step_2",
+      "oreganized:block/silver_step_3",
+      "oreganized:block/silver_step_4"
+    ],
+    "subtitle": "subtitles.block.generic.fall"
+  },
+  "block.silver.hit": {
+    "sounds": [
+      "oreganized:block/silver_dig_1",
+      "oreganized:block/silver_dig_2",
+      "oreganized:block/silver_dig_3",
+      "oreganized:block/silver_dig_4"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.silver.place": {
+    "sounds": [
+      "oreganized:block/silver_step_1",
+      "oreganized:block/silver_step_2",
+      "oreganized:block/silver_step_3",
+      "oreganized:block/silver_step_4"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.silver.step": {
+    "sounds": [
+      "oreganized:block/silver_step_1",
+      "oreganized:block/silver_step_2",
+      "oreganized:block/silver_step_3",
+      "oreganized:block/silver_step_4"
+    ],
+    "subtitle": "subtitles.block.generic.step"
+  },
   "block.tarnish": {
     "sounds": [
       "oreganized:block/tarnish_1",
