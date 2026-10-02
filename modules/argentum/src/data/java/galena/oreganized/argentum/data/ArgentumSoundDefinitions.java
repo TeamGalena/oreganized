@@ -1,7 +1,7 @@
 package galena.oreganized.argentum.data;
 
-import static galena.oreganized.data.extensions.OSoundExtensions.blockSoundType;
-import static galena.oreganized.data.extensions.OSoundExtensions.withVariants;
+import static galena.oreganized.data.extensions.OSoundExtensions.*;
+import static galena.oreganized.data.extensions.OSoundExtensions.blockSound;
 import static net.neoforged.neoforge.common.data.SoundDefinition.definition;
 
 import com.possible_triangle.multikulti.registrate.provider.RegistrateSoundsProvider;
@@ -33,7 +33,11 @@ public class ArgentumSoundDefinitions {
                 OConstants.modLoc("block/polish_finish"), 5)
         );
 
-        blockSoundType(provider, ArgentumSounds.SILVER, OConstants.modLoc("silver"), 4,4);
+        blockSound(provider, ArgentumSounds.SILVER.getBreakSound(), OConstants.modLoc("silver_dig"), 4);
+        blockSound(provider, ArgentumSounds.SILVER.getHitSound(), OConstants.modLoc("silver_dig"), 4);
+        blockSound(provider, ArgentumSounds.SILVER.getStepSound(), OConstants.modLoc("silver_step"), 4);
+        blockSound(provider, ArgentumSounds.SILVER.getFallSound(), OConstants.modLoc("silver_step"), 4);
+        blockSound(provider, ArgentumSounds.SILVER.getPlaceSound(), OConstants.modLoc("silver_dig"), 4);
     }
 
 }

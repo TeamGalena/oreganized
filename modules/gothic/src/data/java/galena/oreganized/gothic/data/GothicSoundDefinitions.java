@@ -1,5 +1,6 @@
 package galena.oreganized.gothic.data;
 
+import static galena.oreganized.data.extensions.OSoundExtensions.blockSound;
 import static net.neoforged.neoforge.common.data.SoundDefinition.Sound.sound;
 import static net.neoforged.neoforge.common.data.SoundDefinition.definition;
 
@@ -23,6 +24,12 @@ public class GothicSoundDefinitions {
                 sound(OConstants.modLoc("block/gargoyle_growl_2"), SoundType.SOUND),
                 sound(OConstants.modLoc("block/gargoyle_growl_3"), SoundType.SOUND)
         ).subtitle("subtitles.block.gargoyle.growl"));
+
+        blockSound(provider, GothicSounds.GRIMSTONE.getBreakSound(), OConstants.modLoc("grimstone_dig"), 4);
+        blockSound(provider, GothicSounds.GRIMSTONE.getHitSound(), OConstants.modLoc("grimstone_dig"), 4);
+        blockSound(provider, GothicSounds.GRIMSTONE.getStepSound(), OConstants.modLoc("grimstone_step"), 4);
+        blockSound(provider, GothicSounds.GRIMSTONE.getFallSound(), OConstants.modLoc("grimstone_step"), 4);
+        blockSound(provider, GothicSounds.GRIMSTONE.getPlaceSound(), OConstants.modLoc("grimstone_place"), 4);
     }
 
 }

@@ -48,6 +48,7 @@ public class ORegistryHelper extends RegistryHelper {
         helper.putSimpleSubHelper(Registries.RECIPE_SERIALIZER);
         helper.putSubHelper(Registries.STRUCTURE_TYPE, StructureTypeRegistryHelper::new);
         helper.putSubHelper(Registries.POTION, PotionRegistryHelper::new);
+        helper.putSubHelper(Registries.SOUND_EVENT, SoundRegistryHelper::new);
         return helper;
     }
 

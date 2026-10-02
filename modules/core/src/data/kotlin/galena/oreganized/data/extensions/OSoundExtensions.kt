@@ -4,6 +4,7 @@ package galena.oreganized.data.extensions
 
 import com.possible_triangle.multikulti.registrate.provider.RegistrateSoundsProvider
 import net.minecraft.resources.ResourceLocation
+import net.minecraft.sounds.SoundEvent
 import net.minecraft.world.level.block.SoundType
 import net.neoforged.neoforge.common.data.SoundDefinition
 import net.neoforged.neoforge.common.data.SoundDefinition.Sound.sound
@@ -20,31 +21,19 @@ fun SoundDefinition.withVariants(
     with(*sounds.toTypedArray())
 }
 
-fun RegistrateSoundsProvider.blockSoundType(
-    type: SoundType,
+fun RegistrateSoundsProvider.blockSound(
+    sound: SoundEvent,
     name: ResourceLocation,
-    digVariants: Int,
-    stepVariants: Int,
+    variants: Int,
 ) {
-    fun dig(type: String) =
+    val type = sound.location.path.substringAfterLast('.')
+    add(
+        sound,
         definition()
             .subtitle("subtitles.block.generic.$type")
             .withVariants(
-                name.withPrefix("block/").withSuffix("_dig"),
-                digVariants,
-            )
-
-    fun step(type: String) =
-        definition()
-            .subtitle("subtitles.block.generic.$type")
-            .withVariants(
-                name.withPrefix("block/").withSuffix("_step"),
-                stepVariants,
-            )
-
-    add(type.breakSound, dig("break"))
-    add(type.fallSound, step("fall"))
-    add(type.hitSound, step("hit"))
-    add(type.placeSound, dig("place"))
-    add(type.stepSound, step("step"))
+                name.withPrefix("block/"),
+                variants,
+            ),
+    )
 }
