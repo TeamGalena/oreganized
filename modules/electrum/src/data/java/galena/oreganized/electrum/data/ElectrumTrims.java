@@ -35,7 +35,7 @@ public class ElectrumTrims {
 
     private void spriteSources(RegistrateSpriteSourceProvider provider) {
         provider.addAtlasSource(BlueprintTrims.ARMOR_TRIMS_ATLAS, BlueprintTrims.materialPatternPermutations(ELECTRUM));
-        provider.addAtlasSource(BLOCKS_ATLAS, BlueprintTrims.materialPatternPermutations(ELECTRUM));
+        provider.addAtlasSource(BLOCKS_ATLAS, BlueprintTrims.materialPermutationsForItemLayers(ELECTRUM));
     }
 
     private void tags(RegistrateTagsProvider.Impl<TrimMaterial> provider) {

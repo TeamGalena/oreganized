@@ -19,12 +19,11 @@
       "permutations": {
         "oreganized_electrum": "oreganized:trims/color_palettes/electrum"
       },
-      "sources": [
-        {
-          "type": "minecraft:directory",
-          "prefix": "trims/models/armor/",
-          "source": "trims/models/armor"
-        }
+      "textures": [
+        "minecraft:trims/items/helmet_trim",
+        "minecraft:trims/items/chestplate_trim",
+        "minecraft:trims/items/leggings_trim",
+        "minecraft:trims/items/boots_trim"
       ]
     },
     {
@@ -33,12 +32,11 @@
       "permutations": {
         "oreganized_lead": "oreganized:trims/color_palettes/lead"
       },
-      "sources": [
-        {
-          "type": "minecraft:directory",
-          "prefix": "trims/models/armor/",
-          "source": "trims/models/armor"
-        }
+      "textures": [
+        "minecraft:trims/items/helmet_trim",
+        "minecraft:trims/items/chestplate_trim",
+        "minecraft:trims/items/leggings_trim",
+        "minecraft:trims/items/boots_trim"
       ]
     }
   ]

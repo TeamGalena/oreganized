@@ -35,7 +35,7 @@ public class PlumbumTrims {
 
     private void spriteSources(RegistrateSpriteSourceProvider provider) {
         provider.addAtlasSource(BlueprintTrims.ARMOR_TRIMS_ATLAS, BlueprintTrims.materialPatternPermutations(LEAD));
-        provider.addAtlasSource(BLOCKS_ATLAS, BlueprintTrims.materialPatternPermutations(LEAD));
+        provider.addAtlasSource(BLOCKS_ATLAS, BlueprintTrims.materialPermutationsForItemLayers(LEAD));
     }
 
     private void tags(RegistrateTagsProvider.Impl<TrimMaterial> provider) {
