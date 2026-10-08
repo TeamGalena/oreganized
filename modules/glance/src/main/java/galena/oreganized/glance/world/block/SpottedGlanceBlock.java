@@ -10,7 +10,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -32,25 +31,25 @@ public class SpottedGlanceBlock extends Block {
     public BlockState updateShape(BlockState state, Direction direction, BlockState adjState, LevelAccessor world, BlockPos pos, BlockPos adjPos) {
         if (!world.isWaterAt(adjPos)) return super.updateShape(state, direction, adjState, world, pos, adjPos);
 
-        dropLeadNuggets(world, pos);
+        dropLeadNuggets(world, state, pos);
 
         return GlanceBlocks.GLANCE.block().value().defaultBlockState();
     }
 
-    private void dropLeadNuggets(LevelAccessor level, BlockPos pos) {
-        if (level instanceof ServerLevel) {
-            LootTable lootTable = level.getServer().reloadableRegistries().getLootTable(WASH_LOOT_TABLE);
+    private void dropLeadNuggets(LevelAccessor level, BlockState state, BlockPos pos) {
+        if (level instanceof ServerLevel serverLevel) {
+            var lootTable = level.getServer().reloadableRegistries().getLootTable(WASH_LOOT_TABLE);
 
-            LootParams params = new LootParams.Builder((ServerLevel) level)
-                    .withLuck(((ServerLevel) level).random.nextFloat())
+            var params = new LootParams.Builder(serverLevel)
+                    .withLuck((serverLevel).random.nextFloat())
                     .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
-                    .withParameter(LootContextParams.BLOCK_STATE, level.getBlockState(pos))
+                    .withParameter(LootContextParams.BLOCK_STATE, state)
                     .withParameter(LootContextParams.TOOL, ItemStack.EMPTY)
                     .create(LootContextParamSets.BLOCK);
 
             var drops = lootTable.getRandomItems(params);
             drops.forEach(drop -> {
-                Containers.dropItemStack((Level) level, pos.getX(), pos.getY(), pos.getZ(), drop);
+                Containers.dropItemStack(serverLevel, pos.getX(), pos.getY(), pos.getZ(), drop);
             });
         }
     }

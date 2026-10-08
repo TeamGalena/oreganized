@@ -101,6 +101,7 @@ public class TarnishBlockManager {
 
         return TarnishBlockManager.previous(state).filter(previous -> {
             level.setBlockAndUpdate(pos, previous);
+
             if (level instanceof ServerLevel serverLevel) {
                 serverLevel.playSound(null, pos, ArgentumSounds.POLISH_FINISH.get(), SoundSource.BLOCKS);
                 PacketDistributor.sendToPlayersInDimension(serverLevel, new TarnishParticlePacket(pos, false));

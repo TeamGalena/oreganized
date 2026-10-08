@@ -15,6 +15,6 @@ public class AntiquesBlocks {
     private static final BlockRegistryHelper BLOCKS = OConstants.REGISTRY_HELPER.getBlockSubHelper();
 
     public static final DeferredBlock<Block> ANTIQUES_PILE = BLOCKS.createBlock("antiques_pile",
-            () -> new AntiquesPileBlock(BlockBehaviour.Properties.of().sound(ArgentumSounds.SILVER).noCollission().noOcclusion().strength(0.2F)));
+            () -> new AntiquesPileBlock(BlockBehaviour.Properties.of().sound(ArgentumSounds.SILVER).noOcclusion().strength(0.2F)));
 
 }

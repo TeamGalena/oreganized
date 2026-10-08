@@ -3,7 +3,9 @@ package galena.oreganized.argentum.compat;
 import com.mojang.datafixers.util.Pair;
 import galena.oreganized.argentum.index.ArgentumDataMapTypes;
 import galena.oreganized.argentum.world.Tarnishable;
+
 import java.util.Optional;
+
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.BlockItem;

@@ -29,6 +29,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 
 public class CreateCompat {
 
@@ -61,7 +62,7 @@ public class CreateCompat {
                 .toList();
 
         createMysteryConversions(registration, tarnishables);
-        createHaunting(registration, tarnishables);
+        createFanTarnishing(registration, tarnishables);
     }
 
     static void registerCatalysts(IRecipeCatalystRegistration registration) {
@@ -89,7 +90,7 @@ public class CreateCompat {
         ));
     }
 
-    private static void createHaunting(IRecipeRegistration registration, Collection<Pair<Holder<Block>, Tarnishable>> tarnishables) {
+    private static void createFanTarnishing(IRecipeRegistration registration, Collection<Pair<Holder<Block>, Tarnishable>> tarnishables) {
         registration.addRecipes(FAN_TARNISHING.recipeType(), tarnishables.stream().map(it -> {
                     var id = it.getFirst().getKey().location().withPrefix("fan_tarnishing/");
                     return new RecipeHolder<StandardProcessingRecipe<?>>(

@@ -24,7 +24,7 @@ public class GlanceLoot {
 
     public GlanceLoot() {
         ODatagen.addBlockLootProvider(this::blocks);
-        ODatagen.addLootProvider(LootContextParamSets.GIFT, this::gameplay);
+        ODatagen.addLootProvider(LootContextParamSets.BLOCK, this::gameplay);
     }
 
     private void blocks(RegistrateBlockLootTables provider) {
