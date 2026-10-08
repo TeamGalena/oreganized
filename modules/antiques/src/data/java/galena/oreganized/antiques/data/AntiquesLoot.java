@@ -8,6 +8,7 @@ import static net.minecraft.world.level.storage.loot.entries.LootItem.lootTableI
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import galena.oreganized.OConstants;
 import galena.oreganized.antiques.index.AntiquesBlocks;
+import galena.oreganized.antiques.index.AntiquesItems;
 import galena.oreganized.antiques.world.block.AntiquesPileBlock;
 import galena.oreganized.argentum.data.ArgentumSets;
 import galena.oreganized.argentum.index.ArgentumBlocks;
@@ -71,6 +72,7 @@ public class AntiquesLoot {
         pool.add(lootTableItem(ElectrumItems.ELECTRUM_NUGGET));
         pool.add(lootTableItem(ArmamentItems.LEAD_BOLT));
         pool.add(lootTableItem(PlumbumItems.THERMOMETER));
+        pool.add(lootTableItem(AntiquesItems.MUSIC_DISC_RADIO));
 
         return pool;
     }

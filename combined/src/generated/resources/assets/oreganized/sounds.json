@@ -143,6 +143,14 @@
     ],
     "subtitle": "subtitles.entity.shrapnel_bomb.primed"
   },
+  "music.disc.radio": {
+    "sounds": [
+      {
+        "name": "oreganized:music/disc/radio",
+        "stream": true
+      }
+    ]
+  },
   "music.disc.structure": {
     "sounds": [
       {

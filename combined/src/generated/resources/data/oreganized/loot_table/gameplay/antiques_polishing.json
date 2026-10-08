@@ -119,6 +119,10 @@
         {
           "type": "minecraft:item",
           "name": "oreganized:thermometer"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "oreganized:music_disc_radio"
         }
       ],
       "rolls": 1.0

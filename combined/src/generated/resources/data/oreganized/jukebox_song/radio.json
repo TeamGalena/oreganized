@@ -1,0 +1,8 @@
+{
+  "comparator_output": 13,
+  "description": {
+    "translate": "item.oreganized.music_disc_radio.desc"
+  },
+  "length_in_seconds": 210.0,
+  "sound_event": "oreganized:music.disc.radio"
+}
