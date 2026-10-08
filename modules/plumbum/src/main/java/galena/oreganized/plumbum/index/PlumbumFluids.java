@@ -45,6 +45,7 @@ public class PlumbumFluids {
             .viscosity(10000)
             .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY_LAVA)
             .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL_LAVA)
+            .addDripstoneDripping(1F, PlumbumParticles.DRIPPING_DRIPSTONE_LEAD.value(), Blocks.CAULDRON, SoundEvents.POINTED_DRIPSTONE_DRIP_LAVA_INTO_CAULDRON)
     ));
 
     public static final DeferredHolder<Fluid, FlowingFluid> MOLTEN_LEAD = FLUIDS.create("molten_lead", $ -> new MoltenLeadFluid(PlumbumFluids.MOLTEN_LEAD_PROPERTIES));
