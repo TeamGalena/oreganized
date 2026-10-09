@@ -21,24 +21,24 @@ public class PlumbumParticles {
     private static final ParticleTypeRegistryHelper PARTICLES = OConstants.REGISTRY_HELPER.getParticleTypeSubHelper();
 
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> DRIPPING_LEAD = PARTICLES.createSimple("dripping_lead");
-
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> FALLING_LEAD = PARTICLES.createSimple("falling_lead");
-
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LANDING_LEAD = PARTICLES.createSimple("landing_lead");
-
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LEAD_CLOUD = PARTICLES.createSimple("lead_cloud");
-
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LEAD_BLOW = PARTICLES.createSimple("lead_blow");
+
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> DRIPPING_DRIPSTONE_LEAD = PARTICLES.createSimple("dripping_dripstone_lead");
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> FALLING_DRIPSTONE_LEAD = PARTICLES.createSimple("falling_dripstone_lead");
 
     @SubscribeEvent
     private static void registerParticleFactories(RegisterParticleProvidersEvent event) {
-        event.registerSpriteSet(DRIPPING_LEAD.get(), LeadFluidParticle.HangProvider::new);
-        event.registerSpriteSet(FALLING_LEAD.get(), LeadFluidParticle.FallProvider::new);
-        event.registerSpriteSet(LANDING_LEAD.get(), LeadFluidParticle.LandProvider::new);
+        event.registerSprite(DRIPPING_LEAD.get(), new LeadFluidParticle.HangProvider());
+        event.registerSprite(FALLING_LEAD.get(), new LeadFluidParticle.FallProvider());
+        event.registerSprite(LANDING_LEAD.get(), new LeadFluidParticle.LandProvider());
+        event.registerSprite(DRIPPING_DRIPSTONE_LEAD.get(), new LeadFluidParticle.DripstoneDrippingProvider());
+        event.registerSprite(FALLING_DRIPSTONE_LEAD.get(), new LeadFluidParticle.DripstoneFallingProvider());
         event.registerSpriteSet(LEAD_CLOUD.get(), LeadCloudParticleProvider::new);
         event.registerSpriteSet(LEAD_BLOW.get(), ExplodeParticle.Provider::new);
     }
-
 
 
 }

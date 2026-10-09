@@ -82,3 +82,5 @@ config = "${mod_id}.gothic.mixins.json"
 config = "${mod_id}.armament.mixins.json"
 [[mixins]]
 config = "${mod_id}.antiques.mixins.json"
+[[mixins]]
+config = "${mod_id}.glance.mixins.json"

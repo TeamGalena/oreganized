@@ -13,6 +13,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.PointedDripstoneBlock;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.api.distmarker.Dist;
@@ -45,6 +46,7 @@ public class PlumbumFluids {
             .viscosity(10000)
             .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY_LAVA)
             .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL_LAVA)
+            .addDripstoneDripping(PointedDripstoneBlock.LAVA_TRANSFER_PROBABILITY_PER_RANDOM_TICK, PlumbumParticles.DRIPPING_DRIPSTONE_LEAD.value(), Blocks.CAULDRON, SoundEvents.POINTED_DRIPSTONE_DRIP_LAVA_INTO_CAULDRON)
     ));
 
     public static final DeferredHolder<Fluid, FlowingFluid> MOLTEN_LEAD = FLUIDS.create("molten_lead", $ -> new MoltenLeadFluid(PlumbumFluids.MOLTEN_LEAD_PROPERTIES));

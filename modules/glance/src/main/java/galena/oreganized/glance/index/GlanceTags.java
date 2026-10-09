@@ -6,6 +6,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Fluid;
 
 public class GlanceTags {
 
@@ -25,6 +26,12 @@ public class GlanceTags {
         private static final TagHelper<Biome> HELPER = new TagHelper<>(Registries.BIOME);
 
         public static final TagKey<Biome> HAS_BOULDER = HELPER.modTag("has_structure/boulder");
+    }
+
+    public static final class Fluids {
+        private static final TagHelper<Fluid> HELPER = new TagHelper<>(Registries.FLUID);
+
+        public static final TagKey<Fluid> RENEWS_SPOTTED_GLANCE = HELPER.commonTag("renews_spotted_glance");
     }
 
 }
