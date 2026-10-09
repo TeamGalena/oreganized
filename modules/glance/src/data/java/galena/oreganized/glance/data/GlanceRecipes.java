@@ -10,6 +10,7 @@ import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.fluids.transfer.FillingRecipe;
 import com.simibubi.create.content.kinetics.crusher.CrushingRecipe;
+import com.simibubi.create.content.kinetics.fan.processing.SplashingRecipe;
 import com.simibubi.create.content.kinetics.mixer.MixingRecipe;
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
@@ -91,6 +92,12 @@ public class GlanceRecipes {
                 .output(GlanceBlocks.GLANCE.block())
                 .require(Items.DIORITE)
                 .require(CoreTags.Items.NUGGETS_LEAD)
+                .build(output);
+
+        // TODO modular will need to be conditional in the future
+        processing(SplashingRecipe::new, "spotted_glance")
+                .output(1.5F, PlumbumItems.LEAD_NUGGET)
+                .require(GlanceBlocks.SPOTTED_GLANCE)
                 .build(output);
     }
 }

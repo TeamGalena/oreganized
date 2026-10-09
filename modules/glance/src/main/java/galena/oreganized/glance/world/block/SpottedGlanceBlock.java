@@ -10,6 +10,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -28,12 +29,26 @@ public class SpottedGlanceBlock extends Block {
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState adjState, LevelAccessor world, BlockPos pos, BlockPos adjPos) {
-        if (!world.isWaterAt(adjPos)) return super.updateShape(state, direction, adjState, world, pos, adjPos);
+    public BlockState updateShape(BlockState state, Direction direction, BlockState adjState, LevelAccessor level, BlockPos pos, BlockPos adjPos) {
+        if (!level.isWaterAt(adjPos)) return super.updateShape(state, direction, adjState, level, pos, adjPos);
 
-        dropLeadNuggets(world, state, pos);
+        dropLeadNuggets(level, state, pos);
 
-        return GlanceBlocks.GLANCE.block().value().defaultBlockState();
+        return GlanceBlocks.GLANCE.block().value().withPropertiesOf(state);
+    }
+
+    @Override
+    protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
+        super.onPlace(state, level, pos, oldState, movedByPiston);
+
+        for(var direction : Direction.values()) {
+            if (level.isWaterAt(pos.relative(direction))) {
+                level.setBlockAndUpdate(pos, GlanceBlocks.GLANCE.block().value().withPropertiesOf(state));
+                dropLeadNuggets(level, state, pos);
+
+                break;
+            }
+        }
     }
 
     private void dropLeadNuggets(LevelAccessor level, BlockState state, BlockPos pos) {
