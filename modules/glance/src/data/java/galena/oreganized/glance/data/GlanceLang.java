@@ -28,6 +28,7 @@ public class GlanceLang {
 
         provider.add(GlanceTags.Items.STONE_TYPES_GLANCE, "Processed Glance");
         provider.add(GlanceTags.Blocks.STONE_TYPES_GLANCE, "Processed Glance");
+        provider.add(GlanceTags.Fluids.RENEWS_SPOTTED_GLANCE, "Renews Spotted Glance");
     }
 
 }

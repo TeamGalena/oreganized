@@ -17,7 +17,6 @@ import galena.oreganized.glance.index.GlanceBlocks;
 import galena.oreganized.glance.index.GlanceTags;
 import galena.oreganized.index.CoreTags;
 import galena.oreganized.plumbum.index.PlumbumItems;
-import galena.oreganized.plumbum.index.PlumbumTags;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.world.item.Items;
@@ -84,7 +83,7 @@ public class GlanceRecipes {
         processing(FillingRecipe::new, "spotted_glance")
                 .output(GlanceBlocks.SPOTTED_GLANCE)
                 .require(GlanceBlocks.GLANCE.block())
-                .require(PlumbumTags.Fluids.MOLTEN_LEAD, 250)
+                .require(GlanceTags.Fluids.RENEWS_SPOTTED_GLANCE, 250)
                 .build(output);
 
         // TODO modular will need to be conditional in the future

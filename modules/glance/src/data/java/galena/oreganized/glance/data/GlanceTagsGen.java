@@ -12,6 +12,7 @@ import galena.oreganized.plumbum.index.PlumbumTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Fluid;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
 
@@ -22,6 +23,7 @@ public class GlanceTagsGen {
         ODatagen.addItemTagProvider(this::items);
         ODatagen.addBlockTagProvider(this::blocks);
         ODatagen.addBiomeTagProvider(this::biomes);
+        ODatagen.addFluidTagProvider(this::fluids);
     }
 
     private void items(RegistrateItemTagsProvider provider) {
@@ -52,6 +54,11 @@ public class GlanceTagsGen {
         provider.addTag(GlanceTags.Biomes.HAS_BOULDER)
                 .addOptionalTag(PlumbumTags.Biomes.RICH_IN_LEAD_ORE)
                 .addTag(Tags.Biomes.IS_PLAINS);
+    }
+
+    private void fluids(RegistrateTagsProvider.IntrinsicImpl<Fluid> provider) {
+        provider.addTag(GlanceTags.Fluids.RENEWS_SPOTTED_GLANCE)
+                .addOptionalTag(PlumbumTags.Fluids.MOLTEN_LEAD);
     }
 
 }

@@ -9,7 +9,6 @@
     "FoodDataMixin",
     "LivingEntityMixin",
     "MobEffectInstanceMixin",
-    "PointedDripstoneBlockMixin",
     "compat.AirCurrentMixin",
     "compat.BellowBlockTileMixin"
   ],
