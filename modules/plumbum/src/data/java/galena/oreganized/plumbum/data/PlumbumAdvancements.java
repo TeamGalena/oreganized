@@ -3,8 +3,8 @@ package galena.oreganized.plumbum.data;
 import static galena.oreganized.data.extensions.OAdvancementExtensions.*;
 
 import com.tterrag.registrate.providers.RegistrateAdvancementProvider;
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.plumbum.index.PlumbumBlocks;
 import galena.oreganized.plumbum.index.PlumbumCriterionTriggers;
 import galena.oreganized.plumbum.index.PlumbumEffects;
@@ -18,7 +18,7 @@ import net.minecraft.advancements.critereon.MobEffectsPredicate;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(PlumbumModule.MOD_ID)
 public class PlumbumAdvancements {
 
     public PlumbumAdvancements() {

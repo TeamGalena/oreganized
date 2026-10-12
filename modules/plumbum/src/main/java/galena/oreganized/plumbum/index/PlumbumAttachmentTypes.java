@@ -1,13 +1,14 @@
 package galena.oreganized.plumbum.index;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.register.SimpleRegistryHelper;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-@Mod(OConstants.MOD_ID)
+@Mod(PlumbumModule.MOD_ID)
 public class PlumbumAttachmentTypes {
 
     private static final SimpleRegistryHelper<AttachmentType<?>> ATTACHMENT_TYPES = OConstants.REGISTRY_HELPER.getAttachmentTypeSubHelper();

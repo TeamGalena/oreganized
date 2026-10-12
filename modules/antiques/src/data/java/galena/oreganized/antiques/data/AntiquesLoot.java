@@ -6,7 +6,7 @@ import static net.minecraft.world.level.storage.loot.LootTable.lootTable;
 import static net.minecraft.world.level.storage.loot.entries.LootItem.lootTableItem;
 
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
-import galena.oreganized.OConstants;
+import galena.oreganized.antiques.AntiquesModule;
 import galena.oreganized.antiques.index.AntiquesBlocks;
 import galena.oreganized.antiques.index.AntiquesItems;
 import galena.oreganized.antiques.world.block.AntiquesPileBlock;
@@ -26,7 +26,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(AntiquesModule.MOD_ID)
 public class AntiquesLoot {
 
     public AntiquesLoot() {

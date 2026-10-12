@@ -6,6 +6,7 @@ import static galena.oreganized.data.extensions.ORecipeExtensions.*;
 
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.device.DeviceModule;
 import galena.oreganized.device.index.DeviceItems;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -13,7 +14,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.item.Items;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(DeviceModule.MOD_ID)
 public class DevicesRecipes {
 
     public DevicesRecipes() {

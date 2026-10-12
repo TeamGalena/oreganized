@@ -1,6 +1,7 @@
 package galena.oreganized.argentum.index;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.world.particle.PolishParticle;
 import galena.oreganized.argentum.world.particle.TarnishParticle;
 import galena.oreganized.register.ParticleTypeRegistryHelper;
@@ -14,7 +15,7 @@ import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 @EventBusSubscriber(Dist.CLIENT)
-@Mod(OConstants.MOD_ID)
+@Mod(ArgentumModule.MOD_ID)
 public class ArgentumParticles {
 
     private static final ParticleTypeRegistryHelper PARTICLES = OConstants.REGISTRY_HELPER.getParticleTypeSubHelper();

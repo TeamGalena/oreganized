@@ -4,7 +4,7 @@ import static com.teamabnormals.blueprint.core.util.TagUtil.blockTag;
 
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
-import galena.oreganized.OConstants;
+import galena.oreganized.armament.ArmamentModule;
 import galena.oreganized.armament.index.ArmamentBlocks;
 import galena.oreganized.armament.index.ArmamentItems;
 import galena.oreganized.armament.index.ArmamentTags;
@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArmamentModule.MOD_ID)
 public class ArmamentTagsGen {
 
     public ArmamentTagsGen() {

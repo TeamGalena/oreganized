@@ -1,11 +1,11 @@
 package galena.oreganized.data;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
-import galena.oreganized.OConstants;
+import galena.oreganized.core.CoreModule;
 import galena.oreganized.index.CoreTags;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(CoreModule.MOD_ID)
 public class CoreLang {
 
     public CoreLang() {

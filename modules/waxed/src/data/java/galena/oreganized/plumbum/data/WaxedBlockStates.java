@@ -3,13 +3,13 @@ package galena.oreganized.plumbum.data;
 import static galena.oreganized.data.extensions.OBlockStateExtensions.waxed;
 import static galena.oreganized.data.extensions.OColorExtensions.*;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.waxed.WaxedModule;
 import galena.oreganized.waxed.index.WaxedBlocks;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 
-@Mod(OConstants.MOD_ID)
+@Mod(WaxedModule.MOD_ID)
 public class WaxedBlockStates {
 
     public WaxedBlockStates() {

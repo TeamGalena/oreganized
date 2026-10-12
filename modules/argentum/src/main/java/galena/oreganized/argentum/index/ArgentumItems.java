@@ -1,6 +1,7 @@
 package galena.oreganized.argentum.index;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.world.item.ScribeItem;
 import galena.oreganized.argentum.world.item.SilverMirrorItem;
 import galena.oreganized.index.CoreTags;
@@ -22,7 +23,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.SimpleTier;
 import net.neoforged.neoforge.registries.DeferredItem;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArgentumModule.MOD_ID)
 public class ArgentumItems {
 
     private static final ItemRegistryHelper ITEMS = OConstants.REGISTRY_HELPER.getItemSubHelper();

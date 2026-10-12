@@ -19,9 +19,8 @@ neoforge {
         splitSourceSet()
     }
 
+    // TODO check
     accessTransformer(project(":core"))
-
-    modModules.forEach(::dependOn)
 }
 
 base {
@@ -30,6 +29,11 @@ base {
 
 dependencies {
     modInclude(libs.galena.hats)
+
+    modModules.forEach {
+        api(project(it.path))
+        jarJar(project(it.path))
+    }
 
     modIncludeCompileOnly(libs.ponder)
     modIncludeCompileOnly(libs.flywheel)

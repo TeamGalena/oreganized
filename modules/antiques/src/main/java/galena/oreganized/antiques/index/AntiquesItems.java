@@ -1,13 +1,14 @@
 package galena.oreganized.antiques.index;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.antiques.AntiquesModule;
 import galena.oreganized.register.ItemRegistryHelper;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredItem;
 
-@Mod(OConstants.MOD_ID)
+@Mod(AntiquesModule.MOD_ID)
 public class AntiquesItems {
 
     private static final ItemRegistryHelper ITEMS = OConstants.REGISTRY_HELPER.getItemSubHelper();

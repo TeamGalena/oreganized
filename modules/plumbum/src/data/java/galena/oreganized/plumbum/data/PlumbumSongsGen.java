@@ -1,7 +1,7 @@
 package galena.oreganized.plumbum.data;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.plumbum.index.PlumbumSongs;
 import galena.oreganized.plumbum.index.PlumbumSounds;
 import net.minecraft.core.registries.Registries;
@@ -10,7 +10,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.JukeboxSong;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(PlumbumModule.MOD_ID)
 public class PlumbumSongsGen {
 
     public PlumbumSongsGen() {

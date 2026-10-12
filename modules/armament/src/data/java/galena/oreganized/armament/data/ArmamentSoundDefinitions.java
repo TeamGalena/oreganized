@@ -6,12 +6,13 @@ import static net.neoforged.neoforge.common.data.SoundDefinition.definition;
 
 import com.possible_triangle.multikulti.registrate.provider.RegistrateSoundsProvider;
 import galena.oreganized.OConstants;
+import galena.oreganized.armament.ArmamentModule;
 import galena.oreganized.armament.index.ArmamentSounds;
 import galena.oreganized.data.ODatagen;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.data.SoundDefinition.SoundType;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArmamentModule.MOD_ID)
 public class ArmamentSoundDefinitions {
 
     public ArmamentSoundDefinitions() {

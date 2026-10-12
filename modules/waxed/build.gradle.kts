@@ -1,5 +1,5 @@
-dependencies {
-    api(project(":core"))
+import galena.gradle.moduleDependencies
 
-    dataApi(project(":core", configuration = "dataElements"))
-}
+moduleDependencies(
+    "core",
+)

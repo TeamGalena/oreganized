@@ -11,6 +11,7 @@ import com.simibubi.create.content.processing.recipe.HeatCondition;
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.index.CoreTags;
+import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.plumbum.index.PlumbumBlocks;
 import galena.oreganized.plumbum.index.PlumbumFluids;
 import galena.oreganized.plumbum.index.PlumbumItems;
@@ -24,7 +25,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.crafting.CompoundIngredient;
 
-@Mod(OConstants.MOD_ID)
+@Mod(PlumbumModule.MOD_ID)
 public class PlumbumRecipes {
 
     public PlumbumRecipes() {

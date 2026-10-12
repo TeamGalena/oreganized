@@ -4,12 +4,13 @@ import static galena.oreganized.data.extensions.OItemModelExtensions.*;
 
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
 import galena.oreganized.OConstants;
+import galena.oreganized.armament.ArmamentModule;
 import galena.oreganized.armament.index.ArmamentItems;
 import galena.oreganized.data.ODatagen;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArmamentModule.MOD_ID)
 public class ArmamentItemModels {
 
     public ArmamentItemModels() {

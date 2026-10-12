@@ -3,14 +3,14 @@ package galena.oreganized.argentum.data;
 import static galena.oreganized.data.extensions.OLangExtensions.*;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
-import galena.oreganized.OConstants;
+import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.compat.jei.CreateCompat;
 import galena.oreganized.argentum.index.*;
 import galena.oreganized.data.ODatagen;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArgentumModule.MOD_ID)
 public class ArgentumLang {
 
     public ArgentumLang() {

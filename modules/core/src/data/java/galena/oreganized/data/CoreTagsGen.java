@@ -5,14 +5,14 @@ import static net.minecraft.resources.ResourceLocation.fromNamespaceAndPath;
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import galena.oreganized.ModCompat;
-import galena.oreganized.OConstants;
+import galena.oreganized.core.CoreModule;
 import galena.oreganized.index.CoreTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
 
-@Mod(OConstants.MOD_ID)
+@Mod(CoreModule.MOD_ID)
 public class CoreTagsGen {
 
     public CoreTagsGen() {

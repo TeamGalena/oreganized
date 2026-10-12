@@ -1,6 +1,7 @@
 package galena.oreganized.plumbum.index;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.plumbum.client.extensions.MoltenLeadClientExtensions;
 import galena.oreganized.plumbum.config.PlumbumConfigs;
 import galena.oreganized.plumbum.world.MeltingCauldronInteractions;
@@ -28,7 +29,7 @@ import net.neoforged.neoforge.fluids.FluidInteractionRegistry;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-@Mod(OConstants.MOD_ID)
+@Mod(PlumbumModule.MOD_ID)
 @EventBusSubscriber(Dist.CLIENT)
 public class PlumbumFluids {
 

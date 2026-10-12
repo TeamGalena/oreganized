@@ -5,12 +5,12 @@ import static galena.oreganized.data.extensions.OBlockLootExtensions.*;
 import static galena.oreganized.data.extensions.OConditionExtensions.dyed;
 
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.gothic.GothicModule;
 import galena.oreganized.gothic.index.GothicBlocks;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(GothicModule.MOD_ID)
 public class GothicLoot {
 
     public GothicLoot() {

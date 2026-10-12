@@ -1,0 +1,20 @@
+modLoader = "javafml"
+loaderVersion = "[1,)"
+license = "https://github.com/${repository}/blob/HEAD/LICENSE.md"
+issueTrackerURL = "https://github.com/${repository}/issues/"
+
+[[mods]]
+modId = "{{ moduleModId }}"
+version = "${mod_version}"
+displayName = "${ mod_name } {{ moduleName }}"
+authors = "${mod_author}"
+description = "{{ moduleName }} module of ${mod_name}"
+{% block mod %}{% endblock %}
+
+{% for module in moduleDependencies %}
+[[dependencies.{{ moduleModId }}]]
+modId = "${mod_id}_{{ module }}"
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
+{% endfor %}

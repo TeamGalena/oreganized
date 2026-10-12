@@ -1,0 +1,50 @@
+{% include "neoforge.mods.toml" %}
+
+[[dependencies.{{ moduleModId }}]]
+modId = "neoforge"
+versionRange = "[21,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.{{ moduleModId }}]]
+modId = "minecraft"
+versionRange = "[1.21,1.22)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.{{ moduleModId }}]]
+modId = "blueprint"
+versionRange = "[8.0.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.{{ moduleModId }}]]
+modId = "shieldexp"
+type = "optional"
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.{{ moduleModId }}]]
+modId = "nethersdelight"
+type = "optional"
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.{{ moduleModId }}]]
+modId = "farmersdelight"
+type = "optional"
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.{{ moduleModId }}]]
+modId = "create"
+type = "optional"
+versionRange = "[6.0.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[mixins]]
+config = "${mod_id}.{{ module }}.mixins.json"

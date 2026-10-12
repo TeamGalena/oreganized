@@ -9,6 +9,7 @@ import com.tterrag.registrate.providers.loot.RegistrateLootTableProvider.LootTyp
 import galena.oreganized.OConstants;
 import galena.oreganized.client.OResourcePacks;
 import galena.oreganized.compat.ponder.PonderCompat;
+import galena.oreganized.core.CoreModule;
 import galena.oreganized.data.extensions.OTagExtensions;
 import galena.oreganized.data.provider.CombinedRegistryBootstraps;
 import galena.oreganized.data.provider.ODataPacks;
@@ -49,7 +50,7 @@ import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.data.DataMapProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
-@Mod(OConstants.MOD_ID)
+@Mod(CoreModule.MOD_ID)
 @EventBusSubscriber
 public class ODatagen {
 

@@ -6,8 +6,8 @@ import static com.tterrag.registrate.providers.RegistrateRecipeProvider.has;
 import static galena.oreganized.data.extensions.ORecipeExtensions.makeMetalRecycling;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.engraved.EngravedModule;
 import galena.oreganized.engraved.index.EngravedItems;
 import galena.oreganized.index.CoreTags;
 import galena.oreganized.plumbum.index.PlumbumItems;
@@ -17,7 +17,7 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
 
-@Mod(OConstants.MOD_ID)
+@Mod(EngravedModule.MOD_ID)
 public class EngravedRecipes {
 
     public EngravedRecipes() {

@@ -1,6 +1,7 @@
 package galena.oreganized.electrum.index;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.electrum.ElectrumModule;
 import galena.oreganized.electrum.config.ElectrumConfigs;
 import galena.oreganized.electrum.world.item.SpeedometerItem;
 import galena.oreganized.index.CoreTags;
@@ -21,7 +22,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.SimpleTier;
 import net.neoforged.neoforge.registries.DeferredItem;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ElectrumModule.MOD_ID)
 public class ElectrumItems {
 
     private static final ItemRegistryHelper ITEMS = OConstants.REGISTRY_HELPER.getItemSubHelper();

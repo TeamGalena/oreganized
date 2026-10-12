@@ -1,13 +1,14 @@
 package galena.oreganized.device.index;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.device.DeviceModule;
 import galena.oreganized.device.world.item.DeviceItem;
 import galena.oreganized.register.ItemRegistryHelper;
 import net.minecraft.world.item.*;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredItem;
 
-@Mod(OConstants.MOD_ID)
+@Mod(DeviceModule.MOD_ID)
 public class DeviceItems {
 
     private static final ItemRegistryHelper ITEMS = OConstants.REGISTRY_HELPER.getItemSubHelper();

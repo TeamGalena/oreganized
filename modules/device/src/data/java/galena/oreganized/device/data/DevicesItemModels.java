@@ -4,14 +4,14 @@ import static galena.oreganized.data.extensions.OItemModelExtensions.leveledDevi
 import static galena.oreganized.data.extensions.OItemModelExtensions.normalItem;
 
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.device.DeviceModule;
 import galena.oreganized.device.index.DeviceDataComponents;
 import galena.oreganized.device.index.DeviceItems;
 import galena.oreganized.device.world.item.DeviceItem;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(DeviceModule.MOD_ID)
 public class DevicesItemModels {
 
     public DevicesItemModels() {

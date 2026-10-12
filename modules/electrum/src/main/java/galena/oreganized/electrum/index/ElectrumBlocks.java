@@ -1,6 +1,7 @@
 package galena.oreganized.electrum.index;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.electrum.ElectrumModule;
 import galena.oreganized.register.BlockRegistryHelper;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
@@ -9,7 +10,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ElectrumModule.MOD_ID)
 public class ElectrumBlocks {
 
     private static final BlockRegistryHelper BLOCKS = OConstants.REGISTRY_HELPER.getBlockSubHelper();

@@ -3,13 +3,13 @@ package galena.oreganized.electrum.data;
 import static galena.oreganized.data.extensions.OItemModelExtensions.*;
 
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.electrum.ElectrumModule;
 import galena.oreganized.electrum.index.ElectrumItems;
 import galena.oreganized.electrum.world.item.SpeedometerItem;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ElectrumModule.MOD_ID)
 public class ElectrumItemModels {
 
     public ElectrumItemModels() {

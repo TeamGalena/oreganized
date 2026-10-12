@@ -1,0 +1,9 @@
+package galena.oreganized.{{ module }};
+
+public class {{ moduleName }}Module {
+
+    public static final String MODULE_ID = "{{ module }}";
+
+    public static final String MOD_ID = "{{ modId }}_{{ module }}";
+
+}

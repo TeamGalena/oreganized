@@ -3,14 +3,14 @@ package galena.oreganized.argentum.data;
 import static galena.oreganized.data.extensions.OItemModelExtensions.*;
 
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
-import galena.oreganized.OConstants;
+import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.index.ArgentumDataComponents;
 import galena.oreganized.argentum.index.ArgentumItems;
 import galena.oreganized.argentum.world.item.SilverMirrorItem;
 import galena.oreganized.data.ODatagen;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArgentumModule.MOD_ID)
 public class ArgentumItemModels {
 
     public ArgentumItemModels() {

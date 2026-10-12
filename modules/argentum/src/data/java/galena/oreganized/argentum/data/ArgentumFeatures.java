@@ -6,6 +6,7 @@ import static net.minecraft.tags.BlockTags.STONE_ORE_REPLACEABLES;
 
 import com.google.common.collect.ImmutableList;
 import galena.oreganized.OConstants;
+import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.index.ArgentumBlocks;
 import galena.oreganized.data.ODatagen;
 import net.minecraft.core.registries.Registries;
@@ -22,7 +23,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArgentumModule.MOD_ID)
 public class ArgentumFeatures {
 
     private static final ResourceLocation SILVER_ORE = OConstants.modLoc("silver_ore");

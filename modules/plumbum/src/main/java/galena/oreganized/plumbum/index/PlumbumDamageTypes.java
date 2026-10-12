@@ -1,12 +1,13 @@
 package galena.oreganized.plumbum.index;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.plumbum.PlumbumModule;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.damagesource.DamageType;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(PlumbumModule.MOD_ID)
 public class PlumbumDamageTypes {
 
     public static final ResourceKey<DamageType> MOLTEN_LEAD = create("molten_lead");

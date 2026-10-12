@@ -1,6 +1,7 @@
 package galena.oreganized.argentum.index;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.world.recipe.ScribeRecipe;
 import galena.oreganized.register.RecipeTypeRegistryHelper;
 import galena.oreganized.register.SimpleRegistryHelper;
@@ -9,7 +10,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArgentumModule.MOD_ID)
 public class ArgentumRecipeTypes {
 
     private static final RecipeTypeRegistryHelper TYPES = OConstants.REGISTRY_HELPER.getRecipeTypeSubHelper();

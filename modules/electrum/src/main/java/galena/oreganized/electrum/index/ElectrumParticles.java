@@ -1,6 +1,7 @@
 package galena.oreganized.electrum.index;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.electrum.ElectrumModule;
 import galena.oreganized.electrum.world.particle.KineticHitParticle;
 import galena.oreganized.register.ParticleTypeRegistryHelper;
 import net.minecraft.core.particles.ParticleType;
@@ -13,7 +14,7 @@ import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 @EventBusSubscriber(Dist.CLIENT)
-@Mod(OConstants.MOD_ID)
+@Mod(ElectrumModule.MOD_ID)
 public class ElectrumParticles {
 
     private static final ParticleTypeRegistryHelper PARTICLES = OConstants.REGISTRY_HELPER.getParticleTypeSubHelper();

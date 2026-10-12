@@ -4,13 +4,13 @@ import static galena.oreganized.data.extensions.OColorExtensions.*;
 import static galena.oreganized.data.extensions.OConditionExtensions.dyed;
 import static galena.oreganized.data.extensions.ORecipeExtensions.makeWaxed;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.waxed.WaxedModule;
 import galena.oreganized.waxed.index.WaxedBlocks;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(WaxedModule.MOD_ID)
 public class WaxedRecipes {
 
     public WaxedRecipes() {

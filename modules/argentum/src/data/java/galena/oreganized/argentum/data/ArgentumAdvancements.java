@@ -4,7 +4,7 @@ import static galena.oreganized.data.extensions.OAdvancementExtensions.getAdv;
 import static galena.oreganized.data.extensions.OAdvancementExtensions.info;
 
 import com.tterrag.registrate.providers.RegistrateAdvancementProvider;
-import galena.oreganized.OConstants;
+import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.index.ArgentumBlocks;
 import galena.oreganized.argentum.index.ArgentumItems;
 import galena.oreganized.data.ODatagen;
@@ -15,7 +15,7 @@ import net.minecraft.advancements.critereon.*;
 import net.minecraft.tags.BlockTags;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArgentumModule.MOD_ID)
 public class ArgentumAdvancements {
 
     public ArgentumAdvancements() {

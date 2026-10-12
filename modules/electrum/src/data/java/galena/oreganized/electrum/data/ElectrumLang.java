@@ -4,15 +4,15 @@ import static galena.oreganized.data.extensions.OLangExtensions.addAttribute;
 import static galena.oreganized.data.extensions.OLangExtensions.autoTranslate;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.electrum.ElectrumModule;
 import galena.oreganized.electrum.index.ElectrumAttributes;
 import galena.oreganized.electrum.index.ElectrumBlocks;
 import galena.oreganized.electrum.index.ElectrumItems;
 import galena.oreganized.electrum.index.ElectrumTags;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ElectrumModule.MOD_ID)
 public class ElectrumLang {
 
     public ElectrumLang() {

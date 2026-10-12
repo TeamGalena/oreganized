@@ -5,9 +5,9 @@ import static galena.oreganized.data.extensions.OTagExtensions.tagStoneSet;
 
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
-import galena.oreganized.OConstants;
 import galena.oreganized.argentum.data.ArgentumSets;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.gothic.GothicModule;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.gothic.index.GothicTags;
 import galena.oreganized.index.CoreTags;
@@ -20,7 +20,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
 
-@Mod(OConstants.MOD_ID)
+@Mod(GothicModule.MOD_ID)
 public class GothicTagsGen {
 
     public GothicTagsGen() {

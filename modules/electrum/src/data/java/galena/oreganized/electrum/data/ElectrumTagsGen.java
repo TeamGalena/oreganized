@@ -4,8 +4,8 @@ import static galena.oreganized.data.extensions.OTagExtensions.*;
 
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.electrum.ElectrumModule;
 import galena.oreganized.electrum.index.ElectrumBlocks;
 import galena.oreganized.electrum.index.ElectrumItems;
 import galena.oreganized.electrum.index.ElectrumTags;
@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ElectrumModule.MOD_ID)
 public class ElectrumTagsGen {
 
     public ElectrumTagsGen() {

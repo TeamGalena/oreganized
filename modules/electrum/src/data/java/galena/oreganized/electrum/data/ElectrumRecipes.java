@@ -13,6 +13,7 @@ import com.simibubi.create.content.processing.recipe.HeatCondition;
 import galena.oreganized.ModCompat;
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.electrum.ElectrumModule;
 import galena.oreganized.electrum.index.ElectrumBlocks;
 import galena.oreganized.electrum.index.ElectrumItems;
 import galena.oreganized.index.CoreTags;
@@ -28,7 +29,7 @@ import net.neoforged.neoforge.common.Tags;
 import org.infernalstudios.shieldexp.init.ItemsInit;
 import vectorwing.farmersdelight.common.registry.ModItems;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ElectrumModule.MOD_ID)
 public class ElectrumRecipes {
 
     public ElectrumRecipes() {

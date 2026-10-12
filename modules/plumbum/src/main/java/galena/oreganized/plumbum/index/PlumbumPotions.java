@@ -1,6 +1,7 @@
 package galena.oreganized.plumbum.index;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.register.PotionRegistryHelper;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.Items;
@@ -12,7 +13,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-@Mod(OConstants.MOD_ID)
+@Mod(PlumbumModule.MOD_ID)
 @EventBusSubscriber
 public class PlumbumPotions {
 

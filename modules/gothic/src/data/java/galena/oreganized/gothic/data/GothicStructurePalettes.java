@@ -9,6 +9,7 @@ import com.teamabnormals.blueprint.core.api.conditions.ConfigValueCondition;
 import com.teamabnormals.blueprint.core.registry.BlueprintDataPackRegistries;
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.gothic.GothicModule;
 import galena.oreganized.gothic.config.GothicConfigs;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.index.OConditionTypes;
@@ -24,7 +25,7 @@ import net.minecraft.world.item.DyeColor;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.conditions.ICondition;
 
-@Mod(OConstants.MOD_ID)
+@Mod(GothicModule.MOD_ID)
 public class GothicStructurePalettes {
 
     public GothicStructurePalettes() {

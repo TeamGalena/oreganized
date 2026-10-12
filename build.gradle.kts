@@ -1,7 +1,8 @@
 import com.possible_triangle.gradle.modifyReleaseMetadata
 import com.possible_triangle.gradle.neoforge.NeoforgeExtension
+import net.kyori.blossom.BlossomExtension
 import net.neoforged.moddevgradle.dsl.NeoForgeExtension
-
+import org.gradle.internal.extensions.stdlib.capitalized
 
 plugins {
     id("com.possible-triangle.core")
@@ -12,7 +13,7 @@ plugins {
 withKotlin()
 
 subprojects {
-    apply(plugin = "com.possible-triangle.core")
+    plugins.apply("com.possible-triangle.core")
 
     repositories {
         maven {
@@ -64,26 +65,56 @@ val modules =
     subprojects
         .filter { it.projectDir.relativeTo(it.rootDir).startsWith("modules/") }
 
-modules.forEach {
-    it.apply(plugin = "com.possible-triangle.neoforge")
+fun modules(block: Project.() -> Unit) = modules.forEach { it.block() }
 
-    it.configure<NeoforgeExtension> {
+modules {
+    plugins.apply("com.possible-triangle.neoforge")
+    plugins.apply("net.kyori.blossom")
+
+    configure<NeoforgeExtension> {
         accessTransformer(project(":core"))
         createDataSourceSet()
     }
 
-    it.configure<NeoForgeExtension> {
-        runs.removeAll { true }
+    configure<NeoForgeExtension> {
+        runs.named("client") {
+            ideName = "${project.name.capitalized()} Client"
+        }
+        runs.removeAll { it.name != "client" }
     }
 
-    it.upload.forEach {
+    upload.forEach {
         file.unset()
     }
 
-    it.modifyReleaseMetadata {
+    modifyReleaseMetadata {
         exclude = true
+    }
+
+    sourceSets.main {
+        configure<BlossomExtension> {
+            javaSources {
+                templates(rootProject.file("templates/java"))
+            }
+
+            resources {
+                include(rootProject.file("templates/resources"))
+            }
+
+            templateSets.configureEach {
+                property("modId", mod.id)
+                property("modName", mod.name)
+                property("module", project.name)
+                property("moduleName", project.name.capitalized())
+                property("moduleModId", $$"${mod_id}_$${project.name}")
+                properties.put("moduleDependencies", emptyList<String>())
+            }
+        }
     }
 }
 
-enableSpotless()
-enableSonarQube()
+enableSpotless {
+    java {
+        targetExclude("build/generated/**")
+    }
+}

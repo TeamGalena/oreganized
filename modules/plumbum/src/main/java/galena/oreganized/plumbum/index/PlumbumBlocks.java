@@ -1,6 +1,7 @@
 package galena.oreganized.plumbum.index;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.plumbum.world.block.*;
 import galena.oreganized.register.BlockRegistryHelper;
 import net.minecraft.sounds.SoundEvents;
@@ -14,7 +15,7 @@ import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
-@Mod(OConstants.MOD_ID)
+@Mod(PlumbumModule.MOD_ID)
 public class PlumbumBlocks {
 
     private static final BlockRegistryHelper BLOCKS = OConstants.REGISTRY_HELPER.getBlockSubHelper();

@@ -5,6 +5,7 @@ import static net.neoforged.neoforge.common.data.SoundDefinition.definition;
 
 import com.possible_triangle.multikulti.registrate.provider.RegistrateSoundsProvider;
 import galena.oreganized.OConstants;
+import galena.oreganized.antiques.AntiquesModule;
 import galena.oreganized.antiques.index.AntiquesSongs;
 import galena.oreganized.antiques.index.AntiquesSounds;
 import galena.oreganized.data.ODatagen;
@@ -15,7 +16,7 @@ import net.minecraft.world.item.JukeboxSong;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.data.SoundDefinition;
 
-@Mod(OConstants.MOD_ID)
+@Mod(AntiquesModule.MOD_ID)
 public class AntiquesSongsGen {
 
     public AntiquesSongsGen() {

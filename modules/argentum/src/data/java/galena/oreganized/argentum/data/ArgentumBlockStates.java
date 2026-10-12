@@ -2,7 +2,7 @@ package galena.oreganized.argentum.data;
 
 import static galena.oreganized.data.extensions.OBlockStateExtensions.*;
 
-import galena.oreganized.OConstants;
+import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.index.ArgentumBlocks;
 import galena.oreganized.data.ODatagen;
 import net.minecraft.world.level.block.Block;
@@ -12,7 +12,7 @@ import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArgentumModule.MOD_ID)
 public class ArgentumBlockStates {
 
     public ArgentumBlockStates() {

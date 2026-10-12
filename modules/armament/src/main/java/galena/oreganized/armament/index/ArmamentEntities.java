@@ -2,6 +2,7 @@ package galena.oreganized.armament.index;
 
 import com.teamabnormals.blueprint.core.util.registry.EntitySubRegistryHelper;
 import galena.oreganized.OConstants;
+import galena.oreganized.armament.ArmamentModule;
 import galena.oreganized.armament.client.render.entity.LeadBoltRender;
 import galena.oreganized.armament.client.render.entity.ShrapnelBombMinecartRender;
 import galena.oreganized.armament.client.render.entity.ShrapnelBombRender;
@@ -17,7 +18,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArmamentModule.MOD_ID)
 @EventBusSubscriber(Dist.CLIENT)
 public class ArmamentEntities {
 

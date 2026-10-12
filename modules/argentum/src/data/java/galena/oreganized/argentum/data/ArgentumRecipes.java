@@ -7,6 +7,7 @@ import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 
 import galena.oreganized.ModCompat;
 import galena.oreganized.OConstants;
+import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.index.ArgentumBlocks;
 import galena.oreganized.argentum.index.ArgentumItemAbilities;
 import galena.oreganized.argentum.index.ArgentumItems;
@@ -32,7 +33,7 @@ import net.neoforged.neoforge.common.Tags;
 import vectorwing.farmersdelight.common.crafting.ingredient.ItemAbilityIngredient;
 import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArgentumModule.MOD_ID)
 public class ArgentumRecipes {
 
     public ArgentumRecipes() {

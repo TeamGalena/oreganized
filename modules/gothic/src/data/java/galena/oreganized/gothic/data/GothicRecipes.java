@@ -8,8 +8,8 @@ import static galena.oreganized.data.extensions.OConditionExtensions.dyed;
 import static galena.oreganized.data.extensions.ORecipeExtensions.*;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.gothic.GothicModule;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.index.CoreTags;
 import java.util.function.Supplier;
@@ -23,7 +23,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-@Mod(OConstants.MOD_ID)
+@Mod(GothicModule.MOD_ID)
 public class GothicRecipes {
 
     public GothicRecipes() {

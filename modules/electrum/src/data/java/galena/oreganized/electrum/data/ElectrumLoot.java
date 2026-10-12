@@ -4,9 +4,9 @@ package galena.oreganized.electrum.data;
 import static galena.oreganized.data.extensions.OBlockLootExtensions.dropSelf;
 
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.data.provider.RegistrateLootModifierProvider;
+import galena.oreganized.electrum.ElectrumModule;
 import galena.oreganized.electrum.index.ElectrumBlocks;
 import galena.oreganized.electrum.index.ElectrumItems;
 import galena.oreganized.world.AddItemLootModifier;
@@ -17,7 +17,7 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.loot.LootTableIdCondition;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ElectrumModule.MOD_ID)
 public class ElectrumLoot {
 
     public ElectrumLoot() {

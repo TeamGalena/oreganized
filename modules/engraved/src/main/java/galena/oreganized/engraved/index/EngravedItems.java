@@ -1,6 +1,7 @@
 package galena.oreganized.engraved.index;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.engraved.EngravedModule;
 import galena.oreganized.engraved.world.item.BushHammerItem;
 import galena.oreganized.index.CoreTags;
 import galena.oreganized.plumbum.index.PlumbumTags;
@@ -12,7 +13,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.SimpleTier;
 import net.neoforged.neoforge.registries.DeferredItem;
 
-@Mod(OConstants.MOD_ID)
+@Mod(EngravedModule.MOD_ID)
 public class EngravedItems {
 
     private static final ItemRegistryHelper ITEMS = OConstants.REGISTRY_HELPER.getItemSubHelper();

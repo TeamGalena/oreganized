@@ -7,7 +7,7 @@ import com.simibubi.create.AllTags;
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import galena.oreganized.ModCompat;
-import galena.oreganized.OConstants;
+import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.index.ArgentumBlocks;
 import galena.oreganized.argentum.index.ArgentumItems;
 import galena.oreganized.argentum.index.ArgentumTags;
@@ -29,7 +29,7 @@ import net.minecraft.world.level.material.Fluid;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArgentumModule.MOD_ID)
 public class ArgentumTagsGen {
 
     public ArgentumTagsGen() {

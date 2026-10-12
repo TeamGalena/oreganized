@@ -1,7 +1,6 @@
-dependencies {
-    api(project(":core"))
+import galena.gradle.moduleDependencies
 
-    api(project(":plumbum"))
-
-    dataApi(project(":core", configuration = "dataElements"))
-}
+moduleDependencies(
+    "core",
+    "plumbum",
+)

@@ -4,11 +4,12 @@ import galena.oreganized.OConstants;
 import galena.oreganized.index.sets.DyedBlockSet;
 import galena.oreganized.register.BlockRegistryHelper;
 
+import galena.oreganized.waxed.WaxedModule;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(WaxedModule.MOD_ID)
 public class WaxedBlocks {
 
     private static final BlockRegistryHelper BLOCKS = OConstants.REGISTRY_HELPER.getBlockSubHelper();

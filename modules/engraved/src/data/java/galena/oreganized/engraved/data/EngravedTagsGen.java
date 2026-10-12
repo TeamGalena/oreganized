@@ -2,8 +2,8 @@ package galena.oreganized.gothic.data;
 
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.engraved.EngravedModule;
 import galena.oreganized.engraved.index.EngravedItems;
 import galena.oreganized.engraved.index.EngravedTags;
 import galena.oreganized.plumbum.index.PlumbumTags;
@@ -11,7 +11,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(EngravedModule.MOD_ID)
 public class EngravedTagsGen {
 
     public EngravedTagsGen() {

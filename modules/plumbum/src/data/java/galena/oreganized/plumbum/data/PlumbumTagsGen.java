@@ -7,9 +7,9 @@ import com.simibubi.create.AllTags;
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import galena.oreganized.ModCompat;
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.index.CoreTags;
+import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.plumbum.index.*;
 import java.util.stream.Stream;
 import net.minecraft.resources.ResourceLocation;
@@ -31,7 +31,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-@Mod(OConstants.MOD_ID)
+@Mod(PlumbumModule.MOD_ID)
 public class PlumbumTagsGen {
 
     public PlumbumTagsGen() {

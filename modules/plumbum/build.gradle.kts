@@ -1,12 +1,10 @@
-plugins {
-    id("com.possible-triangle.core")
-}
+import galena.gradle.moduleDependencies
+
+moduleDependencies(
+    "core",
+)
 
 dependencies {
-    api(project(":core"))
-
-    modCompileOnly(pack.modrinth.supplementaries)
-    modCompileOnly(libs.create) { isTransitive = false }
-
-    dataApi(project(":core", configuration = "dataElements"))
+    compileOnly(pack.modrinth.supplementaries)
+    compileOnly(libs.create) { isTransitive = false }
 }

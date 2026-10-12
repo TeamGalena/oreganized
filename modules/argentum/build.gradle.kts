@@ -1,8 +1,11 @@
-dependencies {
-    api(project(":core"))
+import galena.gradle.moduleDependencies
 
+moduleDependencies(
+    "core",
+)
+
+dependencies {
     modCompileOnly(libs.create) { isTransitive = false }
 
-    dataApi(project(":core", configuration = "dataElements"))
     dataApi(project(":plumbum"))
 }

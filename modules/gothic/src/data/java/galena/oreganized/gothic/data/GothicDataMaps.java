@@ -1,15 +1,15 @@
 package galena.oreganized.gothic.data;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.argentum.index.ArgentumDataMapTypes;
 import galena.oreganized.argentum.world.ScribePermutation;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.gothic.GothicModule;
 import galena.oreganized.gothic.index.GothicTags;
 import galena.oreganized.gothic.world.block.ICrystalGlass;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.data.DataMapProvider;
 
-@Mod(OConstants.MOD_ID)
+@Mod(GothicModule.MOD_ID)
 public class GothicDataMaps {
 
     public GothicDataMaps() {

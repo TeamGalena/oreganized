@@ -3,7 +3,7 @@ package galena.oreganized.armament.data;
 import static galena.oreganized.data.extensions.OAdvancementExtensions.*;
 
 import com.tterrag.registrate.providers.RegistrateAdvancementProvider;
-import galena.oreganized.OConstants;
+import galena.oreganized.armament.ArmamentModule;
 import galena.oreganized.armament.index.ArmamentCriterionTriggers;
 import galena.oreganized.data.ODatagen;
 import net.minecraft.advancements.Advancement;
@@ -11,7 +11,7 @@ import net.minecraft.advancements.AdvancementType;
 import net.minecraft.world.item.Items;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArmamentModule.MOD_ID)
 public class ArmamentAdvancements {
 
     public ArmamentAdvancements() {
