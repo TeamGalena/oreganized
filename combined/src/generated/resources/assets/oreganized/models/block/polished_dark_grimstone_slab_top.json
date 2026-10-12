@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "oreganized:block/polished_dark_grimstone_slab",
-    "side": "oreganized:block/polished_dark_grimstone_slab",
-    "top": "oreganized:block/polished_dark_grimstone_slab"
-  }
-}

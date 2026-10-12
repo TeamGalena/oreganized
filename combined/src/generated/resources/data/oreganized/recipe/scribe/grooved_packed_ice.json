@@ -1,7 +1,0 @@
-{
-  "type": "oreganized:scribe",
-  "from": {
-    "blocks": "minecraft:packed_ice"
-  },
-  "to": "oreganized:grooved_packed_ice"
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "bottom": "oreganized:block/polished_glance",
-    "side": "oreganized:block/polished_glance",
-    "top": "oreganized:block/polished_glance"
-  }
-}

@@ -3,6 +3,7 @@ package galena.oreganized.data;
 import com.tterrag.registrate.AbstractRegistrate;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import galena.oreganized.OConstants;
+import galena.oreganized.core.CoreModule;
 import java.util.Collection;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
@@ -20,7 +21,7 @@ public class ORegistrate extends AbstractRegistrate<ORegistrate> {
     static ORegistrate create(String modid) {
         var registrate = new ORegistrate(modid);
         var modBus = ModList.get()
-                .getModContainerById(modid)
+                .getModContainerById(CoreModule.MOD_ID)
                 .map(ModContainer::getEventBus)
                 .orElseThrow();
 

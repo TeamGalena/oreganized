@@ -1,4 +1,4 @@
 {% include "neoforge.mods.toml" %}
 
 [[mixins]]
-config = "${mod_id}.{{ module }}.mixins.json"
+config = "${mod_id}.mixins.json"

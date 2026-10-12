@@ -5,4 +5,4 @@ enumExtensions = "META-INF/enumextensions.json"
 {% endembed %}
 
 [[mixins]]
-config = "${mod_id}.{{ module }}.mixins.json"
+config = "${mod_id}.mixins.json"

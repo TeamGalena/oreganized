@@ -8,10 +8,7 @@ import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 import galena.oreganized.ModCompat;
 import galena.oreganized.OConstants;
 import galena.oreganized.argentum.ArgentumModule;
-import galena.oreganized.argentum.index.ArgentumBlocks;
-import galena.oreganized.argentum.index.ArgentumItemAbilities;
-import galena.oreganized.argentum.index.ArgentumItems;
-import galena.oreganized.argentum.index.TarnishedBlocks;
+import galena.oreganized.argentum.index.*;
 import galena.oreganized.argentum.world.recipe.ScribeRecipe;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.index.CoreTags;
@@ -50,11 +47,11 @@ public class ArgentumRecipes {
 
         shaped(RecipeCategory.TOOLS, ArgentumItems.SCRIBE)
                 .define('A', Items.AMETHYST_SHARD)
-                .define('S', CoreTags.Items.INGOTS_SILVER)
+                .define('S', ArgentumTags.Items.INGOTS_SILVER)
                 .pattern("A")
                 .pattern("S")
                 .pattern("S")
-                .unlockedBy("has_silver", has(CoreTags.Items.INGOTS_SILVER))
+                .unlockedBy("has_silver", has(ArgentumTags.Items.INGOTS_SILVER))
                 .unlockedBy("has_amethyst", has(Items.AMETHYST_SHARD))
                 .save(output);
 
@@ -74,9 +71,9 @@ public class ArgentumRecipes {
                 .pattern("ABA")
                 .pattern(" A ")
                 .define('A', Tags.Items.INGOTS_GOLD)
-                .define('B', CoreTags.Items.INGOTS_SILVER)
+                .define('B', ArgentumTags.Items.INGOTS_SILVER)
                 .unlockedBy("has_gold_ingot", has(Tags.Items.INGOTS_GOLD))
-                .unlockedBy("has_silver_ingot", has(CoreTags.Items.INGOTS_SILVER))
+                .unlockedBy("has_silver_ingot", has(ArgentumTags.Items.INGOTS_SILVER))
                 .save(output);
 
         scribeConversionAndCutting(output, Blocks.ICE, ArgentumBlocks.GROOVED_ICE.value());
@@ -119,7 +116,7 @@ public class ArgentumRecipes {
                     .save(output);
         });
 
-        makeBars(output, ArgentumBlocks.SILVER_BARS.base(), CoreTags.Items.INGOTS_SILVER);
+        makeBars(output, ArgentumBlocks.SILVER_BARS.base(), ArgentumTags.Items.INGOTS_SILVER);
 
         shaped(RecipeCategory.BUILDING_BLOCKS, ArgentumBlocks.SILVER_BULBS.base())
                 .pattern(" C ")
@@ -133,18 +130,18 @@ public class ArgentumRecipes {
                 .save(output);
 
         shaped(RecipeCategory.REDSTONE, ArgentumBlocks.SILVER_DOORS.base())
-                .define('#', Ingredient.of(CoreTags.Items.INGOTS_SILVER))
+                .define('#', Ingredient.of(ArgentumTags.Items.INGOTS_SILVER))
                 .pattern("##")
                 .pattern("##")
                 .pattern("##")
-                .unlockedBy("has_silver", has(CoreTags.Items.INGOTS_SILVER))
+                .unlockedBy("has_silver", has(ArgentumTags.Items.INGOTS_SILVER))
                 .save(output);
 
         shaped(RecipeCategory.REDSTONE, ArgentumBlocks.SILVER_TRAPDOORS.base())
-                .define('#', CoreTags.Items.INGOTS_SILVER)
+                .define('#', ArgentumTags.Items.INGOTS_SILVER)
                 .pattern("##")
                 .pattern("##")
-                .unlockedBy("has_silver", has(CoreTags.Items.INGOTS_SILVER))
+                .unlockedBy("has_silver", has(ArgentumTags.Items.INGOTS_SILVER))
                 .save(output);
 
         ArgentumSets.tarnishedBlocks().forEach(it -> brushing(output, it));

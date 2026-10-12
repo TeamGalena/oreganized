@@ -10,6 +10,7 @@ import galena.oreganized.electrum.index.ElectrumAttributes;
 import galena.oreganized.electrum.index.ElectrumBlocks;
 import galena.oreganized.electrum.index.ElectrumItems;
 import galena.oreganized.electrum.index.ElectrumTags;
+import galena.oreganized.index.ElectrumTags;
 import net.neoforged.fml.common.Mod;
 
 @Mod(ElectrumModule.MOD_ID)
@@ -39,8 +40,13 @@ public class ElectrumLang {
         provider.add("item.oreganized.smithing_template.electrum_upgrade.additions_slot_description", "Add Electrum Ingot");
 
         addAttribute(provider, ElectrumAttributes.KINETIC_DAMAGE, "Kinetic Damage");
+
+        provider.add(ElectrumTags.Items.INGOTS_ELECTRUM, "Electrum Ingots");
+        provider.add(ElectrumTags.Items.NUGGETS_ELECTRUM, "Electrum Nuggets");
+        provider.add(ElectrumTags.Items.STORAGE_BLOCKS_ELECTRUM, "Electrum Storage Blocks");
         provider.add(ElectrumTags.Items.HAS_KINETIC_DAMAGE, "Has Kinetic Damage");
 
+        provider.add(ElectrumTags.Blocks.STORAGE_BLOCKS_ELECTRUM, "Electrum Storage Blocks");
         provider.add(ElectrumTags.Blocks.INCORRECT_FOR_ELECTRUM_TOOL, "Incorrect for Electrum Tools");
     }
 

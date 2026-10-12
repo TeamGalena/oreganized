@@ -40,9 +40,13 @@ public class ArgentumTagsGen {
     }
 
     private void items(RegistrateItemTagsProvider provider) {
-        provider.addTag(CoreTags.Items.RAW_MATERIALS_SILVER).add(ArgentumItems.RAW_SILVER.getKey());
-        provider.addTag(CoreTags.Items.INGOTS_SILVER).add(ArgentumItems.SILVER_INGOT.getKey());
-        provider.addTag(CoreTags.Items.NUGGETS_SILVER).add(ArgentumItems.SILVER_NUGGET.getKey());
+        provider.addTag(ArgentumTags.Items.RAW_MATERIALS_SILVER).add(ArgentumItems.RAW_SILVER.getKey());
+        provider.addTag(ArgentumTags.Items.INGOTS_SILVER).add(ArgentumItems.SILVER_INGOT.getKey());
+        provider.addTag(ArgentumTags.Items.NUGGETS_SILVER).add(ArgentumItems.SILVER_NUGGET.getKey());
+
+        provider.addTag(Tags.Items.NUGGETS).addTags(ArgentumTags.Items.NUGGETS_SILVER);
+        provider.addTag(Tags.Items.INGOTS).addTags(ArgentumTags.Items.INGOTS_SILVER);
+        provider.addTag(Tags.Items.RAW_MATERIALS).addTags(ArgentumTags.Items.RAW_MATERIALS_SILVER);
 
         provider.addTag(ItemTags.PIGLIN_LOVED).add(ArgentumItems.SILVER_MIRROR.getKey());
 
@@ -57,9 +61,9 @@ public class ArgentumTagsGen {
         provider.addTag(ItemTags.LEG_ARMOR).add(ArgentumItems.SILVER_LEGGINGS.getKey());
         provider.addTag(ItemTags.FOOT_ARMOR).add(ArgentumItems.SILVER_BOOTS.getKey());
 
-        provider.copy(CoreTags.Blocks.ORES_SILVER, CoreTags.Items.ORES_SILVER);
-        provider.copy(CoreTags.Blocks.STORAGE_BLOCKS_SILVER, CoreTags.Items.STORAGE_BLOCKS_SILVER);
-        provider.copy(CoreTags.Blocks.STORAGE_BLOCKS_RAW_SILVER, CoreTags.Items.STORAGE_BLOCKS_RAW_SILVER);
+        provider.copy(ArgentumTags.Blocks.ORES_SILVER, ArgentumTags.Items.ORES_SILVER);
+        provider.copy(ArgentumTags.Blocks.STORAGE_BLOCKS_SILVER, ArgentumTags.Items.STORAGE_BLOCKS_SILVER);
+        provider.copy(ArgentumTags.Blocks.STORAGE_BLOCKS_RAW_SILVER, ArgentumTags.Items.STORAGE_BLOCKS_RAW_SILVER);
 
         provider.addTag(ItemTags.TRIM_MATERIALS).add(ArgentumItems.SILVER_INGOT.getKey());
 
@@ -84,9 +88,17 @@ public class ArgentumTagsGen {
     }
 
     private void blocks(RegistrateTagsProvider.IntrinsicImpl<Block> provider) {
-        provider.addTag(CoreTags.Blocks.ORES_SILVER).add(ArgentumBlocks.SILVER_ORE.getKey(), ArgentumBlocks.DEEPSLATE_SILVER_ORE.getKey());
-        provider.addTag(CoreTags.Blocks.STORAGE_BLOCKS_SILVER).add(ArgentumBlocks.SILVER_BLOCKS.base().getKey());
-        provider.addTag(CoreTags.Blocks.STORAGE_BLOCKS_RAW_SILVER).add(ArgentumBlocks.RAW_SILVER_BLOCK.getKey());
+        provider.addTag(Tags.Blocks.STORAGE_BLOCKS).addTags(
+                ArgentumTags.Blocks.STORAGE_BLOCKS_SILVER,
+                ArgentumTags.Blocks.STORAGE_BLOCKS_RAW_SILVER
+        );
+
+        provider.addTag(Tags.Blocks.ORES).addTags(ArgentumTags.Blocks.ORES_SILVER);
+        provider.addTag(Tags.Blocks.ORE_RATES_SINGULAR).addTags(ArgentumTags.Blocks.ORES_SILVER);
+
+        provider.addTag(ArgentumTags.Blocks.ORES_SILVER).add(ArgentumBlocks.SILVER_ORE.getKey(), ArgentumBlocks.DEEPSLATE_SILVER_ORE.getKey());
+        provider.addTag(ArgentumTags.Blocks.STORAGE_BLOCKS_SILVER).add(ArgentumBlocks.SILVER_BLOCKS.base().getKey());
+        provider.addTag(ArgentumTags.Blocks.STORAGE_BLOCKS_RAW_SILVER).add(ArgentumBlocks.RAW_SILVER_BLOCK.getKey());
 
         provider.addTag(Tags.Blocks.ORES_IN_GROUND_STONE).add(ArgentumBlocks.SILVER_ORE.getKey());
         provider.addTag(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE).add(ArgentumBlocks.DEEPSLATE_SILVER_ORE.getKey());

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "oreganized:block/cut_silver",
-    "side": "oreganized:block/cut_silver",
-    "top": "oreganized:block/cut_silver"
-  }
-}

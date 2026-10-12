@@ -11,7 +11,7 @@ fun Project.moduleDependencies(vararg modules: String) {
     dependencies {
         modules.forEach {
             add("api", project(":$it"))
-            add("dataApi", project(":$it", configuration = "dataElements"))
+            add("dataImplementation", project(":$it", configuration = "dataElements"))
         }
     }
 

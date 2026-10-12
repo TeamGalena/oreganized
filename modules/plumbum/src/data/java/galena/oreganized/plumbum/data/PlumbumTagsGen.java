@@ -8,7 +8,6 @@ import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import galena.oreganized.ModCompat;
 import galena.oreganized.data.ODatagen;
-import galena.oreganized.index.CoreTags;
 import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.plumbum.index.*;
 import java.util.stream.Stream;
@@ -45,16 +44,20 @@ public class PlumbumTagsGen {
     }
 
     private void items(RegistrateItemTagsProvider provider) {
-        provider.addTag(CoreTags.Items.RAW_MATERIALS_LEAD).add(PlumbumItems.RAW_LEAD.getKey());
-        provider.addTag(CoreTags.Items.INGOTS_LEAD).add(PlumbumItems.LEAD_INGOT.getKey());
-        provider.addTag(CoreTags.Items.NUGGETS_LEAD).add(PlumbumItems.LEAD_NUGGET.getKey());
+        provider.addTag(Tags.Items.NUGGETS).addTags(PlumbumTags.Items.NUGGETS_LEAD);
+        provider.addTag(Tags.Items.INGOTS).addTags(PlumbumTags.Items.INGOTS_LEAD);
+        provider.addTag(Tags.Items.RAW_MATERIALS).addTags(PlumbumTags.Items.RAW_MATERIALS_LEAD);
+
+        provider.addTag(PlumbumTags.Items.RAW_MATERIALS_LEAD).add(PlumbumItems.RAW_LEAD.getKey());
+        provider.addTag(PlumbumTags.Items.INGOTS_LEAD).add(PlumbumItems.LEAD_INGOT.getKey());
+        provider.addTag(PlumbumTags.Items.NUGGETS_LEAD).add(PlumbumItems.LEAD_NUGGET.getKey());
 
         provider.addTag(Tags.Items.MUSIC_DISCS).add(PlumbumItems.MUSIC_DISC_STRUCTURE.getKey());
         provider.addTag(Tags.Items.BUCKETS).add(PlumbumItems.MOLTEN_LEAD_BUCKET.getKey());
 
-        provider.copy(CoreTags.Blocks.ORES_LEAD, CoreTags.Items.ORES_LEAD);
-        provider.copy(CoreTags.Blocks.STORAGE_BLOCKS_LEAD, CoreTags.Items.STORAGE_BLOCKS_LEAD);
-        provider.copy(CoreTags.Blocks.STORAGE_BLOCKS_RAW_LEAD, CoreTags.Items.STORAGE_BLOCKS_RAW_LEAD);
+        provider.copy(PlumbumTags.Blocks.ORES_LEAD, PlumbumTags.Items.ORES_LEAD);
+        provider.copy(PlumbumTags.Blocks.STORAGE_BLOCKS_LEAD, PlumbumTags.Items.STORAGE_BLOCKS_LEAD);
+        provider.copy(PlumbumTags.Blocks.STORAGE_BLOCKS_RAW_LEAD, PlumbumTags.Items.STORAGE_BLOCKS_RAW_LEAD);
 
         provider.addTag(ItemTags.TRIM_MATERIALS).add(PlumbumItems.LEAD_INGOT.getKey());
 
@@ -84,9 +87,17 @@ public class PlumbumTagsGen {
     }
 
     private void blocks(RegistrateTagsProvider.IntrinsicImpl<Block> provider) {
-        provider.addTag(CoreTags.Blocks.ORES_LEAD).add(PlumbumBlocks.LEAD_ORE.getKey(), PlumbumBlocks.DEEPSLATE_LEAD_ORE.getKey());
-        provider.addTag(CoreTags.Blocks.STORAGE_BLOCKS_LEAD).add(PlumbumBlocks.LEAD_BLOCK.getKey());
-        provider.addTag(CoreTags.Blocks.STORAGE_BLOCKS_RAW_LEAD).add(PlumbumBlocks.RAW_LEAD_BLOCK.getKey());
+        provider.addTag(Tags.Blocks.STORAGE_BLOCKS).addTags(
+                PlumbumTags.Blocks.STORAGE_BLOCKS_LEAD,
+                PlumbumTags.Blocks.STORAGE_BLOCKS_RAW_LEAD
+        );
+
+        provider.addTag(Tags.Blocks.ORES).addTags(PlumbumTags.Blocks.ORES_LEAD);
+        provider.addTag(Tags.Blocks.ORE_RATES_SINGULAR).addTags(PlumbumTags.Blocks.ORES_LEAD);
+
+        provider.addTag(PlumbumTags.Blocks.ORES_LEAD).add(PlumbumBlocks.LEAD_ORE.getKey(), PlumbumBlocks.DEEPSLATE_LEAD_ORE.getKey());
+        provider.addTag(PlumbumTags.Blocks.STORAGE_BLOCKS_LEAD).add(PlumbumBlocks.LEAD_BLOCK.getKey());
+        provider.addTag(PlumbumTags.Blocks.STORAGE_BLOCKS_RAW_LEAD).add(PlumbumBlocks.RAW_LEAD_BLOCK.getKey());
 
         provider.addTag(Tags.Blocks.ORES_IN_GROUND_STONE).add(PlumbumBlocks.LEAD_ORE.getKey());
         provider.addTag(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE).add(PlumbumBlocks.DEEPSLATE_LEAD_ORE.getKey());
@@ -130,8 +141,8 @@ public class PlumbumTagsGen {
                 .addOptionalTag(ResourceLocation.fromNamespaceAndPath(ModCompat.CREATE, "passive_boiler_heaters"));
 
         provider.addTag(PlumbumTags.Blocks.CREATES_LEAD_CLOUD)
-                .addTags(CoreTags.Blocks.ORES_LEAD)
-                .addTags(CoreTags.Blocks.STORAGE_BLOCKS_RAW_LEAD);
+                .addTags(PlumbumTags.Blocks.ORES_LEAD)
+                .addTags(PlumbumTags.Blocks.STORAGE_BLOCKS_RAW_LEAD);
 
         provider.addTag(PlumbumTags.Blocks.BLOWS_LEAD_CLOUD)
                 .addTags(PlumbumTags.Blocks.CREATES_LEAD_CLOUD);

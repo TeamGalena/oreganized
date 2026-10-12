@@ -13,12 +13,26 @@ public class ArgentumTags {
     public static final class Items {
         private static final TagHelper<Item> HELPER = new TagHelper<>(Registries.ITEM);
 
+        public static final TagKey<Item> RAW_MATERIALS_SILVER = HELPER.commonTag("raw_materials/silver");
+        public static final TagKey<Item> INGOTS_SILVER = HELPER.commonTag("ingots/silver");
+        public static final TagKey<Item> NUGGETS_SILVER = HELPER.commonTag("nuggets/silver");
+
+        public static final TagKey<Item> ORES_SILVER = HELPER.copy(Blocks.ORES_SILVER);
+
+        public static final TagKey<Item> STORAGE_BLOCKS_SILVER = HELPER.copy(Blocks.STORAGE_BLOCKS_SILVER);
+        public static final TagKey<Item> STORAGE_BLOCKS_RAW_SILVER = HELPER.copy(Blocks.STORAGE_BLOCKS_RAW_SILVER);
+
         public static final TagKey<Item> NO_ANVIL_ENCHANT_COST = HELPER.modTag("no_anvil_enchant_cost");
         public static final TagKey<Item> ENCHANTED_BOOK_LIKE = HELPER.modTag("enchanted_book_like");
     }
 
     public static final class Blocks {
         private static final TagHelper<Block> HELPER = new TagHelper<>(Registries.BLOCK);
+
+        public static final TagKey<Block> ORES_SILVER = HELPER.commonTag("ores/silver");
+
+        public static final TagKey<Block> STORAGE_BLOCKS_SILVER = HELPER.commonTag("storage_blocks/silver");
+        public static final TagKey<Block> STORAGE_BLOCKS_RAW_SILVER = HELPER.commonTag("storage_blocks/raw_silver");
 
         public static final TagKey<Block> MINEABLE_WITH_SCRIBE = HELPER.modTag("mineable/scribe");
         public static final TagKey<Block> SILKTOUCH_WITH_SCRIBE = HELPER.modTag("silktouch_using_scribe");

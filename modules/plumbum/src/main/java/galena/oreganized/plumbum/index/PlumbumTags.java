@@ -15,6 +15,16 @@ public class PlumbumTags {
     public static final class Items {
         private static final TagHelper<Item> HELPER = new TagHelper<>(Registries.ITEM);
 
+        public static final TagKey<Item> RAW_MATERIALS_LEAD = HELPER.commonTag("raw_materials/lead");
+
+        public static final TagKey<Item> INGOTS_LEAD = HELPER.commonTag("ingots/lead");
+        public static final TagKey<Item> NUGGETS_LEAD = HELPER.commonTag("nuggets/lead");
+
+        public static final TagKey<Item> ORES_LEAD = HELPER.copy(Blocks.ORES_LEAD);
+
+        public static final TagKey<Item> STORAGE_BLOCKS_LEAD = HELPER.copy(Blocks.STORAGE_BLOCKS_LEAD);
+        public static final TagKey<Item> STORAGE_BLOCKS_RAW_LEAD = HELPER.copy(Blocks.STORAGE_BLOCKS_RAW_LEAD);
+
         public static final TagKey<Item> LIGHTER_THAN_LEAD = HELPER.modTag("lighter_than_lead");
 
         public static final TagKey<Item> PREVENTS_LEAD_CLOUD = HELPER.modTag("tools/prevents_lead_cloud");
@@ -25,6 +35,11 @@ public class PlumbumTags {
 
     public static final class Blocks {
         private static final TagHelper<Block> HELPER = new TagHelper<>(Registries.BLOCK);
+
+        public static final TagKey<Block> ORES_LEAD = HELPER.commonTag("ores/lead");
+
+        public static final TagKey<Block> STORAGE_BLOCKS_LEAD = HELPER.commonTag("storage_blocks/lead");
+        public static final TagKey<Block> STORAGE_BLOCKS_RAW_LEAD = HELPER.commonTag("storage_blocks/raw_lead");
 
         public static final TagKey<Block> MELTS_LEAD = HELPER.modTag("melts_lead");
         public static final TagKey<Block> PREVENTS_LEAD_CLOUD = HELPER.modTag("prevents_lead_cloud");

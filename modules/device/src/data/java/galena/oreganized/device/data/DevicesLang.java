@@ -6,6 +6,7 @@ import com.tterrag.registrate.providers.RegistrateLangProvider;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.device.DeviceModule;
 import galena.oreganized.device.index.DeviceItems;
+import galena.oreganized.device.index.DevicesTags;
 import net.neoforged.fml.common.Mod;
 
 @Mod(DeviceModule.MOD_ID)
@@ -18,6 +19,8 @@ public class DevicesLang {
     private void generate(RegistrateLangProvider provider) {
         autoTranslate(provider, DeviceItems.UNKNOWN_DEVICE);
         autoTranslate(provider, DeviceItems.NETHERITE_NUGGET);
+
+        provider.add(DevicesTags.Items.NUGGETS_NETHERITE, "Netherite Nuggets");
     }
 
 }

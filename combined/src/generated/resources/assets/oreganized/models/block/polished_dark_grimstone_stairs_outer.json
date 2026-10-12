@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "oreganized:block/polished_dark_grimstone",
-    "side": "oreganized:block/polished_dark_grimstone",
-    "top": "oreganized:block/polished_dark_grimstone"
-  }
-}

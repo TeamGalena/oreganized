@@ -53,9 +53,18 @@ public class ArgentumLang {
 
         addAttribute(provider, ArgentumAttributes.INVINCIBILITY_FRAMES, "Invincibility");
 
+        provider.add(ArgentumTags.Items.INGOTS_SILVER, "Silver Ingots");
+        provider.add(ArgentumTags.Items.NUGGETS_SILVER, "Silver Nuggets");
+        provider.add(ArgentumTags.Items.RAW_MATERIALS_SILVER, "Raw Silver");
+        provider.add(ArgentumTags.Items.ORES_SILVER, "Silver Ores");
+        provider.add(ArgentumTags.Items.STORAGE_BLOCKS_SILVER, "Silver Storage Blocks");
+        provider.add(ArgentumTags.Items.STORAGE_BLOCKS_RAW_SILVER, "Raw Silver Storage Blocks");
         provider.add(ArgentumTags.Items.ENCHANTED_BOOK_LIKE, "Enchanted Books");
         provider.add(ArgentumTags.Items.NO_ANVIL_ENCHANT_COST, "Free Anvil Enchantables");
 
+        provider.add(ArgentumTags.Blocks.ORES_SILVER, "Silver Ores");
+        provider.add(ArgentumTags.Blocks.STORAGE_BLOCKS_SILVER, "Silver Storage Blocks");
+        provider.add(ArgentumTags.Blocks.STORAGE_BLOCKS_RAW_SILVER, "Raw Silver Storage Blocks");
         provider.add(ArgentumTags.Blocks.INCORRECT_FOR_SILVER_TOOL, "Incorrect for Silver Tools");
         provider.add(ArgentumTags.Blocks.MINEABLE_WITH_SCRIBE, "Mineable with Scribe");
         provider.add(ArgentumTags.Blocks.SILKTOUCH_WITH_SCRIBE, "Silktouch-able with Scibe");

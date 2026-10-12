@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "oreganized:block/tarnished_silver_bulb_off"
-  }
-}

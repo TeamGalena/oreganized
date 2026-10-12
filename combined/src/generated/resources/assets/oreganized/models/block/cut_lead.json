@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "oreganized:block/cut_lead_top",
-    "side": "oreganized:block/cut_lead_side"
-  }
-}

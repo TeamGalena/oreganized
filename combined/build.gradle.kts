@@ -9,17 +9,6 @@ val modModules =
         .map { project(":${it.name}") }
 
 neoforge {
-    dataGen {
-        existing("blueprint")
-        existing("shieldexp")
-        existing("dye_depot")
-
-        owner = project
-
-        splitSourceSet()
-    }
-
-    // TODO check
     accessTransformer(project(":core"))
 }
 

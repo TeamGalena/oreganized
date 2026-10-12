@@ -1,9 +1,0 @@
-{
-  "values": [
-    "minecraft:iron_golem",
-    {
-      "id": "caverns_and_chasms:copper_golem",
-      "required": false
-    }
-  ]
-}

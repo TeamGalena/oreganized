@@ -1,9 +1,0 @@
-{
-  "asset_name": "oreganized_electrum",
-  "description": {
-    "color": "#D1C47E",
-    "translate": "trim_material.oreganized.electrum"
-  },
-  "ingredient": "oreganized:electrum_ingot",
-  "item_model_index": -1.0
-}

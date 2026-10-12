@@ -5,9 +5,8 @@ import net.neoforged.moddevgradle.dsl.NeoForgeExtension
 import org.gradle.internal.extensions.stdlib.capitalized
 
 plugins {
-    id("com.possible-triangle.core")
-    id("com.possible-triangle.neoforge-api") apply false
-    id("com.possible-triangle.neoforge") apply false
+    id("com.possible-triangle.core") version("99.0-SNAPSHOT")
+    id("com.possible-triangle.neoforge") version("99.0-SNAPSHOT") apply false
 }
 
 withKotlin()
@@ -68,19 +67,30 @@ val modules =
 fun modules(block: Project.() -> Unit) = modules.forEach { it.block() }
 
 modules {
+    mod.id.set("${mod.id.get()}_$name")
+    mod.name.set("${mod.name.get()} ${name.capitalized()}")
+
     plugins.apply("com.possible-triangle.neoforge")
     plugins.apply("net.kyori.blossom")
 
     configure<NeoforgeExtension> {
         accessTransformer(project(":core"))
-        createDataSourceSet()
+
+        dataGen {
+            existing("blueprint")
+            existing("shieldexp")
+            existing("dye_depot")
+
+            owner = project
+
+            splitSourceSet()
+        }
     }
 
     configure<NeoForgeExtension> {
-        runs.named("client") {
-            ideName = "${project.name.capitalized()} Client"
+        runs.configureEach {
+            ideName = "${project.name.capitalized()} ${name.capitalized()}"
         }
-        runs.removeAll { it.name != "client" }
     }
 
     upload.forEach {
@@ -106,7 +116,8 @@ modules {
                 property("modName", mod.name)
                 property("module", project.name)
                 property("moduleName", project.name.capitalized())
-                property("moduleModId", $$"${mod_id}_$${project.name}")
+                property("baseModId", rootProject.mod.id)
+                property("baseModName", rootProject.mod.name)
                 properties.put("moduleDependencies", emptyList<String>())
             }
         }

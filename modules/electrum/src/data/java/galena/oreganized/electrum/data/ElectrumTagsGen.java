@@ -9,7 +9,6 @@ import galena.oreganized.electrum.ElectrumModule;
 import galena.oreganized.electrum.index.ElectrumBlocks;
 import galena.oreganized.electrum.index.ElectrumItems;
 import galena.oreganized.electrum.index.ElectrumTags;
-import galena.oreganized.index.CoreTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
@@ -25,12 +24,15 @@ public class ElectrumTagsGen {
     }
 
     private void items(RegistrateItemTagsProvider provider) {
-        provider.addTag(CoreTags.Items.INGOTS_ELECTRUM).add(ElectrumItems.ELECTRUM_INGOT.getKey());
-        provider.addTag(CoreTags.Items.NUGGETS_ELECTRUM).add(ElectrumItems.ELECTRUM_NUGGET.getKey());
+        provider.addTag(Tags.Items.NUGGETS).addTags(ElectrumTags.Items.NUGGETS_ELECTRUM);
+        provider.addTag(Tags.Items.INGOTS).addTags(ElectrumTags.Items.INGOTS_ELECTRUM);
+
+        provider.addTag(ElectrumTags.Items.INGOTS_ELECTRUM).add(ElectrumItems.ELECTRUM_INGOT.getKey());
+        provider.addTag(ElectrumTags.Items.NUGGETS_ELECTRUM).add(ElectrumItems.ELECTRUM_NUGGET.getKey());
 
         provider.addTag(ItemTags.BEACON_PAYMENT_ITEMS).add(ElectrumItems.ELECTRUM_INGOT.getKey());
 
-        provider.copy(CoreTags.Blocks.STORAGE_BLOCKS_ELECTRUM, CoreTags.Items.STORAGE_BLOCKS_ELECTRUM);
+        provider.copy(ElectrumTags.Blocks.STORAGE_BLOCKS_ELECTRUM, ElectrumTags.Items.STORAGE_BLOCKS_ELECTRUM);
 
         provider.addTag(ItemTags.HEAD_ARMOR).add(ElectrumItems.ELECTRUM_HELMET.getKey());
         provider.addTag(ItemTags.CHEST_ARMOR).add(ElectrumItems.ELECTRUM_CHESTPLATE.getKey());
@@ -58,12 +60,14 @@ public class ElectrumTagsGen {
     }
 
     private void blocks(RegistrateTagsProvider.IntrinsicImpl<Block> provider) {
+        provider.addTag(Tags.Blocks.STORAGE_BLOCKS).addTag(ElectrumTags.Blocks.STORAGE_BLOCKS_ELECTRUM);
+
         provider.addTag(BlockTags.NEEDS_STONE_TOOL).add(ElectrumBlocks.ELECTRUM_BLOCK.getKey());
         provider.addTag(BlockTags.MINEABLE_WITH_PICKAXE).add(ElectrumBlocks.ELECTRUM_BLOCK.getKey());
 
-        provider.addTag(CoreTags.Blocks.STORAGE_BLOCKS_ELECTRUM).add(ElectrumBlocks.ELECTRUM_BLOCK.getKey());
+        provider.addTag(ElectrumTags.Blocks.STORAGE_BLOCKS_ELECTRUM).add(ElectrumBlocks.ELECTRUM_BLOCK.getKey());
 
-        provider.addTag(BlockTags.BEACON_BASE_BLOCKS).addTag(CoreTags.Blocks.STORAGE_BLOCKS_ELECTRUM);
+        provider.addTag(BlockTags.BEACON_BASE_BLOCKS).addTag(ElectrumTags.Blocks.STORAGE_BLOCKS_ELECTRUM);
 
         provider.addTag(ElectrumTags.Blocks.INCORRECT_FOR_ELECTRUM_TOOL).addTag(BlockTags.INCORRECT_FOR_DIAMOND_TOOL);
     }

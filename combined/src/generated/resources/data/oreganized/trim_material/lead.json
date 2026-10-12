@@ -1,9 +1,0 @@
-{
-  "asset_name": "oreganized_lead",
-  "description": {
-    "color": "#5D6084",
-    "translate": "trim_material.oreganized.lead"
-  },
-  "ingredient": "oreganized:lead_ingot",
-  "item_model_index": -1.0
-}
