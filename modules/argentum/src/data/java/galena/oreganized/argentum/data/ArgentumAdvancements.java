@@ -3,6 +3,7 @@ package galena.oreganized.argentum.data;
 import static galena.oreganized.data.extensions.OAdvancementExtensions.getAdv;
 import static galena.oreganized.data.extensions.OAdvancementExtensions.info;
 
+import com.possible_triangle.multikulti.datagen.conditions.Conditional;
 import com.tterrag.registrate.providers.RegistrateAdvancementProvider;
 import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.index.ArgentumBlocks;

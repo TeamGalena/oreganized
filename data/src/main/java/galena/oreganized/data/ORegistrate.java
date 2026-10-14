@@ -21,7 +21,7 @@ public class ORegistrate extends AbstractRegistrate<ORegistrate> {
     static ORegistrate create(String modid) {
         var registrate = new ORegistrate(modid);
         var modBus = ModList.get()
-                .getModContainerById(CoreModule.MOD_ID)
+                .getModContainerById("oreganized_argentum")
                 .map(ModContainer::getEventBus)
                 .orElseThrow();
 

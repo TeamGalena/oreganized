@@ -1,0 +1,8 @@
+modLoader = "lowcodefml"
+loaderVersion = "[1,)"
+license = "https://github.com/${repository}/blob/HEAD/LICENSE.md"
+
+[[mods]]
+modId = "${mod_id}_data"
+version = "${mod_version}"
+displayName = "${mod_name} Datagen"

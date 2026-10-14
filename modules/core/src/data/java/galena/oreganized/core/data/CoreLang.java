@@ -1,7 +1,8 @@
-package galena.oreganized.data;
+package galena.oreganized.core.data;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import galena.oreganized.core.CoreModule;
+import galena.oreganized.data.ODatagen;
 import galena.oreganized.index.CoreTags;
 import net.neoforged.fml.common.Mod;
 

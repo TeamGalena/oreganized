@@ -11,7 +11,8 @@ fun Project.moduleDependencies(vararg modules: String) {
     dependencies {
         modules.forEach {
             add("api", project(":$it"))
-            add("dataImplementation", project(":$it", configuration = "dataElements"))
+            // Does not work at runtime for some reason and I'm giving up of now, you win gradle
+            // add("dataImplementation", project(":$it", configuration = "dataApiElements"))
         }
     }
 

@@ -1,10 +1,11 @@
-package galena.oreganized.data;
+package galena.oreganized.core.data;
 
 import static net.minecraft.resources.ResourceLocation.fromNamespaceAndPath;
 
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import galena.oreganized.ModCompat;
 import galena.oreganized.core.CoreModule;
+import galena.oreganized.data.ODatagen;
 import galena.oreganized.index.CoreTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;

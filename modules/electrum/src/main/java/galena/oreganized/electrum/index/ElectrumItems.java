@@ -47,7 +47,7 @@ public class ElectrumItems {
             }),
             20,
             SoundEvents.ARMOR_EQUIP_CHAIN,
-            () -> Ingredient.of(CoreTags.Items.INGOTS_ELECTRUM),
+            () -> Ingredient.of(ElectrumTags.Items.INGOTS_ELECTRUM),
             List.of(new ArmorMaterial.Layer(id)),
             2.0F,
             0.0F

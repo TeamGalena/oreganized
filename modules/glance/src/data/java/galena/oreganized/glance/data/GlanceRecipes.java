@@ -18,6 +18,7 @@ import galena.oreganized.glance.index.GlanceBlocks;
 import galena.oreganized.glance.index.GlanceTags;
 import galena.oreganized.index.CoreTags;
 import galena.oreganized.plumbum.index.PlumbumItems;
+import galena.oreganized.plumbum.index.PlumbumTags;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.world.item.Items;
@@ -51,7 +52,7 @@ public class GlanceRecipes {
                 .pattern(" X ")
                 .pattern("XOX")
                 .pattern(" X ")
-                .define('X', CoreTags.Items.NUGGETS_LEAD)
+                .define('X', PlumbumTags.Items.NUGGETS_LEAD)
                 .define('O', GlanceBlocks.GLANCE.block())
                 .unlockedBy("has_glance", has(GlanceBlocks.GLANCE.block()))
                 .save(output);
@@ -59,9 +60,9 @@ public class GlanceRecipes {
         shaped(RecipeCategory.BUILDING_BLOCKS, GlanceBlocks.GLANCE.block(), 2)
                 .pattern("AB")
                 .pattern("BA")
-                .define('A', CoreTags.Items.NUGGETS_LEAD)
+                .define('A', PlumbumTags.Items.NUGGETS_LEAD)
                 .define('B', Items.DIORITE)
-                .unlockedBy("has_lead_ingot", has(CoreTags.Items.INGOTS_LEAD))
+                .unlockedBy("has_lead_ingot", has(PlumbumTags.Items.INGOTS_LEAD))
                 .save(output);
 
         // TODO modular will need to be conditional in the future
@@ -91,7 +92,7 @@ public class GlanceRecipes {
         processing(MixingRecipe::new, "glance")
                 .output(GlanceBlocks.GLANCE.block())
                 .require(Items.DIORITE)
-                .require(CoreTags.Items.NUGGETS_LEAD)
+                .require(PlumbumTags.Items.NUGGETS_LEAD)
                 .build(output);
 
         // TODO modular will need to be conditional in the future

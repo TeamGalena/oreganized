@@ -8,10 +8,4 @@ dependencies {
 
     modCompileOnlyApi(pack.modrinth.farmers.delight)
     modCompileOnlyApi(pack.modrinth.no.mans.land)
-
-    dataApi(libs.registrate)
-    dataApi(libs.create) { isTransitive = false }
-    dataApi(libs.multikulti.datagen)
-    dataApi(libs.multikulti.registrate)
-    dataApi(pack.modrinth.farmers.delight)
 }

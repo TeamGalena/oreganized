@@ -5,8 +5,8 @@ import net.neoforged.moddevgradle.dsl.NeoForgeExtension
 import org.gradle.internal.extensions.stdlib.capitalized
 
 plugins {
-    id("com.possible-triangle.core") version("99.0-SNAPSHOT")
-    id("com.possible-triangle.neoforge") version("99.0-SNAPSHOT") apply false
+    id("com.possible-triangle.core")
+    id("com.possible-triangle.neoforge") apply false
 }
 
 withKotlin()
@@ -85,6 +85,12 @@ modules {
 
             splitSourceSet()
         }
+    }
+
+    dependencies {
+        // should be dataImplementation but gradle is a hater
+        runtimeOnly("dev.galena:oreganized-1.21.1-data:0.0.0-dev")
+        "dataCompileOnly"(project(":data"))
     }
 
     configure<NeoForgeExtension> {
