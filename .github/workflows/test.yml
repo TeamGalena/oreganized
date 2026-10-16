@@ -1,8 +1,8 @@
 # <meta>
 #    <source>@pssbletrngle/github-meta-generator</source>
-#    <version>1.0.122</version>
-#    <timestamp>2026-09-08T19:59:51.368Z</timestamp>
-#    <hash>e6eaacbda70ba2f9</hash>
+#    <version>1.0.123</version>
+#    <timestamp>2026-10-16T12:37:06.671Z</timestamp>
+#    <hash>dace87087fa861b7</hash>
 # </meta>
 
 name: Test
@@ -53,14 +53,6 @@ jobs:
           cache-read-only: ${{ github.event_name != 'push' }}
           dependency-graph: generate-and-submit
 
-      - name: Cache SonarQube packages
-        if: ${{ github.event_name != 'pull_request' }}
-        uses: actions/cache@v6
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-
       - uses: PssbleTrngle/find-release@v1
         if: ${{ github.event_name != 'pull_request' }}
         id: draft
@@ -72,15 +64,6 @@ jobs:
         run: ./gradlew build check --stacktrace
         env:
           RELEASE_VERSION: ${{ steps.action.outputs.tag }}
-
-      - name: Analyze
-        if: ${{ github.event_name != 'pull_request' }}
-        run: ./gradlew sonar
-        continue-on-error: true
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-          GITHUB_DEPENDENCY_GRAPH_ENABLED: false
 
       - name: Publish -SNAPSHOT version
         if: ${{ github.event_name != 'pull_request' && fromJSON(steps.draft.outputs.matched) }}
