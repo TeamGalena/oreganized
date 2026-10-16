@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/iron_bars_cap",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bars": "oreganized:block/lead_bars",
+    "edge": "oreganized:block/lead_bars",
+    "particle": "oreganized:block/lead_bars"
+  }
+}

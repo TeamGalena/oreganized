@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "B": {
+      "item": "oreganized:molten_lead_bucket"
+    },
+    "G": {
+      "item": "minecraft:glow_ink_sac"
+    },
+    "I": {
+      "tag": "c:ingots/lead"
+    }
+  },
+  "pattern": [
+    " I ",
+    "IGI",
+    " B "
+  ],
+  "result": {
+    "count": 1,
+    "id": "oreganized:lead_bulb"
+  }
+}

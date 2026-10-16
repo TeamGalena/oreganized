@@ -1,0 +1,27 @@
+{
+  "parent": "minecraft:adventure/whos_the_pillager_now",
+  "criteria": {
+    "see_gargoyle_gargle": {
+      "trigger": "oreganized:knocked_banner_off"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.oreganized.demoted.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:crossbow"
+    },
+    "title": {
+      "translate": "advancements.oreganized.demoted.title"
+    }
+  },
+  "requirements": [
+    [
+      "see_gargoyle_gargle"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

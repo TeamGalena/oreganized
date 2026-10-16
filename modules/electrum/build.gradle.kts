@@ -7,4 +7,6 @@ moduleDependencies(
 dependencies {
     modImplementation(pack.modrinth.shield.expansion)
     modImplementation(pack.modrinth.farmers.delight)
+
+    dataApi(project(":argentum"))
 }

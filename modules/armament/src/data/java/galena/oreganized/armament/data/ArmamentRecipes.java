@@ -10,7 +10,7 @@ import static net.minecraft.data.recipes.ShapelessRecipeBuilder.shapeless;
 import galena.oreganized.OConstants;
 import galena.oreganized.armament.index.ArmamentBlocks;
 import galena.oreganized.armament.index.ArmamentItems;
-import galena.oreganized.index.CoreTags;
+import galena.oreganized.plumbum.index.PlumbumTags;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.world.item.Items;
@@ -24,9 +24,9 @@ public class ArmamentRecipes {
                 .pattern("BAB")
                 .pattern("ABA")
                 .define('A', Tags.Items.GUNPOWDERS)
-                .define('B', CoreTags.Items.NUGGETS_LEAD)
+                .define('B', PlumbumTags.Items.NUGGETS_LEAD)
                 .unlockedBy("has_gunpowder", has(Tags.Items.GUNPOWDERS))
-                .unlockedBy("has_lead_nugget", has(CoreTags.Items.NUGGETS_LEAD))
+                .unlockedBy("has_lead_nugget", has(PlumbumTags.Items.NUGGETS_LEAD))
                 .save(output);
 
         shapeless(RecipeCategory.TRANSPORTATION, ArmamentItems.SHRAPNEL_BOMB_MINECART.get())
@@ -38,14 +38,14 @@ public class ArmamentRecipes {
         shaped(RecipeCategory.COMBAT, ArmamentItems.LEAD_BOLT.get(), 1)
                 .pattern("A")
                 .pattern("A")
-                .define('A', CoreTags.Items.INGOTS_LEAD)
-                .unlockedBy("has_lead", has(CoreTags.Items.INGOTS_LEAD))
+                .define('A', PlumbumTags.Items.INGOTS_LEAD)
+                .unlockedBy("has_lead", has(PlumbumTags.Items.INGOTS_LEAD))
                 .save(output);
 
         shapeless(RecipeCategory.TOOLS, ArmamentItems.FLINT_AND_PEWTER.get(), 1)
-                .requires(CoreTags.Items.INGOTS_LEAD)
+                .requires(PlumbumTags.Items.INGOTS_LEAD)
                 .requires(Items.FLINT)
-                .unlockedBy("has_lead", has(CoreTags.Items.INGOTS_LEAD))
+                .unlockedBy("has_lead", has(PlumbumTags.Items.INGOTS_LEAD))
                 .save(output);
 
         compact(ArmamentBlocks.LEAD_BOLT_CRATE, ArmamentItems.LEAD_BOLT).save(output);

@@ -41,7 +41,6 @@ dependencies {
     // runtimeOnly(pack.modrinth.scannable)
     // runtimeOnly(pack.modrinth.architectury.api)
     modRuntimeOnly(pack.modrinth.moonlight)
-    modRuntimeOnly(libs.dye.depot)
     modRuntimeOnly(pack.modrinth.biolith)
     modRuntimeOnly(pack.modrinth.no.mans.land)
 }

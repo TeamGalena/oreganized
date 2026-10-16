@@ -1,0 +1,12 @@
+{
+  "values": {
+    "oreganized:datura": {
+      "can_villager_compost": true,
+      "chance": 0.65
+    },
+    "oreganized:purple_datura": {
+      "can_villager_compost": true,
+      "chance": 0.65
+    }
+  }
+}

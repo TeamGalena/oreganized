@@ -5,7 +5,3 @@ dependencyResolutionManagement {
         }
     }
 }
-
-plugins {
-
-}

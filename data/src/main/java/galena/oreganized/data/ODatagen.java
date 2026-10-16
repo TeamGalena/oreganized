@@ -1,5 +1,6 @@
 package galena.oreganized.data;
 
+
 import com.possible_triangle.multikulti.registrate.platform.service.ForgeRegistrateBuilders;
 import com.possible_triangle.multikulti.registrate.provider.RegistrateSoundsProvider;
 import com.tterrag.registrate.AbstractRegistrate;
@@ -7,7 +8,6 @@ import com.tterrag.registrate.providers.*;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.providers.loot.RegistrateLootTableProvider.LootType;
 import galena.oreganized.OConstants;
-import galena.oreganized.client.OResourcePacks;
 import galena.oreganized.compat.ponder.PonderCompat;
 import galena.oreganized.data.extensions.OTagExtensions;
 import galena.oreganized.data.provider.CombinedRegistryBootstraps;
@@ -24,7 +24,6 @@ import net.minecraft.DetectedVersion;
 import net.minecraft.core.Registry;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.PackOutput;
 import net.minecraft.data.metadata.PackMetadataGenerator;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.network.chat.Component;
@@ -43,12 +42,10 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.data.DataMapProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
-@EventBusSubscriber
 public class ODatagen {
 
     private static final AbstractRegistrate<?> REGISTRATE = ORegistrate.create(OConstants.MOD_ID);
@@ -75,17 +72,9 @@ public class ODatagen {
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
-    private static void generatePackMetadata(GatherDataEvent event) {
+    static void generatePackMetadata(GatherDataEvent event) {
         event.createProvider((output, lookup) -> new PackMetadataGenerator(output).add(PackMetadataSection.TYPE, new PackMetadataSection(
                 Component.literal("Oreganized resources"),
-                DetectedVersion.BUILT_IN.getPackVersion(PackType.CLIENT_RESOURCES),
-                Optional.empty()
-        )));
-
-        var createCompat = event.getGenerator().getBuiltinDatapack(true, "create_compat");
-        var createCompatOutput = new PackOutput(event.getGenerator().getPackOutput().getOutputFolder().resolve(OResourcePacks.CREATE_COMPAT));
-        createCompat.addProvider($ -> new PackMetadataGenerator(createCompatOutput).add(PackMetadataSection.TYPE, new PackMetadataSection(
-                Component.literal("Textures for other mods to fit Oreganized's color palettes for its materials"),
                 DetectedVersion.BUILT_IN.getPackVersion(PackType.CLIENT_RESOURCES),
                 Optional.empty()
         )));
@@ -142,6 +131,7 @@ public class ODatagen {
     public static void addItemTagProvider(Consumer<RegistrateItemTagsProvider> consumer) {
         REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, consumer::accept);
         REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, OTagExtensions::copyBlockTags);
+        addBlockTagProvider(OTagExtensions::createCopiedBlockTags);
     }
 
     public static void addFluidTagProvider(Consumer<RegistrateTagsProvider.IntrinsicImpl<Fluid>> consumer) {

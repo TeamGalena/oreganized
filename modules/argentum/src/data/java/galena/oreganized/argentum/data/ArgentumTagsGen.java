@@ -10,6 +10,7 @@ import galena.oreganized.ModCompat;
 import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.index.ArgentumBlocks;
 import galena.oreganized.argentum.index.ArgentumItems;
+import galena.oreganized.argentum.index.ArgentumSets;
 import galena.oreganized.argentum.index.ArgentumTags;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.index.CoreTags;

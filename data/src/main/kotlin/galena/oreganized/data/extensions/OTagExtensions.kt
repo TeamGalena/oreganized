@@ -24,25 +24,29 @@ import net.neoforged.neoforge.common.Tags
 import java.util.function.Supplier
 import java.util.stream.Stream
 
-fun copyBlockTags(provider: RegistrateItemTagsProvider) {
-    provider.copy(BlockTags.SMALL_FLOWERS, ItemTags.SMALL_FLOWERS)
+private val BLOCK_ITEM_TAGS =
+    mapOf(
+        BlockTags.SMALL_FLOWERS to ItemTags.SMALL_FLOWERS,
+        Tags.Blocks.ORES to Tags.Items.ORES,
+        Tags.Blocks.ORE_RATES_SINGULAR to Tags.Items.ORE_RATES_SINGULAR,
+        Tags.Blocks.ORES_IN_GROUND_STONE to Tags.Items.ORES_IN_GROUND_STONE,
+        Tags.Blocks.ORES_IN_GROUND_DEEPSLATE to Tags.Items.ORES_IN_GROUND_DEEPSLATE,
+        BlockTags.WALLS to ItemTags.WALLS,
+        BlockTags.FENCES to ItemTags.FENCES,
+        BlockTags.STAIRS to ItemTags.STAIRS,
+        BlockTags.SLABS to ItemTags.SLABS,
+        BlockTags.DOORS to ItemTags.DOORS,
+        BlockTags.TRAPDOORS to ItemTags.TRAPDOORS,
+        BlockTags.BUTTONS to ItemTags.BUTTONS,
+        Tags.Blocks.STORAGE_BLOCKS to Tags.Items.STORAGE_BLOCKS,
+    )
 
-    provider.copy(Tags.Blocks.ORES, Tags.Items.ORES)
-    provider.copy(Tags.Blocks.ORE_RATES_SINGULAR, Tags.Items.ORE_RATES_SINGULAR)
-    provider.copy(Tags.Blocks.ORES_IN_GROUND_STONE, Tags.Items.ORES_IN_GROUND_STONE)
-    provider.copy(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE, Tags.Items.ORES_IN_GROUND_DEEPSLATE)
+fun RegistrateItemTagsProvider.copyBlockTags() {
+    BLOCK_ITEM_TAGS.forEach(this::copy)
+}
 
-    provider.copy(BlockTags.WALLS, ItemTags.WALLS)
-    provider.copy(BlockTags.FENCES, ItemTags.FENCES)
-
-    provider.copy(BlockTags.STAIRS, ItemTags.STAIRS)
-    provider.copy(BlockTags.SLABS, ItemTags.SLABS)
-
-    provider.copy(BlockTags.DOORS, ItemTags.DOORS)
-    provider.copy(BlockTags.TRAPDOORS, ItemTags.TRAPDOORS)
-    provider.copy(BlockTags.BUTTONS, ItemTags.BUTTONS)
-
-    provider.copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS)
+fun IntrinsicImpl<Block>.createCopiedBlockTags() {
+    BLOCK_ITEM_TAGS.forEach { (block) -> addTag(block) }
 }
 
 fun RegistrateItemTagsProvider.tagDyed(

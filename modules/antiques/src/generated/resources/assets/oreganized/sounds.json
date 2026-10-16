@@ -1,0 +1,10 @@
+{
+  "music.disc.radio": {
+    "sounds": [
+      {
+        "name": "oreganized:music/disc/radio",
+        "stream": true
+      }
+    ]
+  }
+}

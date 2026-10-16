@@ -3,13 +3,14 @@ package galena.oreganized.electrum.index;
 import galena.oreganized.electrum.ElectrumModule;
 import galena.oreganized.electrum.config.ElectrumConfigs;
 import galena.oreganized.electrum.world.item.SpeedometerItem;
-import galena.oreganized.index.CoreTags;
 import galena.oreganized.register.ItemRegistryHelper;
 import galena.oreganized.register.SimpleRegistryHelper;
 import galena.oreganized.world.item.ModdedArmorItem;
+
 import java.util.EnumMap;
 import java.util.List;
 import java.util.stream.Stream;
+
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvents;
@@ -68,7 +69,11 @@ public class ElectrumItems {
         return Stream.of(ELECTRUM_BOOTS, ELECTRUM_LEGGINGS, ELECTRUM_CHESTPLATE, ELECTRUM_HELMET);
     }
 
-    public static final Tier ELECTRUM_TIER = new SimpleTier(ElectrumTags.Blocks.INCORRECT_FOR_ELECTRUM_TOOL, 1561, 8F, 3.0F, 14, () -> Ingredient.of(CoreTags.Items.INGOTS_ELECTRUM));
+    public static final Tier ELECTRUM_TIER = new SimpleTier(
+            ElectrumTags.Blocks.INCORRECT_FOR_ELECTRUM_TOOL,
+            1561, 8F, 3.0F, 14,
+            () -> Ingredient.of(ElectrumTags.Items.INGOTS_ELECTRUM)
+    );
 
     public static final DeferredItem<Item> ELECTRUM_SWORD = ITEMS.createItem("electrum_sword",
             () -> new SwordItem(ELECTRUM_TIER, new Item.Properties().attributes(SwordItem.createAttributes(ELECTRUM_TIER, 3, -2.4F))));

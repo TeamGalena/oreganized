@@ -1,0 +1,173 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_post_thick"
+      },
+      "when": {
+        "east": "false",
+        "north": "false",
+        "south": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_post_end_top"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_post_end_bottom"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_side_thick"
+      },
+      "when": {
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_side_bottom"
+      },
+      "when": {
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_cap_thick"
+      },
+      "when": {
+        "east": "false",
+        "north": "true",
+        "south": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_side_top"
+      },
+      "when": {
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_side_alt_thick"
+      },
+      "when": {
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_side_alt_bottom"
+      },
+      "when": {
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_cap_alt_thick"
+      },
+      "when": {
+        "east": "false",
+        "north": "false",
+        "south": "true",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_side_alt_top"
+      },
+      "when": {
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_side_thick",
+        "y": 270
+      },
+      "when": {
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_side_bottom",
+        "y": 270
+      },
+      "when": {
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_cap_thick",
+        "y": 270
+      },
+      "when": {
+        "east": "false",
+        "north": "false",
+        "south": "false",
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_side_top",
+        "y": 270
+      },
+      "when": {
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_side_alt_thick",
+        "y": 270
+      },
+      "when": {
+        "east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_side_alt_bottom",
+        "y": 270
+      },
+      "when": {
+        "east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_cap_alt_thick",
+        "y": 270
+      },
+      "when": {
+        "east": "true",
+        "north": "false",
+        "south": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "oreganized:block/pale_grimstone_spyre_fence_side_alt_top",
+        "y": 270
+      },
+      "when": {
+        "east": "true"
+      }
+    }
+  ]
+}

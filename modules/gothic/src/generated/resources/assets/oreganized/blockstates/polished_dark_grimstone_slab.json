@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "oreganized:block/polished_dark_grimstone_slab"
+    },
+    "type=double": {
+      "model": "oreganized:block/polished_dark_grimstone"
+    },
+    "type=top": {
+      "model": "oreganized:block/polished_dark_grimstone_slab_top"
+    }
+  }
+}

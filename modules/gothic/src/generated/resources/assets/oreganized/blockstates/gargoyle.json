@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "attachment=floor,facing=east": {
+      "model": "oreganized:block/gargoyle",
+      "y": 270
+    },
+    "attachment=floor,facing=north": {
+      "model": "oreganized:block/gargoyle",
+      "y": 180
+    },
+    "attachment=floor,facing=south": {
+      "model": "oreganized:block/gargoyle"
+    },
+    "attachment=floor,facing=west": {
+      "model": "oreganized:block/gargoyle",
+      "y": 90
+    },
+    "attachment=wall,facing=east": {
+      "model": "oreganized:block/gargoyle_side",
+      "y": 270
+    },
+    "attachment=wall,facing=north": {
+      "model": "oreganized:block/gargoyle_side",
+      "y": 180
+    },
+    "attachment=wall,facing=south": {
+      "model": "oreganized:block/gargoyle_side"
+    },
+    "attachment=wall,facing=west": {
+      "model": "oreganized:block/gargoyle_side",
+      "y": 90
+    }
+  }
+}

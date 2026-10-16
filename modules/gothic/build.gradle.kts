@@ -7,4 +7,6 @@ moduleDependencies(
 
 dependencies {
     modImplementation(libs.create) { isTransitive = false }
+
+    dataApi(project(":plumbum"))
 }

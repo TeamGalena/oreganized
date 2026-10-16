@@ -1,0 +1,34 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:mixing",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ],
+  "heat_requirement": "heated",
+  "ingredients": [
+    [
+      {
+        "tag": "c:storage_blocks/lead"
+      },
+      {
+        "tag": "c:storage_blocks/raw_lead"
+      }
+    ]
+  ],
+  "results": [
+    {
+      "amount": 1000,
+      "id": "oreganized:molten_lead"
+    }
+  ]
+}

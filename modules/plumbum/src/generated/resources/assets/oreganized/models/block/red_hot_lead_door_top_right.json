@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/door_top_right",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "oreganized:block/red_hot_lead",
+    "top": "oreganized:block/red_hot_lead"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "parent": "minecraft:story/upgrade_tools",
+  "criteria": {
+    "has_brain_damage": {
+      "conditions": {
+        "effects": {
+          "oreganized:stunning": {}
+        }
+      },
+      "trigger": "minecraft:effects_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.oreganized.like_the_romans.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "oreganized:lead_ingot"
+    },
+    "title": {
+      "translate": "advancements.oreganized.like_the_romans.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_brain_damage"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

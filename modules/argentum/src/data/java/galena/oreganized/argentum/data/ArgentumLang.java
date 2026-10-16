@@ -21,7 +21,7 @@ public class ArgentumLang {
         autoTranslate(provider, ArgentumItems.SILVER_INGOT);
         autoTranslate(provider, ArgentumItems.SILVER_NUGGET);
         autoTranslate(provider, ArgentumItems.RAW_SILVER);
-        autoTranslate(provider, ArgentumItems.silverArmor());
+        autoTranslate(provider, ArgentumSets.silverArmor());
         autoTranslate(provider, ArgentumSets.silverTools());
         autoTranslate(provider, ArgentumItems.SILVER_MIRROR);
         autoTranslate(provider, ArgentumItems.SCRIBE);

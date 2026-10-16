@@ -1,0 +1,33 @@
+{
+  "parent": "oreganized:story/melting_point",
+  "criteria": {
+    "has_structure_disc": {
+      "conditions": {
+        "items": [
+          {
+            "items": "oreganized:music_disc_structure"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.oreganized.disc_smith.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "oreganized:music_disc_structure"
+    },
+    "title": {
+      "translate": "advancements.oreganized.disc_smith.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_structure_disc"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

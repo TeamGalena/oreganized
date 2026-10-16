@@ -1,0 +1,26 @@
+{
+  "parent": "oreganized:adventure/weeping_devil",
+  "criteria": {
+    "see_gargoyle_gargle": {
+      "trigger": "oreganized:see_gargoyle_gargle"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.oreganized.garglin_water.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:water_bucket"
+    },
+    "title": {
+      "translate": "advancements.oreganized.garglin_water.title"
+    }
+  },
+  "requirements": [
+    [
+      "see_gargoyle_gargle"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

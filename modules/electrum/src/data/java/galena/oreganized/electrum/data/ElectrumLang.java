@@ -10,7 +10,6 @@ import galena.oreganized.electrum.index.ElectrumAttributes;
 import galena.oreganized.electrum.index.ElectrumBlocks;
 import galena.oreganized.electrum.index.ElectrumItems;
 import galena.oreganized.electrum.index.ElectrumTags;
-import galena.oreganized.index.ElectrumTags;
 import net.neoforged.fml.common.Mod;
 
 @Mod(ElectrumModule.MOD_ID)

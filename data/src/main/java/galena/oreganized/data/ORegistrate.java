@@ -29,6 +29,8 @@ public class ORegistrate extends AbstractRegistrate<ORegistrate> {
         var registrate = new ORegistrate(modid, active.getModId());
         registrate.registerEventListeners(active.getEventBus());
 
+        active.getEventBus().register(ODatagen.class);
+
         // TODO modular this is only necessary to load `extraLang` once
         registrate.addRawLang("dummy." + active.getModId(), "Dummy Entry");
 

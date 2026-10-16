@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "oreganized:block/pale_grimstone_bricks"
+  }
+}

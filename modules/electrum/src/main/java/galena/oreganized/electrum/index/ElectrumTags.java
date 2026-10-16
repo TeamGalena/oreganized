@@ -1,6 +1,5 @@
 package galena.oreganized.electrum.index;
 
-import galena.oreganized.index.CoreTags;
 import galena.oreganized.register.TagHelper;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
@@ -15,10 +14,9 @@ public class ElectrumTags {
         public static final TagKey<Item> INGOTS_ELECTRUM = HELPER.commonTag("ingots/electrum");
         public static final TagKey<Item> NUGGETS_ELECTRUM = HELPER.commonTag("nuggets/electrum");
 
-        public static final TagKey<Item> STORAGE_BLOCKS_ELECTRUM = HELPER.copy(CoreTags.Blocks.STORAGE_BLOCKS_ELECTRUM);
+        public static final TagKey<Item> STORAGE_BLOCKS_ELECTRUM = HELPER.copy(ElectrumTags.Blocks.STORAGE_BLOCKS_ELECTRUM);
 
         public static final TagKey<Item> HAS_KINETIC_DAMAGE = HELPER.modTag("has_kinetic_damage");
-
     }
 
     public static final class Blocks {

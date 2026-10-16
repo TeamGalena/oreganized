@@ -1,0 +1,8 @@
+{
+  "comparator_output": 13,
+  "description": {
+    "translate": "item.oreganized.music_disc_structure.desc"
+  },
+  "length_in_seconds": 149.0,
+  "sound_event": "oreganized:music.disc.structure"
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "shieldexp:item/netherite_shield_blocking",
+  "gui_light": "front",
+  "textures": {
+    "1": "oreganized:item/electrum_shield",
+    "particle": "oreganized:item/electrum_shield"
+  }
+}

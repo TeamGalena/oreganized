@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/template_glass_pane_side_alt",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "edge": "minecraft:block/black_stained_glass_pane_top",
+    "pane": "oreganized:block/black_crystal_glass_in"
+  }
+}

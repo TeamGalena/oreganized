@@ -3,6 +3,7 @@ package galena.oreganized.argentum;
 import galena.oreganized.CreativeModeTabBuilder;
 import galena.oreganized.argentum.index.ArgentumBlocks;
 import galena.oreganized.argentum.index.ArgentumItems;
+import galena.oreganized.argentum.index.ArgentumSets;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
@@ -50,7 +51,7 @@ public class ArgentumTabs {
         builder.add(CreativeModeTabs.COMBAT, tab -> {
             tab.putAfter(Items.GOLDEN_SWORD, ArgentumItems.SILVER_SWORD);
             tab.putAfter(Items.GOLDEN_AXE, ArgentumItems.SILVER_AXE);
-            tab.putBefore(Items.GOLDEN_HELMET, ArgentumItems.silverArmor());
+            tab.putBefore(Items.GOLDEN_HELMET, ArgentumSets.silverArmor());
         });
 
         builder.add(CreativeModeTabs.INGREDIENTS, tab -> {

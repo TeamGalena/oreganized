@@ -9,7 +9,6 @@ import galena.oreganized.world.item.ModdedArmorItem;
 
 import java.util.EnumMap;
 import java.util.List;
-import java.util.stream.Stream;
 
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
@@ -66,7 +65,11 @@ public class ArgentumItems {
     public static final DeferredItem<ArmorItem> SILVER_LEGGINGS = ITEMS.createArmor("silver_leggings", SILVER_MATERIAL, ArmorItem.Type.LEGGINGS, 14, ArgentumItems::silverArmorAttributes);
     public static final DeferredItem<ArmorItem> SILVER_BOOTS = ITEMS.createArmor("silver_boots", SILVER_MATERIAL, ArmorItem.Type.BOOTS, 14, ArgentumItems::silverArmorAttributes);
 
-    public static final Tier SILVER_TIER = new SimpleTier(ArgentumTags.Blocks.INCORRECT_FOR_SILVER_TOOL, 191, 5F, 2.0F, 13, () -> Ingredient.of(ArgentumTags.Items.INGOTS_SILVER));
+    public static final Tier SILVER_TIER = new SimpleTier(
+            ArgentumTags.Blocks.INCORRECT_FOR_SILVER_TOOL,
+            191, 5F, 2.0F, 13,
+            () -> Ingredient.of(ArgentumTags.Items.INGOTS_SILVER)
+    );
 
     public static final DeferredItem<Item> SILVER_SWORD = ITEMS.createItem("silver_sword",
             () -> new SwordItem(SILVER_TIER, new Item.Properties().attributes(SwordItem.createAttributes(SILVER_TIER, 3, -2.4F))));
@@ -78,10 +81,5 @@ public class ArgentumItems {
             () -> new AxeItem(SILVER_TIER, new Item.Properties().attributes(DiggerItem.createAttributes(SILVER_TIER, 6.0F, -3.1F))));
     public static final DeferredItem<Item> SILVER_HOE = ITEMS.createItem("silver_hoe",
             () -> new HoeItem(SILVER_TIER, new Item.Properties().attributes(DiggerItem.createAttributes(SILVER_TIER, -2.0F, -1.0F))));
-
-    public static Stream<DeferredItem<ArmorItem>> silverArmor() {
-        return Stream.of(SILVER_BOOTS, SILVER_LEGGINGS, SILVER_CHESTPLATE, SILVER_HELMET);
-    }
-
 
 }

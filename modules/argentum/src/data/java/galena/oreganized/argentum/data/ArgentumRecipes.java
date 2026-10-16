@@ -64,7 +64,7 @@ public class ArgentumRecipes {
         compact(ArgentumItems.SILVER_INGOT, ArgentumItems.SILVER_NUGGET).save(output, OConstants.modLoc("silver_ingot_from_nuggets"));
         unCompact(ArgentumItems.SILVER_NUGGET, ArgentumItems.SILVER_INGOT).save(output);
 
-        makeMetalRecycling(output, ArgentumItems.SILVER_NUGGET, Stream.concat(ArgentumItems.silverArmor(), ArgentumSets.silverTools()).toList());
+        makeMetalRecycling(output, ArgentumItems.SILVER_NUGGET, Stream.concat(ArgentumSets.silverArmor(), ArgentumSets.silverTools()).toList());
 
         shaped(RecipeCategory.TOOLS, ArgentumItems.SILVER_MIRROR)
                 .pattern("ABA")

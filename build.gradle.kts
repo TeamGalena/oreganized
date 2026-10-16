@@ -61,6 +61,7 @@ subprojects {
         "runtimeOnly"(rootProject.pack.modrinth.jade)
         "runtimeOnly"(rootProject.pack.modrinth.freecam)
         "runtimeOnly"(rootProject.libs.jei.neoforge)
+        "runtimeOnly"(rootProject.libs.dye.depot)
     }
 
     upload.maven.nexus()
@@ -102,6 +103,7 @@ modules {
     configure<NeoForgeExtension> {
         runs.configureEach {
             ideName = "${project.name.capitalized()} ${name.capitalized()}"
+            ideFolderName = project.name
         }
     }
 
@@ -141,3 +143,10 @@ enableSpotless {
         targetExclude("build/generated/**")
     }
 }
+
+val runModuleData =
+    tasks.register("runModuleData") {
+        modules {
+            dependsOn(tasks.getByName("runData"))
+        }
+    }

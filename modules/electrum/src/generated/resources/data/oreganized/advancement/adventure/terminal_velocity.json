@@ -1,0 +1,26 @@
+{
+  "parent": "oreganized:story/obtain_silver",
+  "criteria": {
+    "terminal_velocity": {
+      "trigger": "oreganized:terminal_velocity"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.oreganized.terminal_velocity.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "oreganized:speedometer"
+    },
+    "title": {
+      "translate": "advancements.oreganized.terminal_velocity.title"
+    }
+  },
+  "requirements": [
+    [
+      "terminal_velocity"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

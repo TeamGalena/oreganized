@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_polished_dark_grimstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "oreganized:polished_dark_grimstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "oreganized:dark_grimstone_bricks"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_polished_dark_grimstone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "oreganized:dark_grimstone_bricks"
+    ]
+  }
+}

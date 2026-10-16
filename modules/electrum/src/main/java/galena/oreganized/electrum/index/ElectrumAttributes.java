@@ -1,5 +1,6 @@
 package galena.oreganized.electrum.index;
 
+import galena.oreganized.electrum.ElectrumModule;
 import galena.oreganized.register.AttributeRegistryHelper;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.Attributes;

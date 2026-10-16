@@ -1,6 +1,6 @@
 package galena.oreganized.argentum.client.model;
 
-import galena.oreganized.argentum.index.ArgentumItems;
+import galena.oreganized.argentum.index.ArgentumSets;
 import galena.oreganized.client.extensions.CustomArmorModelExtensions;
 import galena.oreganized.client.model.ModdedArmorModel;
 import net.minecraft.client.model.HumanoidArmorModel;
@@ -19,7 +19,7 @@ public class SilverArmorModel {
 
     @SubscribeEvent
     private static void registerClientExtensions(RegisterClientExtensionsEvent event) {
-        event.registerItem(new CustomArmorModelExtensions(ModdedArmorModel::new, SilverArmorModel::createBodyLayer), ArgentumItems.silverArmor().toArray(Holder[]::new));
+        event.registerItem(new CustomArmorModelExtensions(ModdedArmorModel::new, SilverArmorModel::createBodyLayer), ArgentumSets.silverArmor().toArray(Holder[]::new));
     }
 
     public static LayerDefinition createBodyLayer() {

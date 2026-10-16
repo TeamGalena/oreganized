@@ -1,0 +1,7 @@
+{
+  "parent": "oreganized:block/template/spyre_fence/post_thin",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "texture": "oreganized:block/dark_grimstone_spyre_fence"
+  }
+}

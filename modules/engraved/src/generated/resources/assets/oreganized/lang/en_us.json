@@ -1,0 +1,17 @@
+{
+  "dummy.oreganized_engraved": "Dummy Entry",
+  "item.oreganized.bush_hammer": "Bush Hammer",
+  "oreganized.ponder.blow_lead_cloud.header": "Blow Lead Dust",
+  "oreganized.ponder.blow_lead_cloud.text_1": "Placing Raw Lead or Lead ore in the path of a fan creates a dust cloud",
+  "oreganized.ponder.cauldron_lead_melting.header": "Lead Melting",
+  "oreganized.ponder.cauldron_lead_melting.text_1": "You can melt a lead block in a cauldron by heating it up with a campfire",
+  "oreganized.ponder.cauldron_lead_melting.text_2": "You can then take out the molten lead using a bucket",
+  "oreganized.ponder.heat_transfer.header": "Lead heat transfer",
+  "oreganized.ponder.heat_transfer.text_1": "Lead blocks heat up when touching a hot block",
+  "oreganized.ponder.heat_transfer.text_2": "Removing the heat source will cause them to cool down again",
+  "oreganized.ponder.lead_mining.header": "Lead mining",
+  "oreganized.ponder.lead_mining.text_1": "Mining lead ore causes lead dust clouds to be released",
+  "oreganized.ponder.lead_mining.text_2": "Lead ore that is touching water will not create any dust clouds",
+  "tag.block.oreganized.mineable.bush_hammer": "Mineable with Bush Hammer",
+  "tag.item.c.tools.bush_hammer": "Bush Hammers"
+}

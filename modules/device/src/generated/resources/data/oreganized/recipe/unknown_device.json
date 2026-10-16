@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "O": {
+      "item": "minecraft:netherite_scrap"
+    },
+    "X": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "pattern": [
+    " O ",
+    "OXO",
+    " O "
+  ],
+  "result": {
+    "count": 1,
+    "id": "oreganized:unknown_device"
+  }
+}

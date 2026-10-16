@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "oreganized:raw_lead_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "oreganized:raw_lead"
+  }
+}

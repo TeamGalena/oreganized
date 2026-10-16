@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "oreganized:block/lead_pillar_top",
+    "side": "oreganized:block/lead_pillar_side"
+  }
+}

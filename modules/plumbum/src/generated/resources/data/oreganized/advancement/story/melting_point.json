@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:story/upgrade_tools",
+  "criteria": {
+    "has_molten_lead_bucket": {
+      "conditions": {
+        "items": [
+          {
+            "items": "oreganized:molten_lead_bucket"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.oreganized.melting_point.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "oreganized:molten_lead_bucket"
+    },
+    "title": {
+      "translate": "advancements.oreganized.melting_point.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_molten_lead_bucket"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
