@@ -1,5 +1,6 @@
 package galena.oreganized.device.client;
 
+import galena.oreganized.device.index.DeviceDataComponents;
 import galena.oreganized.device.world.item.DeviceItem;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.item.ItemPropertyFunction;
@@ -18,6 +19,8 @@ public class DevicePropertyFunction implements ItemPropertyFunction {
     @Override
     public float call(ItemStack stack, @Nullable ClientLevel level, @Nullable LivingEntity entity, int i) {
         if (level == null) return 0;
+        var locked = stack.get(DeviceDataComponents.DEVICE_VALUE);
+        if (locked != null) return locked % DeviceItem.FRAMES;
         return Mth.clamp(wobble(level, Math.random()), 0F, 1F) * DeviceItem.FRAMES;
     }
 
