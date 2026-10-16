@@ -15,7 +15,11 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 public class ElectrumClient {
 
     @SubscribeEvent
-    private static void registerItemProperties(FMLClientSetupEvent event) {
+    private static void clientSetup(FMLClientSetupEvent event) {
+        event.enqueueWork(ElectrumClient::registerItemProperties);
+    }
+
+    private static void registerItemProperties() {
         ItemProperties.register(ElectrumItems.SPEEDOMETER.get(), SpeedometerItem.PROPERTY_KEY, (stack, world, entity, seed) -> {
             if (entity == null) return 0;
             var vehicle = entity.getRootVehicle();

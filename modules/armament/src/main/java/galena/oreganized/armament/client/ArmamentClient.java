@@ -15,7 +15,11 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 public class ArmamentClient {
 
     @SubscribeEvent
-    private static void registerItemProperties(FMLClientSetupEvent event) {
+    private static void clientSetup(FMLClientSetupEvent event) {
+        event.enqueueWork(ArmamentClient::registerItemProperties);
+    }
+
+    private static void registerItemProperties() {
         ItemProperties.register(Items.CROSSBOW, OConstants.modLoc("lead_bolt"), (stack, level, user, i) ->
                 stack.getOrDefault(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY).contains(ArmamentItems.LEAD_BOLT.get()) ? 1.0F : 0.0F
         );
