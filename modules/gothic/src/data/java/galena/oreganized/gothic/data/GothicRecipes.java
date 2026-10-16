@@ -8,10 +8,11 @@ import static galena.oreganized.data.extensions.OConditionExtensions.dyed;
 import static galena.oreganized.data.extensions.ORecipeExtensions.*;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 
-import galena.oreganized.OConstants;
+import galena.oreganized.argentum.index.ArgentumTags;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.gothic.GothicModule;
 import galena.oreganized.gothic.index.GothicBlocks;
-import galena.oreganized.index.CoreTags;
+import galena.oreganized.plumbum.index.PlumbumTags;
 import java.util.function.Supplier;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -23,7 +24,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-@Mod(OConstants.MOD_ID)
+@Mod(GothicModule.MOD_ID)
 public class GothicRecipes {
 
     public GothicRecipes() {
@@ -46,9 +47,9 @@ public class GothicRecipes {
                 .pattern("###")
                 .define('#', ItemTags.STONE_CRAFTING_MATERIALS)
                 .define('P', Items.CARVED_PUMPKIN)
-                .define('S', CoreTags.Items.INGOTS_SILVER)
+                .define('S', ArgentumTags.Items.INGOTS_SILVER)
                 .unlockedBy("has_pumpkin", has(Items.CARVED_PUMPKIN))
-                .unlockedBy("has_silver_ingot", has(CoreTags.Items.INGOTS_SILVER))
+                .unlockedBy("has_silver_ingot", has(ArgentumTags.Items.INGOTS_SILVER))
                 .save(output);
 
         makeStoneSetRecipes(output, GothicBlocks.DARK_GRIMSTONE_BRICKS);
@@ -111,8 +112,8 @@ public class GothicRecipes {
                 .pattern("ABA")
                 .pattern("AAA")
                 .define('A', from)
-                .define('B', CoreTags.Items.INGOTS_LEAD)
-                .unlockedBy("has_lead_ingot", has(CoreTags.Items.INGOTS_LEAD))
+                .define('B', PlumbumTags.Items.INGOTS_LEAD)
+                .unlockedBy("has_lead_ingot", has(PlumbumTags.Items.INGOTS_LEAD))
                 .unlockedBy("has_any_glass", has(Tags.Items.GLASS_BLOCKS));
     }
 }

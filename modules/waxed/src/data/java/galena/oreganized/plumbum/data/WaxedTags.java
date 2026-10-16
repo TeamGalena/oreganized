@@ -4,14 +4,14 @@ import static galena.oreganized.data.extensions.OTagExtensions.tagDyed;
 
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.waxed.WaxedModule;
 import galena.oreganized.waxed.index.WaxedBlocks;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(WaxedModule.MOD_ID)
 public class WaxedTags {
 
     public WaxedTags() {

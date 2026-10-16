@@ -1,0 +1,55 @@
+{
+  "block.gargoyle.growl": {
+    "sounds": [
+      "oreganized:block/gargoyle_growl_1",
+      "oreganized:block/gargoyle_growl_2",
+      "oreganized:block/gargoyle_growl_3"
+    ],
+    "subtitle": "subtitles.block.gargoyle.growl"
+  },
+  "block.grimstone.break": {
+    "sounds": [
+      "oreganized:block/grimstone_dig_1",
+      "oreganized:block/grimstone_dig_2",
+      "oreganized:block/grimstone_dig_3",
+      "oreganized:block/grimstone_dig_4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.grimstone.fall": {
+    "sounds": [
+      "oreganized:block/grimstone_step_1",
+      "oreganized:block/grimstone_step_2",
+      "oreganized:block/grimstone_step_3",
+      "oreganized:block/grimstone_step_4"
+    ],
+    "subtitle": "subtitles.block.generic.fall"
+  },
+  "block.grimstone.hit": {
+    "sounds": [
+      "oreganized:block/grimstone_dig_1",
+      "oreganized:block/grimstone_dig_2",
+      "oreganized:block/grimstone_dig_3",
+      "oreganized:block/grimstone_dig_4"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.grimstone.place": {
+    "sounds": [
+      "oreganized:block/grimstone_place_1",
+      "oreganized:block/grimstone_place_2",
+      "oreganized:block/grimstone_place_3",
+      "oreganized:block/grimstone_place_4"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.grimstone.step": {
+    "sounds": [
+      "oreganized:block/grimstone_step_1",
+      "oreganized:block/grimstone_step_2",
+      "oreganized:block/grimstone_step_3",
+      "oreganized:block/grimstone_step_4"
+    ],
+    "subtitle": "subtitles.block.generic.step"
+  }
+}

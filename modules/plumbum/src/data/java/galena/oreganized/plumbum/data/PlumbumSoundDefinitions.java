@@ -6,11 +6,12 @@ import static net.neoforged.neoforge.common.data.SoundDefinition.definition;
 import com.possible_triangle.multikulti.registrate.provider.RegistrateSoundsProvider;
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.plumbum.index.PlumbumSounds;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.data.SoundDefinition.SoundType;
 
-@Mod(OConstants.MOD_ID)
+@Mod(PlumbumModule.MOD_ID)
 public class PlumbumSoundDefinitions {
 
     public PlumbumSoundDefinitions() {

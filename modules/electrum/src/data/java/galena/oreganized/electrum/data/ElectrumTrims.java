@@ -9,6 +9,7 @@ import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.data.provider.RegistrateSpriteSourceProvider;
+import galena.oreganized.electrum.ElectrumModule;
 import galena.oreganized.electrum.index.ElectrumItems;
 import java.util.Map;
 import net.minecraft.core.registries.Registries;
@@ -18,7 +19,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.armortrim.TrimMaterial;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ElectrumModule.MOD_ID)
 public class ElectrumTrims {
 
     private static final ResourceKey<TrimMaterial> ELECTRUM = ResourceKey.create(Registries.TRIM_MATERIAL, OConstants.modLoc("electrum"));

@@ -1,0 +1,13 @@
+package galena.oreganized.{{ module }};
+
+import galena.oreganized.register.ORegistryHelper;
+
+public class {{ moduleName }}Module {
+
+    public static final String MODULE_ID = "{{ module }}";
+
+    public static final String MOD_ID = "{{ modId }}";
+
+    public static final ORegistryHelper REGISTRY_HELPER = ORegistryHelper.createRegistryHelper(MOD_ID);
+
+}

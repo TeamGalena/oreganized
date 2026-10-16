@@ -3,7 +3,7 @@ package galena.oreganized.armament.data;
 import static galena.oreganized.data.extensions.OLangExtensions.*;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
-import galena.oreganized.OConstants;
+import galena.oreganized.armament.ArmamentModule;
 import galena.oreganized.armament.index.ArmamentBlocks;
 import galena.oreganized.armament.index.ArmamentEntities;
 import galena.oreganized.armament.index.ArmamentItems;
@@ -11,7 +11,7 @@ import galena.oreganized.armament.index.ArmamentTags;
 import galena.oreganized.data.ODatagen;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArmamentModule.MOD_ID)
 public class ArmamentLang {
 
     public ArmamentLang() {

@@ -1,16 +1,14 @@
 package galena.oreganized.argentum.index;
 
-import galena.oreganized.OConstants;
+import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.world.item.ScribeItem;
 import galena.oreganized.argentum.world.item.SilverMirrorItem;
-import galena.oreganized.index.CoreTags;
 import galena.oreganized.register.ItemRegistryHelper;
 import galena.oreganized.register.SimpleRegistryHelper;
 import galena.oreganized.world.item.ModdedArmorItem;
 
 import java.util.EnumMap;
 import java.util.List;
-import java.util.stream.Stream;
 
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
@@ -22,11 +20,11 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.SimpleTier;
 import net.neoforged.neoforge.registries.DeferredItem;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArgentumModule.MOD_ID)
 public class ArgentumItems {
 
-    private static final ItemRegistryHelper ITEMS = OConstants.REGISTRY_HELPER.getItemSubHelper();
-    private static final SimpleRegistryHelper<ArmorMaterial> ARMOR_MATERIALS = OConstants.REGISTRY_HELPER.getArmorMaterialSubHelper();
+    private static final ItemRegistryHelper ITEMS = ArgentumModule.REGISTRY_HELPER.getItemSubHelper();
+    private static final SimpleRegistryHelper<ArmorMaterial> ARMOR_MATERIALS = ArgentumModule.REGISTRY_HELPER.getArmorMaterialSubHelper();
 
     public static final DeferredItem<Item> RAW_SILVER = ITEMS.createItem("raw_silver",
             () -> new Item(new Item.Properties()));
@@ -51,7 +49,7 @@ public class ArgentumItems {
                     }),
                     10,
                     SoundEvents.ARMOR_EQUIP_GOLD,
-                    () -> Ingredient.of(CoreTags.Items.INGOTS_SILVER),
+                    () -> Ingredient.of(ArgentumTags.Items.INGOTS_SILVER),
                     List.of(new ArmorMaterial.Layer(id)),
                     0.0F,
                     0.0F
@@ -67,7 +65,11 @@ public class ArgentumItems {
     public static final DeferredItem<ArmorItem> SILVER_LEGGINGS = ITEMS.createArmor("silver_leggings", SILVER_MATERIAL, ArmorItem.Type.LEGGINGS, 14, ArgentumItems::silverArmorAttributes);
     public static final DeferredItem<ArmorItem> SILVER_BOOTS = ITEMS.createArmor("silver_boots", SILVER_MATERIAL, ArmorItem.Type.BOOTS, 14, ArgentumItems::silverArmorAttributes);
 
-    public static final Tier SILVER_TIER = new SimpleTier(ArgentumTags.Blocks.INCORRECT_FOR_SILVER_TOOL, 191, 5F, 2.0F, 13, () -> Ingredient.of(CoreTags.Items.INGOTS_SILVER));
+    public static final Tier SILVER_TIER = new SimpleTier(
+            ArgentumTags.Blocks.INCORRECT_FOR_SILVER_TOOL,
+            191, 5F, 2.0F, 13,
+            () -> Ingredient.of(ArgentumTags.Items.INGOTS_SILVER)
+    );
 
     public static final DeferredItem<Item> SILVER_SWORD = ITEMS.createItem("silver_sword",
             () -> new SwordItem(SILVER_TIER, new Item.Properties().attributes(SwordItem.createAttributes(SILVER_TIER, 3, -2.4F))));
@@ -79,10 +81,5 @@ public class ArgentumItems {
             () -> new AxeItem(SILVER_TIER, new Item.Properties().attributes(DiggerItem.createAttributes(SILVER_TIER, 6.0F, -3.1F))));
     public static final DeferredItem<Item> SILVER_HOE = ITEMS.createItem("silver_hoe",
             () -> new HoeItem(SILVER_TIER, new Item.Properties().attributes(DiggerItem.createAttributes(SILVER_TIER, -2.0F, -1.0F))));
-
-    public static Stream<DeferredItem<ArmorItem>> silverArmor() {
-        return Stream.of(SILVER_BOOTS, SILVER_LEGGINGS, SILVER_CHESTPLATE, SILVER_HELMET);
-    }
-
 
 }

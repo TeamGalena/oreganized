@@ -6,6 +6,7 @@ import static net.neoforged.neoforge.client.model.generators.ModelProvider.ITEM_
 
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.plumbum.index.PlumbumBlocks;
 import galena.oreganized.plumbum.world.block.IMeltableBlock;
 import galena.oreganized.plumbum.world.block.MeltingLeadCauldronBlock;
@@ -26,7 +27,7 @@ import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-@Mod(OConstants.MOD_ID)
+@Mod(PlumbumModule.MOD_ID)
 public class PlumbumBlockStates {
 
     public PlumbumBlockStates() {

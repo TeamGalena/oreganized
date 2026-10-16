@@ -3,14 +3,14 @@ package galena.oreganized.argentum.data;
 import static galena.oreganized.data.extensions.OLangExtensions.*;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
-import galena.oreganized.OConstants;
+import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.compat.jei.CreateCompat;
 import galena.oreganized.argentum.index.*;
 import galena.oreganized.data.ODatagen;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArgentumModule.MOD_ID)
 public class ArgentumLang {
 
     public ArgentumLang() {
@@ -21,7 +21,7 @@ public class ArgentumLang {
         autoTranslate(provider, ArgentumItems.SILVER_INGOT);
         autoTranslate(provider, ArgentumItems.SILVER_NUGGET);
         autoTranslate(provider, ArgentumItems.RAW_SILVER);
-        autoTranslate(provider, ArgentumItems.silverArmor());
+        autoTranslate(provider, ArgentumSets.silverArmor());
         autoTranslate(provider, ArgentumSets.silverTools());
         autoTranslate(provider, ArgentumItems.SILVER_MIRROR);
         autoTranslate(provider, ArgentumItems.SCRIBE);
@@ -53,9 +53,18 @@ public class ArgentumLang {
 
         addAttribute(provider, ArgentumAttributes.INVINCIBILITY_FRAMES, "Invincibility");
 
+        provider.add(ArgentumTags.Items.INGOTS_SILVER, "Silver Ingots");
+        provider.add(ArgentumTags.Items.NUGGETS_SILVER, "Silver Nuggets");
+        provider.add(ArgentumTags.Items.RAW_MATERIALS_SILVER, "Raw Silver");
+        provider.add(ArgentumTags.Items.ORES_SILVER, "Silver Ores");
+        provider.add(ArgentumTags.Items.STORAGE_BLOCKS_SILVER, "Silver Storage Blocks");
+        provider.add(ArgentumTags.Items.STORAGE_BLOCKS_RAW_SILVER, "Raw Silver Storage Blocks");
         provider.add(ArgentumTags.Items.ENCHANTED_BOOK_LIKE, "Enchanted Books");
         provider.add(ArgentumTags.Items.NO_ANVIL_ENCHANT_COST, "Free Anvil Enchantables");
 
+        provider.add(ArgentumTags.Blocks.ORES_SILVER, "Silver Ores");
+        provider.add(ArgentumTags.Blocks.STORAGE_BLOCKS_SILVER, "Silver Storage Blocks");
+        provider.add(ArgentumTags.Blocks.STORAGE_BLOCKS_RAW_SILVER, "Raw Silver Storage Blocks");
         provider.add(ArgentumTags.Blocks.INCORRECT_FOR_SILVER_TOOL, "Incorrect for Silver Tools");
         provider.add(ArgentumTags.Blocks.MINEABLE_WITH_SCRIBE, "Mineable with Scribe");
         provider.add(ArgentumTags.Blocks.SILKTOUCH_WITH_SCRIBE, "Silktouch-able with Scibe");

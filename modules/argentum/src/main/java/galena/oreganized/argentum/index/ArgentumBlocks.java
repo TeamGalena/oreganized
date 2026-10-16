@@ -1,6 +1,6 @@
 package galena.oreganized.argentum.index;
 
-import galena.oreganized.OConstants;
+import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.world.block.SilverBulbBlock;
 import galena.oreganized.argentum.world.block.SilverDoorBlock;
 import galena.oreganized.argentum.world.block.SilverTrapdoorBlock;
@@ -15,10 +15,10 @@ import net.minecraft.world.level.material.MapColor;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArgentumModule.MOD_ID)
 public class ArgentumBlocks {
 
-    private static final BlockRegistryHelper BLOCKS = OConstants.REGISTRY_HELPER.getBlockSubHelper();
+    private static final BlockRegistryHelper BLOCKS = ArgentumModule.REGISTRY_HELPER.getBlockSubHelper();
 
     public static final DeferredBlock<Block> SILVER_ORE = BLOCKS.createBlock("silver_ore",
             () -> new DropExperienceBlock(ConstantInt.of(0), BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_ORE)));

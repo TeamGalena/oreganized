@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "oreganized:olive_crystal_glass",
+      "required": false
+    },
+    {
+      "id": "oreganized:olive_crystal_glass_pane",
+      "required": false
+    }
+  ]
+}

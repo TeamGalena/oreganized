@@ -1,9 +1,8 @@
-dependencies {
-    api(project(":core"))
-    api(project(":argentum"))
-    api(project(":armament"))
-    api(project(":electrum"))
+import galena.gradle.moduleDependencies
 
-    dataApi(project(":core", configuration = "dataElements"))
-    dataApi(project(":argentum", configuration = "dataElements"))
-}
+moduleDependencies(
+    "core",
+    "argentum",
+    "armament",
+    "electrum",
+)

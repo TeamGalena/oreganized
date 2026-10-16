@@ -9,19 +9,7 @@ val modModules =
         .map { project(":${it.name}") }
 
 neoforge {
-    dataGen {
-        existing("blueprint")
-        existing("shieldexp")
-        existing("dye_depot")
-
-        owner = project
-
-        splitSourceSet()
-    }
-
     accessTransformer(project(":core"))
-
-    modModules.forEach(::dependOn)
 }
 
 base {
@@ -29,10 +17,10 @@ base {
 }
 
 dependencies {
-    modInclude(libs.galena.hats)
-
-    modIncludeCompileOnly(libs.ponder)
-    modIncludeCompileOnly(libs.flywheel)
+    modModules.forEach {
+        api(project(it.path))
+        jarJar(project(it.path))
+    }
 
     modApi(libs.blueprint)
 
@@ -53,13 +41,8 @@ dependencies {
     // runtimeOnly(pack.modrinth.scannable)
     // runtimeOnly(pack.modrinth.architectury.api)
     modRuntimeOnly(pack.modrinth.moonlight)
-    modRuntimeOnly(libs.dye.depot)
-    modRuntimeOnly(pack.modrinth.jade)
     modRuntimeOnly(pack.modrinth.biolith)
     modRuntimeOnly(pack.modrinth.no.mans.land)
-    modRuntimeOnly(pack.modrinth.freecam)
-
-    modRuntimeOnly(libs.jei.neoforge)
 }
 
 upload {

@@ -4,8 +4,8 @@ import static galena.oreganized.data.extensions.OTagExtensions.tagStoneSet;
 
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.glance.GlanceModule;
 import galena.oreganized.glance.index.GlanceBlocks;
 import galena.oreganized.glance.index.GlanceTags;
 import galena.oreganized.plumbum.index.PlumbumTags;
@@ -16,7 +16,7 @@ import net.minecraft.world.level.material.Fluid;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
 
-@Mod(OConstants.MOD_ID)
+@Mod(GlanceModule.MOD_ID)
 public class GlanceTagsGen {
 
     public GlanceTagsGen() {

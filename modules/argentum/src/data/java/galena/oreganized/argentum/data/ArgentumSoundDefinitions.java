@@ -6,11 +6,12 @@ import static net.neoforged.neoforge.common.data.SoundDefinition.definition;
 
 import com.possible_triangle.multikulti.registrate.provider.RegistrateSoundsProvider;
 import galena.oreganized.OConstants;
+import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.index.ArgentumSounds;
 import galena.oreganized.data.ODatagen;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArgentumModule.MOD_ID)
 public class ArgentumSoundDefinitions {
 
     public ArgentumSoundDefinitions() {

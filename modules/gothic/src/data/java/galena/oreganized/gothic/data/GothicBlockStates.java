@@ -9,6 +9,7 @@ import static net.neoforged.neoforge.client.model.generators.ModelProvider.ITEM_
 
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.gothic.GothicModule;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.gothic.world.block.*;
 import net.minecraft.core.Direction;
@@ -22,7 +23,7 @@ import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
-@Mod(OConstants.MOD_ID)
+@Mod(GothicModule.MOD_ID)
 public class GothicBlockStates {
 
     public GothicBlockStates() {

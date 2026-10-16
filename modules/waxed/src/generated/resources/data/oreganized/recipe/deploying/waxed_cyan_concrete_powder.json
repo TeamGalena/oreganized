@@ -1,0 +1,31 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:deploying",
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "minecraft:cyan_concrete_powder"
+    },
+    {
+      "item": "minecraft:honeycomb_block"
+    }
+  ],
+  "keep_held_item": true,
+  "results": [
+    {
+      "id": "oreganized:waxed_cyan_concrete_powder"
+    }
+  ]
+}

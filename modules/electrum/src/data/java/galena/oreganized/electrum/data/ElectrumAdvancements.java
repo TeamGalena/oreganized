@@ -4,8 +4,8 @@ import static galena.oreganized.data.extensions.OAdvancementExtensions.getAdv;
 import static galena.oreganized.data.extensions.OAdvancementExtensions.info;
 
 import com.tterrag.registrate.providers.RegistrateAdvancementProvider;
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.electrum.ElectrumModule;
 import galena.oreganized.electrum.index.ElectrumCriterionTriggers;
 import galena.oreganized.electrum.index.ElectrumItems;
 import net.minecraft.advancements.Advancement;
@@ -13,7 +13,7 @@ import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.critereon.*;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ElectrumModule.MOD_ID)
 public class ElectrumAdvancements {
 
     public ElectrumAdvancements() {

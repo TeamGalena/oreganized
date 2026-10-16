@@ -2,7 +2,7 @@
   "entries": [
     {
       "enum": "net/minecraft/client/gui/Gui$HeartType",
-      "name": "OREGANIZED_STUNNED",
+      "name": "OREGANIZED_PLUMBUM_STUNNED",
       "constructor": "(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)V",
       "parameters": {
         "class": "galena/oreganized/plumbum/index/PlumbumHeartTypes",
@@ -11,7 +11,7 @@
     },
     {
       "enum": "net/minecraft/client/gui/Gui$HeartType",
-      "name": "OREGANIZED_STUNNED_POISONED",
+      "name": "OREGANIZED_PLUMBUM_STUNNED_POISONED",
       "constructor": "(Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;Lnet/minecraft/resources/ResourceLocation;)V",
       "parameters": {
         "class": "galena/oreganized/plumbum/index/PlumbumHeartTypes",

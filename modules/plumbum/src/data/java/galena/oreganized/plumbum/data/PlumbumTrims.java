@@ -9,6 +9,7 @@ import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.data.provider.RegistrateSpriteSourceProvider;
+import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.plumbum.index.PlumbumItems;
 import java.util.Map;
 import net.minecraft.core.registries.Registries;
@@ -18,7 +19,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.armortrim.TrimMaterial;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(PlumbumModule.MOD_ID)
 public class PlumbumTrims {
 
     private static final ResourceKey<TrimMaterial> LEAD = ResourceKey.create(Registries.TRIM_MATERIAL, OConstants.modLoc("lead"));

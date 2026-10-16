@@ -7,6 +7,7 @@ import com.teamabnormals.blueprint.core.api.BlueprintTrims;
 import com.teamabnormals.blueprint.core.other.tags.BlueprintTrimMaterialTags;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
 import galena.oreganized.OConstants;
+import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.index.ArgentumItems;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.data.provider.RegistrateSpriteSourceProvider;
@@ -18,7 +19,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.armortrim.TrimMaterial;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArgentumModule.MOD_ID)
 public class ArgentumTrims {
 
     private static final ResourceKey<TrimMaterial> SILVER = ResourceKey.create(Registries.TRIM_MATERIAL, OConstants.modLoc("silver"));

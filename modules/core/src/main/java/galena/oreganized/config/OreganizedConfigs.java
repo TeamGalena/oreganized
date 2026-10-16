@@ -1,9 +1,6 @@
 package galena.oreganized.config;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.ServiceLoader;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -18,13 +15,12 @@ public class OreganizedConfigs {
 
     private static final Map<ModConfig.Type, Pair<ModularConfig, ModConfigSpec>> CONFIGS = new HashMap<>();
 
-    public static ModularConfig config(ModConfig.Type type) {
-        var pair = Objects.requireNonNull(CONFIGS.get(type));
-        return pair.getLeft();
+    public static Optional<ModularConfig> config(ModConfig.Type type) {
+        return Optional.ofNullable(CONFIGS.get(type)).map(Pair::getLeft);
     }
 
     public static <T> T configModule(ModConfig.Type type, String key) {
-        return config(type).get(key);
+        return config(type).orElseThrow().get(key);
     }
 
     private static Stream<ConfigModule> loadConfigModules() {

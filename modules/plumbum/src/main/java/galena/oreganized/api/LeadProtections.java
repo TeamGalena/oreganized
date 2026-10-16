@@ -2,7 +2,7 @@ package galena.oreganized.api;
 
 import com.google.common.base.Suppliers;
 import galena.oreganized.ModCompat;
-import galena.oreganized.OConstants;
+import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.plumbum.index.PlumbumTags;
 import galena.oreganized.plumbum.world.CreateArmorProtection;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(PlumbumModule.MOD_ID)
 public class LeadProtections {
 
     private static final List<Predicate<LivingEntity>> PROTECTIONS = new ArrayList<>();

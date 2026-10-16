@@ -7,6 +7,7 @@ import static net.minecraft.tags.BlockTags.STONE_ORE_REPLACEABLES;
 import com.google.common.collect.ImmutableList;
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.plumbum.index.PlumbumBlocks;
 import java.util.List;
 import net.minecraft.core.Holder;
@@ -28,7 +29,7 @@ import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(PlumbumModule.MOD_ID)
 public class PlumbumFeatures {
 
     private static final ResourceLocation LEAD_ORE = OConstants.modLoc("lead_ore");

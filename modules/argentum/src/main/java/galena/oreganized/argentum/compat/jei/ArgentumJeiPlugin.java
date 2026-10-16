@@ -2,6 +2,7 @@ package galena.oreganized.argentum.compat.jei;
 
 import galena.oreganized.ModCompat;
 import galena.oreganized.OConstants;
+import galena.oreganized.argentum.ArgentumModule;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
@@ -14,8 +15,7 @@ public class ArgentumJeiPlugin implements IModPlugin {
 
     @Override
     public ResourceLocation getPluginUid() {
-        // TODO modular will be mod id in the future?
-        return OConstants.modLoc("argentum");
+        return OConstants.modLoc(ArgentumModule.MODULE_ID);
     }
 
     @Override

@@ -1,0 +1,10 @@
+{
+  "music.disc.structure": {
+    "sounds": [
+      {
+        "name": "oreganized:music/disc/structure",
+        "stream": true
+      }
+    ]
+  }
+}

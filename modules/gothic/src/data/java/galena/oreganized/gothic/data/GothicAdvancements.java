@@ -4,18 +4,18 @@ import static galena.oreganized.data.extensions.OAdvancementExtensions.getAdv;
 import static galena.oreganized.data.extensions.OAdvancementExtensions.info;
 
 import com.tterrag.registrate.providers.RegistrateAdvancementProvider;
-import galena.oreganized.OConstants;
+import galena.oreganized.argentum.index.ArgentumTags;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.gothic.GothicModule;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.gothic.index.GothicCriterionTriggers;
-import galena.oreganized.index.CoreTags;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.world.item.Items;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(GothicModule.MOD_ID)
 public class GothicAdvancements {
 
     public GothicAdvancements() {
@@ -36,7 +36,7 @@ public class GothicAdvancements {
                 .addCriterion("activated_gargoyle", ItemUsedOnLocationTrigger.TriggerInstance.itemUsedOnBlock(
                         LocationPredicate.Builder.location()
                                 .setBlock(BlockPredicate.Builder.block().of(GothicBlocks.GARGOYLE.value())),
-                        ItemPredicate.Builder.item().of(CoreTags.Items.INGOTS_SILVER)
+                        ItemPredicate.Builder.item().of(ArgentumTags.Items.INGOTS_SILVER)
                 ))
                 .save(provider, "oreganized:adventure/weeping_devil");
 

@@ -7,11 +7,12 @@ import static net.neoforged.neoforge.common.data.SoundDefinition.definition;
 import com.possible_triangle.multikulti.registrate.provider.RegistrateSoundsProvider;
 import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.gothic.GothicModule;
 import galena.oreganized.gothic.index.GothicSounds;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.data.SoundDefinition.SoundType;
 
-@Mod(OConstants.MOD_ID)
+@Mod(GothicModule.MOD_ID)
 public class GothicSoundDefinitions {
 
     public GothicSoundDefinitions() {

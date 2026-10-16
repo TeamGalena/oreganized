@@ -4,8 +4,8 @@ package galena.oreganized.plumbum.data;
 import static galena.oreganized.data.extensions.OBlockLootExtensions.*;
 
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.plumbum.index.PlumbumBlocks;
 import galena.oreganized.plumbum.index.PlumbumItems;
 import galena.oreganized.plumbum.world.block.IMeltableBlock;
@@ -31,7 +31,7 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(PlumbumModule.MOD_ID)
 public class PlumbumLoot {
 
     public PlumbumLoot() {

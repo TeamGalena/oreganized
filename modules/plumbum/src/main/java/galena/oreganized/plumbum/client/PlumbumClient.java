@@ -13,9 +13,13 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 public class PlumbumClient {
 
     @SubscribeEvent
-    private static void registerItemProperties(FMLClientSetupEvent event) {
+    private static void clientSetup(FMLClientSetupEvent event) {
+        event.enqueueWork(PlumbumClient::registerItemProperties);
+    }
+
+    private static void registerItemProperties() {
         ItemProperties.register(PlumbumItems.THERMOMETER.get(), PlumbumDataComponents.HEAT_LEVEL.getId(), (stack, world, entity, seed) ->
-            ThermometerItem.getHeatLevel(stack)
+                ThermometerItem.getHeatLevel(stack)
         );
     }
 

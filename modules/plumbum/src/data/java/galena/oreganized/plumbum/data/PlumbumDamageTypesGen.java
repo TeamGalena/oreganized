@@ -1,7 +1,7 @@
 package galena.oreganized.plumbum.data;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.plumbum.index.PlumbumDamageTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -9,7 +9,7 @@ import net.minecraft.world.damagesource.DamageEffects;
 import net.minecraft.world.damagesource.DamageType;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(PlumbumModule.MOD_ID)
 public class PlumbumDamageTypesGen {
 
     public PlumbumDamageTypesGen() {

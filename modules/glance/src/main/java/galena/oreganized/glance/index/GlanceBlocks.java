@@ -1,6 +1,6 @@
 package galena.oreganized.glance.index;
 
-import galena.oreganized.OConstants;
+import galena.oreganized.glance.GlanceModule;
 import galena.oreganized.glance.world.block.SpottedGlanceBlock;
 import galena.oreganized.index.sets.StoneSet;
 import galena.oreganized.register.BlockRegistryHelper;
@@ -13,10 +13,10 @@ import net.minecraft.world.level.material.MapColor;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
-@Mod(OConstants.MOD_ID)
+@Mod(GlanceModule.MOD_ID)
 public class GlanceBlocks {
 
-    private static final BlockRegistryHelper BLOCKS = OConstants.REGISTRY_HELPER.getBlockSubHelper();
+    private static final BlockRegistryHelper BLOCKS = GlanceModule.REGISTRY_HELPER.getBlockSubHelper();
 
     private static BlockBehaviour.Properties glanceProperties() {
         return BlockBehaviour.Properties.of().explosionResistance(6).strength(1.5F).mapColor(MapColor.CLAY);

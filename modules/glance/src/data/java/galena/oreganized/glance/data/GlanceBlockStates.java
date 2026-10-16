@@ -3,12 +3,12 @@ package galena.oreganized.glance.data;
 import static galena.oreganized.data.extensions.OBlockStateExtensions.*;
 
 import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.glance.GlanceModule;
 import galena.oreganized.glance.index.GlanceBlocks;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(GlanceModule.MOD_ID)
 public class GlanceBlockStates {
 
     public GlanceBlockStates() {

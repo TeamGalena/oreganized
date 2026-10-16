@@ -3,12 +3,13 @@ package galena.oreganized.device.data;
 import static galena.oreganized.data.extensions.OLangExtensions.autoTranslate;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.device.DeviceModule;
 import galena.oreganized.device.index.DeviceItems;
+import galena.oreganized.device.index.DevicesTags;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(DeviceModule.MOD_ID)
 public class DevicesLang {
 
     public DevicesLang() {
@@ -18,6 +19,8 @@ public class DevicesLang {
     private void generate(RegistrateLangProvider provider) {
         autoTranslate(provider, DeviceItems.UNKNOWN_DEVICE);
         autoTranslate(provider, DeviceItems.NETHERITE_NUGGET);
+
+        provider.add(DevicesTags.Items.NUGGETS_NETHERITE, "Netherite Nuggets");
     }
 
 }

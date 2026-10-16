@@ -3,13 +3,13 @@ package galena.oreganized.glance.data;
 import static galena.oreganized.data.extensions.OLangExtensions.autoTranslate;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.glance.GlanceModule;
 import galena.oreganized.glance.index.GlanceBlocks;
 import galena.oreganized.glance.index.GlanceTags;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(GlanceModule.MOD_ID)
 public class GlanceLang {
 
     public GlanceLang() {

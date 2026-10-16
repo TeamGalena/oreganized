@@ -4,18 +4,18 @@ import static galena.oreganized.data.extensions.OAdvancementExtensions.getAdv;
 import static galena.oreganized.data.extensions.OAdvancementExtensions.info;
 
 import com.tterrag.registrate.providers.RegistrateAdvancementProvider;
-import galena.oreganized.OConstants;
+import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.index.ArgentumBlocks;
 import galena.oreganized.argentum.index.ArgentumItems;
+import galena.oreganized.argentum.index.ArgentumTags;
 import galena.oreganized.data.ODatagen;
-import galena.oreganized.index.CoreTags;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementType;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.tags.BlockTags;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArgentumModule.MOD_ID)
 public class ArgentumAdvancements {
 
     public ArgentumAdvancements() {
@@ -46,7 +46,7 @@ public class ArgentumAdvancements {
                         "Every Stone has a Silver Lining",
                         "Smelt Raw Silver"
                 ))
-                .addCriterion("has_silver_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(CoreTags.Items.INGOTS_SILVER).build()))
+                .addCriterion("has_silver_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ArgentumTags.Items.INGOTS_SILVER).build()))
                 .save(provider, "oreganized:story/obtain_silver");
 
         Advancement.Builder.advancement()

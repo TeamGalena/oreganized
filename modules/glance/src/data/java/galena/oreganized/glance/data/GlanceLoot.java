@@ -4,8 +4,8 @@ package galena.oreganized.glance.data;
 import static galena.oreganized.data.extensions.OBlockLootExtensions.*;
 
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.glance.GlanceModule;
 import galena.oreganized.glance.index.GlanceBlocks;
 import galena.oreganized.glance.world.block.SpottedGlanceBlock;
 import galena.oreganized.plumbum.index.PlumbumItems;
@@ -19,7 +19,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(GlanceModule.MOD_ID)
 public class GlanceLoot {
 
     public GlanceLoot() {

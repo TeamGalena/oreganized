@@ -3,14 +3,15 @@ package galena.oreganized.argentum.data;
 import static galena.oreganized.data.extensions.OItemModelExtensions.*;
 
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
-import galena.oreganized.OConstants;
+import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.index.ArgentumDataComponents;
 import galena.oreganized.argentum.index.ArgentumItems;
+import galena.oreganized.argentum.index.ArgentumSets;
 import galena.oreganized.argentum.world.item.SilverMirrorItem;
 import galena.oreganized.data.ODatagen;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArgentumModule.MOD_ID)
 public class ArgentumItemModels {
 
     public ArgentumItemModels() {
@@ -24,7 +25,7 @@ public class ArgentumItemModels {
 
         toolItem(provider, ArgentumItems.SCRIBE);
 
-        ArgentumItems.silverArmor().forEach(it -> trimmableArmorItem(provider, it));
+        ArgentumSets.silverArmor().forEach(it -> trimmableArmorItem(provider, it));
         ArgentumSets.silverTools().forEach(it -> toolItem(provider, it));
 
         leveledDevice(provider, ArgentumItems.SILVER_MIRROR, SilverMirrorItem.FRAMES, ArgentumDataComponents.MIRROR_LEVEL.getId());

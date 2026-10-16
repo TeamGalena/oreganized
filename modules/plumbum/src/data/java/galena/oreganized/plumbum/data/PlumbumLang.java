@@ -3,13 +3,13 @@ package galena.oreganized.plumbum.data;
 import static galena.oreganized.data.extensions.OLangExtensions.*;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.plumbum.client.tooltip.ClientThermometerTooltip;
 import galena.oreganized.plumbum.index.*;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(PlumbumModule.MOD_ID)
 public class PlumbumLang {
 
     public PlumbumLang() {
@@ -69,10 +69,21 @@ public class PlumbumLang {
 
         addDeath(provider, "molten_lead", "%1$s refused to let go of the searing hot metal");
 
+        provider.add(PlumbumTags.Items.INGOTS_LEAD, "Lead Ingots");
+        provider.add(PlumbumTags.Items.NUGGETS_LEAD, "Lead Nuggets");
+        provider.add(PlumbumTags.Items.RAW_MATERIALS_LEAD, "Raw Lead");
+        provider.add(PlumbumTags.Items.ORES_LEAD, "Lead Ores");
+        provider.add(PlumbumTags.Items.STORAGE_BLOCKS_LEAD, "Lead Storage Blocks");
+        provider.add(PlumbumTags.Items.STORAGE_BLOCKS_RAW_LEAD, "Raw Lead Storage Blocks");
         provider.add(PlumbumTags.Items.LIGHTER_THAN_LEAD, "Floats on Lead");
         provider.add(PlumbumTags.Items.PROTECTIVE_ARMOR_PART, "Lead Protecting Armor");
         provider.add(PlumbumTags.Items.PROTECTIVE_HELMET, "Lead Protecting Helmets");
 
+        provider.add(PlumbumTags.Blocks.ORES_LEAD, "Lead Ores");
+        provider.add(PlumbumTags.Blocks.STORAGE_BLOCKS_LEAD, "Lead Storage Blocks");
+        provider.add(PlumbumTags.Blocks.STORAGE_BLOCKS_RAW_LEAD, "Raw Lead Storage Blocks");
+        provider.add(PlumbumTags.Blocks.PREVENTS_LEAD_CLOUD, "Prevents Lead Clouds");
+        provider.add(PlumbumTags.Blocks.INCORRECT_FOR_LEAD_TOOL, "Incorrect for Lead Tools");
         provider.add(PlumbumTags.Blocks.BLOWS_LEAD_CLOUD, "Lead Cloud Source");
         provider.add(PlumbumTags.Blocks.FIRE_HEAT_LEVEL, "Lower Heat Level");
         provider.add(PlumbumTags.Blocks.LAVA_HEAT_LEVEL, "Higher Heat Level");
@@ -82,12 +93,8 @@ public class PlumbumLang {
 
         provider.add(PlumbumTags.Fluids.MOLTEN_LEAD, "Molten Lead");
 
-        provider.add(PlumbumTags.Blocks.PREVENTS_LEAD_CLOUD, "Prevents Lead Clouds");
-
         provider.add(PlumbumTags.Enchantments.HEAT_IMMUNITY, "Heat Protective Footwear");
         provider.add(PlumbumTags.Enchantments.PREVENTS_LEAD_CLOUD, "Prevents Lead Clouds");
-
-        provider.add(PlumbumTags.Blocks.INCORRECT_FOR_LEAD_TOOL, "Incorrect for Lead Tools");
     }
 
 }

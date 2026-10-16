@@ -21,3 +21,5 @@ jei-neoforge = { group = "mezz.jei", name = "jei-1.21.1-neoforge", version.ref =
 
 ponder = { group = "net.createmod.ponder", name = "ponder-neoforge", version = "1.0.82+mc1.21.1" }
 flywheel = { group = "dev.engine-room.flywheel", name = "flywheel-neoforge-1.21.1", version = "1.0.6" }
+
+blossom = { group = "net.kyori.blossom", name = "net.kyori.blossom.gradle.plugin", version = "2.2.0" }

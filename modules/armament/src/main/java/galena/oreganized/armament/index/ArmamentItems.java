@@ -1,6 +1,6 @@
 package galena.oreganized.armament.index;
 
-import galena.oreganized.OConstants;
+import galena.oreganized.armament.ArmamentModule;
 import galena.oreganized.armament.world.item.FlintAndPewterItem;
 import galena.oreganized.armament.world.item.LeadBoltItem;
 import galena.oreganized.armament.world.item.MinecartShrapnelBombItem;
@@ -14,10 +14,10 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArmamentModule.MOD_ID)
 public class ArmamentItems {
 
-    private static final ItemRegistryHelper ITEMS = OConstants.REGISTRY_HELPER.getItemSubHelper();
+    private static final ItemRegistryHelper ITEMS = ArmamentModule.REGISTRY_HELPER.getItemSubHelper();
 
     public static final DeferredItem<Item> LEAD_BOLT = ITEMS.createItem("lead_bolt",
             () -> new LeadBoltItem(new Item.Properties()));

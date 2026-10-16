@@ -12,7 +12,11 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 public class ArgentumClient {
 
     @SubscribeEvent
-    private static void registerItemProperties(FMLClientSetupEvent event) {
+    private static void clientSetup(FMLClientSetupEvent event) {
+        event.enqueueWork(ArgentumClient::registerItemProperties);
+    }
+
+    private static void registerItemProperties() {
         ItemProperties.register(ArgentumItems.SILVER_MIRROR.get(), ArgentumDataComponents.MIRROR_LEVEL.getId(), (stack, world, entity, seed) ->
                 stack.getOrDefault(ArgentumDataComponents.MIRROR_LEVEL.get(), 8)
         );

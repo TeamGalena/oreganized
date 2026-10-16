@@ -5,7 +5,7 @@ import static galena.oreganized.data.extensions.OItemModelExtensions.generatedIt
 import static net.neoforged.neoforge.client.model.generators.ModelProvider.ITEM_FOLDER;
 
 import com.tterrag.registrate.providers.RegistrateBlockstateProvider;
-import galena.oreganized.OConstants;
+import galena.oreganized.antiques.AntiquesModule;
 import galena.oreganized.antiques.index.AntiquesBlocks;
 import galena.oreganized.data.ODatagen;
 import net.minecraft.world.level.block.Block;
@@ -13,7 +13,7 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
-@Mod(OConstants.MOD_ID)
+@Mod(AntiquesModule.MOD_ID)
 public class AntiquesBlockStates {
 
     public AntiquesBlockStates() {

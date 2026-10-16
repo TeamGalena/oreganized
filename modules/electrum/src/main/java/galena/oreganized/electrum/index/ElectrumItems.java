@@ -1,15 +1,16 @@
 package galena.oreganized.electrum.index;
 
-import galena.oreganized.OConstants;
+import galena.oreganized.electrum.ElectrumModule;
 import galena.oreganized.electrum.config.ElectrumConfigs;
 import galena.oreganized.electrum.world.item.SpeedometerItem;
-import galena.oreganized.index.CoreTags;
 import galena.oreganized.register.ItemRegistryHelper;
 import galena.oreganized.register.SimpleRegistryHelper;
 import galena.oreganized.world.item.ModdedArmorItem;
+
 import java.util.EnumMap;
 import java.util.List;
 import java.util.stream.Stream;
+
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvents;
@@ -21,11 +22,11 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.SimpleTier;
 import net.neoforged.neoforge.registries.DeferredItem;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ElectrumModule.MOD_ID)
 public class ElectrumItems {
 
-    private static final ItemRegistryHelper ITEMS = OConstants.REGISTRY_HELPER.getItemSubHelper();
-    private static final SimpleRegistryHelper<ArmorMaterial> ARMOR_MATERIALS = OConstants.REGISTRY_HELPER.getArmorMaterialSubHelper();
+    private static final ItemRegistryHelper ITEMS = ElectrumModule.REGISTRY_HELPER.getItemSubHelper();
+    private static final SimpleRegistryHelper<ArmorMaterial> ARMOR_MATERIALS = ElectrumModule.REGISTRY_HELPER.getArmorMaterialSubHelper();
 
     public static final DeferredItem<Item> ELECTRUM_INGOT = ITEMS.createItem("electrum_ingot",
             () -> new Item(new Item.Properties()));
@@ -46,7 +47,7 @@ public class ElectrumItems {
             }),
             20,
             SoundEvents.ARMOR_EQUIP_CHAIN,
-            () -> Ingredient.of(CoreTags.Items.INGOTS_ELECTRUM),
+            () -> Ingredient.of(ElectrumTags.Items.INGOTS_ELECTRUM),
             List.of(new ArmorMaterial.Layer(id)),
             2.0F,
             0.0F
@@ -68,7 +69,11 @@ public class ElectrumItems {
         return Stream.of(ELECTRUM_BOOTS, ELECTRUM_LEGGINGS, ELECTRUM_CHESTPLATE, ELECTRUM_HELMET);
     }
 
-    public static final Tier ELECTRUM_TIER = new SimpleTier(ElectrumTags.Blocks.INCORRECT_FOR_ELECTRUM_TOOL, 1561, 8F, 3.0F, 14, () -> Ingredient.of(CoreTags.Items.INGOTS_ELECTRUM));
+    public static final Tier ELECTRUM_TIER = new SimpleTier(
+            ElectrumTags.Blocks.INCORRECT_FOR_ELECTRUM_TOOL,
+            1561, 8F, 3.0F, 14,
+            () -> Ingredient.of(ElectrumTags.Items.INGOTS_ELECTRUM)
+    );
 
     public static final DeferredItem<Item> ELECTRUM_SWORD = ITEMS.createItem("electrum_sword",
             () -> new SwordItem(ELECTRUM_TIER, new Item.Properties().attributes(SwordItem.createAttributes(ELECTRUM_TIER, 3, -2.4F))));

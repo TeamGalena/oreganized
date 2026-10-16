@@ -1,6 +1,6 @@
 package galena.oreganized.plumbum.index;
 
-import galena.oreganized.OConstants;
+import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.plumbum.world.particle.LeadCloudParticleProvider;
 import galena.oreganized.plumbum.world.particle.LeadFluidParticle;
 import galena.oreganized.register.ParticleTypeRegistryHelper;
@@ -15,10 +15,10 @@ import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 @EventBusSubscriber(Dist.CLIENT)
-@Mod(OConstants.MOD_ID)
+@Mod(PlumbumModule.MOD_ID)
 public class PlumbumParticles {
 
-    private static final ParticleTypeRegistryHelper PARTICLES = OConstants.REGISTRY_HELPER.getParticleTypeSubHelper();
+    private static final ParticleTypeRegistryHelper PARTICLES = PlumbumModule.REGISTRY_HELPER.getParticleTypeSubHelper();
 
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> DRIPPING_LEAD = PARTICLES.createSimple("dripping_lead");
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> FALLING_LEAD = PARTICLES.createSimple("falling_lead");

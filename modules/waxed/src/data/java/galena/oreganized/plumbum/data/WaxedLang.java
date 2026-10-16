@@ -3,12 +3,12 @@ package galena.oreganized.plumbum.data;
 import static galena.oreganized.data.extensions.OLangExtensions.autoTranslate;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.waxed.WaxedModule;
 import galena.oreganized.waxed.index.WaxedBlocks;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(WaxedModule.MOD_ID)
 public class WaxedLang {
 
     public WaxedLang() {

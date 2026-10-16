@@ -1,6 +1,6 @@
 package galena.oreganized.gothic.index;
 
-import galena.oreganized.OConstants;
+import galena.oreganized.gothic.GothicModule;
 import galena.oreganized.gothic.world.block.*;
 import galena.oreganized.index.sets.DyedBlockSet;
 import galena.oreganized.index.sets.StoneSet;
@@ -13,10 +13,10 @@ import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
-@Mod(OConstants.MOD_ID)
+@Mod(GothicModule.MOD_ID)
 public class GothicBlocks {
 
-    private static final BlockRegistryHelper BLOCKS = OConstants.REGISTRY_HELPER.getBlockSubHelper();
+    private static final BlockRegistryHelper BLOCKS = GothicModule.REGISTRY_HELPER.getBlockSubHelper();
 
     public static final DeferredBlock<Block> GARGOYLE = BLOCKS.createBlock("gargoyle",
             () -> new GargoyleBlock(Properties.ofFullCopy(Blocks.STONE).noOcclusion()));

@@ -4,13 +4,13 @@ import static galena.oreganized.data.extensions.OLangExtensions.addSubtitle;
 import static galena.oreganized.data.extensions.OLangExtensions.autoTranslate;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.gothic.GothicModule;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.gothic.index.GothicTags;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(GothicModule.MOD_ID)
 public class GothicLang {
 
     public GothicLang() {

@@ -1,0 +1,8 @@
+{% embed "neoforge.mods.toml" %}
+{% block mod %}
+enumExtensions = "META-INF/enumextensions.json"
+{% endblock %}
+{% endembed %}
+
+[[mixins]]
+config = "${mod_id}.mixins.json"

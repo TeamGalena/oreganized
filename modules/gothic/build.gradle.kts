@@ -1,9 +1,12 @@
-dependencies {
-    api(project(":core"))
+import galena.gradle.moduleDependencies
 
-    api(project(":argentum"))
+moduleDependencies(
+    "core",
+    "argentum",
+)
+
+dependencies {
     modImplementation(libs.create) { isTransitive = false }
 
-    dataApi(project(":argentum", configuration = "dataElements"))
-    dataApi(project(":core", configuration = "dataElements"))
+    dataApi(project(":plumbum"))
 }

@@ -1,18 +1,18 @@
 import com.possible_triangle.gradle.modifyReleaseMetadata
 import com.possible_triangle.gradle.neoforge.NeoforgeExtension
+import net.kyori.blossom.BlossomExtension
 import net.neoforged.moddevgradle.dsl.NeoForgeExtension
-
+import org.gradle.internal.extensions.stdlib.capitalized
 
 plugins {
     id("com.possible-triangle.core")
-    id("com.possible-triangle.neoforge-api") apply false
     id("com.possible-triangle.neoforge") apply false
 }
 
 withKotlin()
 
 subprojects {
-    apply(plugin = "com.possible-triangle.core")
+    plugins.apply("com.possible-triangle.core")
 
     repositories {
         maven {
@@ -57,6 +57,13 @@ subprojects {
         }
     }
 
+    dependencies {
+        "runtimeOnly"(rootProject.pack.modrinth.jade)
+        "runtimeOnly"(rootProject.pack.modrinth.freecam)
+        "runtimeOnly"(rootProject.libs.jei.neoforge)
+        "runtimeOnly"(rootProject.libs.dye.depot)
+    }
+
     upload.maven.nexus()
 }
 
@@ -64,26 +71,82 @@ val modules =
     subprojects
         .filter { it.projectDir.relativeTo(it.rootDir).startsWith("modules/") }
 
-modules.forEach {
-    it.apply(plugin = "com.possible-triangle.neoforge")
+fun modules(block: Project.() -> Unit) = modules.forEach { it.block() }
 
-    it.configure<NeoforgeExtension> {
+modules {
+    mod.id.set("${mod.id.get()}_$name")
+    mod.name.set("${mod.name.get()} ${name.capitalized()}")
+
+    plugins.apply("com.possible-triangle.neoforge")
+    plugins.apply("net.kyori.blossom")
+
+    configure<NeoforgeExtension> {
         accessTransformer(project(":core"))
-        createDataSourceSet()
+
+        dataGen {
+            existing("blueprint")
+            existing("shieldexp")
+            existing("dye_depot")
+
+            owner = project
+
+            splitSourceSet()
+        }
     }
 
-    it.configure<NeoForgeExtension> {
-        runs.removeAll { true }
+    dependencies {
+        // should be dataImplementation but gradle is a hater
+        runtimeOnly(project(":data"))
+        "dataCompileOnly"(project(":data"))
     }
 
-    it.upload.forEach {
+    configure<NeoForgeExtension> {
+        runs.configureEach {
+            ideName = "${project.name.capitalized()} ${name.capitalized()}"
+            ideFolderName = project.name
+        }
+    }
+
+    upload.forEach {
         file.unset()
     }
 
-    it.modifyReleaseMetadata {
+    modifyReleaseMetadata {
         exclude = true
+    }
+
+    sourceSets.main {
+        configure<BlossomExtension> {
+            javaSources {
+                templates(rootProject.file("templates/java"))
+            }
+
+            resources {
+                include(rootProject.file("templates/resources"))
+            }
+
+            templateSets.configureEach {
+                property("modId", mod.id)
+                property("modName", mod.name)
+                property("module", project.name)
+                property("moduleName", project.name.capitalized())
+                property("baseModId", rootProject.mod.id)
+                property("baseModName", rootProject.mod.name)
+                properties.put("moduleDependencies", emptyList<String>())
+            }
+        }
     }
 }
 
-enableSpotless()
-enableSonarQube()
+enableSpotless {
+    java {
+        targetExclude("build/generated/**")
+    }
+}
+
+val runModuleData =
+    tasks.register("runModuleData") {
+        modules {
+            dependsOn(tasks.getByName("runData"))
+        }
+    }

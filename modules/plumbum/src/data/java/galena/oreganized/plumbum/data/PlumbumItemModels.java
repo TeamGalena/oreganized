@@ -3,14 +3,14 @@ package galena.oreganized.plumbum.data;
 import static galena.oreganized.data.extensions.OItemModelExtensions.*;
 
 import com.tterrag.registrate.providers.RegistrateItemModelProvider;
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.plumbum.index.PlumbumDataComponents;
 import galena.oreganized.plumbum.index.PlumbumItems;
 import galena.oreganized.plumbum.world.item.ThermometerItem;
 import net.neoforged.fml.common.Mod;
 
-@Mod(OConstants.MOD_ID)
+@Mod(PlumbumModule.MOD_ID)
 public class PlumbumItemModels {
 
     public PlumbumItemModels() {

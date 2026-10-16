@@ -10,6 +10,7 @@ plugins {
     id("com.possible-triangle.packwiz") version ("1.4.+")
 }
 
+include(":data")
 include(":core")
 include(":combined")
 

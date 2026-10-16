@@ -12,7 +12,11 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 public class DevicesClient {
 
     @SubscribeEvent
-    private static void registerItemProperties(FMLClientSetupEvent event) {
+    private static void clientSetup(FMLClientSetupEvent event) {
+        event.enqueueWork(DevicesClient::registerItemProperties);
+    }
+
+    private static void registerItemProperties() {
         ItemProperties.register(DeviceItems.UNKNOWN_DEVICE.get(), DeviceDataComponents.DEVICE_VALUE.getId(), new DevicePropertyFunction());
     }
 

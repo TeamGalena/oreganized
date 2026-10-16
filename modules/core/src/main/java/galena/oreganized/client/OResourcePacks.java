@@ -1,8 +1,8 @@
 package galena.oreganized.client;
 
-import galena.oreganized.OConstants;
-
+import galena.oreganized.core.CoreModule;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
@@ -19,7 +19,7 @@ public class OResourcePacks {
     @SubscribeEvent
     private static void addResourcePacks(AddPackFindersEvent event) {
         event.addPackFinders(
-                OConstants.modLoc(CREATE_COMPAT),
+                ResourceLocation.fromNamespaceAndPath(CoreModule.MOD_ID, CREATE_COMPAT),
                 PackType.CLIENT_RESOURCES,
                 Component.literal("Create Compat"),
                 PackSource.BUILT_IN,

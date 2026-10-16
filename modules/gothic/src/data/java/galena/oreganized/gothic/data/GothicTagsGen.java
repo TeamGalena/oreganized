@@ -5,12 +5,12 @@ import static galena.oreganized.data.extensions.OTagExtensions.tagStoneSet;
 
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
-import galena.oreganized.OConstants;
-import galena.oreganized.argentum.data.ArgentumSets;
+import galena.oreganized.argentum.index.ArgentumSets;
+import galena.oreganized.argentum.index.ArgentumTags;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.gothic.GothicModule;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.gothic.index.GothicTags;
-import galena.oreganized.index.CoreTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.entity.EntityType;
@@ -20,7 +20,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
 
-@Mod(OConstants.MOD_ID)
+@Mod(GothicModule.MOD_ID)
 public class GothicTagsGen {
 
     public GothicTagsGen() {
@@ -31,7 +31,7 @@ public class GothicTagsGen {
     }
 
     private void items(RegistrateItemTagsProvider provider) {
-        provider.addTag(GothicTags.Items.GARGOYLE_SNACK).addTags(CoreTags.Items.INGOTS_SILVER);
+        provider.addTag(GothicTags.Items.GARGOYLE_SNACK).addTag(ArgentumTags.Items.INGOTS_SILVER);
 
         tagDyed(provider, GothicBlocks.CRYSTAL_GLASS, GothicTags.Items.CRYSTAL_GLASS);
         tagDyed(provider, GothicBlocks.CRYSTAL_GLASS_PANES, GothicTags.Items.CRYSTAL_GLASS_PANES);

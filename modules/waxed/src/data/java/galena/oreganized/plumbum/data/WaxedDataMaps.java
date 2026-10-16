@@ -2,8 +2,8 @@ package galena.oreganized.plumbum.data;
 
 import static galena.oreganized.data.extensions.OColorExtensions.*;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.waxed.WaxedModule;
 import galena.oreganized.waxed.index.WaxedBlocks;
 import java.util.Optional;
 import net.minecraft.resources.ResourceLocation;
@@ -14,7 +14,7 @@ import net.neoforged.neoforge.common.data.DataMapProvider;
 import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
 import net.neoforged.neoforge.registries.datamaps.builtin.Waxable;
 
-@Mod(OConstants.MOD_ID)
+@Mod(WaxedModule.MOD_ID)
 public class WaxedDataMaps {
 
     public WaxedDataMaps() {

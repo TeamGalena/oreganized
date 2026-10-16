@@ -5,9 +5,10 @@ import static galena.oreganized.data.extensions.OBlockLootExtensions.dropOre;
 import static galena.oreganized.data.extensions.OBlockLootExtensions.dropSelf;
 
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
-import galena.oreganized.OConstants;
+import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.index.ArgentumBlocks;
 import galena.oreganized.argentum.index.ArgentumItems;
+import galena.oreganized.argentum.index.ArgentumSets;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.data.provider.RegistrateLootModifierProvider;
 import galena.oreganized.world.AddItemLootModifier;
@@ -32,7 +33,7 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.loot.LootTableIdCondition;
 
-@Mod(OConstants.MOD_ID)
+@Mod(ArgentumModule.MOD_ID)
 public class ArgentumLoot {
 
     public ArgentumLoot() {
@@ -84,7 +85,7 @@ public class ArgentumLoot {
                 )
         );
 
-        Stream.concat(ArgentumItems.silverArmor(), ArgentumSets.silverTools()).forEach(item ->
+        Stream.concat(ArgentumSets.silverArmor(), ArgentumSets.silverTools()).forEach(item ->
                 provider.add(
                         item.getId().getPath() + "_in_chests",
                         new AddItemLootModifier(
