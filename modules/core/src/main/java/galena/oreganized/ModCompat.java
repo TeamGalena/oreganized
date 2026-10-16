@@ -19,6 +19,7 @@ public class ModCompat {
     public static final String CREATE = "create";
     public static final String QUARK = "quark";
 
+    public static final boolean JEI_LOADED = isLoaded("jei");
     public static final boolean CREATE_LOADED = isLoaded(CREATE);
     public static final boolean PONDER_LOADED = isLoaded("ponder");
     public static final boolean DYE_DEPOT_LOADED = isLoaded("dye_depot");
