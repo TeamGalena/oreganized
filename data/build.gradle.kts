@@ -1,3 +1,5 @@
+import com.possible_triangle.gradle.modifyReleaseMetadata
+
 plugins {
     id("com.possible-triangle.neoforge")
 }
@@ -13,4 +15,8 @@ dependencies {
     api(libs.multikulti.datagen)
     api(libs.multikulti.registrate)
     api(pack.modrinth.farmers.delight)
+}
+
+modifyReleaseMetadata {
+    exclude = true
 }
