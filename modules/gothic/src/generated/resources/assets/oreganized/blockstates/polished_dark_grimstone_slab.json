@@ -4,7 +4,7 @@
       "model": "oreganized:block/polished_dark_grimstone_slab"
     },
     "type=double": {
-      "model": "oreganized:block/polished_dark_grimstone"
+      "model": "oreganized:block/polished_dark_grimstone_slab_double"
     },
     "type=top": {
       "model": "oreganized:block/polished_dark_grimstone_slab_top"

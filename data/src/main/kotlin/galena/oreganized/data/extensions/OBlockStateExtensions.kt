@@ -28,12 +28,19 @@ fun BlockStateProvider.slab(
     slab: DeferredHolder<Block, out SlabBlock>,
 ) {
     val texture = blockTexture(block.value())
-    val slabTexture =
+    val sideTexture =
         blockTexture(slab.value()).takeIf {
             models().existingFileHelper.exists(it, ModelProvider.TEXTURE)
-        } ?: texture
+        }
 
-    slabBlock(slab.value(), texture, slabTexture)
+    val doubleSlab =
+        sideTexture?.let {
+            val id = it.withSuffix("_double")
+            models().cubeColumn(id.path, it, texture)
+            id
+        }
+
+    slabBlock(slab.value(), doubleSlab ?: texture, sideTexture ?: texture, texture, texture)
     blockItem(slab)
 }
 
