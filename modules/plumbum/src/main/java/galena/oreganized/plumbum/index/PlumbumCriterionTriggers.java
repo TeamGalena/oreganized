@@ -1,6 +1,5 @@
 package galena.oreganized.plumbum.index;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.register.CriterionTriggerRegistryHelper;
 import galena.oreganized.world.critera.DummyCriterionTrigger;
@@ -11,7 +10,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 @Mod(PlumbumModule.MOD_ID)
 public class PlumbumCriterionTriggers {
 
-    private static final CriterionTriggerRegistryHelper TRIGGERS = OConstants.REGISTRY_HELPER.getCriterionTriggerSubHelper();
+    private static final CriterionTriggerRegistryHelper TRIGGERS = PlumbumModule.REGISTRY_HELPER.getCriterionTriggerSubHelper();
 
     public static final DeferredHolder<CriterionTrigger<?>, DummyCriterionTrigger> PROFOUND_BRAIN_DAMAGE = TRIGGERS.createDummy("profound_brain_damage");
     public static final DeferredHolder<CriterionTrigger<?>, DummyCriterionTrigger> IN_LEAD_CLOUD = TRIGGERS.createDummy("in_lead_cloud");

@@ -1,0 +1,25 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "farmersdelight"
+    }
+  ],
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "oreganized:tarnished_cut_silver"
+    }
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 1,
+        "id": "oreganized:blemished_cut_silver"
+      }
+    }
+  ],
+  "tool": {
+    "item": "minecraft:brush"
+  }
+}

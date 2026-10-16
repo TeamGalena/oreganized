@@ -1,6 +1,5 @@
 package galena.oreganized.glance.index;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.glance.GlanceModule;
 import galena.oreganized.glance.world.block.SpottedGlanceBlock;
 import galena.oreganized.index.sets.StoneSet;
@@ -17,7 +16,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 @Mod(GlanceModule.MOD_ID)
 public class GlanceBlocks {
 
-    private static final BlockRegistryHelper BLOCKS = OConstants.REGISTRY_HELPER.getBlockSubHelper();
+    private static final BlockRegistryHelper BLOCKS = GlanceModule.REGISTRY_HELPER.getBlockSubHelper();
 
     private static BlockBehaviour.Properties glanceProperties() {
         return BlockBehaviour.Properties.of().explosionResistance(6).strength(1.5F).mapColor(MapColor.CLAY);

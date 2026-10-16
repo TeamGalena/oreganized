@@ -1,6 +1,5 @@
 package galena.oreganized.engraved.index;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.engraved.EngravedModule;
 import galena.oreganized.engraved.world.item.BushHammerItem;
 import galena.oreganized.index.CoreTags;
@@ -16,7 +15,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 @Mod(EngravedModule.MOD_ID)
 public class EngravedItems {
 
-    private static final ItemRegistryHelper ITEMS = OConstants.REGISTRY_HELPER.getItemSubHelper();
+    private static final ItemRegistryHelper ITEMS = EngravedModule.REGISTRY_HELPER.getItemSubHelper();
 
     private static final Tier HAMMER_TIER = new SimpleTier(PlumbumTags.Blocks.INCORRECT_FOR_LEAD_TOOL, 150, 7F, 1.5F, 8, () -> Ingredient.of(CoreTags.Items.INGOTS_LEAD));
 

@@ -1,6 +1,5 @@
 package galena.oreganized.electrum.index;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.electrum.ElectrumModule;
 import galena.oreganized.electrum.config.ElectrumConfigs;
 import galena.oreganized.electrum.world.item.SpeedometerItem;
@@ -25,8 +24,8 @@ import net.neoforged.neoforge.registries.DeferredItem;
 @Mod(ElectrumModule.MOD_ID)
 public class ElectrumItems {
 
-    private static final ItemRegistryHelper ITEMS = OConstants.REGISTRY_HELPER.getItemSubHelper();
-    private static final SimpleRegistryHelper<ArmorMaterial> ARMOR_MATERIALS = OConstants.REGISTRY_HELPER.getArmorMaterialSubHelper();
+    private static final ItemRegistryHelper ITEMS = ElectrumModule.REGISTRY_HELPER.getItemSubHelper();
+    private static final SimpleRegistryHelper<ArmorMaterial> ARMOR_MATERIALS = ElectrumModule.REGISTRY_HELPER.getArmorMaterialSubHelper();
 
     public static final DeferredItem<Item> ELECTRUM_INGOT = ITEMS.createItem("electrum_ingot",
             () -> new Item(new Item.Properties()));

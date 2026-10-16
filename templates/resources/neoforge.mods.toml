@@ -5,6 +5,7 @@ issueTrackerURL = "https://github.com/${repository}/issues/"
 
 [[mods]]
 modId = "${mod_id}"
+namespace = "{{ baseModId }}"
 version = "${mod_version}"
 displayName = "${mod_name}"
 authors = "${mod_author}"

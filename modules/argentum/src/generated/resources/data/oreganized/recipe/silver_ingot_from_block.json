@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "oreganized:silver_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "oreganized:silver_ingot"
+  }
+}

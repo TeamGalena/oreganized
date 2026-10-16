@@ -1,6 +1,5 @@
 package galena.oreganized.electrum.index;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.electrum.ElectrumModule;
 import galena.oreganized.register.BlockRegistryHelper;
 import net.minecraft.world.level.block.Block;
@@ -13,7 +12,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 @Mod(ElectrumModule.MOD_ID)
 public class ElectrumBlocks {
 
-    private static final BlockRegistryHelper BLOCKS = OConstants.REGISTRY_HELPER.getBlockSubHelper();
+    private static final BlockRegistryHelper BLOCKS = ElectrumModule.REGISTRY_HELPER.getBlockSubHelper();
 
     public static final DeferredBlock<Block> ELECTRUM_BLOCK = BLOCKS.createBlock("electrum_block",
             () -> new Block(BlockBehaviour.Properties.of().strength(5.0F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.METAL).mapColor(MapColor.SAND)));

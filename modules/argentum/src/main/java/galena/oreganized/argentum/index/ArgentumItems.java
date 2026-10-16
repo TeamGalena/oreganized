@@ -1,6 +1,5 @@
 package galena.oreganized.argentum.index;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.world.item.ScribeItem;
 import galena.oreganized.argentum.world.item.SilverMirrorItem;
@@ -25,8 +24,8 @@ import net.neoforged.neoforge.registries.DeferredItem;
 @Mod(ArgentumModule.MOD_ID)
 public class ArgentumItems {
 
-    private static final ItemRegistryHelper ITEMS = OConstants.REGISTRY_HELPER.getItemSubHelper();
-    private static final SimpleRegistryHelper<ArmorMaterial> ARMOR_MATERIALS = OConstants.REGISTRY_HELPER.getArmorMaterialSubHelper();
+    private static final ItemRegistryHelper ITEMS = ArgentumModule.REGISTRY_HELPER.getItemSubHelper();
+    private static final SimpleRegistryHelper<ArmorMaterial> ARMOR_MATERIALS = ArgentumModule.REGISTRY_HELPER.getArmorMaterialSubHelper();
 
     public static final DeferredItem<Item> RAW_SILVER = ITEMS.createItem("raw_silver",
             () -> new Item(new Item.Properties()));

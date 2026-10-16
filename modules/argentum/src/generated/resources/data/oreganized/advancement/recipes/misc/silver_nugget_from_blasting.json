@@ -1,0 +1,120 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_silver_axe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "oreganized:silver_axe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_silver_boots": {
+      "conditions": {
+        "items": [
+          {
+            "items": "oreganized:silver_boots"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_silver_chestplate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "oreganized:silver_chestplate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_silver_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "oreganized:silver_helmet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_silver_hoe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "oreganized:silver_hoe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_silver_leggings": {
+      "conditions": {
+        "items": [
+          {
+            "items": "oreganized:silver_leggings"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_silver_pickaxe": {
+      "conditions": {
+        "items": [
+          {
+            "items": "oreganized:silver_pickaxe"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_silver_shovel": {
+      "conditions": {
+        "items": [
+          {
+            "items": "oreganized:silver_shovel"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_silver_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": "oreganized:silver_sword"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "oreganized:silver_nugget_from_blasting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_silver_boots",
+      "has_silver_leggings",
+      "has_silver_chestplate",
+      "has_silver_helmet",
+      "has_silver_sword",
+      "has_silver_shovel",
+      "has_silver_pickaxe",
+      "has_silver_axe",
+      "has_silver_hoe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "oreganized:silver_nugget_from_blasting"
+    ]
+  }
+}

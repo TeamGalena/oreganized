@@ -16,7 +16,6 @@ import galena.oreganized.data.ODatagen;
 import galena.oreganized.glance.GlanceModule;
 import galena.oreganized.glance.index.GlanceBlocks;
 import galena.oreganized.glance.index.GlanceTags;
-import galena.oreganized.index.CoreTags;
 import galena.oreganized.plumbum.index.PlumbumItems;
 import galena.oreganized.plumbum.index.PlumbumTags;
 import net.minecraft.data.recipes.RecipeCategory;

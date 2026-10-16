@@ -1,0 +1,7 @@
+{
+  "type": "oreganized:scribe",
+  "from": {
+    "blocks": "minecraft:blue_ice"
+  },
+  "to": "oreganized:grooved_blue_ice"
+}

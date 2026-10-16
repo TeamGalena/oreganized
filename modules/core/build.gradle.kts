@@ -1,7 +1,10 @@
 dependencies {
+    modInclude(libs.galena.hats)
+
+    modInclude(libs.ponder)
+    modInclude(libs.flywheel)
+
     modApi(libs.blueprint)
-    modApi(libs.ponder)
-    modApi(libs.flywheel)
 
     modApi(libs.jei.common.api)
     modApi(libs.jei.neoforge.api)

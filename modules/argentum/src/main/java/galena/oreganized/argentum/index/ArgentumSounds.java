@@ -1,6 +1,5 @@
 package galena.oreganized.argentum.index;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.register.SoundRegistryHelper;
 import net.minecraft.sounds.SoundEvent;
@@ -11,7 +10,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 @Mod(ArgentumModule.MOD_ID)
 public class ArgentumSounds {
 
-    private static final SoundRegistryHelper SOUNDS = OConstants.REGISTRY_HELPER.getSoundSubHelper();
+    private static final SoundRegistryHelper SOUNDS = ArgentumModule.REGISTRY_HELPER.getSoundSubHelper();
 
     public static final SoundType SILVER = SOUNDS.createBlockSoundType("silver", 1.0F, 1.25F);
 

@@ -1,6 +1,5 @@
 package galena.oreganized.gothic.index;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.gothic.GothicModule;
 import galena.oreganized.gothic.world.particle.VengeanceParticleProvider;
 import galena.oreganized.register.ParticleTypeRegistryHelper;
@@ -17,7 +16,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 @Mod(GothicModule.MOD_ID)
 public class GothicParticles {
 
-    private static final ParticleTypeRegistryHelper PARTICLES = OConstants.REGISTRY_HELPER.getParticleTypeSubHelper();
+    private static final ParticleTypeRegistryHelper PARTICLES = GothicModule.REGISTRY_HELPER.getParticleTypeSubHelper();
 
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> VENGEANCE = PARTICLES.createSimple("vengeance");
 

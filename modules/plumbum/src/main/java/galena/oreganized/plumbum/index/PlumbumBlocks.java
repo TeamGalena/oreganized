@@ -1,6 +1,5 @@
 package galena.oreganized.plumbum.index;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.plumbum.world.block.*;
 import galena.oreganized.register.BlockRegistryHelper;
@@ -18,7 +17,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 @Mod(PlumbumModule.MOD_ID)
 public class PlumbumBlocks {
 
-    private static final BlockRegistryHelper BLOCKS = OConstants.REGISTRY_HELPER.getBlockSubHelper();
+    private static final BlockRegistryHelper BLOCKS = PlumbumModule.REGISTRY_HELPER.getBlockSubHelper();
 
     private static final MapColor[] LEAD_MAP_COLORS = {
             MapColor.TERRACOTTA_LIGHT_BLUE,

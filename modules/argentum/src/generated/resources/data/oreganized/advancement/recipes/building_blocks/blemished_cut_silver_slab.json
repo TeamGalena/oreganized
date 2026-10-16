@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_blemished_cut_silver": {
+      "conditions": {
+        "items": [
+          {
+            "items": "oreganized:blemished_cut_silver"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "oreganized:blemished_cut_silver_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_blemished_cut_silver"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "oreganized:blemished_cut_silver_slab"
+    ]
+  }
+}

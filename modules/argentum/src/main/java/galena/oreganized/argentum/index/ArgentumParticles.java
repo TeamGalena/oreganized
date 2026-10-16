@@ -1,6 +1,5 @@
 package galena.oreganized.argentum.index;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.world.particle.PolishParticle;
 import galena.oreganized.argentum.world.particle.TarnishParticle;
@@ -18,7 +17,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 @Mod(ArgentumModule.MOD_ID)
 public class ArgentumParticles {
 
-    private static final ParticleTypeRegistryHelper PARTICLES = OConstants.REGISTRY_HELPER.getParticleTypeSubHelper();
+    private static final ParticleTypeRegistryHelper PARTICLES = ArgentumModule.REGISTRY_HELPER.getParticleTypeSubHelper();
 
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> TARNISH = PARTICLES.createSimple("tarnish");
 

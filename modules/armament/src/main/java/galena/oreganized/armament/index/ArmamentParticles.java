@@ -1,6 +1,5 @@
 package galena.oreganized.armament.index;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.armament.ArmamentModule;
 import galena.oreganized.armament.world.particle.LeadShrapnelParticle;
 import galena.oreganized.register.ParticleTypeRegistryHelper;
@@ -17,7 +16,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 @Mod(ArmamentModule.MOD_ID)
 public class ArmamentParticles {
 
-    private static final ParticleTypeRegistryHelper PARTICLES = OConstants.REGISTRY_HELPER.getParticleTypeSubHelper();
+    private static final ParticleTypeRegistryHelper PARTICLES = ArmamentModule.REGISTRY_HELPER.getParticleTypeSubHelper();
 
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LEAD_SHRAPNEL = PARTICLES.createSimple("lead_shrapnel");
 

@@ -2,43 +2,52 @@ package galena.oreganized.data;
 
 import com.tterrag.registrate.AbstractRegistrate;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import galena.oreganized.OConstants;
-import galena.oreganized.core.CoreModule;
+import galena.oreganized.register.ORegistryHelper;
+
 import java.util.Collection;
+import java.util.Objects;
+
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.ModList;
+import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class ORegistrate extends AbstractRegistrate<ORegistrate> {
 
-    private ORegistrate(String modid) {
+    private final String moduleId;
+
+    private ORegistrate(String modid, String moduleId) {
         super(modid);
+        this.moduleId = moduleId;
     }
 
     static ORegistrate create(String modid) {
-        var registrate = new ORegistrate(modid);
-        var modBus = ModList.get()
-                .getModContainerById("oreganized_argentum")
-                .map(ModContainer::getEventBus)
-                .orElseThrow();
+        var active = ModLoadingContext.get().getActiveContainer();
+        Objects.requireNonNull(active.getEventBus(), "no active mod found");
 
-        registrate.registerEventListeners(modBus);
+        var registrate = new ORegistrate(modid, active.getModId());
+        registrate.registerEventListeners(active.getEventBus());
+
+        // TODO modular this is only necessary to load `extraLang` once
+        registrate.addRawLang("dummy." + active.getModId(), "Dummy Entry");
 
         return registrate;
     }
 
     private <R, T extends R> Collection<RegistryEntry<R, T>> getFromHelper(ResourceKey<Registry<R>> type) {
-        var deferred = OConstants.REGISTRY_HELPER.getSubHelper(type).getDeferredRegister();
+        var registryHelper = ORegistryHelper.forModule(moduleId)
+                .orElseThrow(() -> new NullPointerException("no registry helper found for module"));
+
+        var deferred = registryHelper.getSubHelper(type).getDeferredRegister();
         return deferred.getEntries().stream()
-                .map(it -> it.getKey())
-                .map(it -> DeferredHolder.<R, T>create(it))
-                .map(it -> new RegistryEntry<R, T>(this, it))
+                .map(DeferredHolder::getKey)
+                .map(DeferredHolder::<R, T>create)
+                .map(it -> new RegistryEntry<>(this, it))
                 .toList();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public <R, T extends R> Collection<RegistryEntry<R, T>> getAll(ResourceKey<? extends Registry<R>> type) {
         var key = (ResourceKey<Registry<R>>) type;

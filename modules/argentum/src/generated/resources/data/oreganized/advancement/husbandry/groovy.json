@@ -1,0 +1,44 @@
+{
+  "parent": "minecraft:husbandry/root",
+  "criteria": {
+    "use_scribe_on_ice": {
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "#minecraft:ice"
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": "oreganized:scribe"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:item_used_on_block"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.oreganized.groovy.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "oreganized:grooved_ice"
+    },
+    "title": {
+      "translate": "advancements.oreganized.groovy.title"
+    }
+  },
+  "requirements": [
+    [
+      "use_scribe_on_ice"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

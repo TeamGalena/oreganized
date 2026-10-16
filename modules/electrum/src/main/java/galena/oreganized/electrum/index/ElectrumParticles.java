@@ -1,6 +1,5 @@
 package galena.oreganized.electrum.index;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.electrum.ElectrumModule;
 import galena.oreganized.electrum.world.particle.KineticHitParticle;
 import galena.oreganized.register.ParticleTypeRegistryHelper;
@@ -17,7 +16,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 @Mod(ElectrumModule.MOD_ID)
 public class ElectrumParticles {
 
-    private static final ParticleTypeRegistryHelper PARTICLES = OConstants.REGISTRY_HELPER.getParticleTypeSubHelper();
+    private static final ParticleTypeRegistryHelper PARTICLES = ElectrumModule.REGISTRY_HELPER.getParticleTypeSubHelper();
 
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> KINETIC_HIT = PARTICLES.createSimple("kinetic_hit");
 

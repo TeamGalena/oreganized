@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "oreganized:block/tarnished_cut_silver",
+    "side": "oreganized:block/tarnished_cut_silver",
+    "top": "oreganized:block/tarnished_cut_silver"
+  }
+}

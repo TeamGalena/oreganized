@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom_right_open",
+  "textures": {
+    "bottom": "oreganized:block/blemished_silver_door_bottom",
+    "top": "oreganized:block/blemished_silver_door_top"
+  }
+}

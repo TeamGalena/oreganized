@@ -1,6 +1,5 @@
 package galena.oreganized.plumbum.index;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.plumbum.client.extensions.MoltenLeadClientExtensions;
 import galena.oreganized.plumbum.config.PlumbumConfigs;
@@ -33,8 +32,8 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 @EventBusSubscriber(Dist.CLIENT)
 public class PlumbumFluids {
 
-    private static final SimpleRegistryHelper<Fluid> FLUIDS = OConstants.REGISTRY_HELPER.getFluidSubHelper();
-    private static final SimpleRegistryHelper<FluidType> TYPES = OConstants.REGISTRY_HELPER.getFluidTypeSubHelper();
+    private static final SimpleRegistryHelper<Fluid> FLUIDS = PlumbumModule.REGISTRY_HELPER.getFluidSubHelper();
+    private static final SimpleRegistryHelper<FluidType> TYPES = PlumbumModule.REGISTRY_HELPER.getFluidTypeSubHelper();
 
     public static final DeferredHolder<FluidType, FluidType> MOLTEN_LEAD_TYPE = TYPES.create("molten_lead", id -> new FluidType(FluidType.Properties.create()
             .descriptionId(id.toLanguageKey("block"))

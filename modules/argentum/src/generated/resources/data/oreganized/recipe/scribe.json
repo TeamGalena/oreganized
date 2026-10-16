@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "S": {
+      "tag": "c:ingots/silver"
+    }
+  },
+  "pattern": [
+    "A",
+    "S",
+    "S"
+  ],
+  "result": {
+    "count": 1,
+    "id": "oreganized:scribe"
+  }
+}

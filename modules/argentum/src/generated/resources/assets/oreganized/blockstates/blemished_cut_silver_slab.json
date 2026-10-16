@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "oreganized:block/blemished_cut_silver_slab"
+    },
+    "type=double": {
+      "model": "oreganized:block/blemished_cut_silver"
+    },
+    "type=top": {
+      "model": "oreganized:block/blemished_cut_silver_slab_top"
+    }
+  }
+}

@@ -57,6 +57,12 @@ subprojects {
         }
     }
 
+    dependencies {
+        "runtimeOnly"(rootProject.pack.modrinth.jade)
+        "runtimeOnly"(rootProject.pack.modrinth.freecam)
+        "runtimeOnly"(rootProject.libs.jei.neoforge)
+    }
+
     upload.maven.nexus()
 }
 
@@ -89,7 +95,7 @@ modules {
 
     dependencies {
         // should be dataImplementation but gradle is a hater
-        runtimeOnly("dev.galena:oreganized-1.21.1-data:0.0.0-dev")
+        runtimeOnly(project(":data"))
         "dataCompileOnly"(project(":data"))
     }
 

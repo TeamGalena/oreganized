@@ -17,15 +17,10 @@ base {
 }
 
 dependencies {
-    modInclude(libs.galena.hats)
-
     modModules.forEach {
         api(project(it.path))
         jarJar(project(it.path))
     }
-
-    modIncludeCompileOnly(libs.ponder)
-    modIncludeCompileOnly(libs.flywheel)
 
     modApi(libs.blueprint)
 
@@ -47,12 +42,8 @@ dependencies {
     // runtimeOnly(pack.modrinth.architectury.api)
     modRuntimeOnly(pack.modrinth.moonlight)
     modRuntimeOnly(libs.dye.depot)
-    modRuntimeOnly(pack.modrinth.jade)
     modRuntimeOnly(pack.modrinth.biolith)
     modRuntimeOnly(pack.modrinth.no.mans.land)
-    modRuntimeOnly(pack.modrinth.freecam)
-
-    modRuntimeOnly(libs.jei.neoforge)
 }
 
 upload {

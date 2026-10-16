@@ -1,6 +1,5 @@
 package galena.oreganized.glance.index;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.glance.GlanceModule;
 import galena.oreganized.glance.world.structure.BoulderStructure;
 import galena.oreganized.register.StructureTypeRegistryHelper;
@@ -11,7 +10,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 @Mod(GlanceModule.MOD_ID)
 public class GlanceStructures {
 
-    private static final StructureTypeRegistryHelper STRUCTURES = OConstants.REGISTRY_HELPER.getStructureTypeSubHelper();
+    private static final StructureTypeRegistryHelper STRUCTURES = GlanceModule.REGISTRY_HELPER.getStructureTypeSubHelper();
 
     public static final DeferredHolder<StructureType<?>, StructureType<BoulderStructure>> BOULDER = STRUCTURES.createStructureType("boulder", BoulderStructure.CODEC);
 

@@ -1,6 +1,5 @@
 package galena.oreganized.device.index;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.device.DeviceModule;
 import galena.oreganized.device.world.item.DeviceItem;
 import galena.oreganized.register.ItemRegistryHelper;
@@ -11,7 +10,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 @Mod(DeviceModule.MOD_ID)
 public class DeviceItems {
 
-    private static final ItemRegistryHelper ITEMS = OConstants.REGISTRY_HELPER.getItemSubHelper();
+    private static final ItemRegistryHelper ITEMS = DeviceModule.REGISTRY_HELPER.getItemSubHelper();
 
     public static final DeferredItem<Item> NETHERITE_NUGGET = ITEMS.createItem("netherite_nugget",
             () -> new Item(new Item.Properties().fireResistant()));

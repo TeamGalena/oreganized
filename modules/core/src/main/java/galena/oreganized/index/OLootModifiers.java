@@ -22,8 +22,6 @@ public class OLootModifiers {
         LOOT_MODIFIERS.register("add_item", () -> AddItemLootModifier.CODEC);
         LOOT_MODIFIERS.register(modBus);
 
-        OConstants.REGISTRY_HELPER.register(modBus);
-
         OreganizedConfigs.register(container);
     }
 

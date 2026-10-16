@@ -1,6 +1,5 @@
 package galena.oreganized.gothic.index;
 
-import galena.oreganized.OConstants;
 import galena.oreganized.gothic.GothicModule;
 import galena.oreganized.register.SoundRegistryHelper;
 import net.minecraft.sounds.SoundEvent;
@@ -11,7 +10,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 @Mod(GothicModule.MOD_ID)
 public class GothicSounds {
 
-    private static final SoundRegistryHelper SOUNDS = OConstants.REGISTRY_HELPER.getSoundSubHelper();
+    private static final SoundRegistryHelper SOUNDS = GothicModule.REGISTRY_HELPER.getSoundSubHelper();
 
     public static final DeferredHolder<SoundEvent, SoundEvent> GARGOYLE_GROWL = SOUNDS.createSoundEvent("block.gargoyle.growl");
 

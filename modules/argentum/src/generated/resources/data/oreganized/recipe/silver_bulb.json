@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "B": {
+      "item": "minecraft:breeze_rod"
+    },
+    "C": {
+      "item": "oreganized:cut_silver"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "pattern": [
+    " C ",
+    "CBC",
+    " R "
+  ],
+  "result": {
+    "count": 1,
+    "id": "oreganized:silver_bulb"
+  }
+}

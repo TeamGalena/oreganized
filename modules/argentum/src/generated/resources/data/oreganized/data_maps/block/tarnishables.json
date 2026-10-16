@@ -1,0 +1,70 @@
+{
+  "values": {
+    "oreganized:blemished_chiseled_silver": {
+      "next_stage": "oreganized:tarnished_chiseled_silver"
+    },
+    "oreganized:blemished_cut_silver": {
+      "next_stage": "oreganized:tarnished_cut_silver"
+    },
+    "oreganized:blemished_cut_silver_slab": {
+      "next_stage": "oreganized:tarnished_cut_silver_slab"
+    },
+    "oreganized:blemished_cut_silver_stairs": {
+      "next_stage": "oreganized:tarnished_cut_silver_stairs"
+    },
+    "oreganized:blemished_silver_bars": {
+      "next_stage": "oreganized:tarnished_silver_bars"
+    },
+    "oreganized:blemished_silver_block": {
+      "next_stage": "oreganized:tarnished_silver_block"
+    },
+    "oreganized:blemished_silver_bulb": {
+      "next_stage": "oreganized:tarnished_silver_bulb"
+    },
+    "oreganized:blemished_silver_door": {
+      "next_stage": "oreganized:tarnished_silver_door"
+    },
+    "oreganized:blemished_silver_lattice": {
+      "next_stage": "oreganized:tarnished_silver_lattice"
+    },
+    "oreganized:blemished_silver_pillar": {
+      "next_stage": "oreganized:tarnished_silver_pillar"
+    },
+    "oreganized:blemished_silver_trapdoor": {
+      "next_stage": "oreganized:tarnished_silver_trapdoor"
+    },
+    "oreganized:chiseled_silver": {
+      "next_stage": "oreganized:blemished_chiseled_silver"
+    },
+    "oreganized:cut_silver": {
+      "next_stage": "oreganized:blemished_cut_silver"
+    },
+    "oreganized:cut_silver_slab": {
+      "next_stage": "oreganized:blemished_cut_silver_slab"
+    },
+    "oreganized:cut_silver_stairs": {
+      "next_stage": "oreganized:blemished_cut_silver_stairs"
+    },
+    "oreganized:silver_bars": {
+      "next_stage": "oreganized:blemished_silver_bars"
+    },
+    "oreganized:silver_block": {
+      "next_stage": "oreganized:blemished_silver_block"
+    },
+    "oreganized:silver_bulb": {
+      "next_stage": "oreganized:blemished_silver_bulb"
+    },
+    "oreganized:silver_door": {
+      "next_stage": "oreganized:blemished_silver_door"
+    },
+    "oreganized:silver_lattice": {
+      "next_stage": "oreganized:blemished_silver_lattice"
+    },
+    "oreganized:silver_pillar": {
+      "next_stage": "oreganized:blemished_silver_pillar"
+    },
+    "oreganized:silver_trapdoor": {
+      "next_stage": "oreganized:blemished_silver_trapdoor"
+    }
+  }
+}

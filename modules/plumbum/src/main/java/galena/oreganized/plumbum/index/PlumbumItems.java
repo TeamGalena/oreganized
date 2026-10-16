@@ -1,7 +1,6 @@
 package galena.oreganized.plumbum.index;
 
 import com.teamabnormals.blueprint.common.dispenser.FishBucketDispenseItemBehavior;
-import galena.oreganized.OConstants;
 import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.plumbum.world.item.ThermometerItem;
 import galena.oreganized.register.ItemRegistryHelper;
@@ -18,7 +17,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 @Mod(PlumbumModule.MOD_ID)
 public class PlumbumItems {
 
-    private static final ItemRegistryHelper ITEMS = OConstants.REGISTRY_HELPER.getItemSubHelper();
+    private static final ItemRegistryHelper ITEMS = PlumbumModule.REGISTRY_HELPER.getItemSubHelper();
 
     public static final DeferredItem<Item> RAW_LEAD = ITEMS.createItem("raw_lead",
             () -> new Item(new Item.Properties()));
