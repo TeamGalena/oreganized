@@ -1,1 +1,5 @@
-{% include "neoforge.mods.toml" %}
+{% embed "neoforge.mods.toml" %}
+{% block mod %}
+logoFile = "assets/{{ baseModId }}/textures/item/netherite_nugget.png"
+{% endblock %}
+{% endembed %}

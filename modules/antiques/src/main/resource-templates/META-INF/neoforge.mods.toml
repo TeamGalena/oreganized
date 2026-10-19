@@ -1,4 +1,8 @@
-{% include "neoforge.mods.toml" %}
+{% embed "neoforge.mods.toml" %}
+{% block mod %}
+logoFile = "assets/{{ baseModId }}/textures/item/antiques_pile.png"
+{% endblock %}
+{% endembed %}
 
 [[mixins]]
 config = "${mod_id}.mixins.json"

@@ -10,6 +10,7 @@ version = "${mod_version}"
 displayName = "${mod_name}"
 authors = "${mod_author}"
 description = "{{ moduleName }} module of {{ baseModName }}"
+logoBlur = false
 {% block mod %}{% endblock %}
 
 {% for module in moduleDependencies %}

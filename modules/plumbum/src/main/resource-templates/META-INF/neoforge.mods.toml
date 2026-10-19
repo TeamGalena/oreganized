@@ -1,5 +1,6 @@
 {% embed "neoforge.mods.toml" %}
 {% block mod %}
+logoFile = "assets/{{ baseModId }}/textures/item/lead_ingot.png"
 enumExtensions = "META-INF/enumextensions.json"
 {% endblock %}
 {% endembed %}

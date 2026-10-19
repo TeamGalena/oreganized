@@ -1,4 +1,8 @@
-{% include "neoforge.mods.toml" %}
+{% embed "neoforge.mods.toml" %}
+{% block mod %}
+logoFile = "${mod_id}.png"
+{% endblock %}
+{% endembed %}
 
 [[dependencies.${mod_id}]]
 modId = "neoforge"
