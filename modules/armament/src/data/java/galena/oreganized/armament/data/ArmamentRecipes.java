@@ -8,17 +8,25 @@ import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 import static net.minecraft.data.recipes.ShapelessRecipeBuilder.shapeless;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.armament.ArmamentModule;
 import galena.oreganized.armament.index.ArmamentBlocks;
 import galena.oreganized.armament.index.ArmamentItems;
+import galena.oreganized.data.ODatagen;
 import galena.oreganized.plumbum.index.PlumbumTags;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.world.item.Items;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.Tags;
 
+@Mod(ArmamentModule.MOD_ID)
 public class ArmamentRecipes {
 
-    static void generate(RecipeOutput output) {
+    public ArmamentRecipes() {
+        ODatagen.addRecipeProvider(this::generate);
+    }
+
+    private void generate(RecipeOutput output) {
         shaped(RecipeCategory.REDSTONE, ArmamentBlocks.SHRAPNEL_BOMB.get())
                 .pattern("ABA")
                 .pattern("BAB")
