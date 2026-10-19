@@ -37,7 +37,7 @@ public class ArgentumBlocks {
 
     public static final TarnishedBlocks<Block> SILVER_BLOCKS = registerTarnished("silver_block", $ -> new Block(silverProperties()));
     public static final TarnishedBlocks<Block> SILVER_BULBS = registerTarnished("silver_bulb", i ->
-            new SilverBulbBlock(silverProperties().lightLevel(SilverBulbBlock.lightLevel(i))));
+            new SilverBulbBlock(silverProperties().sound(ArgentumSounds.SILVER_BULB).lightLevel(SilverBulbBlock.lightLevel(i))));
     public static final TarnishedBlocks<Block> CUT_SILVERS = registerTarnished("cut_silver", $ -> new Block(silverProperties()));
     public static final TarnishedBlocks<Block> SILVER_LATTICES = registerTarnished("silver_lattice", $ -> new Block(silverProperties()));
 

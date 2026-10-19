@@ -13,6 +13,7 @@ public class ArgentumSounds {
     private static final SoundRegistryHelper SOUNDS = ArgentumModule.REGISTRY_HELPER.getSoundSubHelper();
 
     public static final SoundType SILVER = SOUNDS.createBlockSoundType("silver", 1.0F, 1.25F);
+    public static final SoundType SILVER_BULB = SOUNDS.createBlockSoundType("silver_bulb", 1.0F, 1.25F);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> TARNISH = SOUNDS.createSoundEvent("block.tarnish");
     public static final DeferredHolder<SoundEvent, SoundEvent> POLISH = SOUNDS.createSoundEvent("block.polish");
