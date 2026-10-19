@@ -29,6 +29,7 @@ public class ArmamentLang {
 
         addSubtitle(provider, "entity", "shrapnel_bomb.primed", "Shrapnel Bomb fizzes");
         addSubtitle(provider, "entity", "bolt_hit", "Bolt hits");
+        addSubtitle(provider, "entity", "bolt_hit_armor", "Bolt hits armor");
 
         addDeath(provider, "lead_bolt", "%1$s was shot by %2$s");
         addDeath(provider, "lead_bolt.item", "%1$s was shot by %2$s using %3$s");

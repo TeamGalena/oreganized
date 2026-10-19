@@ -37,7 +37,7 @@ public class ArgentumSoundDefinitions {
         blockSound(provider, ArgentumSounds.SILVER.getBreakSound(), OConstants.modLoc("silver_dig"), 4);
         blockSound(provider, ArgentumSounds.SILVER.getHitSound(), OConstants.modLoc("silver_dig"), 4);
         blockSound(provider, ArgentumSounds.SILVER.getStepSound(), OConstants.modLoc("silver_step"), 4);
-        blockSound(provider, ArgentumSounds.SILVER.getFallSound(), OConstants.modLoc("silver_step"), 4);
+        blockSound(provider, ArgentumSounds.SILVER.getFallSound(), OConstants.modLoc("silver_step"), 4, false);
         blockSound(provider, ArgentumSounds.SILVER.getPlaceSound(), OConstants.modLoc("silver_dig"), 4);
     }
 

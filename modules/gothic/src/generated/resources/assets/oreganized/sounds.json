@@ -22,8 +22,16 @@
       "oreganized:block/grimstone_step_2",
       "oreganized:block/grimstone_step_3",
       "oreganized:block/grimstone_step_4"
+    ]
+  },
+  "block.grimstone.footsteps": {
+    "sounds": [
+      "oreganized:block/grimstone_step_1",
+      "oreganized:block/grimstone_step_2",
+      "oreganized:block/grimstone_step_3",
+      "oreganized:block/grimstone_step_4"
     ],
-    "subtitle": "subtitles.block.generic.fall"
+    "subtitle": "subtitles.block.generic.footsteps"
   },
   "block.grimstone.hit": {
     "sounds": [
@@ -42,14 +50,5 @@
       "oreganized:block/grimstone_place_4"
     ],
     "subtitle": "subtitles.block.generic.place"
-  },
-  "block.grimstone.step": {
-    "sounds": [
-      "oreganized:block/grimstone_step_1",
-      "oreganized:block/grimstone_step_2",
-      "oreganized:block/grimstone_step_3",
-      "oreganized:block/grimstone_step_4"
-    ],
-    "subtitle": "subtitles.block.generic.step"
   }
 }

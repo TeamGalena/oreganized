@@ -16,7 +16,7 @@ public class SoundRegistryHelper extends SoundSubRegistryHelper {
                 volume,
                 pitch,
                 createSoundEvent("block.%s.break".formatted(name)),
-                createSoundEvent("block.%s.step".formatted(name)),
+                createSoundEvent("block.%s.footsteps".formatted(name)),
                 createSoundEvent("block.%s.place".formatted(name)),
                 createSoundEvent("block.%s.hit".formatted(name)),
                 createSoundEvent("block.%s.fall".formatted(name))

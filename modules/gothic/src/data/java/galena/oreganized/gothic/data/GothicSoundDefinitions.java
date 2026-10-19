@@ -29,7 +29,7 @@ public class GothicSoundDefinitions {
         blockSound(provider, GothicSounds.GRIMSTONE.getBreakSound(), OConstants.modLoc("grimstone_dig"), 4);
         blockSound(provider, GothicSounds.GRIMSTONE.getHitSound(), OConstants.modLoc("grimstone_dig"), 4);
         blockSound(provider, GothicSounds.GRIMSTONE.getStepSound(), OConstants.modLoc("grimstone_step"), 4);
-        blockSound(provider, GothicSounds.GRIMSTONE.getFallSound(), OConstants.modLoc("grimstone_step"), 4);
+        blockSound(provider, GothicSounds.GRIMSTONE.getFallSound(), OConstants.modLoc("grimstone_step"), 4, false);
         blockSound(provider, GothicSounds.GRIMSTONE.getPlaceSound(), OConstants.modLoc("grimstone_place"), 4);
     }
 

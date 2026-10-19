@@ -21,17 +21,20 @@ fun SoundDefinition.withVariants(
     with(*sounds.toTypedArray())
 }
 
+@JvmOverloads
 fun RegistrateSoundsProvider.blockSound(
     sound: SoundEvent,
     name: ResourceLocation,
     variants: Int,
+    subtitle: Boolean = true,
 ) {
-    val type = sound.location.path.substringAfterLast('.')
     add(
         sound,
         definition()
-            .subtitle("subtitles.block.generic.$type")
-            .withVariants(
+            .also {
+                val type = sound.location.path.substringAfterLast('.')
+                if (subtitle) it.subtitle("subtitles.block.generic.$type")
+            }.withVariants(
                 name.withPrefix("block/"),
                 variants,
             ),

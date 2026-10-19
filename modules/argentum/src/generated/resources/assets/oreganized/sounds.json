@@ -32,8 +32,16 @@
       "oreganized:block/silver_step_2",
       "oreganized:block/silver_step_3",
       "oreganized:block/silver_step_4"
+    ]
+  },
+  "block.silver.footsteps": {
+    "sounds": [
+      "oreganized:block/silver_step_1",
+      "oreganized:block/silver_step_2",
+      "oreganized:block/silver_step_3",
+      "oreganized:block/silver_step_4"
     ],
-    "subtitle": "subtitles.block.generic.fall"
+    "subtitle": "subtitles.block.generic.footsteps"
   },
   "block.silver.hit": {
     "sounds": [
@@ -52,15 +60,6 @@
       "oreganized:block/silver_dig_4"
     ],
     "subtitle": "subtitles.block.generic.place"
-  },
-  "block.silver.step": {
-    "sounds": [
-      "oreganized:block/silver_step_1",
-      "oreganized:block/silver_step_2",
-      "oreganized:block/silver_step_3",
-      "oreganized:block/silver_step_4"
-    ],
-    "subtitle": "subtitles.block.generic.step"
   },
   "block.tarnish": {
     "sounds": [
