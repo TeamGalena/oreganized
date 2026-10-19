@@ -70,7 +70,7 @@ public class PlumbumBlockStates {
     }
 
     public static void moltenCauldron(BlockStateProvider provider, DeferredHolder<Block, ? extends Block> cauldron, DeferredHolder<Block, ? extends Block> content) {
-        var texture = blockTexture(content.getId().withPrefix("molten_"));
+        var texture = blockTexture(OConstants.modLoc("fluid/molten_lead"));
         provider.simpleBlock(cauldron.value(), cauldronModel(provider, cauldron.getId().getPath(), texture));
     }
 
