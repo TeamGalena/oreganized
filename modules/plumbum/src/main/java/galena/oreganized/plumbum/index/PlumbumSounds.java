@@ -13,4 +13,7 @@ public class PlumbumSounds {
 
     public static final DeferredHolder<SoundEvent, SoundEvent> MUSIC_DISC_STRUCTURE = SOUNDS.createSoundEvent("music.disc.structure");
 
+    public static final DeferredHolder<SoundEvent, SoundEvent> MOLTEN_LEAD_BUCKET_FILL = SOUNDS.createSoundEvent("item.molten_lead_bucket.fill");
+    public static final DeferredHolder<SoundEvent, SoundEvent> MOLTEN_LEAD_BUCKET_EMPTY = SOUNDS.createSoundEvent("item.molten_lead_bucket.empty");
+
 }

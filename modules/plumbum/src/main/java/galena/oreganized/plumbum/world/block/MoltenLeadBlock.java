@@ -1,17 +1,14 @@
 package galena.oreganized.plumbum.world.block;
 
 import galena.oreganized.plumbum.config.PlumbumConfigs;
-import galena.oreganized.plumbum.index.PlumbumBlocks;
-import galena.oreganized.plumbum.index.PlumbumDamageTypes;
-import galena.oreganized.plumbum.index.PlumbumItems;
-import galena.oreganized.plumbum.index.PlumbumTags;
+import galena.oreganized.plumbum.index.*;
+
 import java.util.Optional;
 import java.util.function.Supplier;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
@@ -191,7 +188,7 @@ public class MoltenLeadBlock extends LiquidBlock {
 
     @Override
     public Optional<SoundEvent> getPickupSound() {
-        return Optional.of(SoundEvents.BUCKET_FILL_LAVA);
+        return Optional.of(PlumbumSounds.MOLTEN_LEAD_BUCKET_FILL.value());
     }
 
     @Override

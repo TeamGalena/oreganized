@@ -1,4 +1,20 @@
 {
+  "item.molten_lead_bucket.empty": {
+    "sounds": [
+      "oreganized:item/molten_lead_bucket_empty_1",
+      "oreganized:item/molten_lead_bucket_empty_2",
+      "oreganized:item/molten_lead_bucket_empty_3"
+    ],
+    "subtitle": "subtitles.item.bucket.empty"
+  },
+  "item.molten_lead_bucket.fill": {
+    "sounds": [
+      "oreganized:item/molten_lead_bucket_fill_1",
+      "oreganized:item/molten_lead_bucket_fill_2",
+      "oreganized:item/molten_lead_bucket_fill_3"
+    ],
+    "subtitle": "subtitles.item.bucket.fill"
+  },
   "music.disc.structure": {
     "sounds": [
       {

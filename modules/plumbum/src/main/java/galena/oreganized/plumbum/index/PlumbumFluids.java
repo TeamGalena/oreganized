@@ -44,8 +44,8 @@ public class PlumbumFluids {
             .density(2000)
             .temperature(1300)
             .viscosity(10000)
-            .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY_LAVA)
-            .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL_LAVA)
+            .sound(SoundActions.BUCKET_EMPTY, PlumbumSounds.MOLTEN_LEAD_BUCKET_EMPTY.value())
+            .sound(SoundActions.BUCKET_FILL, PlumbumSounds.MOLTEN_LEAD_BUCKET_FILL.value())
             .addDripstoneDripping(PointedDripstoneBlock.LAVA_TRANSFER_PROBABILITY_PER_RANDOM_TICK, PlumbumParticles.DRIPPING_DRIPSTONE_LEAD.value(), Blocks.CAULDRON, SoundEvents.POINTED_DRIPSTONE_DRIP_LAVA_INTO_CAULDRON)
     ));
 
@@ -95,7 +95,7 @@ public class PlumbumFluids {
 
         MeltingCauldronInteractions.LEAD.map().put(Items.AIR, MeltingCauldronInteractions.dropResource(PlumbumBlocks.LEAD_BLOCK.toStack(), state -> state.getValue(MeltingLeadCauldronBlock.AGE) == 0, SoundEvents.ITEM_FRAME_REMOVE_ITEM));
         MeltingCauldronInteractions.MOLTEN_LEAD.map().put(Items.BUCKET, (state, world, pos, player, hand, stack) ->
-                CauldronInteraction.fillBucket(state, world, pos, player, hand, stack, PlumbumItems.MOLTEN_LEAD_BUCKET.toStack(), $ -> true, SoundEvents.BUCKET_FILL_LAVA)
+                CauldronInteraction.fillBucket(state, world, pos, player, hand, stack, PlumbumItems.MOLTEN_LEAD_BUCKET.toStack(), $ -> true, PlumbumSounds.MOLTEN_LEAD_BUCKET_FILL.value())
         );
         MeltingCauldronInteractions.MOLTEN_LEAD.map().put(Items.MUSIC_DISC_11, MeltingCauldronInteractions.convertItem(PlumbumItems.MUSIC_DISC_STRUCTURE.toStack()));
 

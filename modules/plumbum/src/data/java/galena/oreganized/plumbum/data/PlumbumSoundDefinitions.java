@@ -1,5 +1,6 @@
 package galena.oreganized.plumbum.data;
 
+import static galena.oreganized.data.extensions.OSoundExtensions.withVariants;
 import static net.neoforged.neoforge.common.data.SoundDefinition.Sound.sound;
 import static net.neoforged.neoforge.common.data.SoundDefinition.definition;
 
@@ -23,6 +24,16 @@ public class PlumbumSoundDefinitions {
                 sound(OConstants.modLoc("music/disc/structure"), SoundType.SOUND)
                         .stream()
         ));
+
+        provider.add(PlumbumSounds.MOLTEN_LEAD_BUCKET_EMPTY.value(),
+                withVariants(definition(), OConstants.modLoc("item/molten_lead_bucket_empty"), 3)
+                        .subtitle("subtitles.item.bucket.empty")
+        );
+
+        provider.add(PlumbumSounds.MOLTEN_LEAD_BUCKET_FILL.value(),
+                withVariants(definition(), OConstants.modLoc("item/molten_lead_bucket_fill"), 3)
+                        .subtitle("subtitles.item.bucket.fill")
+        );
     }
 
 }
