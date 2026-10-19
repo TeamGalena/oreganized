@@ -2,16 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "S": {
+    "A": {
       "item": "oreganized:blemished_silver_block"
     }
   },
   "pattern": [
-    "SS",
-    "SS"
+    "AA",
+    "AA"
   ],
   "result": {
-    "count": 4,
+    "count": 16,
     "id": "oreganized:blemished_cut_silver"
   }
 }

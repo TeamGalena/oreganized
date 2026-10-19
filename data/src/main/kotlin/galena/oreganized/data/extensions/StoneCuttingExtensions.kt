@@ -3,7 +3,6 @@
 
 package galena.oreganized.data.extensions
 
-import com.tterrag.registrate.providers.RegistrateRecipeProvider
 import com.tterrag.registrate.providers.RegistrateRecipeProvider.getItemName
 import galena.oreganized.OConstants
 import galena.oreganized.index.sets.StoneSet
@@ -91,14 +90,6 @@ fun RecipeOutput.makePillarStonecutting(
     fromBlock: Supplier<out Block>,
 ) {
     makePillarStonecutting(to, fromBlock, fromBlock)
-}
-
-fun RecipeOutput.makePolishedStonecutting(
-    to: Supplier<out Block>,
-    from: Supplier<out Block>,
-) {
-    RegistrateRecipeProvider.polished(this, RecipeCategory.BUILDING_BLOCKS, to.get(), from.get())
-    makeStoneCutting(to, from)
 }
 
 fun RecipeOutput.makeStoneSetRecipes(set: StoneSet<*, *, *, *>) {

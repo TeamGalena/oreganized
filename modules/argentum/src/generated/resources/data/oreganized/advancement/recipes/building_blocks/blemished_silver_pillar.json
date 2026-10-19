@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_blemished_silver_block": {
+    "has_blemished_cut_silver": {
       "conditions": {
         "items": [
           {
-            "items": "oreganized:blemished_silver_block"
+            "items": "oreganized:blemished_cut_silver"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_blemished_silver_block"
+      "has_blemished_cut_silver"
     ]
   ],
   "rewards": {

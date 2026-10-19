@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "oreganized:tarnished_silver_block"
+  },
+  "result": {
+    "count": 8,
+    "id": "oreganized:tarnished_cut_silver_slab"
+  }
+}

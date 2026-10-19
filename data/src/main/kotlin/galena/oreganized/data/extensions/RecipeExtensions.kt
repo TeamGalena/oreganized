@@ -5,7 +5,6 @@ package galena.oreganized.data.extensions
 
 import com.simibubi.create.content.kinetics.millstone.MillingRecipe
 import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe
-import com.tterrag.registrate.providers.RegistrateRecipeProvider
 import com.tterrag.registrate.providers.RegistrateRecipeProvider.getHasName
 import com.tterrag.registrate.providers.RegistrateRecipeProvider.getItemName
 import com.tterrag.registrate.providers.RegistrateRecipeProvider.has
@@ -39,7 +38,7 @@ fun slab(
     shaped(RecipeCategory.BUILDING_BLOCKS, to.get(), 6)
         .pattern("AAA")
         .define('A', from.get())
-        .unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), has(from.get()))
+        .unlockedBy(getHasName(from.get()), has(from.get()))
 
 fun stairs(
     to: Supplier<out Block>,
@@ -50,7 +49,7 @@ fun stairs(
         .pattern("AA ")
         .pattern("AAA")
         .define('A', from.get())
-        .unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), has(from.get()))
+        .unlockedBy(getHasName(from.get()), has(from.get()))
 
 fun wall(
     to: Supplier<out Block>,
@@ -60,7 +59,7 @@ fun wall(
         .pattern("AAA")
         .pattern("AAA")
         .define('A', from.get())
-        .unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), has(from.get()))
+        .unlockedBy(getHasName(from.get()), has(from.get()))
 
 fun pane(
     to: Supplier<out Block>,
@@ -70,7 +69,7 @@ fun pane(
         .pattern("AAA")
         .pattern("AAA")
         .define('A', from.get())
-        .unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), has(from.get()))
+        .unlockedBy(getHasName(from.get()), has(from.get()))
 
 fun RecipeOutput.makePane(
     to: Supplier<out Block>,
@@ -106,7 +105,7 @@ fun quadTransform(
         .pattern("AA")
         .pattern("AA")
         .define('A', from.get())
-        .unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), has(from.get()))
+        .unlockedBy(getHasName(from.get()), has(from.get()))
 
 fun chiseled(
     to: Supplier<out Block>,
@@ -116,7 +115,7 @@ fun chiseled(
         .pattern("A")
         .pattern("A")
         .define('A', from.get())
-        .unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), has(from.get()))
+        .unlockedBy(getHasName(from.get()), has(from.get()))
 
 fun pillar(
     to: Supplier<out Block>,
@@ -126,7 +125,7 @@ fun pillar(
         .pattern("A")
         .pattern("A")
         .define('A', from.get())
-        .unlockedBy(RegistrateRecipeProvider.getHasName(from.get()), has(from.get()))
+        .unlockedBy(getHasName(from.get()), has(from.get()))
 
 fun compact(
     to: Supplier<out ItemLike>,
@@ -155,7 +154,7 @@ fun RecipeOutput.makeFlowerDye(
 
     shapeless(RecipeCategory.MISC, primary)
         .requires(flower.get())
-        .unlockedBy(RegistrateRecipeProvider.getHasName(flower.get()), has(flower.get()))
+        .unlockedBy(getHasName(flower.get()), has(flower.get()))
         .save(this, OConstants.modLoc("dye_from_" + name))
 
     processing(StandardProcessingRecipe.Factory(::MillingRecipe), name)

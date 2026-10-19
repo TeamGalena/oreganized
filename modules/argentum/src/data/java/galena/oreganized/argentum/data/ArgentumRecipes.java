@@ -89,24 +89,29 @@ public class ArgentumRecipes {
         ArgentumBlocks.CUT_SILVERS.indexed().forEach(pair -> {
             var index = pair.getSecond();
             var cutSilver = pair.getFirst();
+            var factor = 4;
 
             var silverBlock = ArgentumBlocks.SILVER_BLOCKS.get(index);
-            makePolishedStonecutting(output, cutSilver, silverBlock);
+            makeQuadTransformStonecutting(output, cutSilver, silverBlock, 4 * factor);
 
             var slab = ArgentumBlocks.CUT_SILVER_SLABS.get(index);
             makeSlabStonecutting(output, slab, cutSilver);
+            makeStoneCutting(output, slab, silverBlock, 2 * factor);
 
             var stairs = ArgentumBlocks.CUT_SILVER_STAIRS.get(index);
             makeStairsStonecutting(output, stairs, cutSilver);
+            makeStoneCutting(output, stairs, silverBlock, factor);
 
             var pillar = ArgentumBlocks.SILVER_PILLARS.get(index);
-            makePillarStonecutting(output, pillar, silverBlock);
+            makePillarStonecutting(output, pillar, cutSilver);
+            makeStoneCutting(output, pillar, silverBlock, factor);
 
             var chiseled = ArgentumBlocks.CHISELED_SILVER.get(index);
-            makeChiseledStonecutting(output, chiseled, silverBlock, slab);
+            makeChiseledStonecutting(output, chiseled, cutSilver, slab);
+            makeStoneCutting(output, chiseled, silverBlock, factor);
 
             var lattice = ArgentumBlocks.SILVER_LATTICES.get(index);
-            makeStoneCutting(output, lattice, silverBlock);
+            makeStoneCutting(output, lattice, silverBlock, factor);
             shaped(RecipeCategory.BUILDING_BLOCKS, lattice, 4)
                     .pattern(" # ")
                     .pattern("# #")

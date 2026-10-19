@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_tarnished_silver_block": {
+    "has_tarnished_cut_silver": {
       "conditions": {
         "items": [
           {
-            "items": "oreganized:tarnished_silver_block"
+            "items": "oreganized:tarnished_cut_silver"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_tarnished_silver_block"
+      "has_tarnished_cut_silver"
     ]
   ],
   "rewards": {
