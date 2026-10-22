@@ -50,7 +50,8 @@ public class ArmamentTagsGen {
     private void entities(RegistrateTagsProvider.IntrinsicImpl<EntityType<?>> provider) {
         provider.addTag(ArmamentTags.Entities.BOLT_SUSCEPTIBLE)
                 .add(EntityType.IRON_GOLEM)
-                .addOptional(ResourceLocation.fromNamespaceAndPath("caverns_and_chasms", "copper_golem"));
+                .addOptional(ResourceLocation.fromNamespaceAndPath("caverns_and_chasms", "copper_golem"))
+                .addOptional(ResourceLocation.withDefaultNamespace("copper_golem"));
 
         provider.addTag(ArmamentTags.Entities.BOLT_RESISTANT)
                 .addOptional(ResourceLocation.fromNamespaceAndPath("alexsmobs", "mimicube"))

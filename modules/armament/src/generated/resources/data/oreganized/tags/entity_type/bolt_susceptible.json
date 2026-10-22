@@ -4,6 +4,10 @@
     {
       "id": "caverns_and_chasms:copper_golem",
       "required": false
+    },
+    {
+      "id": "minecraft:copper_golem",
+      "required": false
     }
   ]
 }
