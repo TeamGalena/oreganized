@@ -2,6 +2,7 @@ import com.possible_triangle.gradle.modifyReleaseMetadata
 
 plugins {
     id("com.possible-triangle.neoforge")
+    id("conventions")
 }
 
 neoForge.runs.removeAll { true }

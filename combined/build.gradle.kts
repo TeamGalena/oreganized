@@ -1,12 +1,9 @@
+import galena.gradle.modModules
+
 plugins {
     id("com.possible-triangle.neoforge")
+    id("module")
 }
-
-val modModules =
-    rootProject
-        .file("modules")
-        .listFiles { it.isDirectory }
-        .map { project(":${it.name}") }
 
 neoforge {
     accessTransformer(project(":core"))
@@ -14,6 +11,10 @@ neoforge {
 
 base {
     archivesName = "${mod.name.get()} ${mod.minecraftVersion.get()}-${mod.version.get()}"
+}
+
+modModules.forEach {
+    evaluationDependsOn(it.path)
 }
 
 dependencies {
@@ -65,4 +66,8 @@ upload {
     forEach {
         versionName = "${mod.name.get()} ${mod.version.get()}"
     }
+}
+
+modModules.forEach {
+    modrinth.additionalFiles.add(it.modrinth.file)
 }

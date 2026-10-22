@@ -9,5 +9,5 @@ repositories {
 
 dependencies {
     api(libs.blossom)
-    implementation("com.possible-triangle:neoforge:1.4-SNAPSHOT")
+    implementation("com.possible-triangle:neoforge:1.4.+")
 }

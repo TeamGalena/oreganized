@@ -1,3 +1,8 @@
+plugins {
+    id("com.possible-triangle.neoforge")
+    id("module")
+}
+
 dependencies {
     modInclude(libs.galena.hats)
 
