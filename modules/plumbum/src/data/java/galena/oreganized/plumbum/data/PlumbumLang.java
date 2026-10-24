@@ -1,6 +1,7 @@
 package galena.oreganized.plumbum.data;
 
 import static galena.oreganized.data.extensions.OLangExtensions.*;
+import static galena.oreganized.data.extensions.OLangExtensions.addSubtitle;
 
 import com.tterrag.registrate.providers.RegistrateLangProvider;
 import galena.oreganized.data.ODatagen;
@@ -95,6 +96,9 @@ public class PlumbumLang {
 
         provider.add(PlumbumTags.Enchantments.HEAT_IMMUNITY, "Heat Protective Footwear");
         provider.add(PlumbumTags.Enchantments.PREVENTS_LEAD_CLOUD, "Prevents Lead Clouds");
+
+        addSubtitle(provider, "block", "molten_lead.ambient", "Molten Lead pops");
+        addSubtitle(provider, "block", "molten_lead.extinguish", "Molten Lead solidifies");
     }
 
 }

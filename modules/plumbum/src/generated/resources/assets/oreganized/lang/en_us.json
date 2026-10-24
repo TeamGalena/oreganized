@@ -64,6 +64,8 @@
   "oreganized.ponder.lead_mining.header": "Lead mining",
   "oreganized.ponder.lead_mining.text_1": "Mining lead ore causes lead dust clouds to be released",
   "oreganized.ponder.lead_mining.text_2": "Lead ore that is touching water will not create any dust clouds",
+  "subtitles.block.molten_lead.ambient": "Molten Lead pops",
+  "subtitles.block.molten_lead.extinguish": "Molten Lead solidifies",
   "tag.block.c.ores.lead": "Lead Ores",
   "tag.block.c.storage_blocks.lead": "Lead Storage Blocks",
   "tag.block.c.storage_blocks.raw_lead": "Raw Lead Storage Blocks",

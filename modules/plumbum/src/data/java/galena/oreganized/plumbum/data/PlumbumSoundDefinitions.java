@@ -34,6 +34,16 @@ public class PlumbumSoundDefinitions {
                 withVariants(definition(), OConstants.modLoc("item/molten_lead_bucket_fill"), 3)
                         .subtitle("subtitles.item.bucket.fill")
         );
+
+        provider.add(PlumbumSounds.MOLTEN_LEAD_AMBIENT.value(),
+                withVariants(definition(), OConstants.modLoc("block/molten_lead_flow"), 3)
+                        .subtitle("subtitles.block.molten_lead.ambient")
+        );
+
+        provider.add(PlumbumSounds.MOLTEN_LEAD_EXTINGUISH.value(),
+                withVariants(definition(), OConstants.modLoc("block/molten_lead_fizzle"), 3)
+                        .subtitle("subtitles.block.molten_lead.extinguish")
+        );
     }
 
 }

@@ -2,7 +2,7 @@ package galena.oreganized.plumbum.world.block;
 
 import galena.oreganized.plumbum.config.PlumbumConfigs;
 import galena.oreganized.plumbum.index.*;
-
+import galena.oreganized.plumbum.world.fluid.MoltenLeadFluid;
 import java.util.Optional;
 import java.util.function.Supplier;
 import net.minecraft.core.BlockPos;
@@ -61,11 +61,9 @@ public class MoltenLeadBlock extends LiquidBlock {
         if (state.getFluidState().isSource()) {
             var oldFluid = oldState.getFluidState();
             if (oldFluid.is(FluidTags.WATER)) {
-                level.levelEvent(1501, pos, 0);
-                level.setBlock(pos, PlumbumBlocks.LEAD_BLOCK.get().defaultBlockState(), 3);
+                MoltenLeadFluid.solidify(level, pos);
             } else if (oldFluid.is(FluidTags.LAVA)) {
-                LeadOreBlock.spawnCloud(level, pos, 2F);
-                level.setBlockAndUpdate(pos, oldState);
+                MoltenLeadFluid.vaporize(level, pos);
             }
         }
 
@@ -78,7 +76,7 @@ public class MoltenLeadBlock extends LiquidBlock {
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        if (context.isHoldingItem(PlumbumItems.MOLTEN_LEAD_BUCKET.get()))
+        if (context.isHoldingItem(PlumbumItems.MOLTEN_LEAD_BUCKET.value()))
             return level.getBlockState(pos.above()).is(this) ? Shapes.block() : STABLE_SHAPE;
 
         return Shapes.empty();
@@ -95,7 +93,7 @@ public class MoltenLeadBlock extends LiquidBlock {
         super.onRemove(state, level, pos, replacedWith, dropXp);
 
         if (replacedWith.isAir() || !replacedWith.getFluidState().isEmpty()) return;
-        if (replacedWith.is(PlumbumBlocks.LEAD_BLOCK.get())) return;
+        if (replacedWith.is(PlumbumBlocks.LEAD_BLOCK.value())) return;
 
         if (state.getFluidState().isSource()) tryEscape(state, level, pos);
     }

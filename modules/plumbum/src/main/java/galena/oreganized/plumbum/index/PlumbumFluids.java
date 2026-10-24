@@ -4,7 +4,6 @@ import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.plumbum.client.extensions.MoltenLeadClientExtensions;
 import galena.oreganized.plumbum.config.PlumbumConfigs;
 import galena.oreganized.plumbum.world.MeltingCauldronInteractions;
-import galena.oreganized.plumbum.world.block.LeadOreBlock;
 import galena.oreganized.plumbum.world.block.MeltingLeadCauldronBlock;
 import galena.oreganized.plumbum.world.fluid.MoltenLeadFluid;
 import galena.oreganized.register.SimpleRegistryHelper;
@@ -65,16 +64,12 @@ public class PlumbumFluids {
     private static void registerFluidInteractions(FMLCommonSetupEvent event) {
         FluidInteractionRegistry.addInteraction(PlumbumFluids.MOLTEN_LEAD_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
                 (level, pos, relativePos, fluidState) -> level.getFluidState(relativePos).is(FluidTags.WATER) && fluidState.isSource(),
-                fluidState -> PlumbumBlocks.LEAD_BLOCK.get().defaultBlockState()
+                (level, pos, relativePos, fluidState) -> MoltenLeadFluid.solidify(level, pos)
         ));
 
         FluidInteractionRegistry.addInteraction(PlumbumFluids.MOLTEN_LEAD_TYPE.get(), new FluidInteractionRegistry.InteractionInformation(
                 (level, blockPos, relativePos, fluidState) -> level.getFluidState(relativePos).is(FluidTags.LAVA) && fluidState.isSource(),
-                (level, pos, relativePos, fluidState) -> {
-                    LeadOreBlock.spawnCloud(level, pos, 2F);
-                    level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
-                    level.levelEvent(1501, pos, 0);
-                }
+                (level, pos, relativePos, fluidState) -> MoltenLeadFluid.vaporize(level, pos)
         ));
     }
 

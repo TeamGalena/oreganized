@@ -1,4 +1,20 @@
 {
+  "block.molten_lead.ambient": {
+    "sounds": [
+      "oreganized:block/molten_lead_flow_1",
+      "oreganized:block/molten_lead_flow_2",
+      "oreganized:block/molten_lead_flow_3"
+    ],
+    "subtitle": "subtitles.block.molten_lead.ambient"
+  },
+  "block.molten_lead.extinguish": {
+    "sounds": [
+      "oreganized:block/molten_lead_fizzle_1",
+      "oreganized:block/molten_lead_fizzle_2",
+      "oreganized:block/molten_lead_fizzle_3"
+    ],
+    "subtitle": "subtitles.block.molten_lead.extinguish"
+  },
   "item.molten_lead_bucket.empty": {
     "sounds": [
       "oreganized:item/molten_lead_bucket_empty_1",
