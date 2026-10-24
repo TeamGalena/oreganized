@@ -1,4 +1,5 @@
 import galena.gradle.modModules
+import galena.gradle.setBlossomModuleDependenencies
 
 plugins {
     id("com.possible-triangle.neoforge")
@@ -71,3 +72,6 @@ upload {
 modModules.forEach {
     modrinth.additionalFiles.add(it.modrinth.file)
 }
+
+val moduleNames = modModules.map { it.name }.toTypedArray()
+setBlossomModuleDependenencies(*moduleNames)

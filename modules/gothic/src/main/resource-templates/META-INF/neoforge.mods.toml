@@ -1,4 +1,4 @@
-{% embed "neoforge.mods.toml" %}
+{% embed "module.mods.toml" %}
 {% block mod %}
 logoFile = "assets/{{ baseModId }}/textures/item/gargoyle.png"
 {% endblock %}

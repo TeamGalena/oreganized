@@ -1,1 +1,1 @@
-{% include "neoforge.mods.toml" %}
+{% include "module.mods.toml" %}

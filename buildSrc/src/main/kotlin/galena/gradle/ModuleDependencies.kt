@@ -18,21 +18,25 @@ fun Project.moduleDependencies(vararg modules: String) {
         }
     }
 
-    configure<SourceSetContainer> {
-        named("main") {
-            configure<BlossomExtension> {
-                templateSets.configureEach {
-                    properties.put("moduleDependencies", modules)
-                }
-            }
-        }
-    }
+    setBlossomModuleDependenencies(*modules)
 
     configure<NeoForgeExtension> {
         runs.named("data") {
             projects.forEach { module ->
                 val dirs = listOf("main", "generated").map { module.file("src/$it/resources").path }
                 programArguments.addAll(dirs.flatMap { listOf("--existing", it) })
+            }
+        }
+    }
+}
+
+fun Project.setBlossomModuleDependenencies(vararg modules: String) {
+    configure<SourceSetContainer> {
+        named("main") {
+            configure<BlossomExtension> {
+                templateSets.configureEach {
+                    properties.put("moduleDependencies", modules)
+                }
             }
         }
     }
