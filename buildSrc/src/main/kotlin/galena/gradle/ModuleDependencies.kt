@@ -1,5 +1,6 @@
 package galena.gradle
 
+import com.possible_triangle.gradle.upload.UploadExtension
 import net.kyori.blossom.BlossomExtension
 import net.neoforged.moddevgradle.dsl.NeoForgeExtension
 import org.gradle.api.Project
@@ -28,6 +29,14 @@ fun Project.moduleDependencies(vararg modules: String) {
             }
         }
     }
+
+    configure<UploadExtension> {
+        modrinth {
+            modules.forEach {
+                dependencies.required("oreganized-$it")
+            }
+        }
+    }
 }
 
 fun Project.setBlossomModuleDependenencies(vararg modules: String) {
@@ -38,6 +47,20 @@ fun Project.setBlossomModuleDependenencies(vararg modules: String) {
                     properties.put("moduleDependencies", modules)
                 }
             }
+        }
+    }
+}
+
+fun UploadExtension.requiresBlueprint() {
+    modrinth {
+        dependencies {
+            required("blueprint")
+        }
+    }
+
+    curseforge {
+        dependencies {
+            required("blueprint", 382216)
         }
     }
 }

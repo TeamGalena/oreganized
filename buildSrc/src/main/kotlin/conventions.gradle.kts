@@ -1,5 +1,13 @@
+import gradle.kotlin.dsl.accessors._e849eac7ebcc7a72f0018c78d68b6ce0.main
+import gradle.kotlin.dsl.accessors._e849eac7ebcc7a72f0018c78d68b6ce0.mod
+import gradle.kotlin.dsl.accessors._e849eac7ebcc7a72f0018c78d68b6ce0.sourceSets
+import net.kyori.blossom.BlossomExtension
+import org.gradle.internal.extensions.stdlib.capitalized
+import org.gradle.kotlin.dsl.configure
+
 plugins {
     id("com.possible-triangle.core")
+    id("net.kyori.blossom")
 }
 
 repositories {
@@ -47,4 +55,26 @@ repositories {
 
 upload.maven {
     nexus()
+}
+
+sourceSets.main {
+    configure<BlossomExtension> {
+        javaSources {
+            templates(rootProject.file("templates/java"))
+        }
+
+        resources {
+            include(rootProject.file("templates/resources"))
+        }
+
+        templateSets.configureEach {
+            property("modId", mod.id)
+            property("modName", mod.name)
+            property("module", project.name)
+            property("moduleName", project.name.capitalized())
+            property("baseModId", rootProject.mod.id)
+            property("baseModName", rootProject.mod.name)
+            properties.put("moduleDependencies", emptyList<String>())
+        }
+    }
 }

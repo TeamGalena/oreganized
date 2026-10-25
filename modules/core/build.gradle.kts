@@ -1,3 +1,5 @@
+import galena.gradle.requiresBlueprint
+
 plugins {
     id("com.possible-triangle.neoforge")
     id("module")
@@ -16,4 +18,8 @@ dependencies {
 
     modCompileOnlyApi(pack.modrinth.farmers.delight)
     modCompileOnlyApi(pack.modrinth.no.mans.land)
+}
+
+upload {
+    requiresBlueprint()
 }

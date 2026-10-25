@@ -1,9 +1,10 @@
 import galena.gradle.modModules
+import galena.gradle.requiresBlueprint
 import galena.gradle.setBlossomModuleDependenencies
 
 plugins {
     id("com.possible-triangle.neoforge")
-    id("module")
+    id("conventions")
 }
 
 neoforge {
@@ -52,25 +53,7 @@ upload {
         name = "${mod.id.get()}-${mod.minecraftVersion.get()}"
     }
 
-    modrinth {
-        dependencies {
-            required("blueprint")
-        }
-    }
-
-    curseforge {
-        dependencies {
-            required("blueprint", 382216)
-        }
-    }
-
-    forEach {
-        versionName = "${mod.name.get()} ${mod.version.get()}"
-    }
-}
-
-modModules.forEach {
-    modrinth.additionalFiles.add(it.modrinth.file)
+    requiresBlueprint()
 }
 
 val moduleNames = modModules.map { it.name }.toTypedArray()
