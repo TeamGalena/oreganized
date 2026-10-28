@@ -1,12 +1,8 @@
 modLoader = "lowcodefml"
 {% embed "base.mods.toml" %}
 {% block mod %}
-updateJSONURL = "https://api.modrinth.com/updates/${mod_id}/forge_updates.json?neoforge=only"
-displayURL = "https://www.curseforge.com/minecraft/mc-mods/${mod_id}"
-logoFile = "${mod_id}.png"
 itemIcon = "${mod_id}:silver_ore"
 configBackground = "${mod_id}:textures/block/glance_bricks.png"
-credits = "Thanks to our wonderful Patreon members and those who help participate in discussions on our Discord server!"
 description = '''
 Oreganized is a mod focusing on adding new ores and metals to Minecraft. Currently it adds, Lead and Silver as base metals and a new alloy known as Electrum.
 

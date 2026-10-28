@@ -31,3 +31,17 @@ dependencies {
 modifyReleaseMetadata {
     exclude = true
 }
+
+sourceSets.main {
+    configure<BlossomExtension> {
+        javaSources {
+            templates(rootProject.file("templates/java"))
+        }
+
+        templateSets.configureEach {
+            property("module", project.name)
+            property("moduleName", project.name.capitalized())
+            property("slug", rootProject.mod.id.map { "$it-${project.name}" })
+        }
+    }
+}

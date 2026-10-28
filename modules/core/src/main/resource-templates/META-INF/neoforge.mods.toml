@@ -1,6 +1,7 @@
 {% embed "module.mods.toml" %}
 {% block mod %}
-logoFile = "${mod_id}.png"
+configBackground = "{{ baseModId }}:textures/block/glance_bricks.png"
+itemIcon = "{{ baseModId }}:silver_ore"
 {% endblock %}
 {% endembed %}
 

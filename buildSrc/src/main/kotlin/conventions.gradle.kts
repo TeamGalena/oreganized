@@ -59,22 +59,17 @@ upload.maven {
 
 sourceSets.main {
     configure<BlossomExtension> {
-        javaSources {
-            templates(rootProject.file("templates/java"))
-        }
-
         resources {
             include(rootProject.file("templates/resources"))
         }
 
         templateSets.configureEach {
-            property("modId", mod.id)
-            property("modName", mod.name)
-            property("module", project.name)
-            property("moduleName", project.name.capitalized())
             property("baseModId", rootProject.mod.id)
             property("baseModName", rootProject.mod.name)
+            property("modId", mod.id)
+            property("modName", mod.name)
             properties.put("moduleDependencies", emptyList<String>())
+            property("slug", mod.id)
         }
     }
 }

@@ -1,5 +1,1 @@
-{% embed "module.mods.toml" %}
-{% block mod %}
-logoFile = "assets/{{ baseModId }}/textures/item/bush_hammer.png"
-{% endblock %}
-{% endembed %}
+{% include "module.mods.toml" %}

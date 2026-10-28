@@ -7,7 +7,7 @@ metafile = true
 
 [[files]]
 file = "mods/farmers-delight.pw.toml"
-hash = "9aab64fbec4cc794817026caf84e7d0dff14ba3892da94aa0e00d23c84560499"
+hash = "97347efd9e808841d72fe3599da8a11add8422e97f89ae1c85cdfc0acfa18f96"
 metafile = true
 
 [[files]]
@@ -22,20 +22,20 @@ metafile = true
 
 [[files]]
 file = "mods/moonlight.pw.toml"
-hash = "14fc787461cc4464d476454c0d06b7ecbc988e5582d51d527a43a450be9de92d"
+hash = "709bfedec583aee1370ad11210b75a454b1e3f10c0a1da7fe25abd1c28a8681d"
 metafile = true
 
 [[files]]
 file = "mods/no-mans-land.pw.toml"
-hash = "55b4c00d59cfe0e2677157d41fb900e0e45fa8facb2aa7782af7070c3ecfd1aa"
+hash = "d5cef080d071a3e9dcc3514417fd8eedbaa1da5c79a28a0989b2beaa7164835f"
 metafile = true
 
 [[files]]
 file = "mods/shield-expansion.pw.toml"
-hash = "346c9b83f32b3135e20719c4bf116f29cb460608fd07dbaf7ac84bef2511bb6e"
+hash = "aa630791d32948d0210e0c0441f8d033a723e3fcd51743852fda716c3dd02ed7"
 metafile = true
 
 [[files]]
 file = "mods/supplementaries.pw.toml"
-hash = "416a2346e514f4481c138ae83eb9b12df6da53184f924b32239e8e0bc603f188"
+hash = "c7e7206384e1d5ab7caecc643dda50dae1886312e0aeca5aaef8852bb6b11b4e"
 metafile = true

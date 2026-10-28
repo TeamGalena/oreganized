@@ -1,8 +1,4 @@
-{% embed "module.mods.toml" %}
-{% block mod %}
-logoFile = "assets/{{ baseModId }}/textures/item/silver_ingot.png"
-{% endblock %}
-{% endembed %}
+{% include "module.mods.toml" %}
 
 [[mixins]]
 config = "${mod_id}.mixins.json"

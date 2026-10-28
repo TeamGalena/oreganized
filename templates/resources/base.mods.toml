@@ -4,11 +4,14 @@ issueTrackerURL = "https://github.com/${repository}/issues/"
 
 [[mods]]
 modId = "${mod_id}"
-namespace = "{{ baseModId }}"
 version = "${mod_version}"
 displayName = "${mod_name}"
 authors = "${mod_author}"
+logoFile = "icon.png"
 logoBlur = false
+credits = "Thanks to our wonderful Patreon members and those who help participate in discussions on our Discord server!"
+updateJSONURL = "https://api.modrinth.com/updates/{{ slug }}/forge_updates.json?neoforge=only"
+displayURL = "https://modrinth.com/mod/{{ slug }}"
 {% block mod %}{% endblock %}
 {% for module in moduleDependencies %}
 

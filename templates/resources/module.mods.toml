@@ -1,6 +1,7 @@
 modLoader = "javafml"
 {% embed "base.mods.toml" %}
 {% block mod %}
+namespace = "{{ baseModId }}"
 description = "{{ moduleName }} module of {{ baseModName }}"
 {% endblock %}
 {% endembed %}
