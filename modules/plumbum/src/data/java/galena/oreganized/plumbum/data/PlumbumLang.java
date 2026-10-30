@@ -99,6 +99,7 @@ public class PlumbumLang {
 
         addSubtitle(provider, "block", "molten_lead.ambient", "Molten Lead pops");
         addSubtitle(provider, "block", "molten_lead.extinguish", "Molten Lead solidifies");
+        addSubtitle(provider, "block", "molten_lead.dip_item", "Item dipped in lead");
     }
 
 }

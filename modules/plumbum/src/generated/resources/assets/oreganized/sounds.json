@@ -7,6 +7,14 @@
     ],
     "subtitle": "subtitles.block.molten_lead.ambient"
   },
+  "block.molten_lead.dip_item": {
+    "sounds": [
+      "oreganized:block/molten_lead_dip_1",
+      "oreganized:block/molten_lead_dip_2",
+      "oreganized:block/molten_lead_dip_3"
+    ],
+    "subtitle": "subtitles.block.molten_lead.dip_item"
+  },
   "block.molten_lead.extinguish": {
     "sounds": [
       "oreganized:block/molten_lead_fizzle_1",

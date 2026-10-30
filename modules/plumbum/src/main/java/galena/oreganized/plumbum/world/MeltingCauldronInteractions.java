@@ -5,6 +5,7 @@ import static net.minecraft.world.level.block.Block.popResource;
 
 import galena.oreganized.OConstants;
 import galena.oreganized.plumbum.index.PlumbumBlocks;
+import galena.oreganized.plumbum.index.PlumbumSounds;
 import java.util.function.Predicate;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.sounds.SoundEvent;
@@ -72,7 +73,7 @@ public class MeltingCauldronInteractions {
             player.swing(hand);
             if (!player.isCreative()) stack.shrink(1);
 
-            level.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.GENERIC_EXTINGUISH_FIRE, SoundSource.BLOCKS, 1.0F, 1.0F);
+            level.playSound(player, player.getX(), player.getY(), player.getZ(), PlumbumSounds.MOLTEN_LEAD_DIP_ITEM.value(), SoundSource.BLOCKS, 1.0F, 1.0F);
             if (!level.isClientSide()) player.awardStat(Stats.ITEM_USED.get(stack.getItem()));
 
             if (stack.isEmpty()) {

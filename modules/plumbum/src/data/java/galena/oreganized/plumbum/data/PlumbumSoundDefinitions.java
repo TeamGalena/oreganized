@@ -44,6 +44,11 @@ public class PlumbumSoundDefinitions {
                 withVariants(definition(), OConstants.modLoc("block/molten_lead_fizzle"), 3)
                         .subtitle("subtitles.block.molten_lead.extinguish")
         );
+
+        provider.add(PlumbumSounds.MOLTEN_LEAD_DIP_ITEM.value(),
+                withVariants(definition(), OConstants.modLoc("block/molten_lead_dip"), 3)
+                        .subtitle("subtitles.block.molten_lead.dip_item")
+        );
     }
 
 }
