@@ -115,6 +115,7 @@ public class ArgentumTagsGen {
                 ArgentumBlocks.SILVER_BULBS.stream(),
                 ArgentumBlocks.SILVER_PILLARS.stream(),
                 ArgentumBlocks.CHISELED_SILVER.stream(),
+                ArgentumBlocks.CUT_SILVERS.stream(),
                 ArgentumBlocks.CUT_SILVER_SLABS.stream(),
                 ArgentumBlocks.CUT_SILVER_STAIRS.stream(),
                 ArgentumBlocks.SILVER_DOORS.stream(),
