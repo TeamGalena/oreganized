@@ -11,7 +11,6 @@ import galena.oreganized.data.ODatagen;
 import galena.oreganized.data.provider.RegistrateLootModifierProvider;
 import galena.oreganized.world.AddItemLootModifier;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
-import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.neoforged.fml.common.Mod;
@@ -34,13 +33,10 @@ public class ArmamentLoot {
     private void modifiers(RegistrateLootModifierProvider provider) {
         provider.add(
                 "lead_bolts_in_outpost",
-                new AddItemLootModifier(
-                        new LootItemCondition[]{
-                                LootTableIdCondition.builder(BuiltInLootTables.PILLAGER_OUTPOST.location()).build(),
-                                new LootItemRandomChanceCondition(ConstantValue.exactly(0.7F))
-                        },
-                        ArmamentItems.LEAD_BOLT.toStack(2)
-                )
+                AddItemLootModifier.builder(ArmamentItems.LEAD_BOLT.toStack(2))
+                        .when(LootTableIdCondition.builder(BuiltInLootTables.PILLAGER_OUTPOST.location()))
+                        .when(LootItemRandomChanceCondition.randomChance(ConstantValue.exactly(0.7F)))
+                        .build()
         );
     }
 

@@ -12,7 +12,6 @@ import galena.oreganized.argentum.index.ArgentumSets;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.data.provider.RegistrateLootModifierProvider;
 import galena.oreganized.world.AddItemLootModifier;
-import java.util.List;
 import java.util.stream.Stream;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -73,35 +72,26 @@ public class ArgentumLoot {
     }
 
     private void modifiers(RegistrateLootModifierProvider provider) {
-
         provider.add(
                 "scribe_in_ancient_cities",
-                new AddItemLootModifier(
-                        new LootItemCondition[]{
-                                LootTableIdCondition.builder(BuiltInLootTables.ANCIENT_CITY.location()).build(),
-                                new LootItemRandomChanceCondition(ConstantValue.exactly(0.15F))
-                        },
-                        ArgentumItems.SCRIBE.toStack()
-                )
+                AddItemLootModifier.builder(ArgentumItems.SCRIBE.toStack())
+                        .when(LootTableIdCondition.builder(BuiltInLootTables.ANCIENT_CITY.location()))
+                        .when(LootItemRandomChanceCondition.randomChance(ConstantValue.exactly(0.15F)))
+                        .build()
         );
 
         Stream.concat(ArgentumSets.silverArmor(), ArgentumSets.silverTools()).forEach(item ->
                 provider.add(
                         item.getId().getPath() + "_in_chests",
-                        new AddItemLootModifier(
-                                new LootItemCondition[]{
-                                        AnyOfCondition.anyOf(
-                                                LootTableIdCondition.builder(BuiltInLootTables.ANCIENT_CITY.location()),
-                                                LootTableIdCondition.builder(BuiltInLootTables.ABANDONED_MINESHAFT.location()),
-                                                LootTableIdCondition.builder(BuiltInLootTables.SIMPLE_DUNGEON.location())
-                                        ).build(),
-                                        new LootItemRandomChanceCondition(ConstantValue.exactly(0.1F))
-                                },
-                                item.toStack(),
-                                List.of(
-                                        SetItemDamageFunction.setDamage(UniformGenerator.between(0.3F, 0.8F)).build()
-                                )
-                        )
+                        AddItemLootModifier.builder(item.toStack())
+                                .when(LootItemRandomChanceCondition.randomChance(ConstantValue.exactly(0.1F)))
+                                .when(AnyOfCondition.anyOf(
+                                        LootTableIdCondition.builder(BuiltInLootTables.ANCIENT_CITY.location()),
+                                        LootTableIdCondition.builder(BuiltInLootTables.ABANDONED_MINESHAFT.location()),
+                                        LootTableIdCondition.builder(BuiltInLootTables.SIMPLE_DUNGEON.location())
+                                ))
+                                .apply(SetItemDamageFunction.setDamage(UniformGenerator.between(0.3F, 0.8F)))
+                                .build()
                 )
         );
     }

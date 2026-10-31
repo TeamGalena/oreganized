@@ -4,7 +4,8 @@
   "package": "galena.oreganized.antiques.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "BrushItemMixin"
+    "BrushItemMixin",
+    "MonsterRoomFeatureMixin"
   ],
   "injectors": {
     "defaultRequire": 1

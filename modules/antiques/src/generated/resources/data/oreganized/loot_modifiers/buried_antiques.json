@@ -1,0 +1,30 @@
+{
+  "type": "oreganized:replace_item",
+  "conditions": [
+    {
+      "chance": 0.1,
+      "condition": "minecraft:random_chance"
+    },
+    {
+      "condition": "minecraft:any_of",
+      "terms": [
+        {
+          "condition": "neoforge:loot_table_id",
+          "loot_table_id": "minecraft:archaeology/desert_pyramid"
+        },
+        {
+          "condition": "neoforge:loot_table_id",
+          "loot_table_id": "minecraft:archaeology/desert_well"
+        },
+        {
+          "condition": "neoforge:loot_table_id",
+          "loot_table_id": "minecraft:archaeology/trail_ruins_common"
+        }
+      ]
+    }
+  ],
+  "item": {
+    "count": 1,
+    "id": "oreganized:antiques_pile"
+  }
+}

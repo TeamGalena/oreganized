@@ -15,16 +15,26 @@ import galena.oreganized.argentum.index.ArgentumItems;
 import galena.oreganized.argentum.index.ArgentumSets;
 import galena.oreganized.armament.index.ArmamentItems;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.data.provider.RegistrateLootModifierProvider;
 import galena.oreganized.electrum.index.ElectrumItems;
 import galena.oreganized.plumbum.index.PlumbumItems;
+import galena.oreganized.world.AddItemLootModifier;
+import galena.oreganized.world.ReplaceItemLootModifier;
 import java.util.function.BiConsumer;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.predicates.AnyOfCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.loot.LootTableIdCondition;
 
 @Mod(AntiquesModule.MOD_ID)
 public class AntiquesLoot {
@@ -32,6 +42,7 @@ public class AntiquesLoot {
     public AntiquesLoot() {
         ODatagen.addBlockLootProvider(this::blocks);
         ODatagen.addLootProvider(LootContextParamSets.BLOCK, this::gameplay);
+        ODatagen.addLootModifierProvider(this::modifiers);
     }
 
     private void blocks(RegistrateBlockLootTables provider) {
@@ -40,6 +51,32 @@ public class AntiquesLoot {
 
     private void gameplay(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> consumer) {
         consumer.accept(AntiquesPileBlock.POLISH_LOOT_TABLE, createAntiquesDrops());
+    }
+
+    private void modifiers(RegistrateLootModifierProvider provider) {
+        provider.add("antiques_in_chests", AddItemLootModifier.builder(AntiquesBlocks.ANTIQUES_PILE.toStack())
+                .when(LootItemRandomChanceCondition.randomChance(ConstantValue.exactly(0.4F)))
+                .when(
+                        AnyOfCondition.anyOf(
+                                LootTableIdCondition.builder(BuiltInLootTables.ANCIENT_CITY.location()),
+                                LootTableIdCondition.builder(BuiltInLootTables.DESERT_PYRAMID.location()),
+                                LootTableIdCondition.builder(BuiltInLootTables.SHIPWRECK_TREASURE.location()),
+                                LootTableIdCondition.builder(BuiltInLootTables.SIMPLE_DUNGEON.location())
+                        )
+                )
+                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3)))
+                .build()
+        );
+
+        provider.add("buried_antiques", ReplaceItemLootModifier.builder(AntiquesBlocks.ANTIQUES_PILE.toStack())
+                .when(LootItemRandomChanceCondition.randomChance(ConstantValue.exactly(0.1F)))
+                .when(AnyOfCondition.anyOf(
+                        LootTableIdCondition.builder(BuiltInLootTables.DESERT_PYRAMID_ARCHAEOLOGY.location()),
+                        LootTableIdCondition.builder(BuiltInLootTables.DESERT_WELL_ARCHAEOLOGY.location()),
+                        LootTableIdCondition.builder(BuiltInLootTables.TRAIL_RUINS_ARCHAEOLOGY_COMMON.location())
+                ))
+                .build()
+        );
     }
 
     private LootTable.Builder createAntiquesDrops() {
