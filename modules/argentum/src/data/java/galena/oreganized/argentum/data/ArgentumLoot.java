@@ -75,8 +75,8 @@ public class ArgentumLoot {
         provider.add(
                 "scribe_in_ancient_cities",
                 AddItemLootModifier.builder(ArgentumItems.SCRIBE.toStack())
-                        .when(LootTableIdCondition.builder(BuiltInLootTables.ANCIENT_CITY.location()))
                         .when(LootItemRandomChanceCondition.randomChance(ConstantValue.exactly(0.15F)))
+                        .when(LootTableIdCondition.builder(BuiltInLootTables.ANCIENT_CITY.location()))
                         .build()
         );
 

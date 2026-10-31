@@ -1,5 +1,5 @@
 {
-  "type": "oreganized:replace_item",
+  "type": "oreganized:add_item",
   "conditions": [
     {
       "chance": 0.4,

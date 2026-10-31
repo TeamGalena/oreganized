@@ -32,8 +32,8 @@ public class AddItemLootModifier extends StackBasedLootModifier {
         return CODEC;
     }
 
-    public static ReplaceItemLootModifier.Builder builder(ItemStack stack) {
-        return new ReplaceItemLootModifier.Builder(stack);
+    public static AddItemLootModifier.Builder builder(ItemStack stack) {
+        return new AddItemLootModifier.Builder(stack);
     }
 
     public static class Builder extends StackBasedLootModifier.Builder<AddItemLootModifier, Builder> {
