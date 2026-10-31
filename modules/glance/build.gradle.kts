@@ -11,4 +11,5 @@ moduleDependencies(
 
 dependencies {
     dataApi(project(":plumbum"))
+    compileOnly(project(":plumbum"))
 }

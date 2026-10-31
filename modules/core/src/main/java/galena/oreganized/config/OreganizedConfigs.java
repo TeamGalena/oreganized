@@ -1,16 +1,19 @@
 package galena.oreganized.config;
 
 import galena.oreganized.OConstants;
+import galena.oreganized.core.CoreModule;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Stream;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.ApiStatus;
 
 @ApiStatus.Internal
+@Mod(CoreModule.MOD_ID)
 public class OreganizedConfigs {
 
     private static final Map<ModConfig.Type, Pair<ModularConfig, ModConfigSpec>> CONFIGS = new HashMap<>();
@@ -49,7 +52,7 @@ public class OreganizedConfigs {
         create();
     }
 
-    public static void register(ModContainer container) {
+    public OreganizedConfigs(ModContainer container) {
         CONFIGS.forEach((type, pair) -> {
             container.registerConfig(type, pair.getRight(), "%s-%s.toml".formatted(OConstants.MOD_ID, type.extension()));
         });

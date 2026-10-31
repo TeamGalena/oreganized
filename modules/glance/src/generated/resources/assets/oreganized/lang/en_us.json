@@ -26,6 +26,8 @@
   "oreganized.ponder.lead_mining.header": "Lead mining",
   "oreganized.ponder.lead_mining.text_1": "Mining lead ore causes lead dust clouds to be released",
   "oreganized.ponder.lead_mining.text_2": "Lead ore that is touching water will not create any dust clouds",
+  "oreganized.ponder.renewable_lead.header": "Renewable lead",
+  "oreganized.ponder.renewable_lead.text_1": "Lead dripping onto glance will slowly turn it into spotted glance",
   "tag.block.oreganized.stone_types.glance": "Processed Glance",
   "tag.fluid.c.renews_spotted_glance": "Renews Spotted Glance",
   "tag.item.oreganized.stone_types.glance": "Processed Glance"

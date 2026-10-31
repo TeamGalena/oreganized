@@ -3,12 +3,10 @@ package galena.oreganized.index;
 
 import com.mojang.serialization.MapCodec;
 import galena.oreganized.OConstants;
-import galena.oreganized.config.OreganizedConfigs;
 import galena.oreganized.core.CoreModule;
 import galena.oreganized.world.AddItemLootModifier;
 import galena.oreganized.world.ReplaceItemLootModifier;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -19,12 +17,10 @@ public class OLootModifiers {
 
     private static final DeferredRegister<MapCodec<? extends IGlobalLootModifier>> LOOT_MODIFIERS = DeferredRegister.create(NeoForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, OConstants.MOD_ID);
 
-    public OLootModifiers(IEventBus modBus, ModContainer container) {
+    public OLootModifiers(IEventBus modBus) {
         LOOT_MODIFIERS.register("add_item", () -> AddItemLootModifier.CODEC);
         LOOT_MODIFIERS.register("replace_item", () -> ReplaceItemLootModifier.CODEC);
         LOOT_MODIFIERS.register(modBus);
-
-        OreganizedConfigs.register(container);
     }
 
 }
