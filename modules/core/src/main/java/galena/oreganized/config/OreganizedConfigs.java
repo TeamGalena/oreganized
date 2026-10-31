@@ -1,9 +1,9 @@
 package galena.oreganized.config;
 
+import galena.oreganized.OConstants;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Stream;
-
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.common.ModConfigSpec;
@@ -51,7 +51,7 @@ public class OreganizedConfigs {
 
     public static void register(ModContainer container) {
         CONFIGS.forEach((type, pair) -> {
-            container.registerConfig(type, pair.getRight());
+            container.registerConfig(type, pair.getRight(), "%s-%s.toml".formatted(OConstants.MOD_ID, type.extension()));
         });
     }
 
