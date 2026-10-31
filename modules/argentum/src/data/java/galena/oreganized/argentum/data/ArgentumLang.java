@@ -41,7 +41,7 @@ public class ArgentumLang {
         addTarnished(provider, ArgentumBlocks.CUT_SILVER_STAIRS, "Cut Silver Stairs");
         addTarnished(provider, ArgentumBlocks.CUT_SILVER_SLABS, "Cut Silver Slabs");
         addTarnished(provider, ArgentumBlocks.SILVER_DOORS, "Silver Door");
-        addTarnished(provider, ArgentumBlocks.SILVER_TRAPDOORS, "Silver Door");
+        addTarnished(provider, ArgentumBlocks.SILVER_TRAPDOORS, "Silver Trapdoor");
         autoTranslate(provider, ArgentumBlocks.GROOVED_ICE);
         autoTranslate(provider, ArgentumBlocks.GROOVED_PACKED_ICE);
         autoTranslate(provider, ArgentumBlocks.GROOVED_BLUE_ICE);
