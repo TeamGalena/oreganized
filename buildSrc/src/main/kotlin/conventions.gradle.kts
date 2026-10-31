@@ -1,9 +1,11 @@
+import galena.gradle.OreganizedVersionStrategy
 import gradle.kotlin.dsl.accessors._e849eac7ebcc7a72f0018c78d68b6ce0.main
 import gradle.kotlin.dsl.accessors._e849eac7ebcc7a72f0018c78d68b6ce0.mod
 import gradle.kotlin.dsl.accessors._e849eac7ebcc7a72f0018c78d68b6ce0.sourceSets
 import net.kyori.blossom.BlossomExtension
 import org.gradle.internal.extensions.stdlib.capitalized
 import org.gradle.kotlin.dsl.configure
+import kotlin.text.get
 
 plugins {
     id("com.possible-triangle.core")
@@ -12,6 +14,10 @@ plugins {
 
 base {
     archivesName = "${mod.name.get()} ${mod.version.get()}"
+}
+
+mod {
+    versionStrategy = OreganizedVersionStrategy(project)
 }
 
 repositories {
