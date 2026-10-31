@@ -11,10 +11,6 @@ neoforge {
     accessTransformer(project(":core"))
 }
 
-base {
-    archivesName = "${mod.name.get()} ${mod.minecraftVersion.get()}-${mod.version.get()}"
-}
-
 modModules.forEach {
     evaluationDependsOn(it.path)
 }

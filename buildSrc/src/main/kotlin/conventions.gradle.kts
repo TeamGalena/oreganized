@@ -10,6 +10,10 @@ plugins {
     id("net.kyori.blossom")
 }
 
+base {
+    archivesName = "${mod.name.get()} ${mod.version.get()}"
+}
+
 repositories {
     maven {
         url = uri("https://maven.teamabnormals.com/")
