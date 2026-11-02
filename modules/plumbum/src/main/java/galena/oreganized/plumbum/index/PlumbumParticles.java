@@ -8,6 +8,7 @@ import net.minecraft.client.particle.ExplodeParticle;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
@@ -30,6 +31,7 @@ public class PlumbumParticles {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> FALLING_DRIPSTONE_LEAD = PARTICLES.createSimple("falling_dripstone_lead");
 
     @SubscribeEvent
+    @OnlyIn(Dist.CLIENT)
     private static void registerParticleFactories(RegisterParticleProvidersEvent event) {
         event.registerSprite(DRIPPING_LEAD.get(), new LeadFluidParticle.HangProvider());
         event.registerSprite(FALLING_LEAD.get(), new LeadFluidParticle.FallProvider());

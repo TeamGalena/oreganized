@@ -7,6 +7,7 @@ import galena.oreganized.register.ParticleTypeRegistryHelper;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
@@ -24,6 +25,7 @@ public class ArgentumParticles {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> POLISH = PARTICLES.createSimple("polish");
 
     @SubscribeEvent
+    @OnlyIn(Dist.CLIENT)
     private static void registerParticleFactories(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(TARNISH.get(), TarnishParticle.Provider::new);
         event.registerSpriteSet(POLISH.get(), PolishParticle.Provider::new);

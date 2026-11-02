@@ -6,6 +6,7 @@ import galena.oreganized.register.ParticleTypeRegistryHelper;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
@@ -21,6 +22,7 @@ public class ArmamentParticles {
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LEAD_SHRAPNEL = PARTICLES.createSimple("lead_shrapnel");
 
     @SubscribeEvent
+    @OnlyIn(Dist.CLIENT)
     private static void registerParticleFactories(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(LEAD_SHRAPNEL.get(), LeadShrapnelParticle.Provider::new);
     }
