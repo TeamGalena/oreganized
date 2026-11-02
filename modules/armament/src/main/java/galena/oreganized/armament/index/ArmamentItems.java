@@ -1,6 +1,7 @@
 package galena.oreganized.armament.index;
 
 import galena.oreganized.armament.ArmamentModule;
+import galena.oreganized.armament.world.FlintAndPewterDispenserBehaviour;
 import galena.oreganized.armament.world.item.FlintAndPewterItem;
 import galena.oreganized.armament.world.item.LeadBoltItem;
 import galena.oreganized.armament.world.item.MinecartShrapnelBombItem;
@@ -10,11 +11,13 @@ import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 @Mod(ArmamentModule.MOD_ID)
+@EventBusSubscriber
 public class ArmamentItems {
 
     private static final ItemRegistryHelper ITEMS = ArmamentModule.REGISTRY_HELPER.getItemSubHelper();
@@ -31,6 +34,7 @@ public class ArmamentItems {
     @SubscribeEvent
     private static void registerDispenserBehaviours(FMLCommonSetupEvent event) {
         DispenserBlock.registerBehavior(LEAD_BOLT.get(), new ProjectileDispenseBehavior(LEAD_BOLT.get()));
+        DispenserBlock.registerBehavior(FLINT_AND_PEWTER.get(), new FlintAndPewterDispenserBehaviour());
     }
 
 }

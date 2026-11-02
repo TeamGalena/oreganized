@@ -10,11 +10,13 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 @Mod(PlumbumModule.MOD_ID)
+@EventBusSubscriber
 public class PlumbumItems {
 
     private static final ItemRegistryHelper ITEMS = PlumbumModule.REGISTRY_HELPER.getItemSubHelper();
