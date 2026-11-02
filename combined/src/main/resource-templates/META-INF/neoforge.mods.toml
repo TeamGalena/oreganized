@@ -1,6 +1,7 @@
 modLoader = "lowcodefml"
-{% embed "base.mods.toml" %}
-{% block mod %}
+{% extends "base.mods.toml" %}
+
+{% block baseMod %}
 itemIcon = "${mod_id}:silver_ore"
 configBackground = "${mod_id}:textures/block/glance_bricks.png"
 description = '''
@@ -9,4 +10,3 @@ Oreganized is a mod focusing on adding new ores and metals to Minecraft. Current
 This mod is designed to be a Vanilla plus mod while also adding unique uses and abilities to its content rather than just meaningless toolsets for a more engaging experience that tries to match the quality of Mojang's own implementations of new content.
 '''
 {% endblock %}
-{% endembed %}

@@ -12,7 +12,7 @@ logoBlur = false
 credits = "Thanks to our wonderful Patreon members and those who help participate in discussions on our Discord server!"
 updateJSONURL = "https://api.modrinth.com/updates/{{ slug }}/forge_updates.json?neoforge=only"
 displayURL = "https://modrinth.com/mod/{{ slug }}"
-{% block mod %}{% endblock %}
+{% block baseMod %}{% endblock %}
 {% for module in moduleDependencies %}
 
 [[dependencies.${mod_id}]]
