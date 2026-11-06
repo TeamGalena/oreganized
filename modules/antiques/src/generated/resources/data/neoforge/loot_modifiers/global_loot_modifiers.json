@@ -1,7 +1,26 @@
 {
   "entries": [
     "oreganized:antiques_in_chests",
-    "oreganized:buried_antiques"
+    "oreganized:buried_antiques",
+    "oreganized:antiques_pile/oreganized_electrum/speedometer",
+    "oreganized:antiques_pile/oreganized_electrum/electrum_nugget",
+    "oreganized:antiques_pile/oreganized_armament/flint_and_pewter",
+    "oreganized:antiques_pile/oreganized_armament/lead_bolt",
+    "oreganized:antiques_pile/oreganized_argentum/silver_bars",
+    "oreganized:antiques_pile/oreganized_argentum/silver_nugget",
+    "oreganized:antiques_pile/oreganized_argentum/scribe",
+    "oreganized:antiques_pile/oreganized_argentum/silver_mirror",
+    "oreganized:antiques_pile/oreganized_argentum/silver_door",
+    "oreganized:antiques_pile/oreganized_argentum/silver_sword",
+    "oreganized:antiques_pile/oreganized_argentum/silver_shovel",
+    "oreganized:antiques_pile/oreganized_argentum/silver_pickaxe",
+    "oreganized:antiques_pile/oreganized_argentum/silver_axe",
+    "oreganized:antiques_pile/oreganized_argentum/silver_hoe",
+    "oreganized:antiques_pile/oreganized_argentum/silver_boots",
+    "oreganized:antiques_pile/oreganized_argentum/silver_leggings",
+    "oreganized:antiques_pile/oreganized_argentum/silver_chestplate",
+    "oreganized:antiques_pile/oreganized_argentum/silver_helmet",
+    "oreganized:antiques_pile/oreganized_plumbum/thermometer"
   ],
   "replace": false
 }

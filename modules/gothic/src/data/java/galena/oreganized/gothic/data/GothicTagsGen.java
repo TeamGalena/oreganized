@@ -5,7 +5,6 @@ import static galena.oreganized.data.extensions.OTagExtensions.tagStoneSet;
 
 import com.tterrag.registrate.providers.RegistrateItemTagsProvider;
 import com.tterrag.registrate.providers.RegistrateTagsProvider;
-import galena.oreganized.argentum.index.ArgentumSets;
 import galena.oreganized.argentum.index.ArgentumTags;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.gothic.GothicModule;
@@ -31,6 +30,7 @@ public class GothicTagsGen {
     }
 
     private void items(RegistrateItemTagsProvider provider) {
+        provider.addTag(ArgentumTags.Items.INGOTS_SILVER);
         provider.addTag(GothicTags.Items.GARGOYLE_SNACK).addTag(ArgentumTags.Items.INGOTS_SILVER);
 
         tagDyed(provider, GothicBlocks.CRYSTAL_GLASS, GothicTags.Items.CRYSTAL_GLASS);
@@ -79,16 +79,12 @@ public class GothicTagsGen {
         tagStoneSet(provider, GothicBlocks.POLISHED_DARK_GRIMSTONE);
         tagStoneSet(provider, GothicBlocks.POLISHED_PALE_GRIMSTONE);
 
-        // TODO modular needs condition
-        ArgentumSets.tarnishedBlocks().forEach(set -> {
-            provider.addTag(GothicTags.Blocks.PALE_SPYRE_CATALYST).add(set.base().getKey());
-            provider.addTag(GothicTags.Blocks.DARK_SPYRE_CATALYST).add(set.blemished().getKey());
-            provider.addTag(GothicTags.Blocks.DARK_SPYRE_CATALYST).add(set.tarnished().getKey());
-        });
+        provider.addTag(GothicTags.Blocks.PALE_SPYRE_CATALYST);
+        provider.addTag(GothicTags.Blocks.DARK_SPYRE_CATALYST);
     }
 
     private void entities(RegistrateTagsProvider.IntrinsicImpl<EntityType<?>> provider) {
-        provider.addTag(GothicTags.Entities.SCARED_OF_GARGOYLE).addTags(EntityTypeTags.UNDEAD);
+        provider.addTag(GothicTags.Entities.SCARED_OF_GARGOYLE).addTag(EntityTypeTags.UNDEAD);
     }
 
     private void fluids(RegistrateTagsProvider.IntrinsicImpl<Fluid> provider) {

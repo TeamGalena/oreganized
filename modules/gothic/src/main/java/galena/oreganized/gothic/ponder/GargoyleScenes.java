@@ -3,7 +3,8 @@ package galena.oreganized.gothic.ponder;
 import static galena.oreganized.ponder.OPonderExtensions.killEntity;
 
 import galena.oreganized.ModCompat;
-import galena.oreganized.argentum.index.ArgentumItems;
+import galena.oreganized.OConstants;
+import galena.oreganized.gothic.compat.ArgentumCompat;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.gothic.index.GothicParticles;
 import java.util.List;
@@ -22,6 +23,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.ComparatorBlock;
 import net.minecraft.world.level.block.LeverBlock;
 import net.minecraft.world.level.block.RedStoneWireBlock;
@@ -30,8 +32,13 @@ import net.minecraft.world.phys.Vec3;
 public class GargoyleScenes {
 
     public static ItemStack gargoyleSnack() {
-        // TODO modular needs different item if modular?
-        return ArgentumItems.SILVER_INGOT.toStack();
+        // TODO can I just get an item by it's tag?
+
+        if (OConstants.moduleLoaded("argentum")) {
+            return ArgentumCompat.getSilverIngot();
+        }
+
+        return Items.BARRIER.asItem().getDefaultInstance();
     }
 
     private static final List<UnaryOperator<BlockPos>> DUST_OFFSETS = List.of(

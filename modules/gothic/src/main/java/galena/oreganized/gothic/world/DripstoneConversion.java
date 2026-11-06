@@ -1,19 +1,17 @@
 package galena.oreganized.gothic.world;
 
-import galena.oreganized.argentum.index.ArgentumSounds;
-import galena.oreganized.argentum.network.TarnishParticlePacket;
+import galena.oreganized.OConstants;
+import galena.oreganized.gothic.compat.ArgentumCompat;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.gothic.index.GothicTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Fluid;
-import net.neoforged.neoforge.network.PacketDistributor;
 
 // TODO might convert into a recipe type or data map in the future
 public class DripstoneConversion {
@@ -23,12 +21,12 @@ public class DripstoneConversion {
      * It starts top to bottom, until it reaches a connection point where the stalactite meets a stalagmite.
      * If it encounters one, it will stop and continues at the bottom until that connection point.
      * ____________________________
-     *   1 ▊   1  ▊   1 ▼
-     *   2 ▊   2  ▊
-     *   3 ▼    3 ▼
-     *   6 ▲
-     *   5 ▊
-     *   4 ▊
+     * 1 ▊   1  ▊   1 ▼
+     * 2 ▊   2  ▊
+     * 3 ▼    3 ▼
+     * 6 ▲
+     * 5 ▊
+     * 4 ▊
      */
     private static void convert(ServerLevel level, BlockPos pos, Block spyre) {
         var mutable = pos.mutable();
@@ -52,7 +50,9 @@ public class DripstoneConversion {
             mutable.setY(y);
             var from = level.getBlockState(mutable);
             level.setBlock(mutable, spyre.withPropertiesOf(from), 2);
-            PacketDistributor.sendToPlayersInDimension(level, new TarnishParticlePacket(mutable.immutable(), true));
+            if (OConstants.moduleLoaded("argentum")) {
+                ArgentumCompat.sendTarnishParticles(level, mutable.immutable());
+            }
         }
 
         if (connection != null) {
@@ -60,11 +60,15 @@ public class DripstoneConversion {
                 mutable.setY(y);
                 var from = level.getBlockState(mutable);
                 level.setBlock(mutable, spyre.withPropertiesOf(from), 2);
-                PacketDistributor.sendToPlayersInDimension(level, new TarnishParticlePacket(mutable.immutable(), true));
+                if (OConstants.moduleLoaded("argentum")) {
+                    ArgentumCompat.sendTarnishParticles(level, mutable.immutable());
+                }
             }
         }
 
-        level.playSound(null, pos, ArgentumSounds.TARNISH.get(), SoundSource.BLOCKS);
+        if (OConstants.moduleLoaded("argentum")) {
+            ArgentumCompat.playTarnishSound(level, pos);
+        }
     }
 
     public static boolean tryConvertDripstone(ServerLevel level, BlockPos pos, Fluid fluid, BlockState catalyst) {

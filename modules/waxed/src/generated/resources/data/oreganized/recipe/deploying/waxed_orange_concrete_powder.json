@@ -6,14 +6,6 @@
     }
   ],
   "type": "create:deploying",
-  "fabric:load_conditions": [
-    {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "create"
-      ]
-    }
-  ],
   "ingredients": [
     {
       "item": "minecraft:orange_concrete_powder"

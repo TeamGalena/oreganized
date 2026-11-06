@@ -10,17 +10,6 @@
   ],
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
-  "fabric:load_conditions": [
-    {
-      "condition": "fabric:not",
-      "value": {
-        "condition": "fabric:all_mods_loaded",
-        "values": [
-          "create"
-        ]
-      }
-    }
-  ],
   "ingredients": [
     {
       "tag": "c:ingots/silver"

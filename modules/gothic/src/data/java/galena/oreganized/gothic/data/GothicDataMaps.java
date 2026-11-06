@@ -1,5 +1,6 @@
 package galena.oreganized.gothic.data;
 
+import galena.oreganized.argentum.ArgentumModule;
 import galena.oreganized.argentum.index.ArgentumDataMapTypes;
 import galena.oreganized.argentum.world.ScribePermutation;
 import galena.oreganized.data.ODatagen;
@@ -7,6 +8,7 @@ import galena.oreganized.gothic.GothicModule;
 import galena.oreganized.gothic.index.GothicTags;
 import galena.oreganized.gothic.world.block.ICrystalGlass;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.data.DataMapProvider;
 
 @Mod(GothicModule.MOD_ID)
@@ -18,6 +20,7 @@ public class GothicDataMaps {
 
     private void generate(DataMapProvider provider) {
         var scribePermutations = provider.builder(ArgentumDataMapTypes.SCRIBE_PERMUTATIONS);
+        scribePermutations.conditions(new ModLoadedCondition(ArgentumModule.MOD_ID));
         scribePermutations.add(GothicTags.Blocks.CRYSTAL_GLASS, new ScribePermutation(ICrystalGlass.TYPE), false);
         scribePermutations.add(GothicTags.Blocks.CRYSTAL_GLASS_PANES, new ScribePermutation(ICrystalGlass.TYPE), false);
     }

@@ -7,11 +7,12 @@ plugins {
 
 moduleDependencies(
     "core",
-    "argentum",
 )
 
 dependencies {
     modImplementation(libs.create) { isTransitive = false }
 
-    dataApi(project(":plumbum"))
+    compileOnly(project(":argentum"))
+    dataImplementation(project(":argentum"))
+    dataImplementation(project(":plumbum"))
 }

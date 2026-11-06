@@ -5,7 +5,6 @@ import static galena.oreganized.data.extensions.OBlockLootExtensions.dropSelf;
 
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import galena.oreganized.data.ODatagen;
-import galena.oreganized.data.provider.RegistrateLootModifierProvider;
 import galena.oreganized.electrum.ElectrumModule;
 import galena.oreganized.electrum.index.ElectrumBlocks;
 import galena.oreganized.electrum.index.ElectrumItems;
@@ -14,6 +13,7 @@ import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
 import net.neoforged.neoforge.common.loot.LootTableIdCondition;
 
 @Mod(ElectrumModule.MOD_ID)
@@ -28,7 +28,7 @@ public class ElectrumLoot {
         dropSelf(provider, ElectrumBlocks.ELECTRUM_BLOCK);
     }
 
-    private void modifiers(RegistrateLootModifierProvider provider) {
+    private void modifiers(GlobalLootModifierProvider provider) {
         provider.add(
                 "electrum_upgrade_smithing_template",
                 AddItemLootModifier.builder(ElectrumItems.ELECTRUM_UPGRADE_SMITHING_TEMPLATE.toStack())
