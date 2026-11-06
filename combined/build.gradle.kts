@@ -49,6 +49,8 @@ upload {
         name = "${mod.id.get()}-${mod.minecraftVersion.get()}"
     }
 
+    modrinth.syncBodyFromReadme()
+
     requiresBlueprint()
 }
 
