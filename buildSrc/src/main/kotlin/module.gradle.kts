@@ -32,6 +32,10 @@ modifyReleaseMetadata {
     exclude = true
 }
 
+upload.modrinth {
+    syncBodyFrom(file("README.md"))
+}
+
 sourceSets.main {
     configure<BlossomExtension> {
         javaSources {
