@@ -10,7 +10,6 @@ import galena.oreganized.argentum.index.ArgentumBlocks;
 import galena.oreganized.argentum.index.ArgentumItems;
 import galena.oreganized.argentum.index.ArgentumSets;
 import galena.oreganized.data.ODatagen;
-import galena.oreganized.data.provider.RegistrateLootModifierProvider;
 import galena.oreganized.world.AddItemLootModifier;
 import java.util.stream.Stream;
 import net.minecraft.advancements.critereon.ItemPredicate;
@@ -30,6 +29,7 @@ import net.minecraft.world.level.storage.loot.predicates.*;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
 import net.neoforged.neoforge.common.loot.LootTableIdCondition;
 
 @Mod(ArgentumModule.MOD_ID)
@@ -71,7 +71,7 @@ public class ArgentumLoot {
         ArgentumBlocks.SILVER_TRAPDOORS.stream().forEach(it -> dropSelf(provider, it));
     }
 
-    private void modifiers(RegistrateLootModifierProvider provider) {
+    private void modifiers(GlobalLootModifierProvider provider) {
         provider.add(
                 "scribe_in_ancient_cities",
                 AddItemLootModifier.builder(ArgentumItems.SCRIBE.toStack())

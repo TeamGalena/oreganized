@@ -8,12 +8,12 @@ import galena.oreganized.armament.ArmamentModule;
 import galena.oreganized.armament.index.ArmamentBlocks;
 import galena.oreganized.armament.index.ArmamentItems;
 import galena.oreganized.data.ODatagen;
-import galena.oreganized.data.provider.RegistrateLootModifierProvider;
 import galena.oreganized.world.AddItemLootModifier;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
 import net.neoforged.neoforge.common.loot.LootTableIdCondition;
 
 @Mod(ArmamentModule.MOD_ID)
@@ -30,7 +30,7 @@ public class ArmamentLoot {
     }
 
 
-    private void modifiers(RegistrateLootModifierProvider provider) {
+    private void modifiers(GlobalLootModifierProvider provider) {
         provider.add(
                 "lead_bolts_in_outpost",
                 AddItemLootModifier.builder(ArmamentItems.LEAD_BOLT.toStack(2))

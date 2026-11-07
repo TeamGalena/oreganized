@@ -1,0 +1,23 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "oreganized_argentum"
+    }
+  ],
+  "type": "oreganized:replace_item",
+  "conditions": [
+    {
+      "chance": 0.035714287,
+      "condition": "minecraft:random_chance"
+    },
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "oreganized:gameplay/antiques_polishing"
+    }
+  ],
+  "item": {
+    "count": 1,
+    "id": "oreganized:scribe"
+  }
+}

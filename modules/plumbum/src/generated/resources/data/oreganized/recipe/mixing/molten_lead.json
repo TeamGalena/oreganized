@@ -6,14 +6,6 @@
     }
   ],
   "type": "create:mixing",
-  "fabric:load_conditions": [
-    {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "create"
-      ]
-    }
-  ],
   "heat_requirement": "heated",
   "ingredients": [
     [

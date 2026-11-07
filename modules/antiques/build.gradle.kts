@@ -8,6 +8,9 @@ plugins {
 moduleDependencies(
     "core",
     "argentum",
-    "armament",
-    "electrum",
 )
+
+dependencies {
+    dataImplementation(project(":armament"))
+    dataImplementation(project(":electrum"))
+}

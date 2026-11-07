@@ -12,14 +12,6 @@
   "base": {
     "item": "farmersdelight:diamond_knife"
   },
-  "fabric:load_conditions": [
-    {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "farmersdelight"
-      ]
-    }
-  ],
   "result": {
     "count": 1,
     "id": "oreganized:electrum_knife"

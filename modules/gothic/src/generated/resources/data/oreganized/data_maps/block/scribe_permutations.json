@@ -1,4 +1,10 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "oreganized_argentum"
+    }
+  ],
   "values": {
     "#oreganized:crystal_glass": {
       "property": "type"

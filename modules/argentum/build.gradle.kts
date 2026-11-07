@@ -12,5 +12,6 @@ moduleDependencies(
 dependencies {
     modCompileOnly(libs.create) { isTransitive = false }
 
-    dataApi(project(":plumbum"))
+    dataImplementation(project(":plumbum"))
+    dataImplementation(project(":gothic"))
 }

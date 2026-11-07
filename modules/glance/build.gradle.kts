@@ -10,6 +10,6 @@ moduleDependencies(
 )
 
 dependencies {
-    dataApi(project(":plumbum"))
+    dataImplementation(project(":plumbum"))
     compileOnly(project(":plumbum"))
 }

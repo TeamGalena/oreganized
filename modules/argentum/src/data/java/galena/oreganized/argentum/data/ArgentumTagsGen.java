@@ -13,6 +13,7 @@ import galena.oreganized.argentum.index.ArgentumItems;
 import galena.oreganized.argentum.index.ArgentumSets;
 import galena.oreganized.argentum.index.ArgentumTags;
 import galena.oreganized.data.ODatagen;
+import galena.oreganized.gothic.index.GothicTags;
 import galena.oreganized.index.CoreTags;
 import galena.oreganized.plumbum.index.PlumbumTags;
 import java.util.function.Function;
@@ -210,6 +211,12 @@ public class ArgentumTagsGen {
 
         provider.addTag(AllTags.AllBlockTags.FAN_TRANSPARENT.tag)
                 .addTag(ArgentumTags.Blocks.FAN_PROCESSING_CATALYST_TARNISHING);
+
+        ArgentumSets.tarnishedBlocks().forEach(set -> {
+            provider.addTag(GothicTags.Blocks.PALE_SPYRE_CATALYST).add(set.base().getKey());
+            provider.addTag(GothicTags.Blocks.DARK_SPYRE_CATALYST).add(set.blemished().getKey());
+            provider.addTag(GothicTags.Blocks.DARK_SPYRE_CATALYST).add(set.tarnished().getKey());
+        });
     }
 
     private void entities(RegistrateTagsProvider.IntrinsicImpl<EntityType<?>> provider) {

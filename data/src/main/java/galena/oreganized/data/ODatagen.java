@@ -44,6 +44,7 @@ import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.conditions.ICondition;
 import net.neoforged.neoforge.common.data.DataMapProvider;
+import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 public class ODatagen {
@@ -67,7 +68,12 @@ public class ODatagen {
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     private static void generatePonderLang(GatherDataEvent event) {
-        PonderCompat.register();
+        var active = event.getModContainer();
+        var moduleId = active.getModId().replace(OConstants.MOD_ID + "_", "");
+        PonderCompat.register(plugin -> {
+            var clazz = plugin.getClass();
+            return clazz.getPackageName().contains(".%s.".formatted(moduleId));
+        });
         PonderIndex.getLangAccess().provideLang(OConstants.MOD_ID, REGISTRATE::addRawLang);
     }
 
@@ -116,7 +122,7 @@ public class ODatagen {
         REGISTRATE.addDataGenerator(ForgeRegistrateBuilders.getSOUNDS(), consumer::accept);
     }
 
-    public static void addLootModifierProvider(Consumer<RegistrateLootModifierProvider> consumer) {
+    public static void addLootModifierProvider(Consumer<GlobalLootModifierProvider> consumer) {
         REGISTRATE.addDataGenerator(RegistrateLootModifierProvider.PROVIDER, consumer::accept);
     }
 

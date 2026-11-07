@@ -10,14 +10,6 @@
     }
   ],
   "type": "create:deploying",
-  "fabric:load_conditions": [
-    {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "create"
-      ]
-    }
-  ],
   "ingredients": [
     {
       "item": "dye_depot:amber_concrete_powder"

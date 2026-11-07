@@ -7,6 +7,9 @@ import static galena.oreganized.data.extensions.ORecipeExtensions.makeChiseledSt
 import static galena.oreganized.data.extensions.ORecipeExtensions.makeWaxed;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 
+import com.possible_triangle.multikulti.datagen.conditions.Conditional;
+import com.possible_triangle.multikulti.datagen.conditions.ModLoaded;
+import com.possible_triangle.multikulti.datagen.conditions.TagPopulated;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.content.fluids.transfer.FillingRecipe;
 import com.simibubi.create.content.kinetics.crusher.CrushingRecipe;
@@ -16,11 +19,14 @@ import galena.oreganized.data.ODatagen;
 import galena.oreganized.glance.GlanceModule;
 import galena.oreganized.glance.index.GlanceBlocks;
 import galena.oreganized.glance.index.GlanceTags;
+import galena.oreganized.plumbum.PlumbumModule;
 import galena.oreganized.plumbum.index.PlumbumItems;
 import galena.oreganized.plumbum.index.PlumbumTags;
+import java.util.List;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.neoforged.fml.common.Mod;
 
 @Mod(GlanceModule.MOD_ID)
@@ -64,40 +70,44 @@ public class GlanceRecipes {
                 .unlockedBy("has_lead_ingot", has(PlumbumTags.Items.INGOTS_LEAD))
                 .save(output);
 
-        // TODO modular will need to be conditional in the future
-        processing(CrushingRecipe::new, "glance")
-                .output(0.8F, AllItems.CRUSHED_LEAD, 1)
-                .output(0.8F, PlumbumItems.LEAD_NUGGET)
-                .require(GlanceBlocks.GLANCE.block())
-                .duration(250)
-                .build(output);
-
-        // TODO modular will need to be conditional in the future
-        processing(CrushingRecipe::new, "glance_recycling")
-                .output(0.8F, AllItems.CRUSHED_LEAD, 1)
-                .output(0.8F, PlumbumItems.LEAD_NUGGET)
-                .require(GlanceTags.Items.STONE_TYPES_GLANCE)
-                .duration(250)
-                .build(output);
-
-        // TODO modular will need to be conditional in the future
         processing(FillingRecipe::new, "spotted_glance")
                 .output(GlanceBlocks.SPOTTED_GLANCE)
                 .require(GlanceBlocks.GLANCE.block())
                 .require(GlanceTags.Fluids.RENEWS_SPOTTED_GLANCE, 250)
                 .build(output);
 
-        // TODO modular will need to be conditional in the future
-        processing(MixingRecipe::new, "glance")
-                .output(GlanceBlocks.GLANCE.block())
-                .require(Items.DIORITE)
-                .require(PlumbumTags.Items.NUGGETS_LEAD)
-                .build(output);
+        Conditional.with(output, List.of(new TagPopulated(PlumbumTags.Items.NUGGETS_LEAD)), () -> {
+            processing(MixingRecipe::new, "glance")
+                    .output(GlanceBlocks.GLANCE.block())
+                    .require(Items.DIORITE)
+                    .require(PlumbumTags.Items.NUGGETS_LEAD)
+                    .build(output);
+        });
 
-        // TODO modular will need to be conditional in the future
-        processing(SplashingRecipe::new, "spotted_glance")
-                .output(1.5F, PlumbumItems.LEAD_NUGGET)
-                .require(GlanceBlocks.SPOTTED_GLANCE)
-                .build(output);
+        // TODO could also include other mod's lead in the future
+        leadRecipes(output, PlumbumModule.MOD_ID, PlumbumItems.LEAD_NUGGET);
+    }
+
+    private static void leadRecipes(RecipeOutput output, String modId, ItemLike nugget) {
+        Conditional.with(output, List.of(new ModLoaded(modId)), () -> {
+            processing(CrushingRecipe::new, "glance")
+                    .output(0.8F, AllItems.CRUSHED_LEAD, 1)
+                    .output(0.8F, nugget)
+                    .require(GlanceBlocks.GLANCE.block())
+                    .duration(250)
+                    .build(output);
+
+            processing(CrushingRecipe::new, "glance_recycling")
+                    .output(0.8F, AllItems.CRUSHED_LEAD, 1)
+                    .output(0.8F, nugget)
+                    .require(GlanceTags.Items.STONE_TYPES_GLANCE)
+                    .duration(250)
+                    .build(output);
+
+            processing(SplashingRecipe::new, "spotted_glance")
+                    .output(1.5F, nugget)
+                    .require(GlanceBlocks.SPOTTED_GLANCE)
+                    .build(output);
+        });
     }
 }
