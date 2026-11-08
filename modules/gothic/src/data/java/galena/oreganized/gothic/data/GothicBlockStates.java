@@ -122,24 +122,21 @@ public class GothicBlockStates {
                     .end();
 
             horizontalDirections((dir, property) -> {
-                var alt = dir == Direction.SOUTH || dir == Direction.EAST;
-                var yRot = dir.getAxis() == Direction.Axis.X ? 270 : 0;
+                var alt = dir == Direction.SOUTH || dir == Direction.WEST;
+                var yRot = dir.getAxis() == Direction.Axis.X ? 90 : 0;
 
-                builder
-                        .part()
+                builder.part()
                         .modelFile(alt ? sideAlt : side)
                         .rotationY(yRot)
                         .addModel()
                         .condition(property, true)
-                        .condition(CrystalGlassPaneBlock.TYPE, type)
-                        .end()
+                        .condition(CrystalGlassPaneBlock.TYPE, type);
 
-                        .part().modelFile(alt ? nosideAlt : noside)
-                        .rotationY(yRot)
+                builder.part().modelFile(alt ? nosideAlt : noside)
+                        .rotationY(yRot + (alt ? 90 : 0))
                         .addModel()
                         .condition(property, false)
-                        .condition(CrystalGlassPaneBlock.TYPE, type)
-                        .end();
+                        .condition(CrystalGlassPaneBlock.TYPE, type);
             });
         }
 
