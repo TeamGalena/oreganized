@@ -10,8 +10,7 @@
     "IceBlockMixin",
     "BrushItemMixin",
     "LivingEntityMixin",
-    "WalkNodeEvaluatorMixin",
-    "LivingEntityMixin"
+    "WalkNodeEvaluatorMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -22,7 +22,7 @@ public abstract class LivingEntityMixin {
             return;
         }
         var seconds = attribute.getValue();
-        var ticks = (int) (seconds * 20);
+        var ticks = (int) Math.max(0, (seconds * 20) - 20 + value);
         original.call(instance, ticks);
     }
 
