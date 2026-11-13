@@ -3,6 +3,13 @@
     {
       "type": "neoforge:mod_loaded",
       "modid": "dye_depot"
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/lead"
+      }
     }
   ],
   "parent": "minecraft:recipes/root",
@@ -17,7 +24,7 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_lead_ingot": {
+    "has_ingots/lead": {
       "conditions": {
         "items": [
           {
@@ -37,7 +44,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_lead_ingot",
+      "has_ingots/lead",
       "has_any_glass"
     ]
   ],

@@ -16,7 +16,7 @@ fun <T : RecipeBuilder> T.unlockedBy(item: ItemLike): T {
 }
 
 @Suppress("UNCHECKED_CAST")
-fun <T : RecipeBuilder> T.unlockedBy(tag: TagKey<Item>): T = unlockedBy("has_${tag.location.path}", RegistrateRecipeProvider.has(tag)) as T
+fun <T : RecipeBuilder> T.unlockedBy(tag: TagKey<Item>): T = unlockedBy(getHasName(tag), RegistrateRecipeProvider.has(tag)) as T
 
 fun ShapedRecipeBuilder.defineUnlocking(
     key: Char,

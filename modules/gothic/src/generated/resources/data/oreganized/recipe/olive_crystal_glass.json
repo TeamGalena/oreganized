@@ -3,6 +3,13 @@
     {
       "type": "neoforge:mod_loaded",
       "modid": "dye_depot"
+    },
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:ingots/lead"
+      }
     }
   ],
   "type": "minecraft:crafting_shaped",

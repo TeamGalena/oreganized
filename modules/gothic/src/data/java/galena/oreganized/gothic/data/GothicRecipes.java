@@ -6,18 +6,26 @@ import static com.tterrag.registrate.providers.RegistrateRecipeProvider.has;
 import static galena.oreganized.data.extensions.OColorExtensions.*;
 import static galena.oreganized.data.extensions.OConditionExtensions.dyed;
 import static galena.oreganized.data.extensions.ORecipeExtensions.*;
+import static galena.oreganized.data.extensions.ORecipeExtensions.getHasName;
+import static net.minecraft.data.recipes.RecipeBuilder.getDefaultRecipeId;
 import static net.minecraft.data.recipes.ShapedRecipeBuilder.shaped;
 
+import com.possible_triangle.multikulti.datagen.conditions.Conditional;
+import com.possible_triangle.multikulti.datagen.conditions.TagEmpty;
+import com.possible_triangle.multikulti.datagen.conditions.TagPopulated;
 import galena.oreganized.argentum.index.ArgentumTags;
 import galena.oreganized.data.ODatagen;
 import galena.oreganized.gothic.GothicModule;
 import galena.oreganized.gothic.index.GothicBlocks;
 import galena.oreganized.plumbum.index.PlumbumTags;
+import java.util.List;
 import java.util.function.Supplier;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.fml.common.Mod;
@@ -103,17 +111,25 @@ public class GothicRecipes {
     }
 
     public static void makeCrystalGlass(RecipeOutput output, Supplier<? extends Block> to, Block from) {
-        crystalGlass(to, from).save(output);
+        var id = getDefaultRecipeId(to.get());
+
+        Conditional.with(output, List.of(new TagPopulated(PlumbumTags.Items.INGOTS_LEAD)), () -> {
+            crystalGlass(to, from, PlumbumTags.Items.INGOTS_LEAD).save(output, id);
+        });
+
+        Conditional.with(output, List.of(new TagEmpty(PlumbumTags.Items.INGOTS_LEAD)), () -> {
+            crystalGlass(to, from, Tags.Items.GEMS_QUARTZ).save(output, id.withSuffix("_from_quartz"));
+        });
     }
 
-    public static ShapedRecipeBuilder crystalGlass(Supplier<? extends Block> to, Block from) {
+    public static ShapedRecipeBuilder crystalGlass(Supplier<? extends Block> to, Block from, TagKey<Item> catalyst) {
         return ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, to.get(), 8)
                 .pattern("AAA")
                 .pattern("ABA")
                 .pattern("AAA")
                 .define('A', from)
-                .define('B', PlumbumTags.Items.INGOTS_LEAD)
-                .unlockedBy("has_lead_ingot", has(PlumbumTags.Items.INGOTS_LEAD))
+                .define('B', catalyst)
+                .unlockedBy(getHasName(catalyst), has(catalyst))
                 .unlockedBy("has_any_glass", has(Tags.Items.GLASS_BLOCKS));
     }
 }

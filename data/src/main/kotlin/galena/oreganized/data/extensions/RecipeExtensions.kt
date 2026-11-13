@@ -86,7 +86,7 @@ fun bars(
         .define('#', from)
         .pattern("###")
         .pattern("###")
-        .unlockedBy("has_lead", has(from))
+        .unlockedBy(getHasName(from), has(from))
 
 fun RecipeOutput.makeBars(
     to: Supplier<out Block>,
@@ -169,3 +169,5 @@ fun RecipeOutput.makeFlowerDye(
             .save(this)
     }
 }
+
+fun getHasName(tag: TagKey<*>): String = "has_${tag.location.path}"
