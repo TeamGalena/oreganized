@@ -31,8 +31,8 @@ public class ArgentumConfigModule implements ConfigModule {
                     .defineInRange("tarnishRadius", 4, 1, 20);
             tarnishChance = builder.comment("The chance per block check for tarnishing to occur (1.0 = 100%, 0.0 = 0%). Note that this only applies to the first tarnish stage. other nextStage are this /2")
                     .defineInRange("tarnishChance", 0.5D, 0.0D, 1.0D);
-            tarnishChecksPerMob = builder.comment("The number of blocks around an undead mob to check every times a mob dies")
-                    .defineInRange("tarnishChecksPerMob", 20, 1, 100);
+            tarnishChecksPerMob = builder.comment("The number of blocks around an undead mob to check every times a mob dies. set to 0 to disable")
+                    .defineInRange("tarnishChecksPerMob", 20, 0, 100);
             maximumTarnishesPerMob = builder.comment("The maximum number of blocks to be tarnished per death/spawn event")
                     .defineInRange("maximumTarnishesPerMob", 10, 1, 100);
         }

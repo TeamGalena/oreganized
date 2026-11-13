@@ -46,6 +46,8 @@ public class TarnishEvents {
         int maxIter = ArgentumConfigs.COMMON.tarnishChecksPerMob.get();
         int maxConversions = ArgentumConfigs.COMMON.maximumTarnishesPerMob.get();
 
+        if (maxIter == 0) return;
+
         var mutable = center.mutable();
 
         for (int x = 0; x < 2; x++)

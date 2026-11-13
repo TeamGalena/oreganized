@@ -5,7 +5,9 @@ import galena.oreganized.OConstants;
 import galena.oreganized.argentum.index.ArgentumDataMapTypes;
 import galena.oreganized.argentum.index.ArgentumSounds;
 import galena.oreganized.argentum.network.TarnishParticlePacket;
+
 import java.util.*;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -80,6 +82,8 @@ public class TarnishBlockManager {
     }
 
     public static boolean tryTarnishing(BlockPos pos, Level level) {
+        if (!level.isLoaded(pos)) return false;
+
         var state = level.getBlockState(pos);
 
         return TarnishBlockManager.next(state).filter(tarnished -> {
@@ -97,6 +101,8 @@ public class TarnishBlockManager {
     }
 
     public static boolean tryPolishing(BlockPos pos, Level level) {
+        if (!level.isLoaded(pos)) return false;
+
         var state = level.getBlockState(pos);
 
         return TarnishBlockManager.previous(state).filter(previous -> {
